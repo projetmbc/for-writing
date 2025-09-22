@@ -1,0 +1,12 @@
+project:
+  desc   : XXX
+  acronym: "[C]olorful [S]tyles [SH]ared"
+  author : Christophe, BAL
+
+  license: gnu 3
+
+  url:
+    repo: XXXX
+
+  require:
+    - python3
