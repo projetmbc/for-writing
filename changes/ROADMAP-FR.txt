@@ -1,0 +1,18 @@
+======================
+for-writing (monorepo) - ROADMAP
+======================
+
+-------------
+TOUJOURS FAIT
+-------------
+
+    + Utilisation de hatch pour les projets Python.
+
+    + Utilisation de https://github.com/copier-org/copier
+
+
+-----------------
+PROCHAINES ÉTAPES
+-----------------
+
+    + CSSh --> trouver un meilleur nom !!
