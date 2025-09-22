@@ -1,0 +1,10 @@
+monorepo:
+  acronym: "[FOR] [WRITING] scientific documents"
+  desc   : "This project offers some general tools to facilitate part of the process of creating scientific documents."
+
+  author: Christophe, BAL
+
+  urls:
+    home  : https://github.com/projetmbc/for-writing.git
+    dev   : https://github.com/projetmbc/for-writing.git
+    issues: https://github.com/projetmbc/for-writing.git/issues

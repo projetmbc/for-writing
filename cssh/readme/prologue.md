@@ -1,2 +1,0 @@
-The `Python` module `clalog`
-============================
