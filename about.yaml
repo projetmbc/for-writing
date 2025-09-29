@@ -1,6 +1,6 @@
 monorepo:
   acronym: "[FOR] [WRITING] scientific documents"
-  desc   : "This project offers some general tools to facilitate part of the process of creating scientific documents."
+  desc   : "This monorepo offers some general tools to facilitate part of the process of creating scientific documents."
 
   author: Christophe, BAL
 
