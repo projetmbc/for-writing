@@ -16,4 +16,4 @@ contrib vers code dès le début
 
 // ---------- //
 
-????
+besoin d'une doc PDF via latex/luadraw, et une autre au fomrat web avec un syst de recherche de type de pallets (colorés ou non, avec du rougen du bleu, respectant accessibilité)
