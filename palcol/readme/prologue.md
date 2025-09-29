@@ -1,2 +1,2 @@
-The `Python` module `clalog`
-============================
+The Python module palcol
+========================

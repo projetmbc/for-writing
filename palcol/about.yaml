@@ -1,11 +1,14 @@
 project:
+  version: "0.0.0-alpha"
+
   acronym: "[PAL]ette of [COL]ors"
-  desc   : XXX
+  desc   : This project provides 10-color palettes, enabling the creation and use of color maps based on these palettes.
+
   author : Christophe, BAL
 
-  license: gnu 3
-
-  author: Christophe, BAL
+  licenses:
+    code  : gpl 3.0 only
+    manual: cc by nc 4.0
 
   urls:
     home  : https://github.com/projetmbc/for-writing.git

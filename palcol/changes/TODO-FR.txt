@@ -1,6 +1,17 @@
 ======
-XXXXXXXXXXXXXX - TODO
+palcol - TODO
 ======
+
+
+// ---------- //
+
+contrib vers code dès le début
+
+    --> on doit avoir un fichier exemple de test dans chaque langage avec une colormap maison
+        on produit juste un specter, rien de fou, gardant le reste pour la doc
+
+    --> passae du codage par lang, à la doc explicative du readme, besoin de savoir comment c'est codé et utilisé
+        passer via la doc tech : cf prototype
 
 
 // ---------- //

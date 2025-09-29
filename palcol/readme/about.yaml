@@ -1,3 +1,5 @@
 toc:
-  - prologue
-  - about
+  - prologue.md
+  - about.md
+  - languages.md
+  - languages/
