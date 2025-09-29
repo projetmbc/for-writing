@@ -1,0 +1,18 @@
+project:
+  acronym: "[PAL]ette of [COL]ors"
+  desc   : XXX
+  author : Christophe, BAL
+
+  license: gnu 3
+
+  author: Christophe, BAL
+
+  urls:
+    home  : https://github.com/projetmbc/for-writing.git
+    dev   : https://github.com/projetmbc/for-writing.git/tree/main/palcol
+    issues: https://github.com/projetmbc/for-writing.git/issues
+
+  require:
+    - python3
+    - latex3
+    - lua
