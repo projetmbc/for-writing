@@ -23,7 +23,7 @@ PRECISION     = 10**5
 THIS_DIR = Path(__file__).parent
 DATA_DIR = THIS_DIR.parent.parent / "data"
 
-JSON_PALETTES = DATA_DIR / "palcol.json"
+PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
 
 
 # --------------- #
@@ -47,9 +47,9 @@ def minimize_palette(p):
     return new_p
 
 
-# ------------------------- #
-# -- MATPLOTLIB PALETTES -- #
-# ------------------------- #
+# ----------------- #
+# -- LET'S WORK! -- #
+# ----------------- #
 
 palettes = {}
 
@@ -87,4 +87,4 @@ logging.info(f"{len(allnames)} Matplotlib color maps extracted.")
 
 logging.info("Update/create the JSON file of palettes.")
 
-JSON_PALETTES.write_text(json_dumps(palettes))
+PALETTES_JSON_FILE.write_text(json_dumps(palettes))

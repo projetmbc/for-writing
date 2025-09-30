@@ -62,6 +62,7 @@ def get_accepted_paths(project_dir: Path) -> dict[Path, str]:
 # Nothing found.
         if not(is_folder or files):
             log_raise_error(
+                context   = "Looking for contribs",
                 exception = IOError,
                 desc      = f"No contrib. found for '{stem}'.",
             )
