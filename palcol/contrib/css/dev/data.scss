@@ -1,5 +1,5 @@
 // Accent from Matplotlib
-$PALETTE = (
+$PALETTE : (
   (0.49803, 0.78823, 0.49803),
   (0.49803, 0.78823, 0.49803),
   (0.74509, 0.68235, 0.83137),
@@ -18,7 +18,7 @@ $PALETTE = (
 
   $gradient: ();
 
-  @each $color in $colors {
+  @each $color in $PALETTE {
     $r: nth($color, 1) * 255;
     $g: nth($color, 2) * 255;
     $b: nth($color, 3) * 255;
