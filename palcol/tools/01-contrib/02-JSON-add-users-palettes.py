@@ -29,8 +29,13 @@ PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
 # -- TOOLS -- #
 # ----------- #
 
-PATTERN_COLOR_DEF = re.compile(r"--PALETTE-\d+\s*:\s*([^;\n]+)[;\n]")
+PATTERN_COLOR_DEF = re.compile(
+    r"--PALETTE-\d+\s*:([^;\n]+)[;\n]"
+)
 
+PATTERN_RGB_VARS = re.compile(
+    r"rgb\(([^,]+)\s*,\s*([^,]+)\s*,\s*([^,]+)\s*\)"
+)
 
 def extract_from_css(pathfile):
     code = pathfile.read_text()
@@ -38,15 +43,45 @@ def extract_from_css(pathfile):
     matches = PATTERN_COLOR_DEF.findall(code)
 
     if not matches:
-        BUG
+        BUG_1
 
     for onecol in matches:
-# HTML coding.
+        onecol = onecol.strip()
+
+# HTML hexadecimal coding.
+        if onecol[0] == '#':
+            TODO
+
 # RGB coding with %, or without.
-        print(onecol)
+        elif onecol[:3] == 'rgb':
+            match = PATTERN_RGB_VARS.search(onecol)
+
+            if not match:
+                BUG_2
+
+            if len(match.groups()) != 3:
+                BUG_2_bis
+
+            r, g, b = normalize_rgb(match.groups())
+
+            print(f"[{r}][{g}][{b}]")
+
+# Unsupported color coding.
+        else:
+            BUG_3
 
 
     exit()
+
+    return r, g, b
+
+
+def normalize_rgb(vals):
+    return map(normalize_one_css_rgb, vals)
+
+
+def normalize_one_css_rgb(one_rgb_val):
+    return f"<{one_rgb_val}>"
 
 
 # ----------------- #

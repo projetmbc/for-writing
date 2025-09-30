@@ -74,17 +74,17 @@ for cmap_name in allnames:
         for i in range(SAMPLING_SIZE)
     ])
 
-    logging.info(f"Extracted color map '{cmap_name}'.")
+    logging.info(f"New palette from '{cmap_name}' color map.")
 
     # break
 
-logging.info(f"{len(allnames)} Matplotlib color maps extracted.")
+logging.info(f"{len(allnames)} palettes build from Matplotlib color maps.")
 
 
 # ------------------ #
 # -- JSON VERSION -- #
 # ------------------ #
 
-logging.info("Update/create the JSON file of palettes.")
+logging.info("Create the initial palette JSON file.")
 
 PALETTES_JSON_FILE.write_text(json_dumps(palettes))
