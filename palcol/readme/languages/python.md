@@ -1,4 +1,0 @@
-Python implementation
----------------------
-
-XXXX

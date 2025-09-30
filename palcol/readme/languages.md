@@ -1,2 +1,6 @@
 Supported languages
 -------------------
+
+### JSON
+
+XXXX

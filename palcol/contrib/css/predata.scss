@@ -1,0 +1,30 @@
+// Accent from Matplotlib
+$PALETTE = (
+  (0.49803, 0.78823, 0.49803),
+  (0.49803, 0.78823, 0.49803),
+  (0.74509, 0.68235, 0.83137),
+  (0.99215, 0.75294, 0.52549),
+  (1.0, 1.0, 0.6),
+  (0.2196, 0.42352, 0.69019),
+  (0.94117, 0.00784, 0.49803),
+  (0.74901, 0.35686, 0.09019),
+  (0.4, 0.4, 0.4),
+  (0.4, 0.4, 0.4)
+);
+
+.spectrum {
+  width: 100%;
+  height: 200px;
+
+  $gradient: ();
+
+  @each $color in $colors {
+    $r: nth($color, 1) * 255;
+    $g: nth($color, 2) * 255;
+    $b: nth($color, 3) * 255;
+
+    $gradient: append($gradient, rgb($r, $g, $b), comma);
+  }
+
+  background: linear-gradient(to right, #{$gradient});
+}

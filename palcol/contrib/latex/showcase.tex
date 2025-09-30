@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{expl3}
+
+\ExplSyntaxOn
+% Séquence de tuples RGB (flottants 0..1)
+\seq_new:N \l_my_colors_seq
+\seq_set_from_clist:Nn \l_my_colors_seq
+  { {0.5,0.5,0.5}, {0.39,0.71,1}, {1,0.71,0.78}, {1,0.55,0.39}, {0.78,0,0} }
+
+% Définition dynamique des couleurs c1, c2, ...
+\int_new:N \l_color_index_int
+\seq_map_inline:Nn \l_my_colors_seq
+ {
+   \int_incr:N \l_color_index_int
+   \tl_set:Nn \l_tmpa_tl { ##1 } % tuple {r,g,b}
+   \regex_replace_all:nnN { [\{\}\s] } {} \l_tmpa_tl % enlever { } et espaces
+   \tl_set:Nn \l_tmpb_tl { \tl_item:Nn \l_tmpa_tl {1} } % r
+   \tl_set:Nn \l_tmpc_tl { \tl_item:Nn \l_tmpa_tl {2} } % g
+   \tl_set:Nn \l_tmpd_tl { \tl_item:Nn \l_tmpa_tl {3} } % b
+   \edef\tempcolor{c\int_use:N \l_color_index_int}
+   \edef\temprgb{\l_tmpb_tl,\l_tmpc_tl,\l_tmpd_tl}
+   \expandafter\definecolor\expandafter{\tempcolor}{rgb}{\temprgb}
+ }
+
+% Génération de la chaîne de color stops TikZ
+\edef\mycolorstops{}
+\int_step_inline:nn { \seq_count:N \l_my_colors_seq }
+ {
+   \fp_set:Nn \l_tmp_fp { (#1 - 1)/(\seq_count:N \l_my_colors_seq - 1) }
+   \edef\mycolorstops{\mycolorstops \fp_eval:n {\l_tmp_fp}:c#1, }
+ }
+% enlever la dernière virgule
+\edef\mycolorstops{\expandafter\strip@pt\expandafter{\mycolorstops}}
+\ExplSyntaxOff
+
+\begin{document}
+\begin{tikzpicture}
+  % Gradient automatique avec toutes les couleurs
+  \shade[shading=axis, color stops=\mycolorstops]
+    (0,0) rectangle (10,2);
+\end{tikzpicture}
+\end{document}
