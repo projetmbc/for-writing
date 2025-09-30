@@ -1,0 +1,18 @@
+/* author = Patrick, Fradin */
+
+/* xcolor (LaTeX) - SVG names :
+ * Cyan, DodgerBlue, Magenta, Red, Orange, Gold, LimeGreen
+ *
+ * The file ''dev/luadraw_extract.tex'' has been used to produce
+ * the following definitions.
+ */
+
+:root {
+  --PALETTE-1: rgb(0%, 100%, 100%);
+  --PALETTE-2: rgb(11.76%, 56.47%, 100.0%);
+  --PALETTE-3: rgb(100%, 0%, 100%);
+  --PALETTE-4: rgb(100%, 0%, 0%);
+  --PALETTE-5: rgb(100.0%, 64.71%, 0.0%);
+  --PALETTE-6: rgb(100.0%, 84.31%, 0.0%);
+  --PALETTE-7: rgb(19.61%, 80.39%, 19.61%);
+}
