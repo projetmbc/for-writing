@@ -1,3 +1,3 @@
-### palcol for Lua
+### palcol for LaTeX
 
 XXX

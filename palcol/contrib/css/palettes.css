@@ -1,0 +1,21 @@
+:root {
+  --PALETTE-1: #808080;
+  --PALETTE-2: #64b4ff;
+  --PALETTE-3: #ffb4c8;
+  --PALETTE-4: #ff8c64;
+  --PALETTE-5: #c80000;
+}
+
+.spectrum {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to right, var(--PALETTE-1), var(--PALETTE-2), var(--PALETTE-3), var(--PALETTE-4), var(--PALETTE-5));
+}
+
+
+.myrect {
+  width: 100%;
+  height: 200px;
+}
+
+/*# sourceMappingURL=palettes.css.map */

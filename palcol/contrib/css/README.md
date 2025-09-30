@@ -1,4 +1,4 @@
-### palcol for Lua
+### palcol for css
 
 XXX
 

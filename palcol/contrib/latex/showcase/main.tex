@@ -1,27 +1,23 @@
-% https://tex.stackexchange.com/a/646902/6880
+\documentclass[tikz, border = 3pt]{standalone}
 
-\documentclass[12pt]{article}
-\usepackage{tikz}
 \usepackage{calc}
-\newlength{\mymargin}
-\setlength{\mymargin}{0.125in}
-\usepackage
-[
-  paperwidth=11in,paperheight=17in,layoutwidth=10.75in,layoutheight=16.75in,
-  left=\mymargin,right=\mymargin,top=\mymargin,bottom=\mymargin,
-  bindingoffset=0in,landscape=true,marginparwidth=0in,marginparsep=0in
-]{geometry}
+
+\definecolorset{rgb}{}{}{myred,.5,0,0;mygreen,0,.7,0}
 
 \pgfdeclarehorizontalshading{grad}{100bp}{
-    color(0cm)=(white);
-    color(25bp)=(green);
-    color(50bp)=(pink);
-    color(80bp)=(red);
-    color(100bp)=(black)
+  color(0bp)=(white);
+  color(25bp)=(mygreen);
+  color(50bp)=(pink);
+  color(80bp)=(myred);
+  color(100bp)=(black)
 }
 
 \begin{document}
-    \begin{tikzpicture}[remember picture,overlay,every node/.style={inner sep=0,outer sep=0}]
-        \fill[shading=grad,shading angle=0] (current page.north west) ++ (1in,-3in) rectangle ++ (15in,-3in);
-    \end{tikzpicture}
+
+\begin{tikzpicture}
+    \fill[shading=grad, shading angle=0] 
+        (0,0) rectangle ++ (15cm,-3cm);
+\end{tikzpicture}
+
 \end{document}
+
