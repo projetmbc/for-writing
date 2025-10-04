@@ -1,0 +1,12 @@
+/* author: Christophe, Bal */
+
+/* xcolor (LaTeX) - SVG names :
+ * Gray, SlateGray, LightSkyBlue, LightPink, Pink, LightSalmon, FireBrick
+ *
+ * The file ''dev/luadraw_extract.tex'' has been used to produce
+ * the following definitions.
+ */
+
+:root {
+  --PALETTE-1: rgb(50.2%,50.2%,50.2%);
+}
