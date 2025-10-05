@@ -1,4 +1,4 @@
--- author: First Name, Last Name
+-- author: Christophe, Bal
 
 PALETTE = {
   Gray,

@@ -91,7 +91,12 @@ def normalize_one_css_rgb(one_rgb_val):
 with PALETTES_JSON_FILE.open(mode = "r") as f:
     all_palettes = json_load(f)
 
-for folder, contribs in get_accepted_paths(PROJECT_DIR).items():
+contribs_accepted = get_accepted_paths(PROJECT_DIR)
+
+if not contribs_accepted:
+    logging.warning(f"No contrib found.")
+
+for folder, contribs in contribs_accepted.items():
     ctxt = folder.parent.name
 
     logging.info(f"Working on '{ctxt}'.")
