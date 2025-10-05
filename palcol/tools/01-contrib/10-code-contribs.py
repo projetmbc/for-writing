@@ -66,7 +66,7 @@ for folder in sorted(contribs_accepted):
 
     ctxt = folder.parent.name
 
-    logging.info(f"Adding '{ctxt}' implementation.")
+    logging.info(f"Add '{ctxt}' implementation.")
 
     extend = import_from_path("extend", folder.parent / "extend.py")
 

@@ -104,7 +104,7 @@ def import_from_path(module_name, file_path):
 # ----------------- #
 
 with PALETTES_JSON_FILE.open(mode = "r") as f:
-    palettes = json_load(f)
+    ALL_PALETTES = json_load(f)
 
 contribs_accepted = get_accepted_paths(PROJECT_DIR)
 
@@ -118,7 +118,7 @@ nb_contribs = 0
 for folder, contribs in contribs_accepted.items():
     ctxt = folder.parent.name
 
-    logging.info(f"Working on '{ctxt}'.")
+    logging.info(f"Work on '{ctxt}'.")
 
     extend = import_from_path("extend", folder.parent / "extend.py")
 
@@ -127,9 +127,9 @@ for folder, contribs in contribs_accepted.items():
         palette_name = Path(Path(one_contrib).stem).stem
         palette_def  = extend.parse(contrib_file.read_text())
 
-        if palette_name in palettes:
+        if palette_name in ALL_PALETTES:
             report_gradient_name_clash(
-                existing_palette    = palettes[palette_name],
+                existing_palette    = ALL_PALETTES[palette_name],
                 contrib_palette = palette_def,
                 name            = palette_name,
                 img_path        = REPORT_NAME_CONFLICT_FILE
@@ -149,7 +149,7 @@ for folder, contribs in contribs_accepted.items():
 
         nb_contribs += 1
 
-        palettes[palette_name] = palette_def
+        ALL_PALETTES[palette_name] = palette_def
 
         logging.info(f"New contrib. palette '{palette_name}' added.")
 
@@ -162,6 +162,6 @@ logging.info(f"{nb_contribs} contrib. palette{plurial} added.")
 # -- JSON UPDATED -- #
 # ------------------ #
 
-logging.info("Updated initial palette JSON file.")
+logging.info("Update palette JSON file.")
 
-PALETTES_JSON_FILE.write_text(json_dumps(palettes))
+PALETTES_JSON_FILE.write_text(json_dumps(ALL_PALETTES))

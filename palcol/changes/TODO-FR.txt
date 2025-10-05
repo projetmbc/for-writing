@@ -5,13 +5,9 @@ palcol - TODO
 
 // ---------- //
 
-contrib vers code dès le début
+passer via Asymptote : on limite la taille utilisé par les palettes avec un nombre mnimmal de couleur utilisée dans haque def !!!!
 
-    --> on doit avoir un fichier exemple de test dans chaque langage avec une colormap maison
-        on produit juste un specter, rien de fou, gardant le reste pour la doc
-
-    --> passae du codage par lang, à la doc explicative du readme, besoin de savoir comment c'est codé et utilisé
-        passer via la doc tech : cf prototype
+    ---> PB : comment fonctione segmented palette
 
 
 // ---------- //

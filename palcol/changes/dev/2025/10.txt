@@ -2,6 +2,21 @@
 
 
 ==
+05  (0.0.0-beta.1)
+==
+
+--------
+:update:
+--------
+
+[[:api:]]
+Palette name: only \ascii lettres and digits are used.
+
+
+// ---------- //
+
+
+==
 05
 ==
 

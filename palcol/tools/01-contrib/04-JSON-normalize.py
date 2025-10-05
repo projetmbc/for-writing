@@ -27,6 +27,8 @@ PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
 # -- LET'S WORK! -- #
 # ----------------- #
 
+logging.info("Normalize palette dict.")
+
 sorted_palettes = dict()
 
 with PALETTES_JSON_FILE.open(mode = "r") as f:
@@ -40,6 +42,6 @@ for n in sorted(palettes.keys()):
 # -- JSON NORMALIZED -- #
 # --------------------- #
 
-logging.info("JSON file normalized.")
+logging.info("Update palette JSON file.")
 
 PALETTES_JSON_FILE.write_text(json_dumps(sorted_palettes))

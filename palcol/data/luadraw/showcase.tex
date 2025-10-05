@@ -2,6 +2,8 @@
 
 \documentclass{scrartcl}
 
+\newcommand\MYPALETTE{RdYlBu}
+
 \usepackage[
   landscape,
   twocolumn,
@@ -50,9 +52,8 @@
 \directlua{dofile('core/drawsurf-z-bary.lua')}
 \directlua{dofile('palettes.lua')}
 
-\begin{luacode}
-PALETTE = palRainbow
-\end{luacode}
+\directlua{PALETTE = pal\MYPALETTE}
+
 
 % -------------- %
 % -- SHOWCASE -- %
@@ -60,6 +61,12 @@ PALETTE = palRainbow
 
 
 \centering
+
+\null\hfill{\bfseries\Huge\MYPALETTE}\hfill\null
+
+
+\bigskip
+
 
 \begin{luadraw}{name = palette-TEST}
 local xmin, xmax = -5, 5
