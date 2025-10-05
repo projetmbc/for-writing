@@ -1,11 +1,11 @@
 -- author: First Name, Last Name
 
 PALETTE = {
-  Magenta,
-  DodgerBlue,
-  Cyan,
-  LimeGreen,
-  Gold,
-  Orange,
-  Red
+  Gray,
+  SlateGray,
+  LightSkyBlue,
+  LightPink,
+  Pink,
+  LightSalmon,
+  FireBrick,
 }

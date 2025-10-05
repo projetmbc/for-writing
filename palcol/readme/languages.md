@@ -1,6 +1,0 @@
-Supported languages
--------------------
-
-### JSON
-
-XXXX

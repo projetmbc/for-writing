@@ -1,0 +1,8 @@
+// ---------- //
+
+
+==
+05
+==
+
+This \proj will propose useful color palettes for drawing \3d \objs in a scientific \ctxt, with each color providing additional \info about the data.

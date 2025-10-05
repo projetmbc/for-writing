@@ -1,3 +1,17 @@
+-- author: Patrick, Fradin
+
+-- ludraw definition used.
+
+-- PALETTE = {
+--   Magenta,
+--   DodgerBlue,
+--   Cyan,
+--   LimeGreen,
+--   Gold,
+--   Orange,
+--   Red
+-- }
+
 PALETTE = {
   {1, 0, 1},
   {0.1176, 0.5647, 1},
