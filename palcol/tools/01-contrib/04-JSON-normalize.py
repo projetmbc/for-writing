@@ -3,6 +3,10 @@
 from pathlib import Path
 import              sys
 
+sys.path.append(str(Path(__file__).parent.parent))
+
+from cbutils.core import *
+
 from json import (
     dumps as json_dumps,
     load  as json_load,
@@ -13,9 +17,8 @@ from json import (
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR    = Path(__file__).parent
-"palettes"
-DATA_DIR    = THIS_DIR.parent.parent / "data"
+THIS_DIR = Path(__file__).parent
+DATA_DIR = THIS_DIR.parent.parent / "data"
 
 PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
 

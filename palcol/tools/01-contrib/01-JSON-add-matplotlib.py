@@ -25,6 +25,11 @@ DATA_DIR = THIS_DIR.parent.parent / "data"
 
 PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
 
+PALETTES_JSON_FILE.parent.mkdir(
+    parents = True,
+    exist_ok = True
+)
+
 
 # --------------- #
 # -- FORMATTER -- #
