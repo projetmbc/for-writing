@@ -32,6 +32,12 @@ import re
 #     }
 ###
 def parse(code: str) -> list[[float, float, float]]:
+    code = '\n'.join(
+        line
+        for line in code.split('\n')
+        if line[:2] != "--"
+    )
+
     match = re.search(
         r'PALETTE\s*=\s*{(.*)}',
         code,
@@ -94,6 +100,18 @@ def build_code(
 if __name__ == "__main__":
 # Code to parse.
     code = r"""
+-- ludraw definition used.
+
+-- PALETTE = {
+--   Gray,
+--   SlateGray,
+--   LightSkyBlue,
+--   LightPink,
+--   Pink,
+--   LightSalmon,
+--   FireBrick,
+-- }
+
 PALETTE = {
   {0.502, 0.502, 0.502},
   {0.4392, 0.502, 0.5647},
