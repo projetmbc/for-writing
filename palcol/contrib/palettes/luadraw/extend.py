@@ -65,6 +65,8 @@ def parse(code: str) -> list[[float, float, float]]:
 # -- WRITE FOR LUADRAW -- #
 # ----------------------- #
 
+PALETTES_FILE_NAME = "palettes.lua"
+
 ###
 # prototype::
 #     name : name of the palette without the prefix ''pal'' which is
@@ -83,7 +85,7 @@ def build_code(
 
     indent = " "*4
 
-    for r, g, b in std_data:
+    for r, g, b in data:
         luadraw_code.append(f"{indent}{{{r}, {g}, {b}}},")
 
     luadraw_code[-1] = luadraw_code[-1][:-1]

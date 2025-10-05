@@ -1,0 +1,245 @@
+% !TEX TS-program = lualatex
+
+\documentclass{scrartcl}
+
+\usepackage[
+  landscape,
+  twocolumn,
+  top  = .75cm, bottom = .75cm,
+  left = .75cm, right  = .75cm
+]{geometry}
+
+\usepackage[svgnames]{xcolor}
+\usepackage[3d]{luadraw}
+
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{minted, skins, breakable}
+
+\newtcbinputlisting{\showlua}[1]{%
+% Listing options.
+  listing only,
+  listing file    = {#1},
+  listing engine  = minted,
+  minted language = lua,
+  minted options  = {
+%    linenos,
+    breaklines,
+    autogobble,
+  },
+% Colors.
+  colback  = yellow!5!white,
+  colframe = orange!50!black,
+% Frame.
+  arc     = 2pt,
+  boxrule = 0.8pt,
+  left    = 1mm,
+  right   = 1mm,
+  top     = 1mm,
+  bottom  = 1mm,
+% Misc.
+%  enhanced,
+%  breakable,
+}
+
+\begin{document}
+
+% -------------------------- %
+% -- COMMON LUA CODE USED -- %
+% -------------------------- %
+
+\directlua{dofile('core/drawsurf-z-bary.lua')}
+\directlua{dofile('palettes.lua')}
+
+\begin{luacode}
+PALETTE = palRainbow
+\end{luacode}
+
+% -------------- %
+% -- SHOWCASE -- %
+% -------------- %
+
+
+\centering
+
+\begin{luadraw}{name = palette-TEST}
+local xmin, xmax = -5, 5
+
+local graphview = graph:new{
+  window = {xmin, xmax, -1, 1},
+  size   = {10, 10},
+  margin = {0.05, 0.05, 0.05, 0.05},
+  border = true
+}
+
+local i = cpx.I
+local N = 200
+
+graphview:Linewidth(18)
+
+local pos, x
+
+for k = 1, N do
+  pos = (k - 1) / (N - 1)
+  x   = xmin + 10*pos
+
+  graphview:Dpolyline(
+    {x - i, x + i},
+    "color = " .. palette(PALETTE, pos)
+  )
+end
+
+graphview:Show()
+\end{luadraw}
+
+
+\bigskip
+
+
+\begin{luadraw}{name = contour-TEST}
+local graphview = graph:new{
+  window = {-1, 6.5, -1.5, 11},
+  size   = {8, 8, 2},
+  margin = {.25, 0, 0, 0},
+  scale  = 1.5,
+  border = true
+}
+
+local i, sin, cos = cpx.I, math.sin, math.cos
+
+local f = function(x, y) return (x + y) / (2 + cos(x)*sin(y)) end
+
+local Lz = range(1, 10)
+
+local Colors = getpalette(PALETTE, 10)
+
+graphview:Dgradbox(
+  {0, 5 + 10*i, 1, 1},
+  {
+    legend = {"$x$", "$y$"},
+    grid   = true,
+    title  = "$z = \\frac{x + y}{2 + \\cos(x) \\sin(y)}$"
+  })
+
+graphview:Linewidth(20)
+
+graphview:Dcontour(
+  f,
+  Lz,
+  {
+    view   = {0, 5, 0, 10},
+    colors = Colors
+  })
+
+for k = 1, 10 do
+  local y = (2*k + 4) / 3*i
+
+  graphview:Dseg(
+    {5.25 + y, 5.5 + y},
+    1,
+    "color = " .. Colors[k]
+  )
+
+  graphview:Labelcolor(Colors[k])
+
+  graphview:Dlabel(
+    "$z = " .. k .. "$",
+    5.5 + y,
+    {pos = "E"})
+end
+
+graphview:Show()
+\end{luadraw}
+
+
+\bigskip
+
+
+\begin{luadraw}{name = level-curve-surface-TEST}
+local cos, sin = math.cos, math.sin, math.pi
+
+local graphview = graph3d:new{
+  window3d = {0, 5, 0, 10, 0, 11},
+  adjust2d = true,
+  size     = {9, 9},
+  viewdir  = {220, 60},
+  border   = true
+}
+
+graphview:Labelsize("footnotesize")
+
+local S = surface(
+  function(u, v) return M(u, v, (u + v) / (2 + cos(u)*sin(v))) end,
+  0, 5, 0, 10,
+  {30, 30})
+
+local n = 10
+
+local Colors = getpalette(PALETTE, n, true)
+
+local niv, S1 = {}
+
+for k = 1, n do
+  S1, S = cutfacet(S, {M(0, 0, k), -vecK})
+
+  insert(
+    niv,
+    {
+      S1,
+      {
+        color     = Colors[k],
+        mode      = mShaded,
+        edgewidth = 0.5}})
+end
+
+insert(
+  niv,
+  {
+    S,
+    {color = Colors[n + 1]}})
+
+graphview:Dboxaxes3d({
+  grid      = true,
+  gridcolor = "gray",
+  fillcolor = "lightgray"})
+
+graphview:Dmixfacet(table.unpack(niv))
+
+for k = 1, n do
+  graphview:Dballdots3d(
+    M(5, 0, k),
+    rgb(Colors[k])
+  )
+end
+
+graphview:Dlabel(
+  "$z = \\frac{x + y}{2 + \\cos(x) \\sin(y)}$",
+  Z( (graphview:Xinf() + graphview:Xsup())/2 , graphview:Yinf() ),
+  {pos = "N"})
+
+graphview:Show()
+\end{luadraw}
+
+
+\bigskip
+
+
+\begin{luadraw}{name = nerftiti-z-bary-TEST}
+local file = "core/nefertiti.obj"
+
+local polyhedron, bounding_box = read_obj_file(file)
+
+local graphview = graph3d:new{
+  window3d = bounding_box,
+  window   = {-5, 4, -7, 5},
+  viewdir  = {35, 60},
+  size     = {9, 9},
+  margin   = {0, 0, 0, 0},
+  border   = true
+}
+
+draw_colormap_Z_dir(polyhedron, graphview, bounding_box, PALETTE)
+
+graphview:Show()
+\end{luadraw}
+
+\end{document}
