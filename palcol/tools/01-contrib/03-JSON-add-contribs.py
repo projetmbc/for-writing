@@ -102,6 +102,7 @@ for folder, contribs in contribs_accepted.items():
     logging.info(f"Working on '{ctxt}'.")
 
     for one_contrib in contribs:
+        print(one_contrib)
         contrib_file = folder / one_contrib
 
-        this_palette = extract_from_css(contrib_file)
+        # this_palette = extract_from_css(contrib_file)
