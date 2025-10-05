@@ -1,3 +1,0 @@
-### palcol for LaTeX
-
-XXX
