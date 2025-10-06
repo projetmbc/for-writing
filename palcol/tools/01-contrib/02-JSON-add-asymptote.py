@@ -93,15 +93,19 @@ def stdname(n):
     return n
 
 
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
+# --------------------- #
+# -- GET SOURCE CODE -- #
+# --------------------- #
 
 logging.info("Get piece of 'Asymptote' source code (web connection needed).")
 
 resp     = requests.get(ASY_COLORMAP_RAW_URL)
 asy_code = resp.text
 
+
+# ------------------------------------- #
+# -- BUILD FROM ASYMPTOTE COLOR MAPS -- #
+# ------------------------------------- #
 
 logging.info("Work on the 'Asymptote' color maps.")
 
@@ -136,6 +140,10 @@ else:
     )
 
 
+# --------------------------------------------- #
+# -- BUILD FROM ASYMPTOTE SEGMENTED PALETTES -- #
+# --------------------------------------------- #
+
 logging.info("Work on the 'Asymptote' segmented palettes.")
 
 nb_asy_segpal = 0
@@ -157,9 +165,9 @@ if nb_asy_segpal == 0:
     logging.info("Nothing new found.")
 
 
-# ------------------ #
-# -- JSON UPDATED -- #
-# ------------------ #
+# ----------------- #
+# -- JSON UPDATE -- #
+# ----------------- #
 
 if nb_asy_cmps + nb_asy_segpal != 0:
     logging.info("Update palette JSON file.")

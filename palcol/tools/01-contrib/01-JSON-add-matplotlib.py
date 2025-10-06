@@ -73,9 +73,9 @@ def minimize_palette(p):
     return new_p
 
 
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
+# -------------------------------------- #
+# -- BUILD FROM MATPLOTLIB COLOR MAPS -- #
+# -------------------------------------- #
 
 palettes = {}
 
@@ -107,9 +107,9 @@ for cmap_name in allnames:
 logging.info(f"{len(allnames)} palettes build from 'Matplotlib' color maps.")
 
 
-# ------------------ #
-# -- JSON VERSION -- #
-# ------------------ #
+# ------------------- #
+# -- JSON CREATION -- #
+# ------------------- #
 
 logging.info("Create the initial palette JSON file.")
 

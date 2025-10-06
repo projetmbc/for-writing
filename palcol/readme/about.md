@@ -1,7 +1,8 @@
 About palcol
 ------------
 
-The name `palcol` comes from *"**PAL**ette of **COL**ors"*: this project provides 10-color palettes fro different programming languages, such as to enable the creation and use of color maps based on these palettes.
+This project provides a collection of discrete color palettes for various programming languages,
+enabling the creation and use of color maps derived from these palettes.
 
 
-> ***NOTE.*** *No color maps are implemented; only the palettes are provided.*
+> ***CAUTION.*** Only discrete palettes are provided. No continuous colormaps are implemented.

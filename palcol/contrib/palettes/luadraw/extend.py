@@ -35,7 +35,7 @@ def parse(code: str) -> list[[float, float, float]]:
     code = '\n'.join(
         line
         for line in code.split('\n')
-        if line[:2] != "--"
+        if line.strip()[:2] != "--"
     )
 
     match = re.search(
@@ -56,7 +56,9 @@ def parse(code: str) -> list[[float, float, float]]:
         palette = palette.replace(old, new)
 
     palette = f'[{palette.strip()}]'
-    palette = ast.literal_eval(palette)  # Safe evaluation.
+
+# Safe evaluation.
+    palette = ast.literal_eval(palette)
 
     return palette
 
@@ -88,8 +90,12 @@ def build_code(
     for r, g, b in data:
         luadraw_code.append(f"{indent}{{{r}, {g}, {b}}},")
 
+# We remove the last unuseful coma.
     luadraw_code[-1] = luadraw_code[-1][:-1]
+
+# One final empty line is a good practice.
     luadraw_code.append("}\n")
+
     luadraw_code = '\n'.join(luadraw_code)
 
     return luadraw_code

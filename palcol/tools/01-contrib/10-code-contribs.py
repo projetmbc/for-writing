@@ -11,8 +11,6 @@ import ast
 
 from json import load as json_load
 
-import importlib.util
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -29,30 +27,9 @@ DATA_DIR    = THIS_DIR.parent.parent / "data"
 PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
 
 
-# ----------- #
-# -- TOOLS -- #
-# ----------- #
-
-# src::
-#     url = https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
-def import_from_path(module_name, file_path):
-    spec = importlib.util.spec_from_file_location(
-        module_name,
-        file_path
-    )
-
-    module = importlib.util.module_from_spec(spec)
-
-    sys.modules[module_name] = module
-
-    spec.loader.exec_module(module)
-
-    return module
-
-
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
+# ------------------------------ #
+# -- CONTRIB. IMPLEMENTATIONS -- #
+# ------------------------------ #
 
 with PALETTES_JSON_FILE.open(mode = "r") as f:
     palettes = json_load(f)
@@ -68,7 +45,10 @@ for folder in sorted(contribs_accepted):
 
     logging.info(f"Add '{ctxt}' implementation.")
 
-    extend = import_from_path("extend", folder.parent / "extend.py")
+    extend = import_from_path(
+        module_name = "extend",
+        file_path   = folder.parent / "extend.py"
+    )
 
     code = []
 

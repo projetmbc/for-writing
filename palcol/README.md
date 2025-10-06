@@ -1,21 +1,33 @@
-# palcol
+<!----------------------------------------------------------------
+  -- File created by the ''multimd'' project, version 1.0.0.    --
+  --                                                            --
+  -- ''multimd'', soon to be available on PyPI, is developed at --
+  -- https://github.com/bc-tools/for-dev/tree/main/multimd      --
+  ---------------------------------------------------------------->
 
-[![PyPI - Version](https://img.shields.io/pypi/v/palcol.svg)](https://pypi.org/project/palcol)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/palcol.svg)](https://pypi.org/project/palcol)
 
------
+The Python module palcol
+========================
 
-## Table of Contents
+About palcol
+------------
 
-- [Installation](#installation)
-- [License](#license)
+This project provides a collection of discrete color palettes for various programming languages,
+enabling the creation and use of color maps derived from these palettes.
 
-## Installation
+> ***CAUTION.*** Only discrete palettes are provided. No continuous colormaps are implemented.
 
-```console
-pip install palcol
-```
+Credits
+-------
 
-## License
+Many of the discrete color palettes in this project are based on colormaps from [`Asymptote`](https://asymptote.sourceforge.io/) and [`Matplotlib`](https://matplotlib.org/).
+If you recognize your contribution, please don’t hesitate to get in touch, we’ll be happy to give you proper credit in the source code.
 
-`palcol` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+Supported implementations
+-------------------------
+
+The implementations are inside the folder `data`.
+
+### JSON, the versatile default format
+
+By default, a file `data/palettes.json` is provided to allow unsupported coding languages to easily integrate palettes.

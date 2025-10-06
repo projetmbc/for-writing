@@ -23,9 +23,9 @@ DATA_DIR = THIS_DIR.parent.parent / "data"
 PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
 
 
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
+# ------------------ #
+# -- NAME SORTING -- #
+# ------------------ #
 
 logging.info("Normalize palette dict.")
 
@@ -38,9 +38,9 @@ for n in sorted(palettes.keys()):
     sorted_palettes[n] = palettes[n]
 
 
-# --------------------- #
-# -- JSON NORMALIZED -- #
-# --------------------- #
+# ----------------- #
+# -- JSON UPDATE -- #
+# ----------------- #
 
 logging.info("Update palette JSON file.")
 

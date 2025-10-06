@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 
 import ast
+import sys
 import re
+
+
+import                            importlib.util
+from   importlib.machinery import ModuleSpec
 
 from black import (
     FileMode,
@@ -9,6 +14,7 @@ from black import (
     format_str,
     WriteBack,
 )
+
 
 from cbutils.core.coding   import *
 from cbutils.core.logconf  import *
@@ -57,6 +63,41 @@ type LegalSigns = dict[
         list[set[str]]
     ]
 ]
+
+# ----------------------- #
+# -- BUILD PYTHON CODE -- #
+# ----------------------- #
+
+###
+# prototype::
+#     module_name : the name of the module from the \python point
+#                   of view (see ''__name__'')
+#     file_path   : the path of a \python file.
+#
+#     :return: a virtual module that allows to work with the code
+#              contained in the file specified as an \arg.
+#
+#
+# src::
+#     url = https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
+###
+def import_from_path(
+    module_name: str,
+    file_path  : str | Path
+) -> ModuleSpec:
+    spec = importlib.util.spec_from_file_location(
+        module_name,
+        file_path
+    )
+
+    module = importlib.util.module_from_spec(spec)
+
+    sys.modules[module_name] = module
+
+    spec.loader.exec_module(module)
+
+    return module
+
 
 # ----------------------- #
 # -- BUILD PYTHON CODE -- #

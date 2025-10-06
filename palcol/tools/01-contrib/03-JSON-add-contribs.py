@@ -14,8 +14,6 @@ from json import (
     load  as json_load,
 )
 
-import importlib.util
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -36,11 +34,11 @@ PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
 REPORT_NAME_CONFLICT_FILE = REPORT_DIR / "PALETTE-CONFLICT.png"
 
 
-# ----------- #
-# -- TOOLS -- #
-# ----------- #
+# ----------------- #
+# -- REPORT TOOL -- #
+# ----------------- #
 
-def report_gradient_name_clash(
+def report_gradient_clash(
     existing_palette: list[list[float, float, float]],
     contrib_palette : list[list[float, float, float]],
     name            : str,
@@ -81,27 +79,9 @@ def report_gradient_name_clash(
     )
 
 
-
-# src::
-#     url = https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
-def import_from_path(module_name, file_path):
-    spec = importlib.util.spec_from_file_location(
-        module_name,
-        file_path
-    )
-
-    module = importlib.util.module_from_spec(spec)
-
-    sys.modules[module_name] = module
-
-    spec.loader.exec_module(module)
-
-    return module
-
-
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
+# ----------------------- #
+# -- CONTRIB. PALETTES -- #
+# ----------------------- #
 
 with PALETTES_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
@@ -120,7 +100,10 @@ for folder, contribs in contribs_accepted.items():
 
     logging.info(f"Work on '{ctxt}'.")
 
-    extend = import_from_path("extend", folder.parent / "extend.py")
+    extend = import_from_path(
+        module_name = "extend",
+        file_path   = folder.parent / "extend.py"
+    )
 
     for one_contrib in contribs:
         contrib_file = folder / one_contrib
@@ -128,7 +111,7 @@ for folder, contribs in contribs_accepted.items():
         palette_def  = extend.parse(contrib_file.read_text())
 
         if palette_name in ALL_PALETTES:
-            report_gradient_name_clash(
+            report_gradient_clash(
                 existing_palette    = ALL_PALETTES[palette_name],
                 contrib_palette = palette_def,
                 name            = palette_name,
@@ -158,9 +141,9 @@ plurial = "" if nb_contribs == 1 else "s"
 logging.info(f"{nb_contribs} contrib. palette{plurial} added.")
 
 
-# ------------------ #
-# -- JSON UPDATED -- #
-# ------------------ #
+# ----------------- #
+# -- JSON UPDATE -- #
+# ----------------- #
 
 logging.info("Update palette JSON file.")
 

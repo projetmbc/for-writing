@@ -1,7 +1,8 @@
 Credits
 -------
 
-This project uses colormaps from [`Matplotlib`][1] to generate most of the palettes. If you recognize your work, please don’t hesitate to reach out so that you can be properly credited in the code provided by this project.
+Many of the discrete color palettes in this project are based on colormaps from [`Asymptote`][1] and [`Matplotlib`][2].
+If you recognize your contribution, please don’t hesitate to get in touch, we’ll be happy to give you proper credit in the source code.
 
-
-[1]: https://matplotlib.org/
+[1]: https://asymptote.sourceforge.io/
+[2]: https://matplotlib.org/

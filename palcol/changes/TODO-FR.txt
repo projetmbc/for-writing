@@ -5,6 +5,20 @@ palcol - TODO
 
 // ---------- //
 
+contribs
+
+    ---> readme contrib avec partie intégré automatiquement
+
+             + un fichier qui sera intégér dans le README main
+
+             + un autre expliquant l'implemtéatio faote
+
+             + le reste est destine aux dev
+
+
+
+// ---------- //
+
 passer via Asymptote : on limite la taille utilisé par les palettes avec un nombre mnimmal de couleur utilisée dans haque def !!!!
 
     ---> PB : comment fonctione segmented palette
