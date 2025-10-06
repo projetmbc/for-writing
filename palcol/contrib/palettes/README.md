@@ -1,4 +1,0 @@
-Contribute to palcol
-====================
-
-XXX

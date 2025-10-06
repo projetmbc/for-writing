@@ -1,5 +1,5 @@
-Add new parsers to aboutmeta
-============================
+Add new palettes to palcol
+==========================
 
 **Table of contents**
 
