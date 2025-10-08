@@ -143,3 +143,26 @@ do
 done
 
 echo ""
+
+
+# We ignore this Bash file.
+find . -type f -name "*.sh" ! -name "launch.sh" | sort | while read -r texfile
+do
+    echo ""
+
+    filename=$(basename "$texfile")
+
+    if [[ $QUICKOPTION == 1 && $filename =~ ^.*-slow\.sh ]]
+    then
+# Yellow formatting.
+        print_about "33m" "Ignoring $texfile"
+
+    else
+# Green formatting.
+        print_about "32m" "Launching $texfile"
+
+        bash "$texfile" || error_exit "$THIS_DIR" "$texfile"
+    fi
+done
+
+echo ""
