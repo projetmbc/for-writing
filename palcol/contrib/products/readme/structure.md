@@ -1,2 +1,2 @@
-Structure of the "contrib/palettes" folder
+Structure of the 'contrib/products' folder
 ------------------------------------------

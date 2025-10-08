@@ -10,7 +10,7 @@
 -----
 
 [[:doc:]]
-\Readme: the fixed part of the main \readme has been written.
+Main \readme: the fixed parts have been written.
 
 
 // ---------- //

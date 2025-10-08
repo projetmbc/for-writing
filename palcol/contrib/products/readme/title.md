@@ -1,4 +1,4 @@
-Add new palettes to palcol
+Add new products to palcol
 ==========================
 
 **Table of contents**
