@@ -5,6 +5,11 @@ palcol - TODO
 
 // ---------- //
 
+faire apparaître palcol avec sa version dans les versions ofurnis (json on passer via un clé ficictive __comment__)
+
+
+// ---------- //
+
 contribs
 
     ---> readme contrib avec partie intégré automatiquement
