@@ -5,12 +5,8 @@
 11  (1.0.0)
 ==
 
-<<<<<<< HEAD
 -----
 :new:
 -----
 
-This \proj will propose useful color palettes for \2d or \3d plots, with each color providing additional \info about the data.
-=======
 First public version of this \proj that proposes useful color palettes for \2d and \3d plots, with each color providing additional \info about the data.
->>>>>>> palcol
