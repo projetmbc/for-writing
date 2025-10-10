@@ -66,7 +66,7 @@ def report_gradient_clash(
     axes[0].axis("off")
 
     axes[1].imshow(grad2, aspect="auto")
-    axes[1].set_title(f"Contrib palette'{palette_name}'", fontsize=12, pad=8)
+    axes[1].set_title(f"Contrib palette '{palette_name}'", fontsize=12, pad=8)
     axes[1].axis("off")
 
     plt.tight_layout()
