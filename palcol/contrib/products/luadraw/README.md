@@ -12,7 +12,7 @@ luadraw palettes
 Description
 -----------
 
-[`luadraw`](https://github.com/pfradin/luadraw) is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLatex` and `TikZ`.
+You can use palettes with [`luadraw`](https://github.com/pfradin/luadraw) which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLatex` and `TikZ`.
 
 > ***NOTE.*** *Initially, the `palcol` project was created to provide ready-to-use palettes for `luadraw`.*
 
@@ -71,7 +71,7 @@ PALETTE = {
 Use a luadraw palette
 ---------------------
 
-The names of the palettes all use the prefix `pal` followed by the name available in the file `palcol.json`. These variables are arrays of arrays of three floats. Here is the definition of one of the randomly selected palettes.
+The names of the palettes all use the prefix `pal` followed by the name available in the file `palcol.json`. These variables are arrays of arrays of three floats. Here is the definition of one randomly selected palettes.
 
 ~~~lua
 palGistHeat = {
