@@ -65,4 +65,4 @@ Palette name: only \ascii letters and digits are used.
 05
 ==
 
-This \proj will propose useful color palettes for drawing \3d \objs in a scientific \ctxt, with each color providing additional \info about the data.
+This \proj will propose useful color palettes for \2d or \3d plots, with each color providing additional \info about the data.

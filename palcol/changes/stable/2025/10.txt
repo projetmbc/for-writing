@@ -1,0 +1,12 @@
+// ---------- //
+
+
+==
+11  (1.0.0)
+==
+
+-----
+:new:
+-----
+
+This \proj will propose useful color palettes for \2d or \3d plots, with each color providing additional \info about the data.
