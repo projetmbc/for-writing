@@ -17,10 +17,10 @@ from json import (
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR = Path(__file__).parent
-DATA_DIR = THIS_DIR.parent.parent / "data"
+THIS_DIR     = Path(__file__).parent
+PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 
-PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
+PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 
 # ------------------ #

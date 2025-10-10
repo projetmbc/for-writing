@@ -8,18 +8,18 @@ import ast
 import re
 
 
-# -------------------------- #
-# -- EXTRACT FROM LUADRAW -- #
-# -------------------------- #
+# -------------------- #
+# -- EXTRACT COLORS -- #
+# -------------------- #
 
 ###
 # prototype::
 #     code : a \std \luadraw \def of a palette named lua::''PALETTE''
 #            (see the fake example below).
 #
-#     :return: a list of lists of floats belonging to `[0, 1]` that
+#     :return: a list of lists of 3 floats belonging to `[0, 1]` that
 #              will be used to produce the "universal" \json version
-#              of the palettes.
+#              of the palette.
 #
 #
 # A \std \luadraw palette looks like this.
@@ -31,7 +31,7 @@ import re
 #       ...
 #     }
 ###
-def parse(code: str) -> list[[float, float, float]]:
+def parse(code: str) -> list[ [float, float, float] ]:
     code = '\n'.join(
         line
         for line in code.split('\n')
@@ -63,25 +63,25 @@ def parse(code: str) -> list[[float, float, float]]:
     return palette
 
 
-# ----------------------- #
-# -- WRITE FOR LUADRAW -- #
-# ----------------------- #
+# ---------------------- #
+# -- BUILD FINAL CODE -- #
+# ---------------------- #
 
 PALETTES_FILE_NAME = "palettes.lua"
 
 ###
 # prototype::
-#     name : name of the palette without the prefix ''pal'' which is
-#            specific to \luadraw.
-#     data : a list of lists of floats that comes from  "universal"
-#            \json version of the palettes.
+#     name : name of the palette without the prefix ''pal'' which
+#            is specific to \luadraw.
+#     data : a list of lists of 3 floats belonging to `[0, 1]` that
+#            comes from "universal" \json version of the palette.
 #
 #     :return: \std \luadraw \def of the palette whose name is
 #              automatically prefixed with lua::''pal''.
 ###
 def build_code(
     name: str,
-    data: list[list[float, float, float]]
+    data: list[ [float, float, float] ]
 ) -> str:
     luadraw_code = [f"pal{name} = {{"]
 

@@ -22,13 +22,13 @@ import numpy as np
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR    = Path(__file__).parent
-PROJECT_DIR = THIS_DIR.parent.parent
-REPORT_DIR  = PROJECT_DIR / "tools" / "report"
-CONTRIB_DIR = PROJECT_DIR / "contrib" / "palettes"
-DATA_DIR    = THIS_DIR.parent.parent / "data"
+THIS_DIR     = Path(__file__).parent
+PROJECT_DIR  = THIS_DIR.parent.parent
+REPORT_DIR   = PROJECT_DIR / "tools" / "report"
+CONTRIB_DIR  = PROJECT_DIR / "contrib" / "palettes"
+PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 
-PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
+PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 
 REPORT_NAME_CONFLICT_FILE = REPORT_DIR / "PALETTE-CONFLICT.png"

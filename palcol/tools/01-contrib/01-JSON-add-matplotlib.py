@@ -21,10 +21,10 @@ from matplotlib import colormaps
 SAMPLING_SIZE = 8
 PRECISION     = 10**5
 
-THIS_DIR = Path(__file__).parent
-DATA_DIR = THIS_DIR.parent.parent / "data"
+THIS_DIR     = Path(__file__).parent
+PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 
-PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
+PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 PALETTES_JSON_FILE.parent.mkdir(
     parents  = True,
@@ -104,7 +104,9 @@ for cmap_name in allnames:
 
     # break
 
-logging.info(f"{len(allnames)} palettes build from 'Matplotlib' color maps.")
+logging.info(
+    f"{len(allnames)} palettes build from 'Matplotlib' color maps."
+)
 
 
 # ------------------- #

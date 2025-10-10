@@ -32,12 +32,12 @@ ASY_COLORMAP_RAW_URL = (
     "asymptote/master/base/colormap.asy"
 )
 
-THIS_DIR    = Path(__file__).parent
-PROJECT_DIR = THIS_DIR.parent.parent
-CONTRIB_DIR = PROJECT_DIR / "contrib" / "palettes"
-DATA_DIR    = THIS_DIR.parent.parent / "data"
+THIS_DIR     = Path(__file__).parent
+PROJECT_DIR  = THIS_DIR.parent.parent
+CONTRIB_DIR  = PROJECT_DIR / "contrib" / "palettes"
+PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 
-PALETTES_JSON_FILE = DATA_DIR / "palettes.json"
+PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 with PALETTES_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
@@ -97,7 +97,9 @@ def stdname(n):
 # -- GET SOURCE CODE -- #
 # --------------------- #
 
-logging.info("Get piece of 'Asymptote' source code (web connection needed).")
+logging.info(
+    "Get piece of 'Asymptote' source code (web connection needed)."
+)
 
 resp     = requests.get(ASY_COLORMAP_RAW_URL)
 asy_code = resp.text
