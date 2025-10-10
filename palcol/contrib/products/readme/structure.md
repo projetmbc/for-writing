@@ -5,7 +5,10 @@ We will briefly explain the following structure of the `contrib/products` folder
 
 <!-- FOLDER STRUCT. AUTO - START -->
 ~~~
-+ products
++ contrib
+  + changes
+  + luadraw
+  + readme
 ~~~
 <!-- FOLDER STRUCT. AUTO - END -->
 

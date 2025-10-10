@@ -10,7 +10,7 @@
 -----
 
 [[:doc:]]
-Palettes \contrib \readme has been written.
+Palettes \contrib \readmes have been written (the main and the \luadraw ones).
 
 
 // ---------- //

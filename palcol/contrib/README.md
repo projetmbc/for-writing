@@ -28,6 +28,8 @@ The contributions made are in the `contrib` folder which has the following struc
 <!-- FOLDER STRUCT. AUTO - START -->
 ~~~
 + contrib
+  + products
+  + readme-common
 ~~~
 <!-- FOLDER STRUCT. AUTO - END -->
 

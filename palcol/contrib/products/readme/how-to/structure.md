@@ -4,9 +4,9 @@ The following structure for the `luadraw` folder is mandatory. Only the name `lu
 
 ~~~
 + luadraw
-    * extend.py
     + readme
     + dev
     + palettes
     + status
+    * extend.py
 ~~~

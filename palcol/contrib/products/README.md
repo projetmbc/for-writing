@@ -28,7 +28,10 @@ Structure of the 'contrib/products' folder <a href="#MULTIMD-GO-BACK-TO-TOC" sty
 We will briefly explain the following structure of the `contrib/products` folder.
 
 ~~~
-+ products
++ contrib
+  + changes
+  + luadraw
+  + readme
 ~~~
 
 Here is how the different folders are used.
@@ -50,11 +53,11 @@ The following structure for the `luadraw` folder is mandatory. Only the name `lu
 
 ~~~
 + luadraw
-    * extend.py
     + readme
     + dev
     + palettes
     + status
+    * extend.py
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-3"></a>
 ### The 'dev' folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -173,8 +176,17 @@ The `README.md` file of the contribution folder is written in small sections in 
 
 ~~~
 - readme
+    * about.yaml
     * desc.md
-    * dev.md
-    * how-to.md
+    * how-to-create.md
+    * how-to-use.md
     * title.md
 ~~~
+
+Here is the purpose of each of these files.
+
+1. **`about.yaml` must not be changed.** It gives the way to gather the `MD` files to build the `README.md` file of the specific contribution folder.
+2. `title.md` is the title for the specific technology.
+3. `desc.md` is a short description of the specific technology.
+4. `how-to-create.md` gives the process to follow to create new palettes using the specific technology.
+5. `how-to-use.md` explains how to use one of the `palcol` palettes avaiable when working with the specific technology.
