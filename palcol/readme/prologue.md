@@ -1,5 +1,5 @@
-The Python module palcol
-========================
+The palcol project
+==================
 
 **Table of contents**
 
