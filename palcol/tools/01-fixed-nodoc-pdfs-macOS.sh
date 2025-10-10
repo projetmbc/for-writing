@@ -1,10 +1,14 @@
+set -euo pipefail  # Exit on error, undefined variables, and pipe failures.
+
+
 # ------------------- #
 # -- NO ARG NEEDED -- #
 # ------------------- #
 
-if [ ! $# -eq 0 ]
+if [[ $# -ne 0 ]]
 then
-  echo "CRITICAL - Too much arguments!"
+  echo "CRITICAL - Too much arguments!" >&2
+
   exit 1
 fi
 
@@ -14,7 +18,11 @@ fi
 # ----------------------------- #
 
 function nocompile {
-  open "$1"
+  local file="$1"
+
+  echo "ERROR - Compilation failed for: $file" >&2
+
+  xdg-open "$file" 2>/dev/null || open "$file" 2>/dev/null || echo "Cannot open $file"
 
   exit 1
 }
@@ -24,34 +32,40 @@ function nocompile {
 # -- COMPILE TEX FILES -- #
 # ----------------------- #
 
-TEX_FOLDERS=("contrib" "products")
+readonly TEX_FOLDERS=("contrib" "products")
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly PROJECT_ROOT="$SCRIPT_DIR/.."
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$PROJECT_ROOT"
 
-cd "$SCRIPT_DIR/../"
 
 for folder in "${TEX_FOLDERS[@]}"
 do
-  for f in $(find "$folder" -name 'main*.tex' | sort -u)
+  # Utilisation d'un tableau au lieu de command substitution
+  while IFS= read -r -d '' tex_file
   do
     echo "-- NEW TEX FILE --"
-    echo "./$f"
+    echo "./$tex_file"
 
-    fdir=$(dirname "$f")
-    fname="$(basename "$f")"
+    local_dir="$(dirname "$tex_file")"
+    filename="$(basename "$tex_file")"
 
-    cd "$fdir"
-
-    if head -n 1 "$fname" | grep '^% *!TEX TS-program *= *lualatex'
+    # Déterminer le moteur LaTeX
+    if head -n 1 "$tex_file" | grep -q '^% *!TEX TS-program *= *lualatex'
     then
       texcmd="lualatex"
-
     else
       texcmd="pdflatex"
     fi
 
-    SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 latexmk -quiet -pdf -pdflatex="$texcmd --interaction=nonstopmode --halt-on-error --shell-escape  %O %S" "$SCRIPT_DIR/../$f" || nocompile "$fname"
+    # Compilation dans le bon répertoire
+    (
+      cd "$local_dir" || exit 1
+      SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 \
+        latexmk -quiet -pdf \
+        -pdflatex="$texcmd --interaction=nonstopmode --halt-on-error --shell-escape %O %S" \
+        "$filename" || nocompile "$filename"
+    )
 
-    cd "$SCRIPT_DIR/../"
-  done  # for f in $(find . -name '*.tex')
-done    # for folder in "${TEX_FOLDERS[@]}"
+  done < <(find "$folder" -name 'main*.tex' -print0 | sort -z)
+done

@@ -1,3 +1,0 @@
-### The XXX folder
-
-YYY
