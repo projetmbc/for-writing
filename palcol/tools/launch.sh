@@ -80,8 +80,7 @@ print_section() {
     echo -e "$COLOR_SELECTION"
     echo "$separator"
     echo "$title_with_spaces"
-    echo "$separator"
-    echo -e "$COLOR_RESET"
+    echo -e "$separator$COLOR_RESET"
 }
 
 
@@ -110,6 +109,8 @@ execute_file() {
     local interpreter="$2"
     local quick_mode="$3"
     local filename="$(basename "$file")"
+
+    echo ""
 
     # Skip slow files in quick mode
     if [[ $quick_mode -eq 1 && $filename =~ -slow\.(py|sh)$ ]]
