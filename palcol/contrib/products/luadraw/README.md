@@ -34,22 +34,17 @@ The design is done by modifying the `PALETTE` variable at the beginning of the f
 
 %%%
 % Test your palette here. Once you are satisfied with your work,
-% copy and paste the file ''PROJECT-PALETTE.luadraw.lua'' into
-% the ''contrib/palettes/luadraw/final'' folder, giving it a name
-% in ''UpperCamelCase” format. This file only uses floats in order
-% to make the palette definition portable.
+% copy and paste the file ''PROJECT-PALETTE.lua'' into the 
+% ''contrib/palettes/luadraw/palettes'' folder, giving it a name
+% in ''UpperCamelCase” format. This file only uses floats such
+% as to obtain portable palette definitions.
 %
 % caution::
-%     Keep the extended extension ''luadraw.lua''.
-%%%
-
-%%%
-% warning::
 %     You can use any luadraw colors, but you can't change the
-%     \var name ''PALETTE''.
+%     \var name ''PALETTE'' needed to automate some tasks.
 %
 % note::
-%     The ''author'' field is optional.
+%     In the Lua palette file, the ''author'' field is optional.
 %%%
 
 \begin{filecontents*}[overwrite]{__tmp-palette__.lua}

@@ -23,25 +23,43 @@ PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 
-# ------------------ #
-# -- NAME SORTING -- #
-# ------------------ #
+PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
 
-logging.info("Normalize palette dict.")
+
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
+
+def compact_nblists(json_code):
+    def myreplace(match):
+        content = match.group(1)
+        numbers = re.findall(r'[-\d.]+', content)
+
+        return f"[{', '.join(numbers)}]"
+
+    return PATTERN_JSON_LIST.sub(myreplace, json_code)
+
+
+# ------------------------ #
+# -- JSON NORMALIZATION -- #
+# ------------------------ #
+
+logging.info("Normalize palette dict JSON code.")
 
 sorted_palettes = dict()
 
 with PALETTES_JSON_FILE.open(mode = "r") as f:
     palettes = json_load(f)
 
-for n in sorted(palettes.keys()):
-    sorted_palettes[n] = palettes[n]
+json_code = json_dumps(
+    obj       = palettes,
+    indent    = 2,
+    sort_keys = True,
+)
 
+json_code = compact_nblists(json_code)
 
-# ----------------- #
-# -- JSON UPDATE -- #
-# ----------------- #
 
 logging.info("Update palette JSON file.")
 
-PALETTES_JSON_FILE.write_text(json_dumps(sorted_palettes))
+PALETTES_JSON_FILE.write_text(json_code)

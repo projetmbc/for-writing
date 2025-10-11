@@ -9,7 +9,7 @@
 --   LightCoral,
 --   LightSalmon,
 --   Khaki,
---   PaleGree
+--   PaleGreen
 -- }
 
 PALETTE = {

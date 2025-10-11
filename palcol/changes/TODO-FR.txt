@@ -5,30 +5,39 @@ palcol - TODO
 
 // ---------- //
 
-faire apparaître palcol avec sa version dans les versions ofurnis (json on passer via un clé ficictive __comment__)
+nouvelle palete CSS du coup à finr à la main, commencé via ChatGPT
+
+background: linear-gradient(
+  90deg,
+  #8C59E6,
+  #FA99E6,
+  #A680FF,
+  #FFB34D,
+  #99CCFF,
+  #80FFCC,
+  #CC99FF,
+  #FFE666,
+  #BFFFE6,
+  #FF80CC
+);
 
 
 // ---------- //
 
-contribs
+faire apparaître en commentaires dans les fichiers fournis
 
-    ---> readme contrib avec partie intégré automatiquement
+    --> que c'est palcol qui propose
 
-             + un fichier qui sera intégér dans le README main
-
-             + un autre expliquant l'implemtéatio faote
-
-             + le reste est destine aux dev
-
-
-
-// ---------- //
-
-passer via Asymptote : on limite la taille utilisé par les palettes avec un nombre mnimmal de couleur utilisée dans haque def !!!!
-
-    ---> PB : comment fonctione segmented palette
+    --> la version en cours
 
 
 // ---------- //
 
 besoin d'une doc PDF via latex/luadraw, et une autre au fomrat web avec un syst de recherche de type de pallets (colorés ou non, avec du rougen du bleu, respectant accessibilité)
+
+
+// ---------- //
+
+Asymptote
+
+    ---> comment fonctione segmented palette

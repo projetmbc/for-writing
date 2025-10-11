@@ -2,6 +2,40 @@
 
 
 ==
+11  (1.0.1-beta.1)
+==
+
+--------
+:update:
+--------
+
+[[:api:]]
+\json palette file: the proposed code is multi-line in order to better visualize changes during updates.
+
+
+-----
+:new:
+-----
+
+[[:api:]]
+Palettes added with the use of \luadraw.
+
+    + ''GeoRainbow''
+    + ''PastelRainbow''
+
+
+-------
+:break:
+-------
+
+[[:api:]]
+Palette: ''GroovyRainbow'' removed because it is juste the reversed version of ''GistRainbow''.
+
+
+// ---------- //
+
+
+==
 11  (1.0.0)
 ==
 

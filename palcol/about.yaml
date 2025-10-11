@@ -1,8 +1,8 @@
 project:
-  version: "0.0.0-alpha"
+  version: "1.0.0"
 
   acronym: "[PAL]ette of [COL]ors"
-  desc   : This project provides 10-color palettes, enabling the creation and use of color maps based on these palettes.
+  desc   : This project provides finite color palettes, enabling the creation and use of color maps based on these palettes.
 
   author : Christophe, BAL
 

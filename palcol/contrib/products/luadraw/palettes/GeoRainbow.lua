@@ -1,3 +1,17 @@
+-- author: Christophe, Bal
+
+-- ludraw definition used.
+
+-- PALETTE = {
+--   CornflowerBlue,
+--   LightSkyBlue,
+--   MediumSeaGreen,
+--   YellowGreen,
+--   DarkSalmon,
+--   LightCoral,
+--   IndianRed,
+-- }
+
 PALETTE = {
   {0.3922, 0.5843, 0.9294},
   {0.5294, 0.8078, 0.9804},
