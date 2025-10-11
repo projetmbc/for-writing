@@ -20,6 +20,7 @@
 [[:api:]]
 Palettes added with the use of \luadraw.
 
+    + ''BurningGrass''
     + ''GeoRainbow''
     + ''PastelRainbow''
 
