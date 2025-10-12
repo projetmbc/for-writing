@@ -2,6 +2,41 @@
 
 
 ==
+XXXXXXXXXXXXXXXX  (1.0.1)
+==
+
+-------
+:break:
+-------
+
+[[:api:]]
+Palette: ''GroovyRainbow'' removed because it is juste the reversed version of ''GistRainbow''.
+
+
+--------
+:update:
+--------
+
+[[:api:]]
+Palette \contribs: the ''extend.build_code'' works more logically with the \dict of all the palettes, and has to manage a credit to \thisproj.
+
+
+-----
+:new:
+-----
+
+[[:api:]]
+Palettes added with the use of \luadraw.
+
+    + ''BurningGrass''
+    + ''GeoRainbow''
+    + ''PastelRainbow''
+
+
+// ---------- //
+
+
+==
 11  (1.0.0)
 ==
 

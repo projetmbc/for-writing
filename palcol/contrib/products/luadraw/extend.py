@@ -71,34 +71,59 @@ PALETTES_FILE_NAME = "palettes.lua"
 
 ###
 # prototype::
-#     name : name of the palette without the prefix ''pal'' which
-#            is specific to \luadraw.
-#     data : a list of lists of 3 floats belonging to `[0, 1]` that
-#            comes from "universal" \json version of the palette.
+#     credits  : the credits to the ''palcol'' project that should
+#                be added as a comment at the beginning of the final
+#                product code.
+#     palettes : the dictionnary of all the palettes.
 #
-#     :return: \std \luadraw \def of the palette whose name is
-#              automatically prefixed with lua::''pal''.
+#     :return: the code of the final product with all the palettes
+#              ready to be used.
 ###
 def build_code(
-    name: str,
-    data: list[ [float, float, float] ]
+    credits : str,
+    palettes: dict[ str, list[ [float, float, float] ] ]
 ) -> str:
-    luadraw_code = [f"pal{name} = {{"]
+# Credits.
+    code = []
 
+    credits = credits.split("\n")
+
+    maxlen = max(map(len, credits))
+    deco   = '-'*(maxlen + 6)
+
+    credits = [
+        f'-- {c.ljust(maxlen)} --'
+        for c in credits
+    ]
+
+    credits = '\n'.join(credits)
+
+    code = [
+        deco,
+        credits,
+        deco,
+        ''
+    ]
+
+# The palettes.
     indent = " "*4
 
-    for r, g, b in data:
-        luadraw_code.append(f"{indent}{{{r}, {g}, {b}}},")
+    for name, colors in palettes.items():
+        code.append(f"pal{name} = {{")
+
+        for r, g, b in colors:
+            code.append(f"{indent}{{{r}, {g}, {b}}},")
 
 # We remove the last unuseful coma.
-    luadraw_code[-1] = luadraw_code[-1][:-1]
+        code[-1] = code[-1][:-1]# One final empty line is a good practice.
 
-# One final empty line is a good practice.
-    luadraw_code.append("}\n")
+# Seperating empty line.
+        code.append("}\n")
 
-    luadraw_code = '\n'.join(luadraw_code)
+# Nothing left to do.
+    code = '\n'.join(code)
 
-    return luadraw_code
+    return code
 
 
 # ---------------- #
@@ -142,7 +167,7 @@ PALETTE = {
 
     print_section('BACK TO CODE')
     print(
-        build_code("TEST", std_data)
+        build_code({"TEST": std_data})
     )
 
     print_section('INITIAL CODE')

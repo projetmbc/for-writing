@@ -2,8 +2,31 @@
 
 
 ==
+13  (1.0.1-beta.2)
+==
+
+--------
+:update:
+--------
+
+[[:api:]]
+Palette \contribs: the ''extend.build_code'' works more logically with the \dict of all the palettes, and has to manage a credit to \thisproj.
+
+
+// ---------- //
+
+
+==
 11  (1.0.1-beta.1)
 ==
+
+-------
+:break:
+-------
+
+[[:api:]]
+Palette: ''GroovyRainbow'' removed because it is juste the reversed version of ''GistRainbow''.
+
 
 --------
 :update:
@@ -23,14 +46,6 @@ Palettes added with the use of \luadraw.
     + ''BurningGrass''
     + ''GeoRainbow''
     + ''PastelRainbow''
-
-
--------
-:break:
--------
-
-[[:api:]]
-Palette: ''GroovyRainbow'' removed because it is juste the reversed version of ''GistRainbow''.
 
 
 // ---------- //
@@ -60,7 +75,7 @@ Main \readme: \short \doc for products are automatically added now.
 -----
 
 [[:doc:]]
-Palettes \contrib \readmes have been written (the main and the \luadraw ones).
+Palette \contrib \readmes have been written (the main and the \luadraw ones).
 
 
 // ---------- //

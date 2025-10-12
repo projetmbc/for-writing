@@ -1,3 +1,10 @@
+----------------------------------------------------------------------
+-- File created by the ''palcol'' project, version 1.0.1.           --
+--                                                                  --
+-- ''palcol'', that will be available soon on PyPI, is developed at --
+-- https://github.com/projetmbc/for-writing/tree/main/palcol        --
+----------------------------------------------------------------------
+
 palAccent = {
     {0.49803, 0.78823, 0.49803},
     {0.74509, 0.68235, 0.83137},

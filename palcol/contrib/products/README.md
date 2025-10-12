@@ -149,15 +149,17 @@ PALETTES_FILE_NAME = "..."
 
 ###
 # prototype::
-#     name : name of the palette.
-#     data : a list of lists of 3 floats belonging to `[0, 1]` that
-#            comes from "universal" \json version of the palette.
+#     credits  : the credits to the ''palcol'' project that should
+#                be added as a comment at the beginning of the final
+#                product code.
+#     palettes : the dictionnary of all the palettes.
 #
-#     :return: code of the palette for the technology chosen.
+#     :return: the code of the final product with all the palettes
+#              ready to be used.
 ###
 def build_code(
-    name: str,
-    data: list[ [float, float, float] ]
+    credits : str,
+    palettes: dict[ str, list[ [float, float, float] ] ]
 ) -> str:
     ...
 

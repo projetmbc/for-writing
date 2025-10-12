@@ -8,7 +8,10 @@ sys.path.append(str(Path(__file__).parent.parent))
 from cbutils.core import *
 
 
-from json import load as json_load
+from json import (
+    dumps as json_dumps,
+    load  as json_load,
+)
 
 
 # --------------- #
@@ -20,6 +23,15 @@ PROJECT_DIR  = THIS_DIR.parent.parent
 PRODUCTS_DIR = PROJECT_DIR / "products"
 
 PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+
+VERSION = "1.0.1"
+
+CREDITS = f"""
+File created by the ''palcol'' project, version {VERSION}.
+
+''palcol'', that will be available soon on PyPI, is developed at
+https://github.com/projetmbc/for-writing/tree/main/palcol
+""".strip()
 
 
 # ------------------------------ #
@@ -45,12 +57,10 @@ for folder in sorted(contribs_accepted):
         file_path   = folder.parent / "extend.py"
     )
 
-    code = []
-
-    for name, data in palettes.items():
-        code.append(extend.build_code(name, data))
-
-    code = "\n".join(code)
+    code = extend.build_code(
+        credits  = CREDITS,
+        palettes = palettes
+    )
 
     final_file = PRODUCTS_DIR / ctxt / extend.PALETTES_FILE_NAME
 
@@ -65,3 +75,10 @@ for folder in sorted(contribs_accepted):
 plurial = "" if nb_impl == 1 else "s"
 
 logging.info(f"{nb_impl} implementation{plurial} added.")
+
+
+# ------------------------------------------ #
+# -- NO CREDIT IN THE JSON VERSATILE FILE -- #
+# ------------------------------------------ #
+
+# This will complicate the use of the versatile JSON file.
