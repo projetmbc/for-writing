@@ -5,6 +5,13 @@ palcol - TODO
 
 // ---------- //
 
+README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
+
+pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
+
+
+// ---------- //
+
 faire apparaître en commentaires dans les fichiers fournis
 
     --> que c'est palcol qui propose

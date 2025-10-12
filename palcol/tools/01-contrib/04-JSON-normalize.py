@@ -20,8 +20,8 @@ from json import (
 THIS_DIR     = Path(__file__).parent
 PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 
-PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
+PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
 
@@ -30,8 +30,8 @@ PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
 # -- TOOLS -- #
 # ----------- #
 
-def compact_nblists(json_code):
-    def myreplace(match):
+def compact_nblists(json_code: str) -> str:
+    def myreplace(match: re.Match) -> str:
         content = match.group(1)
         numbers = re.findall(r'[-\d.]+', content)
 

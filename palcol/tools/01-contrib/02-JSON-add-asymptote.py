@@ -10,17 +10,14 @@ import              sys
 sys.path.append(str(Path(__file__).parent.parent))
 
 from cbutils.core import *
+from cbutils      import *
 
 from json import (
     dumps as json_dumps,
     load  as json_load,
 )
 
-from string import ascii_letters, digits
-
 import requests
-
-import numpy as np
 
 
 # --------------- #
@@ -40,9 +37,6 @@ PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 with PALETTES_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
-
-
-CHARS_ALLOWED = set(ascii_letters + digits)
 
 
 PATTERN_ASY_COLORMAP = re.compile(
@@ -67,29 +61,6 @@ PATTERN_ASY_TRIPLE = re.compile(
 PATTERN_ASY_CHANNEL = re.compile(
     r"\(([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\)"
 )
-
-
-# --------------- #
-# -- FORMATTER -- #
-# --------------- #
-
-def _capitalize(n):
-    return n[0].upper() + n[1:]
-
-def stdname(n):
-    letters = set(n)
-
-    if not letters <= CHARS_ALLOWED:
-        for c in letters - CHARS_ALLOWED:
-            n = ''.join([
-                _capitalize(p)
-                for p in n.split(c)
-            ])
-
-    else:
-        n = _capitalize(n)
-
-    return n
 
 
 # --------------------- #

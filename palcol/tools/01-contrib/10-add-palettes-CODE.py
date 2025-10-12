@@ -7,12 +7,8 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from cbutils.core import *
 
-import ast
 
 from json import load as json_load
-
-import matplotlib.pyplot as plt
-import numpy as np
 
 
 # --------------- #

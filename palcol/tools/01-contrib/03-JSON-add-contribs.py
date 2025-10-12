@@ -7,15 +7,13 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from cbutils.core import *
 
-import ast
-
 from json import (
     dumps as json_dumps,
     load  as json_load,
 )
 
 import matplotlib.pyplot as plt
-import numpy as np
+import numpy             as np
 
 
 # --------------- #
@@ -43,38 +41,52 @@ def report_gradient_clash(
     name            : str,
     img_path        : Path
 ) -> None:
-    # --- Créer les dégradés
-    def make_gradient(colors, width=800, height=100):
-        from matplotlib.colors import to_rgb
-        n = len(colors)
+    from matplotlib.colors import to_rgb
+
+    def make_gradient(
+        colors: [float, float, float],
+        width : int = 800,
+        height: int = 100
+    ) -> np.ndarray:
+        nbcols   = len(colors)
         gradient = np.linspace(0, 1, width)
-        arr = np.zeros((height, width, 3))
-        stops = np.linspace(0, 1, n)
+
+        arr        = np.zeros((height, width, 3))
+        stops      = np.linspace(0, 1, nbcols)
         rgb_colors = np.array([to_rgb(c) for c in colors])
+
         for i in range(3):
             arr[:, :, i] = np.interp(gradient, stops, rgb_colors[:, i])
+
         return arr
 
-    grad1 = make_gradient(existing_palette)
-    grad2 = make_gradient(contrib_palette)
+    grad_1 = make_gradient(existing_palette)
+    grad_2 = make_gradient(contrib_palette)
 
-    # --- Affichage
     fig, axes = plt.subplots(2, 1, figsize=(8, 3))
 
-    axes[0].imshow(grad1, aspect="auto")
-    axes[0].set_title(f"Existing palette '{palette_name}'", fontsize=12, pad=8)
+    axes[0].imshow(grad_1, aspect="auto")
+    axes[0].set_title(
+        f"Existing palette '{palette_name}'",
+        fontsize = 12,
+        pad      = 8
+    )
     axes[0].axis("off")
 
-    axes[1].imshow(grad2, aspect="auto")
-    axes[1].set_title(f"Contrib palette '{palette_name}'", fontsize=12, pad=8)
+    axes[1].imshow(grad_2, aspect="auto")
+    axes[1].set_title(
+        f"Contrib palette '{palette_name}'",
+        fontsize = 12,
+        pad      = 8
+    )
     axes[1].axis("off")
 
     plt.tight_layout()
 
     plt.savefig(
         img_path,
-        dpi=200,
-        bbox_inches="tight"
+        dpi         = 200,
+        bbox_inches = "tight"
     )
 
 
@@ -111,10 +123,10 @@ for folder, contribs in contribs_accepted.items():
 
         if palette_name in ALL_PALETTES:
             report_gradient_clash(
-                existing_palette    = ALL_PALETTES[palette_name],
-                contrib_palette = palette_def,
-                name            = palette_name,
-                img_path        = REPORT_NAME_CONFLICT_FILE
+                existing_palette = ALL_PALETTES[palette_name],
+                contrib_palette  = palette_def,
+                name             = palette_name,
+                img_path         = REPORT_NAME_CONFLICT_FILE
             )
 
             log_raise_error(

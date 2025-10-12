@@ -5,11 +5,10 @@ import              sys
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from cbutils.core import *
+from cbutils.core   import *
+from cbutils.stdval import *
 
-from json   import dumps as json_dumps
-from math   import          floor
-from string import          ascii_letters, digits
+from json import dumps as json_dumps
 
 from matplotlib import colormaps
 
@@ -31,55 +30,14 @@ PALETTES_JSON_FILE.parent.mkdir(
     exist_ok = True
 )
 
-CHARS_ALLOWED = set(ascii_letters + digits)
-
-
-# --------------- #
-# -- FORMATTER -- #
-# --------------- #
-
-def _capitalize(n):
-    return n[0].upper() + n[1:]
-
-def stdname(n):
-    letters = set(n)
-
-    if not letters <= CHARS_ALLOWED:
-        for c in letters - CHARS_ALLOWED:
-            n = ''.join([
-                _capitalize(p)
-                for p in n.split(c)
-            ])
-
-    else:
-        n = _capitalize(n)
-
-    return n
-
-def stdfloat(x):
-    return floor(x * PRECISION) / PRECISION
-
-
-def minimize_palette(p):
-    if len(set(tuple(c) for c in p)) == len(p):
-        return p
-
-    new_p = []
-
-    for c in p:
-        if (not new_p or c != new_p[-1]):
-            new_p.append(c)
-
-    return new_p
-
 
 # -------------------------------------- #
 # -- BUILD FROM MATPLOTLIB COLOR MAPS -- #
 # -------------------------------------- #
 
-palettes = {}
-
 logging.info("Work on the 'Matplotlib' color maps.")
+
+palettes = {}
 
 allnames = sorted(
     [cm for cm in colormaps if cm[-2:] != "_r"],
@@ -94,15 +52,14 @@ for cmap_name in allnames:
 
     palettes[cmap_name] = minimize_palette([
         [
-            stdfloat(x)
-            for x in cmap(i / scale_factor)[:-1]  # No alpha canal.
+            stdfloat(x, PRECISION)
+            for x in cmap(i / scale_factor)[:-1]  # No alpha chanel.
         ]
         for i in range(SAMPLING_SIZE)
     ])
 
     logging.info(f"New palette from '{cmap_name}' color map.")
 
-    # break
 
 logging.info(
     f"{len(allnames)} palettes build from 'Matplotlib' color maps."
