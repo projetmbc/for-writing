@@ -5,6 +5,10 @@
 -- https://github.com/projetmbc/for-writing/tree/main/palcol        --
 ----------------------------------------------------------------------
 
+--------------------------
+-- DEFS OF EACH PALETTE --
+--------------------------
+
 palAccent = {
     {0.49803, 0.78823, 0.49803},
     {0.74509, 0.68235, 0.83137},
@@ -1040,3 +1044,109 @@ palYlOrRd = {
     {0.76046, 0.01319, 0.14394},
     {0.50196, 0.0, 0.14901}
 }
+
+---------------------------------
+-- GET ONE PALETTE BY ITS NAME --
+---------------------------------
+
+palettes = {}
+
+for _, name in ipairs({
+    "palAccent",
+    "palAfmhot",
+    "palAutumn",
+    "palBerlin",
+    "palBinary",
+    "palBlindFish",
+    "palBlues",
+    "palBone",
+    "palBrBG",
+    "palBrg",
+    "palBuGn",
+    "palBuPu",
+    "palBurningGrass",
+    "palBwr",
+    "palCMRmap",
+    "palCividis",
+    "palCool",
+    "palCoolwarm",
+    "palCopper",
+    "palCubehelix",
+    "palDark2",
+    "palFlag",
+    "palGasFlame",
+    "palGeoRainbow",
+    "palGistEarth",
+    "palGistGray",
+    "palGistGrey",
+    "palGistHeat",
+    "palGistNcar",
+    "palGistRainbow",
+    "palGistStern",
+    "palGistYarg",
+    "palGistYerg",
+    "palGnBu",
+    "palGnuplot",
+    "palGnuplot2",
+    "palGray",
+    "palGrays",
+    "palGreens",
+    "palGrey",
+    "palGreys",
+    "palHot",
+    "palHsv",
+    "palInferno",
+    "palJet",
+    "palMagma",
+    "palManagua",
+    "palNipySpectral",
+    "palOcean",
+    "palOrRd",
+    "palOranges",
+    "palPRGn",
+    "palPaired",
+    "palPastel1",
+    "palPastel2",
+    "palPastelRainbow",
+    "palPiYG",
+    "palPink",
+    "palPlasma",
+    "palPrism",
+    "palPuBu",
+    "palPuBuGn",
+    "palPuOr",
+    "palPuRd",
+    "palPurples",
+    "palRainbow",
+    "palRdBu",
+    "palRdGy",
+    "palRdPu",
+    "palRdYlBu",
+    "palRdYlGn",
+    "palReds",
+    "palSeismic",
+    "palSet1",
+    "palSet2",
+    "palSet3",
+    "palSpectral",
+    "palSpring",
+    "palSummer",
+    "palTab10",
+    "palTab20",
+    "palTab20b",
+    "palTab20c",
+    "palTerrain",
+    "palTurbo",
+    "palTwilight",
+    "palTwilightShifted",
+    "palVanimo",
+    "palViridis",
+    "palWinter",
+    "palWistia",
+    "palYlGn",
+    "palYlGnBu",
+    "palYlOrBr",
+    "palYlOrRd"
+}) do
+    palettes[name] = _G[name]
+end

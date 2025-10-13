@@ -2,15 +2,33 @@
 
 
 ==
-XXX  (1.1.0-beta.1)
+13  (1.1.0-beta.1)
 ==
 
---------
-:update:
---------
+-------
+:break:     ????
+-------
 
 [[:api:]]
+Palette:   ????
 palettes inutiles virées !! d'ioù 1.1.0 au lieu de 1.0.1
+
+
+-----
+:new:      ????
+-----
+
+[[:api:]]
+Here are the new features.
+
+    1) \luadraw product: the \var ''palette'' allows to access a palette by its name.
+
+    1) ????
+    pour aplettes.json, crédit dans le dossier lui même
+
+
+
+
 
 
 // ---------- //
@@ -40,7 +58,7 @@ Palette \contribs: the ''extend.build_code'' works more logically with the \dict
 -------
 
 [[:api:]]
-Palette: ''GroovyRainbow'' removed because it is juste the reversed version of ''GistRainbow''.
+Palettes: ''GroovyRainbow'' removed because it is juste the reversed version of ''GistRainbow''.
 
 
 --------

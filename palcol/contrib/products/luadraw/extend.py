@@ -86,6 +86,8 @@ def build_code(
 # Credits.
     code = []
 
+    code_dict = []
+
     credits = credits.split("\n")
 
     maxlen = max(map(len, credits))
@@ -102,23 +104,57 @@ def build_code(
         deco,
         credits,
         deco,
-        ''
+        '',
+        """
+--------------------------
+-- DEFS OF EACH PALETTE --
+--------------------------
+        """.strip(),
+        '',
+    ]
+
+    code_dict = [
+        """
+---------------------------------
+-- GET ONE PALETTE BY ITS NAME --
+---------------------------------
+
+palettes = {}
+
+for _, name in ipairs({
+        """.strip()
     ]
 
 # The palettes.
     indent = " "*4
 
     for name, colors in palettes.items():
-        code.append(f"pal{name} = {{")
+        name = f"pal{name}"
+
+        code_dict.append(f'{indent}"{name}",')
+
+        code.append(f"{name} = {{")
 
         for r, g, b in colors:
             code.append(f"{indent}{{{r}, {g}, {b}}},")
 
 # We remove the last unuseful coma.
-        code[-1] = code[-1][:-1]# One final empty line is a good practice.
+        code[-1] = code[-1][:-1]
 
-# Seperating empty line.
+# Seperating defs with single empty lines.
         code.append("}\n")
+
+    code_dict[-1] = code_dict[-1][:-1]
+
+    code_dict.append(
+        f"""
+}}) do
+{indent}palettes[name] = _G[name]
+end
+        """.strip() + '\n'
+    )
+
+    code += code_dict
 
 # Nothing left to do.
     code = '\n'.join(code)
