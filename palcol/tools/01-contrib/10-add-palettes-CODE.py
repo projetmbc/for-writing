@@ -22,16 +22,12 @@ THIS_DIR     = Path(__file__).parent
 PROJECT_DIR  = THIS_DIR.parent.parent
 PRODUCTS_DIR = PROJECT_DIR / "products"
 
-PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+PALETTES_JSON_FILE         = PRODUCTS_DIR / "palettes.json"
+PALETTES_JSON_CREDITS_FILE = PRODUCTS_DIR / "palettes.json.CREDITS.md"
 
 VERSION = "1.0.1"
 
-CREDITS = f"""
-File created by the ''palcol'' project, version {VERSION}.
-
-''palcol'', that will be available soon on PyPI, is developed at
-https://github.com/projetmbc/for-writing/tree/main/palcol
-""".strip()
+CREDITS = PALETTES_JSON_CREDITS_FILE.read_text().strip()
 
 
 # ------------------------------ #
