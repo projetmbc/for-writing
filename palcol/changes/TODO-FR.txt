@@ -19,9 +19,11 @@ pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua 
 
 // ---------- //
 
-accès au pallets via des chaînes
+accès au pallets via des chaînes devient obligatoire (en python on utilisera :=)
 
-    --> En python on utilise :=
++
+
+documenter cet accès pour luadraw
 
 
 // ---------- //

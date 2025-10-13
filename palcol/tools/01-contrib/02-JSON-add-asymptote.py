@@ -12,6 +12,8 @@ sys.path.append(str(Path(__file__).parent.parent))
 from cbutils.core import *
 from cbutils      import *
 
+from collections import defaultdict
+
 from json import (
     dumps as json_dumps,
     load  as json_load,
@@ -33,10 +35,18 @@ THIS_DIR     = Path(__file__).parent
 PROJECT_DIR  = THIS_DIR.parent.parent
 PRODUCTS_DIR = PROJECT_DIR / "products"
 
-PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+PAL_JSON_FILE   = PRODUCTS_DIR / "palettes.json"
+MP_NAMES_FILE   = THIS_DIR / "mp-names.json"
+PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
 
-with PALETTES_JSON_FILE.open(mode = "r") as f:
+with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
+
+with MP_NAMES_FILE.open(mode = "r") as f:
+    ALL_MP_NAMES = json_load(f)
+
+with PAL_REPORT_FILE.open(mode = "r") as f:
+    IGNORED = json_load(f)
 
 
 PATTERN_ASY_COLORMAP = re.compile(
@@ -81,24 +91,31 @@ asy_code = resp.text
 
 logging.info("Work on the 'Asymptote' color maps.")
 
+
 nb_asy_cmps = 0
 
 for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
     name = stdname(name)
 
-    if name in ALL_PALETTES:
+    if name in ALL_MP_NAMES:
         continue
 
     nb_asy_cmps += 1
 
     rgb_values = PATTERN_ASY_RGB.findall(body)
 
-    ALL_PALETTES[name] = [
+    candidate = minimize_palette([
         [round(float(r), 4), round(float(g), 4), round(float(b), 4)]
         for r, g, b in rgb_values
-    ]
+    ])
 
-    logging.info(f"New palette from '{name}' color map.")
+    ALL_PALETTES, IGNORED = update_palettes(
+        name,
+        candidate,
+        ALL_PALETTES,
+        IGNORED,
+        logging
+    )
 
 
 if nb_asy_cmps == 0:
@@ -123,7 +140,7 @@ nb_asy_segpal = 0
 for name, body in PATTERN_ASY_SEGPAL.findall(asy_code):
     name = stdname(name)
 
-    if name in ALL_PALETTES:
+    if name in ALL_MP_NAMES:
         continue
 
     nb_asy_segpal += 1
@@ -141,7 +158,9 @@ if nb_asy_segpal == 0:
 # -- JSON UPDATE -- #
 # ----------------- #
 
+PAL_REPORT_FILE.write_text(json_dumps(IGNORED))
+
 if nb_asy_cmps + nb_asy_segpal != 0:
     logging.info("Update palette JSON file.")
 
-    PALETTES_JSON_FILE.write_text(json_dumps(ALL_PALETTES))
+    PAL_JSON_FILE.write_text(json_dumps(ALL_PALETTES))

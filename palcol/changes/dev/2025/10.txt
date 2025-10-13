@@ -10,12 +10,12 @@
 -------
 
 [[:api:]]
-Palette:   ????
-palettes inutiles virées !! d'ioù 1.1.0 au lieu de 1.0.1
+Palette: palettes en doublons virées ! ==> d'ioù 1.1.0 au lieu de 1.0.1
+
 
 
 -----
-:new:      ????
+:new:
 -----
 
 [[:api:]]
@@ -23,8 +23,7 @@ Here are the new features.
 
     1) \luadraw product: the \var ''palette'' allows to access a palette by its name.
 
-    1) OK!
-    pour aplettes.json, crédit dans le dossier lui même
+    1) Credits for path::''palettes.json'' put inside the new file path::''palettes.json.CREDITS.md''.
 
 
 --------
@@ -40,6 +39,12 @@ Here are the new features.
 
     1) ???
     all : tujours donner acces à une palette via une string
+
+
+
+
+
+
 
 
 

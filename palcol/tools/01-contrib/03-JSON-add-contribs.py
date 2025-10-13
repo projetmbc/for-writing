@@ -6,6 +6,7 @@ import              sys
 sys.path.append(str(Path(__file__).parent.parent))
 
 from cbutils.core import *
+from cbutils      import *
 
 from json import (
     dumps as json_dumps,
@@ -25,7 +26,14 @@ PROJECT_DIR  = THIS_DIR.parent.parent
 REPORT_DIR   = PROJECT_DIR / "tools" / "report"
 PRODUCTS_DIR = PROJECT_DIR / "products"
 
-PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+PAL_JSON_FILE   = PRODUCTS_DIR / "palettes.json"
+PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+
+with PAL_JSON_FILE.open(mode = "r") as f:
+    ALL_PALETTES = json_load(f)
+
+with PAL_REPORT_FILE.open(mode = "r") as f:
+    IGNORED = json_load(f)
 
 
 REPORT_NAME_CONFLICT_FILE = REPORT_DIR / "PALETTE-CONFLICT.png"
@@ -94,9 +102,6 @@ def report_gradient_clash(
 # -- CONTRIB. PALETTES -- #
 # ----------------------- #
 
-with PALETTES_JSON_FILE.open(mode = "r") as f:
-    ALL_PALETTES = json_load(f)
-
 contribs_accepted = get_accepted_paths(PROJECT_DIR)
 
 if not contribs_accepted:
@@ -104,7 +109,7 @@ if not contribs_accepted:
 
     exit(0)
 
-nb_contribs = 0
+nb_contribs = len(ALL_PALETTES)
 
 for folder, contribs in contribs_accepted.items():
     ctxt = folder.parent.name
@@ -141,11 +146,16 @@ for folder, contribs in contribs_accepted.items():
                 exception = ValueError,
             )
 
-        nb_contribs += 1
 
-        ALL_PALETTES[palette_name] = palette_def
+        ALL_PALETTES, IGNORED = update_palettes(
+            palette_name,
+            palette_def,
+            ALL_PALETTES,
+            IGNORED,
+            logging
+        )
 
-        logging.info(f"New contrib. palette '{palette_name}' added.")
+nb_contribs = len(ALL_PALETTES) - nb_contribs
 
 plurial = "" if nb_contribs == 1 else "s"
 
@@ -156,6 +166,8 @@ logging.info(f"{nb_contribs} contrib. palette{plurial} added.")
 # -- JSON UPDATE -- #
 # ----------------- #
 
+PAL_REPORT_FILE.write_text(json_dumps(IGNORED))
+
 logging.info("Update palette JSON file.")
 
-PALETTES_JSON_FILE.write_text(json_dumps(ALL_PALETTES))
+PAL_JSON_FILE.write_text(json_dumps(ALL_PALETTES))

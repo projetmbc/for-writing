@@ -1,3 +1,4 @@
 #!/usr/bin/env python3
 
-from .stdval import *
+from .cleanpal import *
+from .normval  import *
