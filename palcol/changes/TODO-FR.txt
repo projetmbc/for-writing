@@ -12,12 +12,50 @@ pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua 
 
 // ---------- //
 
-faire apparaître en commentaires dans les fichiers fournis
+accès au pallets via des chaînes
 
-    --> que c'est palcol qui propose
+    --> En python on utilise :=
 
-    --> la version en cours
+    --> En lua
 
+
+local _palettesID = {
+  "Accent", "Afmhot", "Autumn", "Berlin", "Binary", "BlindFish",
+  "Blues", "Bone", "BrBG", "Brg", "BuGn", "BuPu", "Bwr",
+  "CMRmap", "Cividis", "Cool", "Coolwarm", "Copper", "Cubehelix",
+  "Dark2", "Flag", "GasFlame", "GistEarth", "GistGray", "GistGrey",
+  "GistHeat", "GistNcar", "GistRainbow", "GistStern", "GistYarg",
+  "GistYerg", "GnBu", "Gnuplot", "Gnuplot2", "Gray", "Grays",
+  "Greens", "Grey", "Greys", "GroovyRainbow", "Hot", "Hsv",
+  "Inferno", "Jet", "Magma", "Managua", "NipySpectral", "Ocean",
+  "OrRd", "Oranges", "PRGn", "Paired", "Pastel1", "Pastel2",
+  "PiYG", "Pink", "Plasma", "Prism", "PuBu", "PuBuGn", "PuOr",
+  "PuRd", "Purples", "Rainbow", "RdBu", "RdGy", "RdPu", "RdYlBu",
+  "RdYlGn", "Reds", "Seismic", "Set1", "Set2", "Set3", "Spectral",
+  "Spring", "Summer", "Tab10", "Tab20", "Tab20b", "Tab20c",
+  "Terrain", "Turbo", "Twilight", "TwilightShifted", "Vanimo",
+  "Viridis", "Winter", "Wistia", "YlGn", "YlGnBu", "YlOrBr", "YlOrRd"
+}
+
+palNames = {}
+
+for _, name in ipairs(_palettesID) do
+  local varName = "pal" .. name
+  palNames[varName] = _G[varName]
+end
+
+
+OU??? effets de bord ????
+
+
+palNames = {}
+for k, v in pairs(_G) do
+  if k:match("^pal%u") then  -- commence par "pal" suivi d'une majuscule
+    palNames[k] = v
+  end
+end
+
+print(palNames["palX"])
 
 // ---------- //
 
@@ -38,6 +76,11 @@ nettoyer les palettes en retirant celle inverse d'autre GistRainbow, ou celles e
         + palGistYarg = inverse de palGistGray
 
         + palTwilightShifted = décalage de palTwilight
+
+
+// ---------- //
+
+Pour commentaires indiquant que c'est palcol qui propose, BESOIN de MàJ auto du num de version
 
 
 // ---------- //
