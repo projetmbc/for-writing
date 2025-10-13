@@ -23,11 +23,21 @@ faire apparaître en commentaires dans les fichiers fournis
 
 nettoyer les palettes en retirant celle inverse d'autre GistRainbow, ou celles en doublon GistGray=GistGrey
 
-    --> on construit meêm avec doublon, mais on stocke dans un JSON ce qui est problématique
+    --> on construit avec problèmes, mais on stocke dans un JSON ce qui est problématique pour ensuite en tenir compte lors de la normalisation
 
-    --> en console, on peut alors agir
+    --> les modifs se font ou non en ligne de commande, besoin d'un outil dédie qui permte de visualiser via amtplotlib les palettes problémeatiques, et n choisit l'approcimations
 
-    --> la doc doit indiquer ce qui a été retiré et purquoi mais aussi indique la solution en onversant l'usage de la palette tout bêtement
+    --> l'outil doit aussi pouvoir permettre de renommer une palette gardée
+
+    --> besoin d'un outil faisant un rapport de ce qui est ignoré et pourquoi en angalis, un trcu qui sera facile à intégré dans la doc
+
+    --> des exemples problématiques.
+
+        + palGistGray = palGistGrey
+
+        + palGistYarg = inverse de palGistGray
+
+        + palTwilightShifted = décalage de palTwilight
 
 
 // ---------- //
