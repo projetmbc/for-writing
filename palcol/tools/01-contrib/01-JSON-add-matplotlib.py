@@ -45,7 +45,8 @@ allnames = sorted(colormaps, key = lambda x: x.lower())
 
 palettes = {}
 ignored  = {
-    TAG_EQUAL_TO: defaultdict(list),
+    STATUS_TAG[PAL_STATUS.EQUAL_TO]  : defaultdict(list),
+    STATUS_TAG[PAL_STATUS.REVERSE_OF]: defaultdict(list),
 }
 
 scale_factor = SAMPLING_SIZE - 1
@@ -53,7 +54,7 @@ scale_factor = SAMPLING_SIZE - 1
 for cmap_name in allnames:
     if cmap_name[-2:] == "_r":
         logging.warning(
-            f"'{cmap_name}' ignored."
+            f"'{stdname(cmap_name)}' ignored."
         )
 
         continue
@@ -89,7 +90,9 @@ logging.info(
 # ------------------- #
 
 MP_NAMES_FILE.write_text(
-    json_dumps([stdname(n) for n in allnames])
+    json_dumps({
+        stdname(n): n for n in allnames
+    })
 )
 
 PAL_REPORT_FILE.write_text(json_dumps(ignored))

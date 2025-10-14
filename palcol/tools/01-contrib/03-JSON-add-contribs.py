@@ -155,9 +155,9 @@ for folder, contribs in contribs_accepted.items():
             logging
         )
 
-nb_contribs = len(ALL_PALETTES) - nb_contribs
 
-plurial = "" if nb_contribs == 1 else "s"
+nb_contribs = len(ALL_PALETTES) - nb_contribs
+plurial     = "" if nb_contribs == 1 else "s"
 
 logging.info(f"{nb_contribs} contrib. palette{plurial} added.")
 

@@ -3,11 +3,7 @@ palcol - TODO
 ======
 
 
-// ---------- //
-
-Pour commentaires indiquant que c'est palcol qui propose, BESOIN de MàJ auto du num de version
-
-on passe via palcol/products/palettes.json.CREDITS.md
+nouveau nom du projet !!!
 
 
 // ---------- //
@@ -28,23 +24,8 @@ documenter cet accès pour luadraw
 
 // ---------- //
 
-nettoyer les palettes en retirant celle inverse d'autre GistRainbow, ou celles en doublon GistGray=GistGrey
+pal-report.json & mp-names.json: pour indiquer dans la doc les chgts de noms, et ce qui est ignoré et pourquoi ?
 
-    --> on construit avec problèmes, mais on stocke dans un JSON ce qui est problématique pour ensuite en tenir compte lors de la normalisation
-
-    --> les modifs se font ou non en ligne de commande, besoin d'un outil dédie qui permte de visualiser via amtplotlib les palettes problémeatiques, et n choisit l'approcimations
-
-    --> l'outil doit aussi pouvoir permettre de renommer une palette gardée
-
-    --> besoin d'un outil faisant un rapport de ce qui est ignoré et pourquoi en angalis, un trcu qui sera facile à intégré dans la doc
-
-    --> des exemples problématiques.
-
-        + palGistGray = palGistGrey
-
-        + palGistYarg = inverse de palGistGray
-
-        + palTwilightShifted = décalage de palTwilight
 
 
 // ---------- //

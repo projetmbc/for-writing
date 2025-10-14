@@ -21,6 +21,7 @@ THIS_DIR     = Path(__file__).parent
 PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 
 
+PAL_REPORT_FILE    = THIS_DIR / "pal-report.json"
 PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
@@ -44,9 +45,20 @@ def compact_nblists(json_code: str) -> str:
 # -- JSON NORMALIZATION -- #
 # ------------------------ #
 
-logging.info("Normalize palette dict JSON code.")
+logging.info("Normalize palette dict JSON codes.")
 
-sorted_palettes = dict()
+
+with PAL_REPORT_FILE.open(mode = "r") as f:
+    report = json_load(f)
+
+json_code = json_dumps(
+    obj       = report,
+    indent    = 2,
+    sort_keys = True,
+)
+
+PAL_REPORT_FILE.write_text(json_code)
+
 
 with PALETTES_JSON_FILE.open(mode = "r") as f:
     palettes = json_load(f)

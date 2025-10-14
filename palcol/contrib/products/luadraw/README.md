@@ -34,14 +34,14 @@ The design is done by modifying the `PALETTE` variable at the beginning of the f
 
 %%%
 % Test your palette here. Once you are satisfied with your work,
-% copy and paste the file ''PROJECT-PALETTE.lua'' into the 
+% copy and paste the file ''PROJECT-PALETTE.lua'' into the
 % ''contrib/palettes/luadraw/palettes'' folder, giving it a name
 % in ''UpperCamelCase” format. This file only uses floats such
 % as to obtain portable palette definitions.
 %
 % caution::
 %     You can use any luadraw colors, but you can't change the
-%     \var name ''PALETTE'' needed to automate some tasks.
+%     variable name ''PALETTE'' needed to automate some tasks.
 %
 % note::
 %     In the Lua palette file, the ''author'' field is optional.
@@ -66,7 +66,12 @@ PALETTE = {
 Use a luadraw palette
 ---------------------
 
-The names of the palettes all use the prefix `pal` followed by the name available in the file `palcol.json`. These variables are arrays of arrays of three floats. Here is the definition of one randomly selected palettes.
+The palette names all use the prefix `pal` followed by the name available in the file `palcol.json`. You can acces a palette by two ways.
+
+- `palGistHeat` is a palette variable.
+- `getPal[‘palGistHeat’]` is equal to `palGistHeat`.
+
+> ***NOTE.*** *The palette variables are arrays of arrays of three floats. Here is the definition of the palette `palGistHeat`.*
 
 ~~~lua
 palGistHeat = {

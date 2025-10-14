@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- File created by the ''palcol'' project, version 1.1.0.           --
+-- File created by the ''palcol'' project, version 1.1.0            --
 --                                                                  --
 -- ''palcol'', that will be available soon on PyPI, is developed at --
 -- https://github.com/projetmbc/for-writing/tree/main/palcol        --
@@ -275,17 +275,6 @@ palGistEarth = {
     {0.72417, 0.70351, 0.37379},
     {0.83429, 0.69227, 0.57867},
     {0.9922, 0.9843, 0.9843}
-}
-
-palGistGray = {
-    {0.0, 0.0, 0.0},
-    {0.14117, 0.14117, 0.14117},
-    {0.28627, 0.28627, 0.28627},
-    {0.42745, 0.42745, 0.42745},
-    {0.57254, 0.57254, 0.57254},
-    {0.71372, 0.71372, 0.71372},
-    {0.85882, 0.85882, 0.85882},
-    {1.0, 1.0, 1.0}
 }
 
 palGistHeat = {
@@ -983,7 +972,7 @@ palYlOrRd = {
 -- GET ONE PALETTE BY ITS NAME --
 ---------------------------------
 
-palettes = {}
+getPal = {}
 
 for _, name in ipairs({
     "palAccent",
@@ -1011,7 +1000,6 @@ for _, name in ipairs({
     "palGasFlame",
     "palGeoRainbow",
     "palGistEarth",
-    "palGistGray",
     "palGistHeat",
     "palGistNcar",
     "palGistRainbow",
@@ -1076,5 +1064,5 @@ for _, name in ipairs({
     "palYlOrBr",
     "palYlOrRd"
 }) do
-    palettes[name] = _G[name]
+    getPal[name] = _G[name]
 end

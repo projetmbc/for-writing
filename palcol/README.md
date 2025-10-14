@@ -62,7 +62,12 @@ You can use palettes with [`luadraw`](https://github.com/pfradin/luadraw) which 
 <a id="MULTIMD-TOC-ANCHOR-6"></a>
 #### Use a luadraw palette <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-The names of the palettes all use the prefix `pal` followed by the name available in the file `palcol.json`. These variables are arrays of arrays of three floats. Here is the definition of one randomly selected palettes.
+The palette names all use the prefix `pal` followed by the name available in the file `palcol.json`. You can acces a palette by two ways.
+
+- `palGistHeat` is a palette variable.
+- `getPal[‘palGistHeat’]` is equal to `palGistHeat`.
+
+> ***NOTE.*** *The palette variables are arrays of arrays of three floats. Here is the definition of the palette `palGistHeat`.*
 
 ~~~lua
 palGistHeat = {

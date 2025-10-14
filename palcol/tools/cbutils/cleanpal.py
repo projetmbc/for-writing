@@ -4,11 +4,23 @@
 from enum import Enum
 
 
-TAG_EQUAL_TO = "isequalto"
-
 class PAL_STATUS(Enum):
-    IS_NEW   = 1
-    EQUAL_TO = 2
+    IS_NEW     = 1
+    EQUAL_TO   = 2
+    REVERSE_OF = 3
+
+
+
+STATUS_MSG = {
+    PAL_STATUS.EQUAL_TO  : "Equal to",
+    PAL_STATUS.REVERSE_OF: "Reverse of",
+}
+
+STATUS_TAG = {
+    i: m.lower().replace(' ', '-')
+    for i, m in STATUS_MSG.items()
+}
+
 
 
 def update_palettes(
@@ -21,12 +33,19 @@ def update_palettes(
     dict[ str, list[ [float, float, float] ] ],
     dict[ str, dict[ str, [str] ] ]
 ):
-    status, xtra = PAL_STATUS.IS_NEW, None
+    status = PAL_STATUS.IS_NEW
 
     if palettes:
         for n, p in palettes.items():
             if p == candidate:
-                status, xtra = PAL_STATUS.EQUAL_TO, n
+                status   = PAL_STATUS.EQUAL_TO
+                lastname = n
+
+                break
+
+            elif p[::-1] == candidate:
+                status   = PAL_STATUS.REVERSE_OF
+                lastname = n
 
                 break
 
@@ -36,11 +55,11 @@ def update_palettes(
 
             logcom.info(f"'{name}' added.")
 
-        case PAL_STATUS.EQUAL_TO:
-            ignored[TAG_EQUAL_TO][xtra].append(name)
+        case _:
+            ignored[STATUS_TAG[status]][lastname].append(name)
 
             logcom.warning(
-                f"'{name}' ignored - Equal to '{xtra}'."
+                f"'{name}' ignored - {STATUS_MSG[status]} '{lastname}'."
             )
 
     return palettes, ignored

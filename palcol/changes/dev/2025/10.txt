@@ -2,16 +2,15 @@
 
 
 ==
-13  (1.1.0-beta.1)
+14  (1.1.0-beta.1)
 ==
 
 -------
-:break:     ????
+:break:
 -------
 
 [[:api:]]
-Palette: palettes en doublons virées ! ==> d'ioù 1.1.0 au lieu de 1.0.1
-
+Palette: duplicate palettes, or those that are the reverse of others, are ignored.
 
 
 -----
@@ -21,32 +20,21 @@ Palette: palettes en doublons virées ! ==> d'ioù 1.1.0 au lieu de 1.0.1
 [[:api:]]
 Here are the new features.
 
-    1) \luadraw product: the \var ''palette'' allows to access a palette by its name.
+    1) \luadraw product: the \var ''getPal'' provides access to a palette via its name.
 
-    1) Credits for path::''palettes.json'' put inside the new file path::''palettes.json.CREDITS.md''.
+    1) Credits for path::''palettes.json'' are inside the new file path::''palettes.json.CREDITS.md''.
 
 
 --------
-:update:    ????
+:update:
 --------
 
 [[:doc:]]
-?????
 \Contrib \readme
 
-    1) ???
-    \luadraw : ajout de la réf à la var palettes
+    1) Unless this is impossible, all \contribs must provide final code with the ability to access a palette via its name.
 
-    1) ???
-    all : tujours donner acces à une palette via une string
-
-
-
-
-
-
-
-
+    1) \luadraw: the \var ''getPal'' has been documented.
 
 
 // ---------- //

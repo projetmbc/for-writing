@@ -68,13 +68,15 @@ This file is the sole responsibility of the contributor. Its purpose is to provi
 ### The 'palettes' folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This folder is used to store palettes provided as files using the specific implementation chosen. Each file name gives the name of the palette.
-For example, on October 10, 2025, the `palettes` folder contained the following items defining three palettes named `BlindFish`, `GasFlame`, and `GroovyRainbow`.
+For example, on October 14, 2025, the `palettes` folder contained the following items defining three palettes named `BlindFish`, `GasFlame`, and `GroovyRainbow`.
 
 ~~~
 - palettes
     * BlindFish.lua
+    * BurningGrass.lua
     * GasFlame.lua
-    * GroovyRainbow.lua
+    * GeoRainbow.lua
+    * PastelRainbow.lua
 ~~~
 
 In this folder, for example, we had the following `BlindFish.lua` file generated mainly by the `extend.py` file, which we will discuss soon.
@@ -156,6 +158,12 @@ PALETTES_FILE_NAME = "..."
 #
 #     :return: the code of the final product with all the palettes
 #              ready to be used.
+#
+#
+# warning::
+#     Except if it is totally impossible, the code returned must
+#     offer the ability to access a palette via the string name of
+#     the variable associated with it.
 ###
 def build_code(
     credits : str,

@@ -1,13 +1,15 @@
 ### The 'palettes' folder
 
 This folder is used to store palettes provided as files using the specific implementation chosen. Each file name gives the name of the palette.
-For example, on October 10, 2025, the `palettes` folder contained the following items defining three palettes named `BlindFish`, `GasFlame`, and `GroovyRainbow`.
+For example, on October 14, 2025, the `palettes` folder contained the following items defining three palettes named `BlindFish`, `GasFlame`, and `GroovyRainbow`.
 
 ~~~
 - palettes
     * BlindFish.lua
+    * BurningGrass.lua
     * GasFlame.lua
-    * GroovyRainbow.lua
+    * GeoRainbow.lua
+    * PastelRainbow.lua
 ~~~
 
 

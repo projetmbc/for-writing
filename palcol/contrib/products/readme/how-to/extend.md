@@ -44,6 +44,12 @@ PALETTES_FILE_NAME = "..."
 #
 #     :return: the code of the final product with all the palettes
 #              ready to be used.
+#
+#
+# warning::
+#     Except if it is totally impossible, the code returned must
+#     offer the ability to access a palette via the string name of
+#     the variable associated with it.
 ###
 def build_code(
     credits : str,

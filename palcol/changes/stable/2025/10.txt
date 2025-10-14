@@ -2,7 +2,7 @@
 
 
 ==
-XXXXXXXXXXXXXXXX  (1.1.0)
+14  (1.1.0)
 ==
 
 -------
@@ -10,7 +10,27 @@ XXXXXXXXXXXXXXXX  (1.1.0)
 -------
 
 [[:api:]]
-Palette: ''GroovyRainbow'' removed because it is juste the reversed version of ''GistRainbow''.
+Palette: duplicate palettes, or those that are the reverse of others, are ignored.
+
+
+-----
+:new:
+-----
+
+[[:api:]]
+Here are the new features.
+
+    1) Palettes added with the use of \luadraw.
+
+        + ''BurningGrass''
+        + ''GeoRainbow''
+        + ''PastelRainbow''
+
+    1) \luadraw product: the \var ''getPal'' provides access to a palette via its name.
+
+    1) Credits for path::''palettes.json'' are inside the new file path::''palettes.json.CREDITS.md''.
+
+
 
 
 --------
@@ -19,18 +39,6 @@ Palette: ''GroovyRainbow'' removed because it is juste the reversed version of '
 
 [[:api:]]
 Palette \contribs: the ''extend.build_code'' works more logically with the \dict of all the palettes, and has to manage a credit to \thisproj.
-
-
------
-:new:
------
-
-[[:api:]]
-Palettes added with the use of \luadraw.
-
-    + ''BurningGrass''
-    + ''GeoRainbow''
-    + ''PastelRainbow''
 
 
 // ---------- //

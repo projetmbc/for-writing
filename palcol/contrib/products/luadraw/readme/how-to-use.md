@@ -1,7 +1,14 @@
 Use a luadraw palette
 ---------------------
 
-The names of the palettes all use the prefix `pal` followed by the name available in the file `palcol.json`. These variables are arrays of arrays of three floats. Here is the definition of one randomly selected palettes.
+The palette names all use the prefix `pal` followed by the name available in the file `palcol.json`. You can acces a palette by two ways.
+
+  * `palGistHeat` is a palette variable.
+
+  * `getPal[‘palGistHeat’]` is equal to `palGistHeat`.
+
+
+> ***NOTE.*** *The palette variables are arrays of arrays of three floats. Here is the definition of the palette `palGistHeat`.*
 
 ~~~lua
 palGistHeat = {

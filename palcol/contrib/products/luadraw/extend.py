@@ -77,7 +77,8 @@ PALETTES_FILE_NAME = "palettes.lua"
 #     palettes : the dictionnary of all the palettes.
 #
 #     :return: the code of the final product with all the palettes
-#              ready to be used.
+#              ready to be used, with an extra array ''getPal'' to
+#              access a palette via its string name.
 ###
 def build_code(
     credits : str,
@@ -119,7 +120,7 @@ def build_code(
 -- GET ONE PALETTE BY ITS NAME --
 ---------------------------------
 
-palettes = {}
+getPal = {}
 
 for _, name in ipairs({
         """.strip()
@@ -149,7 +150,7 @@ for _, name in ipairs({
     code_dict.append(
         f"""
 }}) do
-{indent}palettes[name] = _G[name]
+{indent}getPal[name] = _G[name]
 end
         """.strip() + '\n'
     )

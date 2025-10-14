@@ -1,1 +1,19 @@
-{"isequalto": {"GistGray": ["GistGrey", "Gray", "Grey"], "Binary": ["GistYarg", "GistYerg"], "Grays": ["Greys"]}}
+{
+  "equal-to": {
+    "Binary": [
+      "GistYarg",
+      "GistYerg"
+    ],
+    "Grays": [
+      "Greys"
+    ]
+  },
+  "reverse-of": {
+    "Binary": [
+      "GistGray",
+      "GistGrey",
+      "Gray",
+      "Grey"
+    ]
+  }
+}
