@@ -1,9 +1,9 @@
-=====
-atprism - TODO
-=====
+========
+at-prism - TODO
+========
 
 
-Palette & Rendering for Illustrative Scientific Mapping
+Aesthetic Toolk - Palette & Rendering for Illustrative Scientific Mapping
 
 “Consistent colors and line styles for every plot, such as to turn data into light.”
 

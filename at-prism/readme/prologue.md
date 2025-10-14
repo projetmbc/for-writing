@@ -1,5 +1,5 @@
-The atprism project
-=================
+The at-prism project
+====================
 
 **Table of contents**
 

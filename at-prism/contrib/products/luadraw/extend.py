@@ -71,7 +71,7 @@ PALETTES_FILE_NAME = "palettes.lua"
 
 ###
 # prototype::
-#     credits  : the credits to the ''atprism'' project that should
+#     credits  : the credits to the ''at-prism'' project that should
 #                be added as a comment at the beginning of the final
 #                product code.
 #     palettes : the dictionnary of all the palettes.

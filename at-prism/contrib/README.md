@@ -6,7 +6,7 @@
   ---------------------------------------------------------------->
 
 
-Contribute to atprism
+Contribute to at-prism
 ====================
 
 **Table of contents**

@@ -1,4 +1,4 @@
-Add new products to atprism
+Add new products to at-prism
 ==========================
 
 **Table of contents**

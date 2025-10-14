@@ -140,7 +140,7 @@ for folder, contribs in contribs_accepted.items():
                     f"Name '{palette_name}' already used."
                 ),
                 xtra    = (
-                     "See 'atprism/tools/report/"
+                     "See 'at-prism/tools/report/"
                     f"{REPORT_NAME_CONFLICT_FILE.name}' file."
                 ),
                 exception = ValueError,

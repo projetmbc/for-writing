@@ -6,13 +6,13 @@
   ---------------------------------------------------------------->
 
 
-The atprism project
-==================
+The at-prism project
+====================
 
 **Table of contents**
 
 <a id="MULTIMD-GO-BACK-TO-TOC"></a>
-- [About atprism](#MULTIMD-TOC-ANCHOR-0)
+- [About at-prism](#MULTIMD-TOC-ANCHOR-0)
 - [Credits](#MULTIMD-TOC-ANCHOR-1)
 - [Supported implementations](#MULTIMD-TOC-ANCHOR-2)
     - [JSON, the versatile default format](#MULTIMD-TOC-ANCHOR-3)
@@ -21,8 +21,8 @@ The atprism project
         - [Use a luadraw palette](#MULTIMD-TOC-ANCHOR-6)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
-About atprism <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
-------------
+About at-prism <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+--------------
 
 This project provides a collection of discrete color palettes for various programming languages,
 enabling the creation and use of color maps derived from these palettes.
@@ -36,7 +36,7 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 Many of the discrete color palettes in this project are based on colormaps from [`Asymptote`](https://asymptote.sourceforge.io/) and [`Matplotlib`](https://matplotlib.org/).
 If you recognize your contribution, please don’t hesitate to get in touch, we’ll be happy to give you proper credit in the source code.
 
-> ***IMPORTANT.*** *`colpal` only uses camel case names with no characters other than numbers and ASCII letters. For example, a name such as `nipy_spectral-1` is tranformed into `NipySpectral1` within `atprism`.*
+> ***IMPORTANT.*** *`at-prism` only uses camel case names with no characters other than numbers and ASCII letters. For example, a name such as `nipy_spectral-1` is transformed into `NipySpectral1` within `at-prism`.*
 
 <a id="MULTIMD-TOC-ANCHOR-2"></a>
 Supported implementations <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -57,12 +57,12 @@ By default, a file `products/palettes.json` is provided to allow unsupported cod
 
 You can use palettes with [`luadraw`](https://github.com/pfradin/luadraw) which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLatex` and `TikZ`.
 
-> ***NOTE.*** *Initially, the `atprism` project was created to provide ready-to-use palettes for `luadraw`.*
+> ***NOTE.*** *Initially, the `at-prism` project was created to provide ready-to-use palettes for `luadraw`.*
 
 <a id="MULTIMD-TOC-ANCHOR-6"></a>
 #### Use a luadraw palette <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-The palette names all use the prefix `pal` followed by the name available in the file `atprism.json`. You can acces a palette by two ways.
+The palette names all use the prefix `pal` followed by the name available in the file `at-prism.json`. You can acces a palette by two ways.
 
 - `palGistHeat` is a palette variable.
 - `getPal[‘palGistHeat’]` is equal to `palGistHeat`.

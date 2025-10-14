@@ -1,7 +1,7 @@
 Use a luadraw palette
 ---------------------
 
-The palette names all use the prefix `pal` followed by the name available in the file `atprism.json`. You can acces a palette by two ways.
+The palette names all use the prefix `pal` followed by the name available in the file `at-prism.json`. You can acces a palette by two ways.
 
   * `palGistHeat` is a palette variable.
 

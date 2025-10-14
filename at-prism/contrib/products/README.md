@@ -6,8 +6,8 @@
   ---------------------------------------------------------------->
 
 
-Add new products to atprism
-==========================
+Add new products to at-prism
+============================
 
 **Table of contents**
 
@@ -37,7 +37,7 @@ We will briefly explain the following structure of the `contrib/products` folder
 Here is how the different folders are used.
 
 1. `changes` is used to communicate changes related to contributions.
-2. `readme`, managed by the `atprism` developer, is used to generate the `contrib/products/README.md` file.
+2. `readme`, managed by the `at-prism` developer, is used to generate the `contrib/products/README.md` file.
 3. The other folders are the contributions themselves, the development process for which is explained in the following section.
 
 <a id="MULTIMD-TOC-ANCHOR-1"></a>
@@ -151,7 +151,7 @@ PALETTES_FILE_NAME = "..."
 
 ###
 # prototype::
-#     credits  : the credits to the ''atprism'' project that should
+#     credits  : the credits to the ''at-prism'' project that should
 #                be added as a comment at the beginning of the final
 #                product code.
 #     palettes : the dictionnary of all the palettes.
@@ -199,4 +199,4 @@ Here is the purpose of each of these files.
 2. `title.md` is the title for the specific technology.
 3. `desc.md` is a short description of the specific technology.
 4. `how-to-create.md` gives the process to follow to create new palettes using the specific technology.
-5. `how-to-use.md` explains how to use one of the `atprism` palettes avaiable when working with the specific technology.
+5. `how-to-use.md` explains how to use one of the `at-prism` palettes available when working with the specific technology.
