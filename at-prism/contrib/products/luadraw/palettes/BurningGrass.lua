@@ -1,14 +1,19 @@
--- author: Christophe, Bal
-
--- ludraw definition used.
-
--- PALETTE = {
---   DarkGreen,
---   Green,
---   Yellow,
---   Orange,
---   Red,
--- }
+------
+-- this::
+--     author = Christophe, Bal
+--
+--
+-- Here is the luudraw definition used.
+--
+-- lua::
+--     PALETTE = {
+--       DarkGreen,
+--       Green,
+--       Yellow,
+--       Orange,
+--       Red,
+--     }
+------
 
 PALETTE = {
   {0, 0.3922, 0},

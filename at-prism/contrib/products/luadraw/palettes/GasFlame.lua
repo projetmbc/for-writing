@@ -1,16 +1,21 @@
--- author: Patrick, Fradin
-
--- ludraw definition used.
-
--- PALETTE = {
---   LightCyan,
---   LightSkyBlue,
---   Plum,
---   LightCoral,
---   LightSalmon,
---   Khaki,
---   PaleGreen
--- }
+------
+-- this::
+--     author = Patrick, Fradin
+--
+--
+-- Here is the luudraw definition used.
+--
+-- lua::
+--     PALETTE = {
+--       LightCyan,
+--       LightSkyBlue,
+--       Plum,
+--       LightCoral,
+--       LightSalmon,
+--       Khaki,
+--       PaleGreen
+--     }
+------
 
 PALETTE = {
   {0.8784, 1, 1},

@@ -1,15 +1,20 @@
--- author: Christophe, Bal
-
--- ludraw definition used.
-
--- PALETTE = {
---   Plum,
---   LightSkyBlue,
---   PaleGreen,
---   Khaki,
---   LightSalmon,
---   LightCoral,
--- }
+------
+-- this::
+--     author = Christophe, Bal
+--
+--
+-- Here is the luudraw definition used.
+--
+-- lua::
+--     PALETTE = {
+--       Plum,
+--       LightSkyBlue,
+--       PaleGreen,
+--       Khaki,
+--       LightSalmon,
+--       LightCoral,
+--     }
+------
 
 PALETTE = {
   {0.8667, 0.6275, 0.8667},

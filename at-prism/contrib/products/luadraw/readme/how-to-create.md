@@ -31,7 +31,10 @@ The design is done by modifying the `PALETTE` variable at the beginning of the f
 %%%
 
 \begin{filecontents*}[overwrite]{__tmp-palette__.lua}
--- author: First Name, Last Name
+------
+-- this::
+--     author = First Name, Last Name
+------
 
 PALETTE = {
   Gray,

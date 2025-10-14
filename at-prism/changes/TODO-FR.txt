@@ -5,23 +5,15 @@ at-prism - TODO
 
 // ---------- //
 
-README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
-
-pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
-
-
-// ---------- //
-
-accès au pallets via des chaînes devient obligatoire (en python on utilisera :=)
+pal-report.json & mp-names.json: pour indiquer dans la doc les chgts de noms, et ce qui est ignoré et pourquoi ?
 
 +
 
-documenter cet accès pour luadraw
+ajout d'un doc yaml pour u-y faire des choix à la main, chgt de nom pour le prod final, ou aussi préfer une version inversé
 
+    + besoin d'un petit outil en ligne pour récupérer les noms existants
 
-// ---------- //
-
-pal-report.json & mp-names.json: pour indiquer dans la doc les chgts de noms, et ce qui est ignoré et pourquoi ?
+uen fois ceci fait, le coup d'après on en tient compte : on doit au pasage utilisé cet outil hors tools lancé automatiquement via IGNORE ne psuffixe qui indique au launcher que ce n'est pas un tool, maj dans le copier template du coup
 
 
 
@@ -29,13 +21,30 @@ pal-report.json & mp-names.json: pour indiquer dans la doc les chgts de noms, et
 
 besoin d'une doc PDF via latex/luadraw
 
-     --> besoin de regrouper les palettes similaires : les arcs en cies ou autre
-         classement purementa lgorithmique ! vai les pentes des approcimations linaiéres... etc.
+     --> besoin de regrouper les palettes similaires : classement purementa lgorithmique !
+
+              + les arcs en cies ou autre
+              + les pentes des approcimations linaiéres... etc.
+              + arbre de décision à la sauce IA (début fin , puis on affine)
+              + ... etc.
 
 
 // ---------- //
 
-nouvelle palete CSS du coup à finr à la main, commencé via ChatGPT
+README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
+
+extend.py : dans luaraw, faire un test de bijectivité palett --> code --> palette
+
+pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
+
+
+// ---------- //
+
+descritption des palettes pour la doc en anglais : on explique le contexte pour les nouevlles, si pas de desc, c'est pas bloquant !
+
+// ---------- //
+
+nouvelle palete CSS du coup à finr à la main, commencé via ChatGPT/Claude , les indiquer sur formum matplotlib, une fois leur utilisation en Python possible
 
 background: linear-gradient(
   90deg,
@@ -50,23 +59,6 @@ background: linear-gradient(
   #BFFFE6,
   #FF80CC
 );
-
-et
-
-#C41E3A  /* pH 1 */
-#E8533A  /* pH 2 */
-#F27935  /* pH 3 */
-#F9A035  /* pH 4 */
-#FFC839  /* pH 5 */
-#F4E53D  /* pH 6 */
-#D4DC3E  /* pH 7 */
-#B8CD42  /* pH 8 */
-#8FB944  /* pH 9 */
-#6B9F47  /* pH 10 */
-#4A7C4A  /* pH 11 */
-#3A5F4D  /* pH 12 */
-#2E4A50  /* pH 13 */
-#4A5F6E  /* pH 14 */
 
 et
 
@@ -141,6 +133,116 @@ et pour la 2D bien d'avoir de forts contrats aussi !!!! mocehe en 3D par contre
 #FFBF00  <!-- Jaune -->
 #A5609D  <!-- Magenta -->
 #929600  <!-- Vert olive -->
+
+
+
+/* ========================================
+   PALETTES DE COULEURS SCIENTIFIQUES
+   ======================================== */
+
+/* 1. PAPIER pH (pH 1-14) */
+#C41E3A  /* pH 1 - Rouge acide fort */
+#E8533A  /* pH 2 */
+#F27935  /* pH 3 */
+#F9A035  /* pH 4 */
+#FFC839  /* pH 5 */
+#F4E53D  /* pH 6 */
+#D4DC3E  /* pH 7 - Neutre */
+#B8CD42  /* pH 8 */
+#8FB944  /* pH 9 */
+#6B9F47  /* pH 10 */
+#4A7C4A  /* pH 11 */
+#3A5F4D  /* pH 12 */
+#2E4A50  /* pH 13 */
+#4A5F6E  /* pH 14 - Bleu basique fort */
+
+/* 2. TEST À LA FLAMME (Ordre spectral : rouge → violet) */
+#DC143C  /* Lithium (Li) - Rouge carmin */
+#DC143C  /* Strontium (Sr) - Rouge cramoisi */
+#FF6347  /* Calcium (Ca) - Orange-rouge brique */
+#FFD700  /* Sodium (Na) - Jaune or intense */
+#F5F5DC  /* Bore (B) - Vert pâle */
+#32CD32  /* Baryum (Ba) - Vert pomme */
+#00CED1  /* Cuivre (Cu) - Bleu-vert turquoise */
+#4169E1  /* Cuivre + chlorure - Bleu royal */
+#9370DB  /* Potassium (K) - Violet lilas */
+
+/* 3. TEMPÉRATURE DE FLAMME (600-1500°C) */
+#8B0000  /* ~600°C - Rouge sombre */
+#DC143C  /* ~700°C - Rouge vif */
+#FF4500  /* ~800°C - Orange-rouge */
+#FF8C00  /* ~900°C - Orange */
+#FFA500  /* ~1000°C - Orange clair */
+#FFD700  /* ~1100°C - Jaune-or */
+#FFFFE0  /* ~1200°C - Jaune pâle */
+#FFFACD  /* ~1300°C - Blanc-jaune */
+#F0F8FF  /* ~1400°C - Blanc-bleu */
+#4169E1  /* ~1500°C - Bleu royal */
+
+/* 4. CORPS NOIR - TEMPÉRATURE D'ÉTOILES (1000-40000K) */
+#FF4500  /* ~1000K - Rouge-orange (naines rouges) */
+#FF6347  /* ~2000K - Rouge */
+#FF8C00  /* ~3000K - Orange */
+#FFD700  /* ~4000K - Jaune (Soleil ~5800K) */
+#FFFACD  /* ~6000K - Jaune pâle */
+#F0F8FF  /* ~8000K - Blanc */
+#E0FFFF  /* ~10000K - Bleu pâle */
+#87CEEB  /* ~15000K - Bleu ciel */
+#4682B4  /* ~25000K - Bleu acier */
+#0000CD  /* ~40000K - Bleu profond (étoiles chaudes) */
+
+/* 5. SPECTRE VISIBLE (380-700 nm) */
+#8B00FF  /* ~380-450nm - Violet */
+#4B0082  /* ~450nm - Indigo */
+#0000FF  /* ~450-495nm - Bleu */
+#00FF00  /* ~495-570nm - Vert */
+#FFFF00  /* ~570-590nm - Jaune */
+#FF7F00  /* ~590-620nm - Orange */
+#FF0000  /* ~620-700nm - Rouge */
+
+/* 6. COLORATION DE GRAM (Microbiologie) */
+#6A0DAD  /* Gram positif - Violet cristal */
+#FF1493  /* Gram négatif - Rose safranine */
+
+/* 7. INDICATEURS REDOX (Ordre réduction → oxydation) */
+#F0F8FF  /* Bleu de méthylène - Réduit (incolore/blanc) */
+#1E90FF  /* Bleu de méthylène - Oxydé (bleu) */
+#FFD700  /* Lugol - Sans amidon (jaune-brun) */
+#191970  /* Lugol + amidon - Bleu-noir */
+
+/* 8. HEAT MAP BIOLOGIQUE (Expression génétique : faible → forte) */
+#00FF00  /* Sous-expression (faible) - Vert */
+#000000  /* Expression normale (moyenne) - Noir */
+#FF0000  /* Sur-expression (forte) - Rouge */
+
+/* Variante Heat map (Minimum → Maximum) */
+#0000FF  /* Minimum (très faible) - Bleu */
+#00FFFF  /* Faible - Cyan */
+#FFFF00  /* Moyen - Jaune */
+#FF8C00  /* Élevé - Orange */
+#FF0000  /* Maximum (très fort) - Rouge */
+
+/* 9. ÉCHELLE DE SAFFIR-SIMPSON (Ouragans) */
+#FFFFCC  /* Dépression tropicale */
+#FFE775  /* Tempête tropicale */
+#FFC140  /* Catégorie 1 */
+#FF8F20  /* Catégorie 2 */
+#FF6060  /* Catégorie 3 */
+#FF3030  /* Catégorie 4 */
+#C80000  /* Catégorie 5 */
+
+/* 10. RAYONNEMENT ÉLECTROMAGNÉTIQUE (au-delà du visible) */
+#000000  /* Ondes radio - Noir (invisible) */
+#2F4F4F  /* Micro-ondes - Gris foncé */
+#8B0000  /* Infrarouge - Rouge sombre */
+#FF0000  /* IR proche - Rouge */
+/* VISIBLE : voir palette spectre ci-dessus */
+#9370DB  /* UV proche - Violet */
+#4B0082  /* UV lointain - Indigo foncé */
+#191970  /* Rayons X - Bleu nuit */
+#000080  /* Rayons gamma - Bleu marine */
+
+
 
 
 // ---------- //
