@@ -1,0 +1,156 @@
+=====
+atprism - TODO
+=====
+
+
+Palette & Rendering for Illustrative Scientific Mapping
+
+“Consistent colors and line styles for every plot, such as to turn data into light.”
+
+
+
+// ---------- //
+
+README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
+
+pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
+
+
+// ---------- //
+
+accès au pallets via des chaînes devient obligatoire (en python on utilisera :=)
+
++
+
+documenter cet accès pour luadraw
+
+
+// ---------- //
+
+pal-report.json & mp-names.json: pour indiquer dans la doc les chgts de noms, et ce qui est ignoré et pourquoi ?
+
+
+
+// ---------- //
+
+besoin d'une doc PDF via latex/luadraw
+
+     --> besoin de regrouper les palettes similaires : les arcs en cies ou autre
+         classement purementa lgorithmique ! vai les pentes des approcimations linaiéres... etc.
+
+
+// ---------- //
+
+nouvelle palete CSS du coup à finr à la main, commencé via ChatGPT
+
+background: linear-gradient(
+  90deg,
+  #8C59E6,
+  #FA99E6,
+  #A680FF,
+  #FFB34D,
+  #99CCFF,
+  #80FFCC,
+  #CC99FF,
+  #FFE666,
+  #BFFFE6,
+  #FF80CC
+);
+
+et
+
+#C41E3A  /* pH 1 */
+#E8533A  /* pH 2 */
+#F27935  /* pH 3 */
+#F9A035  /* pH 4 */
+#FFC839  /* pH 5 */
+#F4E53D  /* pH 6 */
+#D4DC3E  /* pH 7 */
+#B8CD42  /* pH 8 */
+#8FB944  /* pH 9 */
+#6B9F47  /* pH 10 */
+#4A7C4A  /* pH 11 */
+#3A5F4D  /* pH 12 */
+#2E4A50  /* pH 13 */
+#4A5F6E  /* pH 14 */
+
+et
+
+#2C2C2C  <!-- Graphite -->
+#434343  <!-- Fer sombre -->
+#71706E  <!-- Acier -->
+#A8A8A8  <!-- Argent -->
+#C0C0C0  <!-- Argent clair -->
+#E5E4E2  <!-- Platine clair -->
+#FFD700  <!-- Or jaune -->
+#DAA520  <!-- Or sombre -->
+#B87333  <!-- Cuivre -->
+#8B4513  <!-- Bronze -->
+
+et
+
+#4A4A4A  <!-- Gris pierre sombre -->
+#8B0000  <!-- Rouge lave -->
+#D2691E  <!-- Orange basalte -->
+#FFFFFF  <!-- Neige immaculée -->
+
+et
+
+#5D3A1A  <!-- Chocolat au lait -->
+#8B6914  <!-- Brun caramel -->
+#C4661F  <!-- Orange mangue mûre -->
+#FFA500  <!-- Orange vif (mangue) -->
+#FFD700  <!-- Jaune doré (ananas) -->
+#FFB6D9  <!-- Rose fraise pastel -->
+#FF69B4  <!-- Rose bonbon (fraise) -->
+#FF1493  <!-- Rose intense (fraise mûre) -->
+#D4006E  <!-- Magenta charnel -->
+#8B008B  <!-- Magenta profond (mangue pourpre) -->
+
+et
+
+#6030D0  <!-- Bleu-violet intense -->
+#8520A0  <!-- Violet pimpé -->
+#A52070  <!-- Magenta pimpé -->
+#B53060  <!-- Rouge-magenta saturé -->
+#C56080  <!-- Rose-rouge -->
+#D58595  <!-- Rose moyen -->
+#E6A5B5  <!-- Rose pastel -->
+#C595C5  <!-- Violet rosé -->
+#D5B5D5  <!-- Violet pastel -->
+#E6D5E6  <!-- Violet pastel très clair -->
+
+et
+
+mathémetaica like
+
+#9B7FB5  <!-- Violet clair -->
+#7B9BC7  <!-- Bleu lavande -->
+#5BA5D5  <!-- Bleu ciel -->
+#6BB5B5  <!-- Cyan-vert -->
+#7BC59A  <!-- Vert-cyan -->
+#A5C585  <!-- Vert clair -->
+#C5C570  <!-- Jaune-vert -->
+#D5B560  <!-- Beige/sable -->
+#C59580  <!-- Rose pâle -->
+#B58595  <!-- Mauve -->
+
+et pour la 2D bien d'avoir de forts contrats aussi !!!! mocehe en 3D par contre
+
+#5E82B5  <!-- Bleu -->
+#E19C24  <!-- Orange -->
+#8FB031  <!-- Vert -->
+#EB6235  <!-- Rouge-orange -->
+#8778B3  <!-- Violet -->
+#C56E1A  <!-- Marron -->
+#5C9EC7  <!-- Cyan -->
+#FFBF00  <!-- Jaune -->
+#A5609D  <!-- Magenta -->
+#929600  <!-- Vert olive -->
+
+
+// ---------- //
+
+Asymptote
+
+    ---> comment fonctione segmented palette
