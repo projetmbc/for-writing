@@ -3,12 +3,6 @@ at-prism - TODO
 ========
 
 
-Aesthetic Toolk - Palette & Rendering for Illustrative Scientific Mapping
-
-“Consistent colors and line styles for every plot, such as to turn data into light.”
-
-
-
 // ---------- //
 
 README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté

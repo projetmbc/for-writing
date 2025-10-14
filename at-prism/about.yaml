@@ -1,8 +1,10 @@
 project:
-  version: "1.0.0"
+  version: "1.1.0"
 
-  acronym: "[PAL]ette of [COL]ors"
-  desc   : This project provides finite color palettes, enabling the creation and use of color maps based on these palettes.
+  acronym: "[A]esthetic [T]oolkit - [P]alettes to [R]ender [I]llustrative [S]cientific [M]apping"
+  desc   : This project provides consistent colors for every plot, such as to turn data into light.
+
+  # This project provides consistent colors and line styles for every plot, such as to turn data into light.
 
   author : Christophe, BAL
 
