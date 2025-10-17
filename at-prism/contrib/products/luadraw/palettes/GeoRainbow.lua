@@ -3,17 +3,22 @@
 --     author = Christophe, Bal
 --
 --
--- Here is the luudraw definition used.
+-- note::
+--     The prefix “Geo” stands for “Geographic”.
 --
--- lua::
---     PALETTE = {
---       CornflowerBlue,
---       LightSkyBlue,
---       MediumSeaGreen,
---       YellowGreen,
---       DarkSalmon,
---       LightCoral,
---       IndianRed,
+--
+-- note::
+--     Here is the luadraw definition used.
+--
+--     lua::
+--         PALETTE = {
+--           CornflowerBlue,
+--           LightSkyBlue,
+--           MediumSeaGreen,
+--           YellowGreen,
+--           DarkSalmon,
+--           LightCoral,
+--           IndianRed,
 --     }
 ------
 

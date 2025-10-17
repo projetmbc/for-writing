@@ -3,18 +3,19 @@
 --     author = Patrick, Fradin
 --
 --
--- Here is the luudraw definition used.
+-- note::
+--     Here is the luadraw definition used.
 --
--- lua::
---     PALETTE = {
---       LightCyan,
---       LightSkyBlue,
---       Plum,
---       LightCoral,
---       LightSalmon,
---       Khaki,
---       PaleGreen
---     }
+--     lua::
+--         PALETTE = {
+--           LightCyan,
+--           LightSkyBlue,
+--           Plum,
+--           LightCoral,
+--           LightSalmon,
+--           Khaki,
+--           PaleGreen
+--         }
 ------
 
 PALETTE = {

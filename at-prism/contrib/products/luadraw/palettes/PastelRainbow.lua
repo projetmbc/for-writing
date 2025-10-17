@@ -3,17 +3,18 @@
 --     author = Christophe, Bal
 --
 --
--- Here is the luudraw definition used.
+-- note::
+--     Here is the luadraw definition used.
 --
--- lua::
---     PALETTE = {
---       Plum,
---       LightSkyBlue,
---       PaleGreen,
---       Khaki,
---       LightSalmon,
---       LightCoral,
---     }
+--     lua::
+--         PALETTE = {
+--           Plum,
+--           LightSkyBlue,
+--           PaleGreen,
+--           Khaki,
+--           LightSalmon,
+--           LightCoral,
+--         }
 ------
 
 PALETTE = {

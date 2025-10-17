@@ -114,25 +114,11 @@ def build_code(
         '',
     ]
 
-    code_dict = [
-        """
----------------------------------
--- GET ONE PALETTE BY ITS NAME --
----------------------------------
-
-getPal = {}
-
-for _, name in ipairs({
-        """.strip()
-    ]
-
 # The palettes.
     indent = " "*4
 
     for name, colors in palettes.items():
         name = f"pal{name}"
-
-        code_dict.append(f'{indent}"{name}",')
 
         code.append(f"{name} = {{")
 
@@ -145,17 +131,21 @@ for _, name in ipairs({
 # Seperating defs with single empty lines.
         code.append("}\n")
 
-    code_dict[-1] = code_dict[-1][:-1]
+    code.append(
+        """
+---------------------------------
+-- GET ONE PALETTE BY ITS NAME --
+---------------------------------
 
-    code_dict.append(
-        f"""
-}}) do
-{indent}getPal[name] = _G[name]
+function getPal(name)
+    if string.sub(name, 1, 3) ~= "pal" then
+        name = "pal" .. name
+    end
+
+    return _G[name]
 end
         """.strip() + '\n'
     )
-
-    code += code_dict
 
 # Nothing left to do.
     code = '\n'.join(code)

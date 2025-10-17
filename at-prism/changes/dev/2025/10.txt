@@ -2,6 +2,21 @@
 
 
 ==
+17  (1.1.1-beta.1)
+==
+
+--------
+:update:
+--------
+
+[[:api:]]
+\luadraw \prod: the lua::''getPal'' \dict array is now a \func that accepts string palette names with or without the lua::''pal'' prefix.
+
+
+// ---------- //
+
+
+==
 15
 ==
 

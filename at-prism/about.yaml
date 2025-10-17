@@ -4,11 +4,14 @@ project:
   acronym: >
     [A]esthetic [T]oolkit - [P]alettes to [R]ender
     [I]llustrative [S]cientific [M]apping
+    (a play on words: it is at the prism that light is
+    broken down into a spectrum)
   desc   : >
     This project provides consistent colors for every plot,
     such as to turn data into light.
 
-  # This project provides consistent colors and line styles for every plot, such as to turn data into light.
+#    This project provides consistent colors and line styles
+#    for every plot, such as to turn data into light.
 
   author : Christophe, BAL
 

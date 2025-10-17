@@ -5,6 +5,11 @@ at-prism - TODO
 
 // ---------- //
 
+getPal devient une fonction qui ajoute si besoin le préfixe pal (on peut soir eptre efficace à la saisie directe, soir faire copier comer d'une nom de vars)
+
+
+// ---------- //
+
 pal-report.json & mp-names.json: pour indiquer dans la doc les chgts de noms, et ce qui est ignoré et pourquoi ?
 
 +
@@ -45,6 +50,571 @@ descritption des palettes pour la doc en anglais : on explique le contexte pour 
 // ---------- //
 
 nouvelle palete CSS du coup à finr à la main, commencé via ChatGPT/Claude , les indiquer sur formum matplotlib, une fois leur utilisation en Python possible
+
+
+
+/* ========================================
+   COLLECTION COMPLÈTE DE PALETTES
+   ======================================== */
+
+/* ========================================
+   PALETTES ORIGINALES
+   ======================================== */
+
+/* GRADIENT ARC-EN-CIEL */
+.rainbow-gradient {
+  background: linear-gradient(
+    90deg,
+    #8C59E6,
+    #FA99E6,
+    #A680FF,
+    #FFB34D,
+    #99CCFF,
+    #80FFCC,
+    #CC99FF,
+    #FFE666,
+    #BFFFE6,
+    #FF80CC
+  );
+}
+
+/* MÉTAUX */
+#2C2C2C  /* Graphite */
+#434343  /* Fer sombre */
+#71706E  /* Acier */
+#A8A8A8  /* Argent */
+#C0C0C0  /* Argent clair */
+#E5E4E2  /* Platine clair */
+#FFD700  /* Or jaune */
+#DAA520  /* Or sombre */
+#B87333  /* Cuivre */
+#8B4513  /* Bronze */
+
+/* VOLCANIQUE */
+#4A4A4A  /* Gris pierre sombre */
+#8B0000  /* Rouge lave */
+#D2691E  /* Orange basalte */
+#FFFFFF  /* Neige immaculée */
+
+/* FRUITS TROPICAUX */
+#5D3A1A  /* Chocolat au lait */
+#8B6914  /* Brun caramel */
+#C4661F  /* Orange mangue mûre */
+#FFA500  /* Orange vif (mangue) */
+#FFD700  /* Jaune doré (ananas) */
+#FFB6D9  /* Rose fraise pastel */
+#FF69B4  /* Rose bonbon (fraise) */
+#FF1493  /* Rose intense (fraise mûre) */
+#D4006E  /* Magenta charnel */
+#8B008B  /* Magenta profond (mangue pourpre) */
+
+/* PALETTE SATURÉE MAGENTA-VIOLET */
+#6030D0  /* Bleu-violet intense */
+#8520A0  /* Violet pimpé */
+#A52070  /* Magenta pimpé */
+#B53060  /* Rouge-magenta saturé */
+#C56080  /* Rose-rouge */
+#D58595  /* Rose moyen */
+#E6A5B5  /* Rose pastel */
+#C595C5  /* Violet rosé */
+#D5B5D5  /* Violet pastel */
+#E6D5E6  /* Violet pastel très clair */
+
+/* MATHEMATICA-LIKE */
+#9B7FB5  /* Violet clair */
+#7B9BC7  /* Bleu lavande */
+#5BA5D5  /* Bleu ciel */
+#6BB5B5  /* Cyan-vert */
+#7BC59A  /* Vert-cyan */
+#A5C585  /* Vert clair */
+#C5C570  /* Jaune-vert */
+#D5B560  /* Beige/sable */
+#C59580  /* Rose pâle */
+#B58595  /* Mauve */
+
+/* PALETTE 2D - FORTS CONTRASTES */
+#5E82B5  /* Bleu */
+#E19C24  /* Orange */
+#8FB031  /* Vert */
+#EB6235  /* Rouge-orange */
+#8778B3  /* Violet */
+#C56E1A  /* Marron */
+#5C9EC7  /* Cyan */
+#FFBF00  /* Jaune */
+#A5609D  /* Magenta */
+#929600  /* Vert olive */
+
+/* ========================================
+   PALETTES SCIENTIFIQUES
+   ======================================== */
+
+/* PAPIER pH (pH 1-14) */
+#C41E3A  /* pH 1 - Rouge acide fort */
+#E8533A  /* pH 2 */
+#F27935  /* pH 3 */
+#F9A035  /* pH 4 */
+#FFC839  /* pH 5 */
+#F4E53D  /* pH 6 */
+#D4DC3E  /* pH 7 - Neutre */
+#B8CD42  /* pH 8 */
+#8FB944  /* pH 9 */
+#6B9F47  /* pH 10 */
+#4A7C4A  /* pH 11 */
+#3A5F4D  /* pH 12 */
+#2E4A50  /* pH 13 */
+#4A5F6E  /* pH 14 - Bleu basique fort */
+
+/* TEST À LA FLAMME (Ordre spectral : rouge → violet) */
+#DC143C  /* Lithium (Li) - Rouge carmin */
+#DC143C  /* Strontium (Sr) - Rouge cramoisi */
+#FF6347  /* Calcium (Ca) - Orange-rouge brique */
+#FFD700  /* Sodium (Na) - Jaune or intense */
+#F5F5DC  /* Bore (B) - Vert pâle */
+#32CD32  /* Baryum (Ba) - Vert pomme */
+#00CED1  /* Cuivre (Cu) - Bleu-vert turquoise */
+#4169E1  /* Cuivre + chlorure - Bleu royal */
+#9370DB  /* Potassium (K) - Violet lilas */
+
+/* TEMPÉRATURE DE FLAMME (600-1500°C) */
+#8B0000  /* ~600°C - Rouge sombre */
+#DC143C  /* ~700°C - Rouge vif */
+#FF4500  /* ~800°C - Orange-rouge */
+#FF8C00  /* ~900°C - Orange */
+#FFA500  /* ~1000°C - Orange clair */
+#FFD700  /* ~1100°C - Jaune-or */
+#FFFFE0  /* ~1200°C - Jaune pâle */
+#FFFACD  /* ~1300°C - Blanc-jaune */
+#F0F8FF  /* ~1400°C - Blanc-bleu */
+#4169E1  /* ~1500°C - Bleu royal */
+
+/* CORPS NOIR - TEMPÉRATURE D'ÉTOILES (1000-40000K) */
+#FF4500  /* ~1000K - Rouge-orange (naines rouges) */
+#FF6347  /* ~2000K - Rouge */
+#FF8C00  /* ~3000K - Orange */
+#FFD700  /* ~4000K - Jaune (Soleil ~5800K) */
+#FFFACD  /* ~6000K - Jaune pâle */
+#F0F8FF  /* ~8000K - Blanc */
+#E0FFFF  /* ~10000K - Bleu pâle */
+#87CEEB  /* ~15000K - Bleu ciel */
+#4682B4  /* ~25000K - Bleu acier */
+#0000CD  /* ~40000K - Bleu profond (étoiles chaudes) */
+
+/* SPECTRE VISIBLE (380-700 nm) */
+#8B00FF  /* ~380-450nm - Violet */
+#4B0082  /* ~450nm - Indigo */
+#0000FF  /* ~450-495nm - Bleu */
+#00FF00  /* ~495-570nm - Vert */
+#FFFF00  /* ~570-590nm - Jaune */
+#FF7F00  /* ~590-620nm - Orange */
+#FF0000  /* ~620-700nm - Rouge */
+
+/* COLORATION DE GRAM (Microbiologie) */
+#6A0DAD  /* Gram positif - Violet cristal */
+#FF1493  /* Gram négatif - Rose safranine */
+
+/* INDICATEURS REDOX (Ordre réduction → oxydation) */
+#F0F8FF  /* Bleu de méthylène - Réduit (incolore/blanc) */
+#1E90FF  /* Bleu de méthylène - Oxydé (bleu) */
+#FFD700  /* Lugol - Sans amidon (jaune-brun) */
+#191970  /* Lugol + amidon - Bleu-noir */
+
+/* HEAT MAP BIOLOGIQUE (Expression génétique : faible → forte) */
+#00FF00  /* Sous-expression (faible) - Vert */
+#000000  /* Expression normale (moyenne) - Noir */
+#FF0000  /* Sur-expression (forte) - Rouge */
+
+/* HEAT MAP ALTERNATIVE (Minimum → Maximum) */
+#0000FF  /* Minimum (très faible) - Bleu */
+#00FFFF  /* Faible - Cyan */
+#FFFF00  /* Moyen - Jaune */
+#FF8C00  /* Élevé - Orange */
+#FF0000  /* Maximum (très fort) - Rouge */
+
+/* ÉCHELLE DE SAFFIR-SIMPSON (Ouragans) */
+#FFFFCC  /* Dépression tropicale */
+#FFE775  /* Tempête tropicale */
+#FFC140  /* Catégorie 1 */
+#FF8F20  /* Catégorie 2 */
+#FF6060  /* Catégorie 3 */
+#FF3030  /* Catégorie 4 */
+#C80000  /* Catégorie 5 */
+
+/* RAYONNEMENT ÉLECTROMAGNÉTIQUE (au-delà du visible) */
+
+#000000  /* Ondes radio - Noir (invisible) */
+#2F4F4F  /* Micro-ondes - Gris foncé */
+#8B0000  /* Infrarouge - Rouge sombre */
+#FF0000  /* IR proche - Rouge */
+#9370DB  /* UV proche - Violet */
+#4B0082  /* UV lointain - Indigo foncé */
+#191970  /* Rayons X - Bleu nuit */
+#000080  /* Rayons gamma - Bleu marine */
+
+/* ========================================
+   PALETTES NATURELLES
+   ======================================== */
+
+/* OCÉAN PROFOND (gradient de profondeur) */
+#E0F7FA  /* Surface - Cyan pâle */
+#4DD0E1  /* 50m - Turquoise */
+#0097A7  /* 200m - Bleu pétrole */
+#006064  /* 1000m - Bleu profond */
+#1A237E  /* 4000m - Bleu abyssal */
+#000051  /* Fosse - Bleu nuit */
+
+/* AUTOMNE FORESTIER */
+#8B4513  /* Écorce */
+#D2691E  /* Rouille */
+#CD853F  /* Brun doré */
+#DEB887  /* Blé */
+#F4A460  /* Sable */
+#FF8C00  /* Citrouille */
+#FF6347  /* Rouge feuille */
+#8B0000  /* Bordeaux */
+
+/* AURORE BORÉALE */
+#0A0E27  /* Nuit polaire */
+#1B4D3E  /* Vert profond */
+#00FF7F  /* Vert aurore */
+#7FFF00  /* Vert lime */
+#FFFF00  /* Jaune électrique */
+#FF1493  /* Rose magnétique */
+#9400D3  /* Violet cosmique */
+
+/* ========================================
+   PALETTES CHIMIQUES
+   ======================================== */
+
+/* MÉTAUX DE TRANSITION (solutions aqueuses) */
+#87CEEB  /* Cu²⁺ - Bleu cuivre */
+#98FF98  /* Ni²⁺ - Vert nickel */
+#FFB6C1  /* Co²⁺ - Rose cobalt */
+#DDA0DD  /* Mn²⁺ - Rose pâle */
+#FFD700  /* Fe³⁺ - Jaune-brun */
+#90EE90  /* Cr³⁺ - Vert chrome */
+#FFA07A  /* Fe²⁺ - Vert pâle oxydé */
+
+/* PRÉCIPITÉS CHIMIQUES */
+#FFFACD  /* AgCl - Blanc crème */
+#FFE4B5  /* PbI₂ - Jaune */
+#8B4513  /* Cu(OH)₂ - Bleu-vert */
+#000000  /* CuS - Noir */
+#FF4500  /* Fe₂O₃ - Rouille */
+#FFFFFF  /* BaSO₄ - Blanc pur */
+
+/* ========================================
+   PALETTES DATA/TECH
+   ======================================== */
+
+/* MATRICES/CYBERPUNK */
+#0D0D0D  /* Fond terminal */
+#00FF00  /* Vert Matrix */
+#39FF14  /* Vert néon */
+#0FFF50  /* Cyan néon */
+#FF00FF  /* Magenta électrique */
+#00FFFF  /* Cyan électrique */
+#FFFF00  /* Jaune warning */
+
+/* HEATMAP VIRIDIS-LIKE */
+#440154  /* Violet foncé */
+#482878  /* Violet */
+#3E4A89  /* Bleu-violet */
+#31688E  /* Bleu */
+#26828E  /* Bleu-vert */
+#1F9E89  /* Turquoise */
+#35B779  /* Vert */
+#6DCD59  /* Vert lime */
+#B4DE2C  /* Jaune-vert */
+#FDE725  /* Jaune */
+
+/* ========================================
+   PALETTES GÉOLOGIQUES
+   ======================================== */
+
+/* STRATES SÉDIMENTAIRES */
+#8B7355  /* Argile */
+#D2B48C  /* Sable */
+#F5DEB3  /* Grès */
+#F0E68C  /* Calcaire */
+#FFE4C4  /* Marne */
+#CD853F  /* Schiste */
+#A0522D  /* Silex */
+
+/* MINÉRAUX PRÉCIEUX */
+#E0115F  /* Rubis */
+#50C878  /* Émeraude */
+#0F52BA  /* Saphir */
+#9966CC  /* Améthyste */
+#00CED1  /* Turquoise */
+#FF7518  /* Topaze */
+#FFD700  /* Citrine */
+
+/* ========================================
+   PALETTES BIOLOGIQUES
+   ======================================== */
+
+/* PHOTOSYNTHÈSE (absorption lumineuse) */
+#006400  /* Chlorophylle a - Pic bleu */
+#228B22  /* Chlorophylle b */
+#FFA500  /* Caroténoïdes */
+#FF6347  /* Phycobiliprotéines */
+#8B008B  /* Anthocyanes */
+
+/* TISSUS BIOLOGIQUES (microscopie) */
+#FF1493  /* Hématoxyline - Noyaux */
+#FF69B4  /* Éosine - Cytoplasme */
+#4169E1  /* Bleu de toluidine */
+#32CD32  /* Vert de méthyle */
+#FFD700  /* Safran */
+
+/* ========================================
+   PALETTES ASTRONOMIQUES
+   ======================================== */
+
+/* NÉBULEUSES */
+#8B0000  /* Hydrogène Hα - Rouge */
+#00FF00  /* Oxygène OIII - Vert */
+#FF1493  /* Soufre SII - Rose */
+#4169E1  /* Oxygène OII - Bleu */
+#FFD700  /* Hélium - Jaune */
+
+/* ========================================
+   PALETTES ARTISTIQUES - HAUTE DISTINCTION
+   ======================================== */
+
+/* MONDRIAN (Néoplasticisme - contraste maximal) */
+#FFFFFF  /* Blanc */
+#000000  /* Noir */
+#FF0000  /* Rouge primaire */
+#0000FF  /* Bleu primaire */
+#FFFF00  /* Jaune primaire */
+
+/* ROTHKO (Color Field - contrastes émotionnels) */
+#8B0000  /* Rouge sombre */
+#FF4500  /* Orange brûlé */
+#FFD700  /* Jaune lumineux */
+#4B0082  /* Indigo profond */
+#2F4F4F  /* Gris ardoise */
+#8B4513  /* Brun terre */
+
+/* MATISSE (Fauvisme - couleurs pures non mélangées) */
+#FF1493  /* Rose intense */
+#FF4500  /* Orange vif */
+#FFD700  /* Jaune or */
+#00FF00  /* Vert pur */
+#0000FF  /* Bleu cobalt */
+#8B008B  /* Violet profond */
+#DC143C  /* Rouge cramoisi */
+
+/* KANDINSKY (Abstraction - contraste chaud/froid) */
+#FFD700  /* Jaune solaire */
+#FF6347  /* Orange-rouge */
+#DC143C  /* Rouge cardinal */
+#4169E1  /* Bleu royal */
+#1E90FF  /* Bleu ciel */
+#9370DB  /* Violet medium */
+#32CD32  /* Vert lime */
+#000000  /* Noir graphique */
+
+/* BAUHAUS (Design fonctionnel - palette limitée) */
+#E63946  /* Rouge */
+#F1C40F  /* Jaune */
+#457B9D  /* Bleu */
+#000000  /* Noir */
+#FFFFFF  /* Blanc */
+
+/* PICASSO - PÉRIODE BLEUE */
+#0C2340  /* Bleu nuit */
+#1A4D7E  /* Bleu profond */
+#2E5A88  /* Bleu acier */
+#87CEEB  /* Bleu ciel */
+#B0C4DE  /* Bleu poudre */
+
+/* PICASSO - PÉRIODE ROSE */
+#FFC0CB  /* Rose pâle */
+#FFB6C1  /* Rose clair */
+#FF69B4  /* Rose vif */
+#DB7093  /* Rose antique */
+#C71585  /* Violet-rouge */
+
+/* VAN GOGH - NUIT ÉTOILÉE */
+#191970  /* Bleu nuit */
+#4169E1  /* Bleu cobalt */
+#1E90FF  /* Bleu ciel */
+#FFD700  /* Jaune étoile */
+#F0E68C  /* Jaune pâle */
+#2F4F4F  /* Gris-vert */
+
+/* HOKUSAI - LA GRANDE VAGUE */
+#1E3A5F  /* Bleu prussien profond */
+#4682B4  /* Bleu acier */
+#87CEEB  /* Bleu ciel */
+#F5F5DC  /* Écume beige */
+#8B4513  /* Brun Mont Fuji */
+
+/* ART DÉCO (1920s - géométrie luxe) */
+#FFD700  /* Or */
+#000000  /* Noir */
+#C0C0C0  /* Argent */
+#8B0000  /* Rouge bordeaux */
+#006400  /* Vert émeraude */
+#4B0082  /* Indigo */
+#FFFFFF  /* Blanc */
+
+/* MEMPHIS (1980s - Post-modernisme Italien) */
+#FF6B6B  /* Rouge corail */
+#4ECDC4  /* Turquoise */
+#FFE66D  /* Jaune */
+#A8E6CF  /* Vert menthe */
+#FF8B94  /* Rose saumon */
+#C7CEEA  /* Lavande */
+#000000  /* Noir */
+
+/* POP ART (Warhol, Lichtenstein) */
+#FF0000  /* Rouge pur */
+#FFFF00  /* Jaune pur */
+#0000FF  /* Bleu cyan */
+#FF00FF  /* Magenta */
+#00FFFF  /* Cyan */
+#000000  /* Noir */
+#FFFFFF  /* Blanc */
+
+/* KLIMT - L'OR ET L'ORNEMENTAL */
+#FFD700  /* Or */
+#DAA520  /* Or sombre */
+#8B4513  /* Bronze */
+#228B22  /* Vert forêt */
+#8B0000  /* Rouge bordeaux */
+#000000  /* Noir */
+
+/* JAPONISME - UKIYO-E */
+#DC143C  /* Rouge vermillon */
+#4169E1  /* Bleu indigo */
+#32CD32  /* Vert jade */
+#FFD700  /* Jaune safran */
+#8B4513  /* Brun sépia */
+#F5F5DC  /* Beige papier */
+
+/* IMPRESSIONNISME - MONET */
+#87CEEB  /* Bleu ciel */
+#98FB98  /* Vert pâle */
+#FFB6C1  /* Rose clair */
+#E6E6FA  /* Lavande */
+#FAFAD2  /* Jaune lumière */
+#DDA0DD  /* Prune */
+
+/* EXPRESSIONNISME - MUNCH */
+#8B0000  /* Rouge angoisse */
+#FF4500  /* Orange dramatique */
+#FFD700  /* Jaune tension */
+#000080  /* Bleu marine */
+#2F4F4F  /* Gris tourment */
+#000000  /* Noir existentiel */
+
+/* BAUHAUS - ALBERS (Interaction couleur) */
+#E74C3C  /* Rouge */
+#3498DB  /* Bleu */
+#F39C12  /* Orange */
+#2ECC71  /* Vert */
+#9B59B6  /* Violet */
+#34495E  /* Gris anthracite */
+
+/* DE STIJL - RIETVELD */
+#FF0000  /* Rouge */
+#0000FF  /* Bleu */
+#FFFF00  /* Jaune */
+#000000  /* Noir */
+#808080  /* Gris */
+#FFFFFF  /* Blanc */
+
+/* ROTHKO - ORANGE ET JAUNE */
+#FF8C00  /* Orange */
+#FFD700  /* Jaune */
+#FF6347  /* Rouge-orange */
+#B8860B  /* Or sombre */
+#8B4513  /* Brun */
+
+/* STREET ART - BASQUIAT */
+#FF0000  /* Rouge vif */
+#FFFF00  /* Jaune */
+#0000FF  /* Bleu */
+#000000  /* Noir */
+#FFFFFF  /* Blanc */
+#00FF00  /* Vert néon */
+#FF00FF  /* Magenta */
+
+/* CONSTRUCTIVISME RUSSE */
+#FF0000  /* Rouge révolutionnaire */
+#000000  /* Noir */
+#FFFFFF  /* Blanc */
+#FFD700  /* Jaune */
+#808080  /* Gris industriel */
+
+
+et
+
+/* ========================================
+   PALETTES BASIQUES FONDAMENTALES
+   ======================================== */
+
+/* COULEURS PRIMAIRES - SYNTHÈSE ADDITIVE (RGB - Lumière) */
+#FF0000  /* Rouge */
+#00FF00  /* Vert */
+#0000FF  /* Bleu */
+
+/* COULEURS PRIMAIRES - SYNTHÈSE SOUSTRACTIVE (CMY - Pigments) */
+#00FFFF  /* Cyan */
+#FF00FF  /* Magenta */
+#FFFF00  /* Jaune */
+
+/* COULEURS PRIMAIRES - PEINTURE TRADITIONNELLE (RYB) */
+#FF0000  /* Rouge */
+#FFFF00  /* Jaune */
+#0000FF  /* Bleu */
+
+/* COULEURS SECONDAIRES - SYNTHÈSE ADDITIVE */
+#00FFFF  /* Cyan (Vert + Bleu) */
+#FF00FF  /* Magenta (Rouge + Bleu) */
+#FFFF00  /* Jaune (Rouge + Vert) */
+
+/* COULEURS SECONDAIRES - PEINTURE TRADITIONNELLE */
+#FF7F00  /* Orange (Rouge + Jaune) */
+#00FF00  /* Vert (Jaune + Bleu) */
+#8B00FF  /* Violet (Bleu + Rouge) */
+
+/* NOIR ET BLANC */
+#000000  /* Noir */
+#FFFFFF  /* Blanc */
+
+/* NIVEAUX DE GRIS (8 niveaux) */
+#000000  /* Noir */
+#242424  /* Gris 14% */
+#494949  /* Gris 29% */
+#6D6D6D  /* Gris 43% */
+#929292  /* Gris 57% */
+#B6B6B6  /* Gris 71% */
+#DBDBDB  /* Gris 86% */
+#FFFFFF  /* Blanc */
+
+/* ROUE CHROMATIQUE COMPLÈTE (12 couleurs) */
+#FF0000  /* Rouge */
+#FF8000  /* Orange-rouge */
+#FF8000  /* Orange */
+#FFFF00  /* Jaune-orange */
+#FFFF00  /* Jaune */
+#80FF00  /* Jaune-vert */
+#00FF00  /* Vert */
+#00FF80  /* Vert-cyan */
+#00FFFF  /* Cyan */
+#0080FF  /* Cyan-bleu */
+#0000FF  /* Bleu */
+#8000FF  /* Bleu-violet */
+#FF00FF  /* Violet */
+#FF0080  /* Violet-rouge */
+
+
+et
+
 
 background: linear-gradient(
   90deg,
@@ -241,6 +811,336 @@ et pour la 2D bien d'avoir de forts contrats aussi !!!! mocehe en 3D par contre
 #4B0082  /* UV lointain - Indigo foncé */
 #191970  /* Rayons X - Bleu nuit */
 #000080  /* Rayons gamma - Bleu marine */
+
+
+et
+
+
+/* ========================================
+   COLLECTION COMPLÈTE DE PALETTES
+   ======================================== */
+
+/* ========================================
+   PALETTES ORIGINALES
+   ======================================== */
+
+/* GRADIENT ARC-EN-CIEL */
+.rainbow-gradient {
+  background: linear-gradient(
+    90deg,
+    #8C59E6,
+    #FA99E6,
+    #A680FF,
+    #FFB34D,
+    #99CCFF,
+    #80FFCC,
+    #CC99FF,
+    #FFE666,
+    #BFFFE6,
+    #FF80CC
+  );
+}
+
+/* MÉTAUX */
+#2C2C2C  /* Graphite */
+#434343  /* Fer sombre */
+#71706E  /* Acier */
+#A8A8A8  /* Argent */
+#C0C0C0  /* Argent clair */
+#E5E4E2  /* Platine clair */
+#FFD700  /* Or jaune */
+#DAA520  /* Or sombre */
+#B87333  /* Cuivre */
+#8B4513  /* Bronze */
+
+/* VOLCANIQUE */
+#4A4A4A  /* Gris pierre sombre */
+#8B0000  /* Rouge lave */
+#D2691E  /* Orange basalte */
+#FFFFFF  /* Neige immaculée */
+
+/* FRUITS TROPICAUX */
+#5D3A1A  /* Chocolat au lait */
+#8B6914  /* Brun caramel */
+#C4661F  /* Orange mangue mûre */
+#FFA500  /* Orange vif (mangue) */
+#FFD700  /* Jaune doré (ananas) */
+#FFB6D9  /* Rose fraise pastel */
+#FF69B4  /* Rose bonbon (fraise) */
+#FF1493  /* Rose intense (fraise mûre) */
+#D4006E  /* Magenta charnel */
+#8B008B  /* Magenta profond (mangue pourpre) */
+
+/* PALETTE SATURÉE MAGENTA-VIOLET */
+#6030D0  /* Bleu-violet intense */
+#8520A0  /* Violet pimpé */
+#A52070  /* Magenta pimpé */
+#B53060  /* Rouge-magenta saturé */
+#C56080  /* Rose-rouge */
+#D58595  /* Rose moyen */
+#E6A5B5  /* Rose pastel */
+#C595C5  /* Violet rosé */
+#D5B5D5  /* Violet pastel */
+#E6D5E6  /* Violet pastel très clair */
+
+/* MATHEMATICA-LIKE */
+#9B7FB5  /* Violet clair */
+#7B9BC7  /* Bleu lavande */
+#5BA5D5  /* Bleu ciel */
+#6BB5B5  /* Cyan-vert */
+#7BC59A  /* Vert-cyan */
+#A5C585  /* Vert clair */
+#C5C570  /* Jaune-vert */
+#D5B560  /* Beige/sable */
+#C59580  /* Rose pâle */
+#B58595  /* Mauve */
+
+/* PALETTE 2D - FORTS CONTRASTES */
+#5E82B5  /* Bleu */
+#E19C24  /* Orange */
+#8FB031  /* Vert */
+#EB6235  /* Rouge-orange */
+#8778B3  /* Violet */
+#C56E1A  /* Marron */
+#5C9EC7  /* Cyan */
+#FFBF00  /* Jaune */
+#A5609D  /* Magenta */
+#929600  /* Vert olive */
+
+/* ========================================
+   PALETTES SCIENTIFIQUES
+   ======================================== */
+
+/* PAPIER pH (pH 1-14) */
+#C41E3A  /* pH 1 - Rouge acide fort */
+#E8533A  /* pH 2 */
+#F27935  /* pH 3 */
+#F9A035  /* pH 4 */
+#FFC839  /* pH 5 */
+#F4E53D  /* pH 6 */
+#D4DC3E  /* pH 7 - Neutre */
+#B8CD42  /* pH 8 */
+#8FB944  /* pH 9 */
+#6B9F47  /* pH 10 */
+#4A7C4A  /* pH 11 */
+#3A5F4D  /* pH 12 */
+#2E4A50  /* pH 13 */
+#4A5F6E  /* pH 14 - Bleu basique fort */
+
+/* TEST À LA FLAMME (Ordre spectral : rouge → violet) */
+#DC143C  /* Lithium (Li) - Rouge carmin */
+#DC143C  /* Strontium (Sr) - Rouge cramoisi */
+#FF6347  /* Calcium (Ca) - Orange-rouge brique */
+#FFD700  /* Sodium (Na) - Jaune or intense */
+#F5F5DC  /* Bore (B) - Vert pâle */
+#32CD32  /* Baryum (Ba) - Vert pomme */
+#00CED1  /* Cuivre (Cu) - Bleu-vert turquoise */
+#4169E1  /* Cuivre + chlorure - Bleu royal */
+#9370DB  /* Potassium (K) - Violet lilas */
+
+/* TEMPÉRATURE DE FLAMME (600-1500°C) */
+#8B0000  /* ~600°C - Rouge sombre */
+#DC143C  /* ~700°C - Rouge vif */
+#FF4500  /* ~800°C - Orange-rouge */
+#FF8C00  /* ~900°C - Orange */
+#FFA500  /* ~1000°C - Orange clair */
+#FFD700  /* ~1100°C - Jaune-or */
+#FFFFE0  /* ~1200°C - Jaune pâle */
+#FFFACD  /* ~1300°C - Blanc-jaune */
+#F0F8FF  /* ~1400°C - Blanc-bleu */
+#4169E1  /* ~1500°C - Bleu royal */
+
+/* CORPS NOIR - TEMPÉRATURE D'ÉTOILES (1000-40000K) */
+#FF4500  /* ~1000K - Rouge-orange (naines rouges) */
+#FF6347  /* ~2000K - Rouge */
+#FF8C00  /* ~3000K - Orange */
+#FFD700  /* ~4000K - Jaune (Soleil ~5800K) */
+#FFFACD  /* ~6000K - Jaune pâle */
+#F0F8FF  /* ~8000K - Blanc */
+#E0FFFF  /* ~10000K - Bleu pâle */
+#87CEEB  /* ~15000K - Bleu ciel */
+#4682B4  /* ~25000K - Bleu acier */
+#0000CD  /* ~40000K - Bleu profond (étoiles chaudes) */
+
+/* SPECTRE VISIBLE (380-700 nm) */
+#8B00FF  /* ~380-450nm - Violet */
+#4B0082  /* ~450nm - Indigo */
+#0000FF  /* ~450-495nm - Bleu */
+#00FF00  /* ~495-570nm - Vert */
+#FFFF00  /* ~570-590nm - Jaune */
+#FF7F00  /* ~590-620nm - Orange */
+#FF0000  /* ~620-700nm - Rouge */
+
+/* COLORATION DE GRAM (Microbiologie) */
+#6A0DAD  /* Gram positif - Violet cristal */
+#FF1493  /* Gram négatif - Rose safranine */
+
+/* INDICATEURS REDOX (Ordre réduction → oxydation) */
+#F0F8FF  /* Bleu de méthylène - Réduit (incolore/blanc) */
+#1E90FF  /* Bleu de méthylène - Oxydé (bleu) */
+#FFD700  /* Lugol - Sans amidon (jaune-brun) */
+#191970  /* Lugol + amidon - Bleu-noir */
+
+/* HEAT MAP BIOLOGIQUE (Expression génétique : faible → forte) */
+#00FF00  /* Sous-expression (faible) - Vert */
+#000000  /* Expression normale (moyenne) - Noir */
+#FF0000  /* Sur-expression (forte) - Rouge */
+
+/* HEAT MAP ALTERNATIVE (Minimum → Maximum) */
+#0000FF  /* Minimum (très faible) - Bleu */
+#00FFFF  /* Faible - Cyan */
+#FFFF00  /* Moyen - Jaune */
+#FF8C00  /* Élevé - Orange */
+#FF0000  /* Maximum (très fort) - Rouge */
+
+/* ÉCHELLE DE SAFFIR-SIMPSON (Ouragans) */
+#FFFFCC  /* Dépression tropicale */
+#FFE775  /* Tempête tropicale */
+#FFC140  /* Catégorie 1 */
+#FF8F20  /* Catégorie 2 */
+#FF6060  /* Catégorie 3 */
+#FF3030  /* Catégorie 4 */
+#C80000  /* Catégorie 5 */
+
+/* RAYONNEMENT ÉLECTROMAGNÉTIQUE (au-delà du visible) */
+#000000  /* Ondes radio - Noir (invisible) */
+#2F4F4F  /* Micro-ondes - Gris foncé */
+#8B0000  /* Infrarouge - Rouge sombre */
+#FF0000  /* IR proche - Rouge */
+#9370DB  /* UV proche - Violet */
+#4B0082  /* UV lointain - Indigo foncé */
+#191970  /* Rayons X - Bleu nuit */
+#000080  /* Rayons gamma - Bleu marine */
+
+/* ========================================
+   PALETTES NATURELLES
+   ======================================== */
+
+/* OCÉAN PROFOND (gradient de profondeur) */
+#E0F7FA  /* Surface - Cyan pâle */
+#4DD0E1  /* 50m - Turquoise */
+#0097A7  /* 200m - Bleu pétrole */
+#006064  /* 1000m - Bleu profond */
+#1A237E  /* 4000m - Bleu abyssal */
+#000051  /* Fosse - Bleu nuit */
+
+/* AUTOMNE FORESTIER */
+#8B4513  /* Écorce */
+#D2691E  /* Rouille */
+#CD853F  /* Brun doré */
+#DEB887  /* Blé */
+#F4A460  /* Sable */
+#FF8C00  /* Citrouille */
+#FF6347  /* Rouge feuille */
+#8B0000  /* Bordeaux */
+
+/* AURORE BORÉALE */
+#0A0E27  /* Nuit polaire */
+#1B4D3E  /* Vert profond */
+#00FF7F  /* Vert aurore */
+#7FFF00  /* Vert lime */
+#FFFF00  /* Jaune électrique */
+#FF1493  /* Rose magnétique */
+#9400D3  /* Violet cosmique */
+
+/* ========================================
+   PALETTES CHIMIQUES
+   ======================================== */
+
+/* MÉTAUX DE TRANSITION (solutions aqueuses) */
+#87CEEB  /* Cu²⁺ - Bleu cuivre */
+#98FF98  /* Ni²⁺ - Vert nickel */
+#FFB6C1  /* Co²⁺ - Rose cobalt */
+#DDA0DD  /* Mn²⁺ - Rose pâle */
+#FFD700  /* Fe³⁺ - Jaune-brun */
+#90EE90  /* Cr³⁺ - Vert chrome */
+#FFA07A  /* Fe²⁺ - Vert pâle oxydé */
+
+/* PRÉCIPITÉS CHIMIQUES */
+#FFFACD  /* AgCl - Blanc crème */
+#FFE4B5  /* PbI₂ - Jaune */
+#8B4513  /* Cu(OH)₂ - Bleu-vert */
+#000000  /* CuS - Noir */
+#FF4500  /* Fe₂O₃ - Rouille */
+#FFFFFF  /* BaSO₄ - Blanc pur */
+
+/* ========================================
+   PALETTES DATA/TECH
+   ======================================== */
+
+/* MATRICES/CYBERPUNK */
+#0D0D0D  /* Fond terminal */
+#00FF00  /* Vert Matrix */
+#39FF14  /* Vert néon */
+#0FFF50  /* Cyan néon */
+#FF00FF  /* Magenta électrique */
+#00FFFF  /* Cyan électrique */
+#FFFF00  /* Jaune warning */
+
+/* HEATMAP VIRIDIS-LIKE */
+#440154  /* Violet foncé */
+#482878  /* Violet */
+#3E4A89  /* Bleu-violet */
+#31688E  /* Bleu */
+#26828E  /* Bleu-vert */
+#1F9E89  /* Turquoise */
+#35B779  /* Vert */
+#6DCD59  /* Vert lime */
+#B4DE2C  /* Jaune-vert */
+#FDE725  /* Jaune */
+
+/* ========================================
+   PALETTES GÉOLOGIQUES
+   ======================================== */
+
+/* STRATES SÉDIMENTAIRES */
+#8B7355  /* Argile */
+#D2B48C  /* Sable */
+#F5DEB3  /* Grès */
+#F0E68C  /* Calcaire */
+#FFE4C4  /* Marne */
+#CD853F  /* Schiste */
+#A0522D  /* Silex */
+
+/* MINÉRAUX PRÉCIEUX */
+#E0115F  /* Rubis */
+#50C878  /* Émeraude */
+#0F52BA  /* Saphir */
+#9966CC  /* Améthyste */
+#00CED1  /* Turquoise */
+#FF7518  /* Topaze */
+#FFD700  /* Citrine */
+
+/* ========================================
+   PALETTES BIOLOGIQUES
+   ======================================== */
+
+/* PHOTOSYNTHÈSE (absorption lumineuse) */
+#006400  /* Chlorophylle a - Pic bleu */
+#228B22  /* Chlorophylle b */
+#FFA500  /* Caroténoïdes */
+#FF6347  /* Phycobiliprotéines */
+#8B008B  /* Anthocyanes */
+
+/* TISSUS BIOLOGIQUES (microscopie) */
+#FF1493  /* Hématoxyline - Noyaux */
+#FF69B4  /* Éosine - Cytoplasme */
+#4169E1  /* Bleu de toluidine */
+#32CD32  /* Vert de méthyle */
+#FFD700  /* Safran */
+
+/* ========================================
+   PALETTES ASTRONOMIQUES
+   ======================================== */
+
+/* NÉBULEUSES */
+#8B0000  /* Hydrogène Hα - Rouge */
+#00FF00  /* Oxygène OIII - Vert */
+#FF1493  /* Soufre SII - Rose */
+#4169E1  /* Oxygène OII - Bleu */
+#FFD700  /* Hélium - Jaune */
+
+
 
 
 
