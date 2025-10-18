@@ -5,21 +5,21 @@ at-prism - TODO
 
 // ---------- //
 
-getPal devient une fonction qui ajoute si besoin le préfixe pal (on peut soir eptre efficace à la saisie directe, soir faire copier comer d'une nom de vars)
+-----
+:new:
+-----
+
+[[:doc:]]       ???????
+\Pdf \doc: French \doc has been added.
 
 
 // ---------- //
 
-pal-report.json & mp-names.json: pour indiquer dans la doc les chgts de noms, et ce qui est ignoré et pourquoi ?
+binary : deux suffisent !!!
 
-+
+faire un script auto une fois les palettes créée pour le réduire si possible en taille 2 , et voir si cela est utile avec 3, 4, ...
 
-ajout d'un doc yaml pour u-y faire des choix à la main, chgt de nom pour le prod final, ou aussi préfer une version inversé
-
-    + besoin d'un petit outil en ligne pour récupérer les noms existants
-
-uen fois ceci fait, le coup d'après on en tient compte : on doit au pasage utilisé cet outil hors tools lancé automatiquement via IGNORE ne psuffixe qui indique au launcher que ce n'est pas un tool, maj dans le copier template du coup
-
+   ---> outils marque slow à afire pour le srelease unqiuement !
 
 
 // ---------- //
@@ -54,12 +54,62 @@ nouvelle palete CSS du coup à finr à la main, commencé via ChatGPT/Claude , l
 
 
 /* ========================================
-   COLLECTION COMPLÈTE DE PALETTES
-   ======================================== */
-
-/* ========================================
    PALETTES ORIGINALES
    ======================================== */
+/* SPORT */
+#228B22  /* Gazon terrain */
+#FF4500  /* Orange vif */
+#1E90FF  /* Bleu électrique */
+#FFD700  /* Or médaille */
+#DC143C  /* Rouge énergie */
+#000000  /* Noir intense */
+#FFFFFF  /* Blanc pur */
+#32CD32  /* Vert fluo */
+#FF6347  /* Rouge tomate */
+#4169E1  /* Bleu royal */
+
+/* SPORT */
+#228B22  /* Gazon terrain */
+#32CD32  /* Vert fluo */
+#7FFF00  /* Jaune-vert vif */
+#FFD700  /* Or médaille */
+#FF8C00  /* Orange dynamique */
+#FF4500  /* Orange vif */
+#DC143C  /* Rouge énergie */
+#8B0000  /* Rouge sombre */
+#4169E1  /* Bleu royal */
+#1E90FF  /* Bleu électrique */
+
+
+
+
+/* BONBONS */
+#FF1493  /* Fraise Tagada */
+#FFD700  /* Citron acidulé */
+#00FF7F  /* Menthe fraîche */
+#6A5ACD  /* Myrtille sucrée */
+#FF8C00  /* Orange confite */
+#FF69B4  /* Bubble gum */
+#DC143C  /* Cerise bonbon */
+#9370DB  /* Violette douce */
+#FFB6C1  /* Barbe à papa */
+#7FFF00  /* Pomme verte */
+
+
+/* BONBONS */
+#FF1493  /* Fraise Tagada */
+#FF69B4  /* Bubble gum */
+#FFB6C1  /* Barbe à papa */
+#FFD700  /* Citron acidulé */
+#FF8C00  /* Orange confite */
+#DC143C  /* Cerise bonbon */
+#9370DB  /* Violette douce */
+#6A5ACD  /* Myrtille sucrée */
+#00FF7F  /* Menthe fraîche */
+#7FFF00  /* Pomme verte */
+
+
+
 
 /* GRADIENT ARC-EN-CIEL */
 .rainbow-gradient {

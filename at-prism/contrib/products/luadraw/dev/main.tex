@@ -81,7 +81,6 @@ PALETTE = {
 % -- COMMON LUA CODE USED -- %
 % -------------------------- %
 
-\directlua{dofile('core/drawsurf-z-bary.lua')}
 \directlua{dofile("__tmp-palette__.lua")}
 
 
@@ -141,7 +140,7 @@ file:close()
 \begin{luadraw}{name = palette-TEST}
 local xmin, xmax = -5, 5
 
-local graphview = graph:new{
+local g = graph:new{
   window = {xmin, xmax, -1, 1},
   size   = {10, 10},
   margin = {0.05, 0.05, 0.05, 0.05},
@@ -151,7 +150,7 @@ local graphview = graph:new{
 local i = cpx.I
 local N = 200
 
-graphview:Linewidth(18)
+g:Linewidth(18)
 
 local pos, x
 
@@ -159,13 +158,13 @@ for k = 1, N do
   pos = (k - 1) / (N - 1)
   x   = xmin + 10*pos
 
-  graphview:Dpolyline(
+  g:Dpolyline(
     {x - i, x + i},
     "color = " .. palette(PALETTE, pos)
   )
 end
 
-graphview:Show()
+g:Show()
 \end{luadraw}
 
 
@@ -173,7 +172,7 @@ graphview:Show()
 
 
 \begin{luadraw}{name = contour-TEST}
-local graphview = graph:new{
+local g = graph:new{
   window = {-1, 6.5, -1.5, 11},
   size   = {8, 8, 2},
   margin = {.25, 0, 0, 0},
@@ -191,7 +190,7 @@ local Lz = range(1, 10)
 
 local Colors = getpalette(PALETTE, 10)
 
-graphview:Dgradbox(
+g:Dgradbox(
   {0, 5 + 10*i, 1, 1},
   {
     legend = {"$x$", "$y$"},
@@ -200,9 +199,9 @@ graphview:Dgradbox(
   }
 )
 
-graphview:Linewidth(20)
+g:Linewidth(20)
 
-graphview:Dcontour(
+g:Dcontour(
   f,
   Lz,
   {
@@ -214,22 +213,22 @@ graphview:Dcontour(
 for k = 1, 10 do
   local y = (2*k + 4) / 3*i
 
-  graphview:Dseg(
+  g:Dseg(
     {5.25 + y, 5.5 + y},
     1,
     "color = " .. Colors[k]
   )
 
-  graphview:Labelcolor(Colors[k])
+  g:Labelcolor(Colors[k])
 
-  graphview:Dlabel(
+  g:Dlabel(
     "$z = " .. k .. "$",
     5.5 + y,
     {pos = "E"}
   )
 end
 
-graphview:Show()
+g:Show()
 \end{luadraw}
 
 
@@ -239,7 +238,7 @@ graphview:Show()
 \begin{luadraw}{name = level-curve-surface-TEST}
 local cos, sin = math.cos, math.sin, math.pi
 
-local graphview = graph3d:new{
+local g = graph3d:new{
   window3d = {0, 5, 0, 10, 0, 11},
   adjust2d = true,
   size     = {9, 9},
@@ -247,7 +246,7 @@ local graphview = graph3d:new{
   border   = true
 }
 
-graphview:Labelsize("footnotesize")
+g:Labelsize("footnotesize")
 
 local S = surface(
   function(u, v)
@@ -287,31 +286,31 @@ insert(
   }
 )
 
-graphview:Dboxaxes3d({
+g:Dboxaxes3d({
   grid      = true,
   gridcolor = "gray",
   fillcolor = "lightgray"
 })
 
-graphview:Dmixfacet(table.unpack(niv))
+g:Dmixfacet(table.unpack(niv))
 
 for k = 1, n do
-  graphview:Dballdots3d(
+  g:Dballdots3d(
     M(5, 0, k),
     rgb(Colors[k])
   )
 end
 
-graphview:Dlabel(
+g:Dlabel(
   "$z = \\frac{x + y}{2 + \\cos(x) \\sin(y)}$",
   Z(
-    (graphview:Xinf() + graphview:Xsup())/2 ,
-    graphview:Yinf()
+    (g:Xinf() + g:Xsup())/2 ,
+    g:Yinf()
   ),
   {pos = "N"}
 )
 
-graphview:Show()
+g:Show()
 \end{luadraw}
 
 
@@ -323,7 +322,7 @@ local file = "core/nefertiti.obj"
 
 local polyhedron, bounding_box = read_obj_file(file)
 
-local graphview = graph3d:new{
+local g = graph3d:new{
   window3d = bounding_box,
   window   = {-5, 4, -7, 5},
   viewdir  = {35, 60},
@@ -332,14 +331,15 @@ local graphview = graph3d:new{
   border   = true
 }
 
-draw_colormap_Z_dir(
+g:Dpoly(
   polyhedron,
-  graphview,
-  bounding_box,
-  PALETTE
+  {
+    usepalette = {PALETTE, "z" },
+    mode       = mShadedOnly
+  }
 )
 
-graphview:Show()
+g:Show()
 \end{luadraw}
 
 \end{document}

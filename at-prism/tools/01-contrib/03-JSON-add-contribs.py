@@ -36,7 +36,10 @@ with PAL_REPORT_FILE.open(mode = "r") as f:
     IGNORED = json_load(f)
 
 
-REPORT_NAME_CONFLICT_FILE = REPORT_DIR / "PALETTE-CONFLICT.png"
+REPORT_NAME_CONFLICT_FILE = THIS_DIR / "PALETTE-CONFLICT.png"
+
+if REPORT_NAME_CONFLICT_FILE.is_file():
+    REPORT_NAME_CONFLICT_FILE.unlink()
 
 
 # ----------------- #
