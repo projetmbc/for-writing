@@ -41,7 +41,6 @@ cd "$PROJECT_ROOT"
 
 for folder in "${TEX_FOLDERS[@]}"
 do
-  # Utilisation d'un tableau au lieu de command substitution
   while IFS= read -r -d '' tex_file
   do
     echo "-- NEW TEX FILE --"
@@ -50,7 +49,6 @@ do
     local_dir="$(dirname "$tex_file")"
     filename="$(basename "$tex_file")"
 
-    # Déterminer le moteur LaTeX
     if head -n 1 "$tex_file" | grep -q '^% *!TEX TS-program *= *lualatex'
     then
       texcmd="lualatex"
@@ -58,7 +56,6 @@ do
       texcmd="pdflatex"
     fi
 
-# Compilation in the good directory.
     (
       cd "$local_dir" || exit 1
       SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 \

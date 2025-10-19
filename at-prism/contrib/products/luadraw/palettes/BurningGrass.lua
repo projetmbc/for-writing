@@ -1,7 +1,6 @@
 ------
 -- this::
 --     author = Christophe, Bal
---     desc   = XXX
 --
 --
 -- note::

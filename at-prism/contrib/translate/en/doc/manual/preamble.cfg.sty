@@ -26,13 +26,15 @@
 \newcommand\thisrepo{\url{https://github.com/projetmbc/for-writing/tree/main/at-prism}}
 \newcommand\thismonorepo{\url{https://github.com/projetmbc/for-writing}}
 
-\NewDocumentCommand{\trademark}{m}{\texttt{#1}}
+\NewDocumentCommand{\trademark}{m m}{\href{#1}{\texttt{#2}}}
 
-\newcommand\ctan{\href{https://ctan.org/}{\trademark{CTAN}}}
-\newcommand\git{\trademark{git}}
-\newcommand\pdf{\trademark{PDF}}
+\newcommand\ctan{\trademark{https://ctan.org/}{CTAN}}
 
-\newcommand\asymptote{\href{https:asymptote.sourceforge.io}{\trademark{Asymptote}}}
-\newcommand\lua{\trademark{Lua}}
-\newcommand\matplotlib{\href{https://matplotlib.org/}{\trademark{Matplotlib}}}
-\newcommand\python{\trademark{Python}}
+\newcommand\asymptote{\trademark{https:asymptote.sourceforge.io}{Asymptote}}
+
+\newcommand\lua{\trademark{https://www.lua.org/}{Lua}}
+\newcommand\LUADRAW{\trademark{https://github.com/pfradin/luadraw}{luadraw}}
+
+\newcommand\matplotlib{\trademark{https://matplotlib.org/}{Matplotlib}}
+
+\newcommand\python{\trademark{https://www.python.org/}{Python}}

@@ -17,7 +17,7 @@ The palette names all use the prefix `pal` followed by the name available in the
 
   * `palGistHeat` is a palette variable.
 
-  * `getPal["palGistHeat"]` is equal to `palGistHeat`.
+  * `getPal("GistHeat")` and `getPal("palGistHeat")` are equal to `palGistHeat`.
 
 
 > ***NOTE.*** *The palette variables are arrays of arrays of three floats. Here is the definition of the palette `palGistHeat`.*

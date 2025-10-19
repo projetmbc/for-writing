@@ -1,0 +1,7 @@
+
+
+
+Showcase: a PDF file presents each palette used with examples.
+
+
+\luadraw \prod: the lua::''getPal'' \dict array is now a \func that accepts string palette names with or without the lua::''pal'' prefix.

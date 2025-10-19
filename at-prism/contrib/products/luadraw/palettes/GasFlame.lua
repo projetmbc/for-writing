@@ -1,7 +1,6 @@
 ------
 -- this::
 --     author = Patrick, Fradin
---     desc   = XXX
 --
 --
 -- note::

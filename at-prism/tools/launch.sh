@@ -112,7 +112,7 @@ execute_file() {
 
     echo ""
 
-    # Skip slow files in quick mode
+# Skip slow files in quick mode
     if [[ $quick_mode -eq 1 && $filename =~ -slow\.(py|sh)$ ]]
     then
         print_colored "$COLOR_IGNORE" "- Skipping (slow) '$file'"
@@ -121,7 +121,7 @@ execute_file() {
 
     print_colored "$COLOR_EXEC" "+ Executing '$file'"
 
-    # Execute and show output directly
+# Execute and show output directly
     if ! "$interpreter" "$file"
     then
         error_exit "$file"

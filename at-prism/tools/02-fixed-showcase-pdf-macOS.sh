@@ -48,7 +48,6 @@ echo "./$tex_file"
 local_dir="$(dirname "$tex_file")"
 filename="$(basename "$tex_file")"
 
-# Compilation in the good directory.
 (
   cd "$local_dir" || exit 1
   SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 \
