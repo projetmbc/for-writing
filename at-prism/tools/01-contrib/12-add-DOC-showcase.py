@@ -27,7 +27,7 @@ TMPL_TEX_FILE = PREDOC_DIR / "templates" / "palette-showcase.tex"
 # We don't use the 'main' prefix since each showcase PDF needs
 # to be compiled separately beforehand. A Bash script will handle
 # this accordingly.
-ALL_SHOWCASE_TEX_FILE = PREDOC_DIR / "showcase.tex"
+ALL_SHOWCASE_TEX_FILE = PREDOC_DIR / "showcase-en.tex"
 
 
 with PAL_JSON_FILE.open(mode = "r") as f:
