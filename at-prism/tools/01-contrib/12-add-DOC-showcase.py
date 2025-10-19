@@ -18,8 +18,8 @@ from json import load as json_load
 THIS_DIR     = Path(__file__).parent
 PROJECT_DIR  = THIS_DIR.parent.parent
 PRODUCTS_DIR = PROJECT_DIR / "products"
-PREDOC_DIR   = PROJECT_DIR / "pre-doc"
-SHOWCASE_DIR = PREDOC_DIR / "showcase"
+PREDOC_DIR   = PROJECT_DIR / "showcase"
+SHOWCASE_DIR = PREDOC_DIR / "single"
 
 PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 TMPL_TEX_FILE = PREDOC_DIR / "templates" / "palette-showcase.tex"
@@ -82,7 +82,7 @@ TMPL_TEX_INCLUDE_PDF = r"""
     {palname},
     lab-pal-{palname}
   }}%
-]{{showcase/main-{palname}.pdf}}
+]{{single/main-{palname}.pdf}}
 """.strip()
 
 

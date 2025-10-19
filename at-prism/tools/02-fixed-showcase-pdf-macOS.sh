@@ -34,11 +34,12 @@ function nocompile {
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly PROJECT_ROOT="$SCRIPT_DIR/.."
+readonly PRE_DOC="showcase"
 readonly SHOWCASE_FILE_NAME="showcase-en"
 
 cd "$PROJECT_ROOT"
 
-tex_file="pre-doc/$SHOWCASE_FILE_NAME.tex"
+tex_file="$PRE_DOC/$SHOWCASE_FILE_NAME.tex"
 
 echo "-- NEW TEX FILE --"
 echo "./$tex_file"
@@ -61,4 +62,4 @@ filename="$(basename "$tex_file")"
 # -- COPY PDF IN FINAL FOLDER -- #
 # ------------------------------ #
 
-cp -f "pre-doc/$SHOWCASE_FILE_NAME.pdf" "products/$SHOWCASE_FILE_NAME.pdf"
+cp -f "$PRE_DOC/$SHOWCASE_FILE_NAME.pdf" "products/$SHOWCASE_FILE_NAME.pdf"

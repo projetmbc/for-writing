@@ -54,6 +54,19 @@ nouvelle palete CSS du coup à finr à la main, commencé via ChatGPT/Claude , l
 /* ========================================
    PALETTES ORIGINALES
    ======================================== */
+
+/* MATHEMATICA-LIKE */
+#9B7FB5  /* Violet clair */
+#7B9BC7  /* Bleu lavande */
+#5BA5D5  /* Bleu ciel */
+#6BB5B5  /* Cyan-vert */
+#7BC59A  /* Vert-cyan */
+#A5C585  /* Vert clair */
+#C5C570  /* Jaune-vert */
+#D5B560  /* Beige/sable */
+#C59580  /* Rose pâle */
+#B58595  /* Mauve */
+
 /* SPORT */
 #228B22  /* Gazon terrain */
 #FF4500  /* Orange vif */
@@ -167,18 +180,6 @@ nouvelle palete CSS du coup à finr à la main, commencé via ChatGPT/Claude , l
 #C595C5  /* Violet rosé */
 #D5B5D5  /* Violet pastel */
 #E6D5E6  /* Violet pastel très clair */
-
-/* MATHEMATICA-LIKE */
-#9B7FB5  /* Violet clair */
-#7B9BC7  /* Bleu lavande */
-#5BA5D5  /* Bleu ciel */
-#6BB5B5  /* Cyan-vert */
-#7BC59A  /* Vert-cyan */
-#A5C585  /* Vert clair */
-#C5C570  /* Jaune-vert */
-#D5B560  /* Beige/sable */
-#C59580  /* Rose pâle */
-#B58595  /* Mauve */
 
 /* PALETTE 2D - FORTS CONTRASTES */
 #5E82B5  /* Bleu */
