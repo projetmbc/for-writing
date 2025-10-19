@@ -43,12 +43,21 @@ PATTERN_CHGE_PAL_NAME = re.compile(r"\\newcommand\{\\PALETTE\}\{(.*)\}")
 
 START_FINAL_TEX_CODE = r"""\documentclass[a4paper]{article}
 
-\usepackage[landscape]{geometry}
+\usepackage[
+  landscape,
+  margin = 1.5cm
+]{geometry}
+
 \usepackage{hyperref}
 \usepackage{pdfpages}
 \usepackage{multicol}
 
+\title{Palettes in Action -- Version 1.1.1}
+\date{}
+
 \begin{document}
+
+\maketitle{}
 
 {
   \setlength{\columnsep}{2cm}
@@ -60,19 +69,19 @@ START_FINAL_TEX_CODE = r"""\documentclass[a4paper]{article}
 }
 
 \newpage
-
 """.strip()
 
 TMPL_TEX_INCLUDE_PDF = r"""
 \includepdf[%
-  pages    = 1,%
-  addtotoc = {{%
+  pagecommand = {{\thispagestyle{{plain}}}},%
+  pages       = 1,%
+  addtotoc    = {{%
     1,%
     section,%
     1,
     {palname},
     lab-pal-{palname}
-  }}
+  }}%
 ]{{showcase/main-{palname}.pdf}}
 """.strip()
 
