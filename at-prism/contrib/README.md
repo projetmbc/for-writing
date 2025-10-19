@@ -30,7 +30,7 @@ The contributions made are in the `contrib` folder which has the following struc
 + contrib
   + products
   + readme-common
-  + tanslate
+  + translate
 ~~~
 <!-- FOLDER STRUCT. AUTO - END -->
 

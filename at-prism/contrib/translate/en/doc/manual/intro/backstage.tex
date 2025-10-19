@@ -1,0 +1,41 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+
+\begin{document}
+
+\section{Where do the color palletes come from?}
+
+The vast majority of color palettes were obtained from \matplotlib\ color maps by segmenting them into $10$ values.%
+\footnote{
+    \asymptote\ is used in a second step, but to date, \asymptote\ offers nothing more than \matplotlib, despite different implementations.
+}
+We did not keep all the palletes in accordance with the following rules.
+%
+\begin{itemize}
+    \item \matplotlib\ offers a reversed version for almost every color map.%
+    \footnote{
+        Perhaps for performance reasons...
+    }
+    \thisproj\ does not make this choice. Specifically, we ignore all color maps ending with \tdoccodein{py}{_r}, this suffix indicating the extra palettes.%
+    \footnote{
+        At least from the point of view of the \thisproj\ author. 
+    }
+
+    \item Some palettes are repeated. In this case, we keep the first one in lexicographical order.%
+    \footnote{
+        Surely for historical reasons.
+    }
+\end{itemize}
+
+
+In addition to the \matplotlib\ palettes, there are some additional contributions. If you are interested in participating, read the \verb+contrib/products/README.md+ file on the following repository.
+%
+\begin{center}
+    \thisrepo
+\end{center}
+
+\end{document}

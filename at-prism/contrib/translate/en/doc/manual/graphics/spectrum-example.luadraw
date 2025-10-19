@@ -1,0 +1,40 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luadraw}{name = spectrum-example}
+require 'luadraw_palettes'
+
+local pal = getPal['palGeoRainbow']
+
+local g = graph:new{
+  window = {-25, 25, -5, 5},
+  bbox   = false
+}
+
+g:Linewidth(2)
+
+local A  = Z(-5, 4)
+local h  = Z(0, -1.5)
+local dh = Z(0, -1.1)
+
+local L = 15
+local N = 100
+
+local dl = L / N
+
+for k = 1, N do
+  local color = palette(pal, (k - 1) / (N - 1))
+
+  g:Drectangle(
+    A, A + h, A + h + dl,
+    "color = " .. color .. ", fill = " .. color
+  )
+
+  A = A + dl
+end
+
+g:Drectangle(A, A + h, A + h - L)
+
+g:Show()
+\end{luadraw}
