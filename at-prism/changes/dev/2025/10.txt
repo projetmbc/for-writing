@@ -2,6 +2,21 @@
 
 
 ==
+19  (1.1.1-beta.2)
+==
+
+-----
+:new:
+-----
+
+[[:doc:]]
+Showcase: a PDF file presents each palette used with examples.
+
+
+// ---------- //
+
+
+==
 17  (1.1.1-beta.1)
 ==
 

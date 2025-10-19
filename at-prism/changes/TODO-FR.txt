@@ -10,7 +10,21 @@ at-prism - TODO
 -----
 
 [[:doc:]]       ???????
-\Pdf \doc: French \doc has been added.
+\Pdf \doc added.
+
+   --> descritption des palettes pour la doc en anglais : on explique le contexte pour les nouevlles, si pas de desc, c'est pas bloquant !
+
+   --> besoin de regrouper les palettes similaires : classement purementa lgorithmique !
+
+         + les arcs en cies ou autre
+         + les pentes des approcimations linaiéres... etc.
+         + arbre de décision à la sauce IA (début fin , puis on affine)
+         + ... etc.
+
+
+// ---------- //
+
+version pour matplotlib : après on en fait la pub
 
 
 // ---------- //
@@ -24,28 +38,12 @@ faire un script auto une fois les palettes créée pour le réduire si possible 
 
 // ---------- //
 
-besoin d'une doc PDF via latex/luadraw
-
-     --> besoin de regrouper les palettes similaires : classement purementa lgorithmique !
-
-              + les arcs en cies ou autre
-              + les pentes des approcimations linaiéres... etc.
-              + arbre de décision à la sauce IA (début fin , puis on affine)
-              + ... etc.
-
-
-// ---------- //
-
 README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
 
 extend.py : dans luaraw, faire un test de bijectivité palett --> code --> palette
 
 pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
 
-
-// ---------- //
-
-descritption des palettes pour la doc en anglais : on explique le contexte pour les nouevlles, si pas de desc, c'est pas bloquant !
 
 // ---------- //
 

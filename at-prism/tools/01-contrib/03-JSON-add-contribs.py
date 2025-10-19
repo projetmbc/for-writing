@@ -23,7 +23,6 @@ import numpy             as np
 
 THIS_DIR     = Path(__file__).parent
 PROJECT_DIR  = THIS_DIR.parent.parent
-REPORT_DIR   = PROJECT_DIR / "tools" / "report"
 PRODUCTS_DIR = PROJECT_DIR / "products"
 
 PAL_JSON_FILE   = PRODUCTS_DIR / "palettes.json"
