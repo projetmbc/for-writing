@@ -22,7 +22,7 @@ PREDOC_DIR   = PROJECT_DIR / "showcase"
 SHOWCASE_DIR = PREDOC_DIR / "single"
 
 PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
-TMPL_TEX_FILE = PREDOC_DIR / "templates" / "palette-showcase.tex"
+TMPL_TEX_FILE = PREDOC_DIR / "templates" / "single-palette.tex"
 
 # We don't use the 'main' prefix since each showcase PDF needs
 # to be compiled separately beforehand. A Bash script will handle

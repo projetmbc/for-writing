@@ -10,7 +10,7 @@
 -------
 
 [[:api:]]
-Palette: duplicate palettes, or those that are the reverse of others, are ignored.
+Palette: duplicate palettes, or those that are reverse of others, are ignored.
 
 
 -----
@@ -26,11 +26,7 @@ Here are the new features.
         + ''GeoRainbow''
         + ''PastelRainbow''
 
-    1) \luadraw product: the \var ''getPal'' provides access to a palette via its name.
-
-    1) Credits for path::''palettes.json'' are inside the new file path::''palettes.json.CREDITS.md''.
-
-
+    1) \luadraw product: the \var lua::''getPal'' provides access to a palette via its name.
 
 
 --------
@@ -38,7 +34,7 @@ Here are the new features.
 --------
 
 [[:api:]]
-Palette \contribs: the ''extend.build_code'' works more logically with the \dict of all the palettes, and has to manage a credit to \thisproj.
+Palette \contribs: in the mandatory path::''extend.py'' file, ''build_code'' must work with the \dict of all the palettes, and manage a credit to \thisproj.
 
 
 // ---------- //

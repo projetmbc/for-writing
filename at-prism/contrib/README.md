@@ -28,9 +28,9 @@ The contributions made are in the `contrib` folder which has the following struc
 <!-- FOLDER STRUCT. AUTO - START -->
 ~~~
 + contrib
-  + doc
   + products
   + readme-common
+  + tanslate
 ~~~
 <!-- FOLDER STRUCT. AUTO - END -->
 
