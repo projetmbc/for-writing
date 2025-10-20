@@ -1,3 +1,10 @@
+<!--
+inlincode:
+  - lang: lua
+    what:
+      - PALETTE
+-->
+
 Create a palette using luadraw
 ------------------------------
 
