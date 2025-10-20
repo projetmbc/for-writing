@@ -24,6 +24,7 @@ PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 PAL_REPORT_FILE    = THIS_DIR / "pal-report.json"
 PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
+
 PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
 
 
