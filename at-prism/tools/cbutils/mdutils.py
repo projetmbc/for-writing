@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
+from collections import defaultdict
 import re
+import yaml
+import textwrap
 
 from markdown_it import MarkdownIt
 from markdown_it.token import Token
@@ -50,41 +53,40 @@ TEX_ESCAPE_IT = {
     }
 
 
+
+def get_inlinline_codes(mdcode):
+    # Regex pour capturer les blocs inlincode
+    pattern = re.compile(r'<!--\s*(inlincode:.*?)-->', re.DOTALL)
+
+    matches = pattern.findall(mdcode)
+
+    inlincode_blocks = []
+    for block in matches:
+        # Dé-denter pour corriger l'indentation YAML
+        block = textwrap.dedent(block)
+        try:
+            data = yaml.safe_load(block)
+            inlincode_blocks.append(data['inlincode'])
+        except yaml.YAMLError as e:
+            print("Erreur YAML :", e)
+
+    result = defaultdict(list)
+
+    for block in inlincode_blocks:
+        for item in block:
+            lang = item['lang']
+            what = item.get('what', [])
+            result[lang].extend(what)
+
+    return result
+
+
 class MdToLatexConverter:
     """
     Convertisseur Markdown -> LaTeX.
     - Transforme d'abord les reference-style links (full & collapsed) en liens inline.
     - Parse le Markdown avec markdown-it-py et convertit les tokens en LaTeX.
     """
-
-    # regex pour détecter [texte][label] (label peut être vide => collapsed)
-    PATTERN_REF_LINK = re.compile(r'(?<!\!)\[([^\]]+)\]\s*\[\s*([^\]]*)\s*\]')
-
-    # regex verbose pour capturer une définition de référence [label]: url "title"
-    PATTERN_ONE_REF_LINK = re.compile(r"""
-        ^[ \t]*                             # indentation facultative
-        \[(?P<label>[^\]]+)\]:              # [label]:
-        [ \t]*                              # espaces
-        (?P<url><[^>\s]+>|[^ \t\n]+)        # url (avec ou sans <...>)
-        (?:[ \t]+                           # optionnel : espace + title
-           (?P<title>"[^"]*"|'[^']*'|\([^()]*\))
-        )?
-        [ \t]*$                             # fin de ligne
-    """, re.VERBOSE | re.MULTILINE)
-
-    TEX_ESCAPE_IT = {
-        '\\': r'\textbackslash{}',
-        '{': r'\{',
-        '}': r'\}',
-        '$': r'\$',
-        '&': r'\&',
-        '%': r'\%',
-        '#': r'\#',
-        '_': r'\_',
-        '~': r'\textasciitilde{}',
-        '^': r'\textasciicircum{}'
-    }
-
     def __init__(self, case_insensitive_refs: bool = True):
         """
         case_insensitive_refs: si True on stocke les labels en minuscules (comportement courant en Markdown).
@@ -100,7 +102,7 @@ class MdToLatexConverter:
         Ne fait pas de suppression dans md_text — seulement extraction.
         """
         refs: dict[str, str] = {}
-        for m in self.PATTERN_ONE_REF_LINK.finditer(md_text):
+        for m in PATTERN_ONE_REF_LINK.finditer(md_text):
             label = m.group('label')
             url = m.group('url')
             if url.startswith('<') and url.endswith('>'):
@@ -128,7 +130,7 @@ class MdToLatexConverter:
             #     return m.group(0)  # on ne modifie pas si la ref est inconnue
 
         # Eviter de transformer les images : ![alt][id]
-        processed = self.PATTERN_REF_LINK.sub(repl, md_text)
+        processed = PATTERN_REF_LINK.sub(repl, md_text)
         return processed
 
     def _remove_reference_definitions(self, md_text: str) -> str:
@@ -158,7 +160,7 @@ class MdToLatexConverter:
     @classmethod
     def escape_latex(cls, text: str) -> str:
         """Échappe les caractères spéciaux LaTeX"""
-        for char, replacement in cls.TEX_ESCAPE_IT.items():
+        for char, replacement in TEX_ESCAPE_IT.items():
             text = text.replace(char, replacement)
         return text
 
@@ -351,6 +353,14 @@ if __name__=="__main__":
 
 
     md_input = """
+<!--
+inlincode:
+  - lang: XXX
+    what:
+      - YYY
+-->
+
+
 Description
 -----------
 
@@ -367,8 +377,22 @@ You can use palettes with [`luadraw`][1] which is a package that greatly facilit
 Use a luadraw palette
 ---------------------
 
-The palette names all use the prefix `pal` followed by the name available in the file `at-prism.json`. You can acces a palette by two ways.
+<!--
+inlincode:
+  - lang: lua
+    what:
+      - palGistHeat
+-->
 
+
+The palette names all use the prefix `pal` followed by the name available in the file `at-prism.json`. You can acces a palette by two ways.
+<!--
+inlincode:
+  - lang: lua
+    what:
+      - getPal("GistHeat")
+      - getPal("palGistHeat")
+-->
   * `palGistHeat` is a palette variable.
 
   * `getPal("GistHeat")` and `getPal("palGistHeat")` are equal to `palGistHeat`.
@@ -394,3 +418,5 @@ palGistHeat = {
     latex_output = converter.markdown_to_latex(md_input)
 
     print(latex_output)
+    print('---')
+    print(get_inlinline_codes(md_input))
