@@ -1,3 +1,13 @@
+<!--
+inlincode:
+  - lang: lua
+    what:
+      - palGistHeat
+      - getPal("GistHeat")
+      - getPal("palGistHeat")
+-->
+
+
 Use a luadraw palette
 ---------------------
 
