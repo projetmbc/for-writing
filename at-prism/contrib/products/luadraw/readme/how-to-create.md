@@ -1,8 +1,7 @@
 <!--
-inlincode:
-  - lang: lua
-    what:
-      - PALETTE
+inlinecode:
+  lua:
+    - PALETTE
 -->
 
 Create a palette using luadraw

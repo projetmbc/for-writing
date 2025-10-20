@@ -8,23 +8,24 @@ sys.path.append(str(Path(__file__).parent.parent))
 from cbutils.core    import *
 from cbutils.mdutils import *
 
-from json import load as json_load
-
 
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR        = Path(__file__).parent
-PROJECT_DIR     = THIS_DIR.parent.parent
-PRODUCTS_DIR    = PROJECT_DIR / "products"
-CONTRIB_DIR     = PROJECT_DIR / "contrib"
-MAIN_README_DIR = PROJECT_DIR / "readme"
+THIS_DIR     = Path(__file__).parent
+PROJECT_DIR  = THIS_DIR.parent.parent
+PRODUCTS_DIR = PROJECT_DIR / "products"
+
+README_TAG = "readme"
+
+MAIN_README_DIR = PROJECT_DIR / README_TAG
 PROD_README_DIR = MAIN_README_DIR / "products"
-TEX_EN_DOC_DIR  = (
-    CONTRIB_DIR / "translate" / "en"
-                / "doc" / "manual" / "products"
-)
+
+CONTRIB_DIR      = PROJECT_DIR / "contrib"
+CONTRIB_PROD_DIR = CONTRIB_DIR / "products"
+TEX_EN_DOC_DIR   = CONTRIB_DIR / "translate" / "en" / "manual" / "products"
+
 
 MD_FILES_TO_CONVERT = [
     MAIN_README_DIR / "products.md"
@@ -35,6 +36,53 @@ MD_FILES_TO_CONVERT += [
     for f in PROD_README_DIR.glob("*.md")
 ]
 
+MD_USEFUL_PARTS= [
+    f"{n}.md"
+    for n in [
+        "desc",
+        "how-to-use",
+    ]
+]
+
+
+TEMPL_TAG_JSON_BEGIN = "<!-- JSON DESC. - {} -->"
+
+TAG_JSON_BEGIN_START = TEMPL_TAG_JSON_BEGIN.format("START")
+TAG_JSON_BEGIN_END   = TEMPL_TAG_JSON_BEGIN.format("END")
+
+
+CONVERTER_MD_2_TEX = MdToLatexConverter()
+
+
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
+
+def extract_md(mdfile: Path) -> str:
+# Special case of the versatile JSON file.
+    if mdfile.parent == MAIN_README_DIR:
+        content = mdfile.read_text()
+
+        _ , _ , content = content.partition(f"{TAG_JSON_BEGIN_START}")
+        content , _ , _ = content.partition(f"{TAG_JSON_BEGIN_END}")
+
+# Standard case.
+    else:
+        content = []
+
+        readme_dir = CONTRIB_PROD_DIR / mdfile.stem / README_TAG
+
+        for mdfile_part in MD_USEFUL_PARTS:
+            mdfile_part = readme_dir / mdfile_part
+
+            content.append(mdfile_part.read_text())
+
+        content = '\n\n'.join(content)
+
+# Nothing left to do.
+    return content
+
+
 
 # --------------- #
 # -- CONSTANTS -- #
@@ -44,11 +92,10 @@ logging.info(
     "Updating English doc (product sections)."
 )
 
-converter = MdToLatexConverter()
-
 relENdocdir = TEX_EN_DOC_DIR.relative_to(PROJECT_DIR)
 
 for mdfile in MD_FILES_TO_CONVERT:
+# Let's communicate.
     relpath_md  = mdfile.relative_to(PROJECT_DIR)
 
     relpath_tex = (
@@ -66,3 +113,11 @@ for mdfile in MD_FILES_TO_CONVERT:
             upper = False
         )
     )
+
+    texfile = PROJECT_DIR / relpath_tex
+
+# Let's work.
+    mdcontent = extract_md(mdfile)
+
+    print(f'--- {mdfile.name}')
+    print(mdcontent)

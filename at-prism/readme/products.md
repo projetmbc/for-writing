@@ -4,6 +4,8 @@ Supported implementations
 The implementations are inside the folder `products`.
 
 
+<!-- JSON DESC. - START -->
+
 ### JSON, the versatile default format
 
 By default, a file `products/palettes.json` is provided to allow unsupported coding languages to easily integrate palettes. Here are the first line of this file.
@@ -35,3 +37,5 @@ By default, a file `products/palettes.json` is provided to allow unsupported cod
 }
 ~~~
 <!-- JSON PALETTE FIRST LINES. AUTO - END -->
+
+<!-- JSON DESC. - END -->

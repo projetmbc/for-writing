@@ -1,10 +1,9 @@
 <!--
-inlincode:
-  - lang: lua
-    what:
-      - palGistHeat
-      - getPal("GistHeat")
-      - getPal("palGistHeat")
+inlinecode:
+  lua:
+    - palGistHeat
+    - getPal("GistHeat")
+    - getPal("palGistHeat")
 -->
 
 
