@@ -1,13 +1,14 @@
 \begin{tikzpicture}[line join=round]%
 \begin{scope}%
 \pgfsetlinewidth{0.2pt}%
-\draw[color = black, fill = {rgb,1:red,0.502;green,0.502;blue,0.502}] (0,9) -- (1.5,9) -- (1.5,7.5) -- (0,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.4392;green,0.502;blue,0.5647}] (1.8,9) -- (3.3,9) -- (3.3,7.5) -- (1.8,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.5294;green,0.8078;blue,0.9804}] (3.6,9) -- (5.1,9) -- (5.1,7.5) -- (3.6,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,1;green,0.7137;blue,0.7569}] (5.4,9) -- (6.9,9) -- (6.9,7.5) -- (5.4,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,1;green,0.7529;blue,0.7961}] (7.2,9) -- (8.7,9) -- (8.7,7.5) -- (7.2,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,1;green,0.6275;blue,0.4784}] (9,9) -- (10.5,9) -- (10.5,7.5) -- (9,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.698;green,0.1333;blue,0.1333}] (10.8,9) -- (12.3,9) -- (12.3,7.5) -- (10.8,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.502;green,0.502;blue,0.502}] (80,9) -- (81.5,9) -- (81.5,7.5) -- (80,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.4482;green,0.502;blue,0.5557}] (81.8,9) -- (83.3,9) -- (83.3,7.5) -- (81.8,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.5036;green,0.7204;blue,0.8616}] (83.6,9) -- (85.1,9) -- (85.1,7.5) -- (83.6,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.7983;green,0.754;blue,0.8527}] (85.4,9) -- (86.9,9) -- (86.9,7.5) -- (85.4,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,1;green,0.7305;blue,0.7737}] (87.2,9) -- (88.7,9) -- (88.7,7.5) -- (87.2,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,1;green,0.7171;blue,0.7053}] (89,9) -- (90.5,9) -- (90.5,7.5) -- (89,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.9568;green,0.5569;blue,0.4291}] (90.8,9) -- (92.3,9) -- (92.3,7.5) -- (90.8,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.698;green,0.1333;blue,0.1333}] (92.6,9) -- (94.1,9) -- (94.1,7.5) -- (92.6,7.5)--cycle;%
 \pgfsetlinewidth{0.4pt}%
 \end{scope}%
 \end{tikzpicture}%

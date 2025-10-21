@@ -1,15 +1,27 @@
-getPal fui-unc
-
-    ---> arg optionnel pour inverser
-    ---> arg optionnel pour shifter
-    ---> arg optionnel pour cropper
+// ---------- //
 
 
-doc auto add
+==
+21  (1.2.0-beta.1)
+==
 
-    ---> md vers latex pour les produits (desc + how-to) avec ajout aussi de json comme cas de base, le reste est orodnné lexico
+-------
+:break:
+-------
 
-    ---> dans md, commentaire magique pour indiquer les code en ligne acec le langage à utiliser
+[[:api:]]
+Palettes: all final palettes are made up of 8 colors.
+
+
+-----
+:new:
+-----
+
+[[:api:]]
+Palettes added with the use of \luadraw.
+
+    + ''Lemon''
+    + ''ShiftRainbow''
 
 
 // ---------- //

@@ -584,8 +584,8 @@
 \pgfsetfillcolor{rgb,1:red,0.7161;green,0.4049;blue,0.3317}%
 \pgfsetstrokecolor{rgb,1:red,0.7161;green,0.4049;blue,0.3317}%
 \draw[fill] (4.6832,3.1155) -- (4.3622,4.2179) -- (4.0252,4.5443)--cycle;%
-\pgfsetfillcolor{rgb,1:red,0.6135;green,0.3569;blue,0.29}%
-\pgfsetstrokecolor{rgb,1:red,0.6135;green,0.3569;blue,0.29}%
+\pgfsetfillcolor{rgb,1:red,0.6135;green,0.3568;blue,0.29}%
+\pgfsetstrokecolor{rgb,1:red,0.6135;green,0.3568;blue,0.29}%
 \draw[fill] (8.6968,4.5362) -- (7.7482,4.403) -- (7.4433,3.4579)--cycle;%
 \pgfsetfillcolor{rgb,1:red,0.5809;green,0.5481;blue,0.5302}%
 \pgfsetstrokecolor{rgb,1:red,0.5809;green,0.5481;blue,0.5302}%

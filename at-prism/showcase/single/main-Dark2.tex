@@ -38,6 +38,13 @@
 \directlua{
   PALNAME = "\PALETTE"
   PALETTE = getPal(PALNAME)
+  
+  PALSIZE = 8
+
+  PALDIM   = 1.5
+  PALDELTA = .3
+
+  xmin, xmax = -100, 100
 }
 
 
@@ -57,29 +64,24 @@
 
 \begin{luadraw}{name = showcase-discrete-spectrum-\PALETTE}
 local g = graph:new{
-  window = {-20, 20, -5, 5},
+  window = {xmin, xmax, -5, 5},
   bbox   = false
 }
 
 g:Linewidth(2)
 
-local A = Z(-20,4)
+local A = Z(-20, 4)
+local v = Z(0, -PALDIM)
 
-local N = #PALETTE
-local h = 1.5
-local v = Z(0, -h)
-
-local delta = .3
-
-for k = 1, N do
+for k = 1, PALSIZE do
   local color = rgb(PALETTE[k])
 
   g:Drectangle(
-    A, A + h, A + h + v,
+    A, A + PALDIM, A + PALDIM + v,
     "color = black, fill = " .. color
   )
 
-  A = A + h + delta
+  A = A + PALDIM + PALDELTA
 end
 
 g:Show()
@@ -94,8 +96,9 @@ g:Show()
 \bigskip
 
 \begin{luadraw}{name = showcase-continuous-spectrum-\PALETTE}
+-- Let's work!
 local g = graph:new{
-  window = {-25, 25, -5, 5},
+  window = {xmin, xmax, -5, 5},
   bbox   = false
 }
 
@@ -105,7 +108,7 @@ local A  = Z(-5, 4)
 local h  = Z(0, -1.5)
 local dh = Z(0, -1.1)
 
-local L = 15
+local L = PALDIM * PALSIZE + PALDELTA * (PALSIZE - 1)
 local N = 100
 
 local dl = L / N

@@ -19,9 +19,6 @@ from matplotlib import colormaps
 # -- CONSTANTS -- #
 # --------------- #
 
-SAMPLING_SIZE = 8
-PRECISION     = 10**5
-
 THIS_DIR     = Path(__file__).parent
 PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 
@@ -82,7 +79,6 @@ for cmap_name in allnames:
 logging.info(
     f"{len(palettes)} palettes build from 'Matplotlib' color maps."
 )
-
 
 
 # ------------------- #

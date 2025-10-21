@@ -54,7 +54,7 @@ def report_gradient_clash(
     from matplotlib.colors import to_rgb
 
     def make_gradient(
-        colors: [float, float, float],
+        colors: list[ [float, float, float] ],
         width : int = 800,
         height: int = 100
     ) -> np.ndarray:
@@ -147,7 +147,6 @@ for folder, contribs in contribs_accepted.items():
                 ),
                 exception = ValueError,
             )
-
 
         ALL_PALETTES, IGNORED = update_palettes(
             palette_name,

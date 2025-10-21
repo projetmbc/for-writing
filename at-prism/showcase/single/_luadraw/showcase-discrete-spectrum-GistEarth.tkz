@@ -1,14 +1,14 @@
 \begin{tikzpicture}[line join=round]%
 \begin{scope}%
 \pgfsetlinewidth{0.2pt}%
-\draw[color = black, fill = {rgb,1:red,0;green,0;blue,0}] (0,9) -- (1.5,9) -- (1.5,7.5) -- (0,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.0941;green,0.2546;blue,0.4748}] (1.8,9) -- (3.3,9) -- (3.3,7.5) -- (1.8,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.19;green,0.5042;blue,0.4956}] (3.6,9) -- (5.1,9) -- (5.1,7.5) -- (3.6,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.2566;green,0.5855;blue,0.3228}] (5.4,9) -- (6.9,9) -- (6.9,7.5) -- (5.4,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.5107;green,0.6621;blue,0.3292}] (7.2,9) -- (8.7,9) -- (8.7,7.5) -- (7.2,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.7242;green,0.7035;blue,0.3738}] (9,9) -- (10.5,9) -- (10.5,7.5) -- (9,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.8343;green,0.6923;blue,0.5787}] (10.8,9) -- (12.3,9) -- (12.3,7.5) -- (10.8,7.5)--cycle;%
-\draw[color = black, fill = {rgb,1:red,0.9922;green,0.9843;blue,0.9843}] (12.6,9) -- (14.1,9) -- (14.1,7.5) -- (12.6,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0;green,0;blue,0}] (80,9) -- (81.5,9) -- (81.5,7.5) -- (80,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.0941;green,0.2546;blue,0.4748}] (81.8,9) -- (83.3,9) -- (83.3,7.5) -- (81.8,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.19;green,0.5042;blue,0.4956}] (83.6,9) -- (85.1,9) -- (85.1,7.5) -- (83.6,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.2566;green,0.5855;blue,0.3228}] (85.4,9) -- (86.9,9) -- (86.9,7.5) -- (85.4,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.5107;green,0.6621;blue,0.3292}] (87.2,9) -- (88.7,9) -- (88.7,7.5) -- (87.2,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.7242;green,0.7035;blue,0.3738}] (89,9) -- (90.5,9) -- (90.5,7.5) -- (89,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.8343;green,0.6923;blue,0.5787}] (90.8,9) -- (92.3,9) -- (92.3,7.5) -- (90.8,7.5)--cycle;%
+\draw[color = black, fill = {rgb,1:red,0.9922;green,0.9843;blue,0.9843}] (92.6,9) -- (94.1,9) -- (94.1,7.5) -- (92.6,7.5)--cycle;%
 \pgfsetlinewidth{0.4pt}%
 \end{scope}%
 \end{tikzpicture}%

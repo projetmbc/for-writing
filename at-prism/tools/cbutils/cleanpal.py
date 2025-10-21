@@ -2,6 +2,12 @@
 
 from enum import Enum
 
+import numpy as np
+
+from .normval import stdfloat
+
+SAMPLING_SIZE = 8
+PRECISION     = 10**5
 
 class PAL_STATUS(Enum):
     IS_NEW     = 1
@@ -19,7 +25,6 @@ STATUS_TAG = {
     i: m.lower().replace(' ', '-')
     for i, m in STATUS_MSG.items()
 }
-
 
 
 def update_palettes(
@@ -50,7 +55,7 @@ def update_palettes(
 
     match status:
         case PAL_STATUS.IS_NEW:
-            palettes[name] = candidate
+            palettes[name] = norm_palette(candidate)
 
             logcom.info(f"'{name}' added.")
 
@@ -62,3 +67,40 @@ def update_palettes(
             )
 
     return palettes, ignored
+
+
+
+def norm_palette(
+    palette: list[ [float, float, float] ]
+) -> list[ [float, float, float] ]:
+    size = len(palette)
+
+    pal_array = np.array(palette)
+
+    linspace_pal    = np.linspace(0, 1, size)
+    linspace_target = np.linspace(0, 1, SAMPLING_SIZE)
+
+    r_vals = pal_array[:, 0]
+    g_vals = pal_array[:, 1]
+    b_vals = pal_array[:, 2]
+
+    r_interpo = np.interp(linspace_target, linspace_pal, r_vals)
+    g_interpo = np.interp(linspace_target, linspace_pal, g_vals)
+    b_interpo = np.interp(linspace_target, linspace_pal, b_vals)
+
+    # Reconstruction des vecteurs RGB
+    result = [
+        list(
+            map(
+                lambda x: stdfloat(x, PRECISION),
+                [r, g, b]
+            )
+        )
+        for r, g, b in zip(
+            r_interpo,
+            g_interpo,
+            b_interpo
+        )
+    ]
+
+    return result

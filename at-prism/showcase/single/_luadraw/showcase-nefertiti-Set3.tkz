@@ -56,8 +56,8 @@
 \pgfsetfillcolor{rgb,1:red,0.7455;green,0.5653;blue,0.5433}%
 \pgfsetstrokecolor{rgb,1:red,0.7455;green,0.5653;blue,0.5433}%
 \draw[fill] (7.7365,8.217) -- (6.7479,7.5003) -- (7.1377,8.4478)--cycle;%
-\pgfsetfillcolor{rgb,1:red,0.7133;green,0.5413;blue,0.5197}%
-\pgfsetstrokecolor{rgb,1:red,0.7133;green,0.5413;blue,0.5197}%
+\pgfsetfillcolor{rgb,1:red,0.7133;green,0.5412;blue,0.5197}%
+\pgfsetstrokecolor{rgb,1:red,0.7133;green,0.5412;blue,0.5197}%
 \draw[fill] (7.1377,8.4478) -- (6.7479,7.5003) -- (5.3648,8.2692)--cycle;%
 \pgfsetfillcolor{rgb,1:red,0.6419;green,0.5624;blue,0.4104}%
 \pgfsetstrokecolor{rgb,1:red,0.6419;green,0.5624;blue,0.4104}%
@@ -101,8 +101,8 @@
 \pgfsetfillcolor{rgb,1:red,0.6002;green,0.456;blue,0.3484}%
 \pgfsetstrokecolor{rgb,1:red,0.6002;green,0.456;blue,0.3484}%
 \draw[fill] (9.4387,6.1235) -- (9.972,4.9472) -- (9.8705,5.7416)--cycle;%
-\pgfsetfillcolor{rgb,1:red,0.7254;green,0.5753;blue,0.52}%
-\pgfsetstrokecolor{rgb,1:red,0.7254;green,0.5753;blue,0.52}%
+\pgfsetfillcolor{rgb,1:red,0.7254;green,0.5752;blue,0.52}%
+\pgfsetstrokecolor{rgb,1:red,0.7254;green,0.5752;blue,0.52}%
 \draw[fill] (7.1377,8.4478) -- (7.1696,9.2812) -- (7.7365,8.217)--cycle;%
 \pgfsetfillcolor{rgb,1:red,0.7426;green,0.5893;blue,0.5321}%
 \pgfsetstrokecolor{rgb,1:red,0.7426;green,0.5893;blue,0.5321}%
@@ -140,8 +140,8 @@
 \pgfsetfillcolor{rgb,1:red,0.7316;green,0.5539;blue,0.4237}%
 \pgfsetstrokecolor{rgb,1:red,0.7316;green,0.5539;blue,0.4237}%
 \draw[fill] (1.5942,5.9948) -- (0.7362,4.7985) -- (1.5271,5.1252)--cycle;%
-\pgfsetfillcolor{rgb,1:red,0.7053;green,0.5698;blue,0.5019}%
-\pgfsetstrokecolor{rgb,1:red,0.7053;green,0.5698;blue,0.5019}%
+\pgfsetfillcolor{rgb,1:red,0.7053;green,0.5697;blue,0.5019}%
+\pgfsetstrokecolor{rgb,1:red,0.7053;green,0.5697;blue,0.5019}%
 \draw[fill] (7.1696,9.2812) -- (7.5664,9.1108) -- (7.7365,8.217)--cycle;%
 \pgfsetfillcolor{rgb,1:red,0.7471;green,0.7474;blue,0.5248}%
 \pgfsetstrokecolor{rgb,1:red,0.7471;green,0.7474;blue,0.5248}%
@@ -272,8 +272,8 @@
 \pgfsetfillcolor{rgb,1:red,0.7203;green,0.6029;blue,0.5053}%
 \pgfsetstrokecolor{rgb,1:red,0.7203;green,0.6029;blue,0.5053}%
 \draw[fill] (5.5778,8.9973) -- (4.057,9.0534) -- (5.8075,9.7821)--cycle;%
-\pgfsetfillcolor{rgb,1:red,0.4205;green,0.2336;blue,0.2006}%
-\pgfsetstrokecolor{rgb,1:red,0.4205;green,0.2336;blue,0.2006}%
+\pgfsetfillcolor{rgb,1:red,0.4205;green,0.2335;blue,0.2006}%
+\pgfsetstrokecolor{rgb,1:red,0.4205;green,0.2335;blue,0.2006}%
 \draw[fill] (9.5068,5.4862) -- (9.348,6.7709) -- (9.3298,6.0392)--cycle;%
 \pgfsetfillcolor{rgb,1:red,0.5566;green,0.4657;blue,0.3447}%
 \pgfsetstrokecolor{rgb,1:red,0.5566;green,0.4657;blue,0.3447}%
@@ -383,8 +383,8 @@
 \pgfsetfillcolor{rgb,1:red,0.184;green,0.1399;blue,0.1345}%
 \pgfsetstrokecolor{rgb,1:red,0.184;green,0.1399;blue,0.1345}%
 \draw[fill] (9.3799,6.3142) -- (9.21,5.0831) -- (9.3298,6.0392)--cycle;%
-\pgfsetfillcolor{rgb,1:red,0.5305;green,0.2867;blue,0.2356}%
-\pgfsetstrokecolor{rgb,1:red,0.5305;green,0.2867;blue,0.2356}%
+\pgfsetfillcolor{rgb,1:red,0.5305;green,0.2866;blue,0.2356}%
+\pgfsetstrokecolor{rgb,1:red,0.5305;green,0.2866;blue,0.2356}%
 \draw[fill] (2.7719,6.2931) -- (2.9615,7.2453) -- (2.2749,5.6025)--cycle;%
 \pgfsetfillcolor{rgb,1:red,0.7662;green,0.509;blue,0.4078}%
 \pgfsetstrokecolor{rgb,1:red,0.7662;green,0.509;blue,0.4078}%
