@@ -11,12 +11,11 @@ You can use palettes with [`luadraw`][1] which is a package that greatly facilit
 [1]: https://github.com/pfradin/luadraw
 
 <!--
-inlincode:
-  - lang: lua
-    what:
-      - palGistHeat
-      - getPal("GistHeat")
-      - getPal("palGistHeat")
+inlinecode:
+  lua:
+    - palGistHeat
+    - getPal("GistHeat")
+    - getPal("palGistHeat")
 -->
 
 

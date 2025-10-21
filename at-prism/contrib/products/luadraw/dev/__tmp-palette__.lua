@@ -1,9 +1,11 @@
 -- author: First Name, Last Name
 
-PALETTE = {
-  DarkGreen,
-  Green,
-  Yellow,
-  Orange,
-  Red,
-}
+        PALETTE = {
+          Gray,
+          SlateGray,
+          LightSkyBlue,
+          LightPink,
+          Pink,
+          LightSalmon,
+          Coral,
+        }

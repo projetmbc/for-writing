@@ -1,3 +1,9 @@
+getPal fui-unc
+
+    ---> arg optionnel pour inverser
+    ---> arg optionnel pour shifter
+    ---> arg optionnel pour cropper
+
 
 doc auto add
 
