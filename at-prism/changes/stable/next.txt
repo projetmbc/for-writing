@@ -2,7 +2,7 @@
 :break:
 -------
 
-Palettes: all final palettes are made up of 8 colors.
+Palettes: all final palettes are made up of 15 colors.
 
 \luadraw \prod: the lua::''getPal'' \dict array is now a \func that accepts string palette names with or without the lua::''pal'' prefix.
 

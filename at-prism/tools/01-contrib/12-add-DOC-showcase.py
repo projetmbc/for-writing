@@ -41,12 +41,13 @@ SHOWCASE_DIR.mkdir(exist_ok = True)
 PATTERN_CHGE_PAL_NAME = re.compile(r"\\newcommand\{\\PALETTE\}\{(.*)\}")
 
 
-START_FINAL_TEX_CODE = r"""\documentclass[a4paper]{article}
+START_FINAL_TEX_CODE = r"""
+\documentclass[theme = dark]{tutodoc}
 
-\usepackage[
+\geometry{
   landscape,
   margin = 1.5cm
-]{geometry}
+}
 
 \usepackage{hyperref}
 \usepackage{pdfpages}

@@ -1,16 +1,16 @@
 % !TEX TS-program = lualatex
 
-\documentclass{article}
+\documentclass{tutodoc}
 
 \newcommand{\PALETTE}{Tab20c}
 
-\usepackage[
+\geometry{
   top    = 1cm,
   bottom = 1cm,
   left   = 1cm,
   right  = 1cm,
 %  showframe
-]{geometry}
+}
 
 \usepackage{pgfpages}
 \pgfpagesuselayout{2 on 1}[
@@ -39,9 +39,9 @@
   PALNAME = "\PALETTE"
   PALETTE = getPal(PALNAME)
   
-  PALSIZE = 8
+  PALSIZE = 15
 
-  PALDIM   = 1.5
+  PALDIM   = 1
   PALDELTA = .3
 
   xmin, xmax = -100, 100
@@ -80,7 +80,13 @@ for k = 1, PALSIZE do
     A, A + PALDIM, A + PALDIM + v,
     "color = black, fill = " .. color
   )
-
+  
+  g:Dlabel(
+    "\\Large$" .. k .. "$",
+    A + Z(PALDIM, 1.15*PALDIM) / 2, 
+    {pos="S"}
+  )
+  
   A = A + PALDIM + PALDELTA
 end
 
@@ -145,7 +151,7 @@ local g = graph3d:new{
   window3d = bounding_box,
   window   = {-5, 4, -7, 5},
   viewdir  = {35, 60},
-  size     = {17, 17},
+  size     = {20, 20},
   margin   = {0, 0, 0, 0}
 }
 
@@ -170,7 +176,7 @@ g:Show()
 \begin{luadraw}{name = showcase-contour-\PALETTE}
 local g = graph:new{
   window = {-1, 6.5, -1.5, 11},
-  size   = {17, 15, 0},
+  size   = {18, 16, 0},
   margin = {0, 0, 0, 0},
   bbox   = false
 }
@@ -237,7 +243,7 @@ local cos, sin = math.cos, math.sin, math.pi
 local g = graph3d:new{
   window3d = {0, 5, 0, 10, 0, 11},
   adjust2d = true,
-  size     = {17, 15, 0},
+  size     = {18, 16, 0},
   bbox     = false,
   viewdir  = {220, 60},
   margin   = {0, 0, 0, 0}

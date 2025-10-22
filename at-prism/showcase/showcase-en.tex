@@ -1,9 +1,9 @@
-\documentclass[a4paper]{article}
+\documentclass[theme = dark]{tutodoc}
 
-\usepackage[
+\geometry{
   landscape,
   margin = 1.5cm
-]{geometry}
+}
 
 \usepackage{hyperref}
 \usepackage{pdfpages}
@@ -398,30 +398,6 @@
     lab-pal-GistStern
   }%
 ]{single/main-GistStern.pdf}
-
-\includepdf[%
-  pagecommand = {\thispagestyle{plain}},%
-  pages       = 1,%
-  addtotoc    = {%
-    1,%
-    section,%
-    1,
-    GistYarg,
-    lab-pal-GistYarg
-  }%
-]{single/main-GistYarg.pdf}
-
-\includepdf[%
-  pagecommand = {\thispagestyle{plain}},%
-  pages       = 1,%
-  addtotoc    = {%
-    1,%
-    section,%
-    1,
-    GistYerg,
-    lab-pal-GistYerg
-  }%
-]{single/main-GistYerg.pdf}
 
 \includepdf[%
   pagecommand = {\thispagestyle{plain}},%

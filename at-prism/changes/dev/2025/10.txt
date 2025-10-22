@@ -2,6 +2,21 @@
 
 
 ==
+21  (1.2.0-beta.2)
+==
+
+-------
+:break:
+-------
+
+[[:api:]]
+Palettes: all final palettes are made up of 15 colors.
+
+
+// ---------- //
+
+
+==
 21  (1.2.0-beta.1)
 ==
 

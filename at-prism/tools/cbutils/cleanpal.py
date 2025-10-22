@@ -6,8 +6,8 @@ import numpy as np
 
 from .normval import stdfloat
 
-SAMPLING_SIZE = 8
-PRECISION     = 10**5
+SAMPLING_SIZE = 15
+PRECISION     = 10**6
 
 class PAL_STATUS(Enum):
     IS_NEW     = 1
