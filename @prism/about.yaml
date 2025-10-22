@@ -2,10 +2,15 @@ project:
   version: "1.1.0"
 
   acronym: >
-    [A]esthetic [T]oolkit - [P]alettes to [R]ender
-    [I]llustrative [S]cientific [M]aps
-    (this name is also a play on words: it is at the prism
-    that light is broken down into a spectrum.)
+    [@]esthetic [P]rinciples for [R]epresenting
+    [I]nformative [S]cientific [M]aps
+    (the name plays on two ideas.
+    (1) A prism is where light is split into an informative
+    spectrum, symbolizing how data or visuals are decomposed
+    into meaningful color and style.
+    (2) @prism, read as “at prism,” suggests the place where
+    diffraction happens, i.e., where science meets informative
+    aesthetics.)
   desc   : >
     This project provides consistent colors for every plot,
     such as to turn data into light.
