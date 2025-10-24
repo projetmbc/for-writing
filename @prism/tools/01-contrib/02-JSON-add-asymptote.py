@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Asymptote sourc code.
+# Asymptote source code.
 #     + https://github.com/vectorgraphics/asymptote/blob/master/base/palette.asy
 #     + https://github.com/vectorgraphics/asymptote/blob/master/base/colormap.asy
 
