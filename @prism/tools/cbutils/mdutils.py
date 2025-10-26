@@ -177,11 +177,13 @@ class MdToLatexConverter:
     """
     def __init__(
         self,
+        shift_down_level     : int  = 0,
         case_insensitive_refs: bool = True
     ) -> None:
         """
         case_insensitive_refs: si True on stocke les labels en minuscules (comportement courant en Markdown).
         """
+        self.shift_down_level      = shift_down_level
         self.case_insensitive_refs = case_insensitive_refs
 
     # ---------------------- #
@@ -378,7 +380,12 @@ class MdToLatexConverter:
 
                 section_commands = ['section', 'subsection', 'subsubsection', 'paragraph', 'subparagraph']
 
-                cmd = section_commands[min(level - 2, len(section_commands) - 1)]
+                cmd = section_commands[
+                    min(
+                        level - self.shift_down_level - 1,
+                        len(section_commands) - 1
+                    )
+                ]
 
                 latex_lines.append(f'\\{cmd}{{{self.escape_latex(content)}}}\n')
                 # skip heading_close by continuing loop

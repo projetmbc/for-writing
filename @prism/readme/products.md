@@ -1,13 +1,8 @@
 Supported implementations
 -------------------------
 
-### JSON, the versatile default format
-
-
 The implementations are inside the folder `products`.
 
-
-<!-- JSON DESC. - START -->
 
 ### JSON, the versatile default format
 
@@ -37,5 +32,3 @@ By default, a file `palettes.json` is provided to allow unsupported coding langu
 }
 ~~~
 <!-- JSON PALETTE FIRST LINES. AUTO - END -->
-
-<!-- JSON DESC. - END -->

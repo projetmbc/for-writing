@@ -15,17 +15,13 @@ from cbutils.mdutils import *
 
 THIS_DIR     = Path(__file__).parent
 PROJECT_DIR  = THIS_DIR.parent.parent
-PRODUCTS_DIR = PROJECT_DIR / "products"
 
-README_TAG = "readme"
-
-MAIN_README_DIR = PROJECT_DIR / README_TAG
+MAIN_README_DIR = PROJECT_DIR / "readme"
 PROD_README_DIR = MAIN_README_DIR / "products"
 
-CONTRIB_DIR      = PROJECT_DIR / "contrib"
-CONTRIB_PROD_DIR = CONTRIB_DIR / "products"
-TEX_EN_DOC_DIR   = CONTRIB_DIR / "translate" / "en" / "manual" / "products"
-
+TRANSLATE_DIR     = PROJECT_DIR / "contrib" / "translate"
+EN_MANUAL_DIR     = TRANSLATE_DIR / "en" / "manual" / "products"
+_SUB_EN_MANUAL_DIR = EN_MANUAL_DIR.relative_to(TRANSLATE_DIR)
 
 MD_FILES_TO_CONVERT = [
     MAIN_README_DIR / "products.md"
@@ -36,22 +32,8 @@ MD_FILES_TO_CONVERT += [
     for f in PROD_README_DIR.glob("*.md")
 ]
 
-MD_USEFUL_PARTS= [
-    f"{n}.md"
-    for n in [
-        "desc",
-        "how-to-use",
-    ]
-]
 
-
-TEMPL_TAG_JSON_BEGIN = "<!-- JSON DESC. - {} -->"
-
-TAG_JSON_BEGIN_START = TEMPL_TAG_JSON_BEGIN.format("START")
-TAG_JSON_BEGIN_END   = TEMPL_TAG_JSON_BEGIN.format("END")
-
-
-CONVERTER_MD_2_TEX = MdToLatexConverter()
+CONVERTER_MD_2_TEX = MdToLatexConverter(shift_down_level = 1)
 
 
 TMPL_TEX = r"""
@@ -76,82 +58,44 @@ MD_PRE_REPLACEMENTS = {
 }
 
 
-# ----------- #
-# -- TOOLS -- #
-# ----------- #
-
-def extract_md(mdfile: Path) -> str:
-# Special case of the versatile JSON file.
-    if mdfile.parent == MAIN_README_DIR:
-        content = mdfile.read_text()
-
-        _ , _ , content = content.partition(f"{TAG_JSON_BEGIN_START}")
-        content , _ , _ = content.partition(f"{TAG_JSON_BEGIN_END}")
-
-# Standard case.
-    else:
-        content = []
-
-        readme_dir = CONTRIB_PROD_DIR / mdfile.stem / README_TAG
-
-        for mdfile_part in MD_USEFUL_PARTS:
-            mdfile_part = readme_dir / mdfile_part
-
-            content.append(mdfile_part.read_text())
-
-        content = '\n\n'.join(content)
-
-# Nothing left to do.
-    return content
-
-
 # --------------- #
-# -- CONSTANTS -- #
+# -- LET'S GO! -- #
 # --------------- #
 
 logging.info(
     "Updating English doc (product sections)."
 )
 
-relENdocdir = TEX_EN_DOC_DIR.relative_to(PROJECT_DIR)
+
 
 for mdfile in MD_FILES_TO_CONVERT:
 # Let's communicate.
     relpath_md  = mdfile.relative_to(PROJECT_DIR)
 
     relpath_tex = (
-        "json"
+        "preamble"
         if mdfile.stem == "products" else
         mdfile.stem
     )
 
-    relpath_tex = f"{relpath_tex}.tex"
-    relpath_tex = relENdocdir / f"{relpath_tex}"
+    _relpath_tex = _SUB_EN_MANUAL_DIR / f"{relpath_tex}.tex"
 
     logging.info(
         msg_creation_update(
-            context = f"From '{relpath_md}' to '{relpath_tex}' TeX",
+            context = f"From '{relpath_md}' to '{_relpath_tex}' TeX",
             upper = False
         )
     )
 
-    texfile = PROJECT_DIR / relpath_tex
+    texfile = EN_MANUAL_DIR / f"{relpath_tex}.tex"
+
 
 # Let's work.
-    mdcontent = extract_md(mdfile)
+    mdcontent = mdfile.read_text()
     mdcontent = transform_code_links(mdcontent, ['luadraw'])
 
     texcode = CONVERTER_MD_2_TEX.markdown_to_latex(mdcontent)
-
-    if mdfile.stem != "products":
-        texcode = rf"""
-\section{{{mdfile.stem}}}
-
-{texcode}
-        """.strip()
-
     texcode = TMPL_TEX.format(content = texcode)
     texcode = transform_tdoccodein(texcode, MD_PRE_REPLACEMENTS)
-
 
     texfile.write_text(texcode)
