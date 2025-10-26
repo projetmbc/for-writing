@@ -1,4 +1,4 @@
-The at-prism project
+The @prism project
 ====================
 
 **Table of contents**

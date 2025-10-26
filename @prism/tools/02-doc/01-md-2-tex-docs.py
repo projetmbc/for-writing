@@ -54,6 +54,21 @@ TAG_JSON_BEGIN_END   = TEMPL_TAG_JSON_BEGIN.format("END")
 CONVERTER_MD_2_TEX = MdToLatexConverter()
 
 
+TMPL_TEX = r"""
+% !TEX TS-program = lualatex
+
+\documentclass{{tutodoc}}
+
+\usepackage{{../preamble.cfg}}
+
+
+\begin{{document}}
+
+{content}
+
+\end{{document}}
+""".strip() + '\n'
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
@@ -81,7 +96,6 @@ def extract_md(mdfile: Path) -> str:
 
 # Nothing left to do.
     return content
-
 
 
 # --------------- #
@@ -118,6 +132,31 @@ for mdfile in MD_FILES_TO_CONVERT:
 
 # Let's work.
     mdcontent = extract_md(mdfile)
+    mdcontent = transform_code_links(mdcontent, ['luadraw'])
 
-    print(f'--- {mdfile.name}')
-    print(mdcontent)
+    inlinecodes = get_inlinline_codes(mdcontent)
+
+    texcode = CONVERTER_MD_2_TEX.markdown_to_latex(mdcontent)
+
+    if mdfile.stem != "products":
+        texcode = rf"""
+\section{{{mdfile.stem}}}
+
+{texcode}
+        """.strip()
+
+    texcode = TMPL_TEX.format(content = texcode)
+    texcode = transform_latex_quote(texcode)
+    texcode = nest_code_in_note(texcode)
+
+
+    transformations = {
+        'luadraw': lambda x: '{\\LUADRAW}',
+
+    }
+
+    texcode = transform_tdoccodein(texcode, transformations)
+
+    print(inlinecodes)
+
+    texfile.write_text(texcode)

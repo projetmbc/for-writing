@@ -5,29 +5,11 @@ at-prism - TODO
 
 // ---------- //
 
-showcase-drak ajouté!
-
-// ---------- //
-
-ajout des palettes de Scientific colour maps : https://zenodo.org/records/8409685
-
-
-// ---------- //
-
 doc auto add ?????
 
     ---> md vers latex pour les produits (desc + how-to) avec ajout aussi de json comme cas de base, le reste est orodnné lexico
 
     ---> dans md, commentaire magique pour indiquer les code en ligne acec le langage à utiliser
-
-
-// ---------- //
-
-getPal func
-
-    ---> arg optionnel pour inverser
-    ---> arg optionnel pour shifter
-    ---> arg optionnel pour extract
 
 
 // ---------- //

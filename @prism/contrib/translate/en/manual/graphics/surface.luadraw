@@ -5,7 +5,7 @@
 \begin{luadraw}{name = showcase-contour}
 require 'luadraw_palettes'
 
-local pal = getPal['palGeoRainbow']
+local pal = getPal('GeoRainbow')
 
 local cos, sin = math.cos, math.sin, math.pi
 

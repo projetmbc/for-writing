@@ -1,4 +1,4 @@
-About at-prism
+About @prism
 --------------
 
 This project provides a collection of discrete color palettes for various programming languages,

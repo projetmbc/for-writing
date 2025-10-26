@@ -8,15 +8,15 @@ from .normval import stdfloat
 
 SAMPLING_SIZE = 15
 PRECISION     = 10**6
+TOLERANCE     = 10**(-6)
 
 class PAL_STATUS(Enum):
     IS_NEW     = 1
     EQUAL_TO   = 2
     REVERSE_OF = 3
 
-
-
 STATUS_MSG = {
+    PAL_STATUS.IS_NEW    : "Is new",
     PAL_STATUS.EQUAL_TO  : "Equal to",
     PAL_STATUS.REVERSE_OF: "Reverse of",
 }
@@ -25,6 +25,21 @@ STATUS_TAG = {
     i: m.lower().replace(' ', '-')
     for i, m in STATUS_MSG.items()
 }
+
+
+def equalfloatlist(
+    list_1: list[ [float, float, float] ],
+    list_2: list[ [float, float, float] ]
+) -> bool:
+    if len(list_1) != len(list_2):
+        return False
+
+    for triplet_1, triplet_2 in zip(list_1, list_2):
+        for a, b in zip(triplet_1, triplet_2):
+            if abs(a - b) > TOLERANCE:
+                return False
+
+    return True
 
 
 def update_palettes(
@@ -41,13 +56,13 @@ def update_palettes(
 
     if palettes:
         for n, p in palettes.items():
-            if p == candidate:
+            if equalfloatlist(candidate, p):
                 status   = PAL_STATUS.EQUAL_TO
                 lastname = n
 
                 break
 
-            elif p[::-1] == candidate:
+            elif equalfloatlist(candidate, p[::-1]):
                 status   = PAL_STATUS.REVERSE_OF
                 lastname = n
 

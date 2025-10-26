@@ -44,20 +44,18 @@ PALETTE = {
 % -- PALETTE RENDERING -- %
 % ----------------------- %
 
-\documentclass{article}
+\documentclass{tutodoc}
 
-\usepackage[
+\geometry{
   landscape,
   twocolumn,
   top  = .75cm, bottom = .75cm,
   left = .75cm, right  = .75cm
-]{geometry}
+}
 
 \usepackage[svgnames]{xcolor}
 \usepackage[3d]{luadraw}
 
-\usepackage[most]{tcolorbox}
-\tcbuselibrary{minted, skins, breakable}
 
 \newtcbinputlisting{\showlua}[1]{%
 % Listing options.

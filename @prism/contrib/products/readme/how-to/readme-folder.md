@@ -22,4 +22,4 @@ Here is the purpose of each of these files.
 
   1. `how-to-create.md` gives the process to follow to create new palettes using the specific technology.
 
-  1. `how-to-use.md` explains how to use one of the `at-prism` palettes available when working with the specific technology.
+  1. `how-to-use.md` explains how to use one of the `@prism` palettes available when working with the specific technology.

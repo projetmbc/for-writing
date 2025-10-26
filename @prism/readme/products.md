@@ -8,7 +8,7 @@ The implementations are inside the folder `products`.
 
 ### JSON, the versatile default format
 
-By default, a file `products/palettes.json` is provided to allow unsupported coding languages to easily integrate palettes. Here are the first line of this file.
+By default, a file `palettes.json` is provided to allow unsupported coding languages to easily integrate palettes. Here are the first line of this file.
 
 <!-- JSON PALETTE FIRST LINES. AUTO - START -->
 ~~~json
@@ -30,22 +30,22 @@ By default, a file `products/palettes.json` is provided to allow unsupported cod
     [0.574509, 0.378431, 0.245097],
     [0.4, 0.4, 0.4]
   ],
-  "Afmhot": [
-    [0.0, 0.0, 0.0],
-    [0.141176, 0.0, 0.0],
-    [0.282352, 0.0, 0.0],
-    [0.423529, 0.0, 0.0],
-    [0.572549, 0.072549, 0.0],
-    [0.713725, 0.213725, 0.0],
-    [0.854901, 0.354901, 0.0],
-    [1.0, 0.50392, 0.003921],
-    [1.0, 0.645098, 0.145098],
-    [1.0, 0.786274, 0.286274],
-    [1.0, 0.92745, 0.42745],
-    [1.0, 1.0, 0.57647],
-    [1.0, 1.0, 0.717647],
-    [1.0, 1.0, 0.858823],
-    [1.0, 1.0, 1.0]
+  "Acton": [
+    [0.1494, 0.049588, 0.2492],
+    [0.211157, 0.137645, 0.329252],
+    [0.267471, 0.218184, 0.402887],
+    [0.320544, 0.293914, 0.471806],
+    [0.384817, 0.36079, 0.532262],
+    [0.470163, 0.386092, 0.553794],
+    [0.558642, 0.393025, 0.558478],
+    [0.65637, 0.400265, 0.563305],
+    [0.759601, 0.420022, 0.578967],
+    [0.823456, 0.494153, 0.641178],
+    [0.852947, 0.587004, 0.720314],
+    [0.879746, 0.680664, 0.798213],
+    [0.902848, 0.769828, 0.867187],
+    [0.922771, 0.849827, 0.927307],
+    [0.93986, 0.91915, 0.97935]
   ],
   ...
 }

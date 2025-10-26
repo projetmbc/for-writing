@@ -3,3 +3,4 @@
 from .cleanpal import *
 from .mdutils  import *
 from .normval  import *
+from .report   import *

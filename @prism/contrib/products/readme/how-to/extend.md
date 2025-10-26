@@ -37,7 +37,7 @@ PALETTES_FILE_NAME = "..."
 
 ###
 # prototype::
-#     credits  : the credits to the ''at-prism'' project that should
+#     credits  : the credits to the ''@prism'' project that should
 #                be added as a comment at the beginning of the final
 #                product code.
 #     palettes : the dictionnary of all the palettes.

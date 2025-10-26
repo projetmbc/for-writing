@@ -47,19 +47,11 @@
         \FTdirC(root,changes,changes){
         }
         \FTdirO(root,en,en) {
-          \FTdirC(en,api,api) {
-          }
-          \FTdirC(en,doc,doc) {
-          }
-        }
-        \FTdirC(root,fr,fr){
+          \FTdirC(en,manual,manual)
         }
         \FTdirC(root,status,status){
           \FTdirO(status,en,en) {
-            \FTfile(en,api.yaml)
             \FTfile(en,manual.yaml)
-          }
-          \FTdirC(status,fr,fr){
           }
         }
         \FTfile(root,README.md)
@@ -98,14 +90,14 @@
 
 The translations are roughly organized as in figure \ref{tutodoc-contrib-translate-dir} where just the important folders for the translations have been \tdocquote{opened}\,.%
 \footnote{
-    This was the organization on October 5, 2024.
+    This was the organization on October 26, 2025.
 }
 \textbf{A little further down, the section \ref{tutodoc-contrib-translate} explains how to add new translations}.
 
 
-\subsubsection{The \texttt{fr} and \texttt{en} folders}
+\subsubsection{The \texttt{en} folder}
 
-These two folders, managed by the author of \thisproj, have the same organization; they contain files that are easy to translate even if you're not a coder.
+This folder, managed by the author of \thisproj, contains files easy to translate even if you're not a coder.
 
 
 \subsubsection{The \texttt{changes} folder}
@@ -126,32 +118,13 @@ The \texttt{LICENCE.txt} file is aptly named, while the \texttt{README.md} file 
 \subsubsection{New translations}
 \label{tutodoc-contrib-translate}
 
-\begin{tdocimp}
-    The \verb#api# folder contains translations relating to the functionalities of \thisproj.
-    Here you'll find \verb#TXT# files for editing with a text or code editor, but not with a document processor.
-    The content of these files uses commented lines in English to explain what \thisproj\ will do; these lines begin with \verb#//#\,. Here's an extract from such a file, where translations are made after each \,$=$\ sign, without touching the preceding, as this initial piece is used internally by the \thisproj\ code.
-
-    \tdocsep
-    \vspace{-10pt}
-    \begin{verbatim}
-    // #1: year  in format YYYY like 2023.
-    // #2: month in format MM   like 04.
-    // #3: day   in format DD   like 29.
-    date = #1-#2-#3
-
-    // #1: the idea is to produce one text like
-    //     "this word means #1 in English".
-    in_EN = #1 in english\end{verbatim}
-\end{tdocimp}
-
-
 \begin{tdocnote}
     The \verb#doc# folder is reserved for documentation. It contains \verb#TEX# files that can be compiled directly for real-time validation of translations.
 \end{tdocnote}
 
 
 \begin{tdocwarn}
-    Only start from one of the \verb#fr# and \verb#en# folders, as these are the responsibility of the \thisproj\ author.
+    Only start from the \verb#en# folder, as it's the responsibility of the \thisproj\ author.
 \end{tdocwarn}
 
 
@@ -167,7 +140,7 @@ The \texttt{LICENCE.txt} file is aptly named, while the \texttt{README.md} file 
 \paragraph{Method 1 : use of \git.}
 
 \begin{enumerate}
-      \item Recover the entire project folder via \thisrepo\,.
+      \item Via \thisrepo, recover the entire project folder.
     Do not use the \verb#main# branch, which is used to freeze the latest stable versions of projects in the single \thismonorepo\ repository,.
 
       \item In the \verb#tutodoc/contrib/translate# folder, create an \verb#it# copy of the \verb#en# folder, with the short name of the language documented in

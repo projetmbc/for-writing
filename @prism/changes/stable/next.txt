@@ -17,4 +17,16 @@ Palettes added with the use of \luadraw.
     + ''ShiftRainbow''
 
 
-Showcase: a PDF file presents each palette used with examples.
+Showcase: two PDF files present each palette used with examples (white and dark modes).
+
+
+Palettes: `37` new palettes coming from the ''Scientific colour maps'' project.
+
+
+\luadraw \prod: the ''getPal'' \func has a new optional \arg ''options'' which is a \dict like array. Here are the keys added.
+
+    + The ''extract'' key, with a list of non-zero integers, extracts some colors from the palette without changing their order.
+
+    + The ''reverse'' key, with a boolean value, reverses the order of the palette.
+
+    + The ''shift'' key, with an integer value, is used to shift the colors in the palette in a circular fashion.

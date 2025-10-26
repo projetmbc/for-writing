@@ -2,6 +2,65 @@
 
 
 ==
+26  (1.2.0-beta.5)
+==
+
+--------
+:update:
+--------
+
+[[:api:]]
+\luadraw \prod: the ''getPal'' \func has a new optional \arg ''options'' which is a \dict like array. Here are the keys added.
+
+    + The ''extract'' key, with a list of non-zero integers, extracts some colors from the palette without changing their order.
+
+    + The ''reverse'' key, with a boolean value, reverses the order of the palette.
+
+    + The ''shift'' key, with an integer value, is used to shift the colors in the palette in a circular fashion.
+
+
+// ---------- //
+
+
+==
+26  (1.2.0-beta.4)
+==
+
+-----
+:new:
+-----
+
+[[:api:]]
+Palettes: `37` new palettes coming from the ''Scientific colour maps'' project.
+
+
+// ---------- //
+
+
+==
+25  (1.2.0-beta.3)
+==
+
+-----
+:new:
+-----
+
+[[:doc:]]
+Showcase: dark mode added.
+
+
+-----
+:fix:
+-----
+
+[[:bug:]]
+Palettes: the elimination of equal paletes was inaccurate because the comparison of floating point numbers didn't use the tolerance. Do not laugh too loud!
+
+
+// ---------- //
+
+
+==
 22  (1.2.0-beta.2)
 ==
 
@@ -80,6 +139,7 @@ Showcase: a PDF file presents each palette used with examples.
 :fordev:
 --------
 
+[[:tech:]]
 Use of \tnsdoc to describe the palettes.
 
 

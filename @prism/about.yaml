@@ -2,7 +2,7 @@ project:
   version: "1.1.0"
 
   acronym: >
-    [@]esthetic [P]rinciples for [R]epresenting
+    [@]esthetic [P]roducts for [R]epresenting
     [I]nformative [S]cientific [M]aps
     (the name plays on two ideas.
     (1) A prism is where light is split into an informative
@@ -26,7 +26,7 @@ project:
 
   urls:
     home  : https://github.com/projetmbc/for-writing.git
-    dev   : https://github.com/projetmbc/for-writing.git/tree/main/at-prism
+    dev   : https://github.com/projetmbc/for-writing/tree/aprism/@prism
     issues: https://github.com/projetmbc/for-writing.git/issues
 
   require:

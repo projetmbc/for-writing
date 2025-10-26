@@ -1,4 +1,4 @@
-Add new products to at-prism
+Add new products to @prism
 ==========================
 
 **Table of contents**

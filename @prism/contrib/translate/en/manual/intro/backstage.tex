@@ -7,32 +7,34 @@
 
 \begin{document}
 
-\section{Where do the color palletes come from?}
+\section{Where do the color palettes come from?}
 
-The vast majority of color palettes were obtained from \matplotlib\ color maps by segmenting them into $10$ values.%
+Most of color palettes are obtained from \matplotlib\ and \scicolmap\ color maps by segmenting them into $15$ values.%
 \footnote{
-    \asymptote\ is used in a second step, but to date, \asymptote\ offers nothing more than \matplotlib, despite different implementations.
+    \asymptote\ is also used, but to date, \asymptote\ offers nothing more than \matplotlib, despite different implementations.
 }
-We did not keep all the palletes in accordance with the following rules.
+We don't keep all the palettes in accordance with the following rules.
 %
 \begin{itemize}
-    \item \matplotlib\ offers a reversed version for almost every color map.%
-    \footnote{
-        Perhaps for performance reasons...
-    }
-    \thisproj\ does not make this choice. Specifically, we ignore all color maps ending with \tdoccodein{py}{_r}, this suffix indicating the extra palettes.%
-    \footnote{
-        At least from the point of view of the \thisproj\ author. 
-    }
-
-    \item Some palettes are repeated. In this case, we keep the first one in lexicographical order.%
+    \item \textbf{No repetition.}
+    Some \matplotlib\ palettes are repeated.%
     \footnote{
         Surely for historical reasons.
     }
+    In this case, we keep the first one regarding to the lexicographical order.
+
+
+    \item \textbf{No reversed version.}
+    Contrary to \matplotlib,%
+    \footnote{
+    	Most of the \matplotlib\ color maps have a reversed version named by adding the suffix with \tdoccodein{py}{_r}.
+	    Perhaps this is for performance reasons...
+    }
+    \thisproj\ never offers the reversed version of a palette.
 \end{itemize}
 
 
-In addition to the \matplotlib\ palettes, there are some additional contributions. If you are interested in participating, read the \verb+contrib/products/README.md+ file on the following repository.
+In addition to the \matplotlib\ and \scicolmap\ palettes, there are some \thisproj\ contributions. If you are interested in participating, read the \verb+contrib/products/README.md+ file on the following repository.
 %
 \begin{center}
     \thisrepo

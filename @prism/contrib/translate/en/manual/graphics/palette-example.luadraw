@@ -5,32 +5,36 @@
 \begin{luadraw}{name = discrete-spectrum}
 require 'luadraw_palettes'
 
-local pal = getPal['palGeoRainbow']
+local PAL     = getPal('GeoRainbow')
+local PALSIZE = #PAL
+local PALDIM   = .75
+local PALDELTA = .3
 
 local g = graph:new{
-  window = {-20, 20, -5, 5},
+  window = {-100, 100, -5, 5},
   bbox   = false
 }
 
 g:Linewidth(2)
 
-local A = Z(-20,4)
+local A = Z(-20, 4)
+local v = Z(0, -PALDIM)
 
-local N = #pal
-local h = 1.5
-local v = Z(0, -h)
-
-local delta = .3
-
-for k = 1, N do
-  local color = rgb(pal[k])
+for k = 1, PALSIZE do
+  local color = rgb(PAL[k])
 
   g:Drectangle(
-    A, A + h, A + h + v,
+    A, A + PALDIM, A + PALDIM + v,
     "color = black, fill = " .. color
   )
 
-  A = A + h + delta
+  g:Dlabel(
+    "$" .. k .. "$",
+    A + Z(PALDIM, 1.2*PALDIM) / 2,
+    {pos="S"}
+  )
+
+  A = A + PALDIM + PALDELTA
 end
 
 g:Show()
