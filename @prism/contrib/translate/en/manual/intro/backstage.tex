@@ -9,7 +9,7 @@
 
 \section{Where do the color palettes come from?}
 
-Most of color palettes are obtained from \matplotlib\ and \scicolmap\ color maps by segmenting them into $15$ values.%
+Most of color palettes are obtained from \matplotlib\ and \scicolmap\ by segmenting their color maps into $15$ values.%
 \footnote{
     \asymptote\ is also used, but to date, \asymptote\ offers nothing more than \matplotlib, despite different implementations.
 }
@@ -27,10 +27,10 @@ We don't keep all the palettes in accordance with the following rules.
     \item \textbf{No reversed version.}
     Contrary to \matplotlib,%
     \footnote{
-    	Most of the \matplotlib\ color maps have a reversed version named by adding the suffix with \tdoccodein{py}{_r}.
+    	Most of the \matplotlib\ color maps have a reversed version named by adding the suffix \tdoccodein{py}{_r}.
 	    Perhaps this is for performance reasons...
     }
-    \thisproj\ never offers the reversed version of a palette.
+    \thisproj\ never offers the reversed version of a palette as a fixed data.
 \end{itemize}
 
 
