@@ -8,6 +8,8 @@ sys.path.append(str(Path(__file__).parent.parent))
 from cbutils.core    import *
 from cbutils.mdutils import *
 
+from yaml import dump as yaml_dump
+
 
 # --------------- #
 # -- CONSTANTS -- #
@@ -22,6 +24,10 @@ PROD_README_DIR = MAIN_README_DIR / "products"
 TRANSLATE_DIR     = PROJECT_DIR / "contrib" / "translate"
 EN_MANUAL_DIR     = TRANSLATE_DIR / "en" / "manual" / "products"
 _SUB_EN_MANUAL_DIR = EN_MANUAL_DIR.relative_to(TRANSLATE_DIR)
+
+
+MANUAL_PROD_ABOUT_YAML = EN_MANUAL_DIR / "about.yaml"
+
 
 MD_FILES_TO_CONVERT = [
     MAIN_README_DIR / "products.md"
@@ -66,8 +72,6 @@ logging.info(
     "Updating English doc (product sections)."
 )
 
-
-
 for mdfile in MD_FILES_TO_CONVERT:
 # Let's communicate.
     relpath_md  = mdfile.relative_to(PROJECT_DIR)
@@ -83,12 +87,9 @@ for mdfile in MD_FILES_TO_CONVERT:
     logging.info(
         msg_creation_update(
             context = f"From '{relpath_md}' to '{_relpath_tex}' TeX",
-            upper = False
+            upper   = False
         )
     )
-
-    texfile = EN_MANUAL_DIR / f"{relpath_tex}.tex"
-
 
 # Let's work.
     mdcontent = mdfile.read_text()
@@ -98,4 +99,27 @@ for mdfile in MD_FILES_TO_CONVERT:
     texcode = TMPL_TEX.format(content = texcode)
     texcode = transform_tdoccodein(texcode, MD_PRE_REPLACEMENTS)
 
+    texfile = EN_MANUAL_DIR / f"{relpath_tex}.tex"
     texfile.write_text(texcode)
+
+# about.yaml hard coded.
+logging.info(
+    msg_creation_update(
+        context = f"'{_SUB_EN_MANUAL_DIR}/about.yaml'",
+        upper   = False
+    )
+)
+
+MANUAL_PROD_ABOUT_YAML.touch()
+
+toc = {
+    'toc': [
+        "preamble.tex"
+        if f.stem == "products" else
+        f"{f.stem}.tex"
+        for f in MD_FILES_TO_CONVERT
+    ]
+}
+
+with MANUAL_PROD_ABOUT_YAML.open("w") as f:
+    yaml.dump(toc, f)
