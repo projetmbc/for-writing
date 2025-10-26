@@ -25,7 +25,7 @@ PRODUCTS_DIR = PROJECT_DIR / "products"
 PALETTES_JSON_FILE         = PRODUCTS_DIR / "palettes.json"
 PALETTES_JSON_CREDITS_FILE = PRODUCTS_DIR / "palettes.json.CREDITS.md"
 
-VERSION = "1.0.1"
+VERSION = "1.2.0"
 
 CREDITS = PALETTES_JSON_CREDITS_FILE.read_text().strip()
 

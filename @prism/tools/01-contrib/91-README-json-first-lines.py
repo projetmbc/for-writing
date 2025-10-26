@@ -66,8 +66,9 @@ logging.info(
 extract_pal = {}
 
 for n, p in ALL_PALETTES.items():
-    if len(extract_pal) < 2:
-        extract_pal[n] = p
+    extract_pal[n] = p
+
+    break
 
 indent = 2
 

@@ -69,6 +69,13 @@ TMPL_TEX = r"""
 \end{{document}}
 """.strip() + '\n'
 
+
+MD_PRE_REPLACEMENTS = {
+    'luadraw': '{\\LUADRAW}',
+    '@prism' : '{\\thisproj}',
+}
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
@@ -134,8 +141,6 @@ for mdfile in MD_FILES_TO_CONVERT:
     mdcontent = extract_md(mdfile)
     mdcontent = transform_code_links(mdcontent, ['luadraw'])
 
-    inlinecodes = get_inlinline_codes(mdcontent)
-
     texcode = CONVERTER_MD_2_TEX.markdown_to_latex(mdcontent)
 
     if mdfile.stem != "products":
@@ -146,17 +151,7 @@ for mdfile in MD_FILES_TO_CONVERT:
         """.strip()
 
     texcode = TMPL_TEX.format(content = texcode)
-    texcode = transform_latex_quote(texcode)
-    texcode = nest_code_in_note(texcode)
+    texcode = transform_tdoccodein(texcode, MD_PRE_REPLACEMENTS)
 
-
-    transformations = {
-        'luadraw': lambda x: '{\\LUADRAW}',
-
-    }
-
-    texcode = transform_tdoccodein(texcode, transformations)
-
-    print(inlinecodes)
 
     texfile.write_text(texcode)

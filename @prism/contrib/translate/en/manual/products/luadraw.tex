@@ -9,25 +9,28 @@
 
 \section{luadraw}
 
-\subsection{Description}
+\section{Description}
 
 You can use palettes with {\LUADRAW} which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via \tdoccodein{text}+LuaLaTeX+ and \tdoccodein{text}+TikZ+.
 
 \begin{tdocnote}
-Initially, the \tdoccodein{text}+@prism+ project was created to provide ready-to-use palettes for {\LUADRAW}.
+Initially, the {\thisproj} project was created to provide ready-to-use palettes for {\LUADRAW}.
 \end{tdocnote}
 
-\subsection{Use a luadraw palette}
+\section{Use a luadraw palette}
 
-The palette names all use the prefix \tdoccodein{text}+pal+ followed by the name available in the file \tdoccodein{text}+@prism.json+. You can acces a palette by two ways.
+The palette names all use the prefix \tdoccodein{text}+pal+ followed by the name available in the file {\thisproj}. You can acces a palette by two ways.
 
 \begin{itemize}
-\item \tdoccodein{text}+palGistHeat+ is a palette variable.
-\item \tdoccodein{text}+getPal("GistHeat")+ and \tdoccodein{text}+getPal("palGistHeat")+ are equal to \tdoccodein{text}+palGistHeat+.
+\item
+\tdoccodein{lua}+palGistHeat+ is a palette variable.
+
+\item
+\tdoccodein{lua}+getPal("GistHeat")+ and \tdoccodein{lua}+getPal("palGistHeat")+ are equal to \tdoccodein{lua}+palGistHeat+.
 \end{itemize}
 
 \begin{tdocnote}
-The palette variables are arrays of arrays of three floats. Here is the definition of the palette \tdoccodein{text}+palGistHeat+.
+The palette variables are arrays of arrays of three floats. Here is the definition of the palette \tdoccodein{lua}+palGistHeat+.
 
 \begin{tdoccode}{lua}
 palGistHeat = {
@@ -63,10 +66,18 @@ mypal = getPal(
 )
 \end{tdoccode}
 
-To simplify the explanations, we will refer to the colors in the standard palette \tdoccodein{text}+"GistHeat"+ as \tdoccodein{text}+coul_1+, \tdoccodein{text}+coul_2,+, etc. The options are then processed in the following order.
+To simplify the explanations, we will refer to the colors in the standard palette \tdoccodein{text}+"GistHeat"+ as \tdoccodein{lua}+coul_1+, \tdoccodein{text}+coul_2,+, etc. The options are then processed in the following order.
 
-\item \tdoccodein{text}+{coul_2, coul_5, coul_8, coul_9}+ is the result of the extraction.
-\item \tdoccodein{text}+{coul_5, coul_8, coul_9, coul_2}+ comes from the shifting applied to the extracted palette (colors move to the right if \tdoccodein{text}+shift+ is positive).
-\item \tdoccodein{text}+{coul_2, coul_9, coul_8, coul_5}+ is the reversed version of the previous palette.
+\begin{enumerate}
+\item
+\tdoccodein{text}+{coul_2, coul_5, coul_8, coul_9}+ is the result of the extraction.
+
+\item
+\tdoccodein{text}+{coul_5, coul_8, coul_9, coul_2}+ comes from the shifting applied to the extracted palette (colors move to the right if \tdoccodein{text}+shift+ is positive).
+
+\item
+\tdoccodein{text}+{coul_2, coul_9, coul_8, coul_5}+ is the reversed version of the previous palette.
+
+\end{enumerate}
 
 \end{document}

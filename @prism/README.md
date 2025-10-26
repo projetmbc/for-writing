@@ -16,9 +16,10 @@ The @prism project
 - [Credits](#MULTIMD-TOC-ANCHOR-1)
 - [Supported implementations](#MULTIMD-TOC-ANCHOR-2)
     - [JSON, the versatile default format](#MULTIMD-TOC-ANCHOR-3)
-    - [luadraw palettes](#MULTIMD-TOC-ANCHOR-4)
-        - [Description](#MULTIMD-TOC-ANCHOR-5)
-        - [Use a luadraw palette](#MULTIMD-TOC-ANCHOR-6)
+    - [JSON, the versatile default format](#MULTIMD-TOC-ANCHOR-4)
+    - [luadraw palettes](#MULTIMD-TOC-ANCHOR-5)
+        - [Description](#MULTIMD-TOC-ANCHOR-6)
+        - [Use a luadraw palette](#MULTIMD-TOC-ANCHOR-7)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
 About @prism <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -42,9 +43,12 @@ If you recognize your contribution, please donâ€™t hesitate to get in touch, weâ
 Supported implementations <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 -------------------------
 
+<a id="MULTIMD-TOC-ANCHOR-3"></a>
+### JSON, the versatile default format <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
 The implementations are inside the folder `products`.
 
-<a id="MULTIMD-TOC-ANCHOR-3"></a>
+<a id="MULTIMD-TOC-ANCHOR-4"></a>
 ### JSON, the versatile default format <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 By default, a file `palettes.json` is provided to allow unsupported coding languages to easily integrate palettes. Here are the first line of this file.
@@ -68,37 +72,20 @@ By default, a file `palettes.json` is provided to allow unsupported coding langu
     [0.574509, 0.378431, 0.245097],
     [0.4, 0.4, 0.4]
   ],
-  "Acton": [
-    [0.1494, 0.049588, 0.2492],
-    [0.211157, 0.137645, 0.329252],
-    [0.267471, 0.218184, 0.402887],
-    [0.320544, 0.293914, 0.471806],
-    [0.384817, 0.36079, 0.532262],
-    [0.470163, 0.386092, 0.553794],
-    [0.558642, 0.393025, 0.558478],
-    [0.65637, 0.400265, 0.563305],
-    [0.759601, 0.420022, 0.578967],
-    [0.823456, 0.494153, 0.641178],
-    [0.852947, 0.587004, 0.720314],
-    [0.879746, 0.680664, 0.798213],
-    [0.902848, 0.769828, 0.867187],
-    [0.922771, 0.849827, 0.927307],
-    [0.93986, 0.91915, 0.97935]
-  ],
   ...
 }
 ~~~
-<a id="MULTIMD-TOC-ANCHOR-4"></a>
+<a id="MULTIMD-TOC-ANCHOR-5"></a>
 ### luadraw palettes <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-<a id="MULTIMD-TOC-ANCHOR-5"></a>
+<a id="MULTIMD-TOC-ANCHOR-6"></a>
 #### Description <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 You can use palettes with [`luadraw`](https://github.com/pfradin/luadraw) which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLaTeX` and `TikZ`.
 
 > ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use palettes for `luadraw`.*
 
-<a id="MULTIMD-TOC-ANCHOR-6"></a>
+<a id="MULTIMD-TOC-ANCHOR-7"></a>
 #### Use a luadraw palette <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The palette names all use the prefix `pal` followed by the name available in the file `@prism.json`. You can acces a palette by two ways.

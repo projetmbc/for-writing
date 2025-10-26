@@ -83,30 +83,21 @@ PATTERN_HTML_COMMENTS = re.compile(
 import re
 
 def transform_tdoccodein(text, transformations=None):
-    """
-    Transforme les \tdoccodein{text}+XXX+ selon des règles personnalisées.
+    if transformations is None:
+        return text
 
-    Args:
-        text: Le texte LaTeX à traiter
-        transformations: Dictionnaire {pattern: replacement_function}
-                        Si None, on garde tout tel quel
-
-    Returns:
-        Le texte transformé
-    """
     pattern = r'\\tdoccodein\{text\}\+([^+]+)\+'
 
     def replacer(match):
         content = match.group(1)
 
-        # Si pas de transformations définies, garder tel quel
-        if transformations is None:
-            return match.group(0)
-
         # Vérifier si le contenu correspond à une règle
-        for key, transform_func in transformations.items():
+        for key, transfo in transformations.items():
             if re.match(key, content):
-                return transform_func(content)
+                if isinstance(transfo, str):
+                    return transfo
+
+                return transfo(content)
 
         # Si aucune règle ne correspond, garder tel quel
         return match.group(0)
@@ -387,7 +378,7 @@ class MdToLatexConverter:
 
                 section_commands = ['section', 'subsection', 'subsubsection', 'paragraph', 'subparagraph']
 
-                cmd = section_commands[min(level - 1, len(section_commands) - 1)]
+                cmd = section_commands[min(level - 2, len(section_commands) - 1)]
 
                 latex_lines.append(f'\\{cmd}{{{self.escape_latex(content)}}}\n')
                 # skip heading_close by continuing loop
@@ -413,47 +404,47 @@ class MdToLatexConverter:
 
             # ---- blockquote ----
             elif token.type == 'blockquote_open':
-                i += 1
-
-                quote_content: list[str] = []
-
-                while i < len(tokens) and tokens[i].type != 'blockquote_close':
-                    if tokens[i].type == 'paragraph_open':
-                        i += 1
-                        if i < len(tokens) and tokens[i].children:
-                            quote_content.append(self.process_inline(tokens[i].children))
-                        i += 1  # skip paragraph_close
-
-                    else:
-                        i += 1
-
                 latex_lines.append('\\begin{quote}')
-                latex_lines.append('\n'.join(quote_content))
+
+            elif token.type == 'blockquote_close':
                 latex_lines.append('\\end{quote}')
                 latex_lines.append('')
-                # the outer loop will increment i
+
+            # ---- ordered lists ----
+            elif token.type == 'ordered_list_open':
+                latex_lines.append('\\begin{enumerate}')
+
+            elif token.type == 'ordered_list_close':
+                latex_lines.append('\\end{enumerate}')
+                latex_lines.append('')
 
             # ---- bullet lists ----
             elif token.type == 'bullet_list_open':
                 latex_lines.append('\\begin{itemize}')
 
             elif token.type == 'bullet_list_close':
+                if not latex_lines[-1].strip():
+                    latex_lines.pop(-1)
+
                 latex_lines.append('\\end{itemize}')
                 latex_lines.append('')
 
             elif token.type == 'list_item_open':
-                # gather item content until list_item_close
-                i += 1
-                item_content: list[str] = []
-                while i < len(tokens) and tokens[i].type != 'list_item_close':
-                    if tokens[i].type == 'paragraph_open':
-                        i += 1
-                        if i < len(tokens) and tokens[i].children:
-                            item_content.append(self.process_inline(tokens[i].children))
-                        i += 1  # skip paragraph_close
-                    else:
-                        i += 1
-                latex_lines.append(f'\\item {" ".join(item_content)}')
+                latex_lines.append(r'\item')
+
+            # elif token.type == 'list_item_open':
+            #     # gather item content until list_item_close
+            #     i += 1
+            #     item_content: list[str] = []
+            #     while i < len(tokens) and tokens[i].type != 'list_item_close':
+            #         if tokens[i].type == 'paragraph_open':
+            #             i += 1
+            #             if i < len(tokens) and tokens[i].children:
+            #                 item_content.append(self.process_inline(tokens[i].children))
+            #             i += 1  # skip paragraph_close
+            #         else:
+            #             i += 1
+            #     latex_lines.append(f'\\item {" ".join(item_content)}')
 
             # ---- code fence ----
             elif token.type == 'fence':
@@ -469,8 +460,20 @@ class MdToLatexConverter:
                 latex_lines.append('\\hrule')
                 latex_lines.append('')
 
+            # ---- nothing done ----
+            elif token.type in [
+                'heading_close',
+                'paragraph_close',
+                'html_block',
+                'list_item_close',
+                'ordered_list_close',
+            ]:
+                ...
+
             # ---- default for other tokens (debug) ----
-            # else:
+            else:
+                print(token.type)
+                exit()
             #     logging.debug("Token non spécifique rencontré: %s", token.type)
 
             i += 1
@@ -497,5 +500,18 @@ class MdToLatexConverter:
         tokens = md.parse(preprocessed)
 
         texcode = self.convert_tokens_to_latex(tokens)
+
+        texcode = transform_latex_quote(texcode)
+        texcode = nest_code_in_note(texcode)
+
+
+        inlinecodes = get_inlinline_codes(mdcode)
+
+        for lang, texts in inlinecodes.items():
+            for t in texts:
+                texcode = texcode.replace(
+                    rf"\tdoccodein{{text}}+{t}+",
+                    rf"\tdoccodein{{{lang}}}+{t}+"
+                )
 
         return texcode
