@@ -5,15 +5,6 @@ at-prism - TODO
 
 // ---------- //
 
-doc auto add ?????
-
-    ---> md vers latex pour les produits (desc + how-to) avec ajout aussi de json comme cas de base, le reste est orodnné lexico
-
-    ---> dans md, commentaire magique pour indiquer les code en ligne acec le langage à utiliser
-
-
-// ---------- //
-
 -----
 :new:
 -----
