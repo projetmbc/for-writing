@@ -1,34 +1,39 @@
 -------
 :break:
 -------
+Here are the breaking \chges.
 
-Palettes: all final palettes are made up of 15 colors.
+    1) Palettes: all final palettes now consist of 15 colors.
 
-\luadraw \prod: the lua::''getPal'' \dict array is now a \func that accepts string palette names with or without the lua::''pal'' prefix.
+    1) \luadraw \prod: the lua::''getPal'' \dict array converted to \func accepting string palette names (with or without lua::''pal'' prefix).
+
 
 
 -----
 :new:
 -----
 
-Palettes added with the use of \luadraw.
+[[:api:]]
+Here are the new features.
 
-    + ''Lemon''
-    + ''ShiftRainbow''
+    1) Palettes.
+
+        + Added  ''Lemon'' and ''ShiftRainbow'' palettes (\luadraw creation process).
+
+        + Added 37 palettes from ''Scientific Colour Maps'' project
+
+    1)  \luadraw \prod: the lua::''getPal'' \func has a new optional \arg lua::''options'' (dict-like array).
+
+        + lua::''extract'' key to give a list of non-zero integers to extract specific colors (preserves order).
+
+        + lua::''reverse'' key to give a boolean to reverse palette color order, or not (lua::''false'' by defaul)
+
+        + lua::''shift'' key to vive an integer for circular color shift.
 
 
-PDF manual
+[[:doc:]]
+Manual.
 
-Showcase: two PDF files present each palette used with examples (white and dark modes).
+    + Added \pdf manual.
 
-
-Palettes: `37` new palettes coming from the ''Scientific colour maps'' project.
-
-
-\luadraw \prod: the ''getPal'' \func has a new optional \arg ''options'' which is a \dict like array. Here are the keys added.
-
-    + The ''extract'' key, with a list of non-zero integers, extracts some colors from the palette without changing their order.
-
-    + The ''reverse'' key, with a boolean value, reverses the order of the palette.
-
-    + The ''shift'' key, with an integer value, is used to shift the colors in the palette in a circular fashion.
+    + Showcase: two \pdf files demonstrating each palette (white and dark modes).
