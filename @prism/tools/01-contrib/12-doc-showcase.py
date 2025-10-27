@@ -17,7 +17,7 @@ from json import load as json_load
 THIS_DIR     = Path(__file__).parent
 PROJECT_DIR  = THIS_DIR.parent.parent
 PRODUCTS_DIR = PROJECT_DIR / "products"
-PREDOC_DIR   = PROJECT_DIR / "showcase"
+PREDOC_DIR   = PROJECT_DIR / "pre-doc" / "showcase"
 SHOWCASE_DIR = PREDOC_DIR / "single"
 
 PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
