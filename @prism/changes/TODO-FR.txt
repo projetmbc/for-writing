@@ -24,6 +24,13 @@ at-prism - TODO
 
 // ---------- //
 
+ajout de contri ccs qui est hyper intuitive
+
+    --> on ajoute celel obtenu via Claude au passage
+
+
+// ---------- //
+
 version pour matplotlib : après on en fait la pub
 
 

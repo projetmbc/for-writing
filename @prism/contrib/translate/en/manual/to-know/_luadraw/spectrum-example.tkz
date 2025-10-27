@@ -1,0 +1,12 @@
+\begin{tikzpicture}[line join=round]%
+\begin{scope}%
+\pgfsetlinewidth{0.2pt}%
+\draw[color = black, fill = {rgb,1:red,0.4459;green,0.7602;blue,0.302}] (80,9) -- (80.75,9) -- (80.75,8.25) -- (80,8.25)--cycle;%
+\draw[-] (80.375,9.45) node[below] {$1$};%
+\draw[color = black, fill = {rgb,1:red,0.8039;green,0.3608;blue,0.3608}] (81.05,9) -- (81.8,9) -- (81.8,8.25) -- (81.05,8.25)--cycle;%
+\draw[-] (81.425,9.45) node[below] {$2$};%
+\draw[color = black, fill = {rgb,1:red,0.4454;green,0.7776;blue,0.8269}] (82.1,9) -- (82.85,9) -- (82.85,8.25) -- (82.1,8.25)--cycle;%
+\draw[-] (82.475,9.45) node[below] {$3$};%
+\pgfsetlinewidth{0.4pt}%
+\end{scope}%
+\end{tikzpicture}%

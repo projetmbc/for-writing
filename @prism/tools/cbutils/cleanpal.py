@@ -27,6 +27,9 @@ STATUS_TAG = {
 }
 
 
+TAG_CTXT = 'context'
+
+
 def equalfloatlist(
     list_1: list[ [float, float, float] ],
     list_2: list[ [float, float, float] ]
@@ -43,6 +46,7 @@ def equalfloatlist(
 
 
 def update_palettes(
+    context  : str,
     name     : str,
     candidate: list[ [float, float, float] ],
     palettes : dict[ str, list[ [float, float, float] ] ],
@@ -75,7 +79,10 @@ def update_palettes(
             logcom.info(f"'{name}' added.")
 
         case _:
-            ignored[STATUS_TAG[status]][lastname].append(name)
+            ignored[name] = {
+                STATUS_TAG[status]: lastname,
+                TAG_CTXT          : context
+            }
 
             logcom.warning(
                 f"'{name}' ignored - {STATUS_MSG[status]} '{lastname}'."

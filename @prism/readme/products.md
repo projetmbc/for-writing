@@ -6,7 +6,7 @@ The implementations are inside the folder `products`.
 
 ### JSON, the versatile default format
 
-By default, a file `palettes.json` is provided to allow unsupported coding languages to easily integrate palettes. Here are the first line of this file.
+By default, a file `palettes.json` is provided to allow unsupported coding languages to also integrate `@prism` palettes. Here are the first line of this file.
 
 <!-- JSON PALETTE FIRST LINES. AUTO - START -->
 ~~~json

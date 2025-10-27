@@ -217,8 +217,8 @@ function getPal(name, options)
         local shift = options.shift % pal_size
 
         for i = 1, pal_size do
-            local new_i = ((i + shift - 1) % pal_size) + 1
-            shifted[i]  = result[new_i]
+            local new_i    = ((i - 1 + shift) % pal_size) + 1
+            shifted[new_i] = result[i]
         end
 
         result = shifted

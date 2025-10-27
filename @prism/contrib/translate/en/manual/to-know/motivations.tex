@@ -1,0 +1,52 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+
+\begin{document}
+
+\section{Motivations}
+
+Originally, this project was born out of a desire to enhance \LUADRAW\ with a set of color palettes to easily produce something like the following 3D plot.
+%
+\begin{center}
+  \input{../graphics/surface.luadraw}
+\end{center}
+
+Technically, a finite list of colors is provided to \LUADRAW\, which then uses linear interpolation to calculate the intermediate colors. In the previous case, the finite color palette used is defined as follows.
+%
+\begin{center}
+  \input{../graphics/palette-example.luadraw}
+\end{center}
+
+Using this palette, \LUADRAW\ is able to produce the following spectrum, allowing us to create the graph above.
+%
+\begin{center}
+  \input{../graphics/spectrum-example.luadraw}
+\end{center}
+
+
+\begin{tdocnote}
+  Using the \LUADRAW\ implementation of \thisproj, see the section \ref{products-luadraw}, we can display the palettes below made from the previous one named \tdoccodein{lua}{'GeoRainbow'}. Each \LUADRAW\ instruction used is given below each palette.
+  
+  \centering
+  
+  \smallskip
+  \input{../graphics/spectrum-reversed.luadraw}
+
+  \tdoccodein{lua}{getPal('GeoRainbow', {reverse = true})}
+
+  \smallskip
+  \input{../graphics/spectrum-shift.luadraw}
+
+  \tdoccodein{lua}{getPal('GeoRainbow', {shift = 6})}
+
+  \smallskip
+  \input{../graphics/spectrum-extract.luadraw}
+
+  \tdoccodein{lua}{getPal('GeoRainbow', {extract = {7, 15, 4}})}
+\end{tdocnote}
+
+\end{document}

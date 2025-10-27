@@ -17,6 +17,8 @@ Palettes added with the use of \luadraw.
     + ''ShiftRainbow''
 
 
+PDF manual
+
 Showcase: two PDF files present each palette used with examples (white and dark modes).
 
 

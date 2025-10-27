@@ -25,6 +25,8 @@ import numpy as np
 # -- CONSTANTS -- #
 # --------------- #
 
+CTXT = "Scientific Colour Maps"
+
 THIS_DIR          = Path(__file__).parent
 PROJECT_DIR       = THIS_DIR.parent.parent
 PRODUCTS_DIR      = PROJECT_DIR / "products"
@@ -84,20 +86,19 @@ logging.info("Work with the 'Scientific Coulour Maps 8' source code.")
 
 nb_scicolmaps = len(ALL_PALETTES)
 
-for pyfile in SCICOLMAP_SRC_DIR.glob("*/*.py"):
+for pyfile in sorted(SCICOLMAP_SRC_DIR.glob("*/*.py")):
     palette_name = pyfile.stem
     palette_name = stdname(palette_name)
     palette_def  = exract_palette(pyfile)
 
-    if palette_name in ALL_MP_NAMES:
-        continue
 
     ALL_PALETTES, IGNORED = update_palettes(
-        palette_name,
-        palette_def,
-        ALL_PALETTES,
-        IGNORED,
-        logging
+        context   = CTXT,
+        name      = palette_name,
+        candidate = palette_def,
+        palettes  = ALL_PALETTES,
+        ignored   = IGNORED,
+        logcom    = logging
     )
 
 

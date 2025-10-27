@@ -18,6 +18,8 @@ from json import (
 # -- CONSTANTS -- #
 # --------------- #
 
+CTXT = "@prism"
+
 THIS_DIR     = Path(__file__).parent
 PROJECT_DIR  = THIS_DIR.parent.parent
 PRODUCTS_DIR = PROJECT_DIR / "products"
@@ -51,7 +53,7 @@ if not contribs_accepted:
 
 nb_contribs = len(ALL_PALETTES)
 
-for folder, contribs in contribs_accepted.items():
+for folder, contribs in sorted(contribs_accepted.items()):
     ctxt = folder.parent.name
 
     logging.info(f"Work on '{ctxt}'.")
@@ -61,7 +63,7 @@ for folder, contribs in contribs_accepted.items():
         file_path   = folder.parent / "extend.py"
     )
 
-    for one_contrib in contribs:
+    for one_contrib in sorted(contribs):
         contrib_file = folder / one_contrib
 
         palette_name = Path(Path(one_contrib).stem).stem
@@ -88,14 +90,14 @@ for folder, contribs in contribs_accepted.items():
                 exception = ValueError,
             )
 
-        ALL_PALETTES, IGNORED = update_palettes(
-            palette_name,
-            palette_def,
-            ALL_PALETTES,
-            IGNORED,
-            logging
+        ALL_PALETTES, IGNORED =  update_palettes(
+            context   = CTXT,
+            name      = palette_name,
+            candidate = palette_def,
+            palettes  = ALL_PALETTES,
+            ignored   = IGNORED,
+            logcom    = logging
         )
-
 
 nb_contribs = len(ALL_PALETTES) - nb_contribs
 

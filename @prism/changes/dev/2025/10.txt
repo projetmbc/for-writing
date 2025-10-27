@@ -2,6 +2,21 @@
 
 
 ==
+27  (1.2.0-beta.6)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+\Pdf \doc: every parts have been written (it remains to build the single \pdf file).
+
+
+// ---------- //
+
+
+==
 26  (1.2.0-beta.5)
 ==
 

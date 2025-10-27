@@ -8,9 +8,8 @@ sys.path.append(str(Path(__file__).parent.parent))
 from cbutils.core import *
 from cbutils      import *
 
-from shutil      import rmtree
-from collections import defaultdict
-from json        import dumps as json_dumps
+from shutil import rmtree
+from json   import dumps as json_dumps
 
 from matplotlib import colormaps
 
@@ -18,6 +17,8 @@ from matplotlib import colormaps
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
+
+CTXT = "Matplotlib"
 
 THIS_DIR     = Path(__file__).parent
 PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
@@ -55,19 +56,21 @@ logging.info("Work on the 'Matplotlib' color maps.")
 
 allnames = sorted(colormaps, key = lambda x: x.lower())
 
-palettes = {}
-ignored  = {
-    STATUS_TAG[PAL_STATUS.EQUAL_TO]  : defaultdict(list),
-    STATUS_TAG[PAL_STATUS.REVERSE_OF]: defaultdict(list),
-}
+palettes = dict()
+ignored  = dict()
 
 scale_factor = SAMPLING_SIZE - 1
 
+reverse_status = STATUS_TAG[PAL_STATUS.REVERSE_OF]
+
 for cmap_name in allnames:
     if cmap_name[-2:] == "_r":
-        logging.warning(
-            f"'{stdname(cmap_name)}' ignored."
-        )
+        ignored[stdname(cmap_name)] = {
+            reverse_status: stdname(cmap_name[:-2]),
+            TAG_CTXT      : CTXT
+        }
+
+        logging.warning(f"'{cmap_name}' ignored.")
 
         continue
 
@@ -83,11 +86,12 @@ for cmap_name in allnames:
     ])
 
     palettes, ignored = update_palettes(
-        cmap_name,
-        candidate,
-        palettes,
-        ignored,
-        logging
+        context   = CTXT,
+        name      = cmap_name,
+        candidate = candidate,
+        palettes  = palettes,
+        ignored   = ignored,
+        logcom    = logging
     )
 
 

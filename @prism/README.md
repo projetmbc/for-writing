@@ -47,7 +47,7 @@ The implementations are inside the folder `products`.
 <a id="MULTIMD-TOC-ANCHOR-3"></a>
 ### JSON, the versatile default format <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-By default, a file `palettes.json` is provided to allow unsupported coding languages to easily integrate palettes. Here are the first line of this file.
+By default, a file `palettes.json` is provided to allow unsupported coding languages to also integrate `@prism` palettes. Here are the first line of this file.
 
 ~~~json
 {
@@ -77,19 +77,19 @@ By default, a file `palettes.json` is provided to allow unsupported coding langu
 <a id="MULTIMD-TOC-ANCHOR-5"></a>
 #### Description <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-You can use palettes with [`luadraw`](https://github.com/pfradin/luadraw) which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLaTeX` and `TikZ`.
+You can use `@prism` palettes with [`luadraw`](https://github.com/pfradin/luadraw) which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLaTeX` and `TikZ`.
 
 > ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use palettes for `luadraw`.*
 
 <a id="MULTIMD-TOC-ANCHOR-6"></a>
 #### Use a luadraw palette <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-The palette names all use the prefix `pal` followed by the name available in the file `@prism.json`. You can acces a palette by two ways.
+The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
 
-- `palGistHeat` is a palette variable.
-- `getPal("GistHeat")` and `getPal("palGistHeat")` are equal to `palGistHeat`.
+- `palGistHeat` is a `Lua` variable.
+- `getPal('GistHeat')` and `getPal('palGistHeat')` are equal to `palGistHeat`.
 
-> ***NOTE.*** *The palette variables are arrays of arrays of three floats. Here is the definition of the palette `palGistHeat`.*
+> ***NOTE.*** *The `Lua` palette variables are arrays of arrays of three floats. Here is the definition of `palGistHeat`.*
 
 ~~~lua
 palGistHeat = {
@@ -115,18 +115,18 @@ There are also some options. To explain how this works, let's consider the follo
 
 ~~~lua
 mypal = getPal(
-    "GistHeat",
+    'GistHeat',
     {
         extract = {2, 5, 8, 9},
-        shift   = 3,
+        shift   = 1,
         reverse = true
     }
 )
 ~~~
 
 To simplify the explanations, we will refer to the colors
-in the standard palette `"GistHeat"` as `coul_1`, `coul_2,`, etc. The options are then processed in the following order.
+in the standard palette `'GistHeat'` as `coul_1`, `coul_2,`, etc. The options are then processed in the following order.
 
 1. `{coul_2, coul_5, coul_8, coul_9}` is the result of the extraction.
-2. `{coul_5, coul_8, coul_9, coul_2}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).
-3. `{coul_2, coul_9, coul_8, coul_5}` is the reversed version of the previous palette.
+2. `{coul_9, coul_2, coul_5, coul_8}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).
+3. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted palette.

@@ -5,8 +5,9 @@
 \begin{luadraw}{name = discrete-spectrum}
 require 'luadraw_palettes'
 
-local PAL     = getPal('GeoRainbow')
-local PALSIZE = #PAL
+local PAL = getPal('GeoRainbow')
+
+local PALSIZE  = #PAL
 local PALDIM   = .75
 local PALDELTA = .3
 
