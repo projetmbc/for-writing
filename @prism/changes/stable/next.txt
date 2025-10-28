@@ -3,7 +3,7 @@
 -------
 Here are the breaking \chges.
 
-    1) Palettes: all final palettes now consist of 15 colors.
+    1) Palettes: all final palettes now consist of 10 colors.
 
     1) \luadraw \prod: the lua::''getPal'' \dict array converted to \func accepting string palette names (with or without lua::''pal'' prefix).
 

@@ -32,7 +32,7 @@ function nocompile {
 # -- COMPILE TEX FILES -- #
 # ----------------------- #
 
-readonly TEX_FOLDERS=("contrib" "showcase" "products")
+readonly TEX_FOLDERS=("contrib" "pre-doc/showcase" "products")
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly PROJECT_ROOT="$SCRIPT_DIR/.."
 

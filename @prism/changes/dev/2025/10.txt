@@ -2,6 +2,29 @@
 
 
 ==
+28  (1.2.0-beta.7)
+==
+
+-------
+:break:
+-------
+
+[[:api:]]
+Palettes: all final palettes are made up of 10 colors (for CSS or charts with manual colors, 10 is a good fit).
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+\Tex files: the \val of the palette size is automatically updated regarding to the value inside the \python file path::''cleanpal''.
+
+
+// ---------- //
+
+
+==
 27  (1.2.0-beta.6)
 ==
 

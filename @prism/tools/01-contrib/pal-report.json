@@ -83,13 +83,17 @@
     "context": "Matplotlib",
     "reverse-of": "GistEarth"
   },
+  "GistGray": {
+    "context": "Matplotlib",
+    "reverse-of": "Binary"
+  },
   "GistGrayR": {
     "context": "Matplotlib",
     "reverse-of": "GistGray"
   },
   "GistGrey": {
     "context": "Matplotlib",
-    "equal-to": "GistGray"
+    "reverse-of": "Binary"
   },
   "GistGreyR": {
     "context": "Matplotlib",
@@ -141,7 +145,7 @@
   },
   "Gray": {
     "context": "Matplotlib",
-    "equal-to": "GistGray"
+    "reverse-of": "Binary"
   },
   "GrayR": {
     "context": "Matplotlib",
@@ -157,15 +161,11 @@
   },
   "Grey": {
     "context": "Matplotlib",
-    "equal-to": "GistGray"
+    "reverse-of": "Binary"
   },
   "GreyR": {
     "context": "Matplotlib",
     "reverse-of": "Grey"
-  },
-  "Greys": {
-    "context": "Matplotlib",
-    "equal-to": "Grays"
   },
   "GreysR": {
     "context": "Matplotlib",

@@ -6,6 +6,7 @@ import              sys
 sys.path.append(str(Path(__file__).parent.parent))
 
 from cbutils.core import *
+from cbutils.cleanpal import PALSIZE
 
 from json import load as json_load
 
@@ -127,6 +128,12 @@ TEX_EXT_N_FRIENDS = [
 ]
 
 
+PATTERN_UPDATE_PALSIZE = re.compile(
+    r'^\s*PALSIZE\s*=\s*\d+\s*$',
+    flags = re.MULTILINE
+)
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
@@ -152,6 +159,22 @@ for tex_file in sorted([f for f in SHOWCASE_DIR.glob("main-*.tex")]):
             remove_me = tex_file.parent / f"{build_name(palname)}.{ext}"
 
             remove_me.unlink(missing_ok = True)
+
+
+# ------------------------------ #
+# -- SINGLE PALETTE SHOWCASES -- #
+# ------------------------------ #
+
+logging.info("Update the template files (sie of palettes).")
+
+texpalsize = f"\n  PALSIZE = {PALSIZE}\n"
+
+for tmp_file in TMPL_TEX_FILES.values():
+    texcode = tmp_file.read_text()
+
+    texcode = PATTERN_UPDATE_PALSIZE.sub(texpalsize, texcode)
+
+    tmp_file.write_text(texcode)
 
 
 # ------------------------------ #

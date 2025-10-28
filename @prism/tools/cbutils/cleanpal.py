@@ -6,9 +6,9 @@ import numpy as np
 
 from .normval import stdfloat
 
-SAMPLING_SIZE = 15
-PRECISION     = 10**6
-TOLERANCE     = 10**(-6)
+PALSIZE   = 10  # <--- CSS and manual uses.
+PRECISION = 10**6
+TOLERANCE = 10**(-6)
 
 class PAL_STATUS(Enum):
     IS_NEW     = 1
@@ -100,7 +100,7 @@ def norm_palette(
     pal_array = np.array(palette)
 
     linspace_pal    = np.linspace(0, 1, size)
-    linspace_target = np.linspace(0, 1, SAMPLING_SIZE)
+    linspace_target = np.linspace(0, 1, PALSIZE)
 
     r_vals = pal_array[:, 0]
     g_vals = pal_array[:, 1]

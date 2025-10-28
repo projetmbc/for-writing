@@ -59,7 +59,7 @@ allnames = sorted(colormaps, key = lambda x: x.lower())
 palettes = dict()
 ignored  = dict()
 
-scale_factor = SAMPLING_SIZE - 1
+scale_factor = PALSIZE - 1
 
 reverse_status = STATUS_TAG[PAL_STATUS.REVERSE_OF]
 
@@ -82,7 +82,7 @@ for cmap_name in allnames:
             stdfloat(x, PRECISION)
             for x in cmap(i / scale_factor)[:-1]  # No alpha chanel.
         ]
-        for i in range(SAMPLING_SIZE)
+        for i in range(PALSIZE)
     ])
 
     palettes, ignored = update_palettes(

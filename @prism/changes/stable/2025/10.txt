@@ -10,7 +10,7 @@
 -------
 
 [[:api:]]
-Palette: duplicate palettes, or those that are reverse of others, are ignored.
+Palette: duplicate palettes, or those that are reverse of others, are ignored (strict equalities only).
 
 
 -----

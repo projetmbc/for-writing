@@ -32,14 +32,14 @@
 % -- COMMON LUA CODE USED -- %
 % -------------------------- %
 
-\directlua{dofile('../../products/luadraw/palettes.lua')}
+\directlua{dofile('../../../products/luadraw/palettes.lua')}
 
 
 \directlua{
   PALNAME = "\PALETTE"
   PALETTE = getPal(PALNAME)
-  
-  PALSIZE = 15
+
+  PALSIZE = 10
 
   PALDIM   = 1
   PALDELTA = .3
@@ -80,13 +80,13 @@ for k = 1, PALSIZE do
     A, A + PALDIM, A + PALDIM + v,
     "color = black, fill = " .. color
   )
-  
+
   g:Dlabel(
     "\\Large$" .. k .. "$",
-    A + Z(PALDIM, 1.15*PALDIM) / 2, 
+    A + Z(PALDIM, 1.15*PALDIM) / 2,
     {pos="S"}
   )
-  
+
   A = A + PALDIM + PALDELTA
 end
 
