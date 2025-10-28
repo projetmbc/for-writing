@@ -1,12 +1,13 @@
 \begin{tikzpicture}[line join=round]%
 \begin{scope}%
 \pgfsetlinewidth{0.2pt}%
-\pgfsetfillcolor{lightgray}%
+\pgfsetlinewidth{0.7pt}%
+\pgfsetfillcolor{lightgray!20!black}%
 \fill[] (7.0793,6.9839) -- (17.1429,4.1991) -- (12.9207,2.5397) -- (2.8571,5.3245)--cycle;%
 \fill[] (7.0793,15.2381) -- (17.1429,12.4533) -- (17.1429,4.1991) -- (7.0793,6.9839)--cycle;%
 \fill[] (7.0793,15.2381) -- (7.0793,6.9839) -- (2.8571,5.3245) -- (2.8571,13.5787)--cycle;%
 \pgfsetfillcolor{black}%
-\pgfsetstrokecolor{gray}%
+\pgfsetstrokecolor{lightgray!95}%
 \pgfsetdash{}{0pt}%
 \pgfsetlinewidth{0.1pt}%
 \draw[] (17.1429,4.1991) -- (17.1429,12.4533);%
@@ -68,7 +69,7 @@
 \draw[] (3.8635,5.046) -- (8.0857,6.7054);%
 \draw[] (2.8571,5.3245) -- (7.0793,6.9839);%
 \pgfsetstrokecolor{black}%
-\pgfsetlinewidth{0.2pt}%
+\pgfsetlinewidth{0.7pt}%
 \draw[] (12.9207,2.5397) -- (17.1429,4.1991);%
 \draw[] (12.9207,2.5397) -- (13.0171,2.513);%
 \draw[] (13.7651,2.8716) -- (13.8615,2.8449);%
@@ -2670,7 +2671,7 @@
 \pgfsetfillcolor{rgb,1:red,0.9448;green,0;blue,0}%
 \draw[fill] (13.0663,2.6616) -- (12.7193,2.8593) -- (12.5737,2.7464) -- (12.9207,2.5397)--cycle;%
 \pgfsetfillcolor{black}%
-\pgfsetlinewidth{0.2pt}%
+\pgfsetlinewidth{0.7pt}%
 \fill[opacity=1,ball color={rgb,1:red,1;green,0;blue,0}] (17.1429,4.9495) circle [radius=0.075cm];%
 \fill[opacity=1,ball color={rgb,1:red,1;green,0.1098;blue,0}] (17.1429,5.6998) circle [radius=0.075cm];%
 \fill[opacity=1,ball color={rgb,1:red,1;green,0.2196;blue,0}] (17.1429,6.4502) circle [radius=0.075cm];%

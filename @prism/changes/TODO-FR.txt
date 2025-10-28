@@ -3,6 +3,33 @@ at-prism - TODO
 ========
 
 
+
+
+// ---------- //
+
+plattes elimine à la main vai une catégo ete snuite on documente cela de façon automatisé
+
+   --> impossible à distinguer par un oeil non averti (cf GistGreey et Binary inversé)
+
+   --> autres ???
+
+
+// ---------- //
+
+
+json des noms scicolmap car fait pour deficient visuel il me semble
+
++
+
+catégorization des couleurs dans le show case + en parler dans la doc
+
+   --> nuance de grise
+
+   --> couleur forte variation (bien pour courbes colorés à l main)
+
+   --> ...
+
+
 // ---------- //
 
 -----

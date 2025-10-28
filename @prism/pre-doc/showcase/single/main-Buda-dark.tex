@@ -2,7 +2,9 @@
 
 \documentclass[theme = dark]{tutodoc}
 
+%\newcommand{\PALETTE}{Buda}
 \newcommand{\PALETTE}{Buda}
+
 
 \geometry{
   top    = 1cm,
@@ -45,6 +47,9 @@
   PALDELTA = .3
 
   xmin, xmax = -100, 100
+  
+  COL_1 = "lightgray!95"
+  COL_2 = "lightgray!20!black"
 }
 
 
@@ -68,7 +73,7 @@ local g = graph:new{
   bbox   = false
 }
 
-g:Linewidth(2)
+g:Linewidth(10)
 
 local A = Z(-20, 4)
 local v = Z(0, -PALDIM)
@@ -78,7 +83,7 @@ for k = 1, PALSIZE do
 
   g:Drectangle(
     A, A + PALDIM, A + PALDIM + v,
-    "color = black, fill = " .. color
+    "color = " .. COL_1 .. ", fill = " .. color
   )
 
   g:Dlabel(
@@ -108,7 +113,7 @@ local g = graph:new{
   bbox   = false
 }
 
-g:Linewidth(2)
+g:Linewidth(10)
 
 local A  = Z(-5, 4)
 local h  = Z(0, -1.5)
@@ -130,7 +135,10 @@ for k = 1, N do
   A = A + dl
 end
 
-g:Drectangle(A, A + h, A + h - L)
+g:Drectangle(
+  A, A + h, A + h - L,
+  "color = " .. COL_1
+)
 
 g:Show()
 \end{luadraw}
@@ -193,9 +201,15 @@ local Lz = range(1, 10)
 
 local colors = getpalette(PALETTE, 10)
 
+g:Linewidth(3)
+
 g:Dgradbox(
   {0, 5 + 10*i, 1, 1},
-  {grid = true}
+  {
+    grid         = true,
+    gridcolor    = COL_1,
+    subgridcolor = COL_2
+  }
 )
 
 g:Linewidth(20)
@@ -289,10 +303,12 @@ insert(
   }
 )
 
+g:Linewidth(7)
+
 g:Dboxaxes3d({
   grid      = true,
-  gridcolor = "gray",
-  fillcolor = "lightgray"
+  gridcolor = COL_1,
+  fillcolor = COL_2
 })
 
 g:Dmixfacet(table.unpack(niv))

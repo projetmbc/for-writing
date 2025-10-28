@@ -1,7 +1,7 @@
 \begin{tikzpicture}[line join=round]%
 \begin{scope}%
 \pgfsetlinewidth{0.2pt}%
-\pgfsetfillcolor{lightgray}%
+\pgfsetfillcolor{lightgray!75}%
 \fill[] (7.0793,6.9839) -- (17.1429,4.1991) -- (12.9207,2.5397) -- (2.8571,5.3245)--cycle;%
 \fill[] (7.0793,15.2381) -- (17.1429,12.4533) -- (17.1429,4.1991) -- (7.0793,6.9839)--cycle;%
 \fill[] (7.0793,15.2381) -- (7.0793,6.9839) -- (2.8571,5.3245) -- (2.8571,13.5787)--cycle;%

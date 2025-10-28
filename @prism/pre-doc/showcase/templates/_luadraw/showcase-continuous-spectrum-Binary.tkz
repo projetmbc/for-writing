@@ -1,6 +1,6 @@
 \begin{tikzpicture}[line join=round]%
 \begin{scope}%
-\pgfsetlinewidth{0.2pt}%
+\pgfsetlinewidth{1.0pt}%
 \draw[color = {rgb,1:red,1;green,1;blue,1}, fill = {rgb,1:red,1;green,1;blue,1}] (95,9) -- (95,7.5) -- (95.127,7.5) -- (95.127,9)--cycle;%
 \draw[color = {rgb,1:red,0.99;green,0.99;blue,0.99}, fill = {rgb,1:red,0.99;green,0.99;blue,0.99}] (95.127,9) -- (95.127,7.5) -- (95.254,7.5) -- (95.254,9)--cycle;%
 \draw[color = {rgb,1:red,0.98;green,0.98;blue,0.98}, fill = {rgb,1:red,0.98;green,0.98;blue,0.98}] (95.254,9) -- (95.254,7.5) -- (95.381,7.5) -- (95.381,9)--cycle;%
@@ -101,7 +101,7 @@
 \draw[color = {rgb,1:red,0.02;green,0.02;blue,0.02}, fill = {rgb,1:red,0.02;green,0.02;blue,0.02}] (107.319,9) -- (107.319,7.5) -- (107.446,7.5) -- (107.446,9)--cycle;%
 \draw[color = {rgb,1:red,0.01;green,0.01;blue,0.01}, fill = {rgb,1:red,0.01;green,0.01;blue,0.01}] (107.446,9) -- (107.446,7.5) -- (107.573,7.5) -- (107.573,9)--cycle;%
 \draw[color = {rgb,1:red,0;green,0;blue,0}, fill = {rgb,1:red,0;green,0;blue,0}] (107.573,9) -- (107.573,7.5) -- (107.7,7.5) -- (107.7,9)--cycle;%
-\draw[] (107.7,9) -- (107.7,7.5) -- (95,7.5) -- (95,9)--cycle;%
+\draw[color = black!80] (107.7,9) -- (107.7,7.5) -- (95,7.5) -- (95,9)--cycle;%
 \pgfsetlinewidth{0.4pt}%
 \end{scope}%
 \end{tikzpicture}%
