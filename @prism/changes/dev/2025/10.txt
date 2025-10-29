@@ -2,7 +2,7 @@
 
 
 ==
-29  (1.2.0-beta.8)
+29  (1.2.0)
 ==
 
 -----
@@ -17,7 +17,7 @@
     1) A status \yaml file added for implementations.
 
 [[:doc:]]
-\Pdf manual: it is almost ready. Only automatic changelog generation is missing.
+\Pdf manual added.
 
 
 --------

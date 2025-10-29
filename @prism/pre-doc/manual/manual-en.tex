@@ -12,7 +12,35 @@
 
 \begin{document}
 
-\subimport{../../contrib/translate/en/manual/abstract/}{abstract.tex}
+\title{\thisproj{} project}
+\author{Christophe BAL}
+\date{11 Oct 2025 - Version 1.1.0}
+
+\maketitle
+
+\begin{abstract}
+    The \thisproj{} project\,%
+    \footnote{
+        The name comes from \tdocquote{%
+        \tdocprewhy{@.esthetic} \tdocprewhy{P.roducts} 
+        for
+        \tdocprewhy{R.epresenting} \tdocprewhy{I.nformative}
+        \tdocprewhy{S.cientific} \tdocprewhy{M.aps}}.
+        %
+        This name is a double play on words:\kern3pt%
+        \begin{enumerate*}[label={[\arabic*]}]
+            \item a prism is where light is split into an informative spectrum, symbolizing how data or visuals are decomposed into meaningful color and style,
+            and
+            \item where light meets the prism, it breaks down into an informative spectrum ("@" can be read "at").
+        \end{enumerate*}
+    }
+    provides small size color palettes that can be used to create expressive color maps for graphics in different contexts.
+
+%    \smallskip
+%
+%    \noindent
+%    \emph{\textbf{Remark :} this documentation is also available in <<DOC-LANGS>>.}
+\end{abstract}
 
 \tdocsep
 
@@ -24,7 +52,21 @@
     \subsection*{Last changes}
 \egroup
 
+\begin{tdocbreak}[version = 1.1.0, date = 2025-10-14]
+    \item Duplicate palettes and those that are reverse of others are ignored (strict equalities only).
+\end{tdocbreak}
 
+
+\begin{tdocnew}
+    \item New palettes added: \verb+BurningGrass+, \verb+GeoRainbow+ and \verb+PastelRainbow+ (\tdocpack{luadraw} package creation process used).
+
+    \item The \tdocpack{luadraw} palette product has a new dictionary like variable \tdoccodein{lua}{getPal} to access a palette using its name (as a string variable).
+\end{tdocnew}
+
+
+\begin{tdocupdate}
+    \item Palette contributions: in the mandatory \verb+extend.py+ file, \tdoccodein{py}{build_code} must work with the dictionary of all the palettes, and manage a credit to the \thisproj\ project.
+\end{tdocupdate}
 }
 
 \newpage
@@ -45,7 +87,25 @@
 
 \small
 
+\begin{tdocbreak}[version = 1.1.0, date = 2025-10-14]
+    \item Duplicate palettes and those that are reverse of others are ignored (strict equalities only).
+\end{tdocbreak}
 
+
+\begin{tdocnew}
+    \item New palettes added: \verb+BurningGrass+, \verb+GeoRainbow+ and \verb+PastelRainbow+ (\tdocpack{luadraw} package creation process used).
+
+    \item The \tdocpack{luadraw} palette product has a new dictionary like variable \tdoccodein{lua}{getPal} to access a palette using its name (as a string variable).
+\end{tdocnew}
+
+
+\begin{tdocupdate}
+    \item Palette contributions: in the mandatory \verb+extend.py+ file, \tdoccodein{py}{build_code} must work with the dictionary of all the palettes, and manage a credit to the \thisproj\ project.
+\end{tdocupdate}
+
+\tdocsep
+
+\tdocstartproj{First public version of the project.}\tdocversion{1.0.0}[2025-10-11]
 
 
 \end{document}

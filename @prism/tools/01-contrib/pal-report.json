@@ -1,1 +1,386 @@
-{"AccentR": {"reverse-of": "Accent", "context": "Matplotlib"}, "AfmhotR": {"reverse-of": "Afmhot", "context": "Matplotlib"}, "AutumnR": {"reverse-of": "Autumn", "context": "Matplotlib"}, "BerlinR": {"reverse-of": "Berlin", "context": "Matplotlib"}, "BinaryR": {"reverse-of": "Binary", "context": "Matplotlib"}, "BluesR": {"reverse-of": "Blues", "context": "Matplotlib"}, "BoneR": {"reverse-of": "Bone", "context": "Matplotlib"}, "BrBGR": {"reverse-of": "BrBG", "context": "Matplotlib"}, "BrgR": {"reverse-of": "Brg", "context": "Matplotlib"}, "BuGnR": {"reverse-of": "BuGn", "context": "Matplotlib"}, "BuPuR": {"reverse-of": "BuPu", "context": "Matplotlib"}, "BwrR": {"reverse-of": "Bwr", "context": "Matplotlib"}, "CividisR": {"reverse-of": "Cividis", "context": "Matplotlib"}, "CMRmapR": {"reverse-of": "CMRmap", "context": "Matplotlib"}, "CoolR": {"reverse-of": "Cool", "context": "Matplotlib"}, "CoolwarmR": {"reverse-of": "Coolwarm", "context": "Matplotlib"}, "CopperR": {"reverse-of": "Copper", "context": "Matplotlib"}, "CubehelixR": {"reverse-of": "Cubehelix", "context": "Matplotlib"}, "Dark2R": {"reverse-of": "Dark2", "context": "Matplotlib"}, "FlagR": {"reverse-of": "Flag", "context": "Matplotlib"}, "GistEarthR": {"reverse-of": "GistEarth", "context": "Matplotlib"}, "GistGray": {"reverse-of": "Binary", "context": "Matplotlib"}, "GistGrayR": {"reverse-of": "GistGray", "context": "Matplotlib"}, "GistGrey": {"reverse-of": "Binary", "context": "Matplotlib"}, "GistGreyR": {"reverse-of": "GistGrey", "context": "Matplotlib"}, "GistHeatR": {"reverse-of": "GistHeat", "context": "Matplotlib"}, "GistNcarR": {"reverse-of": "GistNcar", "context": "Matplotlib"}, "GistRainbowR": {"reverse-of": "GistRainbow", "context": "Matplotlib"}, "GistSternR": {"reverse-of": "GistStern", "context": "Matplotlib"}, "GistYarg": {"equal-to": "Binary", "context": "Matplotlib"}, "GistYargR": {"reverse-of": "GistYarg", "context": "Matplotlib"}, "GistYerg": {"equal-to": "Binary", "context": "Matplotlib"}, "GistYergR": {"reverse-of": "GistYerg", "context": "Matplotlib"}, "GnBuR": {"reverse-of": "GnBu", "context": "Matplotlib"}, "Gnuplot2R": {"reverse-of": "Gnuplot2", "context": "Matplotlib"}, "GnuplotR": {"reverse-of": "Gnuplot", "context": "Matplotlib"}, "Gray": {"reverse-of": "Binary", "context": "Matplotlib"}, "GrayR": {"reverse-of": "Gray", "context": "Matplotlib"}, "GraysR": {"reverse-of": "Grays", "context": "Matplotlib"}, "GreensR": {"reverse-of": "Greens", "context": "Matplotlib"}, "Grey": {"reverse-of": "Binary", "context": "Matplotlib"}, "GreyR": {"reverse-of": "Grey", "context": "Matplotlib"}, "GreysR": {"reverse-of": "Greys", "context": "Matplotlib"}, "HotR": {"reverse-of": "Hot", "context": "Matplotlib"}, "HsvR": {"reverse-of": "Hsv", "context": "Matplotlib"}, "InfernoR": {"reverse-of": "Inferno", "context": "Matplotlib"}, "JetR": {"reverse-of": "Jet", "context": "Matplotlib"}, "MagmaR": {"reverse-of": "Magma", "context": "Matplotlib"}, "ManaguaR": {"reverse-of": "Managua", "context": "Matplotlib"}, "NipySpectralR": {"reverse-of": "NipySpectral", "context": "Matplotlib"}, "OceanR": {"reverse-of": "Ocean", "context": "Matplotlib"}, "OrangesR": {"reverse-of": "Oranges", "context": "Matplotlib"}, "OrRdR": {"reverse-of": "OrRd", "context": "Matplotlib"}, "PairedR": {"reverse-of": "Paired", "context": "Matplotlib"}, "Pastel1R": {"reverse-of": "Pastel1", "context": "Matplotlib"}, "Pastel2R": {"reverse-of": "Pastel2", "context": "Matplotlib"}, "PinkR": {"reverse-of": "Pink", "context": "Matplotlib"}, "PiYGR": {"reverse-of": "PiYG", "context": "Matplotlib"}, "PlasmaR": {"reverse-of": "Plasma", "context": "Matplotlib"}, "PRGnR": {"reverse-of": "PRGn", "context": "Matplotlib"}, "PrismR": {"reverse-of": "Prism", "context": "Matplotlib"}, "PuBuR": {"reverse-of": "PuBu", "context": "Matplotlib"}, "PuBuGnR": {"reverse-of": "PuBuGn", "context": "Matplotlib"}, "PuOrR": {"reverse-of": "PuOr", "context": "Matplotlib"}, "PuRdR": {"reverse-of": "PuRd", "context": "Matplotlib"}, "PurplesR": {"reverse-of": "Purples", "context": "Matplotlib"}, "RainbowR": {"reverse-of": "Rainbow", "context": "Matplotlib"}, "RdBuR": {"reverse-of": "RdBu", "context": "Matplotlib"}, "RdGyR": {"reverse-of": "RdGy", "context": "Matplotlib"}, "RdPuR": {"reverse-of": "RdPu", "context": "Matplotlib"}, "RdYlBuR": {"reverse-of": "RdYlBu", "context": "Matplotlib"}, "RdYlGnR": {"reverse-of": "RdYlGn", "context": "Matplotlib"}, "RedsR": {"reverse-of": "Reds", "context": "Matplotlib"}, "SeismicR": {"reverse-of": "Seismic", "context": "Matplotlib"}, "Set1R": {"reverse-of": "Set1", "context": "Matplotlib"}, "Set2R": {"reverse-of": "Set2", "context": "Matplotlib"}, "Set3R": {"reverse-of": "Set3", "context": "Matplotlib"}, "SpectralR": {"reverse-of": "Spectral", "context": "Matplotlib"}, "SpringR": {"reverse-of": "Spring", "context": "Matplotlib"}, "SummerR": {"reverse-of": "Summer", "context": "Matplotlib"}, "Tab10R": {"reverse-of": "Tab10", "context": "Matplotlib"}, "Tab20R": {"reverse-of": "Tab20", "context": "Matplotlib"}, "Tab20bR": {"reverse-of": "Tab20b", "context": "Matplotlib"}, "Tab20cR": {"reverse-of": "Tab20c", "context": "Matplotlib"}, "TerrainR": {"reverse-of": "Terrain", "context": "Matplotlib"}, "TurboR": {"reverse-of": "Turbo", "context": "Matplotlib"}, "TwilightR": {"reverse-of": "Twilight", "context": "Matplotlib"}, "TwilightShiftedR": {"reverse-of": "TwilightShifted", "context": "Matplotlib"}, "VanimoR": {"reverse-of": "Vanimo", "context": "Matplotlib"}, "ViridisR": {"reverse-of": "Viridis", "context": "Matplotlib"}, "WinterR": {"reverse-of": "Winter", "context": "Matplotlib"}, "WistiaR": {"reverse-of": "Wistia", "context": "Matplotlib"}, "YlGnR": {"reverse-of": "YlGn", "context": "Matplotlib"}, "YlGnBuR": {"reverse-of": "YlGnBu", "context": "Matplotlib"}, "YlOrBrR": {"reverse-of": "YlOrBr", "context": "Matplotlib"}, "YlOrRdR": {"reverse-of": "YlOrRd", "context": "Matplotlib"}}
+{
+  "AccentR": {
+    "context": "Matplotlib",
+    "reverse-of": "Accent"
+  },
+  "AfmhotR": {
+    "context": "Matplotlib",
+    "reverse-of": "Afmhot"
+  },
+  "AutumnR": {
+    "context": "Matplotlib",
+    "reverse-of": "Autumn"
+  },
+  "BerlinR": {
+    "context": "Matplotlib",
+    "reverse-of": "Berlin"
+  },
+  "BinaryR": {
+    "context": "Matplotlib",
+    "reverse-of": "Binary"
+  },
+  "BluesR": {
+    "context": "Matplotlib",
+    "reverse-of": "Blues"
+  },
+  "BoneR": {
+    "context": "Matplotlib",
+    "reverse-of": "Bone"
+  },
+  "BrBGR": {
+    "context": "Matplotlib",
+    "reverse-of": "BrBG"
+  },
+  "BrgR": {
+    "context": "Matplotlib",
+    "reverse-of": "Brg"
+  },
+  "BuGnR": {
+    "context": "Matplotlib",
+    "reverse-of": "BuGn"
+  },
+  "BuPuR": {
+    "context": "Matplotlib",
+    "reverse-of": "BuPu"
+  },
+  "BwrR": {
+    "context": "Matplotlib",
+    "reverse-of": "Bwr"
+  },
+  "CMRmapR": {
+    "context": "Matplotlib",
+    "reverse-of": "CMRmap"
+  },
+  "CividisR": {
+    "context": "Matplotlib",
+    "reverse-of": "Cividis"
+  },
+  "CoolR": {
+    "context": "Matplotlib",
+    "reverse-of": "Cool"
+  },
+  "CoolwarmR": {
+    "context": "Matplotlib",
+    "reverse-of": "Coolwarm"
+  },
+  "CopperR": {
+    "context": "Matplotlib",
+    "reverse-of": "Copper"
+  },
+  "CubehelixR": {
+    "context": "Matplotlib",
+    "reverse-of": "Cubehelix"
+  },
+  "Dark2R": {
+    "context": "Matplotlib",
+    "reverse-of": "Dark2"
+  },
+  "FlagR": {
+    "context": "Matplotlib",
+    "reverse-of": "Flag"
+  },
+  "GistEarthR": {
+    "context": "Matplotlib",
+    "reverse-of": "GistEarth"
+  },
+  "GistGray": {
+    "context": "Matplotlib",
+    "reverse-of": "Binary"
+  },
+  "GistGrayR": {
+    "context": "Matplotlib",
+    "reverse-of": "GistGray"
+  },
+  "GistGrey": {
+    "context": "Matplotlib",
+    "reverse-of": "Binary"
+  },
+  "GistGreyR": {
+    "context": "Matplotlib",
+    "reverse-of": "GistGrey"
+  },
+  "GistHeatR": {
+    "context": "Matplotlib",
+    "reverse-of": "GistHeat"
+  },
+  "GistNcarR": {
+    "context": "Matplotlib",
+    "reverse-of": "GistNcar"
+  },
+  "GistRainbowR": {
+    "context": "Matplotlib",
+    "reverse-of": "GistRainbow"
+  },
+  "GistSternR": {
+    "context": "Matplotlib",
+    "reverse-of": "GistStern"
+  },
+  "GistYarg": {
+    "context": "Matplotlib",
+    "equal-to": "Binary"
+  },
+  "GistYargR": {
+    "context": "Matplotlib",
+    "reverse-of": "GistYarg"
+  },
+  "GistYerg": {
+    "context": "Matplotlib",
+    "equal-to": "Binary"
+  },
+  "GistYergR": {
+    "context": "Matplotlib",
+    "reverse-of": "GistYerg"
+  },
+  "GnBuR": {
+    "context": "Matplotlib",
+    "reverse-of": "GnBu"
+  },
+  "Gnuplot2R": {
+    "context": "Matplotlib",
+    "reverse-of": "Gnuplot2"
+  },
+  "GnuplotR": {
+    "context": "Matplotlib",
+    "reverse-of": "Gnuplot"
+  },
+  "Gray": {
+    "context": "Matplotlib",
+    "reverse-of": "Binary"
+  },
+  "GrayR": {
+    "context": "Matplotlib",
+    "reverse-of": "Gray"
+  },
+  "GraysR": {
+    "context": "Matplotlib",
+    "reverse-of": "Grays"
+  },
+  "GreensR": {
+    "context": "Matplotlib",
+    "reverse-of": "Greens"
+  },
+  "Grey": {
+    "context": "Matplotlib",
+    "reverse-of": "Binary"
+  },
+  "GreyR": {
+    "context": "Matplotlib",
+    "reverse-of": "Grey"
+  },
+  "GreysR": {
+    "context": "Matplotlib",
+    "reverse-of": "Greys"
+  },
+  "HotR": {
+    "context": "Matplotlib",
+    "reverse-of": "Hot"
+  },
+  "HsvR": {
+    "context": "Matplotlib",
+    "reverse-of": "Hsv"
+  },
+  "InfernoR": {
+    "context": "Matplotlib",
+    "reverse-of": "Inferno"
+  },
+  "JetR": {
+    "context": "Matplotlib",
+    "reverse-of": "Jet"
+  },
+  "MagmaR": {
+    "context": "Matplotlib",
+    "reverse-of": "Magma"
+  },
+  "ManaguaR": {
+    "context": "Matplotlib",
+    "reverse-of": "Managua"
+  },
+  "NipySpectralR": {
+    "context": "Matplotlib",
+    "reverse-of": "NipySpectral"
+  },
+  "OceanR": {
+    "context": "Matplotlib",
+    "reverse-of": "Ocean"
+  },
+  "OrRdR": {
+    "context": "Matplotlib",
+    "reverse-of": "OrRd"
+  },
+  "OrangesR": {
+    "context": "Matplotlib",
+    "reverse-of": "Oranges"
+  },
+  "PRGnR": {
+    "context": "Matplotlib",
+    "reverse-of": "PRGn"
+  },
+  "PairedR": {
+    "context": "Matplotlib",
+    "reverse-of": "Paired"
+  },
+  "Pastel1R": {
+    "context": "Matplotlib",
+    "reverse-of": "Pastel1"
+  },
+  "Pastel2R": {
+    "context": "Matplotlib",
+    "reverse-of": "Pastel2"
+  },
+  "PiYGR": {
+    "context": "Matplotlib",
+    "reverse-of": "PiYG"
+  },
+  "PinkR": {
+    "context": "Matplotlib",
+    "reverse-of": "Pink"
+  },
+  "PlasmaR": {
+    "context": "Matplotlib",
+    "reverse-of": "Plasma"
+  },
+  "PrismR": {
+    "context": "Matplotlib",
+    "reverse-of": "Prism"
+  },
+  "PuBuGnR": {
+    "context": "Matplotlib",
+    "reverse-of": "PuBuGn"
+  },
+  "PuBuR": {
+    "context": "Matplotlib",
+    "reverse-of": "PuBu"
+  },
+  "PuOrR": {
+    "context": "Matplotlib",
+    "reverse-of": "PuOr"
+  },
+  "PuRdR": {
+    "context": "Matplotlib",
+    "reverse-of": "PuRd"
+  },
+  "PurplesR": {
+    "context": "Matplotlib",
+    "reverse-of": "Purples"
+  },
+  "RainbowR": {
+    "context": "Matplotlib",
+    "reverse-of": "Rainbow"
+  },
+  "RdBuR": {
+    "context": "Matplotlib",
+    "reverse-of": "RdBu"
+  },
+  "RdGyR": {
+    "context": "Matplotlib",
+    "reverse-of": "RdGy"
+  },
+  "RdPuR": {
+    "context": "Matplotlib",
+    "reverse-of": "RdPu"
+  },
+  "RdYlBuR": {
+    "context": "Matplotlib",
+    "reverse-of": "RdYlBu"
+  },
+  "RdYlGnR": {
+    "context": "Matplotlib",
+    "reverse-of": "RdYlGn"
+  },
+  "RedsR": {
+    "context": "Matplotlib",
+    "reverse-of": "Reds"
+  },
+  "SeismicR": {
+    "context": "Matplotlib",
+    "reverse-of": "Seismic"
+  },
+  "Set1R": {
+    "context": "Matplotlib",
+    "reverse-of": "Set1"
+  },
+  "Set2R": {
+    "context": "Matplotlib",
+    "reverse-of": "Set2"
+  },
+  "Set3R": {
+    "context": "Matplotlib",
+    "reverse-of": "Set3"
+  },
+  "SpectralR": {
+    "context": "Matplotlib",
+    "reverse-of": "Spectral"
+  },
+  "SpringR": {
+    "context": "Matplotlib",
+    "reverse-of": "Spring"
+  },
+  "SummerR": {
+    "context": "Matplotlib",
+    "reverse-of": "Summer"
+  },
+  "Tab10R": {
+    "context": "Matplotlib",
+    "reverse-of": "Tab10"
+  },
+  "Tab20R": {
+    "context": "Matplotlib",
+    "reverse-of": "Tab20"
+  },
+  "Tab20bR": {
+    "context": "Matplotlib",
+    "reverse-of": "Tab20b"
+  },
+  "Tab20cR": {
+    "context": "Matplotlib",
+    "reverse-of": "Tab20c"
+  },
+  "TerrainR": {
+    "context": "Matplotlib",
+    "reverse-of": "Terrain"
+  },
+  "TurboR": {
+    "context": "Matplotlib",
+    "reverse-of": "Turbo"
+  },
+  "TwilightR": {
+    "context": "Matplotlib",
+    "reverse-of": "Twilight"
+  },
+  "TwilightShiftedR": {
+    "context": "Matplotlib",
+    "reverse-of": "TwilightShifted"
+  },
+  "VanimoR": {
+    "context": "Matplotlib",
+    "reverse-of": "Vanimo"
+  },
+  "ViridisR": {
+    "context": "Matplotlib",
+    "reverse-of": "Viridis"
+  },
+  "WinterR": {
+    "context": "Matplotlib",
+    "reverse-of": "Winter"
+  },
+  "WistiaR": {
+    "context": "Matplotlib",
+    "reverse-of": "Wistia"
+  },
+  "YlGnBuR": {
+    "context": "Matplotlib",
+    "reverse-of": "YlGnBu"
+  },
+  "YlGnR": {
+    "context": "Matplotlib",
+    "reverse-of": "YlGn"
+  },
+  "YlOrBrR": {
+    "context": "Matplotlib",
+    "reverse-of": "YlOrBr"
+  },
+  "YlOrRdR": {
+    "context": "Matplotlib",
+    "reverse-of": "YlOrRd"
+  }
+}

@@ -3,8 +3,10 @@ at-prism - TODO
 ========
 
 
+// ---------- //
 
-Palettes: a \json file indicated the sources.
+Palette sources in manual.
+
 
 // ---------- //
 
@@ -29,12 +31,7 @@ catégorization des couleurs dans le show case + en parler dans la doc
 
 // ---------- //
 
------
-:new:
------
-
-[[:doc:]]       ???????
-\Pdf \doc added.
+\Pdf manual.
 
    --> descritption des palettes pour la doc en anglais : on explique le contexte pour les nouevlles, si pas de desc, c'est pas bloquant !
 

@@ -8,6 +8,8 @@ sys.path.append(str(Path(__file__).parent.parent))
 from cbutils.core    import *
 from cbutils.mdutils import *
 
+from datetime import datetime
+
 from json import load as json_load
 from yaml import safe_load
 
@@ -19,7 +21,17 @@ from yaml import safe_load
 THIS_DIR    = Path(__file__).parent
 PROJECT_DIR = THIS_DIR.parent.parent
 
-TAG_MANUAL = "manual"
+
+TAG_MANUAL  = "manual"
+TAG_CHANGES = "changelog"
+
+
+TNSCHGES_DIR = PROJECT_DIR / "changes" / "stable"
+
+PATTERN_TNS_VERSION = re.compile(
+    r'==+\s*\n\s*(\d+)\s+\((\d+\.\d+\.\d+)\)\s*\n\s*==+'
+)
+
 
 TRANSLATE_DIR      = PROJECT_DIR / "contrib" / "translate"
 PREDOC_MANUALS_DIR = PROJECT_DIR / "pre-doc" / TAG_MANUAL
@@ -94,12 +106,16 @@ TMPL_IMPORT = r"\subimport{{{rel_folder}/}}{{{file}}}"
 # -- TOOLS -- #
 # ----------- #
 
-def build_imports(lang: str) -> [str]:
+def build_imports(lang: str) -> (Path, [str]):
     file_imports = _rec_build_imports(TRANSLATE_DIR / fname / TAG_MANUAL)
 
     tex_imports = []
 
     for p in file_imports:
+        if p.stem == 'abstract':
+            asbtract_path = p
+            continue
+
         p = p.relative_to(PROJECT_DIR)
 
         rel_folder = f"{REL_PREDOC_MANUALS_TAG}/{p.parent}"
@@ -112,7 +128,7 @@ def build_imports(lang: str) -> [str]:
             )
         )
 
-    return tex_imports
+    return asbtract_path, tex_imports
 
 
 def _rec_build_imports(folder: Path) -> [Path]:
@@ -140,9 +156,86 @@ def _rec_build_imports(folder: Path) -> [Path]:
     return imports
 
 
+def extract_tex_content(texcode: str) -> str:
+    _ , _ , texcode = texcode.partition(r'\begin{document}')
+    texcode, _ , _  = texcode.partition(r'\end{document}')
 
-def build_changes():
-    return ['', '']
+    texcode = texcode.strip()
+
+    return texcode
+
+
+def build_changes(lang: str) -> (datetime, str, [str]):
+    all_texcodes = []
+
+    chges_folder = TRANSLATE_DIR / fname / TAG_MANUAL / TAG_CHANGES
+
+    all_chgefiles = sorted(
+        [
+            f
+            for f in chges_folder.rglob('*')
+            if f.is_file() and f.suffix == '.tex'
+        ],
+        reverse = True
+    )
+
+    date_2_versions = dict()
+
+    for chgefile in all_chgefiles:
+        if chgefile.stem == "next":
+            continue
+
+        year       = chgefile.parent.name
+        month_day  = chgefile.stem
+        month, day = chgefile.stem.split('-')
+
+        fulldate = f"{year}-{month_day}"
+
+        if not month_day in date_2_versions:
+            tnschgefile = TNSCHGES_DIR / year /f"{month}.txt"
+
+            matches = PATTERN_TNS_VERSION.findall(
+                tnschgefile.read_text()
+            )
+
+            for d, v in matches:
+                date_2_versions[f"{month}-{d}"] = v
+
+        version = date_2_versions.get(month_day, None)
+
+        if version is None:
+            BUG
+
+        texcode = extract_tex_content(chgefile.read_text())
+
+        _ , _ , texcode = texcode.partition(r'\small')
+
+        texcode = texcode.strip()
+
+        first, *others = texcode.split('\n')
+
+        if first.startswith(r"\tdocstartproj"):
+            first += rf"\tdocversion{{{version}}}[{fulldate}]"
+
+        else:
+            first += f"[version = {version}, date = {fulldate}]"
+
+        first += f"\n"
+
+        texcode = first + '\n'.join(others)
+
+        all_texcodes.append(texcode)
+
+    for lastdate, lastversion in date_2_versions.items():
+        break
+
+    lastdate = datetime(
+        *list(
+            map(int, [year, month, day])
+        )
+    )
+
+    return lastdate, lastversion, all_texcodes
 
 
 # ------------- #
@@ -156,16 +249,32 @@ logging.info(f"Building manual{plurial}.")
 for lang in LANGS:
     logging.info(f"'{lang}' version.")
 
-    tex_imports = build_imports(lang)
+    asbtract_path, tex_imports     = build_imports(lang)
+    lastdate, lastversion, changes = build_changes(lang)
 
-    changes = build_changes()
+    abstract = extract_tex_content(asbtract_path.read_text())
+
+    last_change = changes[0]
+    changes     = '\n\n\\tdocsep\n\n'.join(changes)
 
     tex_code = TMPL_TEX_MANUAL.format(
         lang        = lang,
-        abstract    = tex_imports[0],
-        tex_imports = '\n'.join(tex_imports[1:]),
-        last_change = changes[0],
-        changes     = '\n'.join(changes)
+        abstract    = abstract,
+        tex_imports = '\n'.join(tex_imports),
+        last_change = last_change,
+        changes     = changes
+    )
+
+    tex_code = tex_code.replace(
+        "<<AUTHOR>>",
+        "Christophe BAL"
+    )
+
+    lastdate = lastdate.strftime("%-d %b %Y")
+
+    tex_code = tex_code.replace(
+        "<<DATE-N-VERSION>>",
+        f"{lastdate} - Version {lastversion}"
     )
 
     manual_file = PREDOC_MANUALS_DIR / f"manual-{lang}.tex"
