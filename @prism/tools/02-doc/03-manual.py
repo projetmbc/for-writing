@@ -191,7 +191,7 @@ def build_changes(lang: str) -> (datetime, str, [str]):
 
         fulldate = f"{year}-{month_day}"
 
-        if not month_day in date_2_versions:
+        if not fulldate in date_2_versions:
             tnschgefile = TNSCHGES_DIR / year /f"{month}.txt"
 
             matches = PATTERN_TNS_VERSION.findall(
@@ -199,9 +199,9 @@ def build_changes(lang: str) -> (datetime, str, [str]):
             )
 
             for d, v in matches:
-                date_2_versions[f"{month}-{d}"] = v
+                date_2_versions[f"{year}-{month}-{d}"] = v
 
-        version = date_2_versions.get(month_day, None)
+        version = date_2_versions.get(fulldate, None)
 
         if version is None:
             BUG
@@ -226,12 +226,13 @@ def build_changes(lang: str) -> (datetime, str, [str]):
 
         all_texcodes.append(texcode)
 
+
     for lastdate, lastversion in date_2_versions.items():
         break
 
     lastdate = datetime(
         *list(
-            map(int, [year, month, day])
+            map(int, lastdate.split('-'))
         )
     )
 
@@ -274,7 +275,7 @@ for lang in LANGS:
 
     tex_code = tex_code.replace(
         "<<DATE-N-VERSION>>",
-        f"{lastdate} - Version {lastversion}"
+        f"{lastdate} -- Version {lastversion}"
     )
 
     manual_file = PREDOC_MANUALS_DIR / f"manual-{lang}.tex"

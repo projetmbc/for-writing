@@ -1,0 +1,51 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../../preamble.cfg}
+
+
+\begin{document}
+
+\small
+
+
+\begin{tdocbreak}
+    \item Palettes: all final palettes now consist of 10 colors.
+
+
+    \item \LUADRAW\ products: the \tdoccodein{lua}+getPal+ dictionary array has been converted into a function accepting string palette names (with or without \tdoccodein{lua}+pal+ prefix). See below.
+\end{tdocbreak}
+
+
+\begin{tdocnew}
+    \item Palettes.
+    %
+    \begin{itemize}
+        \item Added  \tdoccodein{text}+Lemon+ and \tdoccodein{text}+ShiftRainbow+ palettes (\LUADRAW\ creation process used).
+
+        \item Added 37 palettes from the \scicolmap\ project.
+    \end{itemize}
+
+
+    \item \LUADRAW\ product: the \tdoccodein{lua}+getPal+ function has an optional argument \tdoccodein{lua}+options+ (dict-like array).
+    %
+    \begin{itemize}
+        \item \tdoccodein{lua}+extract+ key allows to give a list of non-zero integers to extract specific colors (preserves order).
+
+        \item \tdoccodein{lua}+reverse+ key allows to give a boolean to reverse palette color order, or not (\tdoccodein{lua}+false+ by defaul)
+
+        \item \tdoccodein{lua}+shift+ key allows to give an integer for circular color shift.
+    \end{itemize}
+
+
+    \item Documentations
+    %
+    \begin{itemize}
+        \item Added English PDF manual.
+
+        \item Showcase: two PDF files demonstrate the use of each palette (white and dark modes).
+    \end{itemize}
+\end{tdocnew}
+
+\end{document}

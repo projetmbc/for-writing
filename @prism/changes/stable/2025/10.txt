@@ -2,6 +2,53 @@
 
 
 ==
+29  (1.2.0)
+==
+
+-------
+:break:
+-------
+Here are the breaking \chges.
+
+    1) Palettes: all final palettes now consist of 10 colors.
+
+    1) \luadraw \prod: the lua::''getPal'' \dict array converted to \func accepting string palette names (with or without lua::''pal'' prefix).
+
+
+-----
+:new:
+-----
+
+[[:api:]]
+Here are the new features.
+
+    1) Palettes.
+
+        + Added  ''Lemon'' and ''ShiftRainbow'' palettes (\luadraw creation process).
+
+        + Added 37 palettes from the project \scicolmap.
+
+    1)  \luadraw \prod: the lua::''getPal'' \func has an optional \arg lua::''options'' (dict-like array).
+
+        + lua::''extract'' key to give a list of non-zero integers to extract specific colors (preserves order).
+
+        + lua::''reverse'' key to give a boolean to reverse palette color order, or not (lua::''false'' by defaul)
+
+        + lua::''shift'' key to give an integer for circular color shift.
+
+
+[[:doc:]]
+Documentations.
+
+    + Added \pdf manual.
+
+    + Showcase: two \pdf files demonstrating each palette (white and dark modes).
+
+
+// ---------- //
+
+
+==
 14  (1.1.0)
 ==
 
