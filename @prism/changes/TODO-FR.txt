@@ -24,6 +24,8 @@ Palette sources in manual.
 
 plattes elimine à la main vai une catégo ete snuite on documente cela de façon automatisé
 
+   --> ordre de priorité mp > asy > scicolmap > @prism
+
    --> impossible à distinguer par un oeil non averti (cf GistGreey et Binary inversé)
 
    --> autres ???
