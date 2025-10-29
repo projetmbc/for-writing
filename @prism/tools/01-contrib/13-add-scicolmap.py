@@ -25,7 +25,7 @@ import numpy as np
 # -- CONSTANTS -- #
 # --------------- #
 
-CTXT = "Scientific Colour Maps"
+CTXT = TAG_SCICOLMAP
 
 THIS_DIR          = Path(__file__).parent
 PROJECT_DIR       = THIS_DIR.parent.parent
@@ -37,14 +37,23 @@ REPORT_DIR        = THIS_DIR.parent / "report"
 SCICOLMAP_NAMES_FILE = THIS_DIR / "scicolmap-names.json"
 SCICOLMAP_NAMES      = {}
 
-PAL_JSON_FILE   = PRODUCTS_DIR / "palettes.json"
-PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+
+PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
+
+PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+
 with PAL_REPORT_FILE.open(mode = "r") as f:
-    IGNORED = json_load(f)
+    PAL_REPORT = json_load(f)
+
+
+PAL_SRC_FILE = THIS_DIR / "pal-src.json"
+
+with PAL_SRC_FILE.open(mode = "r") as f:
+    PAL_SRC = json_load(f)
 
 
 if not REPORT_DIR.is_dir():
@@ -92,14 +101,17 @@ for pyfile in sorted(SCICOLMAP_SRC_DIR.glob("*/*.py")):
 
     SCICOLMAP_NAMES[std_name] = palette_name
 
-    ALL_PALETTES, IGNORED = update_palettes(
+    ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
         name      = std_name,
         candidate = palette_def,
         palettes  = ALL_PALETTES,
-        ignored   = IGNORED,
+        ignored   = PAL_REPORT,
         logcom    = logging
     )
+
+    if not std_name in PAL_REPORT:
+        PAL_SRC[std_name] = CTXT
 
 
 nb_scicolmaps = len(ALL_PALETTES) - nb_scicolmaps
@@ -117,10 +129,16 @@ else:
 # -- JSON UPDATE -- #
 # ----------------- #
 
-PAL_REPORT_FILE.write_text(json_dumps(IGNORED))
-
 SCICOLMAP_NAMES_FILE.write_text(
     json_dumps(SCICOLMAP_NAMES)
+)
+
+PAL_SRC_FILE.write_text(
+    json_dumps(PAL_SRC)
+)
+
+PAL_REPORT_FILE.write_text(
+    json_dumps(PAL_REPORT)
 )
 
 

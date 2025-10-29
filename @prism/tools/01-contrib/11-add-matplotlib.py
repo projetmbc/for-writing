@@ -18,12 +18,14 @@ from matplotlib import colormaps
 # -- CONSTANTS -- #
 # --------------- #
 
-CTXT = "Matplotlib"
+CTXT = TAG_MPL
 
 THIS_DIR     = Path(__file__).parent
 PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
 
-PAL_JSON_FILE   = PRODUCTS_DIR / "palettes.json"
+PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+
+PAL_SRC_FILE    = THIS_DIR / "pal-src.json"
 MP_NAMES_FILE   = THIS_DIR / "mp-names.json"
 PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
 
@@ -56,8 +58,9 @@ logging.info("Work on the 'Matplotlib' color maps.")
 
 allnames = sorted(colormaps, key = lambda x: x.lower())
 
-palettes = dict()
-ignored  = dict()
+PAL_SRC      = dict()
+ALL_PALETTES = dict()
+PAL_REPORT      = dict()
 
 scale_factor = PALSIZE - 1
 
@@ -65,12 +68,12 @@ reverse_status = STATUS_TAG[PAL_STATUS.REVERSE_OF]
 
 for cmap_name in allnames:
     if cmap_name[-2:] == "_r":
-        ignored[stdname(cmap_name)] = {
+        PAL_REPORT[stdname(cmap_name)] = {
             reverse_status: stdname(cmap_name[:-2]),
             TAG_CTXT      : CTXT
         }
 
-        logging.warning(f"'{cmap_name}' ignored.")
+        logging.warning(f"'{cmap_name}' PAL_REPORT.")
 
         continue
 
@@ -85,18 +88,21 @@ for cmap_name in allnames:
         for i in range(PALSIZE)
     ])
 
-    palettes, ignored = update_palettes(
+    ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
         name      = cmap_name,
         candidate = candidate,
-        palettes  = palettes,
-        ignored   = ignored,
+        palettes  = ALL_PALETTES,
+        ignored   = PAL_REPORT,
         logcom    = logging
     )
 
+    if not cmap_name in PAL_REPORT:
+        PAL_SRC[cmap_name] = CTXT
+
 
 logging.info(
-    f"{len(palettes)} palettes build from 'Matplotlib' color maps."
+    f"{len(ALL_PALETTES)} palettes build from 'Matplotlib' color maps."
 )
 
 
@@ -110,9 +116,17 @@ MP_NAMES_FILE.write_text(
     })
 )
 
-PAL_REPORT_FILE.write_text(json_dumps(ignored))
+PAL_SRC_FILE.write_text(
+    json_dumps(PAL_SRC)
+)
+
+PAL_REPORT_FILE.write_text(
+    json_dumps(PAL_REPORT)
+)
 
 
 logging.info("Create the initial palette JSON file.")
 
-PAL_JSON_FILE.write_text(json_dumps(palettes))
+PAL_JSON_FILE.write_text(
+    json_dumps(ALL_PALETTES)
+)

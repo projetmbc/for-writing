@@ -3,6 +3,9 @@ at-prism - TODO
 ========
 
 
+
+Palettes: a \json file indicated the sources.
+
 // ---------- //
 
 plattes elimine à la main vai une catégo ete snuite on documente cela de façon automatisé
@@ -14,10 +17,6 @@ plattes elimine à la main vai une catégo ete snuite on documente cela de faço
 
 // ---------- //
 
-
-json des noms scicolmap car fait pour deficient visuel il me semble
-
-+
 
 catégorization des couleurs dans le show case + en parler dans la doc
 

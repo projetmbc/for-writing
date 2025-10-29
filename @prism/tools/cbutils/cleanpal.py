@@ -29,6 +29,10 @@ STATUS_TAG = {
 
 TAG_CTXT = 'context'
 
+TAG_SCICOLMAP = "Scientific Colour Maps"
+TAG_APRISM    = "@prism"
+TAG_MPL       = "Matplotlib"
+
 
 def equalfloatlist(
     list_1: list[ [float, float, float] ],

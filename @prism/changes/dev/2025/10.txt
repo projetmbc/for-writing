@@ -24,6 +24,10 @@
 :fordev:
 --------
 
+[[:tech:]]
+Palettes: a \json file indicated the sources.
+
+
 [[:flow:]]
 Folder path::''products'': it is automatically created by the tool suite.
 

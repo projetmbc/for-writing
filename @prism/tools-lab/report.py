@@ -10,6 +10,7 @@ PROJECT_DIR  = THIS_DIR.parent
 TOOLS_CONTRIB_DIR = PROJECT_DIR / "tools" / "01-contrib"
 
 PAL_REPORT_FILE = TOOLS_CONTRIB_DIR / "pal-report.json"
+MP_NAMES_FILE   = TOOLS_CONTRIB_DIR / "mp-names.json"
 
 #!/usr/bin/env python3
 """
@@ -28,13 +29,13 @@ from rich import box
 
 console = Console()
 
-def charger_json(pfile):
+def charger_json(file):
     """Charge le fichier JSON"""
     try:
-        with pfile.open('r', encoding='utf-8') as f:
+        with file.open('r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
-        console.print(f"[red]Erreur: Fichier '{fichier}' introuvable[/red]")
+        console.print(f"[red]Erreur: Fichier '{file}' introuvable[/red]")
         sys.exit(1)
     except json.JSONDecodeError as e:
         console.print(f"[red]Erreur: JSON invalide - {e}[/red]")
@@ -70,8 +71,10 @@ def afficher_resultats(data, cle_choisie, cles_principales):
 
     # Grouper par valeur
     groupes = defaultdict(list)
+
     for cle_principale in cles_principales:
         valeur = data[cle_principale][cle_choisie]
+
         groupes[valeur].append(cle_principale)
 
     # Afficher chaque groupe
@@ -91,8 +94,23 @@ def afficher_resultats(data, cle_choisie, cles_principales):
 
 def main():
     # Charger le JSON
-    console.print(f"[cyan]Chargement de {PAL_REPORT_FILE.name}...[/cyan]")
-    data = charger_json(PAL_REPORT_FILE)
+    console.print(f"[cyan]Chargement ciblé de {PAL_REPORT_FILE.name}...[/cyan]")
+
+    mpnames = charger_json(MP_NAMES_FILE)
+    _data = charger_json(PAL_REPORT_FILE)
+
+    data = dict()
+
+    for k in _data:
+        if (
+            k in mpnames
+            and
+            mpnames[k][-2:] == "_r"
+        ):
+            continue
+
+        data[k] = _data[k]
+
     console.print(f"[green]✓ {len(data)} entrées principales trouvées[/green]\n")
 
     # Analyser les clés de niveau 2

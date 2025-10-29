@@ -18,21 +18,30 @@ from json import (
 # -- CONSTANTS -- #
 # --------------- #
 
-CTXT = "@prism"
+CTXT = TAG_APRISM
 
 THIS_DIR        = Path(__file__).parent
 PROJECT_DIR      = THIS_DIR.parent.parent
 PRODUCTS_DIR     = PROJECT_DIR / "products"
 CONTRIB_PROD_DIR = PROJECT_DIR / "contrib" / "products"
 
-PAL_JSON_FILE   = PRODUCTS_DIR / "palettes.json"
-PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+
+PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
+
+PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+
 with PAL_REPORT_FILE.open(mode = "r") as f:
-    IGNORED = json_load(f)
+    PAL_REPORT = json_load(f)
+
+
+PAL_SRC_FILE = THIS_DIR / "pal-src.json"
+
+with PAL_SRC_FILE.open(mode = "r") as f:
+    PAL_SRC = json_load(f)
 
 
 REPORT_NAME_CONFLICT_FILE = THIS_DIR / "PALETTE-CONFLICT.png"
@@ -94,14 +103,17 @@ for folder, contribs in sorted(contribs_accepted.items()):
                 exception = ValueError,
             )
 
-        ALL_PALETTES, IGNORED =  update_palettes(
+        ALL_PALETTES, PAL_REPORT =  update_palettes(
             context   = CTXT,
             name      = palette_name,
             candidate = palette_def,
             palettes  = ALL_PALETTES,
-            ignored   = IGNORED,
+            ignored   = PAL_REPORT,
             logcom    = logging
         )
+
+        if not palette_name in PAL_REPORT:
+            PAL_SRC[palette_name] = CTXT
 
 nb_contribs = len(ALL_PALETTES) - nb_contribs
 
@@ -115,7 +127,14 @@ if nb_contribs != 0:
 # -- JSON UPDATE -- #
 # ----------------- #
 
-PAL_REPORT_FILE.write_text(json_dumps(IGNORED))
+PAL_SRC_FILE.write_text(
+    json_dumps(PAL_SRC)
+)
+
+PAL_REPORT_FILE.write_text(
+    json_dumps(PAL_REPORT)
+)
+
 
 logging.info("Update palette JSON file.")
 
