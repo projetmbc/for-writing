@@ -7,7 +7,7 @@ require 'luadraw_palettes'
 
 local PAL = getPal(
   'GeoRainbow',
-  {shift = 6}
+  {shift = 3}
 )
 
 local PALSIZE  = #PAL

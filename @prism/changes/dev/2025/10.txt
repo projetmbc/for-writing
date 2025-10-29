@@ -2,6 +2,33 @@
 
 
 ==
+29  (1.2.0-beta.8)
+==
+
+-----
+:new:
+-----
+
+[[:api:]]
+\Contrib: a mandatory folder path::''fake-prod'' gives the final folder \struct.
+
+
+[[:doc:]]
+\Pdf manual: it is almost ready. Only automatic changelog generation is missing.
+
+
+--------
+:fordev:
+--------
+
+[[:flow:]]
+Folder path::''products'': it is automatically created by the tool suite.
+
+
+// ---------- //
+
+
+==
 28  (1.2.0-beta.7)
 ==
 

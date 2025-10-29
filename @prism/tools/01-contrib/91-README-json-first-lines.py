@@ -28,10 +28,10 @@ with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
-TEMPL_TAG_JSON_BEGIN = "<!-- JSON PALETTE FIRST LINES. AUTO - {} -->"
+TMPL_TAG_JSON_BEGIN = "<!-- JSON PALETTE FIRST LINES. AUTO - {} -->"
 
-TAG_JSON_BEGIN_START = TEMPL_TAG_JSON_BEGIN.format("START")
-TAG_JSON_BEGIN_END   = TEMPL_TAG_JSON_BEGIN.format("END")
+TAG_JSON_BEGIN_START = TMPL_TAG_JSON_BEGIN.format("START")
+TAG_JSON_BEGIN_END   = TMPL_TAG_JSON_BEGIN.format("END")
 
 
 PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')

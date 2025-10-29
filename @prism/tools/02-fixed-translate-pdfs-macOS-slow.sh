@@ -44,7 +44,7 @@ do
   echo "./$tex_file"
 
   local_dir="$(dirname "$tex_file")"
-  filename="$(basename "$tex_file")"
+  file_name="$(basename "$tex_file")"
 
   if head -n 1 "$tex_file" | grep -q '^% *!TEX TS-program *= *lualatex'
   then
@@ -58,7 +58,6 @@ do
     SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 \
       latexmk -quiet -pdf \
       -pdflatex="$texcmd --interaction=nonstopmode --halt-on-error --shell-escape %O %S" \
-      "$filename" || nocompile "$filename"
+      "$file_name" || nocompile "$file_name"
   )
-
 done < <(find "$TRANSLATE_FOLDER" -name '*.tex' -print0 | sort -z)

@@ -11,9 +11,9 @@ from cbutils.mdutils import *
 from yaml import dump as yaml_dump
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
 MD_PRE_REPLACEMENTS = {
     '@prism' : r'{\thisproj}',
@@ -34,6 +34,11 @@ MD_PRE_REPLACEMENTS |= {
         'TikZ',
     ]
 }
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 THIS_DIR    = Path(__file__).parent
 PROJECT_DIR = THIS_DIR.parent.parent

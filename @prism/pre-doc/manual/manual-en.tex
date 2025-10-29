@@ -1,0 +1,51 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../../contrib/translate/en/manual/preamble.cfg}
+
+\usepackage[subpreambles = true]{standalone}
+
+\makeatletter
+\renewcommand{\minted@cachedir}{_minted-xtra-cache}
+\makeatother
+
+\begin{document}
+
+\subimport{../../contrib/translate/en/manual/abstract/}{abstract.tex}
+
+\tdocsep
+
+{
+\small
+
+\bgroup
+    \addtokomafont{subsection}{\centering}
+    \subsection*{Last changes}
+\egroup
+
+
+}
+
+\newpage
+\tableofcontents
+\newpage
+
+\subimport{../../contrib/translate/en/manual/to-know/}{motivations.tex}
+\subimport{../../contrib/translate/en/manual/to-know/}{backstage.tex}
+\subimport{../../contrib/translate/en/manual/to-know/}{reuse-from.tex}
+\subimport{../../contrib/translate/en/manual/to-know/}{searching.tex}
+\subimport{../../contrib/translate/en/manual/products/}{preamble.tex}
+\subimport{../../contrib/translate/en/manual/products/}{luadraw.tex}
+\subimport{../../contrib/translate/en/manual/contrib-how-to/}{prologue.tex}
+\subimport{../../contrib/translate/en/manual/contrib-how-to/}{translate.tex}
+\subimport{../../contrib/translate/en/manual/contrib-how-to/}{src-code.tex}
+
+\section{History}
+
+\small
+
+
+
+
+\end{document}

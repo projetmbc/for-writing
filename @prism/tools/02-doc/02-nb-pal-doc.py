@@ -15,8 +15,8 @@ from json import load as json_load
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR     = Path(__file__).parent
-PROJECT_DIR  = THIS_DIR.parent.parent
+THIS_DIR    = Path(__file__).parent
+PROJECT_DIR = THIS_DIR.parent.parent
 
 TRANSLATE_DIR = PROJECT_DIR / "contrib" / "translate"
 EN_MANUAL_DIR = TRANSLATE_DIR / "en" / "manual"
@@ -31,10 +31,10 @@ with PAL_JSON_FILE.open(mode = "r") as f:
 NB_PALETTES = len(ALL_PALETTES)
 
 
-TEMPL_TAG_NB_PAL = "% NB PALETTES AUTO - {}"
+TMPL_TAG_NB_PAL = "% NB PALETTES AUTO - {}"
 
-TAG_NB_PAL_START = TEMPL_TAG_NB_PAL.format("START")
-TAG_NB_PAL_END   = TEMPL_TAG_NB_PAL.format("END")
+TAG_NB_PAL_START = TMPL_TAG_NB_PAL.format("START")
+TAG_NB_PAL_END   = TMPL_TAG_NB_PAL.format("END")
 
 
 # --------------------- #

@@ -35,7 +35,7 @@ function nocompile {
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly PROJECT_ROOT="$SCRIPT_DIR/.."
 readonly PRE_DOC="pre-doc/showcase"
-readonly SUFFIXES=("std" "dark")
+readonly SUFFIXES=("dark" "std")
 readonly SHOWCASE_BASE_NAME="showcase-en"
 
 cd "$PROJECT_ROOT"

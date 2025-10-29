@@ -4,6 +4,7 @@
 
 \usepackage{../preamble.cfg}
 
+
 \NewDocumentCommand{\mailsubject}{m}%  <-- Translate me!
   {subject \tdocquote{\texttt{\thisproj\ - CONTRIB - #1}}}
 
@@ -67,14 +68,9 @@
 
 \subsection{Complete the translations}
 
-\begin{tdocnote}
-    The author of \thisproj\ manages the English versions.
-\end{tdocnote}
-
-
-\begin{tdoccaut}
+\begin{tdocimp}
     Although we're going to explain how to translate the documentation, it doesn't seem relevant to do so, as English should suffice these days.
-\end{tdoccaut}
+\end{tdocimp}
 
 
 \begin{figure}[ht]
@@ -116,7 +112,7 @@ The \texttt{LICENCE.txt} file is aptly named, while the \texttt{README.md} file 
 \label{tutodoc-contrib-translate}
 
 \begin{tdocnote}
-    The \verb#doc# folder is reserved for documentation. It contains \verb#TEX# files that can be compiled directly for real-time validation of translations.
+    The folder \verb#manual# is reserved for documentation. It contains \verb#TEX# files that can be compiled directly for real-time validation of translations.
 \end{tdocnote}
 
 
@@ -132,33 +128,18 @@ The \texttt{LICENCE.txt} file is aptly named, while the \texttt{README.md} file 
 \footnote{
     As mentioned above, there is no real need for the \texttt{doc} folder.
 }
-
-
-\paragraph{Method 1 : use of \git.}
+To do this, you must use \git\ as follows.
 
 \begin{enumerate}
-      \item Via \thisrepo, recover the entire project folder.
+    \item Via \thisrepo, recover the entire project folder.
     Do not use the \verb#main# branch, which is used to freeze the latest stable versions of projects in the single \thismonorepo\ repository,.
 
-      \item In the \verb#tutodoc/contrib/translate# folder, create an \verb#it# copy of the \verb#en# folder, with the short name of the language documented in
-      \href{https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags}%
-           {the page \tdocquote{IIETF language tag}}
-      from \texttt{Wikipedia}.
+    \item In the \verb#@prism/contrib/translate# folder, create an \verb#it# copy of the \verb#en# folder, with the short name of the language documented in
+    \href{https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags}%
+         {the page \tdocquote{IIETF language tag}}
+    from \texttt{Wikipedia}.
 
-      \item Once the translation is complete in the \verb#it# folder, share it via \thisrepo\ using a classic \verb#git push#\,.
-\end{enumerate}
-
-
-\paragraph{Method 2 : communicate by e-mail.}
-
-\begin{enumerate}
-      \item By e-mail with the \mailsubject{en FOR italian}, request a version of the English translations (note the use of the English name for the new language).
-    Be sure to respect the subject of the e-mail, as the author of \thisproj\ automates the pre-processing of this type of e-mail.
-
-      \item You will receive a folder named \verb#italian# containing the English version of the latest translations.
-    This folder will be the place for your contribution.
-
-      \item Once the translation is complete, you will need to compress your \verb#italian# file in \verb#zip# or \verb#rar# format before sending it by e-mail with the \mailsubject{italian}\,.
+    \item Once the translation is complete in the \verb#it# folder, share it via \thisrepo\ using a classic \verb#git push#\,.
 \end{enumerate}
 
 \end{document}
