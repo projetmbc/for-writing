@@ -3,12 +3,6 @@ at-prism - TODO
 ========
 
 
-
-_code_.yaml pour gérer 'limplmenetation , pas le spalettes
-
-
-
-
 // ---------- //
 
 plattes elimine à la main vai une catégo ete snuite on documente cela de façon automatisé

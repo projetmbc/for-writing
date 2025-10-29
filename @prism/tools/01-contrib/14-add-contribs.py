@@ -20,9 +20,10 @@ from json import (
 
 CTXT = "@prism"
 
-THIS_DIR     = Path(__file__).parent
-PROJECT_DIR  = THIS_DIR.parent.parent
-PRODUCTS_DIR = PROJECT_DIR / "products"
+THIS_DIR        = Path(__file__).parent
+PROJECT_DIR      = THIS_DIR.parent.parent
+PRODUCTS_DIR     = PROJECT_DIR / "products"
+CONTRIB_PROD_DIR = PROJECT_DIR / "contrib" / "products"
 
 PAL_JSON_FILE   = PRODUCTS_DIR / "palettes.json"
 PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
@@ -45,6 +46,9 @@ if REPORT_NAME_CONFLICT_FILE.is_file():
 # ----------------------- #
 
 contribs_accepted = get_accepted_paths(PROJECT_DIR)
+
+if CONTRIB_PROD_DIR in contribs_accepted:
+    del contribs_accepted[CONTRIB_PROD_DIR]
 
 if not contribs_accepted:
     logging.warning(f"No contrib found.")

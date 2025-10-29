@@ -9,6 +9,7 @@ We will briefly explain the following structure of the `contrib/products` folder
   + changes
   + luadraw
   + readme
+  + status
 ~~~
 <!-- FOLDER STRUCT. AUTO - END -->
 

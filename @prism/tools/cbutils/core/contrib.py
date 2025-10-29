@@ -27,7 +27,7 @@ TAG_OK     = "ok"
 # prototype::
 #     project_dir : the path of the project folder.
 #
-#     :return: the key are folders containing accpeted contributions,
+#     :return: the key are folders containing accepted contributions,
 #              and values are list of file or folder names.
 #
 # caution::
@@ -92,7 +92,7 @@ def get_accepted_paths(project_dir: Path) -> dict[Path, str]:
             )
 
 # Contrib. found.
-        path = parent / stem if is_folder else files[0]
+        path = locdir / stem if is_folder else files[0]
 
         accepted_paths[path.parent].append(path.name)
 

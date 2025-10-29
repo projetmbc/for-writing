@@ -20,21 +20,25 @@ import shutil
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR     = Path(__file__).parent
-PROJECT_DIR  = THIS_DIR.parent.parent
-PRODUCTS_DIR = PROJECT_DIR / "products"
+THIS_DIR         = Path(__file__).parent
+PROJECT_DIR      = THIS_DIR.parent.parent
+PRODUCTS_DIR     = PROJECT_DIR / "products"
+CONTRIB_PROD_DIR = PROJECT_DIR / "contrib" / "products"
 
-PALETTES_JSON_FILE         = PRODUCTS_DIR / "palettes.json"
+
+PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+
+with PALETTES_JSON_FILE.open(mode = "r") as f:
+    ALL_PALETTES = json_load(f)
+
+
 PALETTES_JSON_CREDITS_FILE = PRODUCTS_DIR / "palettes.json.CREDITS.md"
 
-VERSION = "1.2.0"
 
-CREDITS = f"""
-File created by the ''@prism'' project, version {VERSION}
+CREDITS_TXT_FILE = THIS_DIR / "credits.txt"
 
-''@prism'', that will be available soon on PyPI, is developed at
-https://github.com/projetmbc/for-writing/tree/main/@prism .
-""".strip()
+CREDITS = CREDITS_TXT_FILE.read_text().strip()
+CREDITS = CREDITS.format(VERSION = "1.2.0")
 
 
 # ---------------------------------- #
@@ -57,37 +61,34 @@ PALETTES_JSON_CREDITS_FILE.touch()
 PALETTES_JSON_CREDITS_FILE.write_text(md_credtits)
 
 
-
 # ------------------------------ #
 # -- CONTRIB. IMPLEMENTATIONS -- #
 # ------------------------------ #
 
-with PALETTES_JSON_FILE.open(mode = "r") as f:
-    palettes = json_load(f)
-
 contribs_accepted = get_accepted_paths(PROJECT_DIR)
 
-nb_impl = 0
+impl_accepted = contribs_accepted.get(
+    CONTRIB_PROD_DIR,
+    []
+)
 
-for folder in sorted(contribs_accepted):
-    nb_impl += 1
-
-    ctxt = folder.parent.name
-
+for ctxt in sorted(impl_accepted):
     logging.info(f"'{ctxt}' implementation.")
+
+    impl_folder = CONTRIB_PROD_DIR / ctxt
 
 # Import extend.py.
     logging.info(f"'{ctxt}': import 'extend.py'.")
 
     extend = import_from_path(
         module_name = "extend",
-        file_path   = folder.parent / "extend.py"
+        file_path   = impl_folder / "extend.py"
     )
 
 # Fake prod to real prod.
     logging.info(f"'{ctxt}': copy structure.")
 
-    fake_dir  = folder.parent / "fake-prod"
+    fake_dir  = impl_folder / "fake-prod"
     final_dir = PRODUCTS_DIR / ctxt
 
     shutil.copytree(
@@ -98,14 +99,9 @@ for folder in sorted(contribs_accepted):
 # The file of palettes.
     logging.info(f"'{ctxt}': add file of palettes.")
 
-    extend = import_from_path(
-        module_name = "extend",
-        file_path   = folder.parent / "extend.py"
-    )
-
     code = extend.build_code(
         credits  = CREDITS,
-        palettes = palettes
+        palettes = ALL_PALETTES
     )
 
     final_file = final_dir / extend.PALETTES_FILE_NAME
@@ -117,6 +113,8 @@ for folder in sorted(contribs_accepted):
 
     final_file.write_text(code)
 
+
+nb_impl = len(impl_accepted)
 
 plurial = "" if nb_impl == 1 else "s"
 

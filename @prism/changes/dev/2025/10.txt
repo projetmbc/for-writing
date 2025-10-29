@@ -10,8 +10,11 @@
 -----
 
 [[:api:]]
-\Contrib: a mandatory folder path::''fake-prod'' gives the final folder \struct.
+\Contrib.
 
+    1) A mandatory folder path::''fake-prod'' gives the final folder \struct.
+
+    1) A status \yaml file added for implementations.
 
 [[:doc:]]
 \Pdf manual: it is almost ready. Only automatic changelog generation is missing.
