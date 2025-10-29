@@ -3,6 +3,18 @@ at-prism - TODO
 ========
 
 
+
+// ---------- //
+
+pour contrib indiquer que 10 c'est ce qui est furni mais on peut faire moins
+et si reel besoin la jauge peut etre augmente (mais a justifier car ici 10 pour cas reeldoit suffire)
+
+
+// ---------- //
+
+json dans products/json par cousi de coherence et les docs telles quell c'est bien car endeur
+
+
 // ---------- //
 
 implementation
