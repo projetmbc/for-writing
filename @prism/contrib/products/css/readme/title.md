@@ -1,2 +1,2 @@
-luadraw palettes
-================
+CSS palettes
+============

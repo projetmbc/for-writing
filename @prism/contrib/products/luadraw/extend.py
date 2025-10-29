@@ -14,15 +14,15 @@ import re
 
 ###
 # prototype::
-#     code : a \std \luadraw \def of a palette named lua::''PALETTE''
-#            (see the fake example below).
+#     code : a standard ''luadraw'' definition of a palette (see the
+#            fake example below).
 #
 #     :return: a list of lists of 3 floats belonging to `[0, 1]` that
-#              will be used to produce the "universal" \json version
+#              will be used to produce the "universal" ''JSON'' version
 #              of the palette.
 #
 #
-# A \std \luadraw palette looks like this.
+# A standard ''luadraw'' palette looks like this.
 #
 # lua::
 #     PALETTE = {
@@ -74,11 +74,12 @@ PALETTES_FILE_NAME = "palettes.lua"
 #     credits  : the credits to the ''at-prism'' project that should
 #                be added as a comment at the beginning of the final
 #                product code.
-#     palettes : the dictionnary of all the palettes.
+#     palettes : the Python dictionnary of all the palettes.
 #
 #     :return: the code of the final product with all the palettes
-#              ready to be used, with an extra array ''getPal'' to
-#              access a palette via its string name.
+#              ready to be used, with a function ''getPal'' to access
+#              a palette via its string name, or create new palettes
+#              from an existing one.
 ###
 def build_code(
     credits : str,
