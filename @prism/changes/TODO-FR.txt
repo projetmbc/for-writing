@@ -3,6 +3,10 @@ at-prism - TODO
 ========
 
 
+// ---------- //
+
+macros la -tex pour taill palet et nbre paletts automatiquement mises à jouer et on vire el commentaire magique (=FBI)
+
 
 // ---------- //
 
