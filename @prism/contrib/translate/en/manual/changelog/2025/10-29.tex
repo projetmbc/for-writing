@@ -28,16 +28,16 @@
     \end{itemize}
 
 
-    \item \LUADRAW\ product: the \tdoccodein{lua}+getPal+ function has an optional argument \tdoccodein{lua}+options+ (dict-like array).
+    \item \LUADRAW\ product: the \tdoccodein{lua}+getPal+ function has an optional argument \tdoccodein{lua}+options+ (dict-like array) with the following keys.
     %
     \begin{itemize}
-        \item \tdoccodein{lua}+extract+ key allows to give a list of non-zero integers to extract specific colors (preserves order).
+        \item \tdoccodein{lua}+extract+: a list of non-zero integers used to extract specific colors from the palette (the order is preserved).
 
-        \item \tdoccodein{lua}+reverse+ key allows to give a boolean to reverse palette color order, or not (\tdoccodein{lua}+false+ by defaul)
+        \item \tdoccodein{lua}+reverse+: a boolean value indicating whether to reverse the palette color order (\tdoccodein{lua}+false+ by default).
 
-        \item \tdoccodein{lua}+shift+ key allows to give an integer for circular color shift.
+        \item \tdoccodein{lua}+shift+: an integer value for applying a circular color shift to the palette.
     \end{itemize}
-
+    
 
     \item Documentations
     %

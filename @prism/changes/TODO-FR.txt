@@ -1,50 +1,39 @@
-========
-at-prism - TODO
-========
+======
+@prism - TODO
+======
 
 
 // ---------- //
 
-macros la -tex pour taill palet et nbre paletts automatiquement mises à jouer et on vire el commentaire magique (=FBI)
+reprendre la doc en l'imprimant
 
+   --> pour contrib indiquer que 10 c'est ce qui est furni mais on peut faire moins
+       et si reel besoin la jauge peut etre augmente (mais a justifier car ici 10 pour cas reeldoit suffire)
 
-// ---------- //
+   --> Palette sources in manual.
 
-pour contrib indiquer que 10 c'est ce qui est furni mais on peut faire moins
-et si reel besoin la jauge peut etre augmente (mais a justifier car ici 10 pour cas reeldoit suffire)
+   --> descritption des palettes pour la doc en anglais : on explique le contexte pour les nouevlles, si pas de desc, c'est pas bloquant !
 
+   --> README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
 
-// ---------- //
+   --> extend.py : dans luaraw, faire un test de bijectivité palett --> code --> palette
 
-json dans products/json par cousi de coherence et les docs telles quell c'est bien car endeur
+   --> pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
 
 
 // ---------- //
 
 implementation
 
-   ---> CSS / SCSS  (les deux) : vite  acr hyper intuitif via appli HTML de Claude l'AI
+   ---> CSS / SCSS  (les deux)
 
-   ---> Python : après on en fait la pub sur Matplotlib
+       + vite  acr hyper intuitif via appli HTML de Claude l'AI
+
+       + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
 
    ---> LaTeX : extraction eet compagine via L3
 
-
-
-// ---------- //
-
-Palette sources in manual.
-
-
-// ---------- //
-
-plattes elimine à la main vai une catégo ete snuite on documente cela de façon automatisé
-
-   --> ordre de priorité mp > asy > scicolmap > @prism
-
-   --> impossible à distinguer par un oeil non averti (cf GistGreey et Binary inversé)
-
-   --> autres ???
+   ---> Python : après on en fait la pub sur Matplotlib
 
 
 // ---------- //
@@ -56,16 +45,7 @@ catégorization des couleurs dans le show case + en parler dans la doc
 
    --> couleur forte variation (bien pour courbes colorés à l main)
 
-   --> ...
-
-
-// ---------- //
-
-\Pdf manual.
-
-   --> descritption des palettes pour la doc en anglais : on explique le contexte pour les nouevlles, si pas de desc, c'est pas bloquant !
-
-   --> besoin de regrouper les palettes similaires : classement purementa lgorithmique !
+   --> classement purementa lgorithmique !
 
          + les arcs en cies ou autre
          + les pentes des approcimations linaiéres... etc.
@@ -75,23 +55,11 @@ catégorization des couleurs dans le show case + en parler dans la doc
 
 // ---------- //
 
-binary : deux suffisent !!!
+plattes elimine à la main vai une catégo ete snuite on documente cela de façon automatisé
 
-faire un script auto une fois les palettes créée pour le réduire si possible en taille 2 , et voir si cela est utile avec 3, 4, ...
+   --> ordre de priorité mp > asy > scicolmap > @prism
 
-   ---> outils marque slow à afire pour le srelease unqiuement !
-
-
-// ---------- //
-
-README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
-
-extend.py : dans luaraw, faire un test de bijectivité palett --> code --> palette
-
-pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
-
-
-
+   --> impossible à distinguer par un oeil non averti (cf GistGreey et Binary inversé)
 
 
 // ---------- //
@@ -99,10 +67,3 @@ pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua 
 Asymptote
 
     ---> comment fonctione segmented palette
-
-
-
-
-// ---------- //
-
-nouvelle palete CSS du coup à finr à la main, commencé via ChatGPT/Claude , les indiquer sur formum matplotlib, une fois leur utilisation en Python possible
