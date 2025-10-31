@@ -17,12 +17,14 @@ from json import (
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR     = Path(__file__).parent
-PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
+THIS_DIR  = Path(__file__).parent
+PRODS_DIR = THIS_DIR.parent.parent / "products"
 
 
-PAL_REPORT_FILE    = THIS_DIR / "pal-report.json"
-PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+
+PROD_JSON_DIR = PRODS_DIR / "json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 
 PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
@@ -60,8 +62,7 @@ json_code = json_dumps(
 
 PAL_REPORT_FILE.write_text(json_code)
 
-
-with PALETTES_JSON_FILE.open(mode = "r") as f:
+with PAL_JSON_FILE.open(mode = "r") as f:
     palettes = json_load(f)
 
 json_code = json_dumps(
@@ -75,4 +76,4 @@ json_code = compact_nblists(json_code)
 
 logging.info("Update palette JSON file.")
 
-PALETTES_JSON_FILE.write_text(json_code)
+PAL_JSON_FILE.write_text(json_code)

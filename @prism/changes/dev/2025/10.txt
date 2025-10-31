@@ -2,6 +2,25 @@
 
 
 ==
+31  (1.2.1-beta.1)
+==
+
+-----
+:new:
+-----
+
+[[:api:]]
+Products: for the sake of consistency, the \json file is stored in a dedicated directory \json.
+
+
+\Contrib: in the English \doc, a header comment states that the file is auto-generated and should not be modified manually.
+
+
+
+// ---------- //
+
+
+==
 29  (1.2.0)
 ==
 

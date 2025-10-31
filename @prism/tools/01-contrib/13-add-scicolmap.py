@@ -29,7 +29,7 @@ CTXT = TAG_SCICOLMAP
 
 THIS_DIR          = Path(__file__).parent
 PROJECT_DIR       = THIS_DIR.parent.parent
-PRODUCTS_DIR      = PROJECT_DIR / "products"
+PRODS_DIR         = PROJECT_DIR / "products"
 SCICOLMAP_SRC_DIR = PROJECT_DIR / "x-ScientificColourMaps8-x"
 REPORT_DIR        = THIS_DIR.parent / "report"
 
@@ -38,7 +38,8 @@ SCICOLMAP_NAMES_FILE = THIS_DIR / "scicolmap-names.json"
 SCICOLMAP_NAMES      = {}
 
 
-PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+PROD_JSON_DIR = PRODS_DIR / "json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)

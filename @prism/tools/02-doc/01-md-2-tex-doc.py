@@ -43,8 +43,10 @@ MD_PRE_REPLACEMENTS |= {
 THIS_DIR    = Path(__file__).parent
 PROJECT_DIR = THIS_DIR.parent.parent
 
+
 MAIN_README_DIR = PROJECT_DIR / "readme"
 PROD_README_DIR = MAIN_README_DIR / "products"
+
 
 TRANSLATE_DIR      = PROJECT_DIR / "contrib" / "translate"
 EN_MANUAL_DIR      = TRANSLATE_DIR / "en" / "manual" / "products"
@@ -67,8 +69,13 @@ MD_FILES_TO_CONVERT += [
 CONVERTER_MD_2_TEX = MdToLatexConverter(shift_down_level = 1)
 
 
+
 TMPL_TEX = r"""
 % !TEX TS-program = lualatex
+
+% ------------------------------------------------- %
+% -- DO NOT MODIFY. FILE GENERATED AUTOMATICALLY -- %
+% ------------------------------------------------- %
 
 \documentclass{{tutodoc}}
 
@@ -77,7 +84,11 @@ TMPL_TEX = r"""
 
 \begin{{document}}
 
+% -- AUTOMATICALLY GENERATED UGLY CODE - START -- %
+
 {content}
+
+% -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
 
 \end{{document}}
 """.strip() + '\n'

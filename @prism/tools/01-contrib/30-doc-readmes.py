@@ -12,11 +12,11 @@ from cbutils.core import *
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR     = Path(__file__).parent
-PROJECT_DIR  = THIS_DIR.parent.parent
-CONTRIB_DIR  = PROJECT_DIR / "contrib" / "products"
-PRODUCTS_DIR = PROJECT_DIR / "products"
-README_DIR   = PROJECT_DIR / "readme" / "products"
+THIS_DIR    = Path(__file__).parent
+PROJECT_DIR = THIS_DIR.parent.parent
+CONTRIB_DIR = PROJECT_DIR / "contrib" / "products"
+PRODS_DIR   = PROJECT_DIR / "products"
+README_DIR  = PROJECT_DIR / "readme" / "products"
 
 DOC_KEPT = [
     "title",
@@ -44,11 +44,14 @@ def header_up(content: str) -> str:
 # -- CONTRIB. ACCEPTED -- #
 # ----------------------- #
 
-for prod_dir in PRODUCTS_DIR.glob("*"):
+for prod_dir in PRODS_DIR.glob("*"):
     if not prod_dir.is_dir():
         continue
 
     name = prod_dir.name
+
+    if name == "json":
+        continue
 
     logging.info(f"Add '{name}' main doc.")
 

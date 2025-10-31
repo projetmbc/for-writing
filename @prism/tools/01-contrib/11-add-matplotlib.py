@@ -20,16 +20,19 @@ from matplotlib import colormaps
 
 CTXT = TAG_MPL
 
-THIS_DIR     = Path(__file__).parent
-PRODUCTS_DIR = THIS_DIR.parent.parent / "products"
+THIS_DIR  = Path(__file__).parent
+PRODS_DIR = THIS_DIR.parent.parent / "products"
 
-PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+
+PROD_JSON_DIR = PRODS_DIR / "json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 PAL_SRC_FILE    = THIS_DIR / "pal-src.json"
 MP_NAMES_FILE   = THIS_DIR / "mp-names.json"
 PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
 
-PAL_JSON_FILE.parent.mkdir(
+
+PROD_JSON_DIR.mkdir(
     parents  = True,
     exist_ok = True
 )

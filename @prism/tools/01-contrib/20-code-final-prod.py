@@ -22,17 +22,18 @@ import shutil
 
 THIS_DIR         = Path(__file__).parent
 PROJECT_DIR      = THIS_DIR.parent.parent
-PRODUCTS_DIR     = PROJECT_DIR / "products"
+PRODS_DIR        = PROJECT_DIR / "products"
 CONTRIB_PROD_DIR = PROJECT_DIR / "contrib" / "products"
 
 
-PALETTES_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+PROD_JSON_DIR = PRODS_DIR / "json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
-with PALETTES_JSON_FILE.open(mode = "r") as f:
+with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
-PALETTES_JSON_CREDITS_FILE = PRODUCTS_DIR / "palettes.json.CREDITS.md"
+PAL_JSON_CREDITS_FILE = PROD_JSON_DIR / "palettes.json.CREDITS.md"
 
 
 CREDITS_TXT_FILE = THIS_DIR / "credits.txt"
@@ -57,8 +58,8 @@ md_credtits = re.sub(
     md_credtits
 )
 
-PALETTES_JSON_CREDITS_FILE.touch()
-PALETTES_JSON_CREDITS_FILE.write_text(md_credtits)
+PAL_JSON_CREDITS_FILE.touch()
+PAL_JSON_CREDITS_FILE.write_text(md_credtits)
 
 
 # ------------------------------ #
@@ -89,7 +90,7 @@ for ctxt in sorted(impl_accepted):
     logging.info(f"'{ctxt}': copy structure.")
 
     fake_dir  = impl_folder / "fake-prod"
-    final_dir = PRODUCTS_DIR / ctxt
+    final_dir = PRODS_DIR / ctxt
 
     shutil.copytree(
         src = fake_dir,

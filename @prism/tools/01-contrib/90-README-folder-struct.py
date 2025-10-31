@@ -17,10 +17,12 @@ THIS_DIR    = Path(__file__).parent
 SRC_DIR     = THIS_DIR.parent.parent
 CONTRIB_DIR = SRC_DIR / "contrib"
 
+
 TMPL_TAG_STRUCT = "<!-- FOLDER STRUCT. AUTO - {} -->"
 
 TAG_STRUCT_START = TMPL_TAG_STRUCT.format("START")
 TAG_STRUCT_END   = TMPL_TAG_STRUCT.format("END")
+
 
 TAB_STRUCT = '\n  + '
 

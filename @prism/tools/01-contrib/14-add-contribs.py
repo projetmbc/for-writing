@@ -20,13 +20,14 @@ from json import (
 
 CTXT = TAG_APRISM
 
-THIS_DIR        = Path(__file__).parent
+THIS_DIR         = Path(__file__).parent
 PROJECT_DIR      = THIS_DIR.parent.parent
-PRODUCTS_DIR     = PROJECT_DIR / "products"
+PRODS_DIR        = PROJECT_DIR / "products"
 CONTRIB_PROD_DIR = PROJECT_DIR / "contrib" / "products"
 
 
-PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+PROD_JSON_DIR = PRODS_DIR / "json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)

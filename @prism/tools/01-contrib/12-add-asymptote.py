@@ -31,11 +31,16 @@ ASY_COLORMAP_RAW_URL = (
     "asymptote/master/base/colormap.asy"
 )
 
-THIS_DIR     = Path(__file__).parent
-PROJECT_DIR  = THIS_DIR.parent.parent
-PRODUCTS_DIR = PROJECT_DIR / "products"
 
-PAL_JSON_FILE   = PRODUCTS_DIR / "palettes.json"
+THIS_DIR    = Path(__file__).parent
+PROJECT_DIR = THIS_DIR.parent.parent
+PRODS_DIR   = PROJECT_DIR / "products"
+
+
+PROD_JSON_DIR = PRODS_DIR / "json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
+
+
 MP_NAMES_FILE   = THIS_DIR / "mp-names.json"
 PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
 

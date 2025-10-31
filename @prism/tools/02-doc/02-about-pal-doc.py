@@ -17,16 +17,15 @@ from json import load as json_load
 
 THIS_DIR    = Path(__file__).parent
 PROJECT_DIR = THIS_DIR.parent.parent
+PRODS_DIR   = THIS_DIR.parent.parent / "products"
 
 
 TRANSLATE_DIR = PROJECT_DIR / "contrib" / "translate"
 EN_MANUAL_DIR = TRANSLATE_DIR / "en" / "manual"
 
 
-PRODUCTS_DIR = PROJECT_DIR / "products"
-
-
-PAL_JSON_FILE = PRODUCTS_DIR / "palettes.json"
+PROD_JSON_DIR = PRODS_DIR / "json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
