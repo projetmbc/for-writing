@@ -5,6 +5,11 @@
 
 // ---------- //
 
+centraliser NUm VERSIOn pour cbutils dans son init et mettre à jour les codes utilisant ce numéro
+
+
+// ---------- //
+
 reprendre la doc en l'imprimant
 
    --> pour contrib indiquer que 10 c'est ce qui est furni mais on peut faire moins

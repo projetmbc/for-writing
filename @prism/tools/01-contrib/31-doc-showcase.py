@@ -15,6 +15,9 @@ from json import load as json_load
 # -- CONSTANTS -- #
 # --------------- #
 
+VERSION = "1.2.0"
+
+
 THIS_DIR     = Path(__file__).parent
 PROJECT_DIR  = THIS_DIR.parent.parent
 PRODS_DIR    = PROJECT_DIR / "products"
@@ -84,7 +87,7 @@ START_FINAL_TEX_CODE = r"""
 
 \def\thesection{\arabic{section}}
 
-\title{Palettes in Action -- Version 1.2.0}
+\title{\texttt{@prism} palettes -- Version """.strip() + VERSION + r"""}
 \date{}
 
 \begin{document}
