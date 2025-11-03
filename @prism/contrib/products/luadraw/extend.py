@@ -26,8 +26,8 @@ import re
 #
 # lua::
 #     PALETTE = {
-#       {0.502, 0.502, 0.502},
-#       {0.4392, 0.502, 0.5647},
+#       {0.498039, 0.788235, 0.498039},
+#       {0.690196, 0.705881, 0.757298},
 #       ...
 #     }
 ###
@@ -71,7 +71,7 @@ PALETTES_FILE_NAME = "palettes.lua"
 
 ###
 # prototype::
-#     credits  : the credits to the ''at-prism'' project that should
+#     credits  : the credits to the ''@prism'' project that should
 #                be added as a comment at the beginning of the final
 #                product code.
 #     palettes : the Python dictionnary of all the palettes.

@@ -98,7 +98,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
                     f"Name '{palette_name}' already used."
                 ),
                 xtra    = (
-                     "See 'at-prism/tools/report/"
+                     "See '@prism/tools/report/"
                     f"{REPORT_NAME_CONFLICT_FILE.name}' file."
                 ),
                 exception = ValueError,
