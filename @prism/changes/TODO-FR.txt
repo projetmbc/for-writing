@@ -5,12 +5,17 @@
 
 // ---------- //
 
+pb vace luadraw get[...]
+
+
+// ---------- //
+
 centraliser NUm VERSIOn pour cbutils dans son init et mettre à jour les codes utilisant ce numéro
 
 
 // ---------- //
 
-reprendre la doc en l'imprimant
+reprendre la doc en l'imprimant   ATTENDRE que CSS ajouté!!!
 
    --> pour contrib indiquer que 10 c'est ce qui est furni mais on peut faire moins
        et si reel besoin la jauge peut etre augmente (mais a justifier car ici 10 pour cas reeldoit suffire)

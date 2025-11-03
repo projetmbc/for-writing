@@ -19,7 +19,7 @@ local g = graph:new{
 g:Linewidth(2)
 
 local A  = Z(-5, 4)
-local h  = Z(0, -1.5)
+local h  = Z(0, -1)
 local dh = Z(0, -1.1)
 
 local L = PALDIM * PALSIZE + PALDELTA * (PALSIZE - 1)
