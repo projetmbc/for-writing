@@ -12,19 +12,19 @@ Add new products to @prism
 **Table of contents**
 
 <a id="MULTIMD-GO-BACK-TO-TOC"></a>
-- [Structure of the 'contrib/products' folder](#MULTIMD-TOC-ANCHOR-0)
+- [Structure of the contrib/products folder](#MULTIMD-TOC-ANCHOR-0)
 - [How to propose new palettes?](#MULTIMD-TOC-ANCHOR-1)
     - [Folder organization](#MULTIMD-TOC-ANCHOR-2)
-    - [The 'dev' folder](#MULTIMD-TOC-ANCHOR-3)
-    - [The 'palettes' folder](#MULTIMD-TOC-ANCHOR-4)
-    - [The 'status' folder](#MULTIMD-TOC-ANCHOR-5)
-    - [The 'extend.py' file](#MULTIMD-TOC-ANCHOR-6)
-    - [The 'fake-prod' folder](#MULTIMD-TOC-ANCHOR-7)
-    - [The 'readme' folder](#MULTIMD-TOC-ANCHOR-8)
+    - [The dev folder](#MULTIMD-TOC-ANCHOR-3)
+    - [The palettes folder](#MULTIMD-TOC-ANCHOR-4)
+    - [The status folder](#MULTIMD-TOC-ANCHOR-5)
+    - [The extend.py file](#MULTIMD-TOC-ANCHOR-6)
+    - [The fake-prod folder](#MULTIMD-TOC-ANCHOR-7)
+    - [The readme folder](#MULTIMD-TOC-ANCHOR-8)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
-Structure of the 'contrib/products' folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
-------------------------------------------
+Structure of the contrib/products folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+----------------------------------------
 
 We will briefly explain the following structure of the `contrib/products` folder.
 
@@ -63,12 +63,12 @@ The following structure for the `luadraw` folder is mandatory. Only the name `lu
     * extend.py
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-3"></a>
-### The 'dev' folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+### The dev folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This folder is the sole responsibility of the contributor. Its purpose is to provide a simple way to create and test new palettes.
 
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
-### The 'palettes' folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+### The palettes folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This folder is used to store palettes provided as files using the specific implementation chosen. Each file name gives the name of the palette.
 For example, on October 14, 2025, the `palettes` folder contained the following items defining three palettes named `BlindFish`, `GasFlame`, and `GroovyRainbow`.
@@ -110,12 +110,12 @@ PALETTE = {
 }
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-5"></a>
-### The 'status' folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+### The status folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This folder allows you to know the status of your proposal. Its structure mimics the folder of contributions: `YAML` files correspond to contribution files.
 
 <a id="MULTIMD-TOC-ANCHOR-6"></a>
-### The 'extend.py' file <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+### The extend.py file <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This file must follow the following template.
 
@@ -183,17 +183,17 @@ if __name__ == "__main__":
     ...
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-7"></a>
-### The 'fake-prod' folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+### The fake-prod folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This folder is a template used to create the final version of the implementation.
-It must contain a palette file named as indicated in `extend.py` (the content of this andatory file can be fake).
+It must contain a palette file named as indicated in `extend.py` (the content of this mandatory file can be fake).
 
 > ***NOTE.*** *A good practice is to provide a folder `showcase` for local testing without installation.*
 
 > ***WARNING.*** *Make sure to leave nothing unnecessary, as the structure will be copied entirely.*
 
 <a id="MULTIMD-TOC-ANCHOR-8"></a>
-### The 'readme' folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+### The readme folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The `README.md` file of the contribution folder is written in small sections in the `readme` folder which has the following mandatory structure. These sections will also be used to produce documentations for the final product.
 

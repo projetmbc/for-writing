@@ -1,4 +1,4 @@
-### The 'extend.py' file
+### The extend.py file
 
 This file must follow the following template.
 

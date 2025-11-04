@@ -12,14 +12,14 @@
 
 \begin{document}
 
-\title{\thisproj{} project}
+\title{\thisproj*\ project}
 \author{Christophe BAL}
 \date{29 Oct 2025 -- Version 1.2.0}
 
 \maketitle
 
 \begin{abstract}
-    The \thisproj{} project\,%
+    The \thisproj\ project\,%
     \footnote{
         The name comes from \tdocquote{%
         \tdocprewhy{@.esthetic} \tdocprewhy{P.roducts} 
@@ -70,7 +70,7 @@
     \end{itemize}
 
 
-    \item \LUADRAW\ product: the \tdoccodein{lua}+getPal+ function has an optional argument \tdoccodein{lua}+options+ (dict-like array) with the following keys.
+    \item \LUADRAW\ product: the \tdoccodein{lua}+getPal+ function has an optional argument \tdoccodein{lua}+options+ (dict-like array) with the following keys and their values.
     %
     \begin{itemize}
         \item \tdoccodein{lua}+extract+: a list of non-zero integers used to extract specific colors from the palette (the order is preserved).
@@ -127,7 +127,7 @@
     \end{itemize}
 
 
-    \item \LUADRAW\ product: the \tdoccodein{lua}+getPal+ function has an optional argument \tdoccodein{lua}+options+ (dict-like array) with the following keys.
+    \item \LUADRAW\ product: the \tdoccodein{lua}+getPal+ function has an optional argument \tdoccodein{lua}+options+ (dict-like array) with the following keys and their values.
     %
     \begin{itemize}
         \item \tdoccodein{lua}+extract+: a list of non-zero integers used to extract specific colors from the palette (the order is preserved).
@@ -155,14 +155,14 @@
 
 
 \begin{tdocnew}
-    \item New palettes added: \verb+BurningGrass+, \verb+GeoRainbow+ and \verb+PastelRainbow+ (\tdocpack{luadraw} package creation process used).
+    \item New palettes added: \verb+BurningGrass+, \verb+GeoRainbow+ and \verb+PastelRainbow+ (\LUADRAW\ package creation process used).
 
-    \item The \tdocpack{luadraw} palette product has a new dictionary like variable \tdoccodein{lua}{getPal} to access a palette using its name (as a string variable).
+    \item The \LUADRAW\ palette product has a new dictionary like variable \tdoccodein{lua}{getPal} to access a palette using its name (as a string variable).
 \end{tdocnew}
 
 
 \begin{tdocupdate}
-    \item Palette contributions: in the mandatory \verb+extend.py+ file, \tdoccodein{py}{build_code} must work with the dictionary of all the palettes, and manage a credit to the \thisproj\ project.
+    \item Palette contributions: in the mandatory \verb+extend.py+ file, the \tdoccodein{py}{build_code} function must work with the dictionary of all the palettes, and manage a credit to the \thisproj\ project.
 \end{tdocupdate}
 
 \tdocsep

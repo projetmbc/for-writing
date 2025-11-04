@@ -1,5 +1,5 @@
-Structure of the 'contrib/products' folder
-------------------------------------------
+Structure of the contrib/products folder
+----------------------------------------
 
 We will briefly explain the following structure of the `contrib/products` folder.
 

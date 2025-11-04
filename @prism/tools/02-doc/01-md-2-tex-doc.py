@@ -18,6 +18,7 @@ from yaml import dump as yaml_dump
 MD_PRE_REPLACEMENTS = {
     '@prism' : r'{\thisproj}',
     'luadraw': r'{\LUADRAW}',
+    'TikZ'   : r'{\TIKZ}',
 }
 
 MD_PRE_REPLACEMENTS |= {
@@ -31,7 +32,6 @@ MD_PRE_REPLACEMENTS |= {
     m: f'{{\\{m}}}'
     for m in [
         'LuaLaTeX',
-        'TikZ',
     ]
 }
 

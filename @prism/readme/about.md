@@ -1,5 +1,5 @@
 About @prism
---------------
+------------
 
 This project provides a collection of discrete color palettes for various programming languages,
 enabling the creation and use of color maps derived from these palettes.
