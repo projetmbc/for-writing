@@ -17,7 +17,13 @@ centraliser NUm VERSIOn pour cbutils dans son init et mettre à jour les codes u
 
 reprendre la doc
 
-   --> README principal : il manque la ref au dossier products!!!!!
+   --> README for contrib/translate
+
+   --> README principal
+
+            + il manque la ref au dossier products!!!!!
+
+            + credits à metre ajour (voir le manuel)
 
    --> pour contrib indiquer que 10 c'est ce qui est furni mais on peut faire moins
        et si reel besoin la jauge peut etre augmente (mais a justifier car ici 10 pour cas reeldoit suffire)
@@ -26,9 +32,9 @@ reprendre la doc
 
    --> extend.py
 
-           + README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
+            + README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
 
-           + Dans luaraw, faire un test de bijectivité palett --> code --> palette
+            + Dans luaraw, faire un test de bijectivité palett --> code --> palette
 
    --> pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
 
@@ -39,11 +45,11 @@ implementation
 
    ---> CSS / SCSS  (les deux)
 
-       + vite  acr hyper intuitif via appli HTML de Claude l'AI + faire un truc avec des courbes et Nerfetiti pour le dev
+            + vite  acr hyper intuitif via appli HTML de Claude l'AI + faire un truc avec des courbes et Nerfetiti pour le dev
 
-       + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
+            + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
 
-       + reprendre BlindFish pour qu'il soit moins sombre sur la fin
+            + reprendre BlindFish pour qu'il soit moins sombre sur la fin
 
    ---> LaTeX : extraction eet compagine via L3
 
@@ -57,9 +63,9 @@ catégorization des couleurs dans le show case + en parler dans la doc
 
    --> info donnnée dans le manuel
 
-        + descriptif avec la liste de s couelusr concernées.
+            + descriptif avec la liste de s couelusr concernées.
 
-        + unclassifiable pour ce qui n'a apas encore pu etre actégorisé
+            + unclassifiable pour ce qui n'a apas encore pu etre actégorisé
 
    --> nuance de grise
 
@@ -69,10 +75,13 @@ catégorization des couleurs dans le show case + en parler dans la doc
 
    --> classement purementa lgorithmique !
 
-         + les arcs en cies ou autre
-         + les pentes des approcimations linaiéres... etc.
-         + arbre de décision à la sauce IA (début fin , puis on affine)
-         + ... etc.
+            + les arcs en cies ou autre
+
+            + les pentes des approcimations linaiéres... etc.
+
+            + arbre de décision à la sauce IA (début fin , puis on affine)
+
+            + ... etc.
 
 
 // ---------- //
