@@ -17,6 +17,8 @@ centraliser NUm VERSIOn pour cbutils dans son init et mettre à jour les codes u
 
 reprendre la doc
 
+   --> README principal : il manque la ref au dossier products!!!!!
+
    --> pour contrib indiquer que 10 c'est ce qui est furni mais on peut faire moins
        et si reel besoin la jauge peut etre augmente (mais a justifier car ici 10 pour cas reeldoit suffire)
 
@@ -52,6 +54,12 @@ implementation
 
 
 catégorization des couleurs dans le show case + en parler dans la doc
+
+   --> info donnnée dans le manuel
+
+        + descriptif avec la liste de s couelusr concernées.
+
+        + unclassifiable pour ce qui n'a apas encore pu etre actégorisé
 
    --> nuance de grise
 
