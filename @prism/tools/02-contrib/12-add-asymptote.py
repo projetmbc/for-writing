@@ -35,14 +35,15 @@ ASY_COLORMAP_RAW_URL = (
 THIS_DIR    = Path(__file__).parent
 PROJECT_DIR = THIS_DIR.parent.parent
 PRODS_DIR   = PROJECT_DIR / "products"
+REPORT_DIR  = THIS_DIR.parent / "report"
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 
-MP_NAMES_FILE   = THIS_DIR / "MP-NAMES.json"
-PAL_REPORT_FILE = THIS_DIR / "PAL-REPORT.json"
+MP_NAMES_FILE   = REPORT_DIR / "MP-NAMES.json"
+PAL_REPORT_FILE = REPORT_DIR / "PAL-REPORT.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)

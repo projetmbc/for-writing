@@ -41,7 +41,7 @@ with PAL_JSON_FILE.open(mode = "r") as f:
 PAL_JSON_CREDITS_FILE = PROD_JSON_DIR / "palettes.json.CREDITS.md"
 
 
-CREDITS_TXT_FILE = THIS_DIR / "CREDITS.txt"
+CREDITS_TXT_FILE = THIS_DIR.parent / "CREDITS.txt"
 
 CREDITS = CREDITS_TXT_FILE.read_text().strip()
 CREDITS = CREDITS.format(VERSION = VERSION)

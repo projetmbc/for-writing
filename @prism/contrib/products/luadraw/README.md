@@ -119,3 +119,5 @@ in the standard palette `'GistHeat'` as `coul_1`, `coul_2,`, etc. The options ar
 1. `{coul_2, coul_5, coul_8, coul_9}` is the result of the extraction.
 2. `{coul_9, coul_2, coul_5, coul_8}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).
 3. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted palette.
+
+> ***CAUTION.*** *The current version of `luadraw` simply uses the palettes provided by `@prism`. If you prefer to use the `@prism` version with its `getPal` function, you will need to include the entire code in the `luadraw_palettes.lua` file where the package is installed.*

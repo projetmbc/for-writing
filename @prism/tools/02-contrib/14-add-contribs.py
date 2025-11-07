@@ -24,6 +24,7 @@ THIS_DIR         = Path(__file__).parent
 PROJECT_DIR      = THIS_DIR.parent.parent
 PRODS_DIR        = PROJECT_DIR / "products"
 CONTRIB_PROD_DIR = PROJECT_DIR / "contrib" / "products"
+REPORT_DIR       = THIS_DIR.parent / "report"
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"
@@ -33,13 +34,13 @@ with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
-PAL_REPORT_FILE = THIS_DIR / "PAL-REPORT.json"
+PAL_REPORT_FILE = REPORT_DIR / "PAL-REPORT.json"
 
 with PAL_REPORT_FILE.open(mode = "r") as f:
     PAL_REPORT = json_load(f)
 
 
-PAL_SRC_FILE = THIS_DIR / "PAL-SRC.json"
+PAL_SRC_FILE = REPORT_DIR / "PAL-SRC.json"
 
 with PAL_SRC_FILE.open(mode = "r") as f:
     PAL_SRC = json_load(f)

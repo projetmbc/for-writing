@@ -5,18 +5,6 @@
 
 // ---------- //
 
-pb avec luadraw get[...] à indiquer ou bien faire changer d'avis
-
-
-// ---------- //
-
-reprendre la doc
-
-   --> origine des Palette dans le showcase.
-
-
-// ---------- //
-
 
 catégorization des couleurs dans le show case + en parler dans la doc
 

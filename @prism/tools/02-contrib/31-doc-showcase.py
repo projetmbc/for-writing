@@ -17,6 +17,7 @@ from json import load as json_load
 
 THIS_DIR     = Path(__file__).parent
 PROJECT_DIR  = THIS_DIR.parent.parent
+REPORT_DIR   = THIS_DIR.parent / "report"
 PRODS_DIR    = PROJECT_DIR / "products"
 PREDOC_DIR   = PROJECT_DIR / "pre-doc" / "showcase"
 SHOWCASE_DIR = PREDOC_DIR / "single"
@@ -25,6 +26,12 @@ SHOWCASE_DIR = PREDOC_DIR / "single"
 VERSION = PROJECT_DIR / "tools" / "VERSION.txt"
 VERSION = VERSION.read_text()
 VERSION = VERSION.strip()
+
+
+PAL_SRC_FILE = REPORT_DIR / "PAL-SRC.json"
+
+with PAL_SRC_FILE.open(mode = "r") as f:
+    ALL_SRC = json_load(f)
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"
@@ -75,6 +82,7 @@ HEADER_TEX_CODES = {
 
 
 PATTERN_CHGE_PAL_NAME = re.compile(r"\\newcommand\{\\PALETTE\}\{(.*)\}")
+PATTERN_CHGE_PAL_SRC  = re.compile(r"\\newcommand\{\\SRC\}\{(.*)\}")
 
 
 START_FINAL_TEX_CODE = r"""
@@ -197,6 +205,7 @@ for palname in ALL_PALETTES:
     for kind, tmp_file in TMPL_SINGLE_SHOWCASE_TEX_CODES.items():
         palfile = SHOWCASE_DIR / f"{build_name(palname)}-{kind}.tex"
 
+# The name.
         texcode = PATTERN_CHGE_PAL_NAME.sub(
             lambda m: m.group(0).replace(
                 m.group(1),
@@ -205,6 +214,24 @@ for palname in ALL_PALETTES:
             tmp_file
         )
 
+# The source used.
+        palsrc = ALL_SRC.get(palname, None)
+
+        if palsrc == "@prism":
+            palsrc = "Created with @prism"
+
+        else:
+            palsrc = f"Source: {palsrc}"
+
+        texcode = PATTERN_CHGE_PAL_SRC.sub(
+            lambda m: m.group(0).replace(
+                m.group(1),
+                palsrc
+            ),
+            texcode
+        )
+
+# Let's write the file.
         palfile.write_text(texcode)
 
 

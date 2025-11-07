@@ -22,15 +22,19 @@
 --------
 
 [[:doc:]]
-\Readmes.
+Here are the small important additions.
 
-    1) Main: the credits refers now to \matplotlib and \scicolmaps.
+    1) Showcaces: for each palette, its origin has been added.
 
-    1) \Prod \contribs.
+    1) Main \readme: the credits refers now to \matplotlib and \scicolmaps.
+
+    1) \Prod \contrib^o \readme.
 
         + The role of the path::''extend.py'' file has been added.
 
         + Explanations added about the fixed numbers of colors of the final \prod and the number of colors used when creating new palettes.
+
+    1) \luadraw \product \readme: caution added about the specifi lua::''getPal'' function.
 
 
 --------

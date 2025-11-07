@@ -163,6 +163,10 @@ def transform_latex_quote(text):
         # Vérifier que c'est bien une NOTE
         if note_label.strip().upper().startswith('NOTE'):
             return f'\\begin{{tdocnote}}\n{content}\n\\end{{tdocnote}}'
+
+        if note_label.strip().upper().startswith('CAUTION'):
+            return f'\\begin{{tdoccaut}}\n{content}\n\\end{{tdoccaut}}'
+
         return match.group(0)  # Si ce n'est pas une NOTE, ne rien changer
 
     result = re.sub(pattern, replacer, text, flags=re.DOTALL)

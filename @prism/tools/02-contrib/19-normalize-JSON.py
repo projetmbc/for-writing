@@ -17,11 +17,12 @@ from json import (
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR  = Path(__file__).parent
-PRODS_DIR = THIS_DIR.parent.parent / "products"
+THIS_DIR   = Path(__file__).parent
+PRODS_DIR  = THIS_DIR.parent.parent / "products"
+REPORT_DIR = THIS_DIR.parent / "report"
 
 
-PAL_REPORT_FILE = THIS_DIR / "PAL-REPORT.json"
+PAL_REPORT_FILE = REPORT_DIR / "PAL-REPORT.json"
 
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
