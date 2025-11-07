@@ -12,12 +12,6 @@ pb avec luadraw get[...] à indiquer ou bien faire changer d'avis
 
 reprendre la doc
 
-   --> README principal
-
-            + il manque la ref au dossier products!!!!!
-
-            + credits à metre ajour (voir le manuel)
-
    --> pour contrib indiquer que 10 c'est ce qui est furni mais on peut faire moins
        et si reel besoin la jauge peut etre augmente (mais a justifier car ici 10 pour cas reeldoit suffire)
 

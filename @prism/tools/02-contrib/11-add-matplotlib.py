@@ -27,9 +27,9 @@ PRODS_DIR = THIS_DIR.parent.parent / "products"
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
-PAL_SRC_FILE    = THIS_DIR / "pal-src.json"
-MP_NAMES_FILE   = THIS_DIR / "mp-names.json"
-PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+PAL_SRC_FILE    = THIS_DIR / "PAL-SRC.json"
+MP_NAMES_FILE   = THIS_DIR / "MP-NAMES.json"
+PAL_REPORT_FILE = THIS_DIR / "PAL-REPORT.json"
 
 
 PROD_JSON_DIR.mkdir(

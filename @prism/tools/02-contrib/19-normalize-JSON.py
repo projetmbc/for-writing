@@ -21,7 +21,7 @@ THIS_DIR  = Path(__file__).parent
 PRODS_DIR = THIS_DIR.parent.parent / "products"
 
 
-PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+PAL_REPORT_FILE = THIS_DIR / "PAL-REPORT.json"
 
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"

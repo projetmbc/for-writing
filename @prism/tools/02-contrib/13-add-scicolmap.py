@@ -34,7 +34,7 @@ SCICOLMAP_SRC_DIR = PROJECT_DIR / "x-ScientificColourMaps8-x"
 REPORT_DIR        = THIS_DIR.parent / "report"
 
 
-SCICOLMAP_NAMES_FILE = THIS_DIR / "scicolmap-names.json"
+SCICOLMAP_NAMES_FILE = THIS_DIR / "SCICOLMAP-NAMES.json"
 SCICOLMAP_NAMES      = {}
 
 
@@ -45,13 +45,13 @@ with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
-PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+PAL_REPORT_FILE = THIS_DIR / "PAL-REPORT.json"
 
 with PAL_REPORT_FILE.open(mode = "r") as f:
     PAL_REPORT = json_load(f)
 
 
-PAL_SRC_FILE = THIS_DIR / "pal-src.json"
+PAL_SRC_FILE = THIS_DIR / "PAL-SRC.json"
 
 with PAL_SRC_FILE.open(mode = "r") as f:
     PAL_SRC = json_load(f)

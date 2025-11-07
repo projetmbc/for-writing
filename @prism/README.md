@@ -33,7 +33,7 @@ enabling the creation and use of color maps derived from these palettes.
 Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 -------
 
-Many of the discrete color palettes in this project are based on colormaps from [`Asymptote`](https://asymptote.sourceforge.io/) and [`Matplotlib`](https://matplotlib.org/).
+Many of the discrete color palettes in this project are based on colormaps from [`Matplotlib`](https://matplotlib.org/) and [`Scientific Coulour Maps`](https://www.fabiocrameri.ch/colourmaps).
 If you recognize your contribution, please don’t hesitate to get in touch, we’ll be happy to give you proper credit in the source code.
 
 > ***IMPORTANT.*** *`@prism` only uses `CamelCase` names with no characters other than numbers and ASCII letters. For example, a name such as `nipy_spectral-1` is transformed into `NipySpectral1` within `@prism`.*

@@ -18,6 +18,14 @@
 
 
 --------
+:update:
+--------
+
+[[:doc:]]
+Main \readme: update of the credits to \matplotlib and now to \scicolmaps.
+
+
+--------
 :fordev:
 --------
 

@@ -41,8 +41,8 @@ PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 
-MP_NAMES_FILE   = THIS_DIR / "mp-names.json"
-PAL_REPORT_FILE = THIS_DIR / "pal-report.json"
+MP_NAMES_FILE   = THIS_DIR / "MP-NAMES.json"
+PAL_REPORT_FILE = THIS_DIR / "PAL-REPORT.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
