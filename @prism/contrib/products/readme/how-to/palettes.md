@@ -40,3 +40,6 @@ PALETTE = {
   {0.698, 0.1333, 0.1333}
 }
 ~~~
+
+
+> ***NOTE.*** *The size of palettes provided by `@prism` is fixed, but nothing prevents you from using any number of colors you wish when creating your own.*

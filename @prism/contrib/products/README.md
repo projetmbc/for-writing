@@ -108,6 +108,8 @@ PALETTE = {
   {0.698, 0.1333, 0.1333}
 }
 ~~~
+> ***NOTE.*** *The size of palettes provided by `@prism` is fixed, but nothing prevents you from using any number of colors you wish when creating your own.*
+
 <a id="MULTIMD-TOC-ANCHOR-5"></a>
 ### The status folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 

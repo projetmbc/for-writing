@@ -26,7 +26,11 @@
 
     1) Main: the credits refers now to \matplotlib and \scicolmaps.
 
-    1) \Prod \contribs: the role of the path::''extend.py'' file has been added.
+    1) \Prod \contribs.
+
+        + The role of the path::''extend.py'' file has been added.
+
+        + Explanations added about the fixed numbers of colors of the final \prod and the number of colors used when creating new palettes.
 
 
 --------
