@@ -5,6 +5,14 @@
 07  (1.2.1-beta.2)
 ==
 
+-----
+:new:
+-----
+
+[[:doc:]]
+\Contribs: \readme added in the folder path::''contrib/translate''.
+
+
 --------
 :fordev:
 --------

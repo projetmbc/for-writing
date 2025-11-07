@@ -12,8 +12,6 @@ pb avec luadraw get[...] à indiquer ou bien faire changer d'avis
 
 reprendre la doc
 
-   --> README for contrib/translate
-
    --> README principal
 
             + il manque la ref au dossier products!!!!!
