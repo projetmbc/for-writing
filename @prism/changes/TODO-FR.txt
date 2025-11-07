@@ -10,11 +10,6 @@ pb avec luadraw get[...] à indiquer ou bien faire changer d'avis
 
 // ---------- //
 
-centraliser NUm VERSIOn pour cbutils dans son init et mettre à jour les codes utilisant ce numéro
-
-
-// ---------- //
-
 reprendre la doc
 
    --> README for contrib/translate
@@ -37,23 +32,6 @@ reprendre la doc
             + Dans luaraw, faire un test de bijectivité palett --> code --> palette
 
    --> pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
-
-
-// ---------- //
-
-implementation
-
-   ---> CSS / SCSS  (les deux)
-
-            + vite  acr hyper intuitif via appli HTML de Claude l'AI + faire un truc avec des courbes et Nerfetiti pour le dev
-
-            + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
-
-            + reprendre BlindFish pour qu'il soit moins sombre sur la fin
-
-   ---> LaTeX : extraction eet compagine via L3
-
-   ---> Python : après on en fait la pub sur Matplotlib
 
 
 // ---------- //
@@ -82,6 +60,23 @@ catégorization des couleurs dans le show case + en parler dans la doc
             + arbre de décision à la sauce IA (début fin , puis on affine)
 
             + ... etc.
+
+
+// ---------- //
+
+implementation
+
+   ---> CSS / SCSS  (les deux)
+
+            + vite  acr hyper intuitif via appli HTML de Claude l'AI + faire un truc avec des courbes et Nerfetiti pour le dev
+
+            + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
+
+            + reprendre BlindFish pour qu'il soit moins sombre sur la fin
+
+   ---> LaTeX : extraction eet compagine via L3
+
+   ---> Python : après on en fait la pub sur Matplotlib
 
 
 // ---------- //

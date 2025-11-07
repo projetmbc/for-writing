@@ -36,7 +36,7 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 Many of the discrete color palettes in this project are based on colormaps from [`Asymptote`](https://asymptote.sourceforge.io/) and [`Matplotlib`](https://matplotlib.org/).
 If you recognize your contribution, please don’t hesitate to get in touch, we’ll be happy to give you proper credit in the source code.
 
-> ***IMPORTANT.*** *`@prism` only uses camel case names with no characters other than numbers and ASCII letters. For example, a name such as `nipy_spectral-1` is transformed into `NipySpectral1` within `@prism`.*
+> ***IMPORTANT.*** *`@prism` only uses `CamelCase` names with no characters other than numbers and ASCII letters. For example, a name such as `nipy_spectral-1` is transformed into `NipySpectral1` within `@prism`.*
 
 <a id="MULTIMD-TOC-ANCHOR-2"></a>
 Supported implementations <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -120,7 +120,7 @@ mypal = getPal(
 ~~~
 
 To simplify the explanations, we will refer to the colors
-in the standard palette `'GistHeat'` as `coul_1`, `coul_2,`, etc. The options are then processed in the following order.
+in the standard palette `'GistHeat'` as `coul_1`, `coul_2,`, etc. The options are then **processed in the following order**.
 
 1. `{coul_2, coul_5, coul_8, coul_9}` is the result of the extraction.
 2. `{coul_9, coul_2, coul_5, coul_8}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).

@@ -1,0 +1,13 @@
+// ---------- //
+
+
+==
+07  (1.2.1-beta.2)
+==
+
+--------
+:fordev:
+--------
+
+[[:flow:]]
+\Num_ver: full automation made using the project file path::''about.yaml''.

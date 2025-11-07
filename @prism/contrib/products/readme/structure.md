@@ -7,7 +7,6 @@ We will briefly explain the following structure of the `contrib/products` folder
 ~~~
 + contrib
   + changes
-  + css
   + luadraw
   + readme
   + status
