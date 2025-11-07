@@ -29,8 +29,6 @@ reprendre la doc
 
             + Dans luaraw, faire un test de bijectivité palett --> code --> palette
 
-   --> pour luadraw : mieux expliquer que c'est le ficheir TEX qui produit le code lua a dépalcé une fois la palette finie
-
 
 // ---------- //
 

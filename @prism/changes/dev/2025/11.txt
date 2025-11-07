@@ -10,7 +10,11 @@
 -----
 
 [[:doc:]]
-\Contribs: \readme added in the folder path::''contrib/translate''.
+\Contribs.
+
+    1) Translations: \readme added in the folder path::''contrib/translate''.
+
+    1) \luadraw: clarification of the process for adding a new palette.
 
 
 --------
