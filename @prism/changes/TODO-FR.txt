@@ -17,12 +17,6 @@ reprendre la doc
 
    --> origine des Palette dans le showcase.
 
-   --> extend.py
-
-            + README: meiux insister sur extend.py et usage prmettant de tester ce qui est ajouté
-
-            + Dans luaraw, faire un test de bijectivité palett --> code --> palette
-
 
 // ---------- //
 

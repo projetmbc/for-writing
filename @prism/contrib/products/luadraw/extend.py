@@ -167,9 +167,12 @@ def build_code(
 -- ''coul_2'', etc. The options are then processed in the
 -- following order.
 --
---     1) First,the extraction is done: ''mypal = {coul_2, coul_5, coul_8, coul_9}''.
+--     1) First,the extraction is done: ''mypal = {coul_2,
+--     coul_5, coul_8, coul_9}''.
 --
---     2) Then, the shift is applied to the extracted palette, colors moving to the right if ''shift'' is positive: ''mypal = {coul_5, coul_8, coul_9, coul_2}''.
+--     2) Then, the shift is applied to the extracted palette,
+--     colors moving to the right if ''shift'' is positive:
+--     ''mypal = {coul_5, coul_8, coul_9, coul_2}''.
 --
 --
 -- Finally, inversion is applied.
@@ -282,15 +285,18 @@ PALETTE = {
 
     print_section = lambda t: print(f'\n--- {t} --\n')
 
-    std_data  = parse(code)
+    print_section('INITIAL CODE')
+    print(code.strip())
+
+    std_data = parse(code)
 
     print_section('STD DATA (JSON)')
     print(std_data)
 
-    print_section('BACK TO CODE')
+    print_section('SPECIFIC CODE')
     print(
-        build_code({"TEST": std_data})
+        build_code(
+            credits  = 'Credits...',
+            palettes = {"TEST": std_data}
+        )
     )
-
-    print_section('INITIAL CODE')
-    print(code.strip())

@@ -22,7 +22,11 @@
 --------
 
 [[:doc:]]
-Main \readme: update of the credits to \matplotlib and now to \scicolmaps.
+\Readmes.
+
+    1) Main: the credits refers now to \matplotlib and \scicolmaps.
+
+    1) \Prod \contribs: the role of the path::''extend.py'' file has been added.
 
 
 --------
