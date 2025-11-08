@@ -10,8 +10,8 @@ from json import dumps as json_dumps
 # --------------- #
 
 THIS_DIR          = Path(__file__).parent
-PROJ_DIR          = THIS_DIR.parent
-HUMAN_CHOICES_DIR = THIS_DIR / "human-choices"
+PROJ_DIR          = THIS_DIR.parent.parent
+HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices"
 
 PAL_CATEGO_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGO.json"
 PAL_CATEGO_JSON_FILE.touch()
