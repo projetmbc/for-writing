@@ -2,7 +2,10 @@
 
 from pathlib import Path
 
-from json import dumps as json_dumps
+from json import (
+    dumps as json_dumps,
+    load  as json_load,
+)
 
 
 # --------------- #
@@ -11,10 +14,19 @@ from json import dumps as json_dumps
 
 THIS_DIR          = Path(__file__).parent
 PROJ_DIR          = THIS_DIR.parent.parent
+PRODS_DIR         = PROJ_DIR / "products"
 HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices"
+
 
 PAL_CATEGO_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGO.json"
 PAL_CATEGO_JSON_FILE.touch()
+
+
+PROD_JSON_DIR = PRODS_DIR / "json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
+
+with PAL_JSON_FILE.open(mode = "r") as f:
+    ALL_PALETTES = json_load(f)
 
 
 # ------------- #
@@ -35,11 +47,33 @@ def extract_real_clusters(file: Path) -> [[str]]:
             if p.strip()
         ]
 
+        for n in b:
+            if not n in ALL_PALETTES:
+                raise ValueError(
+                    f"unknown palette '{n}'. See file:\n{file}"
+                )
+
         if len(b) > 1:
-            clusters.append(sorted(b))
+            clusters.append(set(b))
 
     return sorted(clusters)
 
+
+def update_clusters(
+    all_clusters: [[str]],
+    new_clusters: [[str]],
+) -> [[str]]:
+    from rich import print
+
+    for new_c in new_clusters:
+        for i, c in enumerate(all_clusters):
+            if new_c & c:
+                c |= new_c
+
+                all_clusters[i] = c
+                break
+
+    return all_clusters
 
 
 # ------------------ #
@@ -55,7 +89,7 @@ for file in HUMAN_CHOICES_DIR.rglob("01-*/*.txt"):
     clusters =  extract_real_clusters(file)
 
     if clusters:
-        all_clusters += clusters
+        all_clusters += [set(c) for c in clusters]
 
 
 # -- STEP 2 -- #
@@ -63,36 +97,18 @@ for file in HUMAN_CHOICES_DIR.rglob("01-*/*.txt"):
 new_clusters = []
 
 for file in HUMAN_CHOICES_DIR.rglob("02-*/*.txt"):
-    clusters = extract_real_clusters(file)
+    new_clusters += extract_real_clusters(file)
 
-    for c in clusters:
-        for i, allc in enumerate(all_clusters):
-            set_allc = set(allc)
-            set_c    = set(c)
-
-            if set_allc.intersection(set_c) or set_c.intersection(set_allc):
-                set_allc |= set_c
-                all_clusters[i] = list(set_allc)
-                break
-
-            elif not c in new_clusters:
-                new_clusters.append(c)
-                break
-
-all_clusters += new_clusters
+all_clusters = update_clusters(all_clusters, new_clusters)
 
 
 # -- NOTHING LEFT TO DO -- #
 
 all_clusters = sorted([
-    sorted(c)
+    sorted(list(c))
     for c in all_clusters
 ])
 
 PAL_CATEGO_JSON_FILE.write_text(
-    json_dumps(
-        obj       = all_clusters,
-        indent    = 2,
-        sort_keys = True,
-    )
+    json_dumps(all_clusters)
 )

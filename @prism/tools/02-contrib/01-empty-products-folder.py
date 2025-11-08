@@ -8,9 +8,9 @@ from shutil  import rmtree
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR    = Path(__file__).parent
-PROJECT_DIR = THIS_DIR.parent.parent
-PRODS_DIR   = PROJECT_DIR / "products"
+THIS_DIR  = Path(__file__).parent
+PROJ_DIR  = THIS_DIR.parent.parent
+PRODS_DIR = PROJ_DIR / "products"
 
 
 # --------------------------------- #

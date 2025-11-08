@@ -28,9 +28,9 @@ import numpy as np
 CTXT = TAG_SCICOLMAP
 
 THIS_DIR          = Path(__file__).parent
-PROJECT_DIR       = THIS_DIR.parent.parent
-PRODS_DIR         = PROJECT_DIR / "products"
-SCICOLMAP_SRC_DIR = PROJECT_DIR / "x-ScientificColourMaps8-x"
+PROJ_DIR          = THIS_DIR.parent.parent
+PRODS_DIR         = PROJ_DIR / "products"
+SCICOLMAP_SRC_DIR = PROJ_DIR / "x-ScientificColourMaps8-x"
 REPORT_DIR        = THIS_DIR.parent / "report"
 
 

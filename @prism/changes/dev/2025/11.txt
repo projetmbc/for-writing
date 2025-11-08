@@ -47,7 +47,7 @@ Equal palettes: the floating point equality uses now a good tolerance.
 [[:doc:]]
 Here are the small important additions.
 
-    1) Showcaces: for each palette, its origin has been added.
+    1) Showcases: for each palette, its origin has been added.
 
     1) Main \readme: the credits refers now to \matplotlib and \scicolmaps.
 

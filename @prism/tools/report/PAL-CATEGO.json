@@ -5,25 +5,15 @@
   ],
   [
     "Bam",
-    "Bam0"
-  ],
-  [
-    "Bam",
+    "BamO",
     "PRGn",
     "PiYG"
   ],
   [
     "Batlow",
-    "BatlowK"
-  ],
-  [
     "BatlowK",
     "Lipari",
     "Turku"
-  ],
-  [
-    "BatlowW",
-    "GistEarth"
   ],
   [
     "Bilbao",
@@ -39,6 +29,7 @@
   ],
   [
     "Bone",
+    "Devon",
     "Oslo"
   ],
   [
@@ -48,21 +39,9 @@
     "CorkO"
   ],
   [
-    "BuPu",
-    "Purples"
-  ],
-  [
-    "Buda",
-    "Spring"
-  ],
-  [
     "Bwr",
     "Coolwarm",
     "Seismic"
-  ],
-  [
-    "Cividis",
-    "Nuuk"
   ],
   [
     "Dark2",
@@ -71,10 +50,6 @@
   [
     "Davos",
     "Lapaz"
-  ],
-  [
-    "Devon",
-    "Oslo"
   ],
   [
     "GistHeat",
@@ -93,10 +68,6 @@
     "Viridis"
   ],
   [
-    "Inferno",
-    "Magma"
-  ],
-  [
     "Navia",
     "NaviaW"
   ],
@@ -105,7 +76,8 @@
     "Oranges",
     "RdPu",
     "Reds",
-    "YlOrBr"
+    "YlOrBr",
+    "YlOrRd"
   ],
   [
     "Rainbow",
@@ -116,20 +88,7 @@
     "Spectral"
   ],
   [
-    "Roma",
-    "RomaO"
-  ],
-  [
     "Tab10",
     "Tab20"
-  ],
-  [
-    "TwilightShifted",
-    "Vik",
-    "VikO"
-  ],
-  [
-    "YlOrBr",
-    "YlOrRd"
   ]
 ]

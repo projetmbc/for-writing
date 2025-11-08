@@ -9,6 +9,6 @@ Gnuplot,Plasma
 ---
 Gnuplot2
 ---
-ImolaViridis
+Imola,Viridis
 ---
 Winter

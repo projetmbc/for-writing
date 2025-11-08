@@ -21,9 +21,9 @@ from json import (
 CTXT = TAG_APRISM
 
 THIS_DIR         = Path(__file__).parent
-PROJECT_DIR      = THIS_DIR.parent.parent
-PRODS_DIR        = PROJECT_DIR / "products"
-CONTRIB_PROD_DIR = PROJECT_DIR / "contrib" / "products"
+PROJ_DIR         = THIS_DIR.parent.parent
+PRODS_DIR        = PROJ_DIR / "products"
+CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
 REPORT_DIR       = THIS_DIR.parent / "report"
 
 
@@ -56,7 +56,7 @@ if REPORT_NAME_CONFLICT_FILE.is_file():
 # -- CONTRIB. PALETTES -- #
 # ----------------------- #
 
-contribs_accepted = get_accepted_paths(PROJECT_DIR)
+contribs_accepted = get_accepted_paths(PROJ_DIR)
 
 if CONTRIB_PROD_DIR in contribs_accepted:
     del contribs_accepted[CONTRIB_PROD_DIR]

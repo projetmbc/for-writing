@@ -5,13 +5,20 @@
 
 // ---------- //
 
-classification des couleurs dans le show case + en parler dans la doc
+rendre version luadraw compatible en ajoutant palNames tableau assicatif !!
+
+
+// ---------- //
+
+classification des couleurs dans un doc dédié
 
    --> info donnnée dans le manuel
 
             + descriptif avec la liste de s couelusr concernées.
 
             + unclassifiable pour ce qui n'a apas encore pu etre actégorisé
+
+            + rappeler showcase et category
 
    --> nuance de grise
 

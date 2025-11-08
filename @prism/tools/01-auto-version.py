@@ -9,10 +9,10 @@ from yaml import safe_load
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR    = Path(__file__).parent
-PROJECT_DIR = THIS_DIR.parent
+THIS_DIR = Path(__file__).parent
+PROJ_DIR = THIS_DIR.parent
 
-PROJECT_ABOUT_YAML = PROJECT_DIR / "about.yaml"
+PROJECT_ABOUT_YAML = PROJ_DIR / "about.yaml"
 TOOLS_VERSION_TXT  = THIS_DIR / "VERSION.txt"
 
 

@@ -15,13 +15,11 @@ Nuuk, Cividis
 ---
 Lipari, Turku, BatlowK
 ---
-Bam0, Bam
+BamO, Bam
 ---
 BatlowW, GistEarth
 ---
 Devon, Oslo
----
-Imola, Viridis
 ---
 Inferno,Magma
 ---
