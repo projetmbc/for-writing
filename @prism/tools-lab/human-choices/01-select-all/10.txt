@@ -1,0 +1,18 @@
+---
+BurningGrass
+---
+Lemon
+---
+NipySpectral
+---
+Greens, YlGn
+---
+GistNcar
+---
+Rainbow,Turbo
+---
+Set3
+---
+Tab20b
+---
+Terrain, ,

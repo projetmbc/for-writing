@@ -1,0 +1,14 @@
+---
+Brg
+---
+Bwr, Coolwarm,Seismic
+---
+GistStern
+---
+Gnuplot,Plasma
+---
+Gnuplot2
+---
+ImolaViridis
+---
+Winter

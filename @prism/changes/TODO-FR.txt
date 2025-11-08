@@ -5,8 +5,7 @@
 
 // ---------- //
 
-
-catégorization des couleurs dans le show case + en parler dans la doc
+classification des couleurs dans le show case + en parler dans la doc
 
    --> info donnnée dans le manuel
 

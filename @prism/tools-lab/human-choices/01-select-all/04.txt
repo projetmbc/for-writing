@@ -1,0 +1,20 @@
+---
+Autumn
+---
+Dark2,  Set2
+---
+Spring
+---
+Buda
+---
+Inferno
+---
+RdYlGn
+---
+Set1
+---
+ShiftRainbow
+---
+Wistia
+---
+YlOrRd

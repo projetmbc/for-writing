@@ -1,0 +1,20 @@
+---
+Cool
+---
+Hsv,
+---
+Managua,
+---
+Ocean,
+---
+Paired,
+---
+PuOr,
+---
+Roma,
+---
+Tab10, Tab20,
+---
+Tab20c,
+---
+TwilightShifted

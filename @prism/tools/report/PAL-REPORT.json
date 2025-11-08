@@ -167,6 +167,10 @@
     "context": "Matplotlib",
     "reverse-of": "Grey"
   },
+  "Greys": {
+    "context": "Matplotlib",
+    "equal-to": "Grays"
+  },
   "GreysR": {
     "context": "Matplotlib",
     "reverse-of": "Greys"

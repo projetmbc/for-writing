@@ -1,0 +1,10 @@
+---
+Flag
+---
+RdYlBu, Spectral
+---
+GistRainbow
+---
+Jet
+---
+Prism,

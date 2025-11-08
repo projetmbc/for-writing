@@ -2,6 +2,29 @@
 
 
 ==
+08  (1.2.1-beta.3)
+==
+
+-------
+:break:
+-------
+
+[[:api:]]
+Palettes: the duplicated ''Greys'' has been removed (it is equal to ''Grays'').
+
+
+-----
+:fix:
+-----
+
+[[:api:]]
+Equal palettes: the floating point equality uses now a good tolerance.
+
+
+// ---------- //
+
+
+==
 07  (1.2.1-beta.2)
 ==
 

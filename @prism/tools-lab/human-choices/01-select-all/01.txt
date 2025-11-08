@@ -1,0 +1,18 @@
+---
+Accent
+---
+Binary, Grays
+---
+Oranges, Reds, OrRd, RdPu, YlOrBr
+---
+BlindFish
+---
+BuPu
+---
+PuRd
+---
+---
+---
+---
+---
+---

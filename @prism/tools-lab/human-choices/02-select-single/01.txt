@@ -1,0 +1,48 @@
+---
+---
+---
+YlOrRd,YlOrBr
+---
+TwilightShifted,Vik,VikO
+---
+Spring,Buda
+---
+Roma,RomaO
+---
+Purples, BuPu
+---
+Nuuk, Cividis
+---
+Lipari, Turku, BatlowK
+---
+Bam0, Bam
+---
+BatlowW, GistEarth
+---
+Devon, Oslo
+---
+Imola, Viridis
+---
+Inferno,Magma
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---

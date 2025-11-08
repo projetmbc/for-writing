@@ -8,7 +8,7 @@ from .normval import stdfloat
 
 PALSIZE   = 10  # <--- CSS and manual uses.
 PRECISION = 10**6
-TOLERANCE = 10**(-6)
+TOLERANCE = 10**(-5)
 
 class PAL_STATUS(Enum):
     IS_NEW     = 1

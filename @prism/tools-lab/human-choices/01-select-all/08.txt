@@ -1,0 +1,20 @@
+---
+Blues,PuBu
+---
+PuBuGn
+---
+Purples
+---
+GnBu
+---
+BuGn
+---
+YlGnBu
+---
+Pastel1
+---
+ Pastel2
+---
+RdBu
+---
+ RomaO
