@@ -24,7 +24,7 @@ PRODS_DIR         = PROJ_DIR / "products"
 HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices"
 
 
-PAL_CATEGO_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGO.json"
+PAL_CATEGO_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-SIMILAR.json"
 PAL_CATEGO_JSON_FILE.touch()
 
 

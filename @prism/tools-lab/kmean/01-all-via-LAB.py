@@ -23,7 +23,7 @@ for f in CLUSTERS_DIR.glob('*'):
     f.unlink()
 
 
-PAL_CATEGO_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGO.json"
+PAL_CATEGO_FILE = PROJ_DIR / "tools" / "report" / "PAL-SIMILAR.json"
 PAL_JSON_FILE   = PROJ_DIR / "products" / "json" / "palettes.json"
 
 with PAL_JSON_FILE.open('r') as f:

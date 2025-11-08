@@ -27,7 +27,7 @@ VERSION = VERSION.read_text()
 VERSION = VERSION.strip()
 
 
-PAL_CATEGO_FILE = REPORT_DIR / "PAL-CATEGO.json"
+PAL_CATEGO_FILE = REPORT_DIR / "PAL-SIMILAR.json"
 
 with PAL_CATEGO_FILE.open(mode = "r") as f:
     ALL_CATEGOS = json_load(f)

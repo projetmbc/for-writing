@@ -6,7 +6,6 @@
 Palettes: the duplicated ''Greys'' has been removed (it is equal to ''Grays'').
 
 
-
 -----
 :new:
 -----
