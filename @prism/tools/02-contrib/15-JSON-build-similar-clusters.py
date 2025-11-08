@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
+import              sys
+
+TOOLS_DIR = Path(__file__).parent.parent
+sys.path.append(str(TOOLS_DIR))
+
+from cbutils.core import *
 
 from json import (
     dumps as json_dumps,
@@ -79,6 +85,9 @@ def update_clusters(
 # ------------------ #
 # -- "CLUSTERIZE" -- #
 # ------------------ #
+
+logging.info("JSON file of similar palettes.")
+
 
 all_clusters = []
 

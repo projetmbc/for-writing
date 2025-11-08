@@ -112,7 +112,9 @@ TMPL_IMPORT = r"\subimport{{{rel_folder}/}}{{{file}}}"
 # ----------- #
 
 def build_imports(lang: str) -> (Path, [str]):
-    file_imports = _rec_build_imports(TRANSLATE_DIR / fname / TAG_MANUAL)
+    file_imports = _rec_build_imports(
+        TRANSLATE_DIR / fname / TAG_MANUAL
+    )
 
     tex_imports = []
 

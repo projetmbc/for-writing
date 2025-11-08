@@ -55,6 +55,7 @@ def compact_nblists(json_code: str) -> str:
 
     return PATTERN_JSON_LIST.sub(myreplace, json_code)
 
+
 # ----------------- #
 # -- LET'S WORK! -- #
 # ----------------- #

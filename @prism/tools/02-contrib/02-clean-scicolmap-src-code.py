@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
-from shutil  import rmtree
+import              sys
+
+TOOLS_DIR = Path(__file__).parent.parent
+sys.path.append(str(TOOLS_DIR))
+
+from cbutils.core import *
+
+from shutil import rmtree
 
 
 # --------------- #
@@ -17,7 +24,11 @@ SCICOLMAP_SRC_DIR = PROJ_DIR / "x-ScientificColourMaps8-x"
 # -- CLEANING SOURCE CODE FOLDER -- #
 # --------------------------------- #
 
+logging.info("Cleaning 'Scientific Colour Maps' source folder.")
+
 if not SCICOLMAP_SRC_DIR.is_dir():
+    logging.warning("Empty 'Scientific Colour Maps' source folder.")
+
     exit(0)
 
 for p in SCICOLMAP_SRC_DIR.glob("*"):

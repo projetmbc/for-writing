@@ -69,7 +69,6 @@ MD_FILES_TO_CONVERT += [
 CONVERTER_MD_2_TEX = MdToLatexConverter(shift_down_level = 1)
 
 
-
 TMPL_TEX = r"""
 % !TEX TS-program = lualatex
 

@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
-from shutil  import rmtree
+import              sys
+
+TOOLS_DIR = Path(__file__).parent.parent
+sys.path.append(str(TOOLS_DIR))
+
+from cbutils.core import *
+
+from shutil import rmtree
 
 
 # --------------- #
@@ -16,6 +23,8 @@ PRODS_DIR = PROJ_DIR / "products"
 # --------------------------------- #
 # -- EMPTY PRODUCTS FOLDER EMPTY -- #
 # --------------------------------- #
+
+logging.info("Empty 'product' folder.")
 
 if not PRODS_DIR.is_dir():
     PRODS_DIR.mkdir()
