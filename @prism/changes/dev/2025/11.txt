@@ -6,11 +6,11 @@
 ==
 
 -----
-:new:
+:fix:
 -----
 
-[[:doc:]]
-Similar palettes: a \pdf shows similar palettes (semi-automated process).
+[[:api:]]
+Equal palettes: the floating point equality uses now a good tolerance.
 
 
 -------
@@ -22,11 +22,19 @@ Palettes: the duplicated ''Greys'' has been removed (it is equal to ''Grays'').
 
 
 -----
-:fix:
+:new:
 -----
 
-[[:api:]]
-Equal palettes: the floating point equality uses now a good tolerance.
+[[:doc:]]
+Similar palettes: a \pdf shows similar palettes (semi-automated process).
+
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual: \refs to the similar palette \pdf added.
 
 
 // ---------- //
