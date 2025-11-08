@@ -5,19 +5,13 @@
   ],
   [
     "Bam",
-    "BamO",
     "PRGn",
     "PiYG"
   ],
   [
     "Batlow",
     "BatlowK",
-    "Lipari",
     "Turku"
-  ],
-  [
-    "Bilbao",
-    "Pink"
   ],
   [
     "Binary",
@@ -29,14 +23,11 @@
   ],
   [
     "Bone",
-    "Devon",
     "Oslo"
   ],
   [
     "Broc",
-    "BrocO",
-    "Cork",
-    "CorkO"
+    "BrocO"
   ],
   [
     "Bwr",
@@ -44,8 +35,8 @@
     "Seismic"
   ],
   [
-    "Dark2",
-    "Set2"
+    "Cork",
+    "CorkO"
   ],
   [
     "Davos",
@@ -74,7 +65,6 @@
   [
     "OrRd",
     "Oranges",
-    "RdPu",
     "Reds",
     "YlOrBr",
     "YlOrRd"
@@ -86,9 +76,5 @@
   [
     "RdYlBu",
     "Spectral"
-  ],
-  [
-    "Tab10",
-    "Tab20"
   ]
 ]

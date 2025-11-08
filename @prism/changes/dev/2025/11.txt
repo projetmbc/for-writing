@@ -5,6 +5,14 @@
 08  (1.2.1-beta.3)
 ==
 
+-----
+:new:
+-----
+
+[[:doc:]]
+Similar palettes: a \pdf shows similar palettes (semi-automated process).
+
+
 -------
 :break:
 -------

@@ -1,7 +1,9 @@
 ---
 Bam,PRGn,PiYG
 ---
-Cork,  Broc,  BrocO,  CorkO
+Cork,    CorkO
+---
+Broc,  BrocO
 ---
 RdGy
 ---

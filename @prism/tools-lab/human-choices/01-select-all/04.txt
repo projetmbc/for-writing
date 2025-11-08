@@ -1,7 +1,9 @@
 ---
 Autumn
 ---
-Dark2,  Set2
+Dark2
+---
+Set2
 ---
 Spring
 ---

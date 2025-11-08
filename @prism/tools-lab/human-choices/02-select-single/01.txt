@@ -13,13 +13,11 @@ Purples, BuPu
 ---
 Nuuk, Cividis
 ---
-Lipari, Turku, BatlowK
+Turku, BatlowK
 ---
-BamO, Bam
 ---
 BatlowW, GistEarth
 ---
-Devon, Oslo
 ---
 Inferno,Magma
 ---

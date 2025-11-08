@@ -184,7 +184,7 @@ for tex_file in sorted([
 # -- SINGLE PALETTE SHOWCASES -- #
 # ------------------------------ #
 
-logging.info("Update the template files (sie of palettes).")
+logging.info("Update the template files (size of palettes).")
 
 texpalsize = f"\n  PALSIZE = {PALSIZE}\n"
 
