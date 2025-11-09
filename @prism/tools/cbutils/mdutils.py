@@ -93,7 +93,7 @@ def transform_tdoccodein(text, transformations=None):
 
         # Vérifier si le contenu correspond à une règle
         for key, transfo in transformations.items():
-            if re.match(key, content):
+            if key == content:
                 if isinstance(transfo, str):
                     return transfo
 
