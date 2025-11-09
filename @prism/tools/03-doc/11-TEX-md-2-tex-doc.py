@@ -138,7 +138,7 @@ def add_label(
 # --------------- #
 
 logging.info(
-    "Updating English doc (product sections)."
+    "Updating English doc: 'product sections'."
 )
 
 for mdfile in MD_FILES_TO_CONVERT:

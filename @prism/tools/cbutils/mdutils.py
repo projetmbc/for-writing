@@ -80,7 +80,7 @@ PATTERN_HTML_COMMENTS = re.compile(
 )
 
 
-import re
+
 
 def transform_tdoccodein(text, transformations=None):
     if transformations is None:

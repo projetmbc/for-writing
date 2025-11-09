@@ -26,10 +26,12 @@ SCICOLMAP_SRC_DIR = PROJ_DIR / "x-ScientificColourMaps8-x"
 
 logging.info("Cleaning 'Scientific Colour Maps' source folder.")
 
+
 if not SCICOLMAP_SRC_DIR.is_dir():
     logging.warning("Empty 'Scientific Colour Maps' source folder.")
 
     exit(0)
+
 
 for p in SCICOLMAP_SRC_DIR.glob("*"):
     if p.name.startswith('+') and p.is_dir():

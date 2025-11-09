@@ -42,7 +42,7 @@ CMD_VALS = {
 # --------------------- #
 
 logging.info(
-    "Updating English doc (data about palettes)."
+    "Updating English doc: 'data about palettes'."
 )
 
 tex_cfg_file = EN_MANUAL_DIR / "preamble.cfg.sty"

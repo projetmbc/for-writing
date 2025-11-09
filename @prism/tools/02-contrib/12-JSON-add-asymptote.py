@@ -41,15 +41,17 @@ REPORT_DIR = THIS_DIR.parent / "report"
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
-
-MP_NAMES_FILE   = REPORT_DIR / "MP-NAMES.json"
-PAL_REPORT_FILE = REPORT_DIR / "PAL-REPORT.json"
-
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
+
+MP_NAMES_FILE = REPORT_DIR / "MP-NAMES.json"
+
 with MP_NAMES_FILE.open(mode = "r") as f:
     ALL_MP_NAMES = json_load(f)
+
+
+PAL_REPORT_FILE = REPORT_DIR / "PAL-REPORT.json"
 
 with PAL_REPORT_FILE.open(mode = "r") as f:
     IGNORED = json_load(f)

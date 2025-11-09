@@ -110,6 +110,12 @@ all_clusters = []
 # -- STEP 1 -- #
 
 for file in HUMAN_CHOICES_DIR.rglob("01-*/new.txt"):
+    folder_name = file.parent.name
+
+    logging.info(
+        f"Work on '{folder_name}/{file.name}'."
+    )
+
     clusters =  extract_real_clusters(file)
 
     if clusters:
@@ -122,6 +128,10 @@ for i in range(2, IMAX + 1):
     new_clusters = []
 
     for file in HUMAN_CHOICES_DIR.rglob(f"{i:02d}-*/new.txt"):
+        logging.info(
+            f"Work on '{folder_name}/{file.name}'."
+        )
+
         new_clusters += extract_real_clusters(file)
 
     all_clusters = update_clusters(all_clusters, new_clusters)

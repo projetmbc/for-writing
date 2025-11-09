@@ -153,10 +153,11 @@ PATTERN_UPDATE_PALSIZE = re.compile(
 # -- TOOLS -- #
 # ----------- #
 
-def build_name(name):
+def build_name(name: str) -> str:
     return f"main-{name}"
 
-def extract_palname(filename):
+
+def extract_palname(filename: str) -> str:
     return filename.split('-')[1]
 
 
@@ -200,7 +201,7 @@ for tmp_file in TMPL_TEX_FILES.values():
 # -- SINGLE PALETTE SHOWCASES -- #
 # ------------------------------ #
 
-logging.info("Add single palette showcase TeX files.")
+logging.info("Add 'single palette showcase' TeX files.")
 
 for palname in ALL_PALETTES:
     for kind, tmp_file in TMPL_SINGLE_SHOWCASE_TEX_CODES.items():
@@ -240,7 +241,7 @@ for palname in ALL_PALETTES:
 # -- FULL SHOWCASE -- #
 # ------------------- #
 
-logging.info("Building full palette showcase TeX files.")
+logging.info("Building 'full palette showcase' TeX files.")
 
 for kind, showfile in ALL_SHOWCASE_TEX_FILES.items():
     tex_code = [

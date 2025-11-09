@@ -53,7 +53,7 @@ for prod_dir in PRODS_DIR.glob("*"):
     if name == "json":
         continue
 
-    logging.info(f"Add '{name}' main doc.")
+    logging.info(f"Add '{name}' in main README.")
 
 
     readme_dir = CONTRIB_DIR / name / "readme"

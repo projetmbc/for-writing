@@ -87,7 +87,7 @@ PATTERN_PAL_LIST = re.compile(
 # -- LET'S WORK! -- #
 # ----------------- #
 
-logging.info("Add similar palette TeX files.")
+logging.info("Add 'similar palette' TeX files.")
 
 texcode = [HEADER_TEX_CODE]
 

@@ -64,7 +64,7 @@ allnames = sorted(colormaps, key = lambda x: x.lower())
 
 PAL_SRC      = dict()
 ALL_PALETTES = dict()
-PAL_REPORT      = dict()
+PAL_REPORT   = dict()
 
 scale_factor = PALSIZE - 1
 
@@ -106,7 +106,7 @@ for cmap_name in allnames:
 
 
 logging.info(
-    f"{len(ALL_PALETTES)} palettes build from 'Matplotlib' color maps."
+    f"{len(ALL_PALETTES)} palettes build using 'Matplotlib' color maps."
 )
 
 

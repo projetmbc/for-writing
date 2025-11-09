@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import re
+
 from math   import floor
 from string import (
     ascii_letters,
@@ -18,23 +20,17 @@ CHARS_ALLOWED = set(ascii_letters + digits)
 # -- STRING -- #
 # ------------ #
 
-def _capitalize(n):
-    return n[0].upper() + n[1:]
+def _capitalize(text: str) -> str:
+    return text[0].upper() + text[1:]
 
-def stdname(n):
-    letters = set(n)
 
-    if not letters <= CHARS_ALLOWED:
-        for c in letters - CHARS_ALLOWED:
-            n = ''.join([
-                _capitalize(p)
-                for p in n.split(c)
-            ])
+def stdname(name: str) -> str:
+    parts = re.split(r"[^a-zA-Z0-9]+", name)
+    parts = [_capitalize(p) for p in parts if p]
 
-    else:
-        n = _capitalize(n)
+    name = "".join(parts)
 
-    return n
+    return name
 
 
 # ----------- #
@@ -46,16 +42,3 @@ def stdfloat(
     precision: float
 ) -> float:
     return floor(x * precision) / precision
-
-
-def minimize_palette(p: list[float]) -> list[float]:
-    if len(set(tuple(c) for c in p)) == len(p):
-        return p
-
-    new_p = []
-
-    for c in p:
-        if (not new_p or c != new_p[-1]):
-            new_p.append(c)
-
-    return new_p
