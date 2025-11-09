@@ -15,8 +15,8 @@ from skimage import color
 from scipy.spatial.distance import cdist
 
 
-THIS_DIR = Path(__file__).parent
-PROJ_DIR = THIS_DIR.parent.parent
+THIS_DIR     = Path(__file__).parent
+PROJ_DIR     = THIS_DIR.parent.parent.parent
 CLUSTERS_DIR = THIS_DIR.parent / "clusters" / Path(__file__).stem
 
 for f in CLUSTERS_DIR.glob('*'):

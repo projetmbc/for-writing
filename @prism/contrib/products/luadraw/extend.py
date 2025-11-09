@@ -134,9 +134,9 @@ def build_code(
 
     code.append(
         """
----------------------------------
--- GET ONE PALETTE BY ITS NAME --
----------------------------------
+-----------------------------
+-- USE AND CREATE PALETTES --
+-----------------------------
 
 ------
 -- prototype::
@@ -241,6 +241,27 @@ function getPal(name, options)
     end
 
     return result
+end
+        """.strip() + '\n'
+    )
+
+# Extra code because no getPal inside luadraw...
+    all_names = sorted(palettes)
+    all_names = [f'"pal{n}"' for n in all_names]
+    all_names = ",\n    ".join(all_names)
+
+    code.append(
+        f"""
+---------------------------------
+-- GET ONE PALETTE BY ITS NAME --
+---------------------------------
+
+palNames = {{}}
+
+for _, name in ipairs({{
+    {all_names}
+}}) do
+    palNames[name] = _G[name]
 end
         """.strip() + '\n'
     )

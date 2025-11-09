@@ -1,5 +1,7 @@
 ---
-Blues,PuBu
+Blues
+---
+PuBu
 ---
 PuBuGn
 ---

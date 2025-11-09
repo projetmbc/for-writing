@@ -3,7 +3,9 @@ Afmhot, Hot,
 ---
 Hawaii
 ---
-GistHeat,  Lajolla
+GistHeat
+---
+  Lajolla
 ---
 CMRmap
 ---

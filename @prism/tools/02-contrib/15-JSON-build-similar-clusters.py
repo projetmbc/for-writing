@@ -21,11 +21,11 @@ from json import (
 THIS_DIR          = Path(__file__).parent
 PROJ_DIR          = THIS_DIR.parent.parent
 PRODS_DIR         = PROJ_DIR / "products"
-HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices"
+HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "similar" / "human-choices"
 
 
-PAL_CATEGO_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-SIMILAR.json"
-PAL_CATEGO_JSON_FILE.touch()
+PAL_SIMILAR_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-SIMILAR.json"
+PAL_SIMILAR_JSON_FILE.touch()
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"
@@ -106,10 +106,15 @@ for file in HUMAN_CHOICES_DIR.rglob("01-*/*.txt"):
 new_clusters = []
 
 for file in HUMAN_CHOICES_DIR.rglob("02-*/*.txt"):
+    print(file)
     new_clusters += extract_real_clusters(file)
 
+from rich import print
+print(all_clusters)
+print(new_clusters)
 all_clusters = update_clusters(all_clusters, new_clusters)
-
+print()
+print(all_clusters)
 
 # -- NOTHING LEFT TO DO -- #
 
@@ -118,6 +123,6 @@ all_clusters = sorted([
     for c in all_clusters
 ])
 
-PAL_CATEGO_JSON_FILE.write_text(
+PAL_SIMILAR_JSON_FILE.write_text(
     json_dumps(all_clusters)
 )

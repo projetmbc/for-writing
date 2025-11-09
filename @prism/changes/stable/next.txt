@@ -3,7 +3,7 @@
 -------
 
 [[:api:]]
-Palettes: the duplicated ''Greys'' has been removed (it is equal to ''Grays'').
+Palettes: the extra ''Greys'' has been removed (it is equal to ''Grays'').
 
 
 -----
@@ -12,3 +12,12 @@ Palettes: the duplicated ''Greys'' has been removed (it is equal to ''Grays'').
 
 [[:doc:]]
 Similar palettes: a \pdf shows similar palettes (semi-automated process).
+
+
+
+--------
+:update:
+--------
+
+[[:api:]]
+\luadraw product: associative array ''palNames'' added for compatibility reasons.

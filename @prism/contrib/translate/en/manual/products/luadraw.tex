@@ -34,6 +34,9 @@ The {\lua} palette names all use the prefix \tdoccodein{text}+pal+ followed by t
 
 \item
 \tdoccodein{lua}+getPal('GistHeat')+ and \tdoccodein{lua}+getPal('palGistHeat')+ are equal to \tdoccodein{lua}+palGistHeat+.
+
+\item
+For compatibility reasons with the {\LUADRAW} API, there is also an associative array called \tdoccodein{lua}+palNames+, which expects the variable name with \tdoccodein{text}+pal+ prefix. See the caution note at the end of this section.
 \end{itemize}
 
 \begin{tdocnote}
@@ -60,7 +63,7 @@ palGistHeat = {
 \end{tdoccode}
 \end{tdocnote}
 
-There are also some options. To explain how this works, let's consider the following use case.
+The \tdoccodein{lua}+getPal+ function has some options. To explain how this works, let's consider the following use case.
 
 \begin{tdoccode}{lua}
 mypal = getPal(
@@ -88,7 +91,7 @@ To simplify the explanations, we will refer to the colors in the standard palett
 \end{enumerate}
 
 \begin{tdoccaut}
-The current version of {\LUADRAW} simply uses the palettes provided by {\thisproj}. If you prefer to use the {\thisproj} version with its \tdoccodein{lua}+getPal+ function, you will need to include the entire code in the {\LUADRAW} file where the package is installed.
+The current version of {\LUADRAW} simply uses the palettes provided by {\thisproj} wihtout the \tdoccodein{lua}+getPal+ function. If you prefer to use the {\thisproj} version with its \tdoccodein{lua}+getPal+ function, you will need to include the entire code in the {\LUADRAW} file where the package is installed.
 \end{tdoccaut}
 
 % -- AUTOMATICALLY GENERATED UGLY CODE - END -- %

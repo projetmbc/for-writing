@@ -3,7 +3,9 @@ Accent
 ---
 Binary, Grays
 ---
-Oranges, Reds, OrRd, , YlOrBr
+Oranges, Reds, OrRd,
+---
+ YlOrBr
 ---
 BlindFish
 ---

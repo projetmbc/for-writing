@@ -2,7 +2,7 @@
 
 
 ==
-08  (1.2.1-beta.3)
+09  (1.2.1-beta.3)
 ==
 
 -----
@@ -10,7 +10,7 @@
 -----
 
 [[:api:]]
-Equal palettes: the floating point equality uses now a good tolerance.
+Equal palettes: the floating point equality uses now a correct tolerance.
 
 
 -------
@@ -18,7 +18,7 @@ Equal palettes: the floating point equality uses now a good tolerance.
 -------
 
 [[:api:]]
-Palettes: the duplicated ''Greys'' has been removed (it is equal to ''Grays'').
+Palettes: the extra ''Greys'' has been removed (it is equal to ''Grays'').
 
 
 -----
@@ -26,15 +26,19 @@ Palettes: the duplicated ''Greys'' has been removed (it is equal to ''Grays'').
 -----
 
 [[:doc:]]
-Similar palettes: a \pdf shows similar palettes (semi-automated process).
+Similar palettes: two \pdfs show similar palettes in \std and black modes (semi-automated process used).
 
 
 --------
 :update:
 --------
 
+[[:api:]]
+\luadraw product: associative array ''palNames'' added for compatibility reasons.
+
+
 [[:doc:]]
-Manual: \refs to the similar palette \pdf added.
+Manual: \refs to the similar palette \pdfs added.
 
 
 // ---------- //

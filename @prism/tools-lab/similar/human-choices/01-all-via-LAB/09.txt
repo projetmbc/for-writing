@@ -1,7 +1,7 @@
 ---
 Brg
 ---
-Bwr, Coolwarm,Seismic
+Bwr,Seismic
 ---
 GistStern
 ---

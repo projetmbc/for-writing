@@ -13,7 +13,6 @@ Purples, BuPu
 ---
 Nuuk, Cividis
 ---
-Turku, BatlowK
 ---
 ---
 BatlowW, GistEarth

@@ -17,8 +17,10 @@ You can use `@prism` palettes with [`luadraw`][1] which is a package that greatl
 inlinecode:
   lua:
     - palGistHeat
+    - getPal
     - getPal('GistHeat')
     - getPal('palGistHeat')
+    - palNames
 -->
 
 The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
@@ -26,6 +28,8 @@ The `Lua` palette names all use the prefix `pal` followed by the name available 
   * `palGistHeat` is a `Lua` variable.
 
   * `getPal('GistHeat')` and `getPal('palGistHeat')` are equal to `palGistHeat`.
+
+  * For compatibility reasons with the `luadraw` API, there is also an associative array called `palNames`, which expects the variable name with `pal` prefix. See the caution note at the end of this section.
 
 
 > ***NOTE.*** *The `Lua` palette variables are arrays of arrays of three floats. Here is the definition of `palGistHeat`.*
@@ -62,7 +66,7 @@ inlinecode:
     - mypal = {coul_2, coul_9, coul_8, coul_5}
 -->
 
-There are also some options. To explain how this works, let's consider the following use case.
+The `getPal` function has some options. To explain how this works, let's consider the following use case.
 
 ~~~lua
 mypal = getPal(
@@ -85,11 +89,4 @@ in the standard palette `'GistHeat'` as `coul_1`, `coul_2,`, etc. The options ar
   1. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted palette.
 
 
-
-<!--YAML
-inlinecode:
-  lua:
-    - getPal
--->
-
-> ***CAUTION.*** *The current version of `luadraw` simply uses the palettes provided by `@prism`. If you prefer to use the `@prism` version with its `getPal` function, you will need to include the entire code in the `luadraw_palettes.lua` file where the package is installed.*
+> ***CAUTION.*** *The current version of `luadraw` simply uses the palettes provided by `@prism` wihtout the `getPal` function. If you prefer to use the `@prism` version with its `getPal` function, you will need to include the entire code in the `luadraw_palettes.lua` file where the package is installed.*

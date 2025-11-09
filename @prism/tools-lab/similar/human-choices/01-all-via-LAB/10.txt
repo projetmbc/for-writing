@@ -5,11 +5,15 @@ Lemon
 ---
 NipySpectral
 ---
-Greens, YlGn
+Greens
+---
+ YlGn
 ---
 GistNcar
 ---
-Rainbow,Turbo
+Rainbow
+---
+Turbo
 ---
 Set3
 ---

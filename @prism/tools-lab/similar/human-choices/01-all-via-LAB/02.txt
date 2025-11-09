@@ -1,11 +1,15 @@
 ---
 Acton
 ---
-Bone, Oslo
+Bone
+---
+ Oslo
 ---
 Cubehelix
 ---
-Davos, Lapaz
+Davos
+---
+Lapaz
 ---
 Devon
 ---

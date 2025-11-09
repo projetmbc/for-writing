@@ -1,5 +1,5 @@
 ---
-Bam,PRGn,PiYG
+Bam,PiYG
 ---
 Cork,    CorkO
 ---
