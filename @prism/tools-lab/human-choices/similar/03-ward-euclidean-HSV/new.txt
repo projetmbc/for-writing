@@ -3,9 +3,9 @@
 # ------------------------- #
 
 ---
-Blues, PuBu
+# DEBUG Inferno,Plasma
 ---
-Oranges, YlOrBr
+Blues, PuBu
 ---
 Jet, Turbo
 ---
@@ -15,7 +15,13 @@ Seismic,Bwr
 ---
 Davos,Lapaz
 ---
+Greens, BuGn
 ---
+Batlow,BatlowW
 ---
+Oranges, YlOrBr
 ---
+OrRd, YlOrRd
+---
+RdBu,RdYlBu
 ---

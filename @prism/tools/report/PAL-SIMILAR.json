@@ -9,7 +9,8 @@
   ],
   [
     "Batlow",
-    "BatlowK"
+    "BatlowK",
+    "BatlowW"
   ],
   [
     "Binary",
@@ -22,6 +23,11 @@
   [
     "Broc",
     "BrocO"
+  ],
+  [
+    "BuGn",
+    "Greens",
+    "YlGn"
   ],
   [
     "Bwr",
@@ -38,10 +44,6 @@
   [
     "Gnuplot",
     "Plasma"
-  ],
-  [
-    "Greens",
-    "YlGn"
   ],
   [
     "Imola",
@@ -61,10 +63,14 @@
   ],
   [
     "OrRd",
+    "YlOrRd"
+  ],
+  [
     "Oranges",
     "YlOrBr"
   ],
   [
+    "RdBu",
     "RdYlBu",
     "Spectral"
   ],
@@ -76,9 +82,5 @@
     "TwilightShifted",
     "Vik",
     "VikO"
-  ],
-  [
-    "YlOrBr",
-    "YlOrRd"
   ]
 ]

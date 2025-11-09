@@ -1,9 +1,7 @@
-# -------------------------- #
-# -- Last Human Selection -- #
-# -------------------------- #
+# ------------------------- #
+# -- New Human Selection -- #
+# ------------------------- #
 
----
-YlOrRd, YlOrBr
 ---
 TwilightShifted, Vik, VikO
 ---

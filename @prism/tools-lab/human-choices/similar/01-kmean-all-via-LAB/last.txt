@@ -21,7 +21,5 @@ Imola, Viridis
 ---
 Navia, NaviaW
 ---
-Oranges, OrRd
----
 RdYlBu, Spectral
 ---

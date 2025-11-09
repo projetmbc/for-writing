@@ -1,14 +1,27 @@
-# -------------------------- #
-# -- Last Human Selection -- #
-# -------------------------- #
+# ------------------------- #
+# -- New Human Selection -- #
+# ------------------------- #
 
 ---
+# DEBUG Inferno,Plasma
 ---
+Blues, PuBu
 ---
+Jet, Turbo
 ---
+YlGn,Greens
 ---
+Seismic,Bwr
 ---
+Davos,Lapaz
 ---
+Greens, BuGn
 ---
+Batlow,BatlowW
 ---
+Oranges, YlOrBr
+---
+OrRd, YlOrRd
+---
+RdBu,RdYlBu
 ---

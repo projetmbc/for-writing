@@ -3,8 +3,6 @@
 # ------------------------- #
 
 ---
-YlOrRd, YlOrBr
----
 TwilightShifted, Vik, VikO
 ---
 Roma, RomaO
