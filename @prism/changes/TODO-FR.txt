@@ -5,7 +5,9 @@
 
 // ---------- //
 
-rendre version luadraw compatible en ajoutant palNames tableau assicatif !!
+pour les clusters, besoin de gérér les nouveaux entrants !
+
+   --> il faut partir de ce qui existe, et esnuite faire cluster juste pour les nouvveaux
 
 
 // ---------- //

@@ -1,25 +1,25 @@
 \begin{tikzpicture}[line join=round]%
 \begin{scope}%
 \pgfsetlinewidth{1.0pt}%
-\draw[color = black!80, fill = {rgb,1:red,0.9686;green,0.9843;blue,1}] (80,9) -- (81,9) -- (81,8) -- (80,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.9686;green,0.9843;blue,1}] (80,9) -- (81,9) -- (81,8) -- (80,8)--cycle;%
 \draw[-] (80.5,9.575) node[below] {\Large$1$};%
-\draw[color = black!80, fill = {rgb,1:red,0.8825;green,0.9292;blue,0.9724}] (81.3,9) -- (82.3,9) -- (82.3,8) -- (81.3,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.8825;green,0.9292;blue,0.9724}] (81.3,9) -- (82.3,9) -- (82.3,8) -- (81.3,8)--cycle;%
 \draw[-] (81.8,9.575) node[below] {\Large$2$};%
-\draw[color = black!80, fill = {rgb,1:red,0.7994;green,0.8741;blue,0.9449}] (82.6,9) -- (83.6,9) -- (83.6,8) -- (82.6,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.7994;green,0.8741;blue,0.9449}] (82.6,9) -- (83.6,9) -- (83.6,8) -- (82.6,8)--cycle;%
 \draw[-] (83.1,9.575) node[below] {\Large$3$};%
-\draw[color = black!80, fill = {rgb,1:red,0.6719;green,0.8144;blue,0.9007}] (83.9,9) -- (84.9,9) -- (84.9,8) -- (83.9,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.6719;green,0.8144;blue,0.9007}] (83.9,9) -- (84.9,9) -- (84.9,8) -- (83.9,8)--cycle;%
 \draw[-] (84.4,9.575) node[below] {\Large$4$};%
-\draw[color = black!80, fill = {rgb,1:red,0.5106;green,0.7323;blue,0.8588}] (85.2,9) -- (86.2,9) -- (86.2,8) -- (85.2,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.5106;green,0.7323;blue,0.8588}] (85.2,9) -- (86.2,9) -- (86.2,8) -- (85.2,8)--cycle;%
 \draw[-] (85.7,9.575) node[below] {\Large$5$};%
-\draw[color = black!80, fill = {rgb,1:red,0.3465;green,0.6324;blue,0.8107}] (86.5,9) -- (87.5,9) -- (87.5,8) -- (86.5,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.3465;green,0.6324;blue,0.8107}] (86.5,9) -- (87.5,9) -- (87.5,8) -- (86.5,8)--cycle;%
 \draw[-] (87,9.575) node[below] {\Large$6$};%
-\draw[color = black!80, fill = {rgb,1:red,0.2157;green,0.5294;blue,0.7542}] (87.8,9) -- (88.8,9) -- (88.8,8) -- (87.8,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.2157;green,0.5294;blue,0.7542}] (87.8,9) -- (88.8,9) -- (88.8,8) -- (87.8,8)--cycle;%
 \draw[-] (88.3,9.575) node[below] {\Large$7$};%
-\draw[color = black!80, fill = {rgb,1:red,0.1056;green,0.4126;blue,0.686}] (89.1,9) -- (90.1,9) -- (90.1,8) -- (89.1,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.1056;green,0.4126;blue,0.686}] (89.1,9) -- (90.1,9) -- (90.1,8) -- (89.1,8)--cycle;%
 \draw[-] (89.6,9.575) node[below] {\Large$8$};%
-\draw[color = black!80, fill = {rgb,1:red,0.0314;green,0.3019;blue,0.5884}] (90.4,9) -- (91.4,9) -- (91.4,8) -- (90.4,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.0314;green,0.3019;blue,0.5884}] (90.4,9) -- (91.4,9) -- (91.4,8) -- (90.4,8)--cycle;%
 \draw[-] (90.9,9.575) node[below] {\Large$9$};%
-\draw[color = black!80, fill = {rgb,1:red,0.0314;green,0.1882;blue,0.4196}] (91.7,9) -- (92.7,9) -- (92.7,8) -- (91.7,8)--cycle;%
+\draw[color = lightgray!95, fill = {rgb,1:red,0.0314;green,0.1882;blue,0.4196}] (91.7,9) -- (92.7,9) -- (92.7,8) -- (91.7,8)--cycle;%
 \draw[-] (92.2,9.575) node[below] {\Large$10$};%
 \pgfsetlinewidth{0.4pt}%
 \end{scope}%

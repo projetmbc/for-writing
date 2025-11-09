@@ -18,10 +18,12 @@ from json import (
 # -- CONSTANTS -- #
 # --------------- #
 
+IMAX = 2
+
 THIS_DIR          = Path(__file__).parent
 PROJ_DIR          = THIS_DIR.parent.parent
 PRODS_DIR         = PROJ_DIR / "products"
-HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "similar" / "human-choices"
+HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices" / "similar"
 
 
 PAL_SIMILAR_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-SIMILAR.json"
@@ -40,13 +42,21 @@ with PAL_JSON_FILE.open(mode = "r") as f:
 # ------------- #
 
 def extract_real_clusters(file: Path) -> [[str]]:
-    blocks = file.read_text()
+    blocks = [
+        l.strip()
+        for l in file.read_text().splitlines()
+        if l.strip() and l.strip()[0] != "#"
+    ]
+
+    blocks = "\n".join(blocks)
     blocks = blocks.split('---')
 
     clusters = []
 
     for b in blocks:
-        b = b.strip()
+        if not b:
+            continue
+
         b = [
             p.strip()
             for p in b.split(',')
@@ -99,22 +109,22 @@ all_clusters = []
 
 # -- STEP 1 -- #
 
-for file in HUMAN_CHOICES_DIR.rglob("01-*/*.txt"):
+for file in HUMAN_CHOICES_DIR.rglob("01-*/new.txt"):
     clusters =  extract_real_clusters(file)
 
     if clusters:
         all_clusters += [set(c) for c in clusters]
 
 
-# -- STEP 2 -- #
+# -- STEPS 2... -- #
 
-new_clusters = []
+for i in range(2, IMAX + 1):
+    new_clusters = []
 
-for file in HUMAN_CHOICES_DIR.rglob("02-*/*.txt"):
-    print(file)
-    new_clusters += extract_real_clusters(file)
+    for file in HUMAN_CHOICES_DIR.rglob(f"{i:02d}-*/new.txt"):
+        new_clusters += extract_real_clusters(file)
 
-all_clusters = update_clusters(all_clusters, new_clusters)
+    all_clusters = update_clusters(all_clusters, new_clusters)
 
 
 # -- NOTHING LEFT TO DO -- #

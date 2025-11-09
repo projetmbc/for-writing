@@ -1,0 +1,27 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+---
+Afmhot, Hot
+---
+Batlow, BatlowK
+---
+Bam, PiYG
+---
+Binary, Grays
+---
+Broc, BrocO
+---
+Cork, CorkO
+---
+Gnuplot, Plasma
+---
+Imola, Viridis
+---
+Navia, NaviaW
+---
+Oranges, Reds, OrRd
+---
+RdYlBu, Spectral
+---

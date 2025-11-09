@@ -88,7 +88,7 @@ PATTERN_CHGE_PAL_SRC  = re.compile(r"\\newcommand\{\\SRC\}\{(.*)\}")
 START_FINAL_TEX_CODE = r"""
 \geometry{
   landscape,
-  margin = 1.5cm
+  margin = 1.75cm
 }
 
 \usepackage{hyperref}

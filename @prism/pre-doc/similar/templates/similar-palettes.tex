@@ -19,20 +19,7 @@
 
 \begin{document}
 
-\pagestyle{empty}
-
-\section*{Similar palettes -- Semi-automated process used}
-
-% -- SECTION - START -- %
-
-\subsection*{Cluster \#1}
-
 \begin{luacode*}
-PALETTES = {
-  "RdYlBu",
-  "Spectral"
-}
-
 function Dpalette(name)
   local g = graph:new{
     window = {-5, 15, -5, 5},
@@ -54,7 +41,7 @@ function Dpalette(name)
 
     g:Drectangle(
       A, A + h, A + h + dl,
-         "color = " .. color
+          "color = " .. color
       .. ", fill = " .. color
     )
 
@@ -73,7 +60,30 @@ function Dpalette(name)
 
   tex.sprint("\\smallskip\\par")
 end
+\end{luacode*}
 
+\pagestyle{empty}
+
+\section*{Similar palettes -- Semi-automated process used}
+
+This document includes some visually similar color palettes. The \texttt{@prism} project retains all of them to respect individual preferences and because subtle differences exist between them, however minimal.
+
+
+\begin{tdocimp}
+    Clusters were generated semi-automatically by a program suggesting similar palettes, with subsequent manual curation to keep only relevant groupings.
+    This approach may lead to occasional omissions. If you identify any, please contact the author of \texttt{@prism}.
+\end{tdocimp}
+
+
+% -- SECTION - START -- %
+
+\subsection*{Cluster \#1}
+
+\begin{luacode*}
+PALETTES = {
+  "RdYlBu",
+  "Spectral"
+}
 
 for _, name in pairs(PALETTES) do
   Dpalette(name)

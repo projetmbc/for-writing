@@ -19,7 +19,7 @@ THIS_DIR   = Path(__file__).parent
 PROJ_DIR   = THIS_DIR.parent.parent
 REPORT_DIR = PROJ_DIR / "tools" / "report"
 PRODS_DIR  = PROJ_DIR / "products"
-PREDOC_DIR = PROJ_DIR / "pre-doc" / "clusters"
+PREDOC_DIR = PROJ_DIR / "pre-doc" / "similar"
 
 
 VERSION = PROJ_DIR / "tools" / "VERSION.txt"

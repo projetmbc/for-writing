@@ -21,6 +21,7 @@ inlinecode:
     - getPal('GistHeat')
     - getPal('palGistHeat')
     - palNames
+    - getPal(palname, {reverse = true})
 -->
 
 The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
@@ -90,3 +91,6 @@ in the standard palette `'GistHeat'` as `coul_1`, `coul_2,`, etc. The options ar
 
 
 > ***CAUTION.*** *The current version of `luadraw` simply uses the palettes provided by `@prism` wihtout the `getPal` function. If you prefer to use the `@prism` version with its `getPal` function, you will need to include the entire code in the `luadraw_palettes.lua` file where the package is installed.*
+
+
+> ***NOTE.*** *The reversed version of any palette can be obtained using `getPal(palname, {reverse = true})`.*

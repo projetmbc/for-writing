@@ -1,0 +1,13 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+---
+YlOrRd, YlOrBr
+---
+TwilightShifted, Vik, VikO
+---
+Roma, RomaO
+---
+Inferno, Magma
+---
