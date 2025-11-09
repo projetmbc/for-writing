@@ -1,7 +1,6 @@
 ---
 Brg
 ---
-Bwr,Seismic
 ---
 GistStern
 ---

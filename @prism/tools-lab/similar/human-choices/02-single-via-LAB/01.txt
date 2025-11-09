@@ -6,8 +6,6 @@ TwilightShifted,Vik,VikO
 Roma,RomaO
 ---
 ---
-Nuuk, Cividis
 ---
-BatlowW, GistEarth
 ---
 Inferno,Magma
