@@ -1,43 +1,13 @@
 ---
----
----
 YlOrRd,YlOrBr
 ---
 TwilightShifted,Vik,VikO
 ---
-Spring,Buda
----
 Roma,RomaO
 ---
-Purples, BuPu
 ---
 Nuuk, Cividis
 ---
----
----
 BatlowW, GistEarth
 ---
----
 Inferno,Magma
----
----
----
----
----
----
----
----
----
----
----
----
----
----
----
----
----
----
----
----
----
----

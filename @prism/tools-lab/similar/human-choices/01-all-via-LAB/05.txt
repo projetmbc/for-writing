@@ -12,5 +12,3 @@ BamO
 BrBG
 ---
 Nuuk
----
----

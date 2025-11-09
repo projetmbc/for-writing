@@ -184,7 +184,7 @@ end
 \subsection*{Cluster \#4}
 
 \begin{luacode*}
-PALETTES = {"Binary", "Grays"}
+PALETTES = {"BatlowW", "GistEarth"}
 
 function Dpalette(name)
   local g = graph:new{
@@ -236,7 +236,7 @@ end
 \subsection*{Cluster \#5}
 
 \begin{luacode*}
-PALETTES = {"Broc", "BrocO"}
+PALETTES = {"Binary", "Grays"}
 
 function Dpalette(name)
   local g = graph:new{
@@ -288,7 +288,7 @@ end
 \subsection*{Cluster \#6}
 
 \begin{luacode*}
-PALETTES = {"Bwr", "Seismic"}
+PALETTES = {"Broc", "BrocO"}
 
 function Dpalette(name)
   local g = graph:new{
@@ -340,7 +340,7 @@ end
 \subsection*{Cluster \#7}
 
 \begin{luacode*}
-PALETTES = {"Cork", "CorkO"}
+PALETTES = {"Bwr", "Seismic"}
 
 function Dpalette(name)
   local g = graph:new{
@@ -392,7 +392,7 @@ end
 \subsection*{Cluster \#8}
 
 \begin{luacode*}
-PALETTES = {"Gnuplot", "Plasma"}
+PALETTES = {"Cividis", "Nuuk"}
 
 function Dpalette(name)
   local g = graph:new{
@@ -444,7 +444,7 @@ end
 \subsection*{Cluster \#9}
 
 \begin{luacode*}
-PALETTES = {"Imola", "Viridis"}
+PALETTES = {"Cork", "CorkO"}
 
 function Dpalette(name)
   local g = graph:new{
@@ -496,7 +496,7 @@ end
 \subsection*{Cluster \#10}
 
 \begin{luacode*}
-PALETTES = {"Navia", "NaviaW"}
+PALETTES = {"Gnuplot", "Plasma"}
 
 function Dpalette(name)
   local g = graph:new{
@@ -548,7 +548,7 @@ end
 \subsection*{Cluster \#11}
 
 \begin{luacode*}
-PALETTES = {"OrRd", "Oranges", "Reds"}
+PALETTES = {"Imola", "Viridis"}
 
 function Dpalette(name)
   local g = graph:new{
@@ -600,7 +600,319 @@ end
 \subsection*{Cluster \#12}
 
 \begin{luacode*}
+PALETTES = {"Inferno", "Magma"}
+
+function Dpalette(name)
+  local g = graph:new{
+    window = {-5, 15, -5, 5},
+    bbox   = false,
+    border = false
+  }
+
+  g:Linewidth(1)
+
+  local A     = Z(-5, 4)
+  local h, dh = Z(0, -1), Z(0, -1.1)
+  local L, N  = 15, 100
+  local dl    = L/N
+
+  local pal = getPal(name)
+
+  for k = 1, N do
+    local color = palette(pal, (k - 1) / (N - 1))
+
+    g:Drectangle(
+      A, A + h, A + h + dl,
+         "color = " .. color
+      .. ", fill = " .. color
+    )
+
+    A = A+dl
+  end
+
+  g:Drectangle(A, A + h, A + h - L)
+
+  g:Dlabel(
+    "\\quad\\large\\texttt{\\bfseries " .. name .. "}",
+    A + h / 2,
+    {pos = "E"}
+  )
+
+  g:Sendtotex()
+
+  tex.sprint("\\smallskip\\par")
+end
+
+
+for _, name in pairs(PALETTES) do
+  Dpalette(name)
+end
+\end{luacode*}
+
+\subsection*{Cluster \#13}
+
+\begin{luacode*}
+PALETTES = {"Navia", "NaviaW"}
+
+function Dpalette(name)
+  local g = graph:new{
+    window = {-5, 15, -5, 5},
+    bbox   = false,
+    border = false
+  }
+
+  g:Linewidth(1)
+
+  local A     = Z(-5, 4)
+  local h, dh = Z(0, -1), Z(0, -1.1)
+  local L, N  = 15, 100
+  local dl    = L/N
+
+  local pal = getPal(name)
+
+  for k = 1, N do
+    local color = palette(pal, (k - 1) / (N - 1))
+
+    g:Drectangle(
+      A, A + h, A + h + dl,
+         "color = " .. color
+      .. ", fill = " .. color
+    )
+
+    A = A+dl
+  end
+
+  g:Drectangle(A, A + h, A + h - L)
+
+  g:Dlabel(
+    "\\quad\\large\\texttt{\\bfseries " .. name .. "}",
+    A + h / 2,
+    {pos = "E"}
+  )
+
+  g:Sendtotex()
+
+  tex.sprint("\\smallskip\\par")
+end
+
+
+for _, name in pairs(PALETTES) do
+  Dpalette(name)
+end
+\end{luacode*}
+
+\subsection*{Cluster \#14}
+
+\begin{luacode*}
+PALETTES = {"OrRd", "Oranges", "Reds"}
+
+function Dpalette(name)
+  local g = graph:new{
+    window = {-5, 15, -5, 5},
+    bbox   = false,
+    border = false
+  }
+
+  g:Linewidth(1)
+
+  local A     = Z(-5, 4)
+  local h, dh = Z(0, -1), Z(0, -1.1)
+  local L, N  = 15, 100
+  local dl    = L/N
+
+  local pal = getPal(name)
+
+  for k = 1, N do
+    local color = palette(pal, (k - 1) / (N - 1))
+
+    g:Drectangle(
+      A, A + h, A + h + dl,
+         "color = " .. color
+      .. ", fill = " .. color
+    )
+
+    A = A+dl
+  end
+
+  g:Drectangle(A, A + h, A + h - L)
+
+  g:Dlabel(
+    "\\quad\\large\\texttt{\\bfseries " .. name .. "}",
+    A + h / 2,
+    {pos = "E"}
+  )
+
+  g:Sendtotex()
+
+  tex.sprint("\\smallskip\\par")
+end
+
+
+for _, name in pairs(PALETTES) do
+  Dpalette(name)
+end
+\end{luacode*}
+
+\subsection*{Cluster \#15}
+
+\begin{luacode*}
 PALETTES = {"RdYlBu", "Spectral"}
+
+function Dpalette(name)
+  local g = graph:new{
+    window = {-5, 15, -5, 5},
+    bbox   = false,
+    border = false
+  }
+
+  g:Linewidth(1)
+
+  local A     = Z(-5, 4)
+  local h, dh = Z(0, -1), Z(0, -1.1)
+  local L, N  = 15, 100
+  local dl    = L/N
+
+  local pal = getPal(name)
+
+  for k = 1, N do
+    local color = palette(pal, (k - 1) / (N - 1))
+
+    g:Drectangle(
+      A, A + h, A + h + dl,
+         "color = " .. color
+      .. ", fill = " .. color
+    )
+
+    A = A+dl
+  end
+
+  g:Drectangle(A, A + h, A + h - L)
+
+  g:Dlabel(
+    "\\quad\\large\\texttt{\\bfseries " .. name .. "}",
+    A + h / 2,
+    {pos = "E"}
+  )
+
+  g:Sendtotex()
+
+  tex.sprint("\\smallskip\\par")
+end
+
+
+for _, name in pairs(PALETTES) do
+  Dpalette(name)
+end
+\end{luacode*}
+
+\subsection*{Cluster \#16}
+
+\begin{luacode*}
+PALETTES = {"Roma", "RomaO"}
+
+function Dpalette(name)
+  local g = graph:new{
+    window = {-5, 15, -5, 5},
+    bbox   = false,
+    border = false
+  }
+
+  g:Linewidth(1)
+
+  local A     = Z(-5, 4)
+  local h, dh = Z(0, -1), Z(0, -1.1)
+  local L, N  = 15, 100
+  local dl    = L/N
+
+  local pal = getPal(name)
+
+  for k = 1, N do
+    local color = palette(pal, (k - 1) / (N - 1))
+
+    g:Drectangle(
+      A, A + h, A + h + dl,
+         "color = " .. color
+      .. ", fill = " .. color
+    )
+
+    A = A+dl
+  end
+
+  g:Drectangle(A, A + h, A + h - L)
+
+  g:Dlabel(
+    "\\quad\\large\\texttt{\\bfseries " .. name .. "}",
+    A + h / 2,
+    {pos = "E"}
+  )
+
+  g:Sendtotex()
+
+  tex.sprint("\\smallskip\\par")
+end
+
+
+for _, name in pairs(PALETTES) do
+  Dpalette(name)
+end
+\end{luacode*}
+
+\subsection*{Cluster \#17}
+
+\begin{luacode*}
+PALETTES = {"TwilightShifted", "Vik", "VikO"}
+
+function Dpalette(name)
+  local g = graph:new{
+    window = {-5, 15, -5, 5},
+    bbox   = false,
+    border = false
+  }
+
+  g:Linewidth(1)
+
+  local A     = Z(-5, 4)
+  local h, dh = Z(0, -1), Z(0, -1.1)
+  local L, N  = 15, 100
+  local dl    = L/N
+
+  local pal = getPal(name)
+
+  for k = 1, N do
+    local color = palette(pal, (k - 1) / (N - 1))
+
+    g:Drectangle(
+      A, A + h, A + h + dl,
+         "color = " .. color
+      .. ", fill = " .. color
+    )
+
+    A = A+dl
+  end
+
+  g:Drectangle(A, A + h, A + h - L)
+
+  g:Dlabel(
+    "\\quad\\large\\texttt{\\bfseries " .. name .. "}",
+    A + h / 2,
+    {pos = "E"}
+  )
+
+  g:Sendtotex()
+
+  tex.sprint("\\smallskip\\par")
+end
+
+
+for _, name in pairs(PALETTES) do
+  Dpalette(name)
+end
+\end{luacode*}
+
+\subsection*{Cluster \#18}
+
+\begin{luacode*}
+PALETTES = {"YlOrBr", "YlOrRd"}
 
 function Dpalette(name)
   local g = graph:new{

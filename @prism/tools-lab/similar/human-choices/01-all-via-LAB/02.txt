@@ -20,5 +20,3 @@ Lipari
 Magma
 ---
 Turku
----
----

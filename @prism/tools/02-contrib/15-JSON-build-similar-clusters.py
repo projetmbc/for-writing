@@ -69,15 +69,20 @@ def update_clusters(
     all_clusters: [[str]],
     new_clusters: [[str]],
 ) -> [[str]]:
-    from rich import print
-
     for new_c in new_clusters:
+        added = False
+
         for i, c in enumerate(all_clusters):
             if new_c & c:
                 c |= new_c
 
                 all_clusters[i] = c
+
+                added = True
                 break
+
+        if not added:
+            all_clusters.append(new_c)
 
     return all_clusters
 
@@ -109,12 +114,8 @@ for file in HUMAN_CHOICES_DIR.rglob("02-*/*.txt"):
     print(file)
     new_clusters += extract_real_clusters(file)
 
-from rich import print
-print(all_clusters)
-print(new_clusters)
 all_clusters = update_clusters(all_clusters, new_clusters)
-print()
-print(all_clusters)
+
 
 # -- NOTHING LEFT TO DO -- #
 
