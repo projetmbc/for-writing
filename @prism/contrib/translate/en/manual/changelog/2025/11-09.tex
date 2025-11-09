@@ -1,0 +1,35 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../../preamble.cfg}
+
+
+\begin{document}
+
+\small
+
+
+\begin{tdocfix}
+    \item Equal palettes: the floating point equality uses now a correct tolerance.
+\end{tdocfix}
+
+
+\begin{tdocbreak}
+    \item Palettes: the extra \tdoccodein{text}+Greys+ has been removed (it is equal to \tdoccodein{text}+Grays+).
+\end{tdocbreak}
+
+
+\begin{tdocnew}
+    \item Similar palettes: two PDF files show similar palettes in standard and black modes (semi-automated process used).
+\end{tdocnew}
+
+
+\begin{tdocupdate}
+    \item \LUADRAW\ product: the associative array \tdoccodein{lua}+palNames+ has been added for compatibility reasons.
+
+
+    \item \tdoccodein{text}+BlindFish+ palette: the last color variation has been made smoother (\LUADRAW\ process used).
+\end{tdocupdate}
+
+\end{document}

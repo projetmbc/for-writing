@@ -101,7 +101,7 @@
 \draw[color = {rgb,1:red,0.3865;green,0.0285;blue,0.0289}, fill = {rgb,1:red,0.3865;green,0.0285;blue,0.0289}] (107.319,9) -- (107.319,7.5) -- (107.446,7.5) -- (107.446,9)--cycle;%
 \draw[color = {rgb,1:red,0.3684;green,0.0143;blue,0.0297}, fill = {rgb,1:red,0.3684;green,0.0143;blue,0.0297}] (107.446,9) -- (107.446,7.5) -- (107.573,7.5) -- (107.573,9)--cycle;%
 \draw[color = {rgb,1:red,0.3504;green,0.0001;blue,0.0305}, fill = {rgb,1:red,0.3504;green,0.0001;blue,0.0305}] (107.573,9) -- (107.573,7.5) -- (107.7,7.5) -- (107.7,9)--cycle;%
-\draw[color = lightgray!95] (107.7,9) -- (107.7,7.5) -- (95,7.5) -- (95,9)--cycle;%
+\draw[color = black!80] (107.7,9) -- (107.7,7.5) -- (95,7.5) -- (95,9)--cycle;%
 \pgfsetlinewidth{0.4pt}%
 \end{scope}%
 \end{tikzpicture}%

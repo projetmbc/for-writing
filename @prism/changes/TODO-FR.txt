@@ -12,6 +12,34 @@ pour les clusters, besoin de gérér les nouveaux entrants !
 
 // ---------- //
 
+implementation
+
+   ---> CSS / SCSS  (les deux)
+
+            + vite  acr hyper intuitif via appli HTML de Claude l'AI + faire un truc avec des courbes et Nerfetiti pour le dev
+
+            + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
+
+            + reprendre BlindFish pour qu'il soit moins sombre sur la fin
+
+   ---> LaTeX : extraction eet compagine via L3
+
+   ---> Python : après on en fait la pub sur Matplotlib
+
+
+// ---------- //
+
+plattes elimine à la main vai une catégo ete snuite on documente cela de façon automatisé
+
+   --> ordre de priorité mp > asy > scicolmap > @prism
+
+   --> impossible à distinguer par un oeil non averti
+
+   --> suprrrsion toujours justifié via uen catégorie, et ensuite section donne celles élimniées à la main
+
+
+// ---------- //
+
 classification des couleurs dans un doc dédié
 
    --> info donnnée dans le manuel
@@ -37,34 +65,6 @@ classification des couleurs dans un doc dédié
             + arbre de décision à la sauce IA (début fin , puis on affine)
 
             + ... etc.
-
-
-// ---------- //
-
-implementation
-
-   ---> CSS / SCSS  (les deux)
-
-            + vite  acr hyper intuitif via appli HTML de Claude l'AI + faire un truc avec des courbes et Nerfetiti pour le dev
-
-            + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
-
-            + reprendre BlindFish pour qu'il soit moins sombre sur la fin
-
-   ---> LaTeX : extraction eet compagine via L3
-
-   ---> Python : après on en fait la pub sur Matplotlib
-
-
-// ---------- //
-
-plattes elimine à la main vai une catégo ete snuite on documente cela de façon automatisé
-
-   --> ordre de priorité mp > asy > scicolmap > @prism
-
-   --> impossible à distinguer par un oeil non averti
-
-   --> suprrrsion toujours justifié via uen catégorie, et ensuite section donne celles élimniées à la main
 
 
 // ---------- //

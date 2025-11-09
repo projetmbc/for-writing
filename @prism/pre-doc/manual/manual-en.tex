@@ -14,7 +14,7 @@
 
 \title{\thisproj*\ project}
 \author{Christophe BAL}
-\date{29 Oct 2025 -- Version 1.2.0}
+\date{9 Nov 2025 -- Version 1.2.1}
 
 \maketitle
 
@@ -52,43 +52,27 @@
     \subsection*{Last changes}
 \egroup
 
-\begin{tdocbreak}[version = 1.2.0, date = 2025-10-29]
-    \item Palettes: all final palettes now consist of 10 colors.
+\begin{tdocfix}[version = 1.2.1, date = 2025-11-09]
+    \item Equal palettes: the floating point equality uses now a correct tolerance.
+\end{tdocfix}
 
 
-    \item \LUADRAW\ products: the \tdoccodein{lua}+getPal+ dictionary array has been converted into a function accepting string palette names (with or without \tdoccodein{lua}+pal+ prefix). See below.
+\begin{tdocbreak}
+    \item Palettes: the extra \tdoccodein{text}+Greys+ has been removed (it is equal to \tdoccodein{text}+Grays+).
 \end{tdocbreak}
 
 
 \begin{tdocnew}
-    \item Palettes.
-    %
-    \begin{itemize}
-        \item Added  \tdoccodein{text}+Lemon+ and \tdoccodein{text}+ShiftRainbow+ palettes (\LUADRAW\ creation process used).
-
-        \item Added 37 palettes from the \scicolmap\ project.
-    \end{itemize}
-
-
-    \item \LUADRAW\ product: the \tdoccodein{lua}+getPal+ function has an optional argument \tdoccodein{lua}+options+ (dict-like array) with the following keys and their values.
-    %
-    \begin{itemize}
-        \item \tdoccodein{lua}+extract+: a list of non-zero integers used to extract specific colors from the palette (the order is preserved).
-
-        \item \tdoccodein{lua}+reverse+: a boolean value indicating whether to reverse the palette color order (\tdoccodein{lua}+false+ by default).
-
-        \item \tdoccodein{lua}+shift+: an integer value for applying a circular color shift to the palette.
-    \end{itemize}
-    
-
-    \item Documentations
-    %
-    \begin{itemize}
-        \item Added English PDF manual.
-
-        \item Showcase: two PDF files demonstrate the use of each palette (white and dark modes).
-    \end{itemize}
+    \item Similar palettes: two PDF files show similar palettes in standard and black modes (semi-automated process used).
 \end{tdocnew}
+
+
+\begin{tdocupdate}
+    \item \LUADRAW\ product: the associative array \tdoccodein{lua}+palNames+ has been added for compatibility reasons.
+
+
+    \item \tdoccodein{text}+BlindFish+ palette: the last color variation has been made smoother (\LUADRAW\ process used).
+\end{tdocupdate}
 }
 
 \newpage
@@ -108,6 +92,30 @@
 \section{History}
 
 \small
+
+\begin{tdocfix}[version = 1.2.1, date = 2025-11-09]
+    \item Equal palettes: the floating point equality uses now a correct tolerance.
+\end{tdocfix}
+
+
+\begin{tdocbreak}
+    \item Palettes: the extra \tdoccodein{text}+Greys+ has been removed (it is equal to \tdoccodein{text}+Grays+).
+\end{tdocbreak}
+
+
+\begin{tdocnew}
+    \item Similar palettes: two PDF files show similar palettes in standard and black modes (semi-automated process used).
+\end{tdocnew}
+
+
+\begin{tdocupdate}
+    \item \LUADRAW\ product: the associative array \tdoccodein{lua}+palNames+ has been added for compatibility reasons.
+
+
+    \item \tdoccodein{text}+BlindFish+ palette: the last color variation has been made smoother (\LUADRAW\ process used).
+\end{tdocupdate}
+
+\tdocsep
 
 \begin{tdocbreak}[version = 1.2.0, date = 2025-10-29]
     \item Palettes: all final palettes now consist of 10 colors.

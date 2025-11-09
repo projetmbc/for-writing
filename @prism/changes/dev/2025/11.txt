@@ -2,7 +2,7 @@
 
 
 ==
-09  (1.2.1-beta.3)
+09  (1.2.1)
 ==
 
 -----
@@ -34,7 +34,11 @@ Similar palettes: two \pdfs show similar palettes in \std and black modes (semi-
 --------
 
 [[:api:]]
-\luadraw product: associative array ''palNames'' added for compatibility reasons.
+Here are the important modifications made.
+
+    1) \luadraw product: associative array ''palNames'' added for compatibility reasons.
+
+    2) ''BlindFish'' palette: the last color variation has been made smoother (\luadraw process used).
 
 
 [[:doc:]]

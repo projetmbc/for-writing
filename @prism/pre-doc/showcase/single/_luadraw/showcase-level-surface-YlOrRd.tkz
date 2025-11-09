@@ -2,12 +2,12 @@
 \begin{scope}%
 \pgfsetlinewidth{0.2pt}%
 \pgfsetlinewidth{0.7pt}%
-\pgfsetfillcolor{lightgray!20!black}%
+\pgfsetfillcolor{lightgray!25!white}%
 \fill[] (7.0793,6.9839) -- (17.1429,4.1991) -- (12.9207,2.5397) -- (2.8571,5.3245)--cycle;%
 \fill[] (7.0793,15.2381) -- (17.1429,12.4533) -- (17.1429,4.1991) -- (7.0793,6.9839)--cycle;%
 \fill[] (7.0793,15.2381) -- (7.0793,6.9839) -- (2.8571,5.3245) -- (2.8571,13.5787)--cycle;%
 \pgfsetfillcolor{black}%
-\pgfsetstrokecolor{lightgray!95}%
+\pgfsetstrokecolor{black!80}%
 \pgfsetdash{}{0pt}%
 \pgfsetlinewidth{0.1pt}%
 \draw[] (17.1429,4.1991) -- (17.1429,12.4533);%

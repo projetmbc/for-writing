@@ -7,6 +7,8 @@
 --     Here is the luadraw definition used.
 --
 --     lua::
+--         _ , myFireBrick = mixcolor(FireBrick, .75, LightSalmon, .25)
+--
 --         PALETTE = {
 --           Gray,
 --           SlateGray,
@@ -14,7 +16,7 @@
 --           LightPink,
 --           Pink,
 --           LightSalmon,
---           FireBrick,
+--           myFireBrick
 --         }
 ------
 
@@ -25,5 +27,5 @@ PALETTE = {
   {1, 0.7137, 0.7569},
   {1, 0.7529, 0.7961},
   {1, 0.6275, 0.4784},
-  {0.698, 0.1333, 0.1333}
+  {0.7735, 0.25685, 0.219575}
 }

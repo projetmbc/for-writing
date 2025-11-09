@@ -31,8 +31,8 @@ function Dpalette(name)
 
   local A     = Z(-5, 4)
   local h, dh = Z(0, -1), Z(0, -1.1)
-  local L, N  = 15, 100
-  local dl    = L/N
+  local L, N  = 15, 200
+  local dl    = L / N
 
   local pal = getPal(name)
 
@@ -41,7 +41,7 @@ function Dpalette(name)
 
     g:Drectangle(
       A, A + h, A + h + dl,
-          "color = " .. color
+         "color = " .. color
       .. ", fill = " .. color
     )
 
