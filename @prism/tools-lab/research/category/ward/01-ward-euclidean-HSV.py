@@ -14,11 +14,8 @@ from matplotlib.colors import LinearSegmentedColormap
 
 
 THIS_DIR     = Path(__file__).parent
-PROJ_DIR     = THIS_DIR.parent.parent
-CLUSTERS_DIR = THIS_DIR / "clusters"
-
-for f in CLUSTERS_DIR.glob('*'):
-    f.unlink()
+PROJ_DIR     = THIS_DIR.parent.parent.parent.parent
+CLUSTERS_DIR = THIS_DIR.parent / "clusters"
 
 
 PAL_CATEGO_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGO.json"
@@ -71,6 +68,7 @@ def find_similar_palettes(target_name, palettes, n=10, method='euclidean'):
     target_spectrum = create_palette_spectrum(palettes[target_name])
 
     similarities = []
+
     for name, colors in palettes.items():
         if name == target_name:
             continue
@@ -113,7 +111,7 @@ def compare_palettes_visual(target_name, similar_palettes, palettes):
                          f"{name} (distance: {distance:.4f})")
 
     plt.tight_layout()
-    plt.savefig(CLUSTERS_DIR / f'similar_to_{target_name}.png', dpi=150, bbox_inches='tight')
+    plt.savefig(CLUSTERS_DIR / 'similar-to' /f'{target_name}.png', dpi=150, bbox_inches='tight')
     plt.close()
     print(f"  → Image sauvegardée: similar_to_{target_name}.png")
 
@@ -208,15 +206,14 @@ print("-" * 80)
 
 exemples = ['Viridis', 'Blues', 'Inferno', 'Twilight', 'Rainbow']
 
-for palette_name in exemples:
-    if palette_name in ALL_PALETTES:
-        print(f"\nPalettes similaires à '{palette_name}':")
-        similar = find_similar_palettes(palette_name, ALL_PALETTES, n=9)
-        for i, (name, dist) in enumerate(similar, 1):
-            print(f"  {i}. {name} (distance: {dist:.4f})")
+for palette_name in ALL_PALETTES:
+    print(f"\nPalettes similaires à '{palette_name}':")
+    similar = find_similar_palettes(palette_name, ALL_PALETTES, n=9)
+    for i, (name, dist) in enumerate(similar, 1):
+        print(f"  {i}. {name} (distance: {dist:.4f})")
 
-        # Créer la visualisation
-        compare_palettes_visual(palette_name, similar, ALL_PALETTES)
+    # Créer la visualisation
+    compare_palettes_visual(palette_name, similar, ALL_PALETTES)
 
 # 2. Matrice de similarité
 print("\n2. MATRICE DE SIMILARITÉ")

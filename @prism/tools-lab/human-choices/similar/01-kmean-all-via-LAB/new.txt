@@ -1,6 +1,6 @@
-# ------------------------- #
-# -- New Human Selection -- #
-# ------------------------- #
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
 
 ---
 Afmhot, Hot
@@ -21,7 +21,7 @@ Imola, Viridis
 ---
 Navia, NaviaW
 ---
-Oranges, Reds, OrRd
+Oranges, OrRd
 ---
 RdYlBu, Spectral
 ---

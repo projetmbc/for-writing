@@ -18,7 +18,7 @@ from json import (
 # -- CONSTANTS -- #
 # --------------- #
 
-IMAX = 2
+IMAX = 3
 
 THIS_DIR          = Path(__file__).parent
 PROJ_DIR          = THIS_DIR.parent.parent

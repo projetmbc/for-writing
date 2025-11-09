@@ -16,16 +16,32 @@
     "Grays"
   ],
   [
+    "Blues",
+    "PuBu"
+  ],
+  [
     "Broc",
     "BrocO"
+  ],
+  [
+    "Bwr",
+    "Seismic"
   ],
   [
     "Cork",
     "CorkO"
   ],
   [
+    "Davos",
+    "Lapaz"
+  ],
+  [
     "Gnuplot",
     "Plasma"
+  ],
+  [
+    "Greens",
+    "YlGn"
   ],
   [
     "Imola",
@@ -36,13 +52,17 @@
     "Magma"
   ],
   [
+    "Jet",
+    "Turbo"
+  ],
+  [
     "Navia",
     "NaviaW"
   ],
   [
     "OrRd",
     "Oranges",
-    "Reds"
+    "YlOrBr"
   ],
   [
     "RdYlBu",

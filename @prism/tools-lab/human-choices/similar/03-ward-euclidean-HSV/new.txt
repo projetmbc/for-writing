@@ -1,0 +1,21 @@
+# ------------------------- #
+# -- New Human Selection -- #
+# ------------------------- #
+
+---
+Blues, PuBu
+---
+Oranges, YlOrBr
+---
+Jet, Turbo
+---
+YlGn,Greens
+---
+Seismic,Bwr
+---
+Davos,Lapaz
+---
+---
+---
+---
+---
