@@ -6,7 +6,7 @@
 require 'luadraw_palettes'
 
 -- DEBUG - START
--- palNames = {["palAccent"]= palAccent, ["palGeoRainbow"]= palGeoRainbow, ["palBinary"]= palBinary}
+-- palNames = {["palTwilightShifted"]=palTwilightShifted,["palAccent"]= palAccent, ["palGeoRainbow"]= palGeoRainbow, ["palBinary"]= palBinary}
 -- DEBUG - END
 
 function drawSpectrum(pal)
@@ -75,9 +75,10 @@ end
 
 table.sort(names)
 
-tex.print("\\begin{longtable}[c]{>{\\centering\\arraybackslash}m{5cm}>{\\centering\\arraybackslash}m{3cm}>{\\centering\\arraybackslash}m{8cm}}")
-tex.print("\\textbf{Palette} & \\textbf{Name} & \\textbf{Spectrum} \\\\ ")
+tex.print("\\begin{longtable}[c]{>{\\centering\\arraybackslash}m{5cm}>{\\centering\\arraybackslash}m{2.25cm}>{\\centering\\arraybackslash}m{8cm}}")
+tex.print("\\rule[-2ex]{0pt}{3ex}\\textbf{Spectrum} & \\rule[-2ex]{0pt}{3ex}\\textbf{Name} & \\rule[-2ex]{0pt}{3ex}\\textbf{Palette} \\\\ ")
 tex.print("\\endhead")
+
 
 for _, name in ipairs(names) do
   drawSpectrum(palNames[name])

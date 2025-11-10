@@ -24,8 +24,6 @@
 -- author: First Name, Last Name  
 
 PALETTE = {Cyan,DodgerBlue,Magenta,Red,Orange,Gold,LimeGreen}
-
-
 \end{filecontents*}
 
 
@@ -108,14 +106,13 @@ file:close()
 
 \centering
 
-\begin{luadraw}{name = palette-TEST}
+\begin{luadraw}{name = palette}
 local xmin, xmax = -5, 5
 
 local g = graph:new{
   window = {xmin, xmax, -1, 1},
   size   = {10, 10},
   margin = {0.05, 0.05, 0.05, 0.05},
-  border = true
 }
 
 local i = cpx.I
@@ -142,13 +139,12 @@ g:Show()
 \bigskip
 
 
-\begin{luadraw}{name = contour-TEST}
+\begin{luadraw}{name = contour}
 local g = graph:new{
   window = {-1, 6.5, -1.5, 11},
   size   = {8, 8, 2},
   margin = {.25, 0, 0, 0},
   scale  = 1.5,
-  border = true
 }
 
 local i, sin, cos = cpx.I, math.sin, math.cos
@@ -206,15 +202,14 @@ g:Show()
 \bigskip
 
 
-\begin{luadraw}{name = level-curve-surface-TEST}
+\begin{luadraw}{name = level-curve-surface}
 local cos, sin = math.cos, math.sin, math.pi
 
 local g = graph3d:new{
   window3d = {0, 5, 0, 10, 0, 11},
   adjust2d = true,
-  size     = {9, 9},
+  size     = {12, 9, 0},
   viewdir  = {220, 60},
-  border   = true
 }
 
 g:Labelsize("footnotesize")
@@ -288,7 +283,7 @@ g:Show()
 \bigskip
 
 
-\begin{luadraw}{name = nerftiti-z-bary-TEST}
+\begin{luadraw}{name = nerftiti-z-bary}
 local file = "core/nefertiti.obj"
 
 local polyhedron, bounding_box = read_obj_file(file)
@@ -299,7 +294,6 @@ local g = graph3d:new{
   viewdir  = {35, 60},
   size     = {9, 9},
   margin   = {0, 0, 0, 0},
-  border   = true
 }
 
 g:Dpoly(

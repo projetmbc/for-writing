@@ -128,6 +128,8 @@ for i in range(2, IMAX + 1):
     new_clusters = []
 
     for file in HUMAN_CHOICES_DIR.rglob(f"{i:02d}-*/new.txt"):
+        folder_name = file.parent.name
+
         logging.info(
             f"Work on '{folder_name}/{file.name}'."
         )

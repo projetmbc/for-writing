@@ -19,6 +19,16 @@ manuel
 
    ---> annex : gestion automatique de mise en fin de doc vai des newp pages, on gere un evnetuel about.yaml pour l'ordre, on numérore à la main an ajoutannt Annex, et on met dans ToC
 
+   ---> similar :mis en annexe mais du coup, on fait un code luadraw dédéie juste pour les clusters, et qui s'appuie sur un fichier mis autiomatiquement à jour
+
+   ---> graphics, or trad, en expliquant que c'est commun à toutes les trads !!!
+
+   ---> version dark aussi : pour les graphics, si pas de suffixe dark, on garde version std
+
+   ---> du coup ref direct vers ces annexs dans la partie sur le choix des palettes
+
+   ---> showcae reste autonome lui!
+
 
 // ---------- //
 

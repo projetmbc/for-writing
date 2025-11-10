@@ -39,11 +39,13 @@
 % -- USEFUL COMMANDS -- %
 % --------------------- %
 
+\newcommand\@prism{\raisebox{-.20ex}{@}prism}
+
 \NewDocumentCommand{\thisproj}{s}{%
   \IfBooleanTF{#1}{%
-    @prism%
+    \@prism%
   }{%
-    \texttt{@prism}%
+    \texttt{\@prism}%
   }%
 }
 

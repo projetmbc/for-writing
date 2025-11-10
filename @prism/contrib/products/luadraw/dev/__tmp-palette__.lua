@@ -1,5 +1,3 @@
 -- author: First Name, Last Name
 
-PALETTE = {Cyan,DodgerBlue,Magenta,Red,Orange,Gold,LimeGreen}
-
-
+PALETTE = {LightCyan,LightSkyBlue,Plum,LightCoral,LightSalmon,Khaki,PaleGreen}
