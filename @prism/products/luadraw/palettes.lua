@@ -1753,7 +1753,6 @@ function getPal(name, options)
         result = shifted
     end
 
-
 -- Reversing.
     if options.reverse == true then
         local reversed = {}
@@ -1774,7 +1773,7 @@ end
 
 palNames = {}
 
-for _, name in ipairs({
+for _ , name in ipairs({
     "palAccent",
     "palActon",
     "palAfmhot",

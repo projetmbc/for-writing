@@ -3,6 +3,23 @@
 ======
 
 
+PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
+
++
+
+PB DE BINARY INVERS2, voir si réparable !
+
+
+
+// ---------- //
+
+manuel
+
+   ---> on montre en annaexe toutes les palettes en mode discret simple avec leur nom JSON
+
+   ---> annex : gestion automatique de mise en fin de doc vai des newp pages, on gere un evnetuel about.yaml pour l'ordre, on numérore à la main an ajoutannt Annex, et on met dans ToC
+
+
 // ---------- //
 
 pour les clusters, besoin de gérér les nouveaux entrants !

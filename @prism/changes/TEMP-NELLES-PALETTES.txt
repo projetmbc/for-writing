@@ -1,3 +1,14 @@
+FRADIN
+
+sympa
+   {LightSkyBlue,CornflowerBlue,LightCoral,IndianRed,DarkSalmon,YellowGreen,MediumSeaGreen}
+   {LightCyan,LightSkyBlue,Plum,LightCoral,LightSalmon,Khaki,PaleGreen}
+
+new?
+   {Purple, Indigo, Blue, Green, Yellow, Orange, Red}
+   {Cyan,DodgerBlue,Magenta,Red,Orange,Gold,LimeGreen}
+
+
 /* ========================================
    PALETTES ORIGINALES
    ======================================== */
