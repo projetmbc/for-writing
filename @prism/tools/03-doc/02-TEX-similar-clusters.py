@@ -7,6 +7,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from cbutils.core import *
 from cbutils.cleanpal import PALSIZE
+from cbutils.version  import VERSION
 
 from json import load as json_load
 
@@ -20,11 +21,6 @@ PROJ_DIR   = THIS_DIR.parent.parent
 REPORT_DIR = PROJ_DIR / "tools" / "report"
 PRODS_DIR  = PROJ_DIR / "products"
 PREDOC_DIR = PROJ_DIR / "pre-doc" / "similar"
-
-
-VERSION = PROJ_DIR / "tools" / "VERSION.txt"
-VERSION = VERSION.read_text()
-VERSION = VERSION.strip()
 
 
 PAL_CATEGO_FILE = REPORT_DIR / "PAL-SIMILAR.json"

@@ -7,6 +7,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from cbutils.core    import *
 from cbutils.mdutils import *
+from cbutils.version import VERSION
 
 from datetime import datetime
 
@@ -20,11 +21,6 @@ from yaml import safe_load
 
 THIS_DIR = Path(__file__).parent
 PROJ_DIR = THIS_DIR.parent.parent
-
-
-VERSION = PROJ_DIR / "tools" / "VERSION.txt"
-VERSION = VERSION.read_text()
-VERSION = VERSION.strip()
 
 
 TAG_MANUAL  = "manual"

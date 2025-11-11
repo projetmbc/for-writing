@@ -5,8 +5,9 @@ import              sys
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from cbutils.core import *
+from cbutils.core     import *
 from cbutils.cleanpal import PALSIZE
+from cbutils.version  import VERSION
 
 from json import load as json_load
 
@@ -21,11 +22,6 @@ REPORT_DIR   = PROJ_DIR / "tools" / "report"
 PRODS_DIR    = PROJ_DIR / "products"
 PREDOC_DIR   = PROJ_DIR / "pre-doc" / "showcase"
 SHOWCASE_DIR = PREDOC_DIR / "single"
-
-
-VERSION = PROJ_DIR / "tools" / "VERSION.txt"
-VERSION = VERSION.read_text()
-VERSION = VERSION.strip()
 
 
 PAL_SRC_FILE = REPORT_DIR / "PAL-SRC.json"

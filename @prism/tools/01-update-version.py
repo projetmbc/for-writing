@@ -26,7 +26,7 @@ TOOLS_VERSION_TXT  = THIS_DIR / "VERSION.txt"
 # -- LET'S WORK! -- #
 # ----------------- #
 
-logging.info("Last version number.")
+logging.info("Update project version number.")
 
 version = safe_load(PROJECT_ABOUT_YAML.read_text())
 version = version['project']['version']

@@ -5,7 +5,8 @@ import              sys
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from cbutils.core import *
+from cbutils.core    import *
+from cbutils.version import VERSION
 
 
 from json import (
@@ -24,11 +25,6 @@ THIS_DIR         = Path(__file__).parent
 PROJ_DIR         = THIS_DIR.parent.parent
 PRODS_DIR        = PROJ_DIR / "products"
 CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
-
-
-VERSION = PROJ_DIR / "tools" / "VERSION.txt"
-VERSION = VERSION.read_text()
-VERSION = VERSION.strip()
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"
