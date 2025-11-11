@@ -1,0 +1,47 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+Batlow
+BatlowK
+BatlowW
+BlindFish
+Brg
+Bukavu
+CMRmap
+Cubehelix
+GasFlame
+GeoRainbow
+GistEarth
+GistNcar
+GistRainbow
+Gnuplot
+Gnuplot2
+Hawaii
+Hsv
+Inferno
+Jet
+Lajolla
+Lipari
+Lisbon
+Magma
+Managua
+NipySpectral
+Ocean
+Oleron
+PastelRainbow
+Plasma
+Rainbow
+RdGy
+Roma
+RomaO
+ShiftRainbow
+Spectral
+Terrain
+Tofino
+Turbo
+Twilight
+TwilightShifted
+Vik
+VikO
+Viridis

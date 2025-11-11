@@ -1,0 +1,42 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+Acton
+Afmhot
+Bam
+Bamako
+BamO
+Berlin
+Bilbao
+BrBG
+Broc
+BrocO
+Buda
+BuPu
+BurningGrass
+Bwr
+Cividis
+Coolwarm
+Cork
+CorkO
+Davos
+GistHeat
+Glasgow
+Hot
+Imola
+Lapaz
+Navia
+NaviaW
+Nuuk
+Pink
+PiYG
+PRGn
+PuBuGn
+PuOr
+RdBu
+RdYlBu
+RdYlGn
+Seismic
+Turku
+Vanimo

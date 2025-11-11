@@ -26,6 +26,10 @@
 
 \begin{document}
 
+\pagestyle{empty}
+\centering
+
+
 
 % -------------------------- %
 % -- COMMON LUA CODE USED -- %
@@ -68,7 +72,7 @@
 \bigskip
 \bigskip
 
-\begin{luadraw}{name = showcase-palette-\PALETTE}
+\begin{luadraw}{name = showcase-palette-\PALETTE-dark}
 local g = graph:new{
   window = {xmin, xmax, -5, 5},
   bbox   = false
@@ -107,7 +111,7 @@ g:Show()
 \bigskip
 \bigskip
 
-\begin{luadraw}{name = showcase-spectrum-\PALETTE}
+\begin{luadraw}{name = showcase-spectrum-\PALETTE-dark}
 -- Let's work!
 local g = graph:new{
   window = {xmin, xmax, -5, 5},
@@ -151,7 +155,7 @@ g:Show()
 
 \vfill
 
-\begin{luadraw}{name = showcase-nefertiti-\PALETTE}
+\begin{luadraw}{name = showcase-nefertiti-\PALETTE-dark}
 local file = "../core/nefertiti.obj"
 
 local polyhedron, bounding_box = read_obj_file(file)
@@ -182,7 +186,7 @@ g:Show()
 
 \newpage
 
-\begin{luadraw}{name = showcase-contour-\PALETTE}
+\begin{luadraw}{name = showcase-contour-\PALETTE-dark}
 local g = graph:new{
   window = {-1, 6.5, -1.5, 11},
   size   = {18, 16, 0},
@@ -252,7 +256,7 @@ g:Show()
 
 \vfill
 
-\begin{luadraw}{name = showcase-level-surface-\PALETTE}
+\begin{luadraw}{name = showcase-level-surface-\PALETTE-dark}
 local cos, sin = math.cos, math.sin, math.pi
 
 local g = graph3d:new{

@@ -18,7 +18,7 @@ Equal palettes: the floating point equality uses now a correct tolerance.
 -------
 
 [[:api:]]
-Palettes: the extra ''Greys'' has been removed (it is equal to ''Grays'').
+Palettes: the extra ''Greys'' has been removed (it is the reverse of ''Binary'').
 
 
 -----

@@ -37,6 +37,10 @@ PATTERN_TNS_VERSION = re.compile(
 TRANSLATE_DIR      = PROJ_DIR / "contrib" / "translate"
 PREDOC_MANUALS_DIR = PROJ_DIR / "pre-doc" / TAG_MANUAL
 
+
+PREDOC_MANUALS_DIR.mkdir(exist_ok = True)
+
+
 REL_PREDOC_MANUALS_TAG = PREDOC_MANUALS_DIR.relative_to(PROJ_DIR)
 REL_PREDOC_MANUALS_TAG = ['..' for _ in REL_PREDOC_MANUALS_TAG.parents]
 REL_PREDOC_MANUALS_TAG = '/'.join(REL_PREDOC_MANUALS_TAG)
@@ -251,6 +255,9 @@ plurial = '' if len(LANGS) == 1 else 's'
 logging.info(f"Building manual{plurial}.")
 
 for lang in LANGS:
+    if lang == 'common':
+        continue
+
     logging.info(f"'{lang}' version.")
 
     asbtract_path, tex_imports     = build_imports(lang)

@@ -12,19 +12,19 @@
 Originally, this project was born out of a desire to enhance \LUADRAW\ with a set of color palettes to easily produce something like the following 3D plot.
 %
 \begin{center}
-    \subimport{../graphics/}{surface.luadraw}
+    \subimport{../../../common/}{surface.luadraw}
 \end{center}
 
 Technically, a finite list of colors is provided to \LUADRAW\, which then uses linear interpolation to calculate the intermediate colors. In the previous case, the finite color palette used is defined as follows.
 %
 \begin{center}
-    \subimport{../graphics/}{palette-example.luadraw}
+    \subimport{../../../common/}{palette-example.luadraw}
 \end{center}
 
 Using this palette, \LUADRAW\ is able to produce the following spectrum, allowing us to create the graph above.
 %
 \begin{center}
-    \subimport{../graphics/}{spectrum-example.luadraw}
+    \subimport{../../../common/}{spectrum-example.luadraw}
 \end{center}
 
 
@@ -32,17 +32,17 @@ Using this palette, \LUADRAW\ is able to produce the following spectrum, allowin
     Using the \LUADRAW\ implementation of \thisproj, see the section \ref{products-luadraw}, we can create the palettes below made from the previous one named \tdoccodein{lua}+'GeoRainbow'+. Each instruction used is given below each palette.
     %
     \begin{center}
-        \subimport{../graphics/}{palette-reversed.luadraw}
+        \subimport{../../../common/}{palette-reversed.luadraw}
 
         \tdoccodein{lua}+getPal('GeoRainbow', {reverse = true})+
 
         \smallskip
-        \subimport{../graphics/}{palette-shift.luadraw}
+        \subimport{../../../common/}{palette-shift.luadraw}
 
         \tdoccodein{lua}+getPal('GeoRainbow', {shift = 3})+
 
         \smallskip
-        \subimport{../graphics/}{palette-extract.luadraw}
+        \subimport{../../../common/}{palette-extract.luadraw}
 
         \tdoccodein{lua}+getPal('GeoRainbow', {extract = {7, 10, 4}})+
     \end{center}
@@ -56,7 +56,7 @@ Using this palette, \LUADRAW\ is able to produce the following spectrum, allowin
     we instantly change the visual tone, shifting from a seaside feel to a snow-covered world.
     %
     \begin{center}
-        \subimport{../graphics/}{surface-options.luadraw}
+        \subimport{../../../common/}{surface-options.luadraw}
     \end{center}
 \end{tdocnote}
 

@@ -72,12 +72,7 @@ reverse_status = STATUS_TAG[PAL_STATUS.REVERSE_OF]
 
 for cmap_name in allnames:
     if cmap_name[-2:] == "_r":
-        PAL_REPORT[stdname(cmap_name)] = {
-            reverse_status: stdname(cmap_name[:-2]),
-            TAG_CTXT      : CTXT
-        }
-
-        logging.warning(f"'{cmap_name}' PAL_REPORT.")
+        logging.warning(f"'{cmap_name}' ignored by design.")
 
         continue
 

@@ -1,0 +1,34 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+Autumn
+Binary
+Blues
+Bone
+BuGn
+Cool
+Copper
+Devon
+GnBu
+GrayC
+Grays
+Greens
+Lemon
+Oranges
+OrRd
+Oslo
+PuBu
+PuRd
+Purples
+RdPu
+Reds
+Spring
+Summer
+Tokyo
+Winter
+Wistia
+YlGn
+YlGnBu
+YlOrBr
+YlOrRd

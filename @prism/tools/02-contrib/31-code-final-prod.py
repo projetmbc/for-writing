@@ -74,7 +74,7 @@ impl_accepted = contribs_accepted.get(
     []
 )
 
-for ctxt in sorted(impl_accepted):
+for ctxt in sorted(impl_accepted, key = lambda x: x.lower()):
     logging.info(f"'{ctxt}' implementation.")
 
     impl_folder = CONTRIB_PROD_DIR / ctxt

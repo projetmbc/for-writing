@@ -5,17 +5,11 @@
 
 PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
 
-+
-
-PB DE BINARY INVERSE, voir si réparable et reel egal !
-
 
 
 // ---------- //
 
 manuel
-
-   ---> on montre en annaexe toutes les palettes en mode discret simple avec leur nom JSON
 
    ---> annex : gestion automatique de mise en fin de doc vai des newp pages, on gere un evnetuel about.yaml pour l'ordre, on numérore à la main an ajoutannt Annex, et on met dans ToC
 
@@ -23,10 +17,11 @@ manuel
 
    ---> catégory : calssification semi-automatisé
 
-            + "monochrome"
             + déficient (Visual, et c'est tout)
             + forte variation
-            + rainbow like
+            + "monochrome"
+            + "bichrome"
+            + "multichrome" = rainbow like
             + autres ???
 
    ---> du coup ref direct vers ces annexs dans la partie sur le choix des palettes

@@ -245,7 +245,7 @@ end
     )
 
 # Extra code because no getPal inside luadraw...
-    all_names = sorted(palettes)
+    all_names = sorted(palettes, key = lambda x: x.lower())
     all_names = [f'"pal{n}"' for n in all_names]
     all_names = ",\n    ".join(all_names)
 

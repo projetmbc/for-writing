@@ -16,12 +16,15 @@ from json import load as json_load
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR     = Path(__file__).parent
-PROJ_DIR     = THIS_DIR.parent.parent
-REPORT_DIR   = PROJ_DIR / "tools" / "report"
-PRODS_DIR    = PROJ_DIR / "products"
-PREDOC_DIR   = PROJ_DIR / "pre-doc" / "showcase"
-SHOWCASE_DIR = PREDOC_DIR / "single"
+THIS_DIR   = Path(__file__).parent
+PROJ_DIR   = THIS_DIR.parent.parent
+REPORT_DIR = PROJ_DIR / "tools" / "report"
+PRODS_DIR  = PROJ_DIR / "products"
+PREDOC_DIR = PROJ_DIR / "pre-doc" / "showcase"
+SINGLE_DIR = PREDOC_DIR / "single"
+
+
+SINGLE_DIR.mkdir(exist_ok = True)
 
 
 PAL_SRC_FILE = REPORT_DIR / "PAL-SRC.json"
@@ -36,8 +39,6 @@ PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
-
-# SHOWCASE_DIR.mkdir(exist_ok = True)
 
 TEX_FILE_KINDS = [
     (STD := 'std'),
@@ -163,7 +164,7 @@ def extract_palname(filename: str) -> str:
 
 for tex_file in sorted([
     f
-    for f in SHOWCASE_DIR.glob("main-*.tex")
+    for f in SINGLE_DIR.glob("main-*.tex")
 ]):
     palname = extract_palname(tex_file.stem)
 
@@ -201,7 +202,7 @@ logging.info("Add 'single palette showcase' TeX files.")
 
 for palname in ALL_PALETTES:
     for kind, tmp_file in TMPL_SINGLE_SHOWCASE_TEX_CODES.items():
-        palfile = SHOWCASE_DIR / f"{build_name(palname)}-{kind}.tex"
+        palfile = SINGLE_DIR / f"{build_name(palname)}-{kind}.tex"
 
 # The name.
         texcode = PATTERN_CHGE_PAL_NAME.sub(
@@ -246,10 +247,13 @@ for kind, showfile in ALL_SHOWCASE_TEX_FILES.items():
     ]
 
 # Compilation will be done later!
-    for tex_file in sorted([
-        f
-        for f in SHOWCASE_DIR.glob(f"*-{kind}.tex")
-    ]):
+    for tex_file in sorted(
+        [
+            f
+            for f in SINGLE_DIR.glob(f"*-{kind}.tex")
+        ],
+        key = lambda x: str(x).lower()
+    ):
         tex_code.append(
             TMPL_TEX_INCLUDE_PDF.format(
                 palname = extract_palname(tex_file.stem),

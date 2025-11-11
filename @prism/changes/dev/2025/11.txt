@@ -10,11 +10,21 @@
 --------
 
 [[:doc:]]
-Here are the imorvments made.
+The following improvements have been made.
 
-    1) Manual: an example of using the lua::''getPal'' options at the beginning of the document, along with a few minor improvements.
+    1) Manual.
 
-    1) \Contrib. \readmes: some explanations about the path::''fake-prod'' folder were missing.
+        + Example demonstrating the lua::''getPal'' options.
+
+        + ???
+        Added list of removed palettes.
+
+        + ???
+        Annex : added list of all palettes with a spectrum and their definition. The palettes are classified by theme (semi-automated process used).
+
+        + Some additional refinements.
+
+    1) \Contrib \readmes: some explanations about the path::''fake-prod'' folder were missing.
 
 
 // ---------- //
@@ -37,7 +47,7 @@ Equal palettes: the floating point equality uses now a correct tolerance.
 -------
 
 [[:api:]]
-Palettes: the extra ''Greys'' has been removed (it is equal to ''Grays'').
+Palettes: the extra ''Greys'' has been removed (it is the reverse of ''Binary'').
 
 
 -----

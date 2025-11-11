@@ -1,0 +1,20 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+Accent
+Dark2
+Fes
+Flag
+GistStern
+Paired
+Pastel1
+Pastel2
+Prism
+Set1
+Set2
+Set3
+Tab10
+Tab20
+Tab20b
+Tab20c

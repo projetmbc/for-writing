@@ -95,7 +95,7 @@ logging.info("Work with the 'Scientific Coulour Maps 8' source code.")
 
 nb_scicolmaps = len(ALL_PALETTES)
 
-for pyfile in sorted(SCICOLMAP_SRC_DIR.glob("*/*.py")):
+for pyfile in sorted(SCICOLMAP_SRC_DIR.glob("*/*.py"), key = lambda x: str(x).lower()):
     palette_name = pyfile.stem
     std_name     = stdname(palette_name)
     palette_def  = exract_palette(pyfile)
