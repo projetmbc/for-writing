@@ -20,9 +20,9 @@ PROJ_DIR  = THIS_DIR.parent.parent
 PRODS_DIR = PROJ_DIR / "products"
 
 
-# --------------------------------- #
-# -- EMPTY PRODUCTS FOLDER EMPTY -- #
-# --------------------------------- #
+# --------------------------- #
+# -- EMPTY PRODUCTS FOLDER -- #
+# --------------------------- #
 
 logging.info("Empty 'product' folder.")
 
