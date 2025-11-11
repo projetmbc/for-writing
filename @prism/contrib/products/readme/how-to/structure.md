@@ -4,9 +4,10 @@ The following structure for the `luadraw` folder is mandatory. Only the name `lu
 
 ~~~
 + luadraw
-    + readme
     + dev
+    + fake-prod
     + palettes
+    + readme
     + status
     * extend.py
 ~~~

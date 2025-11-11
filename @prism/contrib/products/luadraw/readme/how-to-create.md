@@ -7,6 +7,9 @@ inlinecode:
 Create a palette using luadraw
 ------------------------------
 
+
+> ***CAUTION.*** *Only the folders `dev` (for creation) and `palettes` (for submission) are used for palette creation. Don't modify any other folders.*
+
 Palettes are created using `luadraw` via the file `dev/main.tex`, which produces illustrative examples of use.
 
 ~~~
@@ -16,7 +19,7 @@ Palettes are created using `luadraw` via the file `dev/main.tex`, which produces
 ~~~
 
 
-The design is done by modifying the `PALETTE` variable at the beginning of the file `dev/main.tex`. See below.
+The design is done by modifying the `PALETTE` variable at the beginning of the file `dev/main.tex`. Read the important comment below.
 
 ~~~latex
 % !TEX TS-program = lualatex

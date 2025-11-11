@@ -7,7 +7,7 @@ require 'luadraw_palettes'
 
 local PAL = getPal(
   'GeoRainbow',
-  {extract = {7, 15, 4}}
+  {extract = {7, 10, 4}}
 )
 
 local PALSIZE  = #PAL

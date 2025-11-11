@@ -7,7 +7,7 @@ PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
 
 +
 
-PB DE BINARY INVERS2, voir si réparable !
+PB DE BINARY INVERSE, voir si réparable et reel egal !
 
 
 
@@ -21,11 +21,19 @@ manuel
 
    ---> similar :mis en annexe mais du coup, on fait un code luadraw dédéie juste pour les clusters, et qui s'appuie sur un fichier mis autiomatiquement à jour
 
-   ---> graphics, or trad, en expliquant que c'est commun à toutes les trads !!!
+   ---> catégory : calssification semi-automatisé
 
-   ---> version dark aussi : pour les graphics, si pas de suffixe dark, on garde version std
+            + "monochrome"
+            + déficient (Visual, et c'est tout)
+            + forte variation
+            + rainbow like
+            + autres ???
 
    ---> du coup ref direct vers ces annexs dans la partie sur le choix des palettes
+
+   ---> graphics, hors trad folder, en expliquant que c'est commun à toutes les trads !!!
+
+   ---> version dark aussi : pour les graphics, si pas de suffixe dark, on garde version std
 
    ---> showcae reste autonome lui!
 

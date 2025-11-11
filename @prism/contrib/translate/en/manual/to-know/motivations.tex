@@ -29,24 +29,35 @@ Using this palette, \LUADRAW\ is able to produce the following spectrum, allowin
 
 
 \begin{tdocnote}
-    Using the \LUADRAW\ implementation of \thisproj, see the section \ref{products-luadraw}, we can display the palettes below made from the previous one named \tdoccodein{lua}{'GeoRainbow'}. Each instruction used is given below each palette.
+    Using the \LUADRAW\ implementation of \thisproj, see the section \ref{products-luadraw}, we can create the palettes below made from the previous one named \tdoccodein{lua}+'GeoRainbow'+. Each instruction used is given below each palette.
+    %
+    \begin{center}
+        \subimport{../graphics/}{palette-reversed.luadraw}
 
-    \centering
+        \tdoccodein{lua}+getPal('GeoRainbow', {reverse = true})+
+
+        \smallskip
+        \subimport{../graphics/}{palette-shift.luadraw}
+
+        \tdoccodein{lua}+getPal('GeoRainbow', {shift = 3})+
+
+        \smallskip
+        \subimport{../graphics/}{palette-extract.luadraw}
+
+        \tdoccodein{lua}+getPal('GeoRainbow', {extract = {7, 10, 4}})+
+    \end{center}
 
     \smallskip
-    \subimport{../graphics/}{palette-reversed.luadraw}
-
-    \tdoccodein{lua}{getPal('GeoRainbow', {reverse = true})}
-
-    \smallskip
-    \subimport{../graphics/}{palette-shift.luadraw}
-
-    \tdoccodein{lua}{getPal('GeoRainbow', {shift = 3})}
-
-    \smallskip
-    \subimport{../graphics/}{palette-extract.luadraw}
-
-    \tdoccodein{lua}{getPal('GeoRainbow', {extract = {7, 15, 4}})}
+    
+    This features provide remarkable creative flexibility: with the same surface as before, but using the setting
+    \tdoccodein{lua}+getPal('GeoRainbow', {extract = {2, 3, 7, 8, 5, 6}, reverse = true})+
+    instead of 
+    \tdoccodein{lua}+getPal('GeoRainbow')+,
+    we instantly change the visual tone, shifting from a seaside feel to a snow-covered world.
+    %
+    \begin{center}
+        \subimport{../graphics/}{surface-options.luadraw}
+    \end{center}
 \end{tdocnote}
 
 \end{document}

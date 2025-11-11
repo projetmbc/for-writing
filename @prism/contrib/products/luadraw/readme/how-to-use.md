@@ -69,7 +69,7 @@ mypal = getPal(
 ~~~
 
 To simplify the explanations, we will refer to the colors
-in the standard palette `'GistHeat'` as `coul_1`, `coul_2,`, etc. The options are then **processed in the following order**.
+in the standard palette `'GistHeat'` as `coul_1`, `coul_2`, etc. The options are then **processed in the following order**.
 
   1. `{coul_2, coul_5, coul_8, coul_9}` is the result of the extraction.
 

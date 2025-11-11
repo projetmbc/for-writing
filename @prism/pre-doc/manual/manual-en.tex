@@ -29,9 +29,9 @@
         %
         This name is a double play on words:\kern3pt%
         \begin{enumerate*}[label={[\arabic*]}]
-            \item a prism is where light is split into an informative spectrum, symbolizing how data or visuals are decomposed into meaningful color and style,
+            \item a prism splits light into an informative spectrum, symbolizing how data are decomposed into meaningful color,
             and
-            \item where light meets the prism, it breaks down into an informative spectrum ("@" can be read "at").
+            \item "@" read as "at" indicates where the light meets the prism to be broken down into an informative spectrum.
         \end{enumerate*}
     }
     provides small size color palettes that can be used to create expressive color maps for graphics in different contexts.
@@ -68,7 +68,7 @@
 
 
 \begin{tdocupdate}
-    \item \LUADRAW\ product: the associative array \tdoccodein{lua}+palNames+ has been added for compatibility reasons.
+    \item \LUADRAW\ product: the associative array \tdoccodein{lua}+palNames+ has been added for compatibility reasons with the \LUADRAW\ package.
 
 
     \item \tdoccodein{text}+BlindFish+ palette: the last color variation has been made smoother (\LUADRAW\ process used).
@@ -109,7 +109,7 @@
 
 
 \begin{tdocupdate}
-    \item \LUADRAW\ product: the associative array \tdoccodein{lua}+palNames+ has been added for compatibility reasons.
+    \item \LUADRAW\ product: the associative array \tdoccodein{lua}+palNames+ has been added for compatibility reasons with the \LUADRAW\ package.
 
 
     \item \tdoccodein{text}+BlindFish+ palette: the last color variation has been made smoother (\LUADRAW\ process used).
@@ -135,7 +135,7 @@
     \end{itemize}
 
 
-    \item \LUADRAW\ product: the \tdoccodein{lua}+getPal+ function has an optional argument \tdoccodein{lua}+options+ (dict-like array) with the following keys and their values.
+    \item \LUADRAW\ product: accessing a palette and creating new ones can be made using the \tdoccodein{lua}+getPal+ function which has an optional argument \tdoccodein{lua}+options+ (dict-like array) with the following keys and their values.
     %
     \begin{itemize}
         \item \tdoccodein{lua}+extract+: a list of non-zero integers used to extract specific colors from the palette (the order is preserved).
@@ -163,7 +163,7 @@
 
 
 \begin{tdocnew}
-    \item New palettes added: \tdoccodein{text}+BurningGrass+, \tdoccodein{text}+GeoRainbow+ and \tdoccodein{text}+PastelRainbow+ (\LUADRAW\ package creation process used).
+    \item New palettes added: \tdoccodein{text}+BurningGrass+, \tdoccodein{text}+GeoRainbow+ and \tdoccodein{text}+PastelRainbow+ (\LUADRAW\ creation process used).
 
     \item The \LUADRAW\ palette product has a new dictionary like variable \tdoccodein{lua}{getPal} to access a palette using its name (as a string variable).
 \end{tdocnew}

@@ -19,6 +19,8 @@ You can use `@prism` palettes with [`luadraw`](https://github.com/pfradin/luadra
 Create a palette using luadraw
 ------------------------------
 
+> ***CAUTION.*** *Only the folders `dev` (for creation) and `palettes` (for submission) are used for palette creation. Don't modify any other folders.*
+
 Palettes are created using `luadraw` via the file `dev/main.tex`, which produces illustrative examples of use.
 
 ~~~
@@ -27,7 +29,7 @@ Palettes are created using `luadraw` via the file `dev/main.tex`, which produces
     * main.tex
 ~~~
 
-The design is done by modifying the `PALETTE` variable at the beginning of the file `dev/main.tex`. See below.
+The design is done by modifying the `PALETTE` variable at the beginning of the file `dev/main.tex`. Read the important comment below.
 
 ~~~latex
 % !TEX TS-program = lualatex
@@ -115,7 +117,7 @@ mypal = getPal(
 ~~~
 
 To simplify the explanations, we will refer to the colors
-in the standard palette `'GistHeat'` as `coul_1`, `coul_2,`, etc. The options are then **processed in the following order**.
+in the standard palette `'GistHeat'` as `coul_1`, `coul_2`, etc. The options are then **processed in the following order**.
 
 1. `{coul_2, coul_5, coul_8, coul_9}` is the result of the extraction.
 2. `{coul_9, coul_2, coul_5, coul_8}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).

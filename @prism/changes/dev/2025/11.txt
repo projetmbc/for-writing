@@ -2,6 +2,25 @@
 
 
 ==
+11  (1.3.0-beta.1)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Here are the imorvments made.
+
+    1) Manual: an example of using the lua::''getPal'' options at the beginning of the document, along with a few minor improvements.
+
+    1) \Contrib. \readmes: some explanations about the path::''fake-prod'' folder were missing.
+
+
+// ---------- //
+
+
+==
 09  (1.2.1)
 ==
 
