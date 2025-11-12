@@ -12,6 +12,7 @@ from cbutils.version  import VERSION
 from json import load as json_load
 from os   import makedirs
 
+
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
@@ -63,7 +64,7 @@ drawCategoPals(PALETTES)
 
 
 EN_SORTED_TITLES = {
-    'deficient-blind': r"Colorblind-friendly palettes (coming from \scicolmap)",
+    'deficient-blind': r"Colorblind-friendly palettes (coming from Scientific Coulour Maps)",
     'bicolor'        :  "Two-color palettes",
     'tricolor'       :  "Three-color palettes",
     'rainbow'        :  "Rainbow-style palettes",

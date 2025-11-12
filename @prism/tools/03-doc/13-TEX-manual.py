@@ -23,8 +23,9 @@ THIS_DIR = Path(__file__).parent
 PROJ_DIR = THIS_DIR.parent.parent
 
 
-TAG_MANUAL  = "manual"
-TAG_CHANGES = "changelog"
+TAG_MANUAL     = "manual"
+TAG_CHANGES    = "changelog"
+TAG_APPENDIXES = "appendixes"
 
 
 TNSCHGES_DIR = PROJ_DIR / "changes" / "stable"
@@ -93,13 +94,23 @@ TMPL_TEX_MANUAL = r"""
 \tableofcontents
 \newpage
 
+% -------------------- %
+
 {tex_imports}
+
+% -------------------- %
 
 \section{{History}}
 
 \small
 
 {changes}
+
+% -------------------- %
+
+\normalsize
+
+{tex_appendixes}
 
 \end{{document}}
 """.strip() + "\n"
@@ -113,7 +124,7 @@ TMPL_IMPORT = r"\subimport{{{rel_folder}/}}{{{file}}}"
 
 def build_imports(lang: str) -> (Path, [str]):
     file_imports = _rec_build_imports(
-        TRANSLATE_DIR / fname / TAG_MANUAL
+        TRANSLATE_DIR / lang / TAG_MANUAL
     )
 
     tex_imports = []
@@ -175,7 +186,7 @@ def extract_tex_content(texcode: str) -> str:
 def build_changes(lang: str) -> (datetime, str, [str]):
     all_texcodes = []
 
-    chges_folder = TRANSLATE_DIR / fname / TAG_MANUAL / TAG_CHANGES
+    chges_folder = TRANSLATE_DIR / lang / TAG_MANUAL / TAG_CHANGES
 
     all_chgefiles = sorted(
         [
@@ -246,6 +257,35 @@ def build_changes(lang: str) -> (datetime, str, [str]):
     return lastdate, lastversion, all_texcodes
 
 
+def build_appendixes(lang: str) -> str:
+    tex_code = []
+
+    folder = TRANSLATE_DIR / lang / TAG_MANUAL / TAG_APPENDIXES
+
+    about_file = folder / "about.yaml"
+
+    with about_file.open(mode = 'r') as f:
+        toc = safe_load(f)
+
+    toc = toc['toc']
+
+    folder     = folder.relative_to(PROJ_DIR)
+    rel_folder = f"{REL_PREDOC_MANUALS_TAG}/{folder}"
+
+    for file in toc:
+        tex_code += [
+            r'\newpage',
+            TMPL_IMPORT.format(
+                rel_folder = rel_folder,
+                file       = file
+            )
+        ]
+
+    tex_code = '\n'.join(tex_code)
+
+    return tex_code
+
+
 # ------------- #
 # -- MANUALS -- #
 # ------------- #
@@ -262,7 +302,7 @@ for lang in LANGS:
 
     asbtract_path, tex_imports     = build_imports(lang)
     lastdate, lastversion, changes = build_changes(lang)
-    # tex_appendixes                 = build_appendixes(lang)
+    tex_appendixes                 = build_appendixes(lang)
 
     if VERSION != lastversion:
         raise ValueError(
@@ -275,11 +315,12 @@ for lang in LANGS:
     changes     = '\n\n\\tdocsep\n\n'.join(changes)
 
     tex_code = TMPL_TEX_MANUAL.format(
-        lang        = lang,
-        abstract    = abstract,
-        tex_imports = '\n'.join(tex_imports),
-        last_change = last_change,
-        changes     = changes
+        lang           = lang,
+        abstract       = abstract,
+        tex_imports    = '\n'.join(tex_imports),
+        last_change    = last_change,
+        changes        = changes,
+        tex_appendixes = tex_appendixes,
     )
 
     tex_code = tex_code.replace(

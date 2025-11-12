@@ -12,6 +12,7 @@ from cbutils.version  import VERSION
 from json import load as json_load
 from os   import makedirs
 
+
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
@@ -59,7 +60,6 @@ drawSimPals(PALETTES)
 PATTERN_NB_CLUSTERS = re.compile(
     r'(\\newcommand\\nbSimClusters\{)(\d+)(\})'
 )
-
 
 
 # ----------------- #

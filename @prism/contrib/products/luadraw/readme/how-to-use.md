@@ -8,17 +8,17 @@ inlinecode:
     - getPal
     - getPal('GistHeat')
     - getPal('palGistHeat')
-    - palNames
+    - palNames['palGistHeat']
     - getPal(palname, {reverse = true})
 -->
 
-The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
+The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by three ways.
 
   * `palGistHeat` is a `Lua` variable.
 
   * `getPal('GistHeat')` and `getPal('palGistHeat')` are equal to `palGistHeat`.
 
-  * For compatibility reasons with the `luadraw` API, there is also an associative array called `palNames`, which expects the variable name with `pal` prefix. See the caution note at the end of this section.
+  * `palNames['palGistHeat']` is equal to `palGistHeat`.
 
 
 > ***NOTE.*** *The `Lua` palette variables are arrays of arrays of three floats. Here is the definition of `palGistHeat`.*
@@ -76,9 +76,5 @@ in the standard palette `'GistHeat'` as `coul_1`, `coul_2`, etc. The options are
   1. `{coul_9, coul_2, coul_5, coul_8}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).
 
   1. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted palette.
-
-
-> ***CAUTION.*** *The current version of `luadraw` simply uses the palettes provided by `@prism` wihtout the `getPal` function. If you prefer to use the `@prism` version with its `getPal` function, you will need to include the entire code in the `luadraw_palettes.lua` file where the package is installed.*
-
 
 > ***NOTE.*** *The reversed version of any palette can be obtained using `getPal(palname, {reverse = true})`.*

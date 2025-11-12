@@ -1,0 +1,194 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../../contrib/translate/en/manual/preamble.cfg}
+
+\usepackage[subpreambles = true]{standalone}
+
+\makeatletter
+\renewcommand{\minted@cachedir}{_minted-xtra-cache}
+\makeatother
+
+\begin{document}
+
+\title{\thisproj*\ project}
+\author{Christophe BAL}
+\date{9 Nov 2025 -- Version 1.2.1}
+
+\maketitle
+
+\begin{abstract}
+    The \thisproj\ project\,%
+    \footnote{
+        The name comes from \tdocquote{%
+        \tdocprewhy{@.esthetic} \tdocprewhy{P.roducts} 
+        for
+        \tdocprewhy{R.epresenting} \tdocprewhy{I.nformative}
+        \tdocprewhy{S.cientific} \tdocprewhy{M.aps}}.
+        %
+        This name is a double play on words:\kern3pt%
+        \begin{enumerate*}[label={[\arabic*]}]
+            \item a prism splits light into an informative spectrum, symbolizing how data are decomposed into meaningful color,
+            and
+            \item "@" read as "at" indicates where the light meets the prism to be broken down into an informative spectrum.
+        \end{enumerate*}
+    }
+    provides small size color palettes that can be used to create expressive color maps for graphics in different contexts.
+
+%    \smallskip
+%
+%    \noindent
+%    \emph{\textbf{Remark :} this documentation is also available in <<DOC-LANGS>>.}
+\end{abstract}
+
+\tdocsep
+
+{
+\small
+
+\bgroup
+    \addtokomafont{subsection}{\centering}
+    \subsection*{Last changes}
+\egroup
+
+\begin{tdocfix}[version = 1.2.1, date = 2025-11-09]
+    \item Equal palettes: the floating point equality uses now a correct tolerance.
+\end{tdocfix}
+
+
+\begin{tdocbreak}
+    \item Palettes: the extra \tdoccodein{text}+Greys+ has been removed (it is equal to \tdoccodein{text}+Grays+).
+\end{tdocbreak}
+
+
+\begin{tdocnew}
+    \item Similar palettes: two PDF files show similar palettes in standard and black modes (semi-automated process used).
+\end{tdocnew}
+
+
+\begin{tdocupdate}
+    \item \LUADRAW\ product: the associative array \tdoccodein{lua}+palNames+ has been added for compatibility reasons with the \LUADRAW\ package.
+
+
+    \item \tdoccodein{text}+BlindFish+ palette: the last color variation has been made smoother (\LUADRAW\ process used).
+\end{tdocupdate}
+}
+
+\newpage
+\tableofcontents
+\newpage
+
+% -------------------- %
+
+\subimport{../../contrib/translate/en/manual/to-know/}{motivations.tex}
+\subimport{../../contrib/translate/en/manual/to-know/}{backstage.tex}
+\subimport{../../contrib/translate/en/manual/to-know/}{reuse-from.tex}
+\subimport{../../contrib/translate/en/manual/to-know/}{searching.tex}
+\subimport{../../contrib/translate/en/manual/products/}{preamble.tex}
+\subimport{../../contrib/translate/en/manual/products/}{luadraw.tex}
+\subimport{../../contrib/translate/en/manual/contrib-how-to/}{prologue.tex}
+\subimport{../../contrib/translate/en/manual/contrib-how-to/}{translate.tex}
+\subimport{../../contrib/translate/en/manual/contrib-how-to/}{src-code.tex}
+
+% -------------------- %
+
+\section{History}
+
+\small
+
+\begin{tdocfix}[version = 1.2.1, date = 2025-11-09]
+    \item Equal palettes: the floating point equality uses now a correct tolerance.
+\end{tdocfix}
+
+
+\begin{tdocbreak}
+    \item Palettes: the extra \tdoccodein{text}+Greys+ has been removed (it is equal to \tdoccodein{text}+Grays+).
+\end{tdocbreak}
+
+
+\begin{tdocnew}
+    \item Similar palettes: two PDF files show similar palettes in standard and black modes (semi-automated process used).
+\end{tdocnew}
+
+
+\begin{tdocupdate}
+    \item \LUADRAW\ product: the associative array \tdoccodein{lua}+palNames+ has been added for compatibility reasons with the \LUADRAW\ package.
+
+
+    \item \tdoccodein{text}+BlindFish+ palette: the last color variation has been made smoother (\LUADRAW\ process used).
+\end{tdocupdate}
+
+\tdocsep
+
+\begin{tdocbreak}[version = 1.2.0, date = 2025-10-29]
+    \item Palettes: all final palettes now consist of 10 colors.
+
+
+    \item \LUADRAW\ products: the \tdoccodein{lua}+getPal+ dictionary array has been converted into a function accepting string palette names (with or without \tdoccodein{lua}+pal+ prefix). See below.
+\end{tdocbreak}
+
+
+\begin{tdocnew}
+    \item Palettes.
+    %
+    \begin{itemize}
+        \item Added  \tdoccodein{text}+Lemon+ and \tdoccodein{text}+ShiftRainbow+ palettes (\LUADRAW\ creation process used).
+
+        \item Added 37 palettes from the \scicolmap\ project.
+    \end{itemize}
+
+
+    \item \LUADRAW\ product: accessing a palette and creating new ones can be made using the \tdoccodein{lua}+getPal+ function which has an optional argument \tdoccodein{lua}+options+ (dict-like array) with the following keys and their values.
+    %
+    \begin{itemize}
+        \item \tdoccodein{lua}+extract+: a list of non-zero integers used to extract specific colors from the palette (the order is preserved).
+
+        \item \tdoccodein{lua}+reverse+: a boolean value indicating whether to reverse the palette color order (\tdoccodein{lua}+false+ by default).
+
+        \item \tdoccodein{lua}+shift+: an integer value for applying a circular color shift to the palette.
+    \end{itemize}
+    
+
+    \item Documentations
+    %
+    \begin{itemize}
+        \item Added English PDF manual.
+
+        \item Showcase: two PDF files demonstrate the use of each palette (white and dark modes).
+    \end{itemize}
+\end{tdocnew}
+
+\tdocsep
+
+\begin{tdocbreak}[version = 1.1.0, date = 2025-10-14]
+    \item Duplicate palettes and those that are reverse of others are ignored (strict equalities only).
+\end{tdocbreak}
+
+
+\begin{tdocnew}
+    \item New palettes added: \tdoccodein{text}+BurningGrass+, \tdoccodein{text}+GeoRainbow+ and \tdoccodein{text}+PastelRainbow+ (\LUADRAW\ creation process used).
+
+    \item The \LUADRAW\ palette product has a new dictionary like variable \tdoccodein{lua}{getPal} to access a palette using its name (as a string variable).
+\end{tdocnew}
+
+
+\begin{tdocupdate}
+    \item Palette contributions: in the mandatory \verb+extend.py+ file, the \tdoccodein{py}{build_code} function must work with the dictionary of all the palettes, and manage a credit to the \thisproj\ project.
+\end{tdocupdate}
+
+\tdocsep
+
+\tdocstartproj{First public version of the project.}\tdocversion{1.0.0}[2025-10-11]
+
+
+% -------------------- %
+
+\normalsize
+
+\newpage
+\subimport{../../contrib/translate/en/manual/appendixes/}{all-palettes.tex}
+\newpage
+\subimport{../../contrib/translate/en/manual/appendixes/}{similar-palettes.tex}
+
+\end{document}

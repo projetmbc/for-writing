@@ -6,14 +6,10 @@
 
 %\geometry{showframe=true}
 
-\directlua{dofile('../../../../products/luadraw/palettes.lua')}
-\directlua{dofile('../../../common/drawpals.lua')}
-
 \begin{document}
 
-\addcontentsline{toc}{section}{Appendix 2 -- The \palNb\ palettes at a glance}
-\section*{Appendix 2 -- The \palNb\ palettes at a glance}
-\label{all-palettes}
+\section*{Appendix 1 -- The \palNb\ palettes at a glance} \label{all-palettes}
+\addcontentsline{toc}{section}{Appendix 1 -- The \palNb\ palettes at a glance}
 
 The palette names used in this appendix are standard. Depending on the chosen implementation, they may be prefixed.
 
@@ -30,7 +26,7 @@ The palette names used in this appendix are standard. Depending on the chosen im
 
 \foreach \nb/\title in {%
 % AUTO CATEGOS - START
-  1/{Colorblind-friendly palettes (coming from \scicolmap)},%
+  1/{Colorblind-friendly palettes (coming from Scientific Coulour Maps)},%
   2/{Two-color palettes},%
   3/{Three-color palettes},%
   4/{Rainbow-style palettes},%
