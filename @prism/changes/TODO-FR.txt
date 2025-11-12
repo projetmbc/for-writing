@@ -3,43 +3,16 @@
 ======
 
 
-PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
-
-
 
 // ---------- //
 
+PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
+
++
 
 classification humai,ne : on list last et non new qui lui est là pour des mise à jour éventuels !!!!
 
-
-// ---------- //
-
-manuel
-
-   ---> annex : gestion automatique de mise en fin de doc vai des newp pages, on gere un evnetuel about.yaml pour l'ordre, on numérore à la main an ajoutannt Annex, et on met dans ToC
-
-   ---> similar :mis en annexe mais du coup, on fait un code luadraw dédéie juste pour les clusters, et qui s'appuie sur un fichier mis autiomatiquement à jour
-
-   ---> catégory : calssification semi-automatisé
-
-            + déficient (Visual, et c'est tout)
-            + forte variation
-            + "monochrome"
-            + "bichrome"
-            + "multichrome" = rainbow like
-            + autres ???
-
-   ---> du coup ref direct vers ces annexs dans la partie sur le choix des palettes
-
-   ---> graphics, hors trad folder, en expliquant que c'est commun à toutes les trads !!!
-
-   ---> version dark aussi : pour les graphics, si pas de suffixe dark, on garde version std
-
-   ---> showcae reste autonome lui!
-
-
-// ---------- //
++
 
 pour les clusters, besoin de gérér les nouveaux entrants !
 
@@ -60,47 +33,9 @@ implementation
 
    ---> LaTeX : extraction eet compagine via L3
 
+            + point de départ pour un mini package latex vi des maj auto!
+
    ---> Python : après on en fait la pub sur Matplotlib
-
-
-// ---------- //
-
-plattes elimine à la main vai une catégo ete snuite on documente cela de façon automatisé
-
-   --> ordre de priorité mp > asy > scicolmap > @prism
-
-   --> impossible à distinguer par un oeil non averti
-
-   --> suprrrsion toujours justifié via uen catégorie, et ensuite section donne celles élimniées à la main
-
-
-// ---------- //
-
-classification des couleurs dans un doc dédié
-
-   --> info donnnée dans le manuel
-
-            + descriptif avec la liste de s couelusr concernées.
-
-            + unclassifiable pour ce qui n'a apas encore pu etre actégorisé
-
-            + rappeler showcase et category
-
-   --> nuance de grise
-
-   --> SciColMap : The colour combinations are readable both by colour-vision deficient and colour-blind people, and even when printed in black&white
-
-   --> couleur forte variation (bien pour courbes colorés à l main)
-
-   --> classement purementa lgorithmique !
-
-            + les arcs en cies ou autre
-
-            + les pentes des approcimations linaiéres... etc.
-
-            + arbre de décision à la sauce IA (début fin , puis on affine)
-
-            + ... etc.
 
 
 // ---------- //
