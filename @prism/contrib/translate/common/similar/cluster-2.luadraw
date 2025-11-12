@@ -1,0 +1,12 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'Blues',
+  'PuBu'
+}
+
+drawpals(PALETTES)
+\end{luacode*}

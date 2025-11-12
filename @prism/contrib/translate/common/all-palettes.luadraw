@@ -6,7 +6,7 @@
 require 'luadraw_palettes'
 
 -- DEBUG - START
--- palNames = {["palTwilightShifted"]=palTwilightShifted,["palAccent"]= palAccent, ["palGeoRainbow"]= palGeoRainbow, ["palBinary"]= palBinary}
+palNames = {["palTwilightShifted"]=palTwilightShifted,["palAccent"]= palAccent, ["palGeoRainbow"]= palGeoRainbow, ["palBinary"]= palBinary}
 -- DEBUG - END
 
 function drawSpectrum(pal)
@@ -19,7 +19,7 @@ function drawSpectrum(pal)
   g:Linewidth(1)
 
   local A, h, dh = Z(-5, 4), Z(0, -1), Z(0, -.75)
-  local L, N = 5, 200
+  local L, N = 5, 150
   local dl = L / N
 
   for k = 1, N do

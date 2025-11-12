@@ -1,0 +1,13 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'BuGn',
+  'Greens',
+  'YlGn'
+}
+
+drawpals(PALETTES)
+\end{luacode*}

@@ -10,12 +10,16 @@
 --------
 
 [[:doc:]]
-The following improvements have been made in the manual.
+Manual improvements.
 
     1) Added list of removed palettes.
 
-    1) ???
-    Annex : added list of all palettes with a spectrum and their definition. The palettes are classified by theme (semi-automated process used).
+    2) Added annexes:
+
+        + Similar palettes.
+
+        + ????
+        All palettes grouped by user-friendly categories.
 
 
 // ---------- //
@@ -61,7 +65,7 @@ Equal palettes: the floating point equality uses now a correct tolerance.
 -------
 
 [[:api:]]
-Palettes: the extra ''Greys'' has been removed (it is the reverse of ''Binary'').
+Palettes: the extra ''Greys'' has been removed (it is equal to ''Grays'').
 
 
 -----

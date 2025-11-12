@@ -1,0 +1,32 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+%\geometry{showframe=true}
+
+\directlua{dofile('../../../../products/luadraw/palettes.lua')}
+\directlua{dofile('../../../common/drawpals.lua')}
+
+\begin{document}
+
+
+\section{Similar palettes}
+
+This document includes visually similar color palettes retained by \thisproj\ to respect individual preferences, and also because there are subtle differences between them, even when minimal.
+
+
+\begin{tdocimp}
+    Clusters were generated semi-automatically using a program that suggests similar palettes, followed by manual curation to retain only relevant groupings.
+    This approach may occasionally miss some similarities. If you identify any omissions, please contact the author of \thisproj.
+\end{tdocimp}
+
+
+\foreach \n in {1,...,\nbSimClusters}{
+  \subsection*{Cluster \#\n}
+  
+  \subimport{../../../common/}{similar/cluster-\n.luadraw}
+}
+
+\end{document}

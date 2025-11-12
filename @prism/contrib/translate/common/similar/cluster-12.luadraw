@@ -1,0 +1,13 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'TwilightShifted',
+  'Vik',
+  'VikO'
+}
+
+drawpals(PALETTES)
+\end{luacode*}

@@ -1,0 +1,12 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'Batlow',
+  'BatlowW'
+}
+
+drawpals(PALETTES)
+\end{luacode*}

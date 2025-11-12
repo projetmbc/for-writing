@@ -1,0 +1,12 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'OrRd',
+  'YlOrRd'
+}
+
+drawpals(PALETTES)
+\end{luacode*}
