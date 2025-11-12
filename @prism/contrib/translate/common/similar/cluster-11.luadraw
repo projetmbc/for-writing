@@ -8,5 +8,5 @@ PALETTES = {
   'RomaO'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}

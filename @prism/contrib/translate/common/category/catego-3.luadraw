@@ -1,0 +1,48 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'Acton',
+  'Afmhot',
+  'Bam',
+  'BamO',
+  'Bamako',
+  'Berlin',
+  'Bilbao',
+  'BrBG',
+  'Broc',
+  'BrocO',
+  'BuPu',
+  'Buda',
+  'BurningGrass',
+  'Bwr',
+  'Cividis',
+  'Coolwarm',
+  'Cork',
+  'CorkO',
+  'Davos',
+  'GistHeat',
+  'Glasgow',
+  'Hot',
+  'Imola',
+  'Lapaz',
+  'Navia',
+  'NaviaW',
+  'Nuuk',
+  'PRGn',
+  'PiYG',
+  'Pink',
+  'PuBuGn',
+  'PuOr',
+  'RdBu',
+  'RdYlBu',
+  'RdYlGn',
+  'Seismic',
+  'Turku',
+  'Vanimo'
+}
+
+drawCategoPals(PALETTES)
+\end{luacode*}

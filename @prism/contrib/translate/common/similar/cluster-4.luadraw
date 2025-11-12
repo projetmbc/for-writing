@@ -8,5 +8,5 @@ PALETTES = {
   'Seismic'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}

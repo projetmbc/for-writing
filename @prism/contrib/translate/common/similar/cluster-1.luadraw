@@ -8,5 +8,5 @@ PALETTES = {
   'BatlowW'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}

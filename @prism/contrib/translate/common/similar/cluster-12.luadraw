@@ -9,5 +9,5 @@ PALETTES = {
   'VikO'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}

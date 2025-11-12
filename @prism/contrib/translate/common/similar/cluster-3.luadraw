@@ -9,5 +9,5 @@ PALETTES = {
   'YlGn'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}

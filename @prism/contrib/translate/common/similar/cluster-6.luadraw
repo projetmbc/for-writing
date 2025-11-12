@@ -8,5 +8,5 @@ PALETTES = {
   'Magma'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}

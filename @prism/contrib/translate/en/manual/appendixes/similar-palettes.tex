@@ -11,10 +11,11 @@
 
 \begin{document}
 
+\addcontentsline{toc}{section}{Appendix 1 -- Similar palettes}
+\section*{Appendix 1 -- Similar palettes}
+\label{similar-palettes}
 
-\section{Similar palettes}
-
-This document includes visually similar color palettes retained by \thisproj\ to respect individual preferences, and also because there are subtle differences between them, even when minimal.
+This appendix includes visually similar color palettes retained by \thisproj\ to respect individual preferences, and also because there are subtle differences between them, even when minimal.
 
 
 \begin{tdocimp}
@@ -23,10 +24,10 @@ This document includes visually similar color palettes retained by \thisproj\ to
 \end{tdocimp}
 
 
-\foreach \n in {1,...,\nbSimClusters}{
-  \subsection*{Cluster \#\n}
-  
-  \subimport{../../../common/}{similar/cluster-\n.luadraw}
+\foreach \nb in {1,...,\nbSimClusters}{
+  \subsection*{Cluster \#\nb}
+
+  \subimport{../../../common/similar/}{cluster-\nb.luadraw}
 }
 
 \end{document}

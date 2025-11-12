@@ -51,7 +51,7 @@ PALETTES = {{
   {cluster}
 }}
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{{luacode*}}
     """.strip() + '\n'
 

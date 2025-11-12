@@ -1,0 +1,53 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'Batlow',
+  'BatlowK',
+  'BatlowW',
+  'BlindFish',
+  'Brg',
+  'Bukavu',
+  'CMRmap',
+  'Cubehelix',
+  'GasFlame',
+  'GeoRainbow',
+  'GistEarth',
+  'GistNcar',
+  'GistRainbow',
+  'Gnuplot',
+  'Gnuplot2',
+  'Hawaii',
+  'Hsv',
+  'Inferno',
+  'Jet',
+  'Lajolla',
+  'Lipari',
+  'Lisbon',
+  'Magma',
+  'Managua',
+  'NipySpectral',
+  'Ocean',
+  'Oleron',
+  'PastelRainbow',
+  'Plasma',
+  'Rainbow',
+  'RdGy',
+  'Roma',
+  'RomaO',
+  'ShiftRainbow',
+  'Spectral',
+  'Terrain',
+  'Tofino',
+  'Turbo',
+  'Twilight',
+  'TwilightShifted',
+  'Vik',
+  'VikO',
+  'Viridis'
+}
+
+drawCategoPals(PALETTES)
+\end{luacode*}

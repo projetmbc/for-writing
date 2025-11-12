@@ -8,5 +8,5 @@ PALETTES = {
   'Turbo'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}

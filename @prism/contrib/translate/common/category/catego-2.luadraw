@@ -1,0 +1,40 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'Autumn',
+  'Binary',
+  'Blues',
+  'Bone',
+  'BuGn',
+  'Cool',
+  'Copper',
+  'Devon',
+  'GnBu',
+  'GrayC',
+  'Grays',
+  'Greens',
+  'Lemon',
+  'OrRd',
+  'Oranges',
+  'Oslo',
+  'PuBu',
+  'PuRd',
+  'Purples',
+  'RdPu',
+  'Reds',
+  'Spring',
+  'Summer',
+  'Tokyo',
+  'Winter',
+  'Wistia',
+  'YlGn',
+  'YlGnBu',
+  'YlOrBr',
+  'YlOrRd'
+}
+
+drawCategoPals(PALETTES)
+\end{luacode*}

@@ -8,5 +8,5 @@ PALETTES = {
   'Lapaz'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}

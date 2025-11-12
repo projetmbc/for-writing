@@ -8,5 +8,5 @@ PALETTES = {
   'YlOrBr'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}

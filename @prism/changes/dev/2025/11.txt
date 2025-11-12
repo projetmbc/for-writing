@@ -18,8 +18,7 @@ Manual improvements.
 
         + Similar palettes.
 
-        + ????
-        All palettes grouped by user-friendly categories.
+        + All palettes grouped by user-friendly categories.
 
 
 // ---------- //

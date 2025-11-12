@@ -1,0 +1,49 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+%\geometry{showframe=true}
+
+\directlua{dofile('../../../../products/luadraw/palettes.lua')}
+\directlua{dofile('../../../common/drawpals.lua')}
+
+\begin{document}
+
+\addcontentsline{toc}{section}{Appendix 2 -- The \palNb\ palettes at a glance}
+\section*{Appendix 2 -- The \palNb\ palettes at a glance}
+\label{all-palettes}
+
+The palette names used in this appendix are standard. Depending on the chosen implementation, they may be prefixed.
+
+
+\begin{tdocimp}
+    Categories were generated semi-automatically using a program, followed by manual selection to obtain relevant choices.
+    If you identify any errrors, please contact the author of \thisproj.
+\end{tdocimp}
+
+
+
+% --------------------------- %
+% -- JUST TRANSLATE TITLES -- %
+% --------------------------- %
+
+\foreach \nb/\title in {%
+% AUTO CATEGOS - START
+  1/{Colorblind-friendly palettes},%
+  2/{Two-color palettes},%
+  3/{Three-color palettes},%
+  4/{Rainbow-style palettes},%
+  5/{High-contrast palettes}%
+% AUTO CATEGOS - END
+}{
+  \ifthenelse{\nb = 1}{}{\newpage}
+
+  \addcontentsline{toc}{subsection}{\title}
+  \subsection*{\title}
+
+  \subimport{../../../common/category/}{catego-\nb.luadraw}
+}
+
+\end{document}

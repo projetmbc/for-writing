@@ -8,5 +8,5 @@ PALETTES = {
   'PuBu'
 }
 
-drawpals(PALETTES)
+drawSimPals(PALETTES)
 \end{luacode*}
