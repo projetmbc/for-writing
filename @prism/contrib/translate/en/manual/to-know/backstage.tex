@@ -32,16 +32,24 @@ We retain only palettes that comply with the following rules.
 \end{itemize}
 
 
-Here are the palettes that were not taken into account because they created a duplicate.
-
-\subimport{../../../common/}{ignored-palettes.tex}
-
-
 In addition to \matplotlib\ and \scicolmap\ palettes, \thisproj\ includes original creations.
 
 
+\medskip
+
+
+We give below the palettes ignored because they created a duplicate.%
+\footnote{
+    Remember that \matplotlib\ reversed color maps are ignored (their name hase \tdoccodein{py}{_r} suffix). So we do not show this initially ignored palettes.
+}
+The symbol \boxed{{=}\vphantom{pM}} means \tdocquote{is equal to} and \boxed{{\rightleftharpoons}\vphantom{pM}} means \tdocquote{is reverse of}, and the right most palette is the one kept inside \thisproj.
+%
+\subimport{../../../common/}{ignored-palettes.latex}
+
+
 \begin{tdocnote}
-    Adding new palettes to \thisproj\ is straightforward. See section \ref{contrib-how-to-src-code} to get started.
+    Adding new palettes to \thisproj\ is straightforward (no coding skills required).
+    See section \ref{contrib-how-to-src-code} to get started.
 \end{tdocnote}
 
 \end{document}

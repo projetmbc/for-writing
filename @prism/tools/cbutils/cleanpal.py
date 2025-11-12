@@ -34,10 +34,6 @@ TAG_APRISM    = "@prism"
 TAG_MPL       = "Matplotlib"
 
 
-
-
-
-
 def minimize_palette(p: list[float]) -> list[float]:
     if len(set(tuple(c) for c in p)) == len(p):
         return p

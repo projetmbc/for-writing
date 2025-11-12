@@ -2,6 +2,26 @@
 
 
 ==
+12  (1.3.0-beta.2)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+The following improvements have been made in the manual.
+
+    1) Added list of removed palettes.
+
+    1) ???
+    Annex : added list of all palettes with a spectrum and their definition. The palettes are classified by theme (semi-automated process used).
+
+
+// ---------- //
+
+
+==
 11  (1.3.0-beta.1)
 ==
 
@@ -15,12 +35,6 @@ The following improvements have been made.
     1) Manual.
 
         + Example demonstrating the lua::''getPal'' options.
-
-        + ???
-        Added list of removed palettes.
-
-        + ???
-        Annex : added list of all palettes with a spectrum and their definition. The palettes are classified by theme (semi-automated process used).
 
         + Some additional refinements.
 

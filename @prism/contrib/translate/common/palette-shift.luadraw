@@ -2,7 +2,7 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{luadraw}{name = spectrum-example}
+\begin{luadraw}{name = palette-example-shift}
 require 'luadraw_palettes'
 
 local PAL = getPal(

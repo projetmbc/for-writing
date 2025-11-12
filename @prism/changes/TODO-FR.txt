@@ -9,6 +9,12 @@ PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
 
 // ---------- //
 
+
+classification humai,ne : on list last et non new qui lui est là pour des mise à jour éventuels !!!!
+
+
+// ---------- //
+
 manuel
 
    ---> annex : gestion automatique de mise en fin de doc vai des newp pages, on gere un evnetuel about.yaml pour l'ordre, on numérore à la main an ajoutannt Annex, et on met dans ToC

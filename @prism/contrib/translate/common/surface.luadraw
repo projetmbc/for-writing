@@ -2,7 +2,7 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{luadraw}{name = showcase-contour}
+\begin{luadraw}{name = surface-example}
 require 'luadraw_palettes'
 
 local pal = getPal('GeoRainbow')

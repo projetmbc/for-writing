@@ -39,6 +39,12 @@ with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
+SCICOLMAP_NAMES_FILE = PROJ_DIR / "tools" / "report" / "SCICOLMAP-NAMES.json"
+
+with SCICOLMAP_NAMES_FILE.open(mode = "r") as f:
+    ALL_SCICOLMAP_NAMES = json_load(f)
+
+
 # ------------- #
 # -- EXTRACT -- #
 # ------------- #
@@ -66,15 +72,15 @@ def extract_names(file: Path) -> [str]:
 logging.info("JSON file of palette categories.")
 
 
+# -- HUMAN CHOICES -- #
+
 all_categories  = defaultdict(list)
 all_categorized = []
 
 for file in HUMAN_CHOICES_DIR.rglob("*/new.txt"):
     catego = file.parent.name
 
-    logging.info(
-        f"Work on '{catego}/{file.name}'."
-    )
+    logging.info(f"Work on '{catego}/{file.name}'.")
 
     names = extract_names(file)
 
@@ -83,6 +89,8 @@ for file in HUMAN_CHOICES_DIR.rglob("*/new.txt"):
     if names:
         all_categories[catego] = names
 
+
+# -- NOT CLASSIFIED BY HUMAN -- #
 
 nocatego = []
 
@@ -93,8 +101,18 @@ for n in ALL_PALETTES:
 if nocatego:
     nocatego.sort(key = lambda x: x.lower())
 
-    all_categories["no-catego"] = nocatego
+    all_categories["__UNCLASSIFIED__"] = nocatego
 
+
+# -- COLOUR-VISION DEFICIENT / COLOUR-BLIND PEOPLE -- #
+
+logging.info(f"Work on 'Scientific Colour Maps'.")
+
+for n in ALL_SCICOLMAP_NAMES:
+    all_categories['deficient-blind'].append(n)
+
+
+# -- NOTHING LEFT TO DO -- #
 
 PAL_CATEGO_JSON_FILE.write_text(
     json_dumps(all_categories)

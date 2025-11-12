@@ -2,7 +2,7 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{luadraw}{name = discrete-spectrum}
+\begin{luadraw}{name = palette-example-default}
 require 'luadraw_palettes'
 
 local PAL = getPal('GeoRainbow')
