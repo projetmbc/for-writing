@@ -8,15 +8,11 @@
 
 PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
 
-+
+   --> classification humai,ne : on list last et non new qui lui est là pour des mise à jour éventuels !!!!
 
-classification humai,ne : on list last et non new qui lui est là pour des mise à jour éventuels !!!!
+   --> pour les clusters, besoin de gérér les nouveaux entrants !
 
-+
-
-pour les clusters, besoin de gérér les nouveaux entrants !
-
-   --> il faut partir de ce qui existe, et esnuite faire cluster juste pour les nouvveaux
+         + il faut partir de ce qui existe, et esnuite faire cluster juste pour les nouvveaux
 
 
 // ---------- //
