@@ -63,11 +63,11 @@ drawCategoPals(PALETTES)
 
 
 EN_SORTED_TITLES = {
-    'deficient-blind': "Colorblind-friendly palettes",
-    'bicolor'        : "Two-color palettes",
-    'tricolor'       : "Three-color palettes",
-    'rainbow'        : "Rainbow-style palettes",
-    'big-var'        : "High-contrast palettes",
+    'deficient-blind': r"Colorblind-friendly palettes (coming from \scicolmap)",
+    'bicolor'        :  "Two-color palettes",
+    'tricolor'       :  "Three-color palettes",
+    'rainbow'        :  "Rainbow-style palettes",
+    'big-var'        :  "High-contrast palettes",
 }
 
 if set(EN_SORTED_TITLES) != set(ALL_CATEGO):

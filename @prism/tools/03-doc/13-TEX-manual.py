@@ -262,6 +262,7 @@ for lang in LANGS:
 
     asbtract_path, tex_imports     = build_imports(lang)
     lastdate, lastversion, changes = build_changes(lang)
+    # tex_appendixes                 = build_appendixes(lang)
 
     if VERSION != lastversion:
         raise ValueError(

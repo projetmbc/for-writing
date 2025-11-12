@@ -14,7 +14,7 @@ Manual improvements.
 
     1) Added list of removed palettes.
 
-    2) Added annexes:
+    2) Added annexes. ??? Appendixes in manual #
 
         + Similar palettes.
 

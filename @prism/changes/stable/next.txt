@@ -10,6 +10,12 @@ XXXXXXXXXX  (1.3.0)
 --------
 
 [[:doc:]]
-The following improvements have been made in the manual.
+Manual improvements.
 
     1) Added list of removed palettes.
+
+    2) Added annexes. ??? in manual
+
+        + Similar palettes.
+
+        + All palettes grouped by user-friendly categories.
