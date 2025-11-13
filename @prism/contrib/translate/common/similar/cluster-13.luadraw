@@ -1,0 +1,12 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'Inferno',
+  'Magma'
+}
+
+drawSimPals(PALETTES, 13)
+\end{luacode*}

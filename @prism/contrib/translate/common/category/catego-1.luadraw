@@ -46,5 +46,5 @@ PALETTES = {
   'VikO'
 }
 
-drawCategoPals(PALETTES)
+drawCategoPals(PALETTES, 1)
 \end{luacode*}

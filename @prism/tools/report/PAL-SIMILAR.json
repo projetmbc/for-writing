@@ -1,11 +1,28 @@
 [
   [
+    "Afmhot",
+    "Hot"
+  ],
+  [
+    "Bam",
+    "PiYG"
+  ],
+  [
     "Batlow",
+    "BatlowK",
     "BatlowW"
+  ],
+  [
+    "Binary",
+    "Grays"
   ],
   [
     "Blues",
     "PuBu"
+  ],
+  [
+    "Broc",
+    "BrocO"
   ],
   [
     "BuGn",
@@ -17,8 +34,20 @@
     "Seismic"
   ],
   [
+    "Cork",
+    "CorkO"
+  ],
+  [
     "Davos",
     "Lapaz"
+  ],
+  [
+    "Gnuplot",
+    "Plasma"
+  ],
+  [
+    "Imola",
+    "Viridis"
   ],
   [
     "Inferno",
@@ -27,6 +56,10 @@
   [
     "Jet",
     "Turbo"
+  ],
+  [
+    "Navia",
+    "NaviaW"
   ],
   [
     "OrRd",
@@ -38,7 +71,8 @@
   ],
   [
     "RdBu",
-    "RdYlBu"
+    "RdYlBu",
+    "Spectral"
   ],
   [
     "Roma",

@@ -4,9 +4,9 @@
 
 \begin{luacode*}
 PALETTES = {
-  'OrRd',
-  'YlOrRd'
+  'Bwr',
+  'Seismic'
 }
 
-drawSimPals(PALETTES)
+drawSimPals(PALETTES, 8)
 \end{luacode*}

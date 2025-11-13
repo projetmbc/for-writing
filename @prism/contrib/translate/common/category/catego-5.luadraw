@@ -22,5 +22,5 @@ PALETTES = {
   'Tab20c'
 }
 
-drawCategoPals(PALETTES)
+drawCategoPals(PALETTES, 5)
 \end{luacode*}

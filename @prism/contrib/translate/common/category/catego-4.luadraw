@@ -23,7 +23,6 @@ PALETTES = {
   'Hsv',
   'Inferno',
   'Jet',
-  'Lajolla',
   'Lipari',
   'Lisbon',
   'Magma',
@@ -34,7 +33,6 @@ PALETTES = {
   'PastelRainbow',
   'Plasma',
   'Rainbow',
-  'RdGy',
   'Roma',
   'RomaO',
   'ShiftRainbow',
@@ -49,5 +47,5 @@ PALETTES = {
   'Viridis'
 }
 
-drawCategoPals(PALETTES)
+drawCategoPals(PALETTES, 4)
 \end{luacode*}

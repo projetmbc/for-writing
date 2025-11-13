@@ -2,7 +2,7 @@
 
 \documentclass{tutodoc}
 
-\newcommand{\PALETTE}{Binary}
+\newcommand{\PALETTE}{Lemon}
 \newcommand{\SRC}{Something special...}
 
 
@@ -23,6 +23,7 @@
 \usepackage[svgnames]{xcolor}
 \usepackage[3d]{luadraw}
 \usepackage{fourier}
+
 
 \begin{document}
 
@@ -163,8 +164,8 @@ local g = graph3d:new{
   window3d = bounding_box,
   window   = {-5, 4, -7, 5},
   viewdir  = {35, 60},
-  size     = {20, 20},
-  margin   = {0, 0, 0, 0}
+  size     = {22, 22},
+  bbox     = false
 }
 
 g:Dpoly(
@@ -188,7 +189,7 @@ g:Show()
 \begin{luadraw}{name = showcase-contour-\PALETTE-std}
 local g = graph:new{
   window = {-1, 6.5, -1.5, 11},
-  size   = {18, 16, 0},
+  size   = {16, 14, 0},
   margin = {0, 0, 0, 0},
   bbox   = false
 }
@@ -261,7 +262,7 @@ local cos, sin = math.cos, math.sin, math.pi
 local g = graph3d:new{
   window3d = {0, 5, 0, 10, 0, 11},
   adjust2d = true,
-  size     = {18, 16, 0},
+  size     = {11.5, 9.5, 0},
   bbox     = false,
   viewdir  = {220, 60},
   margin   = {0, 0, 0, 0}

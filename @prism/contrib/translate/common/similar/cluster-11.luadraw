@@ -4,9 +4,9 @@
 
 \begin{luacode*}
 PALETTES = {
-  'Roma',
-  'RomaO'
+  'Gnuplot',
+  'Plasma'
 }
 
-drawSimPals(PALETTES)
+drawSimPals(PALETTES, 11)
 \end{luacode*}

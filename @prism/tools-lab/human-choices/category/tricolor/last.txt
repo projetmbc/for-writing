@@ -12,7 +12,6 @@ Bilbao
 BrBG
 Broc
 BrocO
-Buda
 BuPu
 BurningGrass
 Bwr
@@ -21,10 +20,11 @@ Coolwarm
 Cork
 CorkO
 Davos
-GistHeat
 Glasgow
+GnBu
 Hot
 Imola
+Lajolla
 Lapaz
 Navia
 NaviaW
@@ -35,8 +35,11 @@ PRGn
 PuBuGn
 PuOr
 RdBu
+RdGy
 RdYlBu
 RdYlGn
 Seismic
+Tokyo
 Turku
 Vanimo
+YlGnBu

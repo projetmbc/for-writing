@@ -2,6 +2,27 @@
 
 
 ==
+13  (1.3.0-beta.3)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual changes.
+
+    1) Updated similar palette clusters.
+
+    1) Minor modifications to palette categories.
+
+    1) Compilation no longer restarts \luadraw.
+
+
+// ---------- //
+
+
+==
 12  (1.3.0-beta.2)
 ==
 

@@ -21,7 +21,6 @@ Hawaii
 Hsv
 Inferno
 Jet
-Lajolla
 Lipari
 Lisbon
 Magma
@@ -32,7 +31,6 @@ Oleron
 PastelRainbow
 Plasma
 Rainbow
-RdGy
 Roma
 RomaO
 ShiftRainbow

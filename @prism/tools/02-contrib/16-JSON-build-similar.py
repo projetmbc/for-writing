@@ -109,7 +109,7 @@ all_clusters = []
 
 # -- STEP 1 -- #
 
-for file in HUMAN_CHOICES_DIR.rglob("01-*/new.txt"):
+for file in HUMAN_CHOICES_DIR.rglob("01-*/last.txt"):
     folder_name = file.parent.name
 
     logging.info(
@@ -127,7 +127,7 @@ for file in HUMAN_CHOICES_DIR.rglob("01-*/new.txt"):
 for i in range(2, IMAX + 1):
     new_clusters = []
 
-    for file in HUMAN_CHOICES_DIR.rglob(f"{i:02d}-*/new.txt"):
+    for file in HUMAN_CHOICES_DIR.rglob(f"{i:02d}-*/last.txt"):
         folder_name = file.parent.name
 
         logging.info(

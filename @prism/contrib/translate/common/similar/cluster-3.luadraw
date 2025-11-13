@@ -4,10 +4,10 @@
 
 \begin{luacode*}
 PALETTES = {
-  'BuGn',
-  'Greens',
-  'YlGn'
+  'Batlow',
+  'BatlowK',
+  'BatlowW'
 }
 
-drawSimPals(PALETTES)
+drawSimPals(PALETTES, 3)
 \end{luacode*}

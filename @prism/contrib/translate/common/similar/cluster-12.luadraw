@@ -4,10 +4,9 @@
 
 \begin{luacode*}
 PALETTES = {
-  'TwilightShifted',
-  'Vik',
-  'VikO'
+  'Imola',
+  'Viridis'
 }
 
-drawSimPals(PALETTES)
+drawSimPals(PALETTES, 12)
 \end{luacode*}

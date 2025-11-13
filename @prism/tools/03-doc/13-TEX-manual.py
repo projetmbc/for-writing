@@ -67,11 +67,17 @@ TMPL_TEX_MANUAL = r"""
 
 \usepackage{{../../contrib/translate/{lang}/manual/preamble.cfg}}
 
+\makeatletter
+  \renewcommand{{\minted@cachedir}}{{_minted-xtra-cache}}
+  \luaDraw@DefaultExecfalse
+\makeatother
+
+\begin{{luacode*}}
+BUILD_TIKZ = false
+\end{{luacode*}}
+
 \usepackage[subpreambles = true]{{standalone}}
 
-\makeatletter
-\renewcommand{{\minted@cachedir}}{{_minted-xtra-cache}}
-\makeatother
 
 \begin{{document}}
 

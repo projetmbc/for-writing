@@ -52,7 +52,7 @@ PALETTES = {{
   {cluster}
 }}
 
-drawSimPals(PALETTES)
+drawSimPals(PALETTES, {cluster_id})
 \end{{luacode*}}
     """.strip() + '\n'
 
@@ -85,7 +85,8 @@ for i, cluster in enumerate(ALL_CLUSTERS, 1):
     filename = f"cluster-{i}.luadraw"
 
     luacode = LUA_TMPL_CODE.format(
-        cluster = ',\n  '.join(
+        cluster_id = i,
+        cluster    = ',\n  '.join(
             repr(n) for n in cluster
         )
     )

@@ -58,7 +58,7 @@ PALETTES = {{
   {catego}
 }}
 
-drawCategoPals(PALETTES)
+drawCategoPals(PALETTES, {catego_id})
 \end{{luacode*}}
     """.strip() + '\n'
 
@@ -106,7 +106,8 @@ for id, title in EN_SORTED_TITLES.items():
     filename = f"catego-{i}.luadraw"
 
     luacode = LUA_TMPL_CODE.format(
-        catego = ',\n  '.join(
+        catego_id = i,
+        catego    = ',\n  '.join(
             repr(n) for n in ALL_CATEGO[id]
         )
     )

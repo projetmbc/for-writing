@@ -24,11 +24,11 @@
 \usepackage[3d]{luadraw}
 \usepackage{fourier}
 
+
 \begin{document}
 
 \pagestyle{empty}
 \centering
-
 
 
 % -------------------------- %
@@ -72,7 +72,7 @@
 \bigskip
 \bigskip
 
-\begin{luadraw}{name = showcase-palette-\PALETTE-dark}
+\begin{luadraw}{name = showcase-palette-\PALETTE-std}
 local g = graph:new{
   window = {xmin, xmax, -5, 5},
   bbox   = false
@@ -111,7 +111,7 @@ g:Show()
 \bigskip
 \bigskip
 
-\begin{luadraw}{name = showcase-spectrum-\PALETTE-dark}
+\begin{luadraw}{name = showcase-spectrum-\PALETTE-std}
 -- Let's work!
 local g = graph:new{
   window = {xmin, xmax, -5, 5},
@@ -155,7 +155,7 @@ g:Show()
 
 \vfill
 
-\begin{luadraw}{name = showcase-nefertiti-\PALETTE-dark}
+\begin{luadraw}{name = showcase-nefertiti-\PALETTE-std}
 local file = "../core/nefertiti.obj"
 
 local polyhedron, bounding_box = read_obj_file(file)
@@ -164,8 +164,8 @@ local g = graph3d:new{
   window3d = bounding_box,
   window   = {-5, 4, -7, 5},
   viewdir  = {35, 60},
-  size     = {20, 20},
-  margin   = {0, 0, 0, 0}
+  size     = {22, 22},
+  bbox     = false
 }
 
 g:Dpoly(
@@ -186,10 +186,10 @@ g:Show()
 
 \newpage
 
-\begin{luadraw}{name = showcase-contour-\PALETTE-dark}
+\begin{luadraw}{name = showcase-contour-\PALETTE-std}
 local g = graph:new{
   window = {-1, 6.5, -1.5, 11},
-  size   = {18, 16, 0},
+  size   = {16, 14, 0},
   margin = {0, 0, 0, 0},
   bbox   = false
 }
@@ -256,13 +256,13 @@ g:Show()
 
 \vfill
 
-\begin{luadraw}{name = showcase-level-surface-\PALETTE-dark}
+\begin{luadraw}{name = showcase-level-surface-\PALETTE-std}
 local cos, sin = math.cos, math.sin, math.pi
 
 local g = graph3d:new{
   window3d = {0, 5, 0, 10, 0, 11},
   adjust2d = true,
-  size     = {18, 16, 0},
+  size     = {11.5, 9.5, 0},
   bbox     = false,
   viewdir  = {220, 60},
   margin   = {0, 0, 0, 0}

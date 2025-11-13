@@ -15,7 +15,6 @@ PALETTES = {
   'Broc',
   'BrocO',
   'BuPu',
-  'Buda',
   'BurningGrass',
   'Bwr',
   'Cividis',
@@ -23,10 +22,11 @@ PALETTES = {
   'Cork',
   'CorkO',
   'Davos',
-  'GistHeat',
   'Glasgow',
+  'GnBu',
   'Hot',
   'Imola',
+  'Lajolla',
   'Lapaz',
   'Navia',
   'NaviaW',
@@ -37,12 +37,15 @@ PALETTES = {
   'PuBuGn',
   'PuOr',
   'RdBu',
+  'RdGy',
   'RdYlBu',
   'RdYlGn',
   'Seismic',
+  'Tokyo',
   'Turku',
-  'Vanimo'
+  'Vanimo',
+  'YlGnBu'
 }
 
-drawCategoPals(PALETTES)
+drawCategoPals(PALETTES, 3)
 \end{luacode*}

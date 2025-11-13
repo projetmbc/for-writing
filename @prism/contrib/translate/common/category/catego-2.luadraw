@@ -9,10 +9,11 @@ PALETTES = {
   'Blues',
   'Bone',
   'BuGn',
+  'Buda',
   'Cool',
   'Copper',
   'Devon',
-  'GnBu',
+  'GistHeat',
   'GrayC',
   'Grays',
   'Greens',
@@ -27,14 +28,12 @@ PALETTES = {
   'Reds',
   'Spring',
   'Summer',
-  'Tokyo',
   'Winter',
   'Wistia',
   'YlGn',
-  'YlGnBu',
   'YlOrBr',
   'YlOrRd'
 }
 
-drawCategoPals(PALETTES)
+drawCategoPals(PALETTES, 2)
 \end{luacode*}

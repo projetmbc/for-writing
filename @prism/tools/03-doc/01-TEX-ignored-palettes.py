@@ -64,6 +64,9 @@ TEX_CMDS = {
 # -- LET'S WORK! -- #
 # ----------------- #
 
+logging.info("Build 'ignored palette list' in TeX file.")
+
+
 bytechno = defaultdict(list)
 
 for name, infos in IGNORED.items():

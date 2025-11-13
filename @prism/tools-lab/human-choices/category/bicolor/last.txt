@@ -6,11 +6,12 @@ Autumn
 Binary
 Blues
 Bone
+Buda
 BuGn
 Cool
 Copper
 Devon
-GnBu
+GistHeat
 GrayC
 Grays
 Greens
@@ -25,10 +26,8 @@ RdPu
 Reds
 Spring
 Summer
-Tokyo
 Winter
 Wistia
 YlGn
-YlGnBu
 YlOrBr
 YlOrRd

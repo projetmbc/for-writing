@@ -62,7 +62,7 @@
 
 \newcommand\palSize{10}
 \newcommand\palNb{127}
-\newcommand\nbSimClusters{12}
+\newcommand\nbSimClusters{20}
 
 
 % ---------------- %
@@ -102,7 +102,9 @@
 % --------------- %
 
 \begin{luacode*}
-function drawSimPals(names)
+BUILD_TIKZ = true
+
+function drawSimPals(names, suffix)
   for _ , palname in ipairs(names) do
     local g = graph:new{
       window = {-5, 15, -5, 5},
@@ -139,14 +141,22 @@ function drawSimPals(names)
       {pos = "E"}
     )
 
-    g:Sendtotex()
+    local tkzfile = "_luadraw/similar-cluster-" .. suffix .. ".tkz"
+
+    if BUILD_TIKZ then
+      g:Savetofile(tkzfile)
+    end
+
+    tex.sprint("\\input{" .. tkzfile .. "}")
+
+--     g:Sendtotex()
 
     tex.sprint("\\smallskip\\par")
   end
 end
 
 
-function drawSpectrum(pal)
+function drawSpectrum(pal, suffix)
   local g = graph:new{
     window = {-5, 5, -5, 5},
     bbox   = false,
@@ -172,10 +182,18 @@ function drawSpectrum(pal)
 
   g:Drectangle(A, A+h, A+h-L)
 
-  g:Sendtotex()
+  local tkzfile = "_luadraw/spectrum-catego-" .. suffix .. ".tkz"
+
+  if BUILD_TIKZ then
+    g:Savetofile(tkzfile)
+  end
+
+  tex.sprint("\\input{" .. tkzfile .. "}")
+
+--   g:Sendtotex()
 end
 
-function drawPalette(pal)
+function drawPalette(pal, suffix)
   local palsize  = #pal
   local paldim   = .5
   local paldelta = .2
@@ -201,10 +219,18 @@ function drawPalette(pal)
     A = A + paldim + paldelta
   end
 
-  g:Sendtotex()
+  local tkzfile = "_luadraw/palette-catego-" .. suffix .. ".tkz"
+
+  if BUILD_TIKZ then
+    g:Savetofile(tkzfile)
+  end
+
+  tex.sprint("\\input{" .. tkzfile .. "}")
+
+--    g:Sendtotex()
 end
 
-function drawCategoPals(names)
+function drawCategoPals(names, suffix)
   table.sort(names)
 
   tex.print("\\begin{longtable}[c]{>{\\centering\\arraybackslash}m{5cm}>{\\centering\\arraybackslash}m{2.25cm}>{\\centering\\arraybackslash}m{8cm}}")
@@ -212,16 +238,17 @@ function drawCategoPals(names)
 --  tex.print("\\endhead")
 
 
-  for _, name in ipairs(names) do
-    local pal = getPal(name)
+  for i, name in ipairs(names) do
+    local pal     = getPal(name)
+    local _suffix = suffix .. "-" .. i
 
-    drawSpectrum(pal)
+    drawSpectrum(pal, _suffix)
 
     tex.print(" & ")
     tex.print("\\bfseries\\texttt{" .. name .. "}")
     tex.print(" & ")
 
-    drawPalette(pal)
+    drawPalette(pal, _suffix)
 
     tex.print(" \\\\ ")
   end
