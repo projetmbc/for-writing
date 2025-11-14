@@ -20,8 +20,6 @@ from json import (
 # -- CONSTANTS -- #
 # --------------- #
 
-IMAX = 3
-
 THIS_DIR          = Path(__file__).parent
 PROJ_DIR          = THIS_DIR.parent.parent
 PRODS_DIR         = PROJ_DIR / "products"

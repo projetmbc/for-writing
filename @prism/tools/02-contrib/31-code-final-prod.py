@@ -34,7 +34,7 @@ with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
-PAL_JSON_CREDITS_FILE = PROD_JSON_DIR / "palettes.json.CREDITS.md"
+PAL_JSON_CREDITS_FILE = PROD_JSON_DIR / "CREDITS.md"
 
 
 CREDITS_TXT_FILE = THIS_DIR.parent / "CREDITS.txt"

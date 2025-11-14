@@ -4,8 +4,8 @@
 
 \begin{luacode*}
 PALETTES = {
-  'Davos',
-  'Lapaz'
+  'GnBu',
+  'YlGnBu'
 }
 
 drawSimPals(PALETTES, 10)

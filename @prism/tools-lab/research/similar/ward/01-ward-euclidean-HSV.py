@@ -1,28 +1,114 @@
+#!/usr/bin/env python3
+
+FORCING_ALL = True
+FORCING_ALL = False
+
 from pathlib import Path
+import              sys
 
-from json import (
-    dumps as json_dumps,
-    load  as json_load,
-)
 
-import numpy as np
-from scipy.spatial.distance import euclidean, cosine
-from scipy.cluster.hierarchy import dendrogram, linkage
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.colors import LinearSegmentedColormap
+_utils_dir_ = Path(__file__).parent
 
+while _utils_dir_.name != "tools-lab":
+    _utils_dir_ = _utils_dir_.parent
+
+sys.path.append(str(_utils_dir_))
+
+from labutils import *
+
+
+from shutil  import rmtree
+
+from json import load as json_load
+
+
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
 
 THIS_DIR     = Path(__file__).parent
-PROJ_DIR     = THIS_DIR.parent.parent.parent.parent
 CLUSTERS_DIR = THIS_DIR.parent / "clusters"
+XTRA_DIR     = THIS_DIR.parent / "xtra"
 
 
-PAL_CATEGO_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGO.json"
+PROJ_DIR = THIS_DIR
+
+while PROJ_DIR.name != "@prism":
+    PROJ_DIR = PROJ_DIR.parent
+
+
 PAL_JSON_FILE   = PROJ_DIR / "products" / "json" / "palettes.json"
 
 with PAL_JSON_FILE.open('r') as f:
     ALL_PALETTES = json_load(f)
+
+
+PAL_SIMILAR_FILE = PROJ_DIR / "tools" / "report" / "PAL-SIMILAR.json"
+
+with PAL_SIMILAR_FILE.open('r') as f:
+    ALL_CLUSTERS = json_load(f)
+
+
+if not CLUSTERS_DIR.is_dir():
+    CLUSTERS_DIR.mkdir()
+
+else:
+    for p in CLUSTERS_DIR.glob("*"):
+        p.unlink() if p.is_file() else rmtree(p)
+
+
+# ---------------------------- #
+# -- UNCLUSTERIZED PALETTES -- #
+# ---------------------------- #
+
+print("+ Looking for unclusterized palettes.")
+
+if FORCING_ALL:
+    print("+ Forcing all palettes.")
+    newpals = list(ALL_PALETTES)
+
+else:
+    newpals = set()
+
+    clusterized_names = sum(ALL_CLUSTERS, [])
+
+    for n in ALL_PALETTES:
+        if not n in clusterized_names:
+            newpals.add(n)
+
+
+    if not newpals:
+        print("+ No new palette.")
+
+        exit()
+
+    nb_pals = len(newpals)
+
+    plurial = "" if nb_pals == 1 else "s"
+
+    print(f"+ {nb_pals} palette{plurial} to analyze.")
+
+
+# ---------------- #
+# -- CLUSTERING -- #
+# ---------------- #
+
+print("+ Clustering the palettes.")
+
+newpals = list(newpals)
+newpals.sort(key = lambda n: n.lower())
+
+for name in newpals:
+    print(name)
+
+
+
+
+
+
+import numpy as np
+from scipy.spatial.distance import euclidean, cosine
+
 
 
 def create_palette_spectrum(colors):
@@ -63,6 +149,8 @@ def create_palette_spectrum(colors):
     # Normaliser
     return spectrum / np.linalg.norm(spectrum)
 
+
+
 def find_similar_palettes(target_name, palettes, n=10, method='euclidean'):
     """Trouve les ALL_PALETTES les plus similaires selon leur spectre"""
     target_spectrum = create_palette_spectrum(palettes[target_name])
@@ -87,11 +175,42 @@ def find_similar_palettes(target_name, palettes, n=10, method='euclidean'):
 
     return similarities[:n]
 
-def visualize_palette(ax, colors, title):
-    """Visualise une palette de couleurs"""
-    ax.imshow([colors], aspect='auto')
-    ax.set_title(title, fontsize=10)
-    ax.axis('off')
+
+
+for name in newpals:
+    blues_family = find_similar_palettes(
+        name,
+        ALL_PALETTES,
+        n=29)
+
+    blues_names = [name] + [name for name, _ in blues_family]
+
+    create_palette_grid(
+    blues_names,
+    ALL_PALETTES,
+    f"'{name}' family.",
+    CLUSTERS_DIR / f'{name}.png'
+    )
+
+
+exit()
+
+
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+from matplotlib.colors import LinearSegmentedColormap
+
+
+
+
+PAL_SIMILAR_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGO.json"
+PAL_JSON_FILE   = PROJ_DIR / "products" / "json" / "palettes.json"
+
+with PAL_JSON_FILE.open('r') as f:
+    ALL_PALETTES = json_load(f)
+
+
+
 
 def compare_palettes_visual(target_name, similar_palettes, palettes):
     """Crée une visualisation comparative des ALL_PALETTES similaires"""
@@ -169,28 +288,6 @@ def create_dendrogram_clustering(palettes, max_palettes=50):
     plt.close()
     print("  → Dendrogramme: palette_dendrogram.png")
 
-def create_palette_grid(palette_subset, palettes, title, filename):
-    """Crée une grille de ALL_PALETTES"""
-    n = len(palette_subset)
-    cols = 5
-    rows = (n + cols - 1) // cols
-
-    fig, axes = plt.subplots(rows, cols, figsize=(15, rows * 1.2))
-    axes = axes.flatten() if rows > 1 else [axes] if cols == 1 else axes
-
-    for i, name in enumerate(palette_subset):
-        if i < len(axes):
-            visualize_palette(axes[i], palettes[name], name)
-
-    # Masquer les axes vides
-    for i in range(len(palette_subset), len(axes)):
-        axes[i].axis('off')
-
-    plt.suptitle(title, fontsize=16, y=1.02)
-    plt.tight_layout()
-    plt.savefig(CLUSTERS_DIR / filename, dpi=150, bbox_inches='tight')
-    plt.close()
-    print(f"  → Grille sauvegardée: {filename}")
 
 # ============================================================================
 # EXÉCUTION PRINCIPALE
@@ -231,11 +328,8 @@ print("\n4. GRILLES PAR FAMILLE")
 print("-" * 80)
 
 # Trouver des familles basées sur Blues
-blues_family = find_similar_palettes('Blues', ALL_PALETTES, n=19)
-blues_names = ['Blues'] + [name for name, _ in blues_family]
-create_palette_grid(blues_names, ALL_PALETTES,
-                   'Famille "Blues" (basée sur similarité spectrale)',
-                   'famille_blues.png')
+
+
 
 # Trouver des familles basées sur Reds
 if 'Reds' in ALL_PALETTES:
@@ -258,7 +352,7 @@ for name in ALL_PALETTES.keys():
     ]
 
 with (CLUSTERS_DIR / 'similarities.json').open('w', encoding='utf-8') as f:
-    json.dump(all_similarities, f, indent=2, ensure_ascii=False)
+    json_dumps(all_similarities, f, indent=2, ensure_ascii=False)
 
 print("  → Similarités sauvegardées: similarities.json")
 

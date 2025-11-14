@@ -2,14 +2,46 @@
 # -- Last Human Selection -- #
 # -------------------------- #
 
+# -- FALSE POSITIVE --
+#
+# Afmhot, Lajolla
+#
+# Bam, BamO
+# Bamako, Batlow
+# Batlow, Bilbao
+# Bilbao, Pink
+#       , Lipari
+# Bone, Oslo
+# Bukavu, Oleron
+# BuPu, Purples
+#
+# Copper, Lajolla
+# Cork, CorkO
+#
+# Davos, Nuuk, Lapaz
+# Devon, Oslo
+#
+# OrRd, Reds
+#
+# Imola, Cividis
+#
+# GistRainbow, Hsv
+#
+# Lipari,Pink
+
+
+# -- A -- #
+
 ---
 Afmhot, Hot
 ---
 
-Bam, PiYG
+# -- B -- #
 
 ---
-Batlow, BatlowK, BatlowW
+Bam, PiYG, PRGn
+---
+Batlow, BatlowK, BatlowW, Turku,
 ---
 Binary, Grays
 ---
@@ -21,35 +53,53 @@ BuGn, Greens, YlGn
 ---
 Bwr, Seismic
 ---
-Cork, CorkO
----
-Davos, Lapaz
----
 
+# -- G -- #
+
+---
+GnBu, YlGnBu
+---
 Gnuplot, Plasma
+---
+
+# -- I -- #
 
 ---
-Imola, Viridis
+Imola, Viridis,
 ---
-Inferno, Magma
+Inferno, Magma, CMRmap
+---
+
+# -- J -- #
+
 ---
 Jet, Turbo
 ---
+
+# -- N -- #
+
+---
 Navia, NaviaW
+---
+
+# -- O -- #
+
 ---
 Oranges, YlOrBr
 ---
+OrRd, YlOrRd,
+---
 
-OrRd, YlOrRd
+# -- R -- #
 
 ---
 RdBu, RdYlBu, Spectral
 ---
-
 Roma, RomaO
-
 ---
 
-TwilightShifted, Vik, VikO
+# -- T -- #
 
+---
+TwilightShifted, Vik, VikO
 ---

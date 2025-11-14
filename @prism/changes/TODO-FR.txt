@@ -5,15 +5,13 @@
 
 // ---------- //
 
-PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
+pour similaire
 
-   --> classification humai,ne
+fin du nettoyage du vcode, rapide
 
-         + last sert pour la doc, et nexw n'ajoute que ce qui est nouveau, on ignore le reste !
++
 
-         + il faut partir de ce qui existe, et esnuite faire cluster juste pour les nouvveaux
-
-         + on lance alors les classifieurs automatiquement pour noter d'éventuelle nouvelle paletts nn catégoriser
+mettre dans tests une version showcase pour mieux comparer
 
 
 // ---------- //

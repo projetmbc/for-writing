@@ -4,8 +4,9 @@
 
 \begin{luacode*}
 PALETTES = {
-  'Roma',
-  'RomaO'
+  'TwilightShifted',
+  'Vik',
+  'VikO'
 }
 
 drawSimPals(PALETTES, 19)

@@ -11,7 +11,6 @@ while _utils_dir_.name != "tools-lab":
 
 sys.path.append(str(_utils_dir_))
 
-
 from labutils import *
 
 
@@ -114,9 +113,9 @@ plurial = "" if nb_pals == 1 else "s"
 print(f"+ {nb_pals} palette{plurial} to analyze.")
 
 
-# ------------------ #
+# ---------------- #
 # -- CLUSTERING -- #
-# ------------------ #
+# ---------------- #
 
 print("+ Clustering the palettes.")
 
@@ -137,7 +136,6 @@ for name in newpals:
             )
 
             break
-
 
 
 print("+ Human selection needed.")

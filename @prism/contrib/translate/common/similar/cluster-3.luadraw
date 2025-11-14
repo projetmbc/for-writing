@@ -6,7 +6,8 @@
 PALETTES = {
   'Batlow',
   'BatlowK',
-  'BatlowW'
+  'BatlowW',
+  'Turku'
 }
 
 drawSimPals(PALETTES, 3)
