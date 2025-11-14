@@ -10,7 +10,13 @@
 --------
 
 [[:tech:]]
-\Catego clusters: simplification of the \AI codes to obtain simple and human ones.
+\Catego and similar clusters.
+
+    1) The process should be more robust now (though not perfect).
+
+    1) Simplification of the \AI codes to obtain simple and human ones.
+
+    1) Similar clusters: added two human validation \pdfs in path::''tests/similar'' folder.
 
 
 // ---------- //

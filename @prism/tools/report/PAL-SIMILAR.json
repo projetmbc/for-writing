@@ -10,9 +10,7 @@
   ],
   [
     "Batlow",
-    "BatlowK",
-    "BatlowW",
-    "Turku"
+    "BatlowK"
   ],
   [
     "Binary",
@@ -36,21 +34,17 @@
     "Seismic"
   ],
   [
-    "CMRmap",
-    "Inferno",
-    "Magma"
-  ],
-  [
     "GnBu",
     "YlGnBu"
   ],
   [
-    "Gnuplot",
-    "Plasma"
-  ],
-  [
     "Imola",
     "Viridis"
+  ],
+  [
+    "Inferno",
+    "Magma",
+    "Plasma"
   ],
   [
     "Jet",
@@ -70,16 +64,14 @@
   ],
   [
     "RdBu",
-    "RdYlBu",
-    "Spectral"
+    "RdYlBu"
   ],
   [
     "Roma",
-    "RomaO"
+    "Spectral"
   ],
   [
     "TwilightShifted",
-    "Vik",
     "VikO"
   ]
 ]

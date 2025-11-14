@@ -4,7 +4,8 @@
 
 \begin{luacode*}
 PALETTES = {
-  'Gnuplot',
+  'Inferno',
+  'Magma',
   'Plasma'
 }
 

@@ -4,30 +4,40 @@
 
 # -- FALSE POSITIVE --
 #
-# Afmhot, Lajolla
+#: Afmhot, Lajolla
 #
-# Bam, BamO
-# Bamako, Batlow
-# Batlow, Bilbao
-# Bilbao, Pink
-#       , Lipari
-# Bone, Oslo
-# Bukavu, Oleron
-# BuPu, Purples
+#: Bam, BamO
+#: Bamako, Batlow
+#: Batlow, Bilbao
+#:       , BatlowW
+#:       , Turku
+#: Bilbao, Pink
+#:       , Lipari
+#: Bone, Oslo
+#: Bukavu, Oleron
+#: BuPu, Purples
 #
-# Copper, Lajolla
-# Cork, CorkO
+#: CMRmap, Magma
+#: Copper, Lajolla
+#: Cork, CorkO
 #
-# Davos, Nuuk, Lapaz
-# Devon, Oslo
+#: Davos, Nuuk
+#:      , Lapaz
+#: Devon, Oslo
 #
-# OrRd, Reds
+#: GistRainbow, Hsv
+#: Gnuplot, Plasma
 #
-# Imola, Cividis
+#: Imola, Cividis
 #
-# GistRainbow, Hsv
+#: Lipari,Pink
 #
-# Lipari,Pink
+#: OrRd, Reds
+#
+#: RdBu, Spectral
+#: Roma, RomaO
+#
+#: TwilightShifted, Vik
 
 
 # -- A -- #
@@ -41,7 +51,7 @@ Afmhot, Hot
 ---
 Bam, PiYG, PRGn
 ---
-Batlow, BatlowK, BatlowW, Turku,
+Batlow, BatlowK
 ---
 Binary, Grays
 ---
@@ -54,20 +64,22 @@ BuGn, Greens, YlGn
 Bwr, Seismic
 ---
 
+# -- C -- #
+
+---
+Inferno, Magma, Plasma
+---
+
 # -- G -- #
 
 ---
 GnBu, YlGnBu
 ---
-Gnuplot, Plasma
----
 
 # -- I -- #
 
 ---
-Imola, Viridis,
----
-Inferno, Magma, CMRmap
+Imola, Viridis
 ---
 
 # -- J -- #
@@ -93,13 +105,17 @@ OrRd, YlOrRd,
 # -- R -- #
 
 ---
-RdBu, RdYlBu, Spectral
+RdBu, RdYlBu
 ---
-Roma, RomaO
+
+# -- S -- #
+
+---
+Spectral, Roma
 ---
 
 # -- T -- #
 
 ---
-TwilightShifted, Vik, VikO
+TwilightShifted, VikO
 ---

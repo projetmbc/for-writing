@@ -4,8 +4,7 @@
 
 \begin{luacode*}
 PALETTES = {
-  'RdBu',
-  'RdYlBu',
+  'Roma',
   'Spectral'
 }
 

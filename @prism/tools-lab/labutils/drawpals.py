@@ -62,14 +62,12 @@ def visualize_palette(ax, colors, title):
 
 
 def create_palette_grid(
-    palette_subset:[ [float, float, float]
-    ],
-    palettes:[ [float, float, float]
-    ],
-    title: str,
-    file_: Path,
+    palnames: [str],
+    palettes: [[float, float, float]],
+    title   : str,
+    file_   : Path,
 ) -> None:
-    n = len(palette_subset)
+    n = len(palnames)
 
     cols = 5
     rows = (n + cols - 1) // cols
@@ -87,7 +85,7 @@ def create_palette_grid(
         axes
     )
 
-    for i, name in enumerate(palette_subset):
+    for i, name in enumerate(palnames):
         if i < len(axes):
             visualize_palette(
                 axes[i],
@@ -95,7 +93,7 @@ def create_palette_grid(
                 name
             )
 
-    for i in range(len(palette_subset), len(axes)):
+    for i in range(len(palnames), len(axes)):
         axes[i].axis('off')
 
     plt.suptitle(

@@ -5,17 +5,6 @@
 
 // ---------- //
 
-pour similaire
-
-fin du nettoyage du vcode, rapide
-
-+
-
-mettre dans tests une version showcase pour mieux comparer
-
-
-// ---------- //
-
 implementation
 
    ---> CSS / SCSS  (les deux)
