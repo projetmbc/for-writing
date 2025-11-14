@@ -10,7 +10,7 @@
 --------
 
 [[:tech:]]
-\Catego clusters: simplification of the \AI build codes to obtain simple and human ones.
+\Catego clusters: simplification of the \AI codes to obtain simple and human ones.
 
 
 // ---------- //

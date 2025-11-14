@@ -13,6 +13,8 @@ PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
 
          + il faut partir de ce qui existe, et esnuite faire cluster juste pour les nouvveaux
 
+         + on lance alors les classifieurs automatiquement pour noter d'éventuelle nouvelle paletts nn catégoriser
+
 
 // ---------- //
 

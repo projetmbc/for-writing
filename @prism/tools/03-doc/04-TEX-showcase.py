@@ -94,7 +94,7 @@ START_FINAL_TEX_CODE = r"""
 
 \def\thesection{\arabic{section}}
 
-\title{\texttt{@prism} palettes -- Version """.lstrip() + VERSION + r"""}
+\title{\raisebox{-.20ex}{@}prism palettes -- Version """.lstrip() + VERSION + r"""}
 \date{}
 
 \begin{document}

@@ -117,3 +117,26 @@ for n in ALL_SCICOLMAP_NAMES:
 PAL_CATEGO_JSON_FILE.write_text(
     json_dumps(all_categories)
 )
+
+# --------------------------------------------- #
+# --  SOME UNCLASSIFIED ==> STOP THE PROCESS -- #
+# --------------------------------------------- #
+
+if all_categories["__UNCLASSIFIED__"]:
+    unclassified = all_categories["__UNCLASSIFIED__"]
+
+    plurial = "" if len(unclassified) == 1 else "s"
+
+    unclassified = '\n    > '.join(
+        n
+        for n in unclassified
+    )
+
+    xtra = f"\nHere are the palettes{plurial} to classify.\n    > {unclassified}"
+
+    log_raise_error(
+        context   = "Palette categories",
+        desc      = "all palettes must be classified.",
+        exception = ValueError,
+        xtra      = xtra,
+    )

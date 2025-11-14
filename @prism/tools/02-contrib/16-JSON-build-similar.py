@@ -26,6 +26,9 @@ PRODS_DIR         = PROJ_DIR / "products"
 HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices" / "similar"
 
 
+LAST_FILE = HUMAN_CHOICES_DIR / "last.txt"
+
+
 PAL_SIMILAR_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-SIMILAR.json"
 PAL_SIMILAR_JSON_FILE.touch()
 
@@ -75,26 +78,26 @@ def extract_real_clusters(file: Path) -> [[str]]:
     return sorted(clusters)
 
 
-def update_clusters(
-    all_clusters: [[str]],
-    new_clusters: [[str]],
-) -> [[str]]:
-    for new_c in new_clusters:
-        added = False
+# def update_clusters(
+#     all_clusters: [[str]],
+#     new_clusters: [[str]],
+# ) -> [[str]]:
+#     for new_c in new_clusters:
+#         added = False
 
-        for i, c in enumerate(all_clusters):
-            if new_c & c:
-                c |= new_c
+#         for i, c in enumerate(all_clusters):
+#             if new_c & c:
+#                 c |= new_c
 
-                all_clusters[i] = c
+#                 all_clusters[i] = c
 
-                added = True
-                break
+#                 added = True
+#                 break
 
-        if not added:
-            all_clusters.append(new_c)
+#         if not added:
+#             all_clusters.append(new_c)
 
-    return all_clusters
+#     return all_clusters
 
 
 # ------------------ #
@@ -103,50 +106,37 @@ def update_clusters(
 
 logging.info("JSON file of similar palettes.")
 
-
-all_clusters = []
-
-
-# -- STEP 1 -- #
-
-for file in HUMAN_CHOICES_DIR.rglob("01-*/last.txt"):
-    folder_name = file.parent.name
-
+if not LAST_FILE.is_file():
     logging.info(
-        f"Work on '{folder_name}/{file.name}'."
+        f"No '{LAST_FILE.name}' found."
     )
 
-    clusters =  extract_real_clusters(file)
+    all_clusters = []
 
-    if clusters:
-        all_clusters += [set(c) for c in clusters]
+else:
+    logging.info(
+        f"Work on '{LAST_FILE.name}'."
+    )
 
-
-# -- STEPS 2... -- #
-
-for i in range(2, IMAX + 1):
-    new_clusters = []
-
-    for file in HUMAN_CHOICES_DIR.rglob(f"{i:02d}-*/last.txt"):
-        folder_name = file.parent.name
-
-        logging.info(
-            f"Work on '{folder_name}/{file.name}'."
-        )
-
-        new_clusters += extract_real_clusters(file)
-
-    all_clusters = update_clusters(all_clusters, new_clusters)
-
-
-# -- NOTHING LEFT TO DO -- #
-
-all_clusters = sorted(
-    [
-        sorted(list(c))
+    all_clusters = extract_real_clusters(LAST_FILE)
+    all_clusters = sorted([
+        sorted(list(c), key = lambda n: n.lower())
         for c in all_clusters
-    ]
-)
+    ])
+
+    if not all_clusters:
+        message = "No cluster"
+
+    else:
+        nb_clusters = len(all_clusters)
+
+        plurial = "" if nb_clusters == 1 else "s"
+        message = f"{nb_clusters} cluster{plurial}"
+
+    logging.info(
+        f"'{message}' found."
+    )
+
 
 PAL_SIMILAR_JSON_FILE.write_text(
     json_dumps(all_clusters)
