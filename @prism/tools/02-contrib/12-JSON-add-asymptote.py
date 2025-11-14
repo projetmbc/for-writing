@@ -89,8 +89,13 @@ logging.info(
     "Get piece of 'Asymptote' source code (web connection needed)."
 )
 
-resp     = requests.get(ASY_COLORMAP_RAW_URL)
-asy_code = resp.text
+try:
+    resp     = requests.get(ASY_COLORMAP_RAW_URL)
+    asy_code = resp.text
+
+except requests.ConnectionError as e:
+    logging.warning("No connection - Ignoring 'Asymptote' color maps.")
+    exit()
 
 
 # ------------------------------------- #

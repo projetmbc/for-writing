@@ -96,12 +96,12 @@ logging.info("Build 'palette category' TeX files.")
 
 i = 0
 
-nb_titles = []
+nb_titles_sizes = []
 
 for id, title in EN_SORTED_TITLES.items():
     i += 1
 
-    nb_titles.append((i, title))
+    nb_titles_sizes.append((i, title, len(ALL_CATEGO[id])))
 
     filename = f"catego-{i}.luadraw"
 
@@ -123,19 +123,19 @@ before, _ , after = content.partition(f"\n{TAG_CATEGO_START}")
 
 _ , _ , after = after.partition(f"{TAG_CATEGO_END}\n")
 
-nb_titles = [
-    f'  {nb}/{{{title}}},%'
-    for nb, title in nb_titles
+tex_subsections = [
+    rf'  {nb}/{{{title} -- {size} palettes}},%'
+    for nb, title, size in nb_titles_sizes
 ]
 
-nb_titles[-1] = nb_titles[-1][:-2] + '%'
+tex_subsections[-1] = tex_subsections[-1][:-2] + '%'
 
-nb_titles = '\n'.join(nb_titles)
+tex_subsections = '\n'.join(tex_subsections)
 
 content = f"""
 {before}
 {TAG_CATEGO_START}
-{nb_titles}
+{tex_subsections}
 {TAG_CATEGO_END}
 {after}
 """.strip() + '\n'

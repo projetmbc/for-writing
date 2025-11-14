@@ -26,17 +26,17 @@ The palette names used in this appendix are standard. Depending on the chosen im
 
 \foreach \nb/\title in {%
 % AUTO CATEGOS - START
-  1/{Colorblind-friendly palettes (coming from Scientific Coulour Maps)},%
-  2/{Two-color palettes},%
-  3/{Three-color palettes},%
-  4/{Rainbow-style palettes},%
-  5/{High-contrast palettes}%
+  1/{Colorblind-friendly palettes (coming from Scientific Coulour Maps) -- 40 palettes},%
+  2/{Two-color palettes -- 29 palettes},%
+  3/{Three-color palettes -- 41 palettes},%
+  4/{Rainbow-style palettes -- 41 palettes},%
+  5/{High-contrast palettes -- 16 palettes}%
 % AUTO CATEGOS - END
 }{
   \ifthenelse{\nb = 1}{}{\newpage}
 
   \subsection*{\title}
-  \addcontentsline{toc}{subsection}{\title}
+  \addcontentsline{toc}{subsection}{\textbullet\,\title}
   %
   \subimport{../../../common/category/}{catego-\nb.luadraw}
 }
