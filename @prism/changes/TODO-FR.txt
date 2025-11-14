@@ -7,9 +7,9 @@
 
 PAS DE NELLES PALETTES TANT QUE OUTILS DE CLUSTERISATION PAS PLUS SOLIDE !
 
-   --> classification humai,ne : on list last et non new qui lui est là pour des mise à jour éventuels !!!!
+   --> classification humai,ne
 
-   --> pour les clusters, besoin de gérér les nouveaux entrants !
+         + last sert pour la doc, et nexw n'ajoute que ce qui est nouveau, on ignore le reste !
 
          + il faut partir de ce qui existe, et esnuite faire cluster juste pour les nouvveaux
 

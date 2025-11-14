@@ -1,15 +1,43 @@
+#!/usr/bin/env python3
+
 from pathlib import Path
+from shutil  import rmtree
 
 from json import load as json_load
-import numpy as np
-from sklearn.cluster import KMeans
-from collections import Counter
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-import os
+
+
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
 
 THIS_DIR     = Path(__file__).parent
 CLUSTERS_DIR = THIS_DIR.parent / "clusters"
+
+
+PROJ_DIR = THIS_DIR
+
+while PROJ_DIR.name != "@prism":
+    PROJ_DIR = PROJ_DIR.parent
+
+
+PAL_JSON_FILE   = PROJ_DIR / "products" / "json" / "palettes.json"
+
+with PAL_JSON_FILE.open('r') as f:
+    ALL_PALETTES = json_load(f)
+
+
+PAL_CATEGO_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGORY.json"
+
+with PAL_CATEGO_FILE.open('r') as f:
+    ALL_CATEGOS = json_load(f)
+
+
+if not CLUSTERS_DIR.is_dir():
+    CLUSTERS_DIR.mkdir()
+
+else:
+    for p in CLUSTERS_DIR.glob("*"):
+        p.unlink() if p.is_file() else rmtree(p)
 
 for dir in [
     MONOCHROME_DIR := CLUSTERS_DIR / "monochrome",
@@ -19,20 +47,62 @@ for dir in [
     RAINBOW_DIR    := CLUSTERS_DIR / "rainbow",
     BIF_VAR_DIR    := CLUSTERS_DIR / "big-var",
 ]:
-    os.makedirs(dir, exist_ok=True)
+    dir.mkdir(exist_ok=True)
 
 
-PROJ_DIR = THIS_DIR
+# ------------------ #
+# -- NEW PALETTES -- #
+# ------------------ #
 
-while PROJ_DIR.name != "@prism":
-    PROJ_DIR = PROJ_DIR.parent
+print("+ Looking for new palettes.")
+
+newpals = set()
+
+for names in ALL_CATEGOS.values():
+    for n in names:
+        if n in ALL_PALETTES:
+            newpals.add(n)
 
 
-PAL_CATEGO_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGO.json"
-PAL_JSON_FILE   = PROJ_DIR / "products" / "json" / "palettes.json"
+if not newpals:
+    print("+ No new palette.")
 
-with PAL_JSON_FILE.open('r') as f:
-    ALL_PALETTES = json_load(f)
+    exit()
+
+nb_pals = len(newpals)
+
+plurial = "" if nb_pals == 1 else "s"
+
+print(f"+ {nb_pals} palette{plurial} to analyze.")
+
+
+# ------------------ #
+# -- NEW CLUSTERS -- #
+# ------------------ #
+
+
+
+
+
+exit()
+
+
+
+from pathlib import Path
+
+
+import numpy as np
+from sklearn.cluster import KMeans
+from collections import Counter
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import os
+
+
+
+
+
+
 
 
 def classify_palette_colors(palette, n_clusters):
