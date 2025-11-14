@@ -1,11 +1,17 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+
 from collections import defaultdict
-from pathlib     import Path
 
-import re
 
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
 
 THIS_DIR     = Path(__file__).parent
 CLUSTERS_DIR = THIS_DIR.parent / "clusters"
+
 
 HUMAN_DIR = THIS_DIR
 
@@ -14,43 +20,65 @@ while HUMAN_DIR.name != "tools-lab":
 
 HUMAN_DIR = HUMAN_DIR / "human-choices" / "category"
 
+if not HUMAN_DIR.is_dir():
+    HUMAN_DIR.mkdir(parents = True)
 
-PALNAME_PATTERN = re.compile(r'\d+_(.+)_inertia_0\.\d+\.png')
+
+NEW_FILE_TAG = "new.txt"
 
 
-NEW_TMPL_HEDAER_TEXT = f"""
+NEW_TMPL_HEADER_TEXT = """
 # ------------------------- #
 # -- New Human Selection -- #
 # ------------------------- #
+
+{names}
 """.strip()
 
-category = defaultdict(list)
 
-for img in CLUSTERS_DIR.glob("*/*.png"):
-    match   = PALNAME_PATTERN.search(img.name)
+# ------------------------------ #
+# -- EMPTY AUTO-PROCESS DIRS? -- #
+# ------------------------------ #
 
-    if not match:
-        print(img.name)
-        exit()
+for p in CLUSTERS_DIR.glob("*"):
+    if not p.is_dir() or p.name[0] != '_':
+        continue
 
-    palname = match.group(1)
-
-    category[img.parent.name].append(palname)
-
-
-for c in category:
-    category[c].sort(key = lambda x: x.lower())
+    for sp in p.glob("*.png"):
+        raise OSError(
+            f"No PNG files allowed in the following folder.\n"
+            f"{p}"
+        )
 
 
-for catego, names in category.items():
-    folder = HUMAN_DIR / catego
-    folder.mkdir(exist_ok = True)
+# -------------------------------------- #
+# -- PNG SELECTION --> NEW TEXT FILES -- #
+# -------------------------------------- #
 
-    newfile = folder / "new.txt"
-    newfile.write_text(
-        f"""
-{NEW_TMPL_HEDAER_TEXT}
+for catego in CLUSTERS_DIR.glob("*"):
+    if not catego.is_dir() or catego.name[0] == '_':
+        continue
 
-{'\n'.join(names)}
-        """.strip() + "\n"
-    )
+    newfile = HUMAN_DIR / catego.name / NEW_FILE_TAG
+
+    names = [
+        p.stem
+        for p in catego.glob("*.png")
+    ]
+
+    names.sort()
+
+    if not names:
+        if newfile.is_file():
+            newfile.unlink()
+
+        continue
+
+    names = '\n'.join(names)
+
+    print(f"+ Recording '{catego.name}' folder selection.")
+
+    if not newfile.parent.is_dir():
+        newfile.parent.mkdir()
+
+    newfile.write_text(names)

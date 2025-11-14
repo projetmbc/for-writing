@@ -2,6 +2,21 @@
 
 
 ==
+14
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+\Catego clusters: simplification of the \AI build codes to obtain simple and human ones.
+
+
+// ---------- //
+
+
+==
 13  (1.3.0-beta.3)
 ==
 
