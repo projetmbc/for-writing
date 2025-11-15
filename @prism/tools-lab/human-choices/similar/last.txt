@@ -2,6 +2,10 @@
 # -- Last Human Selection -- #
 # -------------------------- #
 
+# -- NO CLUSTER --
+#
+#: Accent, Acton, Autumn, Berlin, BlindFish, BrBG, Brg, Buda, BurningGrass, Cool, Coolwarm, Cubehelix, Dark2, Fes, Flag, GasFlame, GeoRainbow, GistEarth, GistHeat, GistNcar, GistStern, Glasgow, Gnuplot2, GrayC, Hawaii, Lemon, Lisbon, Managua, NipySpectral, Ocean, Paired, Pastel1, Pastel2, PastelRainbow, Prism, PuBuGn, PuOr, PuRd, Rainbow, RdGy, RdPu, RdYlGn, Set1, Set2, Set3, ShiftRainbow, Spring, Summer, Tab10, Tab20, Tab20b, Tab20c, Terrain, Tofino, Tokyo, Twilight, Vanimo, Winter, Wistia
+
 # -- FALSE POSITIVE --
 #
 #: Afmhot, Lajolla
@@ -16,6 +20,8 @@
 #: Bone, Oslo
 #: Bukavu, Oleron
 #: BuPu, Purples
+#: Bwr, Seismic
+#:    , Coolwarm
 #
 #: CMRmap, Magma
 #: Copper, Lajolla
@@ -34,10 +40,24 @@
 #
 #: OrRd, Reds
 #
-#: RdBu, Spectral
+#: RdBu, RdYlBu
+#:     , Spectral
 #: Roma, RomaO
+#:     , Spectral
 #
 #: TwilightShifted, Vik
+
+
+# --------------------------- #
+# -- JUST TOT TEST - START -- #
+
+---
+
+
+---
+
+# --  JUST TOT TEST - END  -- #
+# --------------------------- #
 
 
 # -- A -- #
@@ -60,8 +80,6 @@ Blues, PuBu
 Broc, BrocO
 ---
 BuGn, Greens, YlGn
----
-Bwr, Seismic
 ---
 
 # -- C -- #
@@ -105,13 +123,7 @@ OrRd, YlOrRd,
 # -- R -- #
 
 ---
-RdBu, RdYlBu
----
-
-# -- S -- #
-
----
-Spectral, Roma
+RdYlBu, Spectral
 ---
 
 # -- T -- #

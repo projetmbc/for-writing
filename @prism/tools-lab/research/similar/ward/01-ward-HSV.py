@@ -136,6 +136,7 @@ newpals.sort(key = lambda n: n.lower())
 
 # DEBUG
 # [print(name) for name in newpals];exit()
+# print(", ".join(name for name in newpals));exit()
 
 
 for meth in CLUSTER_METHODS:

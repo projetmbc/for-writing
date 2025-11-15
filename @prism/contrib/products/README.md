@@ -30,8 +30,8 @@ We will briefly explain the following structure of the `contrib/products` folder
 
 ~~~
 + contrib
+  + [s]css
   + changes
-  + css
   + luadraw
   + readme
   + status

@@ -75,7 +75,7 @@ logging.info("JSON file of palette categories.")
 all_categories  = defaultdict(list)
 all_categorized = []
 
-for file in HUMAN_CHOICES_DIR.rglob("*/last.txt"):
+for file in sorted(HUMAN_CHOICES_DIR.rglob("*/last.txt")):
     catego = file.parent.name
 
     logging.info(f"Work on '{catego}/{file.name}'.")
