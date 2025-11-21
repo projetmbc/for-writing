@@ -14,7 +14,7 @@
 --           LightCoral,
 --           LightSalmon,
 --           Khaki,
---           PaleGreen
+--           PaleGreen,
 --         }
 ------
 

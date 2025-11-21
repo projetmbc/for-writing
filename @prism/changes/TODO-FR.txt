@@ -5,6 +5,20 @@
 
 // ---------- //
 
+product et contrib
+
+   ---> on doit apsser juste à du lua, et luadraw donne l'und es moyens de dev possibles
+
+   ---> que garde-t-on alors dans le manuel : juste le how oto use it, autre ???
+
+
+// ---------- //
+
+dans la doc, indiquer que luadraw intéègre la produit luadraw automatiquement, plus besoin de bidouiller
+
+
+// ---------- //
+
 implementation
 
    ---> CSS / SCSS  (les deux)

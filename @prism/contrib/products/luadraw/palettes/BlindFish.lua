@@ -16,7 +16,7 @@
 --           LightPink,
 --           Pink,
 --           LightSalmon,
---           myFireBrick
+--           myFireBrick,
 --         }
 ------
 

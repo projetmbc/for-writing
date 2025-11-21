@@ -19,7 +19,7 @@
 --           DarkSalmon,
 --           LightCoral,
 --           IndianRed,
---     }
+--         }
 ------
 
 PALETTE = {
