@@ -5,6 +5,20 @@
 
 // ---------- //
 
+product et contrib
+
+   ---> on doit apsser juste à du lua, et luadraw donne l'und es moyens de dev possibles
+
+   ---> que garde-t-on alors dans le manuel : juste le how oto use it, autre ???
+
+
+// ---------- //
+
+catégorie : affiner la sléection !!
+
+
+// ---------- //
+
 nouveaux proj intégérs  OU  crédit pour la doc  OU  pour compléter showcase sur 2 pages
 
    ---> https://github.com/jiffyclub/palettable    Python donc immédiat !
@@ -18,20 +32,6 @@ nouveaux proj intégérs  OU  crédit pour la doc  OU  pour compléter showcase 
    ---> https://r02b.github.io/seaborn_palettes/
 
    ---> https://blog.scientific-python.org/matplotlib/pypalettes/
-
-
-// ---------- //
-
-product et contrib
-
-   ---> on doit apsser juste à du lua, et luadraw donne l'und es moyens de dev possibles
-
-   ---> que garde-t-on alors dans le manuel : juste le how oto use it, autre ???
-
-
-// ---------- //
-
-catégorie : affiner la sléection !!
 
 
 // ---------- //

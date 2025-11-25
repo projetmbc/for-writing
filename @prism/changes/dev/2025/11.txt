@@ -13,6 +13,14 @@
 Manual: no more bullet in the \pdf bookmarks.
 
 
+--------
+:fordev:
+--------
+
+[[:tech:]]
+Cleaned resources are put on the \repo.
+
+
 // ---------- //
 
 

@@ -17,7 +17,7 @@ from shutil import rmtree
 
 THIS_DIR          = Path(__file__).parent
 PROJ_DIR          = THIS_DIR.parent.parent
-SCICOLMAP_SRC_DIR = PROJ_DIR / "x-ScientificColourMaps8-x"
+SCICOLMAP_SRC_DIR = PROJ_DIR / "resources" / "ScientificColourMaps8"
 
 
 # --------------------------------- #
