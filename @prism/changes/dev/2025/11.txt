@@ -2,7 +2,7 @@
 
 
 ==
-25
+25  (1.3.0-beta.4)
 ==
 
 --------
@@ -10,7 +10,11 @@
 --------
 
 [[:doc:]]
-Manual: no more bullet in the \pdf bookmarks.
+Here are the updates.
+
+    1) Showcase: credits to \colorbrewer added.
+
+    1) Manual: no more bullet in the \pdf bookmarks.
 
 
 --------

@@ -28,7 +28,7 @@ REPORT_DIR = THIS_DIR.parent / "report"
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
-PAL_SRC_FILE    = REPORT_DIR / "PAL-SRC.json"
+PAL_CREDITS_FILE    = REPORT_DIR / "PAL-CREDITS.json"
 MP_NAMES_FILE   = REPORT_DIR / "MP-NAMES.json"
 PAL_REPORT_FILE = REPORT_DIR / "PAL-REPORT.json"
 
@@ -62,7 +62,7 @@ logging.info("Work on the 'Matplotlib' color maps.")
 
 allnames = sorted(colormaps, key = lambda x: x.lower())
 
-PAL_SRC      = dict()
+PAL_CREDITS      = dict()
 ALL_PALETTES = dict()
 PAL_REPORT   = dict()
 
@@ -97,7 +97,7 @@ for cmap_name in allnames:
     )
 
     if not cmap_name in PAL_REPORT:
-        PAL_SRC[cmap_name] = CTXT
+        PAL_CREDITS[cmap_name] = CTXT
 
 
 logging.info(
@@ -115,8 +115,8 @@ MP_NAMES_FILE.write_text(
     })
 )
 
-PAL_SRC_FILE.write_text(
-    json_dumps(PAL_SRC)
+PAL_CREDITS_FILE.write_text(
+    json_dumps(PAL_CREDITS)
 )
 
 PAL_REPORT_FILE.write_text(

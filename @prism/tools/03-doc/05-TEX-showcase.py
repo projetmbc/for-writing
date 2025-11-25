@@ -27,9 +27,9 @@ SINGLE_DIR = PREDOC_DIR / "single"
 SINGLE_DIR.mkdir(exist_ok = True)
 
 
-PAL_SRC_FILE = REPORT_DIR / "PAL-SRC.json"
+PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
 
-with PAL_SRC_FILE.open(mode = "r") as f:
+with PAL_CREDITS_FILE.open(mode = "r") as f:
     ALL_SRC = json_load(f)
 
 
@@ -79,7 +79,7 @@ HEADER_TEX_CODES = {
 
 
 PATTERN_CHGE_PAL_NAME = re.compile(r"\\newcommand\{\\PALETTE\}\{(.*)\}")
-PATTERN_CHGE_PAL_SRC  = re.compile(r"\\newcommand\{\\SRC\}\{(.*)\}")
+PATTERN_CHGE_PAL_CREDITS  = re.compile(r"\\newcommand\{\\SRC\}\{(.*)\}")
 
 
 START_FINAL_TEX_CODE = r"""
@@ -222,7 +222,7 @@ for palname in ALL_PALETTES:
         else:
             palsrc = f"Source: {palsrc}"
 
-        texcode = PATTERN_CHGE_PAL_SRC.sub(
+        texcode = PATTERN_CHGE_PAL_CREDITS.sub(
             lambda m: m.group(0).replace(
                 m.group(1),
                 palsrc

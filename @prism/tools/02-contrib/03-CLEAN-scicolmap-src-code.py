@@ -15,37 +15,37 @@ from shutil import rmtree
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR          = Path(__file__).parent
-PROJ_DIR          = THIS_DIR.parent.parent
-SCICOLMAP_SRC_DIR = PROJ_DIR / "resources" / "ScientificColourMaps8"
+THIS_DIR = Path(__file__).parent
+PROJ_DIR = THIS_DIR.parent.parent
+
+CODE_NAME = "Scientific Colour Maps"
+SRC_DIR   = PROJ_DIR / "resources" / CODE_NAME.replace(' ', '')
 
 
-# --------------------------------- #
-# -- CLEANING SOURCE CODE FOLDER -- #
-# --------------------------------- #
+# ----------------------- #
+# -- CLEAN SOURCE CODE -- #
+# ----------------------- #
 
-logging.info("Cleaning 'Scientific Colour Maps' source folder.")
+logging.info(f"Cleaning '{CODE_NAME}' source folder.")
 
 
-if not SCICOLMAP_SRC_DIR.is_dir():
-    logging.warning("Empty 'Scientific Colour Maps' source folder.")
+if not SRC_DIR.is_dir():
+    logging.warning(f"Empty '{CODE_NAME}' source folder.")
 
     exit(0)
 
 
-for p in SCICOLMAP_SRC_DIR.glob("*"):
-    if p.name.startswith('+') and p.is_dir():
-        rmtree(p)
-
-
-for p in SCICOLMAP_SRC_DIR.glob("*"):
+for p in SRC_DIR.glob("*"):
     if p.is_file():
         p.unlink()
-        continue
 
-    for sp in p.glob("*"):
-        if sp.is_dir():
-            rmtree(sp)
+    elif p.name.startswith('+'):
+        rmtree(p)
 
-        elif sp.suffix != '.py':
-            sp.unlink()
+    else:
+        for sp in p.glob("*"):
+            if sp.is_dir():
+                rmtree(sp)
+
+            elif sp.suffix != '.py':
+                sp.unlink()

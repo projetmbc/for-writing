@@ -40,10 +40,10 @@ with PAL_REPORT_FILE.open(mode = "r") as f:
     PAL_REPORT = json_load(f)
 
 
-PAL_SRC_FILE = REPORT_DIR / "PAL-SRC.json"
+PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
 
-with PAL_SRC_FILE.open(mode = "r") as f:
-    PAL_SRC = json_load(f)
+with PAL_CREDITS_FILE.open(mode = "r") as f:
+    PAL_CREDITS = json_load(f)
 
 
 REPORT_NAME_CONFLICT_FILE = THIS_DIR / "PALETTE-CONFLICT.png"
@@ -115,7 +115,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
         )
 
         if not palette_name in PAL_REPORT:
-            PAL_SRC[palette_name] = CTXT
+            PAL_CREDITS[palette_name] = CTXT
 
 nb_contribs = len(ALL_PALETTES) - nb_contribs
 
@@ -129,8 +129,8 @@ if nb_contribs != 0:
 # -- JSON UPDATE -- #
 # ----------------- #
 
-PAL_SRC_FILE.write_text(
-    json_dumps(PAL_SRC)
+PAL_CREDITS_FILE.write_text(
+    json_dumps(PAL_CREDITS)
 )
 
 PAL_REPORT_FILE.write_text(
