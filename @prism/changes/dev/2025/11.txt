@@ -2,6 +2,21 @@
 
 
 ==
+25
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual: no more bullet in the \pdf bookmarks.
+
+
+// ---------- //
+
+
+==
 14
 ==
 
