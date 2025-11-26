@@ -37,7 +37,7 @@ with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
-SCICOLMAP_NAMES_FILE = PROJ_DIR / "tools" / "report" / "SCICOLMAP-NAMES.json"
+SCICOLMAP_NAMES_FILE = PROJ_DIR / "tools" / "report" / "NAMES-SCIENTIFIC-COLOUR-MAPS.json"
 
 with SCICOLMAP_NAMES_FILE.open(mode = "r") as f:
     ALL_SCICOLMAP_NAMES = json_load(f)
@@ -130,7 +130,7 @@ if all_categories["__UNCLASSIFIED__"]:
         for n in unclassified
     )
 
-    xtra = f"\nHere are the palettes{plurial} to classify.\n    > {unclassified}"
+    xtra = f"\nHere are the palette{plurial} to classify.\n    > {unclassified}"
 
     log_raise_error(
         context   = "Palette categories",

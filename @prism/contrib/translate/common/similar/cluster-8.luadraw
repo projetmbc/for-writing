@@ -4,8 +4,8 @@
 
 \begin{luacode*}
 PALETTES = {
-  'GnBu',
-  'YlGnBu'
+  'CMRmap',
+  'Cubehelix3'
 }
 
 drawSimPals(PALETTES, 8)

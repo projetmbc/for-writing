@@ -18,3 +18,10 @@ Tab10
 Tab20
 Tab20b
 Tab20c
+
+ColorBlind
+GreenOrange
+Tableau
+TableauLight
+TableauMedium
+TrafficLight

@@ -43,3 +43,7 @@ Tokyo
 Turku
 Vanimo
 YlGnBu
+
+Cubehelix3
+JimSpecial
+Red

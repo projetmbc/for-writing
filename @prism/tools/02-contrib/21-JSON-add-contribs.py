@@ -83,12 +83,12 @@ for folder, contribs in sorted(contribs_accepted.items()):
 
         palette_name = Path(Path(one_contrib).stem).stem
         palette_name = stdname(palette_name)
-        palette_def  = extend.parse(contrib_file.read_text())
+        pal_def  = extend.parse(contrib_file.read_text())
 
         if palette_name in ALL_PALETTES:
             report_gradient_clash(
                 existing_palette = ALL_PALETTES[palette_name],
-                contrib_palette  = palette_def,
+                contrib_palette  = pal_def,
                 palette_name     = palette_name,
                 img_path         = REPORT_NAME_CONFLICT_FILE
             )
@@ -108,7 +108,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
         ALL_PALETTES, PAL_REPORT =  update_palettes(
             context   = CTXT,
             name      = palette_name,
-            candidate = palette_def,
+            candidate = pal_def,
             palettes  = ALL_PALETTES,
             ignored   = PAL_REPORT,
             logcom    = logging

@@ -4,7 +4,23 @@
 
 # -- NO CLUSTER --
 #
-#: Accent, Acton, Autumn, Berlin, BlindFish, BrBG, Brg, Buda, BurningGrass, Cool, Coolwarm, Cubehelix, Dark2, Fes, Flag, GasFlame, GeoRainbow, GistEarth, GistHeat, GistNcar, GistStern, Glasgow, Gnuplot2, GrayC, Hawaii, Lemon, Lisbon, Managua, NipySpectral, Ocean, Paired, Pastel1, Pastel2, PastelRainbow, Prism, PuBuGn, PuOr, PuRd, Rainbow, RdGy, RdPu, RdYlGn, Set1, Set2, Set3, ShiftRainbow, Spring, Summer, Tab10, Tab20, Tab20b, Tab20c, Terrain, Tofino, Tokyo, Twilight, Vanimo, Winter, Wistia
+#: Accent, Acton, Autumn,
+#: Berlin, BlindFish, BlueRed, BrBG, Brg, Buda, BurningGrass,
+#: Cool, Coolwarm,
+#: Dark2,
+#: Fes, Flag,
+#: GasFlame, GeoRainbow, GistEarth, GistHeat, GistNcar, GistStern, Glasgow, Gnuplot2, GrayC,
+#: Hawaii,
+#: Lemon, Lisbon,
+#: Managua,
+#: NipySpectral,
+#: Ocean,
+#: Paired, Pastel1, Pastel2, PastelRainbow, Prism, PuBuGn, PuOr, PuRd,
+#: Rainbow, RdGy, RdPu, RdYlGn,
+#: Set1, Set2, Set3, ShiftRainbow, Spring, Summer,
+#: Tab20b, Tab20c, Terrain, Tofino, Tokyo, Twilight, TableauLight TableauMedium TrafficLight
+#: Vanimo,
+#: Winter, Wistia,
 
 # -- FALSE POSITIVE --
 #
@@ -26,6 +42,7 @@
 #: CMRmap, Magma
 #: Copper, Lajolla
 #: Cork, CorkO
+#: Cubehelix2, Red
 #
 #: Davos, Nuuk
 #:      , Lapaz
@@ -37,6 +54,7 @@
 #: Imola, Cividis
 #
 #: Lipari,Pink
+#: Lajolla, Red
 #
 #: OrRd, Reds
 #
@@ -45,14 +63,30 @@
 #: Roma, RomaO
 #:     , Spectral
 #
+#: Tableau, Tab10
 #: TwilightShifted, Vik
 
 
 # --------------------------- #
 # -- JUST TOT TEST - START -- #
 
+
 ---
 
+
+---
+
+Cubehelix3, CMRmap
+
+---
+
+Purple, Devon
+
+---
+
+---
+Tableau, Tab20
+---
 
 ---
 
@@ -82,12 +116,6 @@ Broc, BrocO
 BuGn, Greens, YlGn
 ---
 
-# -- C -- #
-
----
-Inferno, Magma, Plasma
----
-
 # -- G -- #
 
 ---
@@ -98,6 +126,8 @@ GnBu, YlGnBu
 
 ---
 Imola, Viridis
+---
+Inferno, Magma, Plasma
 ---
 
 # -- J -- #

@@ -1,0 +1,12 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'TwilightShifted',
+  'VikO'
+}
+
+drawSimPals(PALETTES, 19)
+\end{luacode*}

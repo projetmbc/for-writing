@@ -29,10 +29,22 @@ STATUS_TAG = {
 
 TAG_CTXT = 'context'
 
-TAG_SCICOLMAP = "Scientific Colour Maps"
-TAG_APRISM    = "@prism"
-TAG_MPL       = "Matplotlib"
+TAG_APRISM      = "@prism"
+TAG_ASY         = "Asymptote"
+TAG_COLORBREWER = "Colorbrewer"
+TAG_CUBEHELIX   = "Cubehelix"
+TAG_MPL         = "Matplotlib"
+TAG_PALETTABLE  = "Palettable"
+TAG_SCICOLMAP   = "Scientific Colour Maps"
+TAG_TABLEAU     = "Tableau"
 
+TAGIFY = {
+    t.lower(): t
+    for t in [
+        TAG_CUBEHELIX,
+        TAG_TABLEAU
+    ]
+}
 
 def minimize_palette(p: list[float]) -> list[float]:
     if len(set(tuple(c) for c in p)) == len(p):
@@ -60,6 +72,17 @@ def equalfloatlist(
                 return False
 
     return True
+
+
+def pal255_to_pal01(
+    pal: list[ [float, float, float] ],
+) -> list[ [float, float, float] ]:
+    new_pal = list(
+        (r / 255, g / 255, b / 255)
+        for (r, g, b) in pal
+    )
+
+    return new_pal
 
 
 def update_palettes(

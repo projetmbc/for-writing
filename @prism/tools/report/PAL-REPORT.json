@@ -1,4 +1,8 @@
 {
+  "Classic": {
+    "context": "Human",
+    "equal-to": "Cubehelix"
+  },
   "GistGray": {
     "context": "Matplotlib",
     "reverse-of": "Binary"

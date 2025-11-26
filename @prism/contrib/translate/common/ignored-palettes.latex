@@ -9,6 +9,16 @@
       baseline    = T,
       column{2,4} = {cmd=\tdoccodein{text}},
     }
+        XXXX
+          & Classic & = & Cubehelix \\
+    \end{tblr}
+
+    \item
+    \begin{tblr}{
+      colspec     = {@{}l | r Q[c,$] l},
+      baseline    = T,
+      column{2,4} = {cmd=\tdoccodein{text}},
+    }
         \matplotlib
           & GistGray & \rightleftharpoons & Binary \\
           & GistGrey & \rightleftharpoons & Binary \\

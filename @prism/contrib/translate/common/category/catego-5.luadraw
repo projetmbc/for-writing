@@ -5,10 +5,12 @@
 \begin{luacode*}
 PALETTES = {
   'Accent',
+  'ColorBlind',
   'Dark2',
   'Fes',
   'Flag',
   'GistStern',
+  'GreenOrange',
   'Paired',
   'Pastel1',
   'Pastel2',
@@ -19,7 +21,11 @@ PALETTES = {
   'Tab10',
   'Tab20',
   'Tab20b',
-  'Tab20c'
+  'Tab20c',
+  'Tableau',
+  'TableauLight',
+  'TableauMedium',
+  'TrafficLight'
 }
 
 drawCategoPals(PALETTES, 5)

@@ -1,0 +1,19 @@
+{
+  "BlueRed": "BlueRed",
+  "Classic": "classic",
+  "ColorBlind": "ColorBlind",
+  "Cubehelix1": "cubehelix1",
+  "Cubehelix2": "cubehelix2",
+  "Cubehelix3": "cubehelix3",
+  "Gray": "Gray",
+  "GreenOrange": "GreenOrange",
+  "JimSpecial": "jim_special",
+  "PerceptualRainbow": "perceptual_rainbow",
+  "Purple": "purple",
+  "PurpleGray": "PurpleGray",
+  "Red": "red",
+  "Tableau": "Tableau",
+  "TableauLight": "TableauLight",
+  "TableauMedium": "TableauMedium",
+  "TrafficLight": "TrafficLight"
+}

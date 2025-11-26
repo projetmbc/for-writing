@@ -1,3 +1,33 @@
+
+
+gérer Human des ignoe: retrouver le bon ctte passer vi un tableau unique et aussi ajouter d'o vient la palette gardé
++
+affiner les noms par techno quand palettes utilisés (cf sous dossier) : besoin au passage de vierre de matplotlib si c'est présent !!!
+
+
+// ---------- //
+
+
+==
+26  (1.3.0-beta.1)
+==
+
+-----
+:new:
+-----
+
+[[:api:]]
+Palettes can be ignored by a human being.
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+All original palette names are kept in the reporting folder path::''tools/report''.
+
+
 // ---------- //
 
 

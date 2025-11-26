@@ -1,0 +1,12 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'Tab20',
+  'Tableau'
+}
+
+drawSimPals(PALETTES, 18)
+\end{luacode*}

@@ -58,6 +58,7 @@ TEX_CMDS = {
     PAL_STATUS.EQUAL_TO  : "=",
     PAL_STATUS.REVERSE_OF: r"\rightleftharpoons",
     "Matplotlib"         : r"\matplotlib",
+    "Human"              : r"XXXX",
 }
 
 # ----------------- #
@@ -95,7 +96,7 @@ if bytechno:
         r"\begin{itemize}"
     ]
 
-    for ctx, listof in bytechno.items():
+    for ctxt, listof in bytechno.items():
         texcode += [
             TEX_TMPL_TABLE_HEADER,
             TEX_TMPL_KIND.format(

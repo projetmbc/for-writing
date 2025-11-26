@@ -19,7 +19,7 @@ THIS_DIR = Path(__file__).parent
 PROJ_DIR = THIS_DIR.parent.parent
 
 CODE_NAME = "Scientific Colour Maps"
-SRC_DIR   = PROJ_DIR / "resources" / CODE_NAME.replace(' ', '')
+SRC_DIR   = PROJ_DIR / "resources" / CODE_NAME.replace(' ', '') / "ScientificColourMaps8"
 
 
 # ----------------------- #

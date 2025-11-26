@@ -94,7 +94,14 @@ print("+ Looking for new palettes.")
 
 newpals = set()
 
-categorized_names = sum(ALL_CATEGOS.values(), [])
+categorized_names = sum(
+    [
+        names
+        for catego, names in ALL_CATEGOS.items()
+        if catego != '__UNCLASSIFIED__'
+    ],
+    []
+)
 
 for n in ALL_PALETTES:
     if not n in categorized_names:

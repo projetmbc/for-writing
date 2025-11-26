@@ -43,3 +43,9 @@ TwilightShifted
 Vik
 VikO
 Viridis
+
+BlueRed
+Cubehelix1
+Cubehelix2
+PerceptualRainbow
+PurpleGray

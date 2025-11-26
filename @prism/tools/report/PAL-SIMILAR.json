@@ -30,6 +30,14 @@
     "YlGn"
   ],
   [
+    "CMRmap",
+    "Cubehelix3"
+  ],
+  [
+    "Devon",
+    "Purple"
+  ],
+  [
     "GnBu",
     "YlGnBu"
   ],
@@ -61,6 +69,10 @@
   [
     "RdYlBu",
     "Spectral"
+  ],
+  [
+    "Tab20",
+    "Tableau"
   ],
   [
     "TwilightShifted",
