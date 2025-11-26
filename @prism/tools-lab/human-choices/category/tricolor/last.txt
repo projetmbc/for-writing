@@ -54,3 +54,6 @@ Amp
 Ice
 Solar
 Tempo
+
+BlueGray
+BlueGreen

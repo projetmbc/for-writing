@@ -27,6 +27,9 @@
 #: Zisso
 #
 #: Curl, Deep, Delta, Matter, Oxy, Phase, Solar, Speed, Tempo, Turbid
+#
+#: RedYellowBlue, BlueGray, BlueGreen, BlueOrangeRed, GreenMagenta,
+
 
 # -- FALSE POSITIVE --
 #
@@ -72,6 +75,7 @@
 #: Peach, PinkYl
 #
 #: RdBu, RdYlBu
+#:     , RedYellowBlue
 #:     , Spectral
 #: Roma, RomaO
 #:     , Spectral
@@ -186,7 +190,7 @@ OrYel, Peach
 # -- R -- #
 
 ---
-RdYlBu, Spectral
+RdYlBu, RedYellowBlue, Spectral
 ---
 
 # -- T -- #

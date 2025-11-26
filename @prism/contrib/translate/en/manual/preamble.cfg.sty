@@ -59,8 +59,8 @@
 % ----------------------- %
 
 \newcommand\palSize{10}
-\newcommand\palNb{203}
-\newcommand\nbSimClusters{28}
+\newcommand\palNb{208}
+\newcommand\nbSimClusters{29}
 
 
 % ---------------- %
@@ -87,12 +87,16 @@
 \newcommand\git{\trademark{Git}{https://git-scm.com}}
 
 %  + L
+\newcommand\lightbartlein{\trademark{Light and Bartlein}{https://jiffyclub.github.io/palettable/lightbartlein}}
+
 \newcommand\lua{\trademark{Lua}{https://www.lua.org}}
 
 \newcommand\LUADRAW{\trademark{luadraw}{https://github.com/pfradin/luadraw}}
 
 %  + M
 \newcommand\matplotlib{\trademark{Matplotlib}{https://matplotlib.org}}
+
+\newcommand\mycarta{\trademark{MyCarta}{https://mycartablog.com/color-palettes}}
 
 %  + P
 \newcommand\palettable{\trademark{Palettable}{https://github.com/jiffyclub/palettable}}
@@ -117,6 +121,7 @@
 
 \begin{luacode*}
 BUILD_TIKZ = true
+
 
 function drawSimPals(names, suffix)
   for _ , palname in ipairs(names) do
@@ -207,6 +212,7 @@ function drawSpectrum(pal, suffix)
 --   g:Sendtotex()
 end
 
+
 function drawPalette(pal, suffix)
   local palsize  = #pal
   local paldim   = .5
@@ -248,12 +254,10 @@ end
 function drawCategoPals(names, suffix)
   tex.print(
        "\\DefTblrTemplate{firsthead, middlehead, lasthead}{default}{}"
---    .. "\\begin{center}"
-    .. "\\noindent\\begin{longtblr}{"
-    .. "colspec = {Q[l,5cm] Q[c,2.25cm] Q[r,5.5cm]}"
+    .. "\\kern-1ex\\begin{longtblr}{"
+    .. "colspec = {X[l, m] Q[c, m, 2.25cm] X[r,m]}"
     .. "}"
   )
-
   for i, data in ipairs(names) do
     local name, credit = data[1], data[2]
     local pal          = getPal(name)
@@ -280,9 +284,9 @@ function drawCategoPals(names, suffix)
 
   tex.print(
        "\\end{longtblr}"
---    .. "\\end{center}"
   )
 end
+
 
 -- AUTO LAST PALETTES - START
 -----------------------------------------------------------------
@@ -592,6 +596,45 @@ palBluYl = {
     {0.010457, 0.48366, 0.563398},
     {0.005228, 0.402614, 0.516339},
     {0.015686, 0.321568, 0.458823}
+}
+
+palBlueGray = {
+    {0.0, 0.6, 0.8},
+    {0.311111, 0.831808, 0.955555},
+    {0.511111, 0.954684, 1.0},
+    {0.666666, 1.0, 1.0},
+    {0.810893, 0.988671, 0.988671},
+    {0.887145, 0.909368, 0.909368},
+    {0.699346, 0.699346, 0.699346},
+    {0.511111, 0.511111, 0.511111},
+    {0.355555, 0.355555, 0.355555},
+    {0.2, 0.2, 0.2}
+}
+
+palBlueGreen = {
+    {0.0, 0.0, 1.0},
+    {0.287145, 0.287145, 1.0},
+    {0.577342, 0.577342, 1.0},
+    {0.730718, 0.730718, 1.0},
+    {0.875381, 0.875381, 1.0},
+    {0.875381, 1.0, 0.875381},
+    {0.730718, 1.0, 0.730718},
+    {0.577342, 1.0, 0.577342},
+    {0.287145, 1.0, 0.287145},
+    {0.0, 1.0, 0.0}
+}
+
+palBlueOrangeRed = {
+    {0.02745, 0.352941, 1.0},
+    {0.264052, 0.508061, 1.0},
+    {0.526797, 0.683224, 1.0},
+    {0.798692, 0.865359, 1.0},
+    {0.952941, 0.966884, 1.0},
+    {1.0, 1.0, 0.755555},
+    {1.0, 1.0, 0.2},
+    {1.0, 0.777777, 0.0},
+    {1.0, 0.488888, 0.0},
+    {1.0, 0.0, 0.0}
 }
 
 palBlueRed = {
@@ -1385,6 +1428,19 @@ palGrays = {
     {0.278662, 0.278662, 0.278662},
     {0.127457, 0.127457, 0.127457},
     {0.0, 0.0, 0.0}
+}
+
+palGreenMagenta = {
+    {0.0, 0.313725, 0.0},
+    {0.0, 0.664052, 0.0},
+    {0.104575, 0.963398, 0.104575},
+    {0.52549, 1.0, 0.52549},
+    {0.911111, 1.0, 0.911111},
+    {1.0, 0.874509, 1.0},
+    {1.0, 0.52549, 1.0},
+    {0.963398, 0.104575, 0.963398},
+    {0.664052, 0.0, 0.664052},
+    {0.313725, 0.0, 0.313725}
 }
 
 palGreenOrange = {
@@ -2258,6 +2314,19 @@ palRedOr = {
     {0.694117, 0.247058, 0.392156}
 }
 
+palRedYellowBlue = {
+    {0.647058, 0.0, 0.129411},
+    {0.860566, 0.179956, 0.21525},
+    {0.975599, 0.483224, 0.386056},
+    {1.0, 0.745098, 0.498039},
+    {1.0, 0.932461, 0.66623},
+    {0.932461, 1.0, 0.888453},
+    {0.737254, 0.979084, 1.0},
+    {0.49586, 0.874074, 1.0},
+    {0.269281, 0.651851, 1.0},
+    {0.149019, 0.298039, 1.0}
+}
+
 palReds = {
     {1.0, 0.960784, 0.941176},
     {0.996555, 0.888442, 0.837831},
@@ -3070,6 +3139,9 @@ for _ , name in ipairs({
     "palBilbao",
     "palBinary",
     "palBlindFish",
+    "palBlueGray",
+    "palBlueGreen",
+    "palBlueOrangeRed",
     "palBlueRed",
     "palBlues",
     "palBluGrn",
@@ -3133,6 +3205,7 @@ for _ , name in ipairs({
     "palGrandBudapest",
     "palGrayC",
     "palGrays",
+    "palGreenMagenta",
     "palGreenOrange",
     "palGreens",
     "palHaline",
@@ -3201,6 +3274,7 @@ for _ , name in ipairs({
     "palRed",
     "palRedOr",
     "palReds",
+    "palRedYellowBlue",
     "palRoma",
     "palRomaO",
     "palRoyal",

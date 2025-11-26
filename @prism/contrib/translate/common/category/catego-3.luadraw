@@ -12,6 +12,8 @@ PALETTES = {
   {'Bamako', 'Scientific Colour Maps'},
   {'Berlin', 'Scientific Colour Maps'},
   {'Bilbao', 'Scientific Colour Maps'},
+  {'BlueGray', 'Light Bartlein'},
+  {'BlueGreen', 'Light Bartlein'},
   {'BrBG', 'Colorbrewer'},
   {'Broc', 'Scientific Colour Maps'},
   {'BrocO', 'Scientific Colour Maps'},

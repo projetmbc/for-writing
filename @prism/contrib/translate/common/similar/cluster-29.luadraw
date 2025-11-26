@@ -4,9 +4,9 @@
 
 \begin{luacode*}
 PALETTES = {
-  'Tab20',
-  'Tableau'
+  'TwilightShifted',
+  'VikO'
 }
 
-drawSimPals(PALETTES, 27)
+drawSimPals(PALETTES, 29)
 \end{luacode*}

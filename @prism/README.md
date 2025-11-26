@@ -40,6 +40,7 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 - [`cmocean`](https://matplotlib.org/cmocean) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`Colorbrewer`](https://colorbrewer2.org).
 - [`Cubehelix`](https://jiffyclub.github.io/palettable/cubehelix) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
+- [`Light and Bartlein`](%60https://jiffyclub.github.io/palettable/lightbartlein) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`Matplotlib`](https://matplotlib.org).
 - [`Scientific Coulour Maps`](https://www.fabiocrameri.ch/colourmaps).
 - [`Tableau`](https://www.tableau.com) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.

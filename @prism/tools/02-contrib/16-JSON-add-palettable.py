@@ -57,6 +57,19 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
 STD_NAMES_IGNORED = list(ALL_PALETTES) + list(PAL_REPORT)
 
 
+PATTERN_COMMON_PYDEF = re.compile(
+    r'_([A-Z_]+)\s*=\s*(\[[\s\S]*?\n\])'
+)
+
+PATTERN_NAMES_TO_DATA = re.compile(
+    r'_NAMES_TO_DATA\s*=\s*\{([^}]+)\}'
+)
+
+PATTERN_NAME_PAIR = re.compile(
+    r"'([\w_]+)':\s*(colormaps|colordata)\._?([\w_]+)"
+)
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
@@ -165,10 +178,6 @@ def extract_wesanderson(folder: Path) -> dict[ str, list[ [float, float, float] 
     return palettes
 
 
-PATTERN_COMMON_PYDEF = re.compile(
-    r'_([A-Z]+)\s*=\s*(\[[\s\S]*?\n\])'
-)
-
 def extract_data(file: Path) -> dict[ str, list[ [float, float, float] ] ]:
     pycode   = file.read_text()
     palettes = dict()
@@ -178,20 +187,17 @@ def extract_data(file: Path) -> dict[ str, list[ [float, float, float] ] ]:
         cols = match.group(2)
         cols = eval(cols)
 
+        print(f"{name=}")
+
         palettes[name] = pal255_to_pal01(cols)
 
     return palettes
 
 
-PATTERN_NAMES_TO_DATA = re.compile(
-    r'_NAMES_TO_DATA\s*=\s*\{([^}]+)\}'
-)
-
-PATTERN_NAME_PAIR = re.compile(
-    r"'(\w+)':\s*colormaps\._(\w+)"
-)
-
-def extract_original_names(folder: Path) -> dict[ str, str ]:
+def extract_original_names(
+    folder : Path,
+    pattern: re.Pattern
+) -> dict[ str, str ]:
     original_names = dict()
 
     for fname in [
@@ -213,18 +219,25 @@ def extract_original_names(folder: Path) -> dict[ str, str ]:
 
         pycode = match.group(1)
 
-        for pair_match in PATTERN_NAME_PAIR.finditer(pycode):
+        for pair_match in pattern.finditer(pycode):
             srcname = pair_match.group(1)
-            pyname  = pair_match.group(2)
+            pyname  = pair_match.group(3)
 
             original_names[pyname] = srcname
 
     return original_names
 
-def extract_cartocolors(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
-    oripals = extract_data(folder / "colormaps.py")
 
-    orinames = extract_original_names(folder)
+def extract_std(
+    folder    : Path,
+    pfile_name: str
+) -> dict[ str, list[ [float, float, float] ] ]:
+    oripals = extract_data(folder / f"{pfile_name}.py")
+
+    orinames = extract_original_names(
+        folder  = folder,
+        pattern = PATTERN_NAME_PAIR
+    )
 
     pals = {
         orinames[n]: p
@@ -233,7 +246,31 @@ def extract_cartocolors(folder: Path) -> dict[ str, list[ [float, float, float] 
 
     return pals
 
+
+extract_cartocolors = lambda f: extract_std(f, "colormaps")
 extract_cmocean = extract_cartocolors
+
+
+def extract_lightbartlein(
+    folder: Path,
+) -> dict[ str, list[ [float, float, float] ] ]:
+    oripals = extract_data(folder / "colordata.py")
+
+    orinames = extract_original_names(
+        folder  = folder,
+        pattern = PATTERN_NAME_PAIR
+    )
+
+    pals = {
+        orinames[n]: p
+        for n, p in oripals.items()
+    }
+
+    return pals
+
+
+
+
 
 
 def extract(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:

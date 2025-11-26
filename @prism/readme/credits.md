@@ -13,7 +13,11 @@ Credits
 
   * [`Cubehelix`](https://jiffyclub.github.io/palettable/cubehelix) is extracted from [`Palettable`][1] project.
 
+  * [`Light and Bartlein`](https://jiffyclub.github.io/palettable/lightbartlein) is extracted from [`Palettable`][1] project.
+
   * [`Matplotlib`][2].
+
+  * [`MyCarta`](https://mycartablog.com/color-palettes) is extracted from [`Palettable`][1] project.
 
   * [`Scientific Coulour Maps`](https://www.fabiocrameri.ch/colourmaps).
 

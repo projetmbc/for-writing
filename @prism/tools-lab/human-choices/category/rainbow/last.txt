@@ -84,3 +84,7 @@ Oxy
 Speed
 Thermal
 Turbid
+
+BlueOrangeRed
+GreenMagenta
+RedYellowBlue

@@ -39,11 +39,13 @@ TAG_SCICOLMAP   = "Scientific Colour Maps"
 
 
 PALETTABLE_SUB_FOLDERS = [
-    (TAG_CARTOCOLOR := "CartoColors"),
-    (TAG_CMOCEAN    := "cmocean"),
-    (TAG_CUBEHELIX  := "Cubehelix"),
-    (TAG_TABLEAU    := "Tableau"),
-    (TAG_WESANDERSON:= "Wes Anderson"),
+    (TAG_CARTOCOLOR    := "CartoColors"),
+    (TAG_CMOCEAN       := "cmocean"),
+    (TAG_CUBEHELIX     := "Cubehelix"),
+    (TAG_LIGHT_BARTLEIN:= "Light Bartlein"),
+    (TAG_MYCARTA       := "MyCarta"),
+    (TAG_TABLEAU       := "Tableau"),
+    (TAG_WESANDERSON   := "Wes Anderson"),
 ]
 
 PALETTABLE_SUB_FOLDERS = {
