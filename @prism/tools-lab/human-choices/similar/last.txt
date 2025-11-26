@@ -29,6 +29,10 @@
 #: Curl, Deep, Delta, Matter, Oxy, Phase, Solar, Speed, Tempo, Turbid
 #
 #: RedYellowBlue, BlueGray, BlueGreen, BlueOrangeRed, GreenMagenta,
+#
+#: Portland, Alphabet, Blackbody, Bluered, Electric, Picnic, Plotly,
+#
+#: LinearL.png, CubeYF
 
 
 # -- FALSE POSITIVE --
@@ -60,6 +64,8 @@
 #: Davos, Nuuk
 #:      , Lapaz
 #: Devon, Oslo
+#
+#: Electric, Inferno
 #
 #: GistRainbow, Hsv
 #: Gnuplot, Plasma

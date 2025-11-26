@@ -21,8 +21,10 @@
           & GistYerg & = & Binary \\
           & Grey & \rightleftharpoons & Binary \\
         \hline
+        Tableau
+          & Gray & \rightleftharpoons & Binary \\
+        \hline
         cmocean
           & Balance & = & Vik \\
-          & Gray & \rightleftharpoons & Binary \\
     \end{tblr}
 \end{center}

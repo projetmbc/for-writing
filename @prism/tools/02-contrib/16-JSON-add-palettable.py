@@ -57,8 +57,9 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
 STD_NAMES_IGNORED = list(ALL_PALETTES) + list(PAL_REPORT)
 
 
+
 PATTERN_COMMON_PYDEF = re.compile(
-    r'_([A-Z_]+)\s*=\s*(\[[\s\S]*?\n\])'
+    r'_?([A-Z_]+)\s*=\s*(\[[\s\S]*?\n\])'
 )
 
 PATTERN_NAMES_TO_DATA = re.compile(
@@ -66,13 +67,15 @@ PATTERN_NAMES_TO_DATA = re.compile(
 )
 
 PATTERN_NAME_PAIR = re.compile(
-    r"'([\w_]+)':\s*(colormaps|colordata)\._?([\w_]+)"
+    r"['\"]([\w_]+)['\"]:\s*(colormaps|colordata)\._?([\w_]+)"
 )
 
 
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
+
+# -- SPECIAL PALETTABLE SPECS -- #
 
 def extract_cubehelix(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
     src_code = folder / f"{folder.name}.py"
@@ -178,8 +181,13 @@ def extract_wesanderson(folder: Path) -> dict[ str, list[ [float, float, float] 
     return palettes
 
 
+# -- STD PALETTABLE SPECS -- #
+
 def extract_data(file: Path) -> dict[ str, list[ [float, float, float] ] ]:
-    pycode   = file.read_text()
+    pycode = file.read_text()
+    pycode = pycode.replace(')]', ')\n]')
+    pycode = pycode.replace(']]', ']\n]')
+
     palettes = dict()
 
     for match in PATTERN_COMMON_PYDEF.finditer(pycode):
@@ -187,20 +195,19 @@ def extract_data(file: Path) -> dict[ str, list[ [float, float, float] ] ]:
         cols = match.group(2)
         cols = eval(cols)
 
-        print(f"{name=}")
-
         palettes[name] = pal255_to_pal01(cols)
 
     return palettes
 
 
 def extract_original_names(
-    folder : Path,
-    pattern: re.Pattern
+    folder   : Path,
+    pattern  : re.Pattern,
+    xtrafiles: list[str]
 ) -> dict[ str, str ]:
     original_names = dict()
 
-    for fname in [
+    for fname in xtrafiles + [
         'diverging',
         'qualitative',
         'sequential',
@@ -229,15 +236,21 @@ def extract_original_names(
 
 
 def extract_std(
-    folder    : Path,
-    pfile_name: str
+    folder     : Path,
+    pyfile_name: str,
+    xtrafiles  : list[str] = []
 ) -> dict[ str, list[ [float, float, float] ] ]:
-    oripals = extract_data(folder / f"{pfile_name}.py")
+    oripals = extract_data(folder / f"{pyfile_name}.py")
 
     orinames = extract_original_names(
-        folder  = folder,
-        pattern = PATTERN_NAME_PAIR
+        folder    = folder,
+        pattern   = PATTERN_NAME_PAIR,
+        xtrafiles = xtrafiles
     )
+
+    if True:
+        print(orinames)
+        print(oripals.keys())
 
     pals = {
         orinames[n]: p
@@ -247,38 +260,38 @@ def extract_std(
     return pals
 
 
-extract_cartocolors = lambda f: extract_std(f, "colormaps")
+extract_cartocolors = lambda f: extract_std(
+    folder      = f,
+    pyfile_name = "colormaps"
+)
+
 extract_cmocean = extract_cartocolors
 
 
-def extract_lightbartlein(
-    folder: Path,
-) -> dict[ str, list[ [float, float, float] ] ]:
-    oripals = extract_data(folder / "colordata.py")
+extract_lightbartlein = lambda f: extract_std(
+    folder      = f,
+    pyfile_name = "colordata"
+)
 
-    orinames = extract_original_names(
-        folder  = folder,
-        pattern = PATTERN_NAME_PAIR
-    )
+extract_plotly  = extract_lightbartlein
 
-    pals = {
-        orinames[n]: p
-        for n, p in oripals.items()
-    }
-
-    return pals
-
-
-
-
-
+extract_mycarta = lambda f: extract_std(
+    folder      = f,
+    pyfile_name = "colordata",
+    xtrafiles   = ["mycarta"]
+)
 
 def extract(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
     logging.info(f"Analyzing '{folder.name}' folder.")
 
     extractor = globals()[f"extract_{folder.name}"]
 
-    return extractor(folder)
+    pals = extractor(folder)
+
+    if not pals:
+        logging.info(f"No extraction.")
+
+    return pals
 
 
 # ------------------------------------ #
@@ -289,7 +302,7 @@ logging.info(f"Work with the '{CTXT}' source code.")
 
 nb_new_pals = len(ALL_PALETTES)
 
-for folder in ORIGINAL_SRC_DIR.glob("*"):
+for folder in sorted(ORIGINAL_SRC_DIR.glob("*")):
     if not folder.name in PALETTABLE_SUB_FOLDERS:
         continue
 

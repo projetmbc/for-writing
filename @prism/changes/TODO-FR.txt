@@ -5,6 +5,14 @@
 
 // ---------- //
 
+pour les nms exclus, besoind e vérifier quand meêm ce que sont les pletts !!!!
+
++
+
+ils manquent les pallets se finissnat par un nombre poyr palettable, et les autres ?
+
+// ---------- //
+
 tab-XX à virer car jeu des aturation, mais du coup, il nous faut des implémentations (vpir si css ok + automatiser le repérage de ce genre de chose)
 
 

@@ -5,6 +5,7 @@
 \begin{luacode*}
 PALETTES = {
   {'Accent', 'Colorbrewer'},
+  {'Alphabet', 'Plotly'},
   {'Antique', 'CartoColors'},
   {'Bold', 'CartoColors'},
   {'ColorBlind', 'Tableau'},
@@ -18,6 +19,7 @@ PALETTES = {
   {'Pastel1', 'Colorbrewer'},
   {'Pastel2', 'Colorbrewer'},
   {'Phase', 'cmocean'},
+  {'Plotly', 'Plotly'},
   {'Prism', 'CartoColors'},
   {'Safe', 'CartoColors'},
   {'Set1', 'Colorbrewer'},

@@ -44,6 +44,7 @@ PALETTABLE_SUB_FOLDERS = [
     (TAG_CUBEHELIX     := "Cubehelix"),
     (TAG_LIGHT_BARTLEIN:= "Light Bartlein"),
     (TAG_MYCARTA       := "MyCarta"),
+    (TAG_PLOTLY        := "Plotly"),
     (TAG_TABLEAU       := "Tableau"),
     (TAG_WESANDERSON   := "Wes Anderson"),
 ]

@@ -33,3 +33,6 @@ Safe
 Vivid
 
 Phase
+
+Alphabet
+Plotly

@@ -10,6 +10,7 @@ PALETTES = {
   {'Binary', 'Matplotlib'},
   {'BluGrn', 'CartoColors'},
   {'BluYl', 'CartoColors'},
+  {'Bluered', 'Plotly'},
   {'Blues', 'Colorbrewer'},
   {'Bone', 'Matplotlib'},
   {'BrwnYl', 'CartoColors'},

@@ -19,6 +19,8 @@ Credits
 
   * [`MyCarta`](https://mycartablog.com/color-palettes) is extracted from [`Palettable`][1] project.
 
+  * [`Plotly`](https://plotly.com/python) is extracted from [`Palettable`][1] project.
+
   * [`Scientific Coulour Maps`](https://www.fabiocrameri.ch/colourmaps).
 
   * [`Tableau`](https://www.tableau.com) is extracted from [`Palettable`][1] project.

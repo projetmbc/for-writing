@@ -28,7 +28,7 @@ PALETTES = {
   {'Davos', 'Scientific Colour Maps'},
   {'Glasgow', 'Scientific Colour Maps'},
   {'GnBu', 'Colorbrewer'},
-  {'Hot', 'Matplotlib'},
+  {'Hot', 'Plotly'},
   {'Ice', 'cmocean'},
   {'Imola', 'Scientific Colour Maps'},
   {'JimSpecial', 'Cubehelix'},

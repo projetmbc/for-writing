@@ -88,3 +88,11 @@ Turbid
 BlueOrangeRed
 GreenMagenta
 RedYellowBlue
+
+Blackbody
+Electric
+Picnic
+Portland
+
+CubeYF
+LinearL
