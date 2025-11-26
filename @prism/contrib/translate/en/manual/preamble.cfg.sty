@@ -14,8 +14,6 @@
 \usepackage{fmtcount}
 
 \usepackage{tabularray}
-\usepackage{longtable}
-\usepackage{array}
 
 \usepackage{multicol}
 
@@ -239,10 +237,11 @@ end
 
 
 function drawCategoPals(names, suffix)
-  tex.print("\\begin{longtable}[c]{>{\\raggedright\\arraybackslash}m{0.30\\linewidth}>{\\raggedleft\\arraybackslash}p{0.18\\linewidth}>{\\centering\\arraybackslash}m{0.50\\linewidth}}")
---  tex.print("\\rule[-2ex]{0pt}{3ex}\\textbf{Spectrum} & \\rule[-2ex]{0pt}{3ex}\\textbf{Name} & \\rule[-2ex]{0pt}{3ex}\\textbf{Palette} \\\\ ")
---  tex.print("\\endhead")
-
+  tex.print(
+       "\\begin{center}\\begin{longtblr}{"
+    .. "colspec = {Q[l,m,5cm] Q[c,m,2.5cm] Q[r,m,5cm]},"
+    .. "}"
+  )
 
   for i, data in ipairs(names) do
     local name, credit = data[1], data[2]
@@ -254,7 +253,7 @@ function drawCategoPals(names, suffix)
     tex.print(" & ")
 
     tex.print(
-           "\\parbox[c]{2.25cm}{\\centering\\bfseries\\texttt{"
+           "{\\bfseries\\texttt{"
         .. name
         .. "}\\\\ \\footnotesize\\color{Grey} "
         .. credit
@@ -268,7 +267,7 @@ function drawCategoPals(names, suffix)
     tex.print(" \\\\ ")
   end
 
-  tex.print("\\end{longtable}")
+  tex.print("\\end{longtblr}\\end{center}")
 end
 
 -- AUTO LAST PALETTES - START
