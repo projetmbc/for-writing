@@ -123,6 +123,8 @@ for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
         for r, g, b in rgb_values
     ])
 
+    PAL_CREDITS[std_name] = CTXT
+
     ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
         name      = std_name,
@@ -131,8 +133,6 @@ for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
         ignored   = PAL_REPORT,
         logcom    = logging
     )
-
-    PAL_CREDITS[std_name] = CTXT
 
 
 nb_new_pals = len(ALL_PALETTES) - nb_new_pals

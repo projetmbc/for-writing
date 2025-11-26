@@ -72,13 +72,11 @@ for pal_name in PAL_COLORBREWER:
     std_name = stdname(pal_name)
 
     ORIGINAL_NAMES[std_name] = pal_name
+    PAL_CREDITS[std_name]    = CTXT
 
     if not std_name in STD_NAMES_IGNORED:
         print(pal_name)
         TODO
-
-    if not std_name in PAL_REPORT:
-        PAL_CREDITS[std_name] = CTXT
 
 
 nb_new_pals = len(ALL_PALETTES) - nb_new_pals

@@ -4,23 +4,26 @@
 
 # -- NO CLUSTER --
 #
-#: Accent, Acton, Autumn,
+#: Accent, Acton, Autumn, Aquatic,
 #: Berlin, BlindFish, BlueRed, BrBG, Brg, Buda, BurningGrass,
-#: Cool, Coolwarm,
-#: Dark2,
-#: Fes, Flag,
-#: GasFlame, GeoRainbow, GistEarth, GistHeat, GistNcar, GistStern, Glasgow, Gnuplot2, GrayC,
+#: ColorBlind, Cool, Coolwarm, Cubehelix, Cubehelix1,Cavalcant,Chevalie,
+#: Dark2,Darjeeling,
+#: Fes, Flag, FantasticFox,
+#: GasFlame, GeoRainbow, GistEarth, GistHeat, GistNcar, GistStern, Glasgow, Gnuplot2, GrayC, GreenOrange, GrandBudapest,
 #: Hawaii,
+#: IsleOfDogs,
+#: JimSpecial
 #: Lemon, Lisbon,
-#: Managua,
+#: Managua,Margot,Mend,Moonrise,
 #: NipySpectral,
 #: Ocean,
-#: Paired, Pastel1, Pastel2, PastelRainbow, Prism, PuBuGn, PuOr, PuRd,
-#: Rainbow, RdGy, RdPu, RdYlGn,
+#: Paired, Pastel1, Pastel2, PastelRainbow, PerceptualRainbow, Prism, PuBuGn, PuOr, PuRd, PurpleGray
+#: Rainbow, RdGy, RdPu, RdYlGn,Royal,
 #: Set1, Set2, Set3, ShiftRainbow, Spring, Summer,
-#: Tab20b, Tab20c, Terrain, Tofino, Tokyo, Twilight, TableauLight TableauMedium TrafficLight
+#: Tab20b, Tab20c, Terrain, Tofino, Tokyo, Twilight, TableauLight, TableauMedium, TrafficLight
 #: Vanimo,
 #: Winter, Wistia,
+#: Zisso
 
 # -- FALSE POSITIVE --
 #

@@ -9,27 +9,25 @@
 
 \section{Reuse from...}
 
-
-% -------------------- %
-
-
-\subsection{Matplotlib}
-
-Here are the key points to remember when using palettes similar to those offered by \matplotlib.
+Here are the key points to remember when using palettes similar to those offered by projects listed in the section \ref{projects-used}.
 %
 \begin{enumerate}
-	\item \label{reuse-std-naming}
-	\thisproj\ uses standardized \verb+CamelCase+ notation. Therefore, \matplotlib\ palette names such as \tdoccodein{py}{berlin} and \tdoccodein{py}{gist_heat} become \tdoccodein{text}{Berlin} and \tdoccodein{text}{GistHeat} respectively.
+	\item 
+	\thisproj\ uses standardized \verb+CamelCase+ notation. Therefore, palette names such as \tdoccodein{py}{berlin} and \tdoccodein{py}{gist_heat} become \tdoccodein{text}{Berlin} and \tdoccodein{text}{GistHeat} respectively.
     
-    \item Palettes with a name ending with the \verb+_r+ suffix (reversed color order) are not included in \thisproj. However, the \thisproj\ implementations provide methods to easily obtain reversed palettes, sub-palettes, and color-shifted palettes.
+    \item \matplotlib\ palettes with a name ending with the \verb+_r+ suffix (reversed color order) are not included in \thisproj.
 \end{enumerate}
 
 
-% -------------------- %
+\begin{tdocnote}
+    Most \thisproj\ implementations provide methods to easily obtain reversed palettes, sub-palettes, and color-shifted palettes.
+    See the section \ref{products-all}.
+\end{tdocnote}
 
 
-\subsection{Asymptote and Scientific Coulour Maps}
-
-Simply apply the naming standardization explained in the previous section (see point \ref{reuse-std-naming}).
+\begin{tdoccaut}
+    Most \thisproj\ implementations add the \verb+pal+ prefix to standardized \verb+CamelCase+ names.
+    See the section \ref{products-all}.
+\end{tdoccaut}
 
 \end{document}

@@ -37,12 +37,14 @@ TAG_MPL         = "Matplotlib"
 TAG_PALETTABLE  = "Palettable"
 TAG_SCICOLMAP   = "Scientific Colour Maps"
 TAG_TABLEAU     = "Tableau"
+TAG_WESANDERSON = "Wes Anderson"
 
-TAGIFY = {
-    t.lower(): t
+PALETTABLE_SUB_FOLDERS = {
+    t.replace(' ', '').lower(): t
     for t in [
         TAG_CUBEHELIX,
-        TAG_TABLEAU
+        TAG_TABLEAU,
+        TAG_WESANDERSON,
     ]
 }
 

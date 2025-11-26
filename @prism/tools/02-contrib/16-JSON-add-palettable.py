@@ -124,6 +124,49 @@ def extract_tableau(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
     return palettes
 
 
+def extract_wesanderson(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
+    src_code = folder / f"{folder.name}.py"
+    src_code = src_code.read_text()
+
+    _ , _ , src_code = src_code.partition('_palettes =')
+
+    src_code, _ , _ = src_code.partition('_map_names')
+
+    src_code = src_code.strip()
+    src_pals = []
+
+    for line in src_code.split('\n'):
+        short_line = line.strip()
+
+        keep = True
+
+        for k in ["type", "url"]:
+            if (
+                short_line.startswith(f"'{k}':")
+                or
+                short_line.endswith(f"')")
+            ):
+                keep = False
+                break
+
+        if keep:
+            src_pals.append(line)
+
+    src_pals = eval('\n'.join(src_pals))
+
+    palettes = {}
+
+    for name, cols in src_pals.items():
+        cols = cols['colors']
+        size = str(len(cols))
+
+        name = name[:-len(size)]
+
+        palettes[name] = pal255_to_pal01(cols)
+
+    return palettes
+
+
 def extract_std(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
     ...
 
@@ -156,16 +199,17 @@ logging.info(f"Work with the '{CTXT}' source code.")
 nb_new_pals = len(ALL_PALETTES)
 
 for folder in ORIGINAL_SRC_DIR.glob("*"):
-    if not folder.name in TAGIFY:
+    if not folder.name in PALETTABLE_SUB_FOLDERS:
         continue
 
-    ctxt     = TAGIFY[folder.name]
+    ctxt     = PALETTABLE_SUB_FOLDERS[folder.name]
     palettes = extract(folder)
 
     for pal_name, pal_def in palettes.items():
         std_name = stdname(pal_name)
 
         ORIGINAL_NAMES[std_name] = pal_name
+        PAL_CREDITS[std_name]    = ctxt
 
         if std_name in STD_NAMES_IGNORED:
             continue
@@ -178,9 +222,6 @@ for folder in ORIGINAL_SRC_DIR.glob("*"):
             ignored   = PAL_REPORT,
             logcom    = logging
         )
-
-        if not std_name in PAL_REPORT:
-            PAL_CREDITS[std_name] = CTXT
 
 
 nb_new_pals = len(ALL_PALETTES) - nb_new_pals

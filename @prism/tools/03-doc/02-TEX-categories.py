@@ -42,6 +42,12 @@ with PAL_CATEGO_FILE.open(mode = "r") as f:
     ALL_CATEGO = json_load(f)
 
 
+PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
+
+with PAL_CREDITS_FILE.open(mode = "r") as f:
+    PAL_CREDITS = json_load(f)
+
+
 TMPL_TAG_CATEGO = "% AUTO CATEGOS - {}"
 
 TAG_CATEGO_START = TMPL_TAG_CATEGO.format("START")
@@ -64,7 +70,7 @@ drawCategoPals(PALETTES, {catego_id})
 
 
 EN_SORTED_TITLES = {
-    'deficient-blind': r"Colorblind-friendly palettes (coming from Scientific Coulour Maps)",
+    'deficient-blind': "Colorblind-friendly palettes",
     'bicolor'        :  "Two-color palettes",
     'tricolor'       :  "Three-color palettes",
     'rainbow'        :  "Rainbow-style palettes",
@@ -105,11 +111,14 @@ for id, title in EN_SORTED_TITLES.items():
 
     filename = f"catego-{i}.luadraw"
 
+    catego = ',\n  '.join(
+        f"{{'{n}', '{PAL_CREDITS[n]}'}}"
+        for n in ALL_CATEGO[id]
+    )
+
     luacode = LUA_TMPL_CODE.format(
         catego_id = i,
-        catego    = ',\n  '.join(
-            repr(n) for n in ALL_CATEGO[id]
-        )
+        catego    = catego
     )
 
     (CATEGO_DIR / filename).write_text(luacode)

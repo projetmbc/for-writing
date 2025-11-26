@@ -74,6 +74,7 @@ for cmap_name in allnames:
     std_name = stdname(cmap_name)
 
     ORIGINAL_NAMES[std_name] = cmap_name
+    PAL_CREDITS[std_name]    = CTXT
 
     candidate = minimize_palette([
         [
@@ -91,9 +92,6 @@ for cmap_name in allnames:
         ignored   = PAL_REPORT,
         logcom    = logging
     )
-
-    if not std_name in PAL_REPORT:
-        PAL_CREDITS[std_name] = CTXT
 
 
 logging.info(

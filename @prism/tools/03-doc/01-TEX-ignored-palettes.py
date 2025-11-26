@@ -31,6 +31,12 @@ with PAL_REPORT_FILE.open(mode = "r") as f:
     IGNORED = json_load(f)
 
 
+PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
+
+with PAL_CREDITS_FILE.open(mode = "r") as f:
+    PAL_CREDITS = json_load(f)
+
+
 TAB = " "*4
 
 TEX_NO_TRANSLATION = f"""
@@ -40,7 +46,7 @@ TEX_NO_TRANSLATION = f"""
 """.strip()
 
 TEX_TMPL_TABLE_HEADER = TAB + r"""
-    \item
+\begin{center}
     \begin{tblr}{
       colspec     = {@{}l | r Q[c,$] l},
       baseline    = T,
@@ -48,18 +54,21 @@ TEX_TMPL_TABLE_HEADER = TAB + r"""
     }
 """.strip()
 
-TEX_TMPL_TABLE_FOOTER = TAB + r"\end{tblr}"
+TEX_TMPL_TABLE_FOOTER = TAB + r"""
+\end{tblr}
+\end{center}
+""".strip()
 
-TEX_TMPL_KIND = TAB*2 + r"{ctxt}"
-TEX_TMPL_ROW  = TAB*2 + r"  & {row} \\"
+TEX_TMPL_KIND  = TAB*2 + r"{ctxt}"
+TEX_TMPL_ROW   = TAB*2 + r"  & {row} \\"
+TEX_TMPL_HRULE = TAB*2 + r"\hline"
 
 
 TEX_CMDS = {
     PAL_STATUS.EQUAL_TO  : "=",
     PAL_STATUS.REVERSE_OF: r"\rightleftharpoons",
-    "Matplotlib"         : r"\matplotlib",
-    "Human"              : r"XXXX",
 }
+
 
 # ----------------- #
 # -- LET'S WORK! -- #
@@ -72,7 +81,7 @@ bytechno = defaultdict(list)
 
 for name, infos in IGNORED.items():
     ctxt = infos[TAG_CTXT]
-
+    ctxt = PAL_CREDITS[name]
 
     if STATUS_TAG[PAL_STATUS.EQUAL_TO] in infos:
         status = PAL_STATUS.EQUAL_TO
@@ -93,14 +102,15 @@ if bytechno:
     texcode = [
         TEX_NO_TRANSLATION,
         '',
-        r"\begin{itemize}"
+        TEX_TMPL_TABLE_HEADER,
     ]
 
-    for ctxt, listof in bytechno.items():
+    for ctxt in sorted(bytechno):
+        listof = bytechno[ctxt]
+
         texcode += [
-            TEX_TMPL_TABLE_HEADER,
             TEX_TMPL_KIND.format(
-                ctxt    = TEX_CMDS[ctxt],
+                ctxt    = TEX_CMDS.get(ctxt, ctxt),
                 nblines = len(listof)
             ),
         ]
@@ -112,16 +122,10 @@ if bytechno:
                 TEX_TMPL_ROW.format(row = row)
             )
 
-
-        texcode += [
-            TEX_TMPL_TABLE_FOOTER,
-            ''
-        ]
+        texcode.append(TEX_TMPL_HRULE)
 
     texcode.pop(-1)
-    texcode.append(r"\end{itemize}")
-    texcode.append('')
-
+    texcode.append(TEX_TMPL_TABLE_FOOTER)
 
 texcode = '\n'.join(texcode)
 

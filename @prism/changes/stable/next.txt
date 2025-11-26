@@ -22,4 +22,4 @@ Here are the improvements.
 
             * All palettes grouped by user-friendly categories.
 
-    1) Showcase: credits to \colorbrewer added.
+    1) Incorporating the \palettable project additionally helped refine the palette references.

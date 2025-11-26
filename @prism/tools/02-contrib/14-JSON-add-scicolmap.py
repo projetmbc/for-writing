@@ -97,6 +97,7 @@ for pyfile in sorted(ORIGINAL_SRC_DIR.glob("*/*.py"), key = lambda x: str(x).low
     pal_def  = exract_palette(pyfile)
 
     ORIGINAL_NAMES[std_name] = pal_name
+    PAL_CREDITS[std_name]    = CTXT
 
     ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
@@ -106,8 +107,6 @@ for pyfile in sorted(ORIGINAL_SRC_DIR.glob("*/*.py"), key = lambda x: str(x).low
         ignored   = PAL_REPORT,
         logcom    = logging
     )
-
-    PAL_CREDITS[std_name] = CTXT
 
 
 nb_new_pals = len(ALL_PALETTES) - nb_new_pals

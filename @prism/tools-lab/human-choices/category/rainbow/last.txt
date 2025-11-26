@@ -49,3 +49,16 @@ Cubehelix1
 Cubehelix2
 PerceptualRainbow
 PurpleGray
+
+Aquatic
+Cavalcant
+Chevalie
+Darjeeling
+FantasticFox
+GrandBudapest
+IsleOfDogs
+Margot
+Mend
+Moonrise
+Royal
+Zisso

@@ -2,30 +2,26 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{itemize}
-    \item
+    \begin{center}
     \begin{tblr}{
       colspec     = {@{}l | r Q[c,$] l},
       baseline    = T,
       column{2,4} = {cmd=\tdoccodein{text}},
     }
-        XXXX
+        Colorbrewer
+          & Greys & = & Grays \\
+        \hline
+        Cubehelix
           & Classic & = & Cubehelix \\
-    \end{tblr}
-
-    \item
-    \begin{tblr}{
-      colspec     = {@{}l | r Q[c,$] l},
-      baseline    = T,
-      column{2,4} = {cmd=\tdoccodein{text}},
-    }
-        \matplotlib
+        \hline
+        Matplotlib
           & GistGray & \rightleftharpoons & Binary \\
           & GistGrey & \rightleftharpoons & Binary \\
           & GistYarg & = & Binary \\
           & GistYerg & = & Binary \\
-          & Gray & \rightleftharpoons & Binary \\
           & Grey & \rightleftharpoons & Binary \\
-          & Greys & = & Grays \\
+        \hline
+        Tableau
+          & Gray & \rightleftharpoons & Binary \\
     \end{tblr}
-\end{itemize}
+\end{center}
