@@ -1,0 +1,12 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'Jet',
+  'Turbo'
+}
+
+drawSimPals(PALETTES, 20)
+\end{luacode*}

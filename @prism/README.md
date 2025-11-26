@@ -36,6 +36,8 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 `@prism` includes some original creations, but most color palettes are derived from the project below by segmenting their color maps into 10-value palettes.
 
 - [`Asymptote`](https:asymptote.sourceforge.io) is used, but currently offers nothing beyond [`Matplotlib`](https://matplotlib.org) (despite different implementa- tions).
+- [`CartoColor`](https://github.com/CartoDB/cartocolor) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
+- [`cmocean`](https://matplotlib.org/cmocean) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`Colorbrewer`](https://colorbrewer2.org).
 - [`Cubehelix`](https://jiffyclub.github.io/palettable/cubehelix) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`Matplotlib`](https://matplotlib.org).

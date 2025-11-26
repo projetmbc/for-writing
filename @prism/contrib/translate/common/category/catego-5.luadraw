@@ -5,9 +5,33 @@
 \begin{luacode*}
 PALETTES = {
   {'Accent', 'Colorbrewer'},
+  {'Antique', 'CartoColors'},
+  {'Bold', 'CartoColors'},
   {'ColorBlind', 'Tableau'},
   {'Dark2', 'Colorbrewer'},
-  {'Fes', 'Scientific Colour Maps'}
+  {'Fes', 'Scientific Colour Maps'},
+  {'Flag', 'Matplotlib'},
+  {'GistStern', 'Matplotlib'},
+  {'GreenOrange', 'Tableau'},
+  {'Paired', 'Colorbrewer'},
+  {'Pastel', 'CartoColors'},
+  {'Pastel1', 'Colorbrewer'},
+  {'Pastel2', 'Colorbrewer'},
+  {'Phase', 'cmocean'},
+  {'Prism', 'CartoColors'},
+  {'Safe', 'CartoColors'},
+  {'Set1', 'Colorbrewer'},
+  {'Set2', 'Colorbrewer'},
+  {'Set3', 'Colorbrewer'},
+  {'Tab10', 'Matplotlib'},
+  {'Tab20', 'Matplotlib'},
+  {'Tab20b', 'Matplotlib'},
+  {'Tab20c', 'Matplotlib'},
+  {'Tableau', 'Tableau'},
+  {'TableauLight', 'Tableau'},
+  {'TableauMedium', 'Tableau'},
+  {'TrafficLight', 'Tableau'},
+  {'Vivid', 'CartoColors'}
 }
 
 drawCategoPals(PALETTES, 5)

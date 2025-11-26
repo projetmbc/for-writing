@@ -1,4 +1,8 @@
 {
+  "Balance": {
+    "context": "Human",
+    "equal-to": "Vik"
+  },
   "Classic": {
     "context": "Human",
     "equal-to": "Cubehelix"

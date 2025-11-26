@@ -2,4 +2,6 @@
 # -- Last Human Selection -- #
 # -------------------------- #
 
+Balance = Vik
+
 Classic = Cubehelix

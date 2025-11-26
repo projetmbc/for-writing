@@ -33,3 +33,23 @@ YlOrBr
 YlOrRd
 
 Purple
+
+AgGrnYl
+BluGrn
+BluYl
+BrwnYl
+Burg
+BurgYl
+DarkMint
+Emrld
+Magenta
+Mint
+OrYel
+Peach
+Purp
+PurpOr
+RedOr
+Teal
+TealGrn
+
+Algae

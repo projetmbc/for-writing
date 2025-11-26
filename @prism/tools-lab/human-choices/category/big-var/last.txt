@@ -25,3 +25,11 @@ Tableau
 TableauLight
 TableauMedium
 TrafficLight
+
+Antique
+Bold
+Pastel
+Safe
+Vivid
+
+Phase

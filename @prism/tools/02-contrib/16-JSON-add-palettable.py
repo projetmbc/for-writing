@@ -32,9 +32,7 @@ ORIGINAL_SRC_DIR = PROJ_DIR / "resources" / "Palettable" / "palettable-master" /
 REPORT_DIR       = THIS_DIR.parent / "report"
 
 
-CTXT_FILE_NAME = CTXT.replace(' ', '-').upper()
-NAMES_FILE     = REPORT_DIR / f"NAMES-{CTXT_FILE_NAME}.json"
-ORIGINAL_NAMES = dict()
+ORIGINAL_NAMES = defaultdict(dict)
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"
@@ -167,25 +165,81 @@ def extract_wesanderson(folder: Path) -> dict[ str, list[ [float, float, float] 
     return palettes
 
 
-def extract_std(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
-    ...
+PATTERN_COMMON_PYDEF = re.compile(
+    r'_([A-Z]+)\s*=\s*(\[[\s\S]*?\n\])'
+)
 
+def extract_data(file: Path) -> dict[ str, list[ [float, float, float] ] ]:
+    pycode   = file.read_text()
+    palettes = dict()
+
+    for match in PATTERN_COMMON_PYDEF.finditer(pycode):
+        name = match.group(1)
+        cols = match.group(2)
+        cols = eval(cols)
+
+        palettes[name] = pal255_to_pal01(cols)
+
+    return palettes
+
+
+PATTERN_NAMES_TO_DATA = re.compile(
+    r'_NAMES_TO_DATA\s*=\s*\{([^}]+)\}'
+)
+
+PATTERN_NAME_PAIR = re.compile(
+    r"'(\w+)':\s*colormaps\._(\w+)"
+)
+
+def extract_original_names(folder: Path) -> dict[ str, str ]:
+    original_names = dict()
+
+    for fname in [
+        'diverging',
+        'qualitative',
+        'sequential',
+    ]:
+        pyfile = folder / f"{fname}.py"
+
+        if not pyfile.is_file():
+            continue
+
+        pycode = pyfile.read_text()
+
+        match = PATTERN_NAMES_TO_DATA.search(pycode, re.DOTALL)
+
+        if not match:
+            continue
+
+        pycode = match.group(1)
+
+        for pair_match in PATTERN_NAME_PAIR.finditer(pycode):
+            srcname = pair_match.group(1)
+            pyname  = pair_match.group(2)
+
+            original_names[pyname] = srcname
+
+    return original_names
+
+def extract_cartocolors(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
+    oripals = extract_data(folder / "colormaps.py")
+
+    orinames = extract_original_names(folder)
+
+    pals = {
+        orinames[n]: p
+        for n, p in oripals.items()
+    }
+
+    return pals
+
+extract_cmocean = extract_cartocolors
 
 
 def extract(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
     logging.info(f"Analyzing '{folder.name}' folder.")
 
-    files = [
-        f
-        for f in folder.glob('*')
-        if f.name[0] != '.'
-    ]
-
-    if len(files) == 1:
-        extractor = globals()[f"extract_{folder.name}"]
-
-    else:
-        extractor = extract_std
+    extractor = globals()[f"extract_{folder.name}"]
 
     return extractor(folder)
 
@@ -208,8 +262,8 @@ for folder in ORIGINAL_SRC_DIR.glob("*"):
     for pal_name, pal_def in palettes.items():
         std_name = stdname(pal_name)
 
-        ORIGINAL_NAMES[std_name] = pal_name
-        PAL_CREDITS[std_name]    = ctxt
+        ORIGINAL_NAMES[ctxt][std_name] = pal_name
+        PAL_CREDITS[std_name]          = ctxt
 
         if std_name in STD_NAMES_IGNORED:
             continue
@@ -239,9 +293,12 @@ else:
 # -- JSON UPDATE -- #
 # ----------------- #
 
-NAMES_FILE.write_text(
-    json_dumps(ORIGINAL_NAMES)
-)
+for ctxt, orinames in ORIGINAL_NAMES.items():
+    ctxt_file_name = ctxt.replace(' ', '-').upper()
+    names_file     = REPORT_DIR / f"NAMES-{ctxt_file_name}.json"
+    names_file.write_text(
+        json_dumps(orinames)
+    )
 
 PAL_CREDITS_FILE.write_text(
     json_dumps(PAL_CREDITS)

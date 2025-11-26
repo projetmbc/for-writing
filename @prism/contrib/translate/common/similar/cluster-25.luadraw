@@ -1,0 +1,12 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'RdYlBu',
+  'Spectral'
+}
+
+drawSimPals(PALETTES, 25)
+\end{luacode*}

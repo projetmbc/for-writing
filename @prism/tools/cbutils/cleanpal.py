@@ -32,21 +32,25 @@ TAG_CTXT = 'context'
 TAG_APRISM      = "@prism"
 TAG_ASY         = "Asymptote"
 TAG_COLORBREWER = "Colorbrewer"
-TAG_CUBEHELIX   = "Cubehelix"
+
 TAG_MPL         = "Matplotlib"
 TAG_PALETTABLE  = "Palettable"
 TAG_SCICOLMAP   = "Scientific Colour Maps"
-TAG_TABLEAU     = "Tableau"
-TAG_WESANDERSON = "Wes Anderson"
+
+
+PALETTABLE_SUB_FOLDERS = [
+    (TAG_CARTOCOLOR := "CartoColors"),
+    (TAG_CMOCEAN    := "cmocean"),
+    (TAG_CUBEHELIX  := "Cubehelix"),
+    (TAG_TABLEAU    := "Tableau"),
+    (TAG_WESANDERSON:= "Wes Anderson"),
+]
 
 PALETTABLE_SUB_FOLDERS = {
     t.replace(' ', '').lower(): t
-    for t in [
-        TAG_CUBEHELIX,
-        TAG_TABLEAU,
-        TAG_WESANDERSON,
-    ]
+    for t in PALETTABLE_SUB_FOLDERS
 }
+
 
 def minimize_palette(p: list[float]) -> list[float]:
     if len(set(tuple(c) for c in p)) == len(p):

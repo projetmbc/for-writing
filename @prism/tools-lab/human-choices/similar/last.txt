@@ -4,12 +4,13 @@
 
 # -- NO CLUSTER --
 #
-#: Accent, Acton, Autumn, Aquatic,
-#: Berlin, BlindFish, BlueRed, BrBG, Brg, Buda, BurningGrass,
+#: Accent, Acton, Autumn, Aquatic, AgSunset, Antique, ArmyRose
+#: Berlin, BlindFish, BlueRed, BrBG, Brg, Buda, BurningGrass, Bold,BrwnYl,
 #: ColorBlind, Cool, Coolwarm, Cubehelix, Cubehelix1,Cavalcant,Chevalie,
 #: Dark2,Darjeeling,
-#: Fes, Flag, FantasticFox,
-#: GasFlame, GeoRainbow, GistEarth, GistHeat, GistNcar, GistStern, Glasgow, Gnuplot2, GrayC, GreenOrange, GrandBudapest,
+#: Earth,
+#: Fes, Flag, FantasticFox,Fall,
+#: GasFlame, GeoRainbow, GistEarth, GistHeat, GistNcar, GistStern, Glasgow, Gnuplot2, GrayC, GreenOrange,GrandBudapest,Geyser,
 #: Hawaii,
 #: IsleOfDogs,
 #: JimSpecial
@@ -17,13 +18,15 @@
 #: Managua,Margot,Mend,Moonrise,
 #: NipySpectral,
 #: Ocean,
-#: Paired, Pastel1, Pastel2, PastelRainbow, PerceptualRainbow, Prism, PuBuGn, PuOr, PuRd, PurpleGray
+#: Paired, Pastel1, Pastel2, PastelRainbow, PerceptualRainbow, Prism, PuBuGn, PuOr, PuRd, PurpleGray,Pastel,Purp
 #: Rainbow, RdGy, RdPu, RdYlGn,Royal,
-#: Set1, Set2, Set3, ShiftRainbow, Spring, Summer,
-#: Tab20b, Tab20c, Terrain, Tofino, Tokyo, Twilight, TableauLight, TableauMedium, TrafficLight
-#: Vanimo,
+#: Set1, Set2, Set3, ShiftRainbow, Spring, Summer,Safe,Sunset
+#: Tab20b, Tab20c, Terrain, Tofino, Tokyo, Twilight, TableauLight, TableauMedium, TrafficLight,Tropic,
+#: Vanimo,Vivid,
 #: Winter, Wistia,
 #: Zisso
+#
+#: Curl, Deep, Delta, Matter, Oxy, Phase, Solar, Speed, Tempo, Turbid
 
 # -- FALSE POSITIVE --
 #
@@ -36,14 +39,18 @@
 #:       , Turku
 #: Bilbao, Pink
 #:       , Lipari
+#: BluYl, TealGrn
+#:      , YlGn
 #: Bone, Oslo
 #: Bukavu, Oleron
 #: BuPu, Purples
+#: BurgYl, RedOr
 #: Bwr, Seismic
 #:    , Coolwarm
 #
 #: CMRmap, Magma
 #: Copper, Lajolla
+#: CMRmap, Cubehelix3
 #: Cork, CorkO
 #: Cubehelix2, Red
 #
@@ -53,6 +60,7 @@
 #
 #: GistRainbow, Hsv
 #: Gnuplot, Plasma
+#: Greens, YlGn
 #
 #: Imola, Cividis
 #
@@ -61,46 +69,41 @@
 #
 #: OrRd, Reds
 #
+#: Peach, PinkYl
+#
 #: RdBu, RdYlBu
 #:     , Spectral
 #: Roma, RomaO
 #:     , Spectral
 #
-#: Tableau, Tab10
+#: Tab10, Tableau
+#:      , TableauMedium
 #: TwilightShifted, Vik
+#
+#: Algae,Greens
 
 
 # --------------------------- #
 # -- JUST TOT TEST - START -- #
 
-
 ---
-
-
 ---
-
-Cubehelix3, CMRmap
-
 ---
-
-Purple, Devon
-
 ---
-
 ---
-Tableau, Tab20
----
-
 ---
 
 # --  JUST TOT TEST - END  -- #
 # --------------------------- #
 
-
 # -- A -- #
 
 ---
 Afmhot, Hot
+---
+AgGrnYl, Summer
+---
+Amp,BrwnYl
 ---
 
 # -- B -- #
@@ -114,9 +117,28 @@ Binary, Grays
 ---
 Blues, PuBu
 ---
+BluGrn,  Emrld
+---
 Broc, BrocO
 ---
-BuGn, Greens, YlGn
+BuGn, Greens
+---
+BuPu, Dense
+---
+Burg, Magenta, PurpOr
+---
+BurgYl, SunsetDark
+---
+
+# -- C -- #
+
+
+# -- D -- #
+
+---
+DarkMint, Mint, Teal
+---
+Devon, Purple
 ---
 
 # -- G -- #
@@ -125,12 +147,18 @@ BuGn, Greens, YlGn
 GnBu, YlGnBu
 ---
 
+# -- H -- #
+
+---
+Haline,Imola, Viridis
+---
+
 # -- I -- #
 
 ---
-Imola, Viridis
+Ice,JimSpecial
 ---
-Inferno, Magma, Plasma
+Inferno, Magma, Plasma, Thermal
 ---
 
 # -- J -- #
@@ -152,6 +180,8 @@ Oranges, YlOrBr
 ---
 OrRd, YlOrRd,
 ---
+OrYel, Peach
+---
 
 # -- R -- #
 
@@ -161,6 +191,10 @@ RdYlBu, Spectral
 
 # -- T -- #
 
+---
+Tab20, Tableau
+---
+TealRose, Temps
 ---
 TwilightShifted, VikO
 ---

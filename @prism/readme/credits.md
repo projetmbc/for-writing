@@ -5,6 +5,10 @@ Credits
 
   * [`Asymptote`](https:asymptote.sourceforge.io) is used, but currently offers nothing beyond [`Matplotlib`][2] (despite different implementa- tions).
 
+  * [`CartoColor`](https://github.com/CartoDB/cartocolor) is extracted from [`Palettable`][1] project.
+
+  * [`cmocean`](https://matplotlib.org/cmocean) is extracted from [`Palettable`][1] project.
+
   * [`Colorbrewer`](https://colorbrewer2.org).
 
   * [`Cubehelix`](https://jiffyclub.github.io/palettable/cubehelix) is extracted from [`Palettable`][1] project.

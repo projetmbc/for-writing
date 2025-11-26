@@ -47,3 +47,10 @@ YlGnBu
 Cubehelix3
 JimSpecial
 Red
+
+PinkYl
+
+Amp
+Ice
+Solar
+Tempo

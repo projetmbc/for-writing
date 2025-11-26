@@ -4,8 +4,8 @@
 
 \begin{luacode*}
 PALETTES = {
-  'Broc',
-  'BrocO'
+  'Binary',
+  'Grays'
 }
 
 drawSimPals(PALETTES, 6)

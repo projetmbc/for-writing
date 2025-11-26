@@ -4,6 +4,14 @@
     "Hot"
   ],
   [
+    "AgGrnYl",
+    "Summer"
+  ],
+  [
+    "Amp",
+    "BrwnYl"
+  ],
+  [
     "Bam",
     "PiYG",
     "PRGn"
@@ -17,6 +25,10 @@
     "Grays"
   ],
   [
+    "BluGrn",
+    "Emrld"
+  ],
+  [
     "Blues",
     "PuBu"
   ],
@@ -26,12 +38,25 @@
   ],
   [
     "BuGn",
-    "Greens",
-    "YlGn"
+    "Greens"
   ],
   [
-    "CMRmap",
-    "Cubehelix3"
+    "BuPu",
+    "Dense"
+  ],
+  [
+    "Burg",
+    "Magenta",
+    "PurpOr"
+  ],
+  [
+    "BurgYl",
+    "SunsetDark"
+  ],
+  [
+    "DarkMint",
+    "Mint",
+    "Teal"
   ],
   [
     "Devon",
@@ -42,13 +67,19 @@
     "YlGnBu"
   ],
   [
+    "Haline",
     "Imola",
     "Viridis"
   ],
   [
+    "Ice",
+    "JimSpecial"
+  ],
+  [
     "Inferno",
     "Magma",
-    "Plasma"
+    "Plasma",
+    "Thermal"
   ],
   [
     "Jet",
@@ -63,6 +94,10 @@
     "YlOrRd"
   ],
   [
+    "OrYel",
+    "Peach"
+  ],
+  [
     "Oranges",
     "YlOrBr"
   ],
@@ -73,6 +108,10 @@
   [
     "Tab20",
     "Tableau"
+  ],
+  [
+    "TealRose",
+    "Temps"
   ],
   [
     "TwilightShifted",

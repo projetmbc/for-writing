@@ -4,8 +4,9 @@
 
 \begin{luacode*}
 PALETTES = {
-  'Binary',
-  'Grays'
+  'Bam',
+  'PiYG',
+  'PRGn'
 }
 
 drawSimPals(PALETTES, 4)

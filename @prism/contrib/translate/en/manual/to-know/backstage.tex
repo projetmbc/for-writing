@@ -18,10 +18,12 @@
 \def\frompalettable{is extracted from \palettable\ project}
 %
 \begin{itemize}
-  \foreach \techno/\xtra in {% 
+  \foreach \techno/\xtra in {%
     % -- A -- %
     \asymptote / {is used, but currently offers nothing beyond \matplotlib\ (despite different implementations)},%
     % -- C -- %
+    \cartocolor  / \frompalettable,%
+    \cmocean     / \frompalettable,%
     \colorbrewer /{},%
     \cubehelix   / \frompalettable, %
     % -- M -- %
@@ -59,7 +61,7 @@ We retain only palettes that comply with the following rules.
         Some \matplotlib\ palettes are duplicated, likely for historical reasons.
     }
     \thisproj\ use a one-to-one map from names to palettes.
-    
+
     \item \textbf{No reversed versions.}
     Unlike \matplotlib,%
     \footnote{
