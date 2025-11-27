@@ -7,6 +7,10 @@
     "context": "Human",
     "equal-to": "Cubehelix"
   },
+  "D3": {
+    "context": "Plotly",
+    "equal-to": "Tab10"
+  },
   "GistGray": {
     "context": "Matplotlib",
     "reverse-of": "Binary"

@@ -36,3 +36,8 @@ Phase
 
 Alphabet
 Plotly
+
+Dark24
+G10
+Light24
+T10

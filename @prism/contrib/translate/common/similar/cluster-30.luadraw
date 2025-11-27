@@ -1,0 +1,12 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{luacode*}
+PALETTES = {
+  'TealRose',
+  'Temps'
+}
+
+drawSimPals(PALETTES, 30)
+\end{luacode*}

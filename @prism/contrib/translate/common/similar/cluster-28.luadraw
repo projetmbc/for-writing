@@ -4,8 +4,9 @@
 
 \begin{luacode*}
 PALETTES = {
-  'TwilightShifted',
-  'VikO'
+  'RdYlBu',
+  'RedYellowBlue',
+  'Spectral'
 }
 
 drawSimPals(PALETTES, 28)

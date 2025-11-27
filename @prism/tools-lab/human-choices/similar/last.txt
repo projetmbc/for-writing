@@ -33,6 +33,8 @@
 #: Portland, Alphabet, Blackbody, Bluered, Electric, Picnic, Plotly,
 #
 #: LinearL.png, CubeYF
+#
+#: Blues10, Blues7, BrownBlue10, BrownBlue12, Cube1, Dark24, G10, Light24, LinearL, T10
 
 
 # -- FALSE POSITIVE --
@@ -91,11 +93,26 @@
 #: TwilightShifted, Vik
 #
 #: Algae,Greens
+#
+#: BlueDarkRed12,BlueOrange12
+#: BlueOrange8, BlueOrange12
 
 
 # --------------------------- #
 # -- JUST TOT TEST - START -- #
 
+---
+BlueDarkOrange12, BlueDarkOrange18
+---
+BlueDarkRed12, BlueDarkRed18
+---
+BlueOrange8, BlueOrange10
+---
+---
+---
+---
+---
+---
 ---
 ---
 ---

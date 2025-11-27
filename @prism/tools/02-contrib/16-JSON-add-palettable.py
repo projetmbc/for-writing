@@ -59,7 +59,7 @@ STD_NAMES_IGNORED = list(ALL_PALETTES) + list(PAL_REPORT)
 
 
 PATTERN_COMMON_PYDEF = re.compile(
-    r'_?([A-Z_]+)\s*=\s*(\[[\s\S]*?\n\])'
+    r'_?([A-Z0-9_]+)\s*=\s*(\[[\s\S]*?\n\])'
 )
 
 PATTERN_NAMES_TO_DATA = re.compile(
@@ -67,7 +67,7 @@ PATTERN_NAMES_TO_DATA = re.compile(
 )
 
 PATTERN_NAME_PAIR = re.compile(
-    r"['\"]([\w_]+)['\"]:\s*(colormaps|colordata)\._?([\w_]+)"
+    r"['\"]([\w0-9_]+)['\"]:\s*(colormaps|colordata)\._?([\w_]+)"
 )
 
 
@@ -247,10 +247,6 @@ def extract_std(
         pattern   = PATTERN_NAME_PAIR,
         xtrafiles = xtrafiles
     )
-
-    if True:
-        print(orinames)
-        print(oripals.keys())
 
     pals = {
         orinames[n]: p

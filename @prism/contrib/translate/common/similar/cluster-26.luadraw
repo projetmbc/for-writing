@@ -4,8 +4,8 @@
 
 \begin{luacode*}
 PALETTES = {
-  'Tab20',
-  'Tableau'
+  'OrYel',
+  'Peach'
 }
 
 drawSimPals(PALETTES, 26)

@@ -4,8 +4,8 @@
 
 \begin{luacode*}
 PALETTES = {
-  'OrYel',
-  'Peach'
+  'Jet',
+  'Turbo'
 }
 
 drawSimPals(PALETTES, 23)

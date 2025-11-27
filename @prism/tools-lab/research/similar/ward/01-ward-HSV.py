@@ -160,3 +160,6 @@ for meth in CLUSTER_METHODS:
             title    = f"'{name}' family.",
             file_    = CLUSTERS_DIR / meth / f'{name}.png'
         )
+
+print(f"+ Full list.")
+print(', '.join(newpals))

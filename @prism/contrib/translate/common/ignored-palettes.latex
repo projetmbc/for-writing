@@ -21,6 +21,9 @@
           & GistYerg & = & Binary \\
           & Grey & \rightleftharpoons & Binary \\
         \hline
+        Plotly
+          & D3 & = & Tab10 \\
+        \hline
         Tableau
           & Gray & \rightleftharpoons & Binary \\
         \hline

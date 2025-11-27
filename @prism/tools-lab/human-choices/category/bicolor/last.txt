@@ -55,3 +55,6 @@ TealGrn
 Algae
 
 Bluered
+
+Blues10
+Blues7

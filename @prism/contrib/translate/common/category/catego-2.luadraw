@@ -12,6 +12,8 @@ PALETTES = {
   {'BluYl', 'CartoColors'},
   {'Bluered', 'Plotly'},
   {'Blues', 'Colorbrewer'},
+  {'Blues10', 'Light Bartlein'},
+  {'Blues7', 'Light Bartlein'},
   {'Bone', 'Matplotlib'},
   {'BrwnYl', 'CartoColors'},
   {'BuGn', 'Colorbrewer'},
