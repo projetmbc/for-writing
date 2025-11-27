@@ -4,27 +4,26 @@
 
 # -- NO CLUSTER --
 #
-#: Accent, Acton, Autumn, Aquatic, AgSunset, Antique, ArmyRose
+#: Accent, Acton, Autumn, , AgSunset, Antique, ArmyRose
 #: Berlin, BlindFish, BlueRed, BrBG, Brg, Buda, BurningGrass, Bold,BrwnYl,
-#: ColorBlind, Cool, Coolwarm, Cubehelix, Cubehelix1,Cavalcant,Chevalie,
-#: Dark2,Darjeeling,
+#: ColorBlind, Cool, Coolwarm, Cubehelix, Cubehelix1,,
+#: Dark2,,
 #: Earth,
-#: Fes, Flag, FantasticFox,Fall,
-#: GasFlame, GeoRainbow, GistEarth, GistHeat, GistNcar, GistStern, Glasgow, Gnuplot2, GrayC, GreenOrange,GrandBudapest,Geyser,
+#: Fes, Flag, ,Fall,
+#: GasFlame, GeoRainbow, GistEarth, GistHeat, GistNcar, GistStern, Glasgow, Gnuplot2, GrayC, GreenOrange,,Geyser,
 #: Hawaii,
-#: IsleOfDogs,
+#
 #: JimSpecial
 #: Lemon, Lisbon,
-#: Managua,Margot,Mend,Moonrise,
+#: Managua,,,
 #: NipySpectral,
 #: Ocean,
 #: Paired, Pastel1, Pastel2, PastelRainbow, PerceptualRainbow, Prism, PuBuGn, PuOr, PuRd, PurpleGray,Pastel,Purp
-#: Rainbow, RdGy, RdPu, RdYlGn,Royal,
+#: Rainbow, RdGy, RdPu, RdYlGn,,
 #: Set1, Set2, Set3, ShiftRainbow, Spring, Summer,Safe,Sunset
 #: Tab20b, Tab20c, Terrain, Tofino, Tokyo, Twilight, TableauLight, TableauMedium, TrafficLight,Tropic,
 #: Vanimo,Vivid,
 #: Winter, Wistia,
-#: Zisso
 #
 #: Curl, Deep, Delta, Matter, Oxy, Phase, Solar, Speed, Tempo, Turbid
 #
@@ -96,17 +95,12 @@
 #
 #: BlueDarkRed12,BlueOrange12
 #: BlueOrange8, BlueOrange12
-
+#
+#: Aquatic1, Aquatic2, Aquatic3, Cavalcanti, Chevalier, Darjeeling1, Darjeeling2, Darjeeling3, Darjeeling4, FantasticFox1, FantasticFox2, GrandBudapest1, GrandBudapest2, GrandBudapest3, GrandBudapest4, GrandBudapest5, IsleOfDogs1, IsleOfDogs2, IsleOfDogs3, Margot1, Margot2, Margot3, Mendl, Moonrise1, Moonrise2, Moonrise3, Moonrise4, Moonrise5, Moonrise6, Moonrise7, Royal1, Royal2, Royal3, Zissou
 
 # --------------------------- #
 # -- JUST TOT TEST - START -- #
 
----
-BlueDarkOrange12, BlueDarkOrange18
----
-BlueDarkRed12, BlueDarkRed18
----
-BlueOrange8, BlueOrange10
 ---
 ---
 ---
@@ -141,6 +135,12 @@ Bam, PiYG, PRGn
 Batlow, BatlowK
 ---
 Binary, Grays
+---
+BlueDarkOrange12, BlueDarkOrange18
+---
+BlueDarkRed12, BlueDarkRed18
+---
+BlueOrange8, BlueOrange10
 ---
 Blues, PuBu
 ---

@@ -174,8 +174,6 @@ def extract_wesanderson(folder: Path) -> dict[ str, list[ [float, float, float] 
         cols = cols['colors']
         size = str(len(cols))
 
-        name = name[:-len(size)]
-
         palettes[name] = pal255_to_pal01(cols)
 
     return palettes
