@@ -303,10 +303,7 @@ for folder in sorted(ORIGINAL_SRC_DIR.glob("*")):
         pal_def  = palettes[pal_name]
         std_name = stdname(pal_name)
 
-        ORIGINAL_NAMES[ctxt][std_name] = pal_name
-        PAL_CREDITS[std_name]          = ctxt
-
-        ALL_PALETTES, PAL_REPORT = update_palettes(
+        aprism_name, ALL_PALETTES, PAL_REPORT = update_palettes(
             context   = ctxt,
             name      = std_name,
             candidate = pal_def,
@@ -314,6 +311,9 @@ for folder in sorted(ORIGINAL_SRC_DIR.glob("*")):
             ignored   = PAL_REPORT,
             logcom    = logging
         )
+
+        ORIGINAL_NAMES[ctxt][aprism_name] = pal_name
+        PAL_CREDITS[aprism_name]          = ctxt
 
 
 nb_new_pals = resume_pal_build(

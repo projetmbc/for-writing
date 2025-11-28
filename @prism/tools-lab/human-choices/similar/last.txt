@@ -31,7 +31,7 @@
 #
 #: Portland, Alphabet, Blackbody, Bluered, Electric, Picnic, Plotly,
 #
-#: LinearL.png, CubeYF
+#: LinearL,, CubeYF
 #
 #: Blues10, Blues7, BrownBlue10, BrownBlue12, Cube1, Dark24, G10, Light24, LinearL, T10
 
@@ -97,6 +97,9 @@
 #: BlueOrange8, BlueOrange12
 #
 #: Aquatic1, Aquatic2, Aquatic3, Cavalcanti, Chevalier, Darjeeling1, Darjeeling2, Darjeeling3, Darjeeling4, FantasticFox1, FantasticFox2, GrandBudapest1, GrandBudapest2, GrandBudapest3, GrandBudapest4, GrandBudapest5, IsleOfDogs1, IsleOfDogs2, IsleOfDogs3, Margot1, Margot2, Margot3, Mendl, Moonrise1, Moonrise2, Moonrise3, Moonrise4, Moonrise5, Moonrise6, Moonrise7, Royal1, Royal2, Royal3, Zissou
+#
+#: GrayT, PrismCC, RainbowP,
+
 
 # --------------------------- #
 # -- JUST TOT TEST - START -- #

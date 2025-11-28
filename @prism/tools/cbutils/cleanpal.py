@@ -33,6 +33,7 @@ STATUS_TAG = {
 
 TAG_SAME_NAME     = STATUS_TAG[PAL_STATUS.SAME_NAME]
 TAG_NAMES_IGNORED = "names-ignored"
+TAG_NEW_NAMES     = "new-names"
 
 TAG_CTXT  = 'context'
 TAG_METH  = 'method'
@@ -119,12 +120,22 @@ def update_palettes(
     ignored  : dict[ str, dict[ str, [str] ] ],
     logcom,
 ) -> (
+    str,
     dict[ str, list[ [float, float, float] ] ],
     dict[ str, dict[ str, [str] ] ]
 ):
-# To ignore.
     name_n_ctxt = namectxt(name, context)
 
+# New name?
+    if name_n_ctxt in ignored[TAG_NEW_NAMES]:
+        _name = name
+
+        name        = ignored[TAG_NEW_NAMES][name_n_ctxt]
+        name_n_ctxt = namectxt(name, context)
+
+        logcom.warning(f"'{_name}' changed to '{name}'.")
+
+# To ignore.
     if name_n_ctxt in ignored:
         _meth = ignored[name_n_ctxt][TAG_METH]
 
@@ -132,7 +143,7 @@ def update_palettes(
 
         ignored[TAG_NAMES_IGNORED].append(name)
 
-        return palettes, ignored
+        return name, palettes, ignored
 
 # Name already used or ignored.
     if (
@@ -154,7 +165,7 @@ def update_palettes(
             f"'{name}' already used - Human checking needed."
         )
 
-        return palettes, ignored
+        return name, palettes, ignored
 
 # We have to analyze the palette.
     candidate = norm_palette(candidate)
@@ -189,7 +200,7 @@ def update_palettes(
                 f"'{name}' ignored - {STATUS_MSG[status]} '{lastname}'."
             )
 
-    return palettes, ignored
+    return name, palettes, ignored
 
 
 def norm_palette(

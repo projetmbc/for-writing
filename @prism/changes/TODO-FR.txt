@@ -5,56 +5,46 @@
 
 // ---------- //
 
-pour les nms exclus, besoind e vérifier quand meêm ce que sont les pletts !!!!
-
-
-// ---------- //
-
-showcase PDF : on affine et recompile que si, et uniquement si...
-
-   ---> forcé par utilisateur : config via un about.yaml par exemple
-
-
-// ---------- //
-
-showcase : ajout de la ctégo finale
-
-+
-
-chgt noms ctégos
-
-   ---> big-var --> semantic
-
-   ---> rainbow : smooth (voir si affinable mais auomatiquement )
-
-
-// ---------- //
-
-catégorie : affiner la sléection !!
-
+màj des infos sur les palettes ignorés et les rénommages via un nouvel annexe !
 
 
 // ---------- //
 
 tools-lab
 
-   ---> normaliser les TXT utiliser dans les tools standard
+   ---> normaliser les TXT / YAML utiliser dans les tools standard
 
-   ---> pour le sctéegos / similar, un fichier dédier à ec qui est ignoré pour maintenance plus simple
+   ---> pour le sctéegos / similar,  fichier dédiés à ec qui est ignoré, faux positifs pour maintenance plus simple
+
+
+// ---------- //
+
+showcase
+
+   ---> MODE DEV : on affine en recompilant que si, et uniquement si la paelette associé a été modifieé.
+
+   ---> MODE NON DEV : tout est refait
+
+   ---> Ajout de la catégo finale
+
+            + chgt noms ctégos : big-var --> semantic
+                                 rainbow --> ? (voir si affinable pour usage humain plus simple couleurs dapért milieu et fin)
+
+
+// ---------- //
+
+1.3.0 uniqument lorsque  product et contrib
+
+   ---> on doit apsser juste à du lua, et luadraw donne l'und es moyens de dev possibles
+
+   ---> que garde-t-on alors dans le manuel : juste le how oto use it, autre ???
+
+   ---> dans la doc, indiquer que luadraw intéègre la produit luadraw automatiquement, plus besoin de bidouiller
 
 
 // ---------- //
 
 Compilation no longer restarts \luadraw.
-
-
-// ---------- //
-
-product et contrib
-
-   ---> on doit apsser juste à du lua, et luadraw donne l'und es moyens de dev possibles
-
-   ---> que garde-t-on alors dans le manuel : juste le how oto use it, autre ???
 
 
 // ---------- //
@@ -70,11 +60,6 @@ nouveaux proj intégérs  OU  crédit pour la doc  OU  pour compléter showcase 
    ---> https://r02b.github.io/seaborn_palettes/
 
    ---> https://blog.scientific-python.org/matplotlib/pypalettes/
-
-
-// ---------- //
-
-dans la doc, indiquer que luadraw intéègre la produit luadraw automatiquement, plus besoin de bidouiller
 
 
 // ---------- //

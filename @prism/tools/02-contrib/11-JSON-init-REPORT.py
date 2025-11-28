@@ -17,16 +17,21 @@ from yaml import safe_load
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR   = Path(__file__).parent
-PROJ_DIR   = THIS_DIR.parent.parent
-REPORT_DIR = THIS_DIR.parent / "report"
+THIS_DIR          = Path(__file__).parent
+PROJ_DIR          = THIS_DIR.parent.parent
+REPORT_DIR        = THIS_DIR.parent / "report"
+HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices"
 
 
 PAL_REPORT_FILE  = REPORT_DIR / "PAL-REPORT.json"
 
 
-HUMAN_CHOICES_FILE = PROJ_DIR / "tools-lab" / "human-choices" / "ignored" / "last.yaml"
-HUMAN_CHOICES      = safe_load(HUMAN_CHOICES_FILE.read_text())
+HUMAN_IGNORING_FILE = HUMAN_CHOICES_DIR / "ignored" / "last.yaml"
+HUMAN_IGNORING      = safe_load(HUMAN_IGNORING_FILE.read_text())
+
+
+HUMAN_RENAMING_FILE = HUMAN_CHOICES_DIR / "rename" / "last.yaml"
+HUMAN_RENAMING      = safe_load(HUMAN_RENAMING_FILE.read_text())
 
 
 # ----------------------------- #
@@ -48,7 +53,7 @@ REPORT_DIR.mkdir(
 # -- EXTRACT -- #
 # ------------- #
 
-def extract_infos(choices: dict) -> [str]:
+def extract_ignored(choices: dict) -> [str]:
     if not choices:
         return dict()
 
@@ -97,6 +102,22 @@ def extract_infos(choices: dict) -> [str]:
     return report
 
 
+def extract_renamed(choices: dict) -> [str]:
+    if not choices:
+        return dict()
+
+    renames = dict()
+
+    for ctxt in sorted(
+        choices,
+        key = lambda x: x.lower()
+    ):
+        for old, new in choices[ctxt].items():
+            renames[namectxt(old, ctxt)] = new
+
+    return renames
+
+
 # ---------------------- #
 # -- IGNORED BY HUMAN -- #
 # ---------------------- #
@@ -105,8 +126,9 @@ logging.info(
     f"Initializing '{PAL_REPORT_FILE.name}' file (human choices)."
 )
 
-PAL_REPORT = extract_infos(HUMAN_CHOICES)
+PAL_REPORT = extract_ignored(HUMAN_IGNORING)
 
+PAL_REPORT[TAG_NEW_NAMES]     = extract_renamed(HUMAN_RENAMING)
 PAL_REPORT[TAG_SAME_NAME]     = dict()
 PAL_REPORT[TAG_NAMES_IGNORED] = list()
 

@@ -133,10 +133,7 @@ for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
         for r, g, b in PATTERN_ASY_RGB.findall(body)
     ])
 
-    ORIGINAL_NAMES[std_name] = name
-    PAL_CREDITS[std_name]    = CTXT
-
-    ALL_PALETTES, PAL_REPORT = update_palettes(
+    aprism_name, ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
         name      = std_name,
         candidate = pal_def,
@@ -144,6 +141,9 @@ for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
         ignored   = PAL_REPORT,
         logcom    = logging
     )
+
+    ORIGINAL_NAMES[aprism_name] = name
+    PAL_CREDITS[aprism_name]    = CTXT
 
 
 nb_new_pals = resume_pal_build(

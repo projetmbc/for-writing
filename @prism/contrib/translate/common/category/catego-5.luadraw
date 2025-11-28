@@ -23,7 +23,7 @@ PALETTES = {
   {'Pastel2', 'Colorbrewer'},
   {'Phase', 'cmocean'},
   {'Plotly', 'Plotly'},
-  {'Prism', 'CartoColors'},
+  {'Prism', 'Matplotlib'},
   {'Safe', 'CartoColors'},
   {'Set1', 'Colorbrewer'},
   {'Set2', 'Colorbrewer'},

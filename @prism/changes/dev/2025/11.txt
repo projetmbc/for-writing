@@ -1,22 +1,17 @@
-gestiond es noms en double vi porcesssus humain
-
-il manque un toools qui fait le rporting de tous els memes noms !!!
-
-au passage pour @prism, l'erreur 'est plus bloquante !!!
-        if palette_name in ALL_PALETTES:
+// ---------- //
 
 
-            log_raise_error(
-                context = "contrib",
-                desc    = (
-                    f"Name '{palette_name}' already used."
-                ),
-                xtra    = (
-                     "See '@prism/tools/report/"
-                    f"{REPORT_NAME_CONFLICT_FILE.name}' file."
-                ),
-                exception = ValueError,
-            )
+==
+28  (1.3.0-beta.6)
+==
+
+--------
+:update:
+--------
+
+[[:api:]]
+Fine-grained duplicate name handling with optional renaming for genuinely new palettes.
+
 
 // ---------- //
 

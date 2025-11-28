@@ -86,10 +86,7 @@ for pal_name, pal_def in PAL_COLORBREWER.items():
     std_name = stdname(pal_name)
     pal_def  = extract_palette(pal_def)
 
-    ORIGINAL_NAMES[std_name] = pal_name
-    PAL_CREDITS[std_name]    = CTXT
-
-    ALL_PALETTES, PAL_REPORT = update_palettes(
+    aprism_name, ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
         name      = std_name,
         candidate = pal_def,
@@ -97,6 +94,9 @@ for pal_name, pal_def in PAL_COLORBREWER.items():
         ignored   = PAL_REPORT,
         logcom    = logging
     )
+
+    ORIGINAL_NAMES[aprism_name] = pal_name
+    PAL_CREDITS[aprism_name]    = CTXT
 
 
 nb_new_pals = resume_pal_build(

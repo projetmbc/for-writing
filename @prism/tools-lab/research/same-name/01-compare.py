@@ -42,8 +42,8 @@ with PAL_REPORT_FILE.open(mode = "r") as f:
     PAL_REPORT = json_load(f)
 
 
-HUMAN_CHOICES_FILE = TOOLS_DIR.parent / "tools-lab" / "human-choices" / "rename" / "last.yaml"
-HUMAN_CHOICES      = safe_load(HUMAN_CHOICES_FILE.read_text())
+HUMAN_RENAMING_FILE = TOOLS_DIR.parent / "tools-lab" / "human-choices" / "rename" / "last.yaml"
+HUMAN_RENAMING      = safe_load(HUMAN_RENAMING_FILE.read_text())
 
 
 if COMPARE_DIR:
@@ -67,7 +67,7 @@ print("+ Looking for images to build.")
 
 for name, ctxts_pals in PAL_REPORT[TAG_SAME_NAME].items():
     for (ctxt, pal) in ctxts_pals:
-        if name in HUMAN_CHOICES[ctxt]:
+        if name in HUMAN_RENAMING[ctxt]:
             continue
 
         imgadded = report_gradient_clash(

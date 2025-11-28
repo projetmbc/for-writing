@@ -73,9 +73,6 @@ for cmap_name in allnames:
     cmap     = colormaps[cmap_name]
     std_name = stdname(cmap_name)
 
-    ORIGINAL_NAMES[std_name] = cmap_name
-    PAL_CREDITS[std_name]    = CTXT
-
     candidate = minimize_palette([
         [
             stdfloat(x, PRECISION)
@@ -84,7 +81,7 @@ for cmap_name in allnames:
         for i in range(PALSIZE)
     ])
 
-    ALL_PALETTES, PAL_REPORT = update_palettes(
+    aprism_name, ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
         name      = std_name,
         candidate = candidate,
@@ -92,6 +89,9 @@ for cmap_name in allnames:
         ignored   = PAL_REPORT,
         logcom    = logging
     )
+
+    ORIGINAL_NAMES[aprism_name] = cmap_name
+    PAL_CREDITS[aprism_name]    = CTXT
 
 
 logging.info(

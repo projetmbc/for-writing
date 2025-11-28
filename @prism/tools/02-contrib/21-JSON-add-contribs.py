@@ -87,7 +87,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
 
         PAL_CREDITS[palette_name] = CTXT
 
-        ALL_PALETTES, PAL_REPORT =  update_palettes(
+        _ , ALL_PALETTES, PAL_REPORT =  update_palettes(
             context   = CTXT,
             name      = palette_name,
             candidate = pal_def,
