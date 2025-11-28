@@ -4,12 +4,7 @@ il manque un toools qui fait le rporting de tous els memes noms !!!
 
 au passage pour @prism, l'erreur 'est plus bloquante !!!
         if palette_name in ALL_PALETTES:
-            report_gradient_clash(
-                existing_palette = ALL_PALETTES[palette_name],
-                contrib_palette  = pal_def,
-                palette_name     = palette_name,
-                img_path         = REPORT_NAME_CONFLICT_FILE
-            )
+
 
             log_raise_error(
                 context = "contrib",

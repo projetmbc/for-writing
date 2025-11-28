@@ -10,7 +10,7 @@ from cbutils      import *
 
 from shutil import rmtree
 
-from json import dumps as json_dumps
+from yaml import safe_load
 
 
 # --------------- #
@@ -21,10 +21,12 @@ THIS_DIR   = Path(__file__).parent
 PROJ_DIR   = THIS_DIR.parent.parent
 REPORT_DIR = THIS_DIR.parent / "report"
 
-HUMAN_CHOICES_FILE = PROJ_DIR / "tools-lab" / "human-choices" / "ignored" / "last.txt"
-
 
 PAL_REPORT_FILE  = REPORT_DIR / "PAL-REPORT.json"
+
+
+HUMAN_CHOICES_FILE = PROJ_DIR / "tools-lab" / "human-choices" / "ignored" / "last.yaml"
+HUMAN_CHOICES      = safe_load(HUMAN_CHOICES_FILE.read_text())
 
 
 # ----------------------------- #
@@ -46,31 +48,51 @@ REPORT_DIR.mkdir(
 # -- EXTRACT -- #
 # ------------- #
 
-def extract_infos(file: Path) -> [str]:
+def extract_infos(choices: dict) -> [str]:
+    if not choices:
+        return dict()
+
     report = dict()
 
-    data = [
-        l.strip()
-        for l in file.read_text().splitlines()
-        if l.strip() and l.strip()[0] != "#"
-    ]
+    for ctxt in sorted(
+        choices,
+        key = lambda x: x.lower()
+    ):
+        data = choices[ctxt]
 
-    for d in data:
-        ignored, kept = d.split('=')
+        nb_ignored = len(data)
 
-        ignored = ignored.strip()
-        kept    = kept.strip()
+        plurial = "" if nb_ignored == 1 else "s"
 
-        status = PAL_STATUS.EQUAL_TO
-
-        report[ignored] = {
-            "context"         : "Human",
-            STATUS_TAG[status]: kept
-        }
-
-        logging.warning(
-            f"'{ignored}' ignored - {STATUS_MSG[status]} '{kept}' (human choice)."
+        logging.info(
+            f"Source '{ctxt}': {nb_ignored} palette{plurial} ignored."
         )
+
+        for d in data:
+            if '=' in d:
+                status = PAL_STATUS.EQUAL_TO
+
+                oriname, projname = [
+                    n.strip()
+                    for n in d.split("=")
+                ]
+
+            elif '><' in d:
+                status = PAL_STATUS.REVERSE_OF
+
+                oriname, projname = [
+                    n.strip()
+                    for n in d.split("><")
+                ]
+
+            else:
+                status  = PAL_STATUS.EQUAL_TO
+                oriname = projname = d.strip()
+
+            report[namectxt(oriname, ctxt)] = {
+                STATUS_TAG[status]: projname,
+                TAG_METH          : TAG_HUMAN,
+            }
 
     return report
 
@@ -83,9 +105,10 @@ logging.info(
     f"Initializing '{PAL_REPORT_FILE.name}' file (human choices)."
 )
 
-PAL_REPORT = extract_infos(HUMAN_CHOICES_FILE)
+PAL_REPORT = extract_infos(HUMAN_CHOICES)
 
-PAL_REPORT[TAG_SAME_NAME] = dict()
+PAL_REPORT[TAG_SAME_NAME]     = dict()
+PAL_REPORT[TAG_NAMES_IGNORED] = list()
 
 logging.info(f"Create the initial '{PAL_REPORT_FILE.name}' file.")
 

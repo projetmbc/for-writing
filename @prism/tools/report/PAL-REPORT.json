@@ -1,186 +1,403 @@
 {
-  "Accent": {
-    "context": "Colorbrewer",
-    "equal-to": "Accent"
+  "Accent::Colorbrewer": {
+    "equal-to": "Accent",
+    "method": "human"
   },
-  "Balance": {
-    "context": "Human",
-    "equal-to": "Vik"
+  "Balance::cmocean": {
+    "equal-to": "Vik",
+    "method": "human"
   },
-  "Classic": {
-    "context": "Human",
-    "equal-to": "Cubehelix"
+  "Berlin::Scientific Colour Maps": {
+    "equal-to": "Berlin",
+    "method": "human"
   },
-  "D3": {
-    "context": "Plotly",
-    "equal-to": "Tab10"
+  "Blues::Colorbrewer": {
+    "equal-to": "Blues",
+    "method": "human"
   },
-  "Dark2": {
-    "context": "Colorbrewer",
-    "equal-to": "Dark2"
+  "BrBG::Colorbrewer": {
+    "equal-to": "BrBG",
+    "method": "human"
   },
-  "GistGray": {
-    "context": "Matplotlib",
+  "BuGn::Colorbrewer": {
+    "equal-to": "BuGn",
+    "method": "human"
+  },
+  "BuPu::Colorbrewer": {
+    "equal-to": "BuPu",
+    "method": "human"
+  },
+  "Classic::Cubehelix": {
+    "equal-to": "Cubehelix",
+    "method": "human"
+  },
+  "D3::Plotly": {
+    "equal-to": "Tab10",
+    "method": "auto"
+  },
+  "Dark2::Colorbrewer": {
+    "equal-to": "Dark2",
+    "method": "human"
+  },
+  "GistGray::Matplotlib": {
+    "method": "auto",
     "reverse-of": "Binary"
   },
-  "GistGrey": {
-    "context": "Matplotlib",
+  "GistGrey::Matplotlib": {
+    "method": "auto",
     "reverse-of": "Binary"
   },
-  "GistYarg": {
-    "context": "Matplotlib",
-    "equal-to": "Binary"
+  "GistYarg::Matplotlib": {
+    "equal-to": "Binary",
+    "method": "auto"
   },
-  "GistYerg": {
-    "context": "Matplotlib",
-    "equal-to": "Binary"
+  "GistYerg::Matplotlib": {
+    "equal-to": "Binary",
+    "method": "auto"
   },
-  "Gray": {
-    "context": "Matplotlib",
+  "GnBu::Colorbrewer": {
+    "equal-to": "GnBu",
+    "method": "human"
+  },
+  "Gray::Matplotlib": {
+    "method": "auto",
     "reverse-of": "Binary"
   },
-  "Grey": {
-    "context": "Matplotlib",
+  "Gray::cmocean": {
+    "method": "human",
+    "reverse-of": "Gray"
+  },
+  "Greens::Colorbrewer": {
+    "equal-to": "Greens",
+    "method": "human"
+  },
+  "Grey::Matplotlib": {
+    "method": "auto",
     "reverse-of": "Binary"
   },
-  "Greys": {
-    "context": "Matplotlib",
-    "equal-to": "Grays"
+  "Greys::Colorbrewer": {
+    "equal-to": "Greys",
+    "method": "human"
   },
-  "Pastel1": {
-    "context": "Colorbrewer",
-    "equal-to": "Pastel1"
+  "Greys::Matplotlib": {
+    "equal-to": "Grays",
+    "method": "human"
   },
-  "Pastel2": {
-    "context": "Colorbrewer",
-    "equal-to": "Pastel2"
+  "Hot::Plotly": {
+    "equal-to": "Hot",
+    "method": "human"
   },
-  "Set1": {
-    "context": "Colorbrewer",
-    "equal-to": "Set1"
+  "Jet::Plotly": {
+    "equal-to": "Jet",
+    "method": "human"
   },
-  "Set2": {
-    "context": "Colorbrewer",
-    "equal-to": "Set2"
+  "Managua::Scientific Colour Maps": {
+    "equal-to": "Managua",
+    "method": "human"
   },
+  "OrRd::Colorbrewer": {
+    "equal-to": "OrRd",
+    "method": "human"
+  },
+  "Oranges::Colorbrewer": {
+    "equal-to": "Oranges",
+    "method": "human"
+  },
+  "PRGn::Colorbrewer": {
+    "equal-to": "PRGn",
+    "method": "human"
+  },
+  "Paired::Colorbrewer": {
+    "equal-to": "Paired",
+    "method": "human"
+  },
+  "Pastel1::Colorbrewer": {
+    "equal-to": "Pastel1",
+    "method": "human"
+  },
+  "Pastel2::Colorbrewer": {
+    "equal-to": "Pastel2",
+    "method": "human"
+  },
+  "PiYG::Colorbrewer": {
+    "equal-to": "PiYG",
+    "method": "human"
+  },
+  "PuBu::Colorbrewer": {
+    "equal-to": "PuBu",
+    "method": "human"
+  },
+  "PuBuGn::Colorbrewer": {
+    "equal-to": "PuBuGn",
+    "method": "human"
+  },
+  "PuOr::Colorbrewer": {
+    "equal-to": "PuOr",
+    "method": "human"
+  },
+  "PuRd::Colorbrewer": {
+    "equal-to": "PuRd",
+    "method": "human"
+  },
+  "Purples::Colorbrewer": {
+    "equal-to": "Purples",
+    "method": "human"
+  },
+  "RdBu::Colorbrewer": {
+    "equal-to": "RdBu",
+    "method": "human"
+  },
+  "RdGy::Colorbrewer": {
+    "equal-to": "RdGy",
+    "method": "human"
+  },
+  "RdPu::Colorbrewer": {
+    "equal-to": "RdPu",
+    "method": "human"
+  },
+  "RdYlBu::Colorbrewer": {
+    "equal-to": "RdYlBu",
+    "method": "human"
+  },
+  "RdYlGn::Colorbrewer": {
+    "equal-to": "RdYlGn",
+    "method": "human"
+  },
+  "Reds::Colorbrewer": {
+    "equal-to": "Reds",
+    "method": "human"
+  },
+  "Set1::Colorbrewer": {
+    "equal-to": "Set1",
+    "method": "human"
+  },
+  "Set2::Colorbrewer": {
+    "equal-to": "Set2",
+    "method": "human"
+  },
+  "Set3::Colorbrewer": {
+    "equal-to": "Set3",
+    "method": "human"
+  },
+  "Spectral::Colorbrewer": {
+    "equal-to": "Spectral",
+    "method": "human"
+  },
+  "Vanimo::Scientific Colour Maps": {
+    "equal-to": "Vanimo",
+    "method": "human"
+  },
+  "YlGn::Colorbrewer": {
+    "equal-to": "YlGn",
+    "method": "human"
+  },
+  "YlGnBu::Colorbrewer": {
+    "equal-to": "YlGnBu",
+    "method": "human"
+  },
+  "YlOrBr::Colorbrewer": {
+    "equal-to": "YlOrBr",
+    "method": "human"
+  },
+  "YlOrRd::Colorbrewer": {
+    "equal-to": "YlOrRd",
+    "method": "human"
+  },
+  "names-ignored": [
+    "Greys",
+    "Berlin",
+    "Managua",
+    "Vanimo",
+    "Accent",
+    "Blues",
+    "BrBG",
+    "BuGn",
+    "BuPu",
+    "Dark2",
+    "GnBu",
+    "Greens",
+    "Greys",
+    "OrRd",
+    "Oranges",
+    "PRGn",
+    "Paired",
+    "Pastel1",
+    "Pastel2",
+    "PiYG",
+    "PuBu",
+    "PuBuGn",
+    "PuOr",
+    "PuRd",
+    "Purples",
+    "RdBu",
+    "RdGy",
+    "RdPu",
+    "RdYlBu",
+    "RdYlGn",
+    "Reds",
+    "Set1",
+    "Set2",
+    "Set3",
+    "Spectral",
+    "YlGn",
+    "YlGnBu",
+    "YlOrBr",
+    "YlOrRd",
+    "Prism",
+    "Balance",
+    "Gray",
+    "Classic",
+    "Hot",
+    "Jet",
+    "Rainbow",
+    "Gray"
+  ],
   "same-name-as": {
-    "Balance": [
-      "cmocean"
-    ],
-    "Berlin": [
-      "Scientific Colour Maps"
-    ],
-    "Blues": [
-      "Colorbrewer"
-    ],
-    "BrBG": [
-      "Colorbrewer"
-    ],
-    "BuGn": [
-      "Colorbrewer"
-    ],
-    "BuPu": [
-      "Colorbrewer"
-    ],
-    "Classic": [
-      "Cubehelix"
-    ],
-    "GnBu": [
-      "Colorbrewer"
-    ],
     "Gray": [
-      "cmocean",
-      "Tableau"
-    ],
-    "Greens": [
-      "Colorbrewer"
-    ],
-    "Greys": [
-      "Colorbrewer"
-    ],
-    "Hot": [
-      "Plotly"
-    ],
-    "Jet": [
-      "Plotly"
-    ],
-    "Managua": [
-      "Scientific Colour Maps"
-    ],
-    "OrRd": [
-      "Colorbrewer"
-    ],
-    "Oranges": [
-      "Colorbrewer"
-    ],
-    "PRGn": [
-      "Colorbrewer"
-    ],
-    "Paired": [
-      "Colorbrewer"
-    ],
-    "PiYG": [
-      "Colorbrewer"
+      [
+        "Tableau",
+        [
+          [
+            0.3764705882352941,
+            0.38823529411764707,
+            0.41568627450980394
+          ],
+          [
+            0.6470588235294118,
+            0.6745098039215687,
+            0.6862745098039216
+          ],
+          [
+            0.2549019607843137,
+            0.26666666666666666,
+            0.3176470588235294
+          ],
+          [
+            0.5607843137254902,
+            0.5294117647058824,
+            0.5098039215686274
+          ],
+          [
+            0.8117647058823529,
+            0.8117647058823529,
+            0.8117647058823529
+          ]
+        ]
+      ]
     ],
     "Prism": [
-      "CartoColors"
-    ],
-    "PuBu": [
-      "Colorbrewer"
-    ],
-    "PuBuGn": [
-      "Colorbrewer"
-    ],
-    "PuOr": [
-      "Colorbrewer"
-    ],
-    "PuRd": [
-      "Colorbrewer"
-    ],
-    "Purples": [
-      "Colorbrewer"
+      [
+        "CartoColors",
+        [
+          [
+            0.37254901960784315,
+            0.27450980392156865,
+            0.5647058823529412
+          ],
+          [
+            0.11372549019607843,
+            0.4117647058823529,
+            0.5882352941176471
+          ],
+          [
+            0.2196078431372549,
+            0.6509803921568628,
+            0.6470588235294118
+          ],
+          [
+            0.058823529411764705,
+            0.5215686274509804,
+            0.32941176470588235
+          ],
+          [
+            0.45098039215686275,
+            0.6862745098039216,
+            0.2823529411764706
+          ],
+          [
+            0.9294117647058824,
+            0.6784313725490196,
+            0.03137254901960784
+          ],
+          [
+            0.8823529411764706,
+            0.48627450980392156,
+            0.0196078431372549
+          ],
+          [
+            0.8,
+            0.3137254901960784,
+            0.24313725490196078
+          ],
+          [
+            0.5803921568627451,
+            0.20392156862745098,
+            0.43137254901960786
+          ],
+          [
+            0.43529411764705883,
+            0.25098039215686274,
+            0.4392156862745098
+          ],
+          [
+            0.4,
+            0.4,
+            0.4
+          ]
+        ]
+      ]
     ],
     "Rainbow": [
-      "Plotly"
-    ],
-    "RdBu": [
-      "Colorbrewer"
-    ],
-    "RdGy": [
-      "Colorbrewer"
-    ],
-    "RdPu": [
-      "Colorbrewer"
-    ],
-    "RdYlBu": [
-      "Colorbrewer"
-    ],
-    "RdYlGn": [
-      "Colorbrewer"
-    ],
-    "Reds": [
-      "Colorbrewer"
-    ],
-    "Set3": [
-      "Colorbrewer"
-    ],
-    "Spectral": [
-      "Colorbrewer"
-    ],
-    "Vanimo": [
-      "Scientific Colour Maps"
-    ],
-    "YlGn": [
-      "Colorbrewer"
-    ],
-    "YlGnBu": [
-      "Colorbrewer"
-    ],
-    "YlOrBr": [
-      "Colorbrewer"
-    ],
-    "YlOrRd": [
-      "Colorbrewer"
+      [
+        "Plotly",
+        [
+          [
+            0.5882352941176471,
+            0.0,
+            0.35294117647058826
+          ],
+          [
+            0.0,
+            0.0,
+            0.7843137254901961
+          ],
+          [
+            0.0,
+            0.09803921568627451,
+            1.0
+          ],
+          [
+            0.0,
+            0.596078431372549,
+            1.0
+          ],
+          [
+            0.17254901960784313,
+            1.0,
+            0.5882352941176471
+          ],
+          [
+            0.592156862745098,
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.9176470588235294,
+            0.0
+          ],
+          [
+            1.0,
+            0.43529411764705883,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0
+          ]
+        ]
+      ]
     ]
   }
 }

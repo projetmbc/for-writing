@@ -299,7 +299,8 @@ for folder in sorted(ORIGINAL_SRC_DIR.glob("*")):
     ctxt     = PALETTABLE_SUB_FOLDERS[folder.name]
     palettes = extract(folder)
 
-    for pal_name, pal_def in palettes.items():
+    for pal_name in sorted(palettes):
+        pal_def  = palettes[pal_name]
         std_name = stdname(pal_name)
 
         ORIGINAL_NAMES[ctxt][std_name] = pal_name

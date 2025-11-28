@@ -250,8 +250,6 @@ end
 
 
 function drawCategoPals(names, suffix)
-  tex.print("\\begin{center}")
-
   for i, data in ipairs(names) do
     local name, credit = data[1], data[2]
     local pal          = getPal(name)
@@ -264,7 +262,7 @@ function drawCategoPals(names, suffix)
     tex.print("\\hfill")
 
     tex.print(
-           "\\parbox[c]{0.125\\linewidth}{"
+           "\\parbox[c]{3.25cm}{"
         .. "\\centering\\textbf{\\texttt{"
         .. name
         .. "}} \\\\ {\\footnotesize\\color{Grey}"
@@ -281,8 +279,6 @@ function drawCategoPals(names, suffix)
     tex.print("")
     tex.print("\\vspace{3pt}")
   end
-
-  tex.print("\\end{center}")
 end
 
 

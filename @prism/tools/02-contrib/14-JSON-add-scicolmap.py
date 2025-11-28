@@ -50,9 +50,6 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
 
 
-STD_NAMES_IGNORED = list(ALL_PALETTES) + list(PAL_REPORT)
-
-
 PATTERN_CMP_LIST = re.compile(
     r'cm_data\s*=\s*(\[\[.*?\]\])',
     re.DOTALL

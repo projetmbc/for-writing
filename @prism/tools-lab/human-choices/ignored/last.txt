@@ -1,9 +1,0 @@
-# -------------------------- #
-# -- Last Human Selection -- #
-# -------------------------- #
-
-# By design, we never ignore palettes from Matplotlib.
-
-Balance = Vik
-
-Classic = Cubehelix

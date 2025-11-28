@@ -6,9 +6,11 @@ import numpy as np
 
 from .normval import stdfloat
 
+
 PALSIZE   = 10  # <--- CSS and manual uses.
 PRECISION = 10**6
 TOLERANCE = 10**(-5)
+
 
 class PAL_STATUS(Enum):
     IS_NEW     = 1
@@ -28,9 +30,14 @@ STATUS_TAG = {
     for i, m in STATUS_MSG.items()
 }
 
-TAG_SAME_NAME = STATUS_TAG[PAL_STATUS.SAME_NAME]
 
-TAG_CTXT = 'context'
+TAG_SAME_NAME     = STATUS_TAG[PAL_STATUS.SAME_NAME]
+TAG_NAMES_IGNORED = "names-ignored"
+
+TAG_CTXT  = 'context'
+TAG_METH  = 'method'
+TAG_AUTO  = 'auto'
+TAG_HUMAN = 'human'
 
 TAG_APRISM      = "@prism"
 TAG_ASY         = "Asymptote"
@@ -97,6 +104,13 @@ def pal255_to_pal01(
     return new_pal
 
 
+def namectxt(name, ctxt):
+    return f"{name}::{ctxt}"
+
+# def extract_namectxt(name_n_ctxt):
+#     return namectxt.split('::')
+
+
 def update_palettes(
     context  : str,
     name     : str,
@@ -108,50 +122,67 @@ def update_palettes(
     dict[ str, list[ [float, float, float] ] ],
     dict[ str, dict[ str, [str] ] ]
 ):
+# To ignore.
+    name_n_ctxt = namectxt(name, context)
+
+    if name_n_ctxt in ignored:
+        _meth = ignored[name_n_ctxt][TAG_METH]
+
+        logcom.warning(f"'{name}' is ignored ({_meth} method).")
+
+        ignored[TAG_NAMES_IGNORED].append(name)
+
+        return palettes, ignored
+
+# Name already used or ignored.
+    if (
+        name in palettes
+        or
+        name in ignored[TAG_NAMES_IGNORED]
+    ):
+        prevctxts = ignored[TAG_SAME_NAME].get(name, [])
+
+        prevctxts.append([
+            context,
+            candidate
+        ])
+
+        ignored[TAG_SAME_NAME][name] = prevctxts
+        ignored[TAG_NAMES_IGNORED].append(name)
+
+        logcom.warning(
+            f"'{name}' already used - Human checking needed."
+        )
+
+        return palettes, ignored
+
+# We have to analyze the palette.
     candidate = norm_palette(candidate)
+    status    = PAL_STATUS.IS_NEW
 
-    status = PAL_STATUS.IS_NEW
+    for n, p in palettes.items():
+        if equalfloatlist(candidate, p):
+            status   = PAL_STATUS.EQUAL_TO
+            lastname = n
 
-    if palettes:
-        for n, p in palettes.items():
-            if equalfloatlist(candidate, p):
-                status   = PAL_STATUS.EQUAL_TO
-                lastname = n
+            break
 
-                break
+        elif equalfloatlist(candidate, p[::-1]):
+            status   = PAL_STATUS.REVERSE_OF
+            lastname = n
 
-            elif equalfloatlist(candidate, p[::-1]):
-                status   = PAL_STATUS.REVERSE_OF
-                lastname = n
-
-                break
+            break
 
     match status:
         case PAL_STATUS.IS_NEW:
-            if (
-                name in palettes
-                or
-                name in ignored
-            ):
-                prevctxts = ignored[TAG_SAME_NAME].get(name, [])
+            palettes[name] = norm_palette(candidate)
 
-                prevctxts.append(context)
-
-                ignored[TAG_SAME_NAME][name] = prevctxts
-
-                logcom.warning(
-                    f"'{name}' already used - Human checking needed."
-                )
-
-            else:
-                palettes[name] = norm_palette(candidate)
-
-                logcom.info(f"'{name}' added.")
+            logcom.info(f"'{name}' added.")
 
         case _:
-            ignored[name] = {
+            ignored[name_n_ctxt] = {
                 STATUS_TAG[status]: lastname,
-                TAG_CTXT          : context
+                TAG_METH          : TAG_AUTO,
             }
 
             logcom.warning(

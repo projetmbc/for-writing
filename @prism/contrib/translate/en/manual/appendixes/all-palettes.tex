@@ -4,7 +4,9 @@
 
 \usepackage{../preamble.cfg}
 
+% DEBUG - START
 %\geometry{showframe=true}
+% DEBUG - END
 
 \begin{document}
 
@@ -41,4 +43,18 @@ The palette names used in this appendix are standard, but most \thisproj\ implem
   \subimport{../../../common/category/}{catego-\nb.luadraw}
 }
 
+% DEBUG - START
 \end{document}
+
+\parbox[c]{0.3\linewidth}{\directlua{drawSpectrum(getPal("PerceptualRainbow"), "XXX")}}
+\hfill
+\parbox[c]{3.25cm}{\centering\textbf{\texttt{PerceptualRainbow}} \\ {\footnotesize\color{Grey}Scientific Colour Maps}}
+\hfill
+\parbox[c]{0.45\linewidth}{\directlua{drawPalette(getPal("PerceptualRainbow"), "XXX")}}
+
+
+
+OK?
+    
+\end{document}
+% DEBUG - END

@@ -7,12 +7,15 @@ import numpy             as np
 
 from matplotlib.colors import to_rgb
 
+from .cleanpal import *
 
 def report_gradient_clash(
-    existing_palette: list[list[float, float, float]],
-    contrib_palette : list[list[float, float, float]],
-    palette_name    : str,
-    img_path        : Path
+    all_palettes  : list[list[float, float, float]],
+    palette_report: dict,
+    name          : str,
+    context       : str,
+    palette       : list[list[float, float, float]],
+    img_dir       : Path,
 ) -> None:
     def make_gradient(
         colors: list[ [float, float, float] ],
@@ -31,14 +34,41 @@ def report_gradient_clash(
 
         return arr
 
-    grad_1 = make_gradient(existing_palette)
-    grad_2 = make_gradient(contrib_palette)
+    def build_projname(name_n_ctxt):
+        infos = palette_report[name_n_ctxt]
 
-    fig, axes = plt.subplots(2, 1, figsize=(8, 3))
+        if "equal-to" in infos:
+            projname = infos["equal-to"]
+
+        else:
+            projname = infos["reverse-of"]
+
+        return projname
+
+    name_n_ctxt = namectxt(name, context)
+
+    if name_n_ctxt in palette_report:
+        projname = build_projname(name_n_ctxt)
+
+    else:
+        projname = name
+
+    if not projname in all_palettes:
+        projname = build_projname(
+            namectxt(name, TAG_MPL)
+        )
+
+    leg_tested = f"'{name}' from '{context}'"
+
+    grad_1 = make_gradient(palette)
+    grad_2 = make_gradient(all_palettes[projname])
+    grad_3 = make_gradient(palette[::-1])
+
+    fig, axes = plt.subplots(3, 1, figsize=(8, 3))
 
     axes[0].imshow(grad_1, aspect="auto")
     axes[0].set_title(
-        f"Existing palette '{palette_name}'",
+        f"NORMAL - {leg_tested}",
         fontsize = 12,
         pad      = 8
     )
@@ -46,16 +76,26 @@ def report_gradient_clash(
 
     axes[1].imshow(grad_2, aspect="auto")
     axes[1].set_title(
-        f"Candidate '{palette_name}'",
+        f"@prism '{name}'",
         fontsize = 12,
         pad      = 8
     )
     axes[1].axis("off")
 
+    axes[2].imshow(grad_3, aspect="auto")
+    axes[2].set_title(
+        f"REVERSED - {leg_tested}",
+        fontsize = 12,
+        pad      = 8
+    )
+    axes[2].axis("off")
+
     plt.tight_layout()
 
     plt.savefig(
-        img_path,
+        img_dir / f"{name}-{context}.png",
         dpi         = 200,
         bbox_inches = "tight"
     )
+
+    return True

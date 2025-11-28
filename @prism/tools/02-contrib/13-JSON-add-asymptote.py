@@ -60,9 +60,6 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
 
 
-STD_NAMES_IGNORED = list(ALL_PALETTES) + list(PAL_REPORT)
-
-
 PATTERN_ASY_COLORMAP = re.compile(
     r"list_data\s+([A-Za-z0-9_]+)\s*=.*\{([^}]+)\}",
     re.MULTILINE
@@ -120,14 +117,20 @@ nb_new_pals = len(ALL_PALETTES)
 for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
     std_name = stdname(name)
 
-    if std_name in STD_NAMES_IGNORED:
+    if(
+        std_name in ALL_PALETTES
+        or
+        std_name in PAL_REPORT[TAG_NAMES_IGNORED]
+    ):
         continue
 
-    rgb_values = PATTERN_ASY_RGB.findall(body)
-
     pal_def = minimize_palette([
-        [round(float(r), 4), round(float(g), 4), round(float(b), 4)]
-        for r, g, b in rgb_values
+        [
+            round(float(r), 4),
+            round(float(g), 4),
+            round(float(b), 4)
+        ]
+        for r, g, b in PATTERN_ASY_RGB.findall(body)
     ])
 
     ORIGINAL_NAMES[std_name] = name
@@ -139,7 +142,6 @@ for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
         candidate = pal_def,
         palettes  = ALL_PALETTES,
         ignored   = PAL_REPORT,
-        orinames  = ORIGINAL_NAMES,
         logcom    = logging
     )
 
@@ -156,27 +158,27 @@ nb_new_pals = resume_pal_build(
 # -- BUILD FROM ASYMPTOTE SEGMENTED PALETTES -- #
 # --------------------------------------------- #
 
-logging.info(f"Work on the '{CTXT}' segmented palettes.")
+# TODO_SEG_PALETTES
 
-nb_asy_segpal = len(ALL_PALETTES)
+# logging.info(f"Work on the '{CTXT}' segmented palettes.")
 
-for name, body in PATTERN_ASY_SEGPAL.findall(asy_code):
-    std_name = stdname(name)
+# nb_asy_segpal = len(ALL_PALETTES)
 
-    if std_name in STD_NAMES_IGNORED:
-        continue
+# for name, body in PATTERN_ASY_SEGPAL.findall(asy_code):
+#     std_name = stdname(name)
 
-    TODO_SEG_PALETTES
+#     if std_name in STD_NAMES_IGNORED:
+#         continue
 
-    logging.info(f"New palette from '{name}' segmented palette.")
+#     logging.info(f"New palette from '{name}' segmented palette.")
 
 
-nb_asy_segpal = resume_pal_build(
-    context     = f"'{CTXT}' segmented palettes.",
-    nb_new_pals = nb_asy_segpal,
-    palettes    = ALL_PALETTES,
-    logcom      = logging,
-)
+# nb_asy_segpal = resume_pal_build(
+#     context     = f"'{CTXT}' segmented palettes.",
+#     nb_new_pals = nb_asy_segpal,
+#     palettes    = ALL_PALETTES,
+#     logcom      = logging,
+# )
 
 
 # ----------------- #
@@ -184,7 +186,7 @@ nb_asy_segpal = resume_pal_build(
 # ----------------- #
 
 update_jsons(
-    nb_new_pals = nb_new_pals + nb_asy_segpal,
+    nb_new_pals = nb_new_pals,
     names       = ORIGINAL_NAMES,
     jsnames     = NAMES_FILE,
     credits     = PAL_CREDITS,

@@ -1,0 +1,66 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+# By design, we never ignore palettes from Matplotlib.
+
+"Colorbrewer":
+  - Pastel1
+  - Pastel2
+  - Accent
+  - Dark2
+  - GnBu
+  - BuPu
+  - BuGn
+  - BrBG
+  - Blues
+  - YlGn
+  - YlGnBu
+  - YlOrBr
+  - YlOrRd
+  - RdBu
+  - RdGy
+  - RdPu
+  - RdYlBu
+  - RdYlGn
+  - Reds
+  - Set1
+  - Set2
+  - Set3
+  - Spectral
+  - PuBu
+  - PuBuGn
+  - PuOr
+  - PuRd
+  - Purples
+  - Oranges
+  - OrRd
+  - Paired
+  - PiYG
+  - PRGn
+  - Greens
+  - Greys
+
+
+"cmocean":
+  - Balance = Vik
+  - Gray >< Gray
+
+
+"Cubehelix":
+  - Classic = Cubehelix
+
+
+"Matplotlib":
+  - Greys = Grays
+
+
+"Plotly":
+  - Hot
+  - Jet
+
+
+"Scientific Colour Maps":
+  - Berlin
+  - Managua
+  - Vanimo

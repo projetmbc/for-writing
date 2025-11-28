@@ -1,0 +1,15 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+# We just add a suffix made withe the initials of the orginal
+# project name, and if nned, we play with numbers.
+
+"CartoColors":
+  Prism: PrismCC
+
+"Plotly":
+  Rainbow: RainbowP
+
+"Tableau":
+  Gray: GrayT
