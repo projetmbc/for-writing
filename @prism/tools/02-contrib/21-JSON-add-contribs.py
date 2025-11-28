@@ -83,27 +83,9 @@ for folder, contribs in sorted(contribs_accepted.items()):
 
         palette_name = Path(Path(one_contrib).stem).stem
         palette_name = stdname(palette_name)
-        pal_def  = extend.parse(contrib_file.read_text())
+        pal_def      = extend.parse(contrib_file.read_text())
 
-        if palette_name in ALL_PALETTES:
-            report_gradient_clash(
-                existing_palette = ALL_PALETTES[palette_name],
-                contrib_palette  = pal_def,
-                palette_name     = palette_name,
-                img_path         = REPORT_NAME_CONFLICT_FILE
-            )
-
-            log_raise_error(
-                context = "contrib",
-                desc    = (
-                    f"Name '{palette_name}' already used."
-                ),
-                xtra    = (
-                     "See '@prism/tools/report/"
-                    f"{REPORT_NAME_CONFLICT_FILE.name}' file."
-                ),
-                exception = ValueError,
-            )
+        PAL_CREDITS[palette_name] = CTXT
 
         ALL_PALETTES, PAL_REPORT =  update_palettes(
             context   = CTXT,
@@ -114,30 +96,26 @@ for folder, contribs in sorted(contribs_accepted.items()):
             logcom    = logging
         )
 
-        if not palette_name in PAL_REPORT:
-            PAL_CREDITS[palette_name] = CTXT
 
-nb_contribs = len(ALL_PALETTES) - nb_contribs
-
-if nb_contribs != 0:
-    plurial = "" if nb_contribs == 1 else "s"
-
-    logging.info(f"{nb_contribs} palette{plurial} added.")
+nb_contribs = resume_pal_build(
+    context     = CTXT,
+    nb_new_pals = nb_contribs,
+    palettes    = ALL_PALETTES,
+    logcom      = logging,
+)
 
 
 # ----------------- #
 # -- JSON UPDATE -- #
 # ----------------- #
 
-PAL_CREDITS_FILE.write_text(
-    json_dumps(PAL_CREDITS)
+update_jsons(
+    nb_new_pals = nb_contribs,
+    credits     = PAL_CREDITS,
+    jscredits   = PAL_CREDITS_FILE,
+    reports     = PAL_REPORT,
+    jsreports   = PAL_REPORT_FILE,
+    palettes    = ALL_PALETTES,
+    jspalettes  = PAL_JSON_FILE,
+    logcom      = logging,
 )
-
-PAL_REPORT_FILE.write_text(
-    json_dumps(PAL_REPORT)
-)
-
-
-logging.info("Update palette JSON file.")
-
-PAL_JSON_FILE.write_text(json_dumps(ALL_PALETTES))

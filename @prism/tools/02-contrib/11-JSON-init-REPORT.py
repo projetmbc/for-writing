@@ -75,8 +75,6 @@ def extract_infos(file: Path) -> [str]:
     return report
 
 
-
-
 # ---------------------- #
 # -- IGNORED BY HUMAN -- #
 # ---------------------- #
@@ -86,6 +84,8 @@ logging.info(
 )
 
 PAL_REPORT = extract_infos(HUMAN_CHOICES_FILE)
+
+PAL_REPORT[TAG_SAME_NAME] = dict()
 
 logging.info(f"Create the initial '{PAL_REPORT_FILE.name}' file.")
 

@@ -7,13 +7,31 @@
 
 pour les nms exclus, besoind e vérifier quand meêm ce que sont les pletts !!!!
 
-+
-
-ils manquent les pallets se finissnat par un nombre poyr palettable, et les autres ?
 
 // ---------- //
 
-tab-XX à virer car jeu des aturation, mais du coup, il nous faut des implémentations (vpir si css ok + automatiser le repérage de ce genre de chose)
+showcase PDF : on affine et recompile que si, et uniquement si...
+
+   ---> forcé par utilisateur : config via un about.yaml par exemple
+
+
+// ---------- //
+
+showcase : ajout de la ctégo finale
+
++
+
+chgt noms ctégos
+
+   ---> big-var --> semantic
+
+   ---> rainbow : smooth (voir si affinable mais auomatiquement )
+
+
+// ---------- //
+
+catégorie : affiner la sléection !!
+
 
 
 // ---------- //
@@ -21,6 +39,13 @@ tab-XX à virer car jeu des aturation, mais du coup, il nous faut des implément
 tools-lab
 
    ---> normaliser les TXT utiliser dans les tools standard
+
+   ---> pour le sctéegos / similar, un fichier dédier à ec qui est ignoré pour maintenance plus simple
+
+
+// ---------- //
+
+Compilation no longer restarts \luadraw.
 
 
 // ---------- //
@@ -34,14 +59,7 @@ product et contrib
 
 // ---------- //
 
-catégorie : affiner la sléection !!
-
-
-// ---------- //
-
 nouveaux proj intégérs  OU  crédit pour la doc  OU  pour compléter showcase sur 2 pages
-
-   ---> https://github.com/jiffyclub/palettable    Python donc immédiat !
 
    ---> https://github.com/secretBiology/SecretColors
 

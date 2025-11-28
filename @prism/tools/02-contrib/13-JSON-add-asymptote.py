@@ -14,11 +14,6 @@ from cbutils      import *
 
 from collections import defaultdict
 
-from json import (
-    dumps as json_dumps,
-    load  as json_load,
-)
-
 import requests
 
 
@@ -41,6 +36,11 @@ PRODS_DIR  = PROJ_DIR / "products"
 REPORT_DIR = THIS_DIR.parent / "report"
 
 
+CTXT_FILE_NAME = CTXT.replace(' ', '-').upper()
+NAMES_FILE     = REPORT_DIR / f"NAMES-{CTXT_FILE_NAME}.json"
+ORIGINAL_NAMES = dict()
+
+
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
@@ -52,6 +52,12 @@ PAL_REPORT_FILE = REPORT_DIR / "PAL-REPORT.json"
 
 with PAL_REPORT_FILE.open(mode = "r") as f:
     PAL_REPORT = json_load(f)
+
+
+PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
+
+with PAL_CREDITS_FILE.open(mode = "r") as f:
+    PAL_CREDITS = json_load(f)
 
 
 STD_NAMES_IGNORED = list(ALL_PALETTES) + list(PAL_REPORT)
@@ -110,6 +116,7 @@ logging.info(f"Work on the '{CTXT}' color maps.")
 
 nb_new_pals = len(ALL_PALETTES)
 
+
 for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
     std_name = stdname(name)
 
@@ -123,7 +130,8 @@ for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
         for r, g, b in rgb_values
     ])
 
-    PAL_CREDITS[std_name] = CTXT
+    ORIGINAL_NAMES[std_name] = name
+    PAL_CREDITS[std_name]    = CTXT
 
     ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
@@ -131,21 +139,17 @@ for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
         candidate = pal_def,
         palettes  = ALL_PALETTES,
         ignored   = PAL_REPORT,
+        orinames  = ORIGINAL_NAMES,
         logcom    = logging
     )
 
 
-nb_new_pals = len(ALL_PALETTES) - nb_new_pals
-
-if nb_new_pals == 0:
-    logging.info("Nothing new found.")
-
-else:
-    plurial = "" if nb_new_pals == 1 else "s"
-
-    logging.info(
-        f"{nb_new_pals} palette{plurial} build from '{CTXT}' list of pens."
-    )
+nb_new_pals = resume_pal_build(
+    context     = f"'{CTXT}' list of pens.",
+    nb_new_pals = nb_new_pals,
+    palettes    = ALL_PALETTES,
+    logcom      = logging,
+)
 
 
 # --------------------------------------------- #
@@ -167,19 +171,27 @@ for name, body in PATTERN_ASY_SEGPAL.findall(asy_code):
     logging.info(f"New palette from '{name}' segmented palette.")
 
 
-nb_asy_segpal = len(ALL_PALETTES) - nb_asy_segpal
-
-if nb_asy_segpal == 0:
-    logging.info("Nothing new found.")
+nb_asy_segpal = resume_pal_build(
+    context     = f"'{CTXT}' segmented palettes.",
+    nb_new_pals = nb_asy_segpal,
+    palettes    = ALL_PALETTES,
+    logcom      = logging,
+)
 
 
 # ----------------- #
 # -- JSON UPDATE -- #
 # ----------------- #
 
-PAL_REPORT_FILE.write_text(json_dumps(PAL_REPORT))
-
-if nb_new_pals + nb_asy_segpal != 0:
-    logging.info("Update palette JSON file.")
-
-    PAL_JSON_FILE.write_text(json_dumps(ALL_PALETTES))
+update_jsons(
+    nb_new_pals = nb_new_pals + nb_asy_segpal,
+    names       = ORIGINAL_NAMES,
+    jsnames     = NAMES_FILE,
+    credits     = PAL_CREDITS,
+    jscredits   = PAL_CREDITS_FILE,
+    reports     = PAL_REPORT,
+    jsreports   = PAL_REPORT_FILE,
+    palettes    = ALL_PALETTES,
+    jspalettes  = PAL_JSON_FILE,
+    logcom      = logging,
+)

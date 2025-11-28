@@ -6,10 +6,8 @@ import              sys
 sys.path.append(str(Path(__file__).parent.parent))
 
 from cbutils.core import *
-from cbutils.cleanpal import PALSIZE
-from cbutils.version  import VERSION
+from cbutils      import *
 
-from json import load as json_load
 from os   import makedirs
 
 

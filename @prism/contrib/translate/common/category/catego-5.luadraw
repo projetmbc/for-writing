@@ -12,7 +12,32 @@ PALETTES = {
   {'Dark2', 'Colorbrewer'},
   {'Dark24', 'Plotly'},
   {'Fes', 'Scientific Colour Maps'},
-  {'Flag', 'Matplotlib'}
+  {'Flag', 'Matplotlib'},
+  {'G10', 'Plotly'},
+  {'GistStern', 'Matplotlib'},
+  {'GreenOrange', 'Tableau'},
+  {'Light24', 'Plotly'},
+  {'Paired', 'Colorbrewer'},
+  {'Pastel', 'CartoColors'},
+  {'Pastel1', 'Colorbrewer'},
+  {'Pastel2', 'Colorbrewer'},
+  {'Phase', 'cmocean'},
+  {'Plotly', 'Plotly'},
+  {'Prism', 'CartoColors'},
+  {'Safe', 'CartoColors'},
+  {'Set1', 'Colorbrewer'},
+  {'Set2', 'Colorbrewer'},
+  {'Set3', 'Colorbrewer'},
+  {'T10', 'Plotly'},
+  {'Tab10', 'Matplotlib'},
+  {'Tab20', 'Matplotlib'},
+  {'Tab20b', 'Matplotlib'},
+  {'Tab20c', 'Matplotlib'},
+  {'Tableau', 'Tableau'},
+  {'TableauLight', 'Tableau'},
+  {'TableauMedium', 'Tableau'},
+  {'TrafficLight', 'Tableau'},
+  {'Vivid', 'CartoColors'}
 }
 
 drawCategoPals(PALETTES, 5)

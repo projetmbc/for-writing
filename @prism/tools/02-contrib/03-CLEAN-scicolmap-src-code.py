@@ -26,11 +26,11 @@ SRC_DIR   = PROJ_DIR / "resources" / CODE_NAME.replace(' ', '') / "ScientificCol
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-logging.info(f"Cleaning '{CODE_NAME}' source folder.")
+logging.info(f"Resource - Cleaning '{CODE_NAME}' folder.")
 
 
 if not SRC_DIR.is_dir():
-    logging.warning(f"Empty '{CODE_NAME}' source folder.")
+    logging.warning(f"Empty '{CODE_NAME}' folder.")
 
     exit(0)
 

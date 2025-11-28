@@ -14,11 +14,13 @@ class PAL_STATUS(Enum):
     IS_NEW     = 1
     EQUAL_TO   = 2
     REVERSE_OF = 3
+    SAME_NAME  = 4
 
 STATUS_MSG = {
     PAL_STATUS.IS_NEW    : "Is new",
     PAL_STATUS.EQUAL_TO  : "Equal to",
     PAL_STATUS.REVERSE_OF: "Reverse of",
+    PAL_STATUS.SAME_NAME : "Same name as",
 }
 
 STATUS_TAG = {
@@ -26,6 +28,7 @@ STATUS_TAG = {
     for i, m in STATUS_MSG.items()
 }
 
+TAG_SAME_NAME = STATUS_TAG[PAL_STATUS.SAME_NAME]
 
 TAG_CTXT = 'context'
 
@@ -100,11 +103,13 @@ def update_palettes(
     candidate: list[ [float, float, float] ],
     palettes : dict[ str, list[ [float, float, float] ] ],
     ignored  : dict[ str, dict[ str, [str] ] ],
-    logcom
+    logcom,
 ) -> (
     dict[ str, list[ [float, float, float] ] ],
     dict[ str, dict[ str, [str] ] ]
 ):
+    candidate = norm_palette(candidate)
+
     status = PAL_STATUS.IS_NEW
 
     if palettes:
@@ -123,9 +128,25 @@ def update_palettes(
 
     match status:
         case PAL_STATUS.IS_NEW:
-            palettes[name] = norm_palette(candidate)
+            if (
+                name in palettes
+                or
+                name in ignored
+            ):
+                prevctxts = ignored[TAG_SAME_NAME].get(name, [])
 
-            logcom.info(f"'{name}' added.")
+                prevctxts.append(context)
+
+                ignored[TAG_SAME_NAME][name] = prevctxts
+
+                logcom.warning(
+                    f"'{name}' already used - Human checking needed."
+                )
+
+            else:
+                palettes[name] = norm_palette(candidate)
+
+                logcom.info(f"'{name}' added.")
 
         case _:
             ignored[name] = {
@@ -138,7 +159,6 @@ def update_palettes(
             )
 
     return palettes, ignored
-
 
 
 def norm_palette(
@@ -175,3 +195,24 @@ def norm_palette(
     ]
 
     return result
+
+
+def resume_pal_build(
+    context    : str,
+    nb_new_pals: int,
+    palettes   : dict[ str, list[ [float, float, float] ] ],
+    logcom
+) -> int:
+    nb_new_pals = len(palettes) - nb_new_pals
+
+    if nb_new_pals == 0:
+        logcom.info("Nothing new found.")
+
+    else:
+        plurial = "" if nb_new_pals == 1 else "s"
+
+        logcom.info(
+            f"{nb_new_pals} palette{plurial} build from {context}."
+        )
+
+    return nb_new_pals

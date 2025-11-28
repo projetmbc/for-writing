@@ -54,10 +54,6 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
 
 
-STD_NAMES_IGNORED = list(ALL_PALETTES) + list(PAL_REPORT)
-
-
-
 PATTERN_COMMON_PYDEF = re.compile(
     r'_?([A-Z0-9_]+)\s*=\s*(\[[\s\S]*?\n\])'
 )
@@ -261,7 +257,6 @@ extract_cartocolors = lambda f: extract_std(
 
 extract_cmocean = extract_cartocolors
 
-
 extract_lightbartlein = lambda f: extract_std(
     folder      = f,
     pyfile_name = "colordata"
@@ -274,6 +269,7 @@ extract_mycarta = lambda f: extract_std(
     pyfile_name = "colordata",
     xtrafiles   = ["mycarta"]
 )
+
 
 def extract(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
     logging.info(f"Analyzing '{folder.name}' folder.")
@@ -309,9 +305,6 @@ for folder in sorted(ORIGINAL_SRC_DIR.glob("*")):
         ORIGINAL_NAMES[ctxt][std_name] = pal_name
         PAL_CREDITS[std_name]          = ctxt
 
-        if std_name in STD_NAMES_IGNORED:
-            continue
-
         ALL_PALETTES, PAL_REPORT = update_palettes(
             context   = ctxt,
             name      = std_name,
@@ -322,15 +315,12 @@ for folder in sorted(ORIGINAL_SRC_DIR.glob("*")):
         )
 
 
-nb_new_pals = len(ALL_PALETTES) - nb_new_pals
-
-if nb_new_pals == 0:
-    logging.info("Nothing new found.")
-
-else:
-    plurial = "" if nb_new_pals == 1 else "s"
-
-    logging.info(f"{nb_new_pals} palette{plurial} added.")
+nb_new_pals = resume_pal_build(
+    context     = ctxt,
+    nb_new_pals = nb_new_pals,
+    palettes    = ALL_PALETTES,
+    logcom      = logging,
+)
 
 
 # ----------------- #
@@ -340,19 +330,19 @@ else:
 for ctxt, orinames in ORIGINAL_NAMES.items():
     ctxt_file_name = ctxt.replace(' ', '-').upper()
     names_file     = REPORT_DIR / f"NAMES-{ctxt_file_name}.json"
-    names_file.write_text(
-        json_dumps(orinames)
+
+    update_jsons(
+        names   = orinames,
+        jsnames = names_file,
     )
 
-PAL_CREDITS_FILE.write_text(
-    json_dumps(PAL_CREDITS)
+update_jsons(
+    nb_new_pals = nb_new_pals,
+    credits     = PAL_CREDITS,
+    jscredits   = PAL_CREDITS_FILE,
+    reports     = PAL_REPORT,
+    jsreports   = PAL_REPORT_FILE,
+    palettes    = ALL_PALETTES,
+    jspalettes  = PAL_JSON_FILE,
+    logcom      = logging,
 )
-
-if nb_new_pals != 0:
-    PAL_REPORT_FILE.write_text(
-        json_dumps(PAL_REPORT)
-    )
-
-    logging.info("Update palette JSON file.")
-
-    PAL_JSON_FILE.write_text(json_dumps(ALL_PALETTES))

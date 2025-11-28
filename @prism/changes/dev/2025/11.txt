@@ -1,8 +1,33 @@
+gestiond es noms en double vi porcesssus humain
+
+il manque un toools qui fait le rporting de tous els memes noms !!!
+
+au passage pour @prism, l'erreur 'est plus bloquante !!!
+        if palette_name in ALL_PALETTES:
+            report_gradient_clash(
+                existing_palette = ALL_PALETTES[palette_name],
+                contrib_palette  = pal_def,
+                palette_name     = palette_name,
+                img_path         = REPORT_NAME_CONFLICT_FILE
+            )
+
+            log_raise_error(
+                context = "contrib",
+                desc    = (
+                    f"Name '{palette_name}' already used."
+                ),
+                xtra    = (
+                     "See '@prism/tools/report/"
+                    f"{REPORT_NAME_CONFLICT_FILE.name}' file."
+                ),
+                exception = ValueError,
+            )
+
 // ---------- //
 
 
 ==
-26  (1.3.0-beta.1)
+26  (1.3.0-beta.5)
 ==
 
 -----
@@ -11,6 +36,7 @@
 
 [[:api:]]
 Palettes can be ignored by a human being.
+
 
 --------
 :update:
@@ -52,7 +78,7 @@ Here are the updates.
 --------
 
 [[:tech:]]
-Cleaned resources are put on the \repo.
+Cleaned resources used by tools are put on the \repo.
 
 
 // ---------- //
@@ -93,8 +119,6 @@ Manual changes.
     1) Updated similar palette clusters.
 
     1) Minor modifications to palette categories.
-
-    1) Compilation no longer restarts \luadraw.
 
 
 // ---------- //

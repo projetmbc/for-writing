@@ -10,11 +10,6 @@ from cbutils      import *
 
 from collections import defaultdict
 
-from json import (
-    dumps as json_dumps,
-    load  as json_load,
-)
-
 import numpy as np
 
 
@@ -89,8 +84,6 @@ logging.info(f"Work with the '{CTXT}' source code.")
 
 nb_new_pals = len(ALL_PALETTES)
 
-# We force the integration of Scicolor Maps !
-
 for pyfile in sorted(ORIGINAL_SRC_DIR.glob("*/*.py"), key = lambda x: str(x).lower()):
     pal_name = pyfile.stem
     std_name = stdname(pal_name)
@@ -109,34 +102,27 @@ for pyfile in sorted(ORIGINAL_SRC_DIR.glob("*/*.py"), key = lambda x: str(x).low
     )
 
 
-nb_new_pals = len(ALL_PALETTES) - nb_new_pals
-
-if nb_new_pals == 0:
-    logging.info("Nothing new found.")
-
-else:
-    plurial = "" if nb_new_pals == 1 else "s"
-
-    logging.info(f"{nb_new_pals} palette{plurial} added.")
+nb_new_pals = resume_pal_build(
+    context     = CTXT,
+    nb_new_pals = nb_new_pals,
+    palettes    = ALL_PALETTES,
+    logcom      = logging,
+)
 
 
 # ----------------- #
 # -- JSON UPDATE -- #
 # ----------------- #
 
-NAMES_FILE.write_text(
-    json_dumps(ORIGINAL_NAMES)
+update_jsons(
+    nb_new_pals = nb_new_pals,
+    names       = ORIGINAL_NAMES,
+    jsnames     = NAMES_FILE,
+    credits     = PAL_CREDITS,
+    jscredits   = PAL_CREDITS_FILE,
+    reports     = PAL_REPORT,
+    jsreports   = PAL_REPORT_FILE,
+    palettes    = ALL_PALETTES,
+    jspalettes  = PAL_JSON_FILE,
+    logcom      = logging,
 )
-
-PAL_CREDITS_FILE.write_text(
-    json_dumps(PAL_CREDITS)
-)
-
-if nb_new_pals != 0:
-    PAL_REPORT_FILE.write_text(
-        json_dumps(PAL_REPORT)
-    )
-
-    logging.info("Update palette JSON file.")
-
-    PAL_JSON_FILE.write_text(json_dumps(ALL_PALETTES))

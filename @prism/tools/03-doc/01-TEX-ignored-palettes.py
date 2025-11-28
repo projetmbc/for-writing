@@ -5,16 +5,18 @@ import              sys
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from cbutils.core     import *
-from cbutils.cleanpal import *
+from cbutils.core import *
+from cbutils      import *
 
 from collections import defaultdict
-from json        import load as json_load
 
 
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
+
+TAG_SAME_NAME = STATUS_TAG[PAL_STATUS.SAME_NAME]
+
 
 THIS_DIR      = Path(__file__).parent
 PROJ_DIR      = THIS_DIR.parent.parent
@@ -80,6 +82,9 @@ logging.info("Build 'ignored palette list' in TeX file.")
 bytechno = defaultdict(list)
 
 for name, infos in IGNORED.items():
+    if name == TAG_SAME_NAME:
+        continue
+
     ctxt = infos[TAG_CTXT]
     ctxt = PAL_CREDITS[name]
 

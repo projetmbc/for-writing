@@ -1,4 +1,8 @@
 {
+  "Accent": {
+    "context": "Colorbrewer",
+    "equal-to": "Accent"
+  },
   "Balance": {
     "context": "Human",
     "equal-to": "Vik"
@@ -10,6 +14,10 @@
   "D3": {
     "context": "Plotly",
     "equal-to": "Tab10"
+  },
+  "Dark2": {
+    "context": "Colorbrewer",
+    "equal-to": "Dark2"
   },
   "GistGray": {
     "context": "Matplotlib",
@@ -38,5 +46,141 @@
   "Greys": {
     "context": "Matplotlib",
     "equal-to": "Grays"
+  },
+  "Pastel1": {
+    "context": "Colorbrewer",
+    "equal-to": "Pastel1"
+  },
+  "Pastel2": {
+    "context": "Colorbrewer",
+    "equal-to": "Pastel2"
+  },
+  "Set1": {
+    "context": "Colorbrewer",
+    "equal-to": "Set1"
+  },
+  "Set2": {
+    "context": "Colorbrewer",
+    "equal-to": "Set2"
+  },
+  "same-name-as": {
+    "Balance": [
+      "cmocean"
+    ],
+    "Berlin": [
+      "Scientific Colour Maps"
+    ],
+    "Blues": [
+      "Colorbrewer"
+    ],
+    "BrBG": [
+      "Colorbrewer"
+    ],
+    "BuGn": [
+      "Colorbrewer"
+    ],
+    "BuPu": [
+      "Colorbrewer"
+    ],
+    "Classic": [
+      "Cubehelix"
+    ],
+    "GnBu": [
+      "Colorbrewer"
+    ],
+    "Gray": [
+      "cmocean",
+      "Tableau"
+    ],
+    "Greens": [
+      "Colorbrewer"
+    ],
+    "Greys": [
+      "Colorbrewer"
+    ],
+    "Hot": [
+      "Plotly"
+    ],
+    "Jet": [
+      "Plotly"
+    ],
+    "Managua": [
+      "Scientific Colour Maps"
+    ],
+    "OrRd": [
+      "Colorbrewer"
+    ],
+    "Oranges": [
+      "Colorbrewer"
+    ],
+    "PRGn": [
+      "Colorbrewer"
+    ],
+    "Paired": [
+      "Colorbrewer"
+    ],
+    "PiYG": [
+      "Colorbrewer"
+    ],
+    "Prism": [
+      "CartoColors"
+    ],
+    "PuBu": [
+      "Colorbrewer"
+    ],
+    "PuBuGn": [
+      "Colorbrewer"
+    ],
+    "PuOr": [
+      "Colorbrewer"
+    ],
+    "PuRd": [
+      "Colorbrewer"
+    ],
+    "Purples": [
+      "Colorbrewer"
+    ],
+    "Rainbow": [
+      "Plotly"
+    ],
+    "RdBu": [
+      "Colorbrewer"
+    ],
+    "RdGy": [
+      "Colorbrewer"
+    ],
+    "RdPu": [
+      "Colorbrewer"
+    ],
+    "RdYlBu": [
+      "Colorbrewer"
+    ],
+    "RdYlGn": [
+      "Colorbrewer"
+    ],
+    "Reds": [
+      "Colorbrewer"
+    ],
+    "Set3": [
+      "Colorbrewer"
+    ],
+    "Spectral": [
+      "Colorbrewer"
+    ],
+    "Vanimo": [
+      "Scientific Colour Maps"
+    ],
+    "YlGn": [
+      "Colorbrewer"
+    ],
+    "YlGnBu": [
+      "Colorbrewer"
+    ],
+    "YlOrBr": [
+      "Colorbrewer"
+    ],
+    "YlOrRd": [
+      "Colorbrewer"
+    ]
   }
 }

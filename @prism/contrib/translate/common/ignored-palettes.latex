@@ -9,7 +9,13 @@
       column{2,4} = {cmd=\tdoccodein{text}},
     }
         Colorbrewer
+          & Accent & = & Accent \\
+          & Dark2 & = & Dark2 \\
           & Greys & = & Grays \\
+          & Pastel1 & = & Pastel1 \\
+          & Pastel2 & = & Pastel2 \\
+          & Set1 & = & Set1 \\
+          & Set2 & = & Set2 \\
         \hline
         Cubehelix
           & Classic & = & Cubehelix \\

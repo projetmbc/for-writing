@@ -5,8 +5,8 @@ import              sys
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from cbutils.core    import *
-from cbutils.mdutils import *
+from cbutils.core import *
+from cbutils      import *
 
 from yaml import dump as yaml_dump
 

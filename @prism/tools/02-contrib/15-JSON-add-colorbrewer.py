@@ -8,11 +8,6 @@ sys.path.append(str(Path(__file__).parent.parent))
 from cbutils.core import *
 from cbutils      import *
 
-from json import (
-    dumps as json_dumps,
-    load  as json_load,
-)
-
 
 # --------------- #
 # -- CONSTANTS -- #
@@ -51,13 +46,32 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
 
 
-STD_NAMES_IGNORED = list(ALL_PALETTES) + list(PAL_REPORT)
-
-
 PAL_COLORBREWER_FILE = ORIGINAL_SRC_DIR / "colorbrewer.json"
 
 with PAL_COLORBREWER_FILE.open(mode = "r") as f:
     PAL_COLORBREWER = json_load(f)
+
+
+# --------------------------------- #
+# -- EXTRACT MAPS FROM JSON FILE -- #
+# --------------------------------- #
+
+def extract_palette(pal_def: dict) -> list[ [float, float, float] ]:
+    max_size = 0
+
+    for s in pal_def:
+        if s == "type":
+            continue
+
+        max_size = max(int(s), max_size)
+
+    pal_def = pal_def[str(max_size)]
+    pal_def = pal255_to_pal01([
+        eval(c.replace("rgb", ""))
+        for c in pal_def
+    ])
+
+    return pal_def
 
 
 # ------------------------------------- #
@@ -68,43 +82,44 @@ logging.info(f"Work with the '{CTXT}' source code.")
 
 nb_new_pals = len(ALL_PALETTES)
 
-for pal_name in PAL_COLORBREWER:
+for pal_name, pal_def in PAL_COLORBREWER.items():
     std_name = stdname(pal_name)
+    pal_def  = extract_palette(pal_def)
 
     ORIGINAL_NAMES[std_name] = pal_name
     PAL_CREDITS[std_name]    = CTXT
 
-    if not std_name in STD_NAMES_IGNORED:
-        print(pal_name)
-        TODO
+    ALL_PALETTES, PAL_REPORT = update_palettes(
+        context   = CTXT,
+        name      = std_name,
+        candidate = pal_def,
+        palettes  = ALL_PALETTES,
+        ignored   = PAL_REPORT,
+        logcom    = logging
+    )
 
 
-nb_new_pals = len(ALL_PALETTES) - nb_new_pals
-
-if nb_new_pals == 0:
-    logging.info("Nothing new found.")
-
-else:
-    TODO
+nb_new_pals = resume_pal_build(
+    context     = CTXT,
+    nb_new_pals = nb_new_pals,
+    palettes    = ALL_PALETTES,
+    logcom      = logging,
+)
 
 
 # ----------------- #
 # -- JSON UPDATE -- #
 # ----------------- #
 
-NAMES_FILE.write_text(
-    json_dumps(ORIGINAL_NAMES)
+update_jsons(
+    nb_new_pals = nb_new_pals,
+    names       = ORIGINAL_NAMES,
+    jsnames     = NAMES_FILE,
+    credits     = PAL_CREDITS,
+    jscredits   = PAL_CREDITS_FILE,
+    reports     = PAL_REPORT,
+    jsreports   = PAL_REPORT_FILE,
+    palettes    = ALL_PALETTES,
+    jspalettes  = PAL_JSON_FILE,
+    logcom      = logging,
 )
-
-PAL_CREDITS_FILE.write_text(
-    json_dumps(PAL_CREDITS)
-)
-
-if nb_new_pals != 0:
-    PAL_REPORT_FILE.write_text(
-        json_dumps(PAL_REPORT)
-    )
-
-    logging.info("Update palette JSON file.")
-
-    PAL_JSON_FILE.write_text(json_dumps(ALL_PALETTES))
