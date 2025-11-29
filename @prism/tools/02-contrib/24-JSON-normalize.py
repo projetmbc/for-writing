@@ -19,7 +19,7 @@ from json import (
 
 THIS_DIR   = Path(__file__).parent
 PRODS_DIR  = THIS_DIR.parent.parent / "products"
-REPORT_DIR = THIS_DIR.parent / "report"
+REPORT_DIR = THIS_DIR.parent / "REPORT"
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"

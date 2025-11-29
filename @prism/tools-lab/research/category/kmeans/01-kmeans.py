@@ -39,7 +39,7 @@ with PAL_JSON_FILE.open('r') as f:
     ALL_PALETTES = json_load(f)
 
 
-PAL_CATEGO_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGORY.json"
+PAL_CATEGO_FILE = PROJ_DIR / "tools" / "REPORT" / "PAL-CATEGORY.json"
 
 with PAL_CATEGO_FILE.open('r') as f:
     ALL_CATEGOS = json_load(f)

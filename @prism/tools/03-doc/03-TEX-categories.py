@@ -17,7 +17,7 @@ from os import makedirs
 
 THIS_DIR      = Path(__file__).parent
 PROJ_DIR      = THIS_DIR.parent.parent
-REPORT_DIR    = PROJ_DIR / "tools" / "report"
+REPORT_DIR    = PROJ_DIR / "tools" / "REPORT"
 CATEGO_DIR    = PROJ_DIR / "contrib" / "translate" / "common" / "category"
 EN_MANUAL_DIR = PROJ_DIR / "contrib" / "translate" / "en" / "manual"
 

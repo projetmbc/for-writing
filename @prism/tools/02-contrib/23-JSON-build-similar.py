@@ -29,7 +29,7 @@ HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices" / "similar"
 LAST_FILE = HUMAN_CHOICES_DIR / "last.txt"
 
 
-PAL_SIMILAR_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-SIMILAR.json"
+PAL_SIMILAR_JSON_FILE = PROJ_DIR / "tools" / "REPORT" / "PAL-SIMILAR.json"
 PAL_SIMILAR_JSON_FILE.touch()
 
 

@@ -34,7 +34,7 @@ PaletteCols:TypeAlias = list[[float, float, float]]
 JSON_PALETTE_URL = "https://raw.githubusercontent.com/projetmbc/for-writing/main/%40prism/products/json/palettes.json"
 
 
-REPORT_DIR    = THIS_DIR  / "report"
+REPORT_DIR    = THIS_DIR  / "REPORT"
 PROD_JSON_DIR = PROJ_DIR / "products" / "json"
 
 

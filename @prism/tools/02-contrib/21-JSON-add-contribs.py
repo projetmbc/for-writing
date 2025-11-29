@@ -24,7 +24,7 @@ THIS_DIR         = Path(__file__).parent
 PROJ_DIR         = THIS_DIR.parent.parent
 PRODS_DIR        = PROJ_DIR / "products"
 CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
-REPORT_DIR       = THIS_DIR.parent / "report"
+REPORT_DIR       = THIS_DIR.parent / "REPORT"
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"

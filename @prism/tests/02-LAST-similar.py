@@ -30,7 +30,7 @@ PaletteCols:TypeAlias = list[[float, float, float]]
 
 
 PROD_JSON_DIR = PROJ_DIR / "products" / "json"
-REPORT_DIR    = PROJ_DIR / "tools" / "report"
+REPORT_DIR    = PROJ_DIR / "tools" / "REPORT"
 
 
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"

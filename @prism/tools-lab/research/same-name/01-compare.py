@@ -26,7 +26,7 @@ from yaml import safe_load
 
 THIS_DIR    = Path(__file__).parent
 PRODS_DIR   = TOOLS_DIR.parent / "products"
-REPORT_DIR  = TOOLS_DIR / "report"
+REPORT_DIR  = TOOLS_DIR / "REPORT"
 COMPARE_DIR = THIS_DIR / "compare"
 
 

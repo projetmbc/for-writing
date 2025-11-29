@@ -15,7 +15,7 @@ from cbutils      import *
 
 THIS_DIR   = Path(__file__).parent
 PROJ_DIR   = THIS_DIR.parent.parent
-REPORT_DIR = PROJ_DIR / "tools" / "report"
+REPORT_DIR = PROJ_DIR / "tools" / "REPORT"
 PRODS_DIR  = PROJ_DIR / "products"
 PREDOC_DIR = PROJ_DIR / "pre-doc" / "showcase"
 SINGLE_DIR = PREDOC_DIR / "single"

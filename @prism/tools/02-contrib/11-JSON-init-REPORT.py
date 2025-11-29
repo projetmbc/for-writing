@@ -19,7 +19,7 @@ from yaml import safe_load
 
 THIS_DIR          = Path(__file__).parent
 PROJ_DIR          = THIS_DIR.parent.parent
-REPORT_DIR        = THIS_DIR.parent / "report"
+REPORT_DIR        = THIS_DIR.parent / "REPORT"
 HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices"
 
 
@@ -38,7 +38,7 @@ HUMAN_RENAMING      = safe_load(HUMAN_RENAMING_FILE.read_text())
 # -- EMPTY THE REPORT FOLDER -- #
 # ----------------------------- #
 
-REPORT_DIR  = THIS_DIR.parent / "report"
+REPORT_DIR  = THIS_DIR.parent / "REPORT"
 
 if REPORT_DIR.is_dir():
     rmtree(REPORT_DIR)

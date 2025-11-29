@@ -29,7 +29,7 @@ THIS_DIR         = Path(__file__).parent
 PROJ_DIR         = THIS_DIR.parent.parent
 PRODS_DIR        = PROJ_DIR / "products"
 ORIGINAL_SRC_DIR = PROJ_DIR / "resources" / "Palettable" / "palettable-master" / "palettable"
-REPORT_DIR       = THIS_DIR.parent / "report"
+REPORT_DIR       = THIS_DIR.parent / "REPORT"
 
 
 ORIGINAL_NAMES = defaultdict(dict)

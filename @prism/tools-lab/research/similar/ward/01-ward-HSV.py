@@ -42,7 +42,7 @@ with PAL_JSON_FILE.open('r') as f:
     ALL_PALETTES = json_load(f)
 
 
-PAL_SIMILAR_FILE = PROJ_DIR / "tools" / "report" / "PAL-SIMILAR.json"
+PAL_SIMILAR_FILE = PROJ_DIR / "tools" / "REPORT" / "PAL-SIMILAR.json"
 
 with PAL_SIMILAR_FILE.open('r') as f:
     ALL_CLUSTERS = json_load(f)

@@ -20,7 +20,7 @@ TAG_SAME_NAME = STATUS_TAG[PAL_STATUS.SAME_NAME]
 
 THIS_DIR      = Path(__file__).parent
 PROJ_DIR      = THIS_DIR.parent.parent
-REPORT_DIR    = PROJ_DIR / "tools" / "report"
+REPORT_DIR    = PROJ_DIR / "tools" / "REPORT"
 TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
 
 

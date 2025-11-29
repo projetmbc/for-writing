@@ -26,7 +26,7 @@ PRODS_DIR         = PROJ_DIR / "products"
 HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices" / "category"
 
 
-PAL_CATEGO_JSON_FILE = PROJ_DIR / "tools" / "report" / "PAL-CATEGORY.json"
+PAL_CATEGO_JSON_FILE = PROJ_DIR / "tools" / "REPORT" / "PAL-CATEGORY.json"
 PAL_CATEGO_JSON_FILE.touch()
 
 
@@ -37,7 +37,7 @@ with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
-SCICOLMAP_NAMES_FILE = PROJ_DIR / "tools" / "report" / "NAMES-SCIENTIFIC-COLOUR-MAPS.json"
+SCICOLMAP_NAMES_FILE = PROJ_DIR / "tools" / "REPORT" / "NAMES-SCIENTIFIC-COLOUR-MAPS.json"
 
 with SCICOLMAP_NAMES_FILE.open(mode = "r") as f:
     ALL_SCICOLMAP_NAMES = json_load(f)

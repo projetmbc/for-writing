@@ -23,7 +23,7 @@ THIS_DIR         = Path(__file__).parent
 PROJ_DIR         = THIS_DIR.parent.parent
 PRODS_DIR        = PROJ_DIR / "products"
 ORIGINAL_SRC_DIR = PROJ_DIR / "resources" / "ScientificColourMaps" / "ScientificColourMaps8"
-REPORT_DIR       = THIS_DIR.parent / "report"
+REPORT_DIR       = THIS_DIR.parent / "REPORT"
 
 
 CTXT_FILE_NAME = CTXT.replace(' ', '-').upper()
