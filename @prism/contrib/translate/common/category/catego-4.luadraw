@@ -96,7 +96,7 @@ PALETTES = {
   {'PrismCC', 'CartoColors'},
   {'PurpleGray', 'Tableau'},
   {'Rainbow', 'Matplotlib'},
-  {'RainbowP', 'Plotly'},
+  {'RainbowPly', 'Plotly'},
   {'RedYellowBlue', 'Light Bartlein'},
   {'Roma', 'Scientific Colour Maps'},
   {'RomaO', 'Scientific Colour Maps'},

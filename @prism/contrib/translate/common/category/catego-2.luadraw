@@ -27,7 +27,7 @@ PALETTES = {
   {'Emrld', 'CartoColors'},
   {'GistHeat', 'Matplotlib'},
   {'GrayC', 'Scientific Colour Maps'},
-  {'GrayT', 'Tableau'},
+  {'GrayTab', 'Tableau'},
   {'Grays', 'Matplotlib'},
   {'Greens', 'Colorbrewer'},
   {'Lemon', '@prism'},

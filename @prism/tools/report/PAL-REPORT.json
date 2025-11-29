@@ -64,8 +64,8 @@
     "reverse-of": "Binary"
   },
   "Gray::cmocean": {
-    "method": "human",
-    "reverse-of": "Gray"
+    "equal-to": "Binary",
+    "method": "human"
   },
   "Greens::Colorbrewer": {
     "equal-to": "Greens",
@@ -250,9 +250,9 @@
     "Jet"
   ],
   "new-names": {
-    "Gray::Tableau": "GrayT",
+    "Gray::Tableau": "GrayTab",
     "Prism::CartoColors": "PrismCC",
-    "Rainbow::Plotly": "RainbowP"
+    "Rainbow::Plotly": "RainbowPly"
   },
   "same-name-as": {}
 }

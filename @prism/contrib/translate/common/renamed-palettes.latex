@@ -1,0 +1,20 @@
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+    \begin{center}
+    \begin{tblr}{
+      colspec     = {@{}l | r Q[c,$] l},
+      baseline    = T,
+      column{2,4} = {cmd=\tdoccodein{text}},
+    }
+        CartoColors
+          & Prism & \Rightarrow & PrismCC \\
+        \hline
+        Plotly
+          & Rainbow & \Rightarrow & RainbowPly \\
+        \hline
+        Tableau
+          & Gray & \Rightarrow & GrayTab \\
+    \end{tblr}
+\end{center}

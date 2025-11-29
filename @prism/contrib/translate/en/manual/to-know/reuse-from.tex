@@ -14,20 +14,42 @@ Here are the key points to remember when using palettes similar to those offered
 \begin{enumerate}
 	\item 
 	\thisproj\ uses standardized \verb+CamelCase+ notation. Therefore, palette names such as \tdoccodein{py}{berlin} and \tdoccodein{py}{gist_heat} become \tdoccodein{text}{Berlin} and \tdoccodein{text}{GistHeat} respectively.
+
     
-    \item \matplotlib\ palettes with a name ending with the \verb+_r+ suffix (reversed color order) are not included in \thisproj.
+    \item \matplotlib\ palettes with a name ending with \verb+_r+ (reversed color order) are not included in \thisproj.
+
+    
+    \item The following presents palettes from projects other than \matplotlib\ that have been kept but renamed:
+    \boxed{{\Rightarrow}\vphantom{pM}} indicates a name modification,
+with the \thisproj\ name displayed on the right.
+    %
+    \subimport{../../../common/}{renamed-palettes.latex}
+
+    
+    \item The following palettes are excluded because they duplicate \thisproj\ palettes either directly or in reversed order,
+    except that exact duplicates (same name and colors) are omitted when they don't come from \matplotlib, and we use
+    \boxed{{=}\vphantom{pM}} for equality,
+    \boxed{{\rightleftharpoons}\vphantom{pM}} for reversal,
+    and the rightmost palettes are the ones retained in \thisproj.
+    %
+    \subimport{../../../common/}{ignored-palettes.latex}
 \end{enumerate}
 
 
-\begin{tdocnote}
-    Most \thisproj\ implementations provide methods to easily obtain reversed palettes, sub-palettes, and color-shifted palettes.
-    See the section \ref{products-all}.
-\end{tdocnote}
+
+
+% -------------------- %
 
 
 \begin{tdoccaut}
     Most \thisproj\ implementations add the \verb+pal+ prefix to standardized \verb+CamelCase+ names.
     See the section \ref{products-all}.
 \end{tdoccaut}
+
+
+\begin{tdocnote}
+    Most \thisproj\ implementations provide methods to easily obtain reversed palettes, sub-palettes, and color-shifted palettes.
+    See the section \ref{products-all}.
+\end{tdocnote}
 
 \end{document}

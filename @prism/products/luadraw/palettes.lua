@@ -1503,7 +1503,7 @@ palGrayC = {
     {1.0, 1.0, 1.0}
 }
 
-palGrayT = {
+palGrayTab = {
     {0.37647, 0.388235, 0.415686},
     {0.496732, 0.515468, 0.535947},
     {0.616993, 0.642701, 0.656209},
@@ -2530,7 +2530,7 @@ palRainbow = {
     {1.0, 0.0, 0.0}
 }
 
-palRainbowP = {
+palRainbowPly = {
     {0.588235, 0.0, 0.352941},
     {0.065359, 0.0, 0.736383},
     {0.0, 0.076252, 0.952069},
@@ -3593,7 +3593,7 @@ for _ , name in ipairs({
     "palGrandBudapest5",
     "palGrayC",
     "palGrays",
-    "palGrayT",
+    "palGrayTab",
     "palGreenMagenta",
     "palGreenOrange",
     "palGreens",
@@ -3671,7 +3671,7 @@ for _ , name in ipairs({
     "palPurples",
     "palPurpOr",
     "palRainbow",
-    "palRainbowP",
+    "palRainbowPly",
     "palRdBu",
     "palRdGy",
     "palRdPu",

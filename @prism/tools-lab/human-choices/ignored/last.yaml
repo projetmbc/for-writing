@@ -44,7 +44,7 @@
 
 "cmocean":
   - Balance = Vik
-  - Gray >< Gray
+  - Gray = Binary
 
 
 "Cubehelix":

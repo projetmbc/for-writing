@@ -105,11 +105,15 @@ def pal255_to_pal01(
     return new_pal
 
 
-def namectxt(name, ctxt):
+def namectxt(
+    name: str,
+    ctxt: str
+):
     return f"{name}::{ctxt}"
 
-# def extract_namectxt(name_n_ctxt):
-#     return namectxt.split('::')
+
+def extract_namectxt(name_n_ctxt: str) -> (str, str):
+    return name_n_ctxt.split('::')
 
 
 def update_palettes(
