@@ -15,7 +15,7 @@ CLUSTERS_DIR = THIS_DIR.parent / "clusters"
 
 HUMAN_DIR = THIS_DIR
 
-while HUMAN_DIR.name != "tools-lab":
+while HUMAN_DIR.name != "lab":
     HUMAN_DIR = HUMAN_DIR.parent
 
 HUMAN_DIR = HUMAN_DIR / "human-choices" / "category"

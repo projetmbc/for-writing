@@ -29,12 +29,11 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != "@prism"):
     PROJ_DIR = PROJ_DIR.parent
 
-PRODS_DIR   = PROJ_DIR / "products"
 REPORT_DIR  = BUILD_TOOLS_DIR / "REPORT"
 COMPARE_DIR = THIS_DIR / "compare"
 
 
-PAL_JSON_FILE = PRODS_DIR / "json" / "palettes.json"
+PAL_JSON_FILE = PROJ_DIR / "products" / "json" / "palettes.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
