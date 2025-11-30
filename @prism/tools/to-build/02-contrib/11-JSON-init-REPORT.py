@@ -4,9 +4,9 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -20,9 +20,13 @@ from yaml import safe_load
 # -- CONSTANTS -- #
 # --------------- #
 
-PROJ_DIR          = TOOLS_DIR.parent
-REPORT_DIR        = TOOLS_DIR / "REPORT"
-HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices"
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
+
+REPORT_DIR        = BUILD_TOOLS_DIR / "REPORT"
+HUMAN_CHOICES_DIR = PROJ_DIR / "tools" / "lab" / "human-choices"
 
 
 PAL_REPORT_FILE  = REPORT_DIR / "PAL-REPORT.json"

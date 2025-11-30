@@ -4,9 +4,9 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 
@@ -23,15 +23,19 @@ from json import (
 IMAX = 3
 
 
-PROJ_DIR          = TOOLS_DIR.parent
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
+
 PRODS_DIR         = PROJ_DIR / "products"
-HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices" / "similar"
+HUMAN_CHOICES_DIR = PROJ_DIR / "tools" / "lab" / "human-choices" / "similar"
 
 
 LAST_FILE = HUMAN_CHOICES_DIR / "last.txt"
 
 
-PAL_SIMILAR_JSON_FILE = PROJ_DIR / "tools" / "REPORT" / "PAL-SIMILAR.json"
+PAL_SIMILAR_JSON_FILE = BUILD_TOOLS_DIR / "REPORT" / "PAL-SIMILAR.json"
 PAL_SIMILAR_JSON_FILE.touch()
 
 

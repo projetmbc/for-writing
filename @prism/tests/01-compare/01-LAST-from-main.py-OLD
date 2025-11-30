@@ -1,62 +1,9 @@
-#!/usr/bin/env python3
-
-# DEBUG - START
-# from rich import print
-# DEBUG - END
-
-
-from typing import Any, Optional, TypeAlias
-
-from pathlib import Path
-import              sys
-
-THIS_DIR = Path(__file__).parent
-PROJ_DIR = THIS_DIR.parent
-
-sys.path.append(str(PROJ_DIR / "tools"))
-
-from cbutils.core import *
-from cbutils      import *
-
-from shutil import rmtree
-
-from datetime import datetime
-
-import hashlib
-import requests
-
-
-
-# ------------------ #
-# -- CONSTANTS #1 -- #
-# ------------------ #
-
-# ------------------ #
-# -- CONSTANTS #1 -- #
-# ------------------ #
-
 FILE_MAIN_2_DEV = REPORT_DIR / "MAIN-2-DEV.json"
 MAIN_2_DEV_ADDS = dict()
 
 
-TAG_REMOVED = 'removed'
-TAG_UPDATED = 'updated'
-TAG_NEW     = 'new'
 
 
-
-
-
-
-PROD_JSON_DIR = PROJ_DIR / "products" / "json"
-BACKUP_DIR    = THIS_DIR  / "BACKUP_DIR"
-REPORT_DIR    = THIS_DIR  / "REPORT"
-
-
-BACKUP_DIR.mkdir(
-    parents  = True,
-    exist_ok = True,
-)
 
 
 if REPORT_DIR.is_dir():

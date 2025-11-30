@@ -16,7 +16,10 @@ from multimd import Builder, Path
 # -- CONSTANTS -- #
 # --------------- #
 
-PROJ_DIR = THIS_DIR.parent
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
 
 
 # ------------------ #

@@ -3,10 +3,10 @@
 from pathlib import Path
 import              sys
 
-THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+THIS_DIR        = Path(__file__).parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -59,8 +59,12 @@ TEX_EQUIV_CMD = r"\Rightarrow"
 TAG_SAME_NAME = STATUS_TAG[PAL_STATUS.SAME_NAME]
 
 
-PROJ_DIR      = TOOLS_DIR.parent
-REPORT_DIR    = PROJ_DIR / "tools" / "REPORT"
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
+
+REPORT_DIR    = BUILD_TOOLS_DIR / "REPORT"
 TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
 
 

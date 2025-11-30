@@ -4,9 +4,9 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 
@@ -17,7 +17,10 @@ from shutil import rmtree
 # -- CONSTANTS -- #
 # --------------- #
 
-PROJ_DIR = TOOLS_DIR.parent
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
 
 CODE_NAME = "Scientific Colour Maps"
 SRC_DIR   = PROJ_DIR / "resources" / CODE_NAME.replace(' ', '') / "ScientificColourMaps8"

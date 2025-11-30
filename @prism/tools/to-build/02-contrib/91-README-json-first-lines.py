@@ -4,9 +4,9 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 
@@ -33,11 +33,15 @@ PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-SRC_DIR   = TOOLS_DIR.parent
-PRODS_DIR = SRC_DIR / "products"
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
+
+PRODS_DIR = PROJ_DIR / "products"
 
 
-MD_PROD_FILE = SRC_DIR / "readme" / "products.md"
+MD_PROD_FILE = PROJ_DIR / "readme" / "products.md"
 
 
 # ------------------ #
@@ -71,7 +75,7 @@ def compact_nblists(json_code: str) -> str:
 
 logging.info(
     msg_creation_update(
-        context = f"'{MD_PROD_FILE.relative_to(SRC_DIR)}' (auto JSON begin)",
+        context = f"'{MD_PROD_FILE.relative_to(PROJ_DIR)}' (auto JSON begin)",
         upper   = False,
     )
 )

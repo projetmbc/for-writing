@@ -4,9 +4,9 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -52,8 +52,12 @@ TAG_CATEGO_END   = TMPL_TAG_CATEGO.format("END")
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-PROJ_DIR      = TOOLS_DIR.parent
-REPORT_DIR    = PROJ_DIR / "tools" / "REPORT"
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
+
+REPORT_DIR    = BUILD_TOOLS_DIR / "REPORT"
 CATEGO_DIR    = PROJ_DIR / "contrib" / "translate" / "common" / "category"
 EN_MANUAL_DIR = PROJ_DIR / "contrib" / "translate" / "en" / "manual"
 

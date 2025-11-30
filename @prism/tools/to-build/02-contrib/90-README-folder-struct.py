@@ -4,9 +4,9 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 
@@ -15,8 +15,12 @@ from cbutils.core import *
 # -- CONSTANTS -- #
 # --------------- #
 
-SRC_DIR     = TOOLS_DIR.parent
-CONTRIB_DIR = SRC_DIR / "contrib"
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
+
+CONTRIB_DIR = PROJ_DIR / "contrib"
 
 
 TMPL_TAG_STRUCT = "<!-- FOLDER STRUCT. AUTO - {} -->"
@@ -40,7 +44,7 @@ for mdfile in CONTRIB_DIR.rglob("*.md"):
 
     logging.info(
         msg_creation_update(
-            context = f"'{mdfile.relative_to(SRC_DIR)}' (auto treeview)",
+            context = f"'{mdfile.relative_to(PROJ_DIR)}' (auto treeview)",
             upper   = False,
         )
     )

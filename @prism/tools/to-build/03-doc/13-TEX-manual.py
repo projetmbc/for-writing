@@ -4,9 +4,9 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -93,17 +93,17 @@ TMPL_IMPORT = r"\subimport{{{rel_folder}/}}{{{file}}}"
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-PROJ_DIR = TOOLS_DIR.parent
-
-
 TAG_MANUAL     = "manual"
 TAG_CHANGES    = "changelog"
 TAG_APPENDIXES = "appendixes"
 
 
-TNSCHGES_DIR = PROJ_DIR / "changes" / "stable"
+PROJ_DIR = THIS_DIR
 
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
 
+TNSCHGES_DIR       = PROJ_DIR / "changes" / "stable"
 TRANSLATE_DIR      = PROJ_DIR / "contrib" / "translate"
 PREDOC_MANUALS_DIR = PROJ_DIR / "pre-doc" / TAG_MANUAL
 

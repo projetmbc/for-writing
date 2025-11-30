@@ -4,9 +4,9 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -88,8 +88,12 @@ TEX_EXT_N_FRIENDS = [
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-PROJ_DIR   = TOOLS_DIR.parent
-REPORT_DIR = PROJ_DIR / "tools" / "REPORT"
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
+
+REPORT_DIR = BUILD_TOOLS_DIR / "REPORT"
 PRODS_DIR  = PROJ_DIR / "products"
 PREDOC_DIR = PROJ_DIR / "pre-doc" / "showcase"
 SINGLE_DIR = PREDOC_DIR / "single"

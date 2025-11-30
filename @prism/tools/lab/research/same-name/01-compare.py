@@ -4,14 +4,14 @@ from pathlib import Path
 import              sys
 
 
-TOOLS_DIR = Path(__file__).parent
+BUILD_TOOLS_DIR = Path(__file__).parent
 
-while TOOLS_DIR.name != "tools-lab":
-    TOOLS_DIR = TOOLS_DIR.parent
+while BUILD_TOOLS_DIR.name != "tools-lab":
+    BUILD_TOOLS_DIR = BUILD_TOOLS_DIR.parent
 
-TOOLS_DIR = TOOLS_DIR.parent / "tools"
+BUILD_TOOLS_DIR = BUILD_TOOLS_DIR.parent / "tools"
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils import *
 
@@ -24,9 +24,13 @@ from yaml import safe_load
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR    = Path(__file__).parent
-PRODS_DIR   = TOOLS_DIR.parent / "products"
-REPORT_DIR  = TOOLS_DIR / "REPORT"
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
+
+PRODS_DIR   = PROJ_DIR / "products"
+REPORT_DIR  = BUILD_TOOLS_DIR / "REPORT"
 COMPARE_DIR = THIS_DIR / "compare"
 
 
@@ -42,7 +46,7 @@ with PAL_REPORT_FILE.open(mode = "r") as f:
     PAL_REPORT = json_load(f)
 
 
-HUMAN_RENAMING_FILE = TOOLS_DIR.parent / "tools-lab" / "human-choices" / "rename" / "last.yaml"
+HUMAN_RENAMING_FILE = BUILD_TOOLS_DIR.parent / "tools-lab" / "human-choices" / "rename" / "last.yaml"
 HUMAN_RENAMING      = safe_load(HUMAN_RENAMING_FILE.read_text())
 
 

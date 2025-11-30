@@ -4,9 +4,9 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-sys.path.append(str(TOOLS_DIR))
+sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -28,11 +28,15 @@ from matplotlib import colormaps
 CTXT = TAG_MPL
 
 
-PRODS_DIR  = TOOLS_DIR.parent / "products"
-REPORT_DIR = TOOLS_DIR / "REPORT"
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
+
+REPORT_DIR = BUILD_TOOLS_DIR / "REPORT"
 
 
-PROD_JSON_DIR = PRODS_DIR / "json"
+PROD_JSON_DIR = PROJ_DIR / "products" / "json"
 PROD_JSON_DIR.mkdir(
     parents  = True,
     exist_ok = True

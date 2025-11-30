@@ -3,7 +3,7 @@
 from pathlib import Path
 import              sys
 
-THIS_DIR  = Path(__file__).parent
+THIS_DIR = Path(__file__).parent
 
 sys.path.append(str(THIS_DIR))
 
@@ -16,8 +16,10 @@ from yaml import safe_load
 # -- CONSTANTS -- #
 # --------------- #
 
-PROJ_DIR = THIS_DIR.parent
+PROJ_DIR = THIS_DIR
 
+while (PROJ_DIR.name != "@prism"):
+    PROJ_DIR = PROJ_DIR.parent
 
 PROJECT_ABOUT_YAML = PROJ_DIR / "about.yaml"
 TOOLS_VERSION_TXT  = THIS_DIR / "VERSION.txt"
