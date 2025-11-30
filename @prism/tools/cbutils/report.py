@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from typing import TypeAlias
+
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -10,16 +12,25 @@ from matplotlib.colors import to_rgb
 from .cleanpal import *
 
 
+# ------------ #
+# -- TYPING -- #
+# ------------ #
+
+RGBCols    :TypeAlias = [float, float, float]
+PaletteCols:TypeAlias = list[RGBCols]
+
+
 def report_gradient_clash(
-    all_palettes  : list[list[float, float, float]],
+    all_palettes  : list[PaletteCols],
     palette_report: dict,
     name          : str,
     context       : str,
-    palette       : list[list[float, float, float]],
+    palette       : PaletteCols,
     img_dir       : Path,
 ) -> None:
+# Some closures.
     def make_gradient(
-        colors: list[ [float, float, float] ],
+        colors: PaletteCols,
         width : int = 800,
         height: int = 100
     ) -> np.ndarray:
@@ -35,7 +46,7 @@ def report_gradient_clash(
 
         return arr
 
-    def build_projname(name_n_ctxt):
+    def build_projname(name_n_ctxt: str) -> str:
         infos = palette_report[name_n_ctxt]
 
         if "equal-to" in infos:
@@ -46,6 +57,7 @@ def report_gradient_clash(
 
         return projname
 
+# Lets' work...
     name_n_ctxt = namectxt(name, context)
 
     if name_n_ctxt in palette_report:
@@ -98,5 +110,3 @@ def report_gradient_clash(
         dpi         = 200,
         bbox_inches = "tight"
     )
-
-    return True

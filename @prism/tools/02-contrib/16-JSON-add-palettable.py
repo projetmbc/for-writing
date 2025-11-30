@@ -32,6 +32,11 @@ from json import (
 RGBCols    :TypeAlias = [float, float, float]
 PaletteCols:TypeAlias = list[RGBCols]
 
+# PaletteReport:TypeAlias = dict[
+#     str,
+#     dict[str, str] | list[str]
+# ]
+
 
 # ------------------ #
 # -- CONSTANTS #1 -- #

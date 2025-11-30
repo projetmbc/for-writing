@@ -12,6 +12,12 @@ bash qui nettoie ce qui ne doit aps apparaotre dans le m main : apriori just les
 
 githuba ction pour show case ==> vire scritp actuel qui n'a plus de raison d'^tre
 
+
+// ---------- //
+
+TOOLS : virer TAG_NAMES_IGNORED et asymptote traité commes les autres
+
+
 // ---------- //
 
 scintific color catgéorie en elle meme donc plus dans les autres !!!
