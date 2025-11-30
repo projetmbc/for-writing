@@ -1,11 +1,25 @@
 #!/usr/bin/env python3
 
+from typing import TypeAlias
+
 from enum import Enum
 
 import numpy as np
 
 from .normval import stdfloat
 
+
+# ------------ #
+# -- TYPING -- #
+# ------------ #
+
+RGBCols    :TypeAlias = [float, float, float]
+PaletteCols:TypeAlias = list[RGBCols]
+
+
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
 PALSIZE   = 10  # <--- CSS and manual uses.
 PRECISION = 10**6
@@ -66,7 +80,7 @@ PALETTABLE_SUB_FOLDERS = {
 }
 
 
-def minimize_palette(p: list[float]) -> list[float]:
+def minimize_palette(p: PaletteCols) -> PaletteCols:
     if len(set(tuple(c) for c in p)) == len(p):
         return p
 
@@ -79,9 +93,9 @@ def minimize_palette(p: list[float]) -> list[float]:
     return new_p
 
 
-def equalfloatlist(
-    list_1: list[ [float, float, float] ],
-    list_2: list[ [float, float, float] ]
+def equalfloat_palettes(
+    list_1: PaletteCols,
+    list_2: PaletteCols
 ) -> bool:
     if len(list_1) != len(list_2):
         return False
@@ -94,9 +108,7 @@ def equalfloatlist(
     return True
 
 
-def pal255_to_pal01(
-    pal: list[ [float, float, float] ],
-) -> list[ [float, float, float] ]:
+def pal255_to_pal01(pal: PaletteCols) -> PaletteCols:
     new_pal = list(
         (r / 255, g / 255, b / 255)
         for (r, g, b) in pal
@@ -108,7 +120,7 @@ def pal255_to_pal01(
 def namectxt(
     name: str,
     ctxt: str
-):
+) -> str:
     return f"{name}::{ctxt}"
 
 
@@ -119,13 +131,13 @@ def extract_namectxt(name_n_ctxt: str) -> (str, str):
 def update_palettes(
     context  : str,
     name     : str,
-    candidate: list[ [float, float, float] ],
-    palettes : dict[ str, list[ [float, float, float] ] ],
-    ignored  : dict[ str, dict[ str, [str] ] ],
+    candidate: PaletteCols,
+    palettes : dict[str, PaletteCols],
+    ignored  : dict[str, dict[ str, [str] ] ],
     logcom,
 ) -> (
     str,
-    dict[ str, list[ [float, float, float] ] ],
+    dict[str, PaletteCols],
     dict[ str, dict[ str, [str] ] ]
 ):
     name_n_ctxt = namectxt(name, context)
@@ -176,13 +188,13 @@ def update_palettes(
     status    = PAL_STATUS.IS_NEW
 
     for n, p in palettes.items():
-        if equalfloatlist(candidate, p):
+        if equalfloat_palettes(candidate, p):
             status   = PAL_STATUS.EQUAL_TO
             lastname = n
 
             break
 
-        elif equalfloatlist(candidate, p[::-1]):
+        elif equalfloat_palettes(candidate, p[::-1]):
             status   = PAL_STATUS.REVERSE_OF
             lastname = n
 
@@ -207,9 +219,7 @@ def update_palettes(
     return name, palettes, ignored
 
 
-def norm_palette(
-    palette: list[ [float, float, float] ]
-) -> list[ [float, float, float] ]:
+def norm_palette(palette: PaletteCols) -> PaletteCols:
     size = len(palette)
 
     pal_array = np.array(palette)
@@ -243,10 +253,10 @@ def norm_palette(
     return result
 
 
-def resume_pal_build(
+def resume_nbpals_build(
     context    : str,
     nb_new_pals: int,
-    palettes   : dict[ str, list[ [float, float, float] ] ],
+    palettes   : dict[str, PaletteCols],
     logcom
 ) -> int:
     nb_new_pals = len(palettes) - nb_new_pals

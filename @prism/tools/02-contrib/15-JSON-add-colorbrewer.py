@@ -29,6 +29,10 @@ NAMES_FILE     = REPORT_DIR / f"NAMES-{CTXT_FILE_NAME}.json"
 ORIGINAL_NAMES = dict()
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
@@ -54,9 +58,9 @@ with PAL_COLORBREWER_FILE.open(mode = "r") as f:
     PAL_COLORBREWER = json_load(f)
 
 
-# --------------------------------- #
-# -- EXTRACT MAPS FROM JSON FILE -- #
-# --------------------------------- #
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
 
 def extract_palette(pal_def: dict) -> list[ [float, float, float] ]:
     max_size = 0
@@ -76,9 +80,9 @@ def extract_palette(pal_def: dict) -> list[ [float, float, float] ]:
     return pal_def
 
 
-# ------------------------------------- #
-# -- BUILD FROM COLORBREWER PALETTES -- #
-# ------------------------------------- #
+# ---------------------- #
+# -- FROM COLORBREWER -- #
+# ---------------------- #
 
 logging.info(f"Work with the '{CTXT}' source code.")
 
@@ -101,7 +105,7 @@ for pal_name, pal_def in PAL_COLORBREWER.items():
     PAL_CREDITS[aprism_name]    = CTXT
 
 
-nb_new_pals = resume_pal_build(
+nb_new_pals = resume_nbpals_build(
     context     = CTXT,
     nb_new_pals = nb_new_pals,
     palettes    = ALL_PALETTES,

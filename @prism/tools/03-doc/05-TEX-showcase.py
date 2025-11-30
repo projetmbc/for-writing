@@ -12,73 +12,18 @@ from cbutils.core import *
 from cbutils      import *
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
-
-PROJ_DIR   = TOOLS_DIR.parent
-REPORT_DIR = PROJ_DIR / "tools" / "REPORT"
-PRODS_DIR  = PROJ_DIR / "products"
-PREDOC_DIR = PROJ_DIR / "pre-doc" / "showcase"
-SINGLE_DIR = PREDOC_DIR / "single"
-
-
-SINGLE_DIR.mkdir(exist_ok = True)
-
-
-PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
-
-with PAL_CREDITS_FILE.open(mode = "r") as f:
-    ALL_SRC = json_load(f)
-
-
-PROD_JSON_DIR = PRODS_DIR / "json"
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
-
-with PAL_JSON_FILE.open(mode = "r") as f:
-    ALL_PALETTES = json_load(f)
-
-
-TEX_FILE_KINDS = [
-    (STD := 'std'),
-    (DARK:= 'dark')
-]
-
-# We don't use the 'main' prefix since each showcase PDF needs
-# to be compiled separately beforehand. A Bash script will handle
-# this accordingly.
-ALL_SHOWCASE_TEX_FILES = dict()
-
-TMPL_TEX_FILES = {
-    k: PREDOC_DIR / "templates" / f"single-palette-{k}.tex"
-    for k in TEX_FILE_KINDS
-}
-
-TMPL_SINGLE_SHOWCASE_TEX_CODES = {
-    k: TMPL_TEX_FILES[k].read_text()
-    for k in TEX_FILE_KINDS
-}
-
-
-ALL_SHOWCASE_TEX_FILES = {
-    k: PREDOC_DIR / f"showcase-en-{k}.tex"
-    for k in TEX_FILE_KINDS
-}
-
-
-HEADER_TEX_CODES = {
-    STD : "",
-    DARK: "[theme = dark]",
-}
-
-HEADER_TEX_CODES = {
-    k: rf"\documentclass{opt}{{tutodoc}}"
-    for k, opt in HEADER_TEX_CODES.items()
-}
-
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
 PATTERN_CHGE_PAL_NAME = re.compile(r"\\newcommand\{\\PALETTE\}\{(.*)\}")
+
 PATTERN_CHGE_PAL_CREDITS  = re.compile(r"\\newcommand\{\\SRC\}\{(.*)\}")
+
+PATTERN_UPDATE_PALSIZE = re.compile(
+    r'^\s*PALSIZE\s*=\s*\d+\s*$',
+    flags = re.MULTILINE
+)
 
 
 START_FINAL_TEX_CODE = r"""
@@ -139,10 +84,77 @@ TEX_EXT_N_FRIENDS = [
 ]
 
 
-PATTERN_UPDATE_PALSIZE = re.compile(
-    r'^\s*PALSIZE\s*=\s*\d+\s*$',
-    flags = re.MULTILINE
-)
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+PROJ_DIR   = TOOLS_DIR.parent
+REPORT_DIR = PROJ_DIR / "tools" / "REPORT"
+PRODS_DIR  = PROJ_DIR / "products"
+PREDOC_DIR = PROJ_DIR / "pre-doc" / "showcase"
+SINGLE_DIR = PREDOC_DIR / "single"
+
+
+SINGLE_DIR.mkdir(exist_ok = True)
+
+
+# ------------------ #
+# -- CONSTANTS #3 -- #
+# ------------------ #
+
+TEX_FILE_KINDS = [
+    (STD := 'std'),
+    (DARK:= 'dark')
+]
+
+# We don't use the 'main' prefix since each showcase PDF needs
+# to be compiled separately beforehand. A Bash script will handle
+# this accordingly.
+ALL_SHOWCASE_TEX_FILES = dict()
+
+TMPL_TEX_FILES = {
+    k: PREDOC_DIR / "templates" / f"single-palette-{k}.tex"
+    for k in TEX_FILE_KINDS
+}
+
+TMPL_SINGLE_SHOWCASE_TEX_CODES = {
+    k: TMPL_TEX_FILES[k].read_text()
+    for k in TEX_FILE_KINDS
+}
+
+
+ALL_SHOWCASE_TEX_FILES = {
+    k: PREDOC_DIR / f"showcase-en-{k}.tex"
+    for k in TEX_FILE_KINDS
+}
+
+
+HEADER_TEX_CODES = {
+    STD : "",
+    DARK: "[theme = dark]",
+}
+
+HEADER_TEX_CODES = {
+    k: rf"\documentclass{opt}{{tutodoc}}"
+    for k, opt in HEADER_TEX_CODES.items()
+}
+
+
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
+PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
+
+with PAL_CREDITS_FILE.open(mode = "r") as f:
+    ALL_SRC = json_load(f)
+
+
+PROD_JSON_DIR = PRODS_DIR / "json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
+
+with PAL_JSON_FILE.open(mode = "r") as f:
+    ALL_PALETTES = json_load(f)
 
 
 # ----------- #

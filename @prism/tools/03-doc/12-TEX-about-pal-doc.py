@@ -24,6 +24,10 @@ TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate"
 EN_MANUAL_DIR = TRANSLATE_DIR / "en" / "manual"
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 

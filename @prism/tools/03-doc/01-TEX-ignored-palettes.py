@@ -14,9 +14,50 @@ from cbutils      import *
 from collections import defaultdict
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+TAB = " "*4
+
+
+TEX_NO_TRANSLATION = f"""
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+""".strip()
+
+
+TEX_TMPL_TABLE_HEADER = TAB + r"""
+\begin{center}
+\begin{tblr}{
+  colspec     = {@{}l | r Q[c,$] l},
+  baseline    = T,
+  column{2,4} = {cmd=\tdoccodein{text}},
+}
+""".strip()
+
+
+TEX_TMPL_TABLE_FOOTER = TAB + r"""
+\end{tblr}
+\end{center}
+""".strip()
+
+
+TEX_TMPL_KIND  = TAB*2 + r"{ctxt}"
+TEX_TMPL_ROW   = TAB*2 + r"  & {row} \\"
+TEX_TMPL_HRULE = TAB*2 + r"\hline"
+
+
+TEX_CMDS = {
+    PAL_STATUS.EQUAL_TO  : "=",
+    PAL_STATUS.REVERSE_OF: r"\rightleftharpoons",
+}
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 TAG_SAME_NAME = STATUS_TAG[PAL_STATUS.SAME_NAME]
 
@@ -28,6 +69,10 @@ TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
 
 TEX_FILE = TRANSLATE_DIR / "ignored-palettes.latex"
 
+
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
 
 PAL_JSON_FILE = PROJ_DIR / "products" / "json" / "palettes.json"
 
@@ -46,39 +91,6 @@ for k in [
     TAG_NEW_NAMES,
 ]:
     del PAL_REPORT[k]
-
-
-TAB = " "*4
-
-TEX_NO_TRANSLATION = f"""
-% --------------------------------- %
-% -- NO TRANSLATION NEEDED HERE! -- %
-% --------------------------------- %
-""".strip()
-
-TEX_TMPL_TABLE_HEADER = TAB + r"""
-\begin{center}
-\begin{tblr}{
-  colspec     = {@{}l | r Q[c,$] l},
-  baseline    = T,
-  column{2,4} = {cmd=\tdoccodein{text}},
-}
-""".strip()
-
-TEX_TMPL_TABLE_FOOTER = TAB + r"""
-\end{tblr}
-\end{center}
-""".strip()
-
-TEX_TMPL_KIND  = TAB*2 + r"{ctxt}"
-TEX_TMPL_ROW   = TAB*2 + r"  & {row} \\"
-TEX_TMPL_HRULE = TAB*2 + r"\hline"
-
-
-TEX_CMDS = {
-    PAL_STATUS.EQUAL_TO  : "=",
-    PAL_STATUS.REVERSE_OF: r"\rightleftharpoons",
-}
 
 
 # ----------------- #

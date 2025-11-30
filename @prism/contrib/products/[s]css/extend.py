@@ -4,8 +4,18 @@
 # -- IMPORT ALLOWED -- #
 # -------------------- #
 
+from typing import TypeAlias
+
 import ast
 import re
+
+
+# ------------ #
+# -- TYPING -- #
+# ------------ #
+
+RGBCols    :TypeAlias = [float, float, float]
+PaletteCols:TypeAlias = list[RGBCols]
 
 
 # -------------------- #
@@ -27,7 +37,7 @@ import re
 # css::
 #     ???
 ###
-def parse(code: str) -> list[ [float, float, float] ]:
+def parse(code: str) -> PaletteCols:
     TODO
 
 
@@ -49,7 +59,7 @@ PALETTES_FILE_NAME = "palettes.lua"
 ###
 def build_code(
     credits : str,
-    palettes: dict[ str, list[ [float, float, float] ] ]
+    palettes: dict[str, PaletteCols]
 ) -> str:
     TODO
 

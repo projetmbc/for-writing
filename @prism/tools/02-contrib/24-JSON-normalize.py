@@ -16,9 +16,16 @@ from json import (
 )
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 PRODS_DIR  = TOOLS_DIR.parent / "products"
 REPORT_DIR = THIS_DIR.parent / "REPORT"
@@ -26,9 +33,6 @@ REPORT_DIR = THIS_DIR.parent / "REPORT"
 
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
-
-
-PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
 
 
 # ----------- #

@@ -9,6 +9,7 @@ from matplotlib.colors import to_rgb
 
 from .cleanpal import *
 
+
 def report_gradient_clash(
     all_palettes  : list[list[float, float, float]],
     palette_report: dict,

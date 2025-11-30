@@ -29,6 +29,10 @@ PRODS_DIR        = PROJ_DIR / "products"
 CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 

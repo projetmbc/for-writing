@@ -1,11 +1,21 @@
 #!/usr/bin/env python3
 
+from typing import TypeAlias
+
 from pathlib import Path
 
 from json import (
     dumps as json_dumps,
     load  as json_load,
 )
+
+
+# ------------ #
+# -- TYPING -- #
+# ------------ #
+
+RGBCols    :TypeAlias = [float, float, float]
+PaletteCols:TypeAlias = list[RGBCols]
 
 
 # ----------- #
@@ -18,9 +28,9 @@ def update_jsons(
     jsnames    : Path | None = None,
     credits    : dict[str, str] | None = None,
     jscredits  : Path | None = None,
-    reports    : dict[ str, dict[ str, [str] ] ] | None = None,
+    reports    : dict[str, dict[ str, [str] ] ] | None = None,
     jsreports  : Path | None = None,
-    palettes   : dict[ str, list[ [float, float, float] ] ] | None = None,
+    palettes   : dict[str, PaletteCols] | None = None,
     jspalettes : Path | None = None,
     logcom = None
 ) -> None:

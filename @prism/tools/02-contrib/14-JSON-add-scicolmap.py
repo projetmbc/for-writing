@@ -16,9 +16,19 @@ from collections import defaultdict
 import numpy as np
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+PATTERN_CMP_LIST = re.compile(
+    r'cm_data\s*=\s*(\[\[.*?\]\])',
+    re.DOTALL
+)
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 CTXT = TAG_SCICOLMAP
 
@@ -33,6 +43,10 @@ CTXT_FILE_NAME = CTXT.replace(' ', '-').upper()
 NAMES_FILE     = REPORT_DIR / f"NAMES-{CTXT_FILE_NAME}.json"
 ORIGINAL_NAMES = dict()
 
+
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
 
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
@@ -53,15 +67,9 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
 
 
-PATTERN_CMP_LIST = re.compile(
-    r'cm_data\s*=\s*(\[\[.*?\]\])',
-    re.DOTALL
-)
-
-
-# ------------------------------- #
-# -- EXTRACT MAPS FROM PY FILE -- #
-# ------------------------------- #
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
 
 def exract_palette(file: Path) -> list[ [float, float, float] ]:
     content = file.read_text()
@@ -76,9 +84,9 @@ def exract_palette(file: Path) -> list[ [float, float, float] ]:
     return palette
 
 
-# -------------------------------- #
-# -- BUILD FROM SCI. COLOR MAPS -- #
-# -------------------------------- #
+# -------------------------- #
+# -- FROM SCI. COLOR MAPS -- #
+# -------------------------- #
 
 logging.info(f"Work with the '{CTXT}' source code.")
 
@@ -102,7 +110,7 @@ for pyfile in sorted(ORIGINAL_SRC_DIR.glob("*/*.py"), key = lambda x: str(x).low
     PAL_CREDITS[aprism_name]    = CTXT
 
 
-nb_new_pals = resume_pal_build(
+nb_new_pals = resume_nbpals_build(
     context     = CTXT,
     nb_new_pals = nb_new_pals,
     palettes    = ALL_PALETTES,

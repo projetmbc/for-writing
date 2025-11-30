@@ -14,9 +14,43 @@ from cbutils      import *
 from os import makedirs
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+EN_SORTED_TITLES = {
+    'deficient-blind': "Colorblind-friendly palettes",
+    'bicolor'        :  "Two-color palettes",
+    'tricolor'       :  "Three-color palettes",
+    'rainbow'        :  "Rainbow-style palettes",
+    'big-var'        :  "High-contrast palettes",
+}
+
+
+LUA_TMPL_CODE = r"""
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{{luacode*}}
+PALETTES = {{
+  {catego}
+}}
+
+drawCategoPals(PALETTES, {catego_id})
+\end{{luacode*}}
+    """.strip() + '\n'
+
+
+TMPL_TAG_CATEGO = "% AUTO CATEGOS - {}"
+
+TAG_CATEGO_START = TMPL_TAG_CATEGO.format("START")
+TAG_CATEGO_END   = TMPL_TAG_CATEGO.format("END")
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 PROJ_DIR      = TOOLS_DIR.parent
 REPORT_DIR    = PROJ_DIR / "tools" / "REPORT"
@@ -36,6 +70,10 @@ else:
     makedirs(CATEGO_DIR, exist_ok=True)
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 PAL_CATEGO_FILE = REPORT_DIR / "PAL-CATEGORY.json"
 
 with PAL_CATEGO_FILE.open(mode = "r") as f:
@@ -47,35 +85,6 @@ PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
 with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
 
-
-TMPL_TAG_CATEGO = "% AUTO CATEGOS - {}"
-
-TAG_CATEGO_START = TMPL_TAG_CATEGO.format("START")
-TAG_CATEGO_END   = TMPL_TAG_CATEGO.format("END")
-
-
-LUA_TMPL_CODE = r"""
-% --------------------------------- %
-% -- NO TRANSLATION NEEDED HERE! -- %
-% --------------------------------- %
-
-\begin{{luacode*}}
-PALETTES = {{
-  {catego}
-}}
-
-drawCategoPals(PALETTES, {catego_id})
-\end{{luacode*}}
-    """.strip() + '\n'
-
-
-EN_SORTED_TITLES = {
-    'deficient-blind': "Colorblind-friendly palettes",
-    'bicolor'        :  "Two-color palettes",
-    'tricolor'       :  "Three-color palettes",
-    'rainbow'        :  "Rainbow-style palettes",
-    'big-var'        :  "High-contrast palettes",
-}
 
 if set(EN_SORTED_TITLES) != set(ALL_CATEGO):
     missing_titles = set(ALL_CATEGO) - set(EN_SORTED_TITLES)

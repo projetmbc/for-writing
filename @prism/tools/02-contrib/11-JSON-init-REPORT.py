@@ -28,6 +28,10 @@ HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices"
 PAL_REPORT_FILE  = REPORT_DIR / "PAL-REPORT.json"
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 HUMAN_IGNORING_FILE = HUMAN_CHOICES_DIR / "ignored" / "last.yaml"
 HUMAN_IGNORING      = safe_load(HUMAN_IGNORING_FILE.read_text())
 
@@ -51,9 +55,9 @@ REPORT_DIR.mkdir(
 )
 
 
-# ------------- #
-# -- EXTRACT -- #
-# ------------- #
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
 
 def extract_ignored(choices: dict) -> [str]:
     if not choices:
@@ -120,9 +124,9 @@ def extract_renamed(choices: dict) -> [str]:
     return renames
 
 
-# ---------------------- #
-# -- IGNORED BY HUMAN -- #
-# ---------------------- #
+# -------------------------------- #
+# -- RENAMED & IGNORED BY HUMAN -- #
+# -------------------------------- #
 
 logging.info(
     f"Initializing '{PAL_REPORT_FILE.name}' file (human choices)."

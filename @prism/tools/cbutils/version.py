@@ -3,9 +3,9 @@
 from pathlib import Path
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# --------------------- #
+# -- EXTRACT VERSION -- #
+# --------------------- #
 
 VERSION = Path(__file__).parent.parent / "VERSION.txt"
 VERSION = VERSION.read_text()

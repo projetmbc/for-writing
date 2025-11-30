@@ -13,12 +13,15 @@ from rich.console import Console
 
 LOG_FILE = "tools.log"
 
+
 RICH_FORMAT_PATTERN = re.compile(r'\[.*?\]')
+
 
 FSTR_NO_CHANGE      = "{}"
 FSTR_COLOR_WARNING  = "[dark_goldenrod]{}[/dark_goldenrod]"
 FSTR_COLOR_CRITICAL = "[black on wheat1]{}[/black on wheat1]"
 FSTR_COLOR_ERROR    = "[bright_red]{}[/bright_red]"
+
 
 LOG_PRINTERS = {
     (TAG_INFO    := "info")    : logging.info,

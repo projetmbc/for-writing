@@ -30,6 +30,10 @@ CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
 REPORT_DIR       = TOOLS_DIR / "REPORT"
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
@@ -47,12 +51,6 @@ PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
 
 with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
-
-
-REPORT_NAME_CONFLICT_FILE = THIS_DIR / "PALETTE-CONFLICT.png"
-
-if REPORT_NAME_CONFLICT_FILE.is_file():
-    REPORT_NAME_CONFLICT_FILE.unlink()
 
 
 # ----------------------- #
@@ -100,7 +98,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
         )
 
 
-nb_contribs = resume_pal_build(
+nb_contribs = resume_nbpals_build(
     context     = CTXT,
     nb_new_pals = nb_contribs,
     palettes    = ALL_PALETTES,

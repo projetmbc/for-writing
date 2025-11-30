@@ -11,14 +11,9 @@ sys.path.append(str(TOOLS_DIR))
 from cbutils.core import *
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
-
-PROJ_DIR    = TOOLS_DIR.parent
-CONTRIB_DIR = PROJ_DIR / "contrib" / "products"
-PRODS_DIR   = PROJ_DIR / "products"
-README_DIR  = PROJ_DIR / "readme" / "products"
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
 DOC_KEPT = [
     "title",
@@ -27,8 +22,25 @@ DOC_KEPT = [
 ]
 
 
-PATTERN_MD_H1 = re.compile(r'^(.+)\n=+\s*$', flags=re.MULTILINE)
-PATTERN_MD_H2 = re.compile(r'^(.+\n)-+\s*$', flags=re.MULTILINE)
+PATTERN_MD_H1 = re.compile(
+    r'^(.+)\n=+\s*$',
+    flags = re.MULTILINE
+)
+
+PATTERN_MD_H2 = re.compile(
+    r'^(.+\n)-+\s*$',
+    flags = re.MULTILINE
+)
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+PROJ_DIR    = TOOLS_DIR.parent
+CONTRIB_DIR = PROJ_DIR / "contrib" / "products"
+PRODS_DIR   = PROJ_DIR / "products"
+README_DIR  = PROJ_DIR / "readme" / "products"
 
 
 # ----------- #

@@ -4,7 +4,6 @@ import ast
 import sys
 import re
 
-
 import                            importlib.util
 from   importlib.machinery import ModuleSpec
 
@@ -15,21 +14,29 @@ from black import (
     WriteBack,
 )
 
-
 from cbutils.core.coding   import *
 from cbutils.core.logconf  import *
 from cbutils.core.messages import *
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------ #
+# -- TYPING -- #
+# ------------ #
 
-TAG_INIT     = "__init__"
-INIT_FILE    = f"{TAG_INIT}.py"
+type DictSplittedCode = dict[str, Path]
 
-SHEBANG_PYTHON = "#!/usr/bin/env python3\n"
+type LegalSigns = dict[
+    str,
+    tupe[
+        bool,
+        list[set[str]]
+    ]
+]
 
+
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
 PATTERN_LEGAL_NAME = re.compile(
     r'^[A-Za-z _.-][A-Za-z0-9 _.-]*$',
@@ -50,19 +57,14 @@ PATTERNS_HEADERS = [
 ]
 
 
-# ------------ #
-# -- TYPING -- #
-# ------------ #
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
-type DictSplittedCode = dict[str, Path]
+SHEBANG_PYTHON = "#!/usr/bin/env python3\n"
+TAG_INIT       = "__init__"
+INIT_FILE      = f"{TAG_INIT}.py"
 
-type LegalSigns = dict[
-    str,
-    tupe[
-        bool,
-        list[set[str]]
-    ]
-]
 
 # ----------------------- #
 # -- BUILD PYTHON CODE -- #

@@ -20,17 +20,45 @@ from collections import defaultdict
 import requests
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
-
-CTXT = TAG_ASY
-
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
 ASY_COLORMAP_RAW_URL = (
     "https://raw.githubusercontent.com/vectorgraphics/"
     "asymptote/master/base/colormap.asy"
 )
+
+
+PATTERN_ASY_COLORMAP = re.compile(
+    r"list_data\s+([A-Za-z0-9_]+)\s*=.*\{([^}]+)\}",
+    re.MULTILINE
+)
+
+PATTERN_ASY_RGB = re.compile(
+    r"rgb\s*\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)"
+)
+
+PATTERN_ASY_SEGPAL = re.compile(
+    r"seg_data\s+(\w+)\s*=\s*seg_data\s*\((.*?)\);",
+    re.S
+)
+
+PATTERN_ASY_TRIPLE = re.compile(
+    r"new triple\[\]\s*{(.*?)}",
+    re.S
+)
+
+PATTERN_ASY_CHANNEL = re.compile(
+    r"\(([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\)"
+)
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+CTXT = TAG_ASY
 
 
 PROJ_DIR   = TOOLS_DIR.parent
@@ -62,30 +90,6 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
 
 
-PATTERN_ASY_COLORMAP = re.compile(
-    r"list_data\s+([A-Za-z0-9_]+)\s*=.*\{([^}]+)\}",
-    re.MULTILINE
-)
-
-PATTERN_ASY_RGB = re.compile(
-    r"rgb\s*\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)"
-)
-
-PATTERN_ASY_SEGPAL = re.compile(
-    r"seg_data\s+(\w+)\s*=\s*seg_data\s*\((.*?)\);",
-    re.S
-)
-
-PATTERN_ASY_TRIPLE = re.compile(
-    r"new triple\[\]\s*{(.*?)}",
-    re.S
-)
-
-PATTERN_ASY_CHANNEL = re.compile(
-    r"\(([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\)"
-)
-
-
 # --------------------- #
 # -- GET SOURCE CODE -- #
 # --------------------- #
@@ -106,9 +110,9 @@ except requests.ConnectionError as e:
     exit()
 
 
-# ------------------------------------- #
-# -- BUILD FROM ASYMPTOTE COLOR MAPS -- #
-# ------------------------------------- #
+# ------------------------------- #
+# -- FROM ASYMPTOTE COLOR MAPS -- #
+# ------------------------------- #
 
 logging.info(f"Work on the '{CTXT}' color maps.")
 
@@ -148,7 +152,7 @@ for name, body in PATTERN_ASY_COLORMAP.findall(asy_code):
     PAL_CREDITS[aprism_name]    = CTXT
 
 
-nb_new_pals = resume_pal_build(
+nb_new_pals = resume_nbpals_build(
     context     = f"'{CTXT}' list of pens.",
     nb_new_pals = nb_new_pals,
     palettes    = ALL_PALETTES,
@@ -156,9 +160,9 @@ nb_new_pals = resume_pal_build(
 )
 
 
-# --------------------------------------------- #
-# -- BUILD FROM ASYMPTOTE SEGMENTED PALETTES -- #
-# --------------------------------------------- #
+# --------------------------------------- #
+# -- FROM ASYMPTOTE SEGMENTED PALETTES -- #
+# --------------------------------------- #
 
 # TODO_SEG_PALETTES
 
@@ -175,7 +179,7 @@ nb_new_pals = resume_pal_build(
 #     logging.info(f"New palette from '{name}' segmented palette.")
 
 
-# nb_asy_segpal = resume_pal_build(
+# nb_asy_segpal = resume_nbpals_build(
 #     context     = f"'{CTXT}' segmented palettes.",
 #     nb_new_pals = nb_asy_segpal,
 #     palettes    = ALL_PALETTES,

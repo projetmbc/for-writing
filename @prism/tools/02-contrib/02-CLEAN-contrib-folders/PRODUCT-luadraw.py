@@ -25,9 +25,9 @@ CONTRIB_LUADRAW_DIR = (
 )
 
 
-# --------------------------------- #
-# -- EMPTY CONTRIB PRODUCT FOLDER -- #
-# --------------------------------- #
+# ------------------------------- #
+# -- EMPTY CONTRIB PROD FOLDER -- #
+# ------------------------------- #
 
 relpath = CONTRIB_LUADRAW_DIR.relative_to(PROJ_DIR)
 

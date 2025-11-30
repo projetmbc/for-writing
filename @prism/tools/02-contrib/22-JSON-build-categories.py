@@ -31,6 +31,10 @@ PAL_CATEGO_JSON_FILE = PROJ_DIR / "tools" / "REPORT" / "PAL-CATEGORY.json"
 PAL_CATEGO_JSON_FILE.touch()
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
@@ -44,9 +48,9 @@ with SCICOLMAP_NAMES_FILE.open(mode = "r") as f:
     ALL_SCICOLMAP_NAMES = json_load(f)
 
 
-# ------------- #
-# -- EXTRACT -- #
-# ------------- #
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
 
 def extract_names(file: Path) -> [str]:
     names = [

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from typing import TypeAlias
+
 from collections import Counter
 
 import numpy as np
@@ -8,12 +10,20 @@ from scipy.spatial.distance import euclidean, cosine
 from sklearn.cluster        import KMeans
 
 
+# ------------ #
+# -- TYPING -- #
+# ------------ #
+
+RGBCols    :TypeAlias = [float, float, float]
+PaletteCols:TypeAlias = list[RGBCols]
+
+
 # --------------------- #
 # -- "AI" - CATEGORY -- #
 # --------------------- #
 
 def classify_palette_colors(
-    colors    : [[float, float, float]],
+    colors    : PaletteCols,
     n_clusters: int
 ) -> float:
     colors = np.array(colors)
@@ -30,7 +40,7 @@ def classify_palette_colors(
 
 
 def is_monochrome(
-    colors   : [[float, float, float]],
+    colors   : PaletteCols,
     threshold: float = 0.08
 ) -> bool:
     result = classify_palette_colors(
@@ -44,7 +54,7 @@ def is_monochrome(
 
 
 def is_bicolor(
-    colors   : [[float, float, float]],
+    colors   : PaletteCols,
     threshold: float = 0.15
 ) -> bool:
     result = classify_palette_colors(
@@ -58,7 +68,7 @@ def is_bicolor(
 
 
 def is_tricolor(
-    colors   : [[float, float, float]],
+    colors   : PaletteCols,
     threshold: float = 0.15
 ) -> bool:
     result = classify_palette_colors(
@@ -75,7 +85,7 @@ def is_tricolor(
 # -- "AI" - SIMILAR -- #
 # -------------------- #
 
-def create_palette_spectrum(colors):
+def create_palette_spectrum(colors: PaletteCols) -> None:
     spectrum = np.zeros(30)
 
     for r, g, b in colors:
@@ -114,10 +124,10 @@ def create_palette_spectrum(colors):
 
 def find_similar_palettes(
     target_name : str,
-    palettes    : dict[str, [ [float, float, float]]],
+    palettes    : dict[str, PaletteCols],
     cluster_size: int = 10,
     method      : str = 'euclidean'
-):
+) -> list[tuple[str, float]]:
     assert method in ['euclidean', 'cosine']
 
     target_spectrum = create_palette_spectrum(palettes[target_name])

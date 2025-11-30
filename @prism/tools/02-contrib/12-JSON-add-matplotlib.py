@@ -33,6 +33,12 @@ REPORT_DIR = TOOLS_DIR / "REPORT"
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"
+PROD_JSON_DIR.mkdir(
+    parents  = True,
+    exist_ok = True
+)
+
+
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 
@@ -41,21 +47,19 @@ NAMES_FILE       = REPORT_DIR / f"NAMES-{CTXT_FILE_NAME}.json"
 PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 PAL_REPORT_FILE = REPORT_DIR / "PAL-REPORT.json"
 
 with PAL_REPORT_FILE.open(mode = "r") as f:
     PAL_REPORT = json_load(f)
 
 
-PROD_JSON_DIR.mkdir(
-    parents  = True,
-    exist_ok = True
-)
-
-
-# -------------------------------------- #
-# -- BUILD FROM MATPLOTLIB COLOR MAPS -- #
-# -------------------------------------- #
+# --------------------- #
+# -- FROM MATPLOTLIB -- #
+# --------------------- #
 
 logging.info("Work on the 'Matplotlib' color maps.")
 

@@ -14,9 +14,33 @@ from cbutils      import *
 from os   import makedirs
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+PATTERN_NB_CLUSTERS = re.compile(
+    r'(\\newcommand\\nbSimClusters\{)(\d+)(\})'
+)
+
+
+LUA_TMPL_CODE = r"""
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+
+\begin{{luacode*}}
+PALETTES = {{
+  {cluster}
+}}
+
+drawSimPals(PALETTES, {cluster_id})
+\end{{luacode*}}
+    """.strip() + '\n'
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 PROJ_DIR      = TOOLS_DIR.parent
 REPORT_DIR    = PROJ_DIR / "tools" / "REPORT"
@@ -36,30 +60,14 @@ else:
 TEX_CFG_FILE = EN_MANUAL_DIR / "preamble.cfg.sty"
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 PAL_CLUSTERS_FILE = REPORT_DIR / "PAL-SIMILAR.json"
 
 with PAL_CLUSTERS_FILE.open(mode = "r") as f:
     ALL_CLUSTERS = json_load(f)
-
-
-LUA_TMPL_CODE = r"""
-% --------------------------------- %
-% -- NO TRANSLATION NEEDED HERE! -- %
-% --------------------------------- %
-
-\begin{{luacode*}}
-PALETTES = {{
-  {cluster}
-}}
-
-drawSimPals(PALETTES, {cluster_id})
-\end{{luacode*}}
-    """.strip() + '\n'
-
-
-PATTERN_NB_CLUSTERS = re.compile(
-    r'(\\newcommand\\nbSimClusters\{)(\d+)(\})'
-)
 
 
 # ----------------- #

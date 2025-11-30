@@ -10,10 +10,11 @@ from typing import Any, Optional, TypeAlias
 from pathlib import Path
 import              sys
 
-THIS_DIR = Path(__file__).parent
-PROJ_DIR = THIS_DIR.parent
+THIS_DIR  = Path(__file__).parent
+PROJ_DIR  = THIS_DIR.parent
+TOOLS_DIR = PROJ_DIR / "tools"
 
-sys.path.append(str(PROJ_DIR / "tools"))
+sys.path.append(str(TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -26,25 +27,44 @@ import hashlib
 import requests
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------ #
+# -- TYPING -- #
+# ------------ #
 
 PaletteCols:TypeAlias = list[ [float, float, float] ]
 
 
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
 JSON_PALETTE_URL = "https://raw.githubusercontent.com/projetmbc/for-writing/main/%40prism/products/json/palettes.json"
 
 
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+FILE_MAIN_2_DEV = REPORT_DIR / "MAIN-2-DEV.json"
+MAIN_2_DEV_ADDS = dict()
+
+
+TAG_REMOVED = 'removed'
+TAG_UPDATED = 'updated'
+TAG_NEW     = 'new'
+
+
+
+
+
+
+PROD_JSON_DIR = PROJ_DIR / "products" / "json"
 BACKUP_DIR    = THIS_DIR  / "BACKUP_DIR"
 REPORT_DIR    = THIS_DIR  / "REPORT"
-PROD_JSON_DIR = PROJ_DIR / "products" / "json"
-
-
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
-
-with PAL_JSON_FILE.open(mode = "r") as f:
-    DEV_PALETTES = json_load(f)
 
 
 BACKUP_DIR.mkdir(
@@ -62,13 +82,14 @@ REPORT_DIR.mkdir(
 )
 
 
-FILE_MAIN_2_DEV = REPORT_DIR / "MAIN-2-DEV.json"
-MAIN_2_DEV_ADDS = dict()
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
 
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
-TAG_REMOVED = 'removed'
-TAG_UPDATED = 'updated'
-TAG_NEW     = 'new'
+with PAL_JSON_FILE.open(mode = "r") as f:
+    DEV_PALETTES = json_load(f)
 
 
 # ----------- #

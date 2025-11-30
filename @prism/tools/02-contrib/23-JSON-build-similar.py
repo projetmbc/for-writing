@@ -35,6 +35,10 @@ PAL_SIMILAR_JSON_FILE = PROJ_DIR / "tools" / "REPORT" / "PAL-SIMILAR.json"
 PAL_SIMILAR_JSON_FILE.touch()
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
@@ -42,9 +46,9 @@ with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
-# ------------- #
-# -- EXTRACT -- #
-# ------------- #
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
 
 def extract_real_clusters(file: Path) -> [[str]]:
     blocks = [

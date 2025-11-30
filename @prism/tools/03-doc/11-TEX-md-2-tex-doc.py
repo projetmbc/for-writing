@@ -39,6 +39,38 @@ MD_PRE_REPLACEMENTS |= {
 }
 
 
+PATTERN_TEX_SECTION = re.compile(
+    r'(\\section\{[^}]+\})'
+)
+PATTERN_TEX_SUBSECTION = re.compile(
+    r'(\\subsection\{[^}]+\})'
+)
+
+
+TMPL_TEX = r"""
+% !TEX TS-program = lualatex
+
+% ------------------------------------------------- %
+% -- DO NOT MODIFY. FILE GENERATED AUTOMATICALLY -- %
+% ------------------------------------------------- %
+
+\documentclass{{tutodoc}}
+
+\usepackage{{../preamble.cfg}}
+
+
+\begin{{document}}
+
+% -- AUTOMATICALLY GENERATED UGLY CODE - START -- %
+
+{content}
+
+% -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
+
+\end{{document}}
+""".strip() + '\n'
+
+
 # ------------------ #
 # -- CONSTANTS #2 -- #
 # ------------------ #
@@ -69,38 +101,6 @@ MD_FILES_TO_CONVERT += [
 
 
 CONVERTER_MD_2_TEX = MdToLatexConverter(shift_down_level = 1)
-
-
-TMPL_TEX = r"""
-% !TEX TS-program = lualatex
-
-% ------------------------------------------------- %
-% -- DO NOT MODIFY. FILE GENERATED AUTOMATICALLY -- %
-% ------------------------------------------------- %
-
-\documentclass{{tutodoc}}
-
-\usepackage{{../preamble.cfg}}
-
-
-\begin{{document}}
-
-% -- AUTOMATICALLY GENERATED UGLY CODE - START -- %
-
-{content}
-
-% -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
-
-\end{{document}}
-""".strip() + '\n'
-
-
-PATTERN_TEX_SECTION = re.compile(
-    r'(\\section\{[^}]+\})'
-)
-PATTERN_TEX_SUBSECTION = re.compile(
-    r'(\\subsection\{[^}]+\})'
-)
 
 
 # ----------- #

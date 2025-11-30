@@ -16,48 +16,13 @@ from datetime import datetime
 from yaml import safe_load
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
-
-PROJ_DIR = TOOLS_DIR.parent
-
-
-TAG_MANUAL     = "manual"
-TAG_CHANGES    = "changelog"
-TAG_APPENDIXES = "appendixes"
-
-
-TNSCHGES_DIR = PROJ_DIR / "changes" / "stable"
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
 PATTERN_TNS_VERSION = re.compile(
     r'==+\s*\n\s*(\d+)\s+\((\d+\.\d+\.\d+)\)\s*\n\s*==+'
 )
-
-
-TRANSLATE_DIR      = PROJ_DIR / "contrib" / "translate"
-PREDOC_MANUALS_DIR = PROJ_DIR / "pre-doc" / TAG_MANUAL
-
-
-PREDOC_MANUALS_DIR.mkdir(exist_ok = True)
-
-
-REL_PREDOC_MANUALS_TAG = PREDOC_MANUALS_DIR.relative_to(PROJ_DIR)
-REL_PREDOC_MANUALS_TAG = ['..' for _ in REL_PREDOC_MANUALS_TAG.parents]
-REL_PREDOC_MANUALS_TAG = '/'.join(REL_PREDOC_MANUALS_TAG)
-
-
-LANGS = []
-
-for f in TRANSLATE_DIR.glob("*/"):
-    fname = f.name
-
-    if (
-        fname not in ['changes', 'status']
-        and
-        TRANSLATE_DIR / fname / TAG_MANUAL
-    ):
-        LANGS.append(fname)
 
 
 TMPL_TEX_MANUAL = r"""
@@ -122,6 +87,50 @@ BUILD_TIKZ = false
 """.strip() + "\n"
 
 TMPL_IMPORT = r"\subimport{{{rel_folder}/}}{{{file}}}"
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+PROJ_DIR = TOOLS_DIR.parent
+
+
+TAG_MANUAL     = "manual"
+TAG_CHANGES    = "changelog"
+TAG_APPENDIXES = "appendixes"
+
+
+TNSCHGES_DIR = PROJ_DIR / "changes" / "stable"
+
+
+TRANSLATE_DIR      = PROJ_DIR / "contrib" / "translate"
+PREDOC_MANUALS_DIR = PROJ_DIR / "pre-doc" / TAG_MANUAL
+
+
+PREDOC_MANUALS_DIR.mkdir(exist_ok = True)
+
+
+REL_PREDOC_MANUALS_TAG = PREDOC_MANUALS_DIR.relative_to(PROJ_DIR)
+REL_PREDOC_MANUALS_TAG = ['..' for _ in REL_PREDOC_MANUALS_TAG.parents]
+REL_PREDOC_MANUALS_TAG = '/'.join(REL_PREDOC_MANUALS_TAG)
+
+
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
+LANGS = []
+
+for f in TRANSLATE_DIR.glob("*/"):
+    fname = f.name
+
+    if (
+        fname not in ['changes', 'status']
+        and
+        TRANSLATE_DIR / fname / TAG_MANUAL
+    ):
+        LANGS.append(fname)
 
 
 # ----------- #

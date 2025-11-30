@@ -14,9 +14,47 @@ from cbutils      import *
 from collections import defaultdict
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+TAB = " "*4
+
+
+TEX_NO_TRANSLATION = f"""
+% --------------------------------- %
+% -- NO TRANSLATION NEEDED HERE! -- %
+% --------------------------------- %
+""".strip()
+
+
+TEX_TMPL_TABLE_HEADER = TAB + r"""
+\begin{center}
+    \begin{tblr}{
+      colspec     = {@{}l | r Q[c,$] l},
+      baseline    = T,
+      column{2,4} = {cmd=\tdoccodein{text}},
+    }
+""".strip()
+
+
+TEX_TMPL_TABLE_FOOTER = TAB + r"""
+\end{tblr}
+\end{center}
+""".strip()
+
+
+TEX_TMPL_KIND  = TAB*2 + r"{ctxt}"
+TEX_TMPL_ROW   = TAB*2 + r"  & {row} \\"
+TEX_TMPL_HRULE = TAB*2 + r"\hline"
+
+
+TEX_EQUIV_CMD = r"\Rightarrow"
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 TAG_SAME_NAME = STATUS_TAG[PAL_STATUS.SAME_NAME]
 
@@ -28,6 +66,10 @@ TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
 
 TEX_FILE = TRANSLATE_DIR / "renamed-palettes.latex"
 
+
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
 
 PAL_JSON_FILE = PROJ_DIR / "products" / "json" / "palettes.json"
 
@@ -41,36 +83,6 @@ with PAL_REPORT_FILE.open(mode = "r") as f:
     PAL_REPORT = json_load(f)
 
 PAL_REPORT = PAL_REPORT[TAG_NEW_NAMES]
-
-
-TAB = " "*4
-
-TEX_NO_TRANSLATION = f"""
-% --------------------------------- %
-% -- NO TRANSLATION NEEDED HERE! -- %
-% --------------------------------- %
-""".strip()
-
-TEX_TMPL_TABLE_HEADER = TAB + r"""
-\begin{center}
-    \begin{tblr}{
-      colspec     = {@{}l | r Q[c,$] l},
-      baseline    = T,
-      column{2,4} = {cmd=\tdoccodein{text}},
-    }
-""".strip()
-
-TEX_TMPL_TABLE_FOOTER = TAB + r"""
-\end{tblr}
-\end{center}
-""".strip()
-
-TEX_TMPL_KIND  = TAB*2 + r"{ctxt}"
-TEX_TMPL_ROW   = TAB*2 + r"  & {row} \\"
-TEX_TMPL_HRULE = TAB*2 + r"\hline"
-
-
-TEX_EQUIV_CMD = r"\Rightarrow"
 
 
 # ----------------- #

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
-from rich import print
+# DEBUG - ON
+# from rich import print
+# DEBUG - OFF
 
+from typing import TypeAlias
 
 from pathlib import Path
 import              sys
@@ -22,9 +25,34 @@ from json import (
 )
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------ #
+# -- TYPING -- #
+# ------------ #
+
+RGBCols    :TypeAlias = [float, float, float]
+PaletteCols:TypeAlias = list[RGBCols]
+
+
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+PATTERN_COMMON_PYDEF = re.compile(
+    r'_?([A-Z0-9_]+)\s*=\s*(\[[\s\S]*?\n\])'
+)
+
+PATTERN_NAMES_TO_DATA = re.compile(
+    r'_NAMES_TO_DATA\s*=\s*\{([^}]+)\}'
+)
+
+PATTERN_NAME_PAIR = re.compile(
+    r"['\"]([\w0-9_]+)['\"]:\s*(colormaps|colordata)\._?([\w_]+)"
+)
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 CTXT = TAG_PALETTABLE
 
@@ -37,6 +65,10 @@ REPORT_DIR       = TOOLS_DIR / "REPORT"
 
 ORIGINAL_NAMES = defaultdict(dict)
 
+
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
 
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
@@ -57,26 +89,13 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
 
 
-PATTERN_COMMON_PYDEF = re.compile(
-    r'_?([A-Z0-9_]+)\s*=\s*(\[[\s\S]*?\n\])'
-)
-
-PATTERN_NAMES_TO_DATA = re.compile(
-    r'_NAMES_TO_DATA\s*=\s*\{([^}]+)\}'
-)
-
-PATTERN_NAME_PAIR = re.compile(
-    r"['\"]([\w0-9_]+)['\"]:\s*(colormaps|colordata)\._?([\w_]+)"
-)
-
-
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
 
 # -- SPECIAL PALETTABLE SPECS -- #
 
-def extract_cubehelix(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
+def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
     src_code = folder / f"{folder.name}.py"
     src_code = src_code.read_text()
 
@@ -104,7 +123,7 @@ def extract_cubehelix(folder: Path) -> dict[ str, list[ [float, float, float] ] 
     return palettes
 
 
-def extract_tableau(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
+def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
     src_code = folder / f"{folder.name}.py"
     src_code = src_code.read_text()
 
@@ -137,7 +156,7 @@ def extract_tableau(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
     return palettes
 
 
-def extract_wesanderson(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
+def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
     src_code = folder / f"{folder.name}.py"
     src_code = src_code.read_text()
 
@@ -180,7 +199,7 @@ def extract_wesanderson(folder: Path) -> dict[ str, list[ [float, float, float] 
 
 # -- STD PALETTABLE SPECS -- #
 
-def extract_data(file: Path) -> dict[ str, list[ [float, float, float] ] ]:
+def extract_data(file: Path) -> dict[str, PaletteCols]:
     pycode = file.read_text()
     pycode = pycode.replace(')]', ')\n]')
     pycode = pycode.replace(']]', ']\n]')
@@ -201,7 +220,7 @@ def extract_original_names(
     folder   : Path,
     pattern  : re.Pattern,
     xtrafiles: list[str]
-) -> dict[ str, str ]:
+) -> dict[str, str]:
     original_names = dict()
 
     for fname in xtrafiles + [
@@ -236,7 +255,7 @@ def extract_std(
     folder     : Path,
     pyfile_name: str,
     xtrafiles  : list[str] = []
-) -> dict[ str, list[ [float, float, float] ] ]:
+) -> dict[str, PaletteCols]:
     oripals = extract_data(folder / f"{pyfile_name}.py")
 
     orinames = extract_original_names(
@@ -274,7 +293,7 @@ extract_mycarta = lambda f: extract_std(
 )
 
 
-def extract(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
+def extract(folder: Path) -> dict[str, PaletteCols]:
     logging.info(f"Analyzing '{folder.name}' folder.")
 
     extractor = globals()[f"extract_{folder.name}"]
@@ -287,9 +306,9 @@ def extract(folder: Path) -> dict[ str, list[ [float, float, float] ] ]:
     return pals
 
 
-# ------------------------------------ #
-# -- BUILD FROM PALETTABLE PALETTES -- #
-# ------------------------------------ #
+# --------------------- #
+# -- FROM PALETTABLE -- #
+# --------------------- #
 
 logging.info(f"Work with the '{CTXT}' source code.")
 
@@ -319,7 +338,7 @@ for folder in sorted(ORIGINAL_SRC_DIR.glob("*")):
         PAL_CREDITS[aprism_name]          = ctxt
 
 
-nb_new_pals = resume_pal_build(
+nb_new_pals = resume_nbpals_build(
     context     = ctxt,
     nb_new_pals = nb_new_pals,
     palettes    = ALL_PALETTES,
