@@ -43,18 +43,3 @@ JSON_PALETTE_URL = "https://raw.githubusercontent.com/projetmbc/for-writing/main
 # ------------------ #
 # -- CONSTANTS #2 -- #
 # ------------------ #
-
-TAG_REMOVED = 'removed'
-TAG_UPDATED = 'updated'
-TAG_NEW     = 'new'
-
-
-PROD_JSON_DIR = PROJ_DIR / "products" / "json"
-BACKUP_DIR    = THIS_DIR  / "BACKUP_DIR"
-REPORT_DIR    = THIS_DIR  / "REPORT"
-
-
-BACKUP_DIR.mkdir(
-    parents  = True,
-    exist_ok = True,
-)

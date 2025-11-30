@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# ---------------------------- #
+# -- IMPORT CBUTILS - START -- #
+
 from pathlib import Path
 import              sys
 
@@ -11,7 +14,8 @@ sys.path.append(str(BUILD_TOOLS_DIR))
 from cbutils.core import *
 from cbutils      import *
 
-from os   import makedirs
+# -- IMPORT CBUTILS - END -- #
+# -------------------------- #
 
 
 # ------------------ #
@@ -58,7 +62,10 @@ if SIMILAR_DIR.is_dir():
             p.unlink()
 
 else:
-    makedirs(SIMILAR_DIR, exist_ok=True)
+    SIMILAR_DIR.mkdir(
+        parents  = True,
+        exist_ok = True
+    )
 
 
 TEX_CFG_FILE = EN_MANUAL_DIR / "preamble.cfg.sty"

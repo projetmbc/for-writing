@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# ---------------------------- #
+# -- IMPORT CBUTILS - START -- #
+
 from pathlib import Path
 import              sys
 
@@ -11,8 +14,8 @@ sys.path.append(str(BUILD_TOOLS_DIR))
 from cbutils.core import *
 from cbutils      import *
 
-from os import makedirs
-
+# -- IMPORT CBUTILS - END -- #
+# -------------------------- #
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
@@ -71,7 +74,10 @@ if CATEGO_DIR.is_dir():
             p.unlink()
 
 else:
-    makedirs(CATEGO_DIR, exist_ok=True)
+    CATEGO_DIR.mkdir(
+        parents  = True,
+        exist_ok = True
+    )
 
 
 # ------------------ #

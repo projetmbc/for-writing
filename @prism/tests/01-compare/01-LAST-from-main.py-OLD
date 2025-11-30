@@ -1,3 +1,20 @@
+TAG_REMOVED = 'removed'
+TAG_UPDATED = 'updated'
+TAG_NEW     = 'new'
+
+
+PROD_JSON_DIR = PROJ_DIR / "products" / "json"
+BACKUP_DIR    = THIS_DIR / "BACKUP_DIR"
+REPORT_DIR    = THIS_DIR / "REPORT"
+
+
+BACKUP_DIR.mkdir(
+    parents  = True,
+    exist_ok = True,
+)
+
+
+
 FILE_MAIN_2_DEV = REPORT_DIR / "MAIN-2-DEV.json"
 MAIN_2_DEV_ADDS = dict()
 

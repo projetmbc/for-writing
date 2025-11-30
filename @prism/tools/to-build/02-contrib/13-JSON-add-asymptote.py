@@ -2,7 +2,11 @@
 
 # Asymptote source code.
 #     + https://github.com/vectorgraphics/asymptote/blob/master/base/palette.asy
+#
 #     + https://github.com/vectorgraphics/asymptote/blob/master/base/colormap.asy
+
+# ---------------------------- #
+# -- IMPORT CBUTILS - START -- #
 
 from pathlib import Path
 import              sys
@@ -14,6 +18,9 @@ sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
+
+# -- IMPORT CBUTILS - END -- #
+# -------------------------- #
 
 from collections import defaultdict
 
