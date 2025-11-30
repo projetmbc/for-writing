@@ -4,12 +4,12 @@ from pathlib import Path
 import              sys
 
 
-_utils_dir_ = Path(__file__).parent
+LAB_DIR = Path(__file__).parent
 
-while _utils_dir_.name != "tools-lab":
-    _utils_dir_ = _utils_dir_.parent
+while LAB_DIR.name != "lab":
+    LAB_DIR = LAB_DIR.parent
 
-sys.path.append(str(_utils_dir_))
+sys.path.append(str(LAB_DIR))
 
 from labutils import *
 
@@ -39,7 +39,10 @@ with PAL_JSON_FILE.open('r') as f:
     ALL_PALETTES = json_load(f)
 
 
-PAL_CATEGO_FILE = PROJ_DIR / "tools" / "REPORT" / "PAL-CATEGORY.json"
+PAL_CATEGO_FILE = (
+    PROJ_DIR / "tools" / "building" / "REPORT"
+             / "PAL-CATEGORY.json"
+)
 
 with PAL_CATEGO_FILE.open('r') as f:
     ALL_CATEGOS = json_load(f)

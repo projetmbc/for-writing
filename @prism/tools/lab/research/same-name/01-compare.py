@@ -6,12 +6,12 @@
 from pathlib import Path
 import              sys
 
-BUILD_TOOLS_DIR = Path(__file__).parent
+LAB_DIR = Path(__file__).parent
 
-while BUILD_TOOLS_DIR.name != "tools-lab":
-    BUILD_TOOLS_DIR = BUILD_TOOLS_DIR.parent
+while LAB_DIR.name != "lab":
+    LAB_DIR = LAB_DIR.parent
 
-BUILD_TOOLS_DIR = BUILD_TOOLS_DIR.parent / "tools"
+BUILD_TOOLS_DIR = LAB_DIR.parent / "building"
 
 sys.path.append(str(BUILD_TOOLS_DIR))
 
@@ -50,7 +50,7 @@ with PAL_REPORT_FILE.open(mode = "r") as f:
     PAL_REPORT = json_load(f)
 
 
-HUMAN_RENAMING_FILE = BUILD_TOOLS_DIR.parent / "tools-lab" / "human-choices" / "rename" / "last.yaml"
+HUMAN_RENAMING_FILE = LAB_DIR / "human-choices" / "rename" / "last.yaml"
 HUMAN_RENAMING      = safe_load(HUMAN_RENAMING_FILE.read_text())
 
 

@@ -6,6 +6,9 @@
 
 from typing import TypeAlias
 
+# ---------------------------- #
+# -- IMPORT CBUTILS - START -- #
+
 from pathlib import Path
 import              sys
 
@@ -18,12 +21,12 @@ sys.path.append(str(TOOLS_DIR))
 from cbutils.core import *
 from cbutils      import *
 
-from shutil import rmtree
+# -- IMPORT CBUTILS - END -- #
+# -------------------------- #
 
 from datetime import datetime
-
-import hashlib
-import requests
+import               requests
+from shutil   import rmtree
 
 
 # ------------ #

@@ -28,35 +28,40 @@ function nocompile {
 }
 
 
-# ------------------------------ #
-# -- BUILD SHOWCASE TEX FILES -- #
-# ------------------------------ #
+# ----------------------- #
+# -- COMPILE TEX FILES -- #
+# ----------------------- #
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly PROJECT_ROOT="$SCRIPT_DIR/.."
-readonly PRE_DOC="pre-doc/showcase"
-readonly SUFFIXES=("dark" "std")
-readonly SHOWCASE_BASE_NAME="showcase-en"
+readonly PROJECT_ROOT="$SCRIPT_DIR/../.."
+readonly PRE_DOC="pre-doc/manual"
 
 cd "$PROJECT_ROOT"
 
-for suffix in "${SUFFIXES[@]}"
+while IFS= read -r -d '' tex_file
 do
-  file_name="$SHOWCASE_BASE_NAME-$suffix"
-  tex_file="$PRE_DOC/$file_name.tex"
-
   echo "-- NEW TEX FILE --"
   echo "./$tex_file"
 
   local_dir="$(dirname "$tex_file")"
+  file_name="$(basename "$tex_file")"
+
+  if head -n 1 "$tex_file" | grep -q '^% *!TEX TS-program *= *lualatex'
+  then
+    texcmd="lualatex"
+  else
+    texcmd="pdflatex"
+  fi
 
   (
     cd "$local_dir" || exit 1
     SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 \
       latexmk -quiet -pdf \
-      -pdflatex="pdflatex --interaction=nonstopmode --halt-on-error --shell-escape %O %S" \
+      -pdflatex="$texcmd --interaction=nonstopmode --halt-on-error --shell-escape %O %S" \
       "$file_name" || nocompile "$file_name"
   )
 
-  cp -f "$PRE_DOC/$file_name.pdf" "products/$file_name.pdf"
-done
+  file_stem="${file_name%.*}"
+
+  cp -f "$PRE_DOC/$file_stem.pdf" "products/$file_stem.pdf"
+done < <(find "$PRE_DOC" -name 'manual-*.tex' -print0 | sort -z)

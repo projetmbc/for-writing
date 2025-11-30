@@ -32,18 +32,21 @@ function nocompile {
 # -- COMPILE TEX FILES -- #
 # ----------------------- #
 
-readonly TEX_FOLDERS=("contrib" "pre-doc/showcase" "products" "tests/similar")
+readonly TEX_FOLDERS=("pre-doc/showcase" "contrib" "products")
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly PROJECT_ROOT="$SCRIPT_DIR/.."
+readonly PROJECT_ROOT="$SCRIPT_DIR/../.."
 
 cd "$PROJECT_ROOT"
 
+numfile=0
 
 for folder in "${TEX_FOLDERS[@]}"
 do
   while IFS= read -r -d '' tex_file
   do
-    echo "-- NEW TEX FILE --"
+    numfile=$((numfile+1))
+
+    echo "-- NEW TEX FILE #$numfile --"
     echo "./$tex_file"
 
     local_dir="$(dirname "$tex_file")"
