@@ -38,6 +38,8 @@ readonly PRE_DOC="pre-doc/showcase"
 readonly SUFFIXES=("dark" "std")
 readonly SHOWCASE_BASE_NAME="showcase-en"
 
+ulimit -n 2048
+
 cd "$PROJECT_ROOT"
 
 for suffix in "${SUFFIXES[@]}"
@@ -53,9 +55,9 @@ do
   (
     cd "$local_dir" || exit 1
     SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 \
-      pdflatex -quiet -pdf \
+      latexmk -quiet -pdf \
       -pdflatex="pdflatex --interaction=nonstopmode --halt-on-error --shell-escape %O %S" \
-      "$file_name" || nocompile "$file_name"
+      "$file_name" || nocompile "$file_name.tex"
   )
 
   cp -f "$PRE_DOC/$file_name.pdf" "products/$file_name.pdf"
