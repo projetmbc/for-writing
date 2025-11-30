@@ -3,7 +3,9 @@
 from pathlib import Path
 import              sys
 
-TOOLS_DIR = Path(__file__).parent.parent
+THIS_DIR  = Path(__file__).parent
+TOOLS_DIR = THIS_DIR.parent
+
 sys.path.append(str(TOOLS_DIR))
 
 from cbutils.core import *
@@ -15,8 +17,7 @@ from shutil import rmtree
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR  = Path(__file__).parent
-PROJ_DIR  = THIS_DIR.parent.parent
+PROJ_DIR  = TOOLS_DIR.parent
 PRODS_DIR = PROJ_DIR / "products"
 
 

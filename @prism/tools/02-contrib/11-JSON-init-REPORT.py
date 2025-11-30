@@ -3,7 +3,10 @@
 from pathlib import Path
 import              sys
 
-sys.path.append(str(Path(__file__).parent.parent))
+THIS_DIR  = Path(__file__).parent
+TOOLS_DIR = THIS_DIR.parent
+
+sys.path.append(str(TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -17,9 +20,8 @@ from yaml import safe_load
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR          = Path(__file__).parent
-PROJ_DIR          = THIS_DIR.parent.parent
-REPORT_DIR        = THIS_DIR.parent / "REPORT"
+PROJ_DIR          = TOOLS_DIR.parent
+REPORT_DIR        = TOOLS_DIR / "REPORT"
 HUMAN_CHOICES_DIR = PROJ_DIR / "tools-lab" / "human-choices"
 
 

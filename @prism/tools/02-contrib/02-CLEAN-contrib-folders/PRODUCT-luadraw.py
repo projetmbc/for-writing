@@ -3,8 +3,11 @@
 from pathlib import Path
 import              sys
 
-TOOLS_DIR = Path(__file__).parent.parent.parent
+THIS_DIR  = Path(__file__).parent
+TOOLS_DIR = THIS_DIR.parent.parent
+
 sys.path.append(str(TOOLS_DIR))
+
 
 from cbutils.core import *
 
@@ -15,8 +18,7 @@ from shutil import rmtree
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR = Path(__file__).parent
-PROJ_DIR = THIS_DIR.parent.parent.parent
+PROJ_DIR = TOOLS_DIR.parent
 
 CONTRIB_LUADRAW_DIR = (
     PROJ_DIR / "contrib" / "products" / "luadraw" / "dev"

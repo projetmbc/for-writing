@@ -3,7 +3,9 @@
 from pathlib import Path
 import              sys
 
-sys.path.append(str(Path(__file__).parent))
+THIS_DIR = Path(__file__).parent
+
+sys.path.append(str(THIS_DIR))
 
 from cbutils.core import *
 
@@ -14,7 +16,6 @@ from multimd import Builder, Path
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR = Path(__file__).parent
 PROJ_DIR = THIS_DIR.parent
 
 

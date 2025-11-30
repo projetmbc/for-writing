@@ -3,7 +3,10 @@
 from pathlib import Path
 import              sys
 
-sys.path.append(str(Path(__file__).parent.parent))
+THIS_DIR  = Path(__file__).parent
+TOOLS_DIR = THIS_DIR.parent
+
+sys.path.append(str(TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -24,9 +27,9 @@ from matplotlib import colormaps
 
 CTXT = TAG_MPL
 
-THIS_DIR   = Path(__file__).parent
-PRODS_DIR  = THIS_DIR.parent.parent / "products"
-REPORT_DIR = THIS_DIR.parent / "REPORT"
+
+PRODS_DIR  = TOOLS_DIR.parent / "products"
+REPORT_DIR = TOOLS_DIR / "REPORT"
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"

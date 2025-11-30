@@ -3,7 +3,10 @@
 from pathlib import Path
 import              sys
 
-sys.path.append(str(Path(__file__).parent.parent))
+THIS_DIR  = Path(__file__).parent
+TOOLS_DIR = THIS_DIR.parent
+
+sys.path.append(str(TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -18,8 +21,7 @@ from collections import defaultdict
 TAG_SAME_NAME = STATUS_TAG[PAL_STATUS.SAME_NAME]
 
 
-THIS_DIR      = Path(__file__).parent
-PROJ_DIR      = THIS_DIR.parent.parent
+PROJ_DIR      = TOOLS_DIR.parent
 REPORT_DIR    = PROJ_DIR / "tools" / "REPORT"
 TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
 

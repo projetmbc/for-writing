@@ -7,7 +7,10 @@
 from pathlib import Path
 import              sys
 
-sys.path.append(str(Path(__file__).parent.parent))
+THIS_DIR  = Path(__file__).parent
+TOOLS_DIR = THIS_DIR.parent
+
+sys.path.append(str(TOOLS_DIR))
 
 from cbutils.core import *
 from cbutils      import *
@@ -30,10 +33,9 @@ ASY_COLORMAP_RAW_URL = (
 )
 
 
-THIS_DIR   = Path(__file__).parent
-PROJ_DIR   = THIS_DIR.parent.parent
+PROJ_DIR   = TOOLS_DIR.parent
 PRODS_DIR  = PROJ_DIR / "products"
-REPORT_DIR = THIS_DIR.parent / "REPORT"
+REPORT_DIR = TOOLS_DIR / "REPORT"
 
 
 CTXT_FILE_NAME = CTXT.replace(' ', '-').upper()

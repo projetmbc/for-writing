@@ -3,7 +3,9 @@
 from pathlib import Path
 import              sys
 
-TOOLS_DIR = Path(__file__).parent.parent
+THIS_DIR  = Path(__file__).parent
+TOOLS_DIR = THIS_DIR.parent
+
 sys.path.append(str(TOOLS_DIR))
 
 from cbutils.core import *
@@ -14,8 +16,7 @@ from cbutils      import *
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_DIR = Path(__file__).parent
-PROJ_DIR = THIS_DIR.parent.parent
+PROJ_DIR = TOOLS_DIR.parent
 
 CODE_NAME = "Colorbrewer"
 SRC_JSON  = PROJ_DIR / "resources" / CODE_NAME / f"{CODE_NAME.lower()}.json"

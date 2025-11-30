@@ -5,11 +5,12 @@
 
 // ---------- //
 
-bash
+bash qui nettoie ce qui ne doit aps apparaotre dans le m main : apriori just les tests de comparaions des palettes
 
-   ---> slow ignore dev
-   ---> dev ignore slow
-   ---> githuba ction pour show case ==> vire scritp actuel qui n'a plus de raison d'^tre
+
+// ---------- //
+
+githuba ction pour show case ==> vire scritp actuel qui n'a plus de raison d'^tre
 
 // ---------- //
 
