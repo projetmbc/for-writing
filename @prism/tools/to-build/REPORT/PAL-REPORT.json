@@ -1,0 +1,258 @@
+{
+  "Accent::Colorbrewer": {
+    "equal-to": "Accent",
+    "method": "human"
+  },
+  "Balance::cmocean": {
+    "equal-to": "Vik",
+    "method": "human"
+  },
+  "Berlin::Scientific Colour Maps": {
+    "equal-to": "Berlin",
+    "method": "human"
+  },
+  "Blues::Colorbrewer": {
+    "equal-to": "Blues",
+    "method": "human"
+  },
+  "BrBG::Colorbrewer": {
+    "equal-to": "BrBG",
+    "method": "human"
+  },
+  "BuGn::Colorbrewer": {
+    "equal-to": "BuGn",
+    "method": "human"
+  },
+  "BuPu::Colorbrewer": {
+    "equal-to": "BuPu",
+    "method": "human"
+  },
+  "Classic::Cubehelix": {
+    "equal-to": "Cubehelix",
+    "method": "human"
+  },
+  "D3::Plotly": {
+    "equal-to": "Tab10",
+    "method": "auto"
+  },
+  "Dark2::Colorbrewer": {
+    "equal-to": "Dark2",
+    "method": "human"
+  },
+  "GistGray::Matplotlib": {
+    "method": "auto",
+    "reverse-of": "Binary"
+  },
+  "GistGrey::Matplotlib": {
+    "method": "auto",
+    "reverse-of": "Binary"
+  },
+  "GistYarg::Matplotlib": {
+    "equal-to": "Binary",
+    "method": "auto"
+  },
+  "GistYerg::Matplotlib": {
+    "equal-to": "Binary",
+    "method": "auto"
+  },
+  "GnBu::Colorbrewer": {
+    "equal-to": "GnBu",
+    "method": "human"
+  },
+  "Gray::Matplotlib": {
+    "method": "auto",
+    "reverse-of": "Binary"
+  },
+  "Gray::cmocean": {
+    "equal-to": "Binary",
+    "method": "human"
+  },
+  "Greens::Colorbrewer": {
+    "equal-to": "Greens",
+    "method": "human"
+  },
+  "Grey::Matplotlib": {
+    "method": "auto",
+    "reverse-of": "Binary"
+  },
+  "Greys::Colorbrewer": {
+    "equal-to": "Greys",
+    "method": "human"
+  },
+  "Greys::Matplotlib": {
+    "equal-to": "Grays",
+    "method": "human"
+  },
+  "Hot::Plotly": {
+    "equal-to": "Hot",
+    "method": "human"
+  },
+  "Jet::Plotly": {
+    "equal-to": "Jet",
+    "method": "human"
+  },
+  "Managua::Scientific Colour Maps": {
+    "equal-to": "Managua",
+    "method": "human"
+  },
+  "OrRd::Colorbrewer": {
+    "equal-to": "OrRd",
+    "method": "human"
+  },
+  "Oranges::Colorbrewer": {
+    "equal-to": "Oranges",
+    "method": "human"
+  },
+  "PRGn::Colorbrewer": {
+    "equal-to": "PRGn",
+    "method": "human"
+  },
+  "Paired::Colorbrewer": {
+    "equal-to": "Paired",
+    "method": "human"
+  },
+  "Pastel1::Colorbrewer": {
+    "equal-to": "Pastel1",
+    "method": "human"
+  },
+  "Pastel2::Colorbrewer": {
+    "equal-to": "Pastel2",
+    "method": "human"
+  },
+  "PiYG::Colorbrewer": {
+    "equal-to": "PiYG",
+    "method": "human"
+  },
+  "PuBu::Colorbrewer": {
+    "equal-to": "PuBu",
+    "method": "human"
+  },
+  "PuBuGn::Colorbrewer": {
+    "equal-to": "PuBuGn",
+    "method": "human"
+  },
+  "PuOr::Colorbrewer": {
+    "equal-to": "PuOr",
+    "method": "human"
+  },
+  "PuRd::Colorbrewer": {
+    "equal-to": "PuRd",
+    "method": "human"
+  },
+  "Purples::Colorbrewer": {
+    "equal-to": "Purples",
+    "method": "human"
+  },
+  "RdBu::Colorbrewer": {
+    "equal-to": "RdBu",
+    "method": "human"
+  },
+  "RdGy::Colorbrewer": {
+    "equal-to": "RdGy",
+    "method": "human"
+  },
+  "RdPu::Colorbrewer": {
+    "equal-to": "RdPu",
+    "method": "human"
+  },
+  "RdYlBu::Colorbrewer": {
+    "equal-to": "RdYlBu",
+    "method": "human"
+  },
+  "RdYlGn::Colorbrewer": {
+    "equal-to": "RdYlGn",
+    "method": "human"
+  },
+  "Reds::Colorbrewer": {
+    "equal-to": "Reds",
+    "method": "human"
+  },
+  "Set1::Colorbrewer": {
+    "equal-to": "Set1",
+    "method": "human"
+  },
+  "Set2::Colorbrewer": {
+    "equal-to": "Set2",
+    "method": "human"
+  },
+  "Set3::Colorbrewer": {
+    "equal-to": "Set3",
+    "method": "human"
+  },
+  "Spectral::Colorbrewer": {
+    "equal-to": "Spectral",
+    "method": "human"
+  },
+  "Vanimo::Scientific Colour Maps": {
+    "equal-to": "Vanimo",
+    "method": "human"
+  },
+  "YlGn::Colorbrewer": {
+    "equal-to": "YlGn",
+    "method": "human"
+  },
+  "YlGnBu::Colorbrewer": {
+    "equal-to": "YlGnBu",
+    "method": "human"
+  },
+  "YlOrBr::Colorbrewer": {
+    "equal-to": "YlOrBr",
+    "method": "human"
+  },
+  "YlOrRd::Colorbrewer": {
+    "equal-to": "YlOrRd",
+    "method": "human"
+  },
+  "names-ignored": [
+    "Greys",
+    "Berlin",
+    "Managua",
+    "Vanimo",
+    "Accent",
+    "Blues",
+    "BrBG",
+    "BuGn",
+    "BuPu",
+    "Dark2",
+    "GnBu",
+    "Greens",
+    "Greys",
+    "OrRd",
+    "Oranges",
+    "PRGn",
+    "Paired",
+    "Pastel1",
+    "Pastel2",
+    "PiYG",
+    "PuBu",
+    "PuBuGn",
+    "PuOr",
+    "PuRd",
+    "Purples",
+    "RdBu",
+    "RdGy",
+    "RdPu",
+    "RdYlBu",
+    "RdYlGn",
+    "Reds",
+    "Set1",
+    "Set2",
+    "Set3",
+    "Spectral",
+    "YlGn",
+    "YlGnBu",
+    "YlOrBr",
+    "YlOrRd",
+    "Balance",
+    "Gray",
+    "Classic",
+    "Hot",
+    "Jet"
+  ],
+  "new-names": {
+    "Gray::Tableau": "GrayTab",
+    "Prism::CartoColors": "PrismCC",
+    "Rainbow::Plotly": "RainbowPly"
+  },
+  "same-name-as": {}
+}
