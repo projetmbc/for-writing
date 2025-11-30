@@ -1,3 +1,0 @@
-File created by the ''@prism'' project, version {VERSION},
-which is developed at
-https://github.com/projetmbc/for-writing/tree/main/@prism .

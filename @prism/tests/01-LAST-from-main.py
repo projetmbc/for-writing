@@ -4,8 +4,7 @@
 # from rich import print
 # DEBUG - END
 
-
-from typing import Any, Optional, TypeAlias
+from typing import TypeAlias
 
 from pathlib import Path
 import              sys
@@ -42,24 +41,12 @@ JSON_PALETTE_URL = "https://raw.githubusercontent.com/projetmbc/for-writing/main
 
 
 # ------------------ #
-# -- CONSTANTS #1 -- #
+# -- CONSTANTS #2 -- #
 # ------------------ #
-
-# ------------------ #
-# -- CONSTANTS #1 -- #
-# ------------------ #
-
-FILE_MAIN_2_DEV = REPORT_DIR / "MAIN-2-DEV.json"
-MAIN_2_DEV_ADDS = dict()
-
 
 TAG_REMOVED = 'removed'
 TAG_UPDATED = 'updated'
 TAG_NEW     = 'new'
-
-
-
-
 
 
 PROD_JSON_DIR = PROJ_DIR / "products" / "json"
@@ -70,141 +57,4 @@ REPORT_DIR    = THIS_DIR  / "REPORT"
 BACKUP_DIR.mkdir(
     parents  = True,
     exist_ok = True,
-)
-
-
-if REPORT_DIR.is_dir():
-    rmtree(str(REPORT_DIR))
-
-REPORT_DIR.mkdir(
-    parents  = True,
-    exist_ok = True,
-)
-
-
-# ------------------ #
-# -- EXTRACT DATA -- #
-# ------------------ #
-
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
-
-with PAL_JSON_FILE.open(mode = "r") as f:
-    DEV_PALETTES = json_load(f)
-
-
-# ----------- #
-# -- TOOLS -- #
-# ----------- #
-
-def compute_palette_hash(palette: PaletteCols) -> str:
-    palette_json = json_dumps(
-        palette,
-        sort_keys    = True,
-        ensure_ascii = False
-    )
-
-    return hashlib.sha256(
-        palette_json.encode('utf-8')
-    ).hexdigest()
-
-
-# ------------------- #
-# -- HASH BUILDING -- #
-# ------------------- #
-
-logging.info("Building online 'hashes of last main'.")
-
-response = requests.get(JSON_PALETTE_URL)
-response.raise_for_status()
-
-MAIN_PALETTES = response.json()
-
-main_hashes = {
-    n: compute_palette_hash(p)
-    for n, p in MAIN_PALETTES.items()
-}
-
-
-logging.info("Building local 'hashes of this dev version'.")
-
-dev_hashes = {
-    n: compute_palette_hash(p)
-    for n, p in DEV_PALETTES.items()
-}
-
-
-
-
-
-
-exit()
-
-# ------------------------------------- #
-# -- COMPARING LAST DEV AND THIS DEV -- #
-# ------------------------------------- #
-
-logging.info("Looking for 'dev-2-dev additions'.")
-
-time_stamps = [
-    p.stem
-    for p in BACKUP_DIR.glob('*.json')
-]
-
-if time_stamps:
-    logging.info("Extracting 'last dev hash' in backup.")
-
-    last_time = max(time_stamps)
-
-    with (BACKUP_DIR / f"{last_time}.json").open(mode = "r") as f:
-        last_dev_palettes = json_load(f)
-
-    (REPORT_DIR / "DEV-PREV.json").write_text(
-        json_dumps(last_dev_palettes)
-    )
-
-else:
-    logging.info("Adding 'last dev hash' in backup.")
-
-    time_stamp = datetime.now().strftime("%Y%m%dT%H%M%S")
-
-    (BACKUP_DIR / f"{time_stamp}.json").write_text(
-        json_dumps(DEV_PALETTES)
-    )
-
-
-# --------------------------------- #
-# -- COMPARING LAST MAIN AND DEV -- #
-# --------------------------------- #
-
-logging.info("Looking for 'main-2-dev additions'.")
-
-MAIN_2_DEV_ADDS[TAG_REMOVED] = sorted(set(main_hashes) - set(dev_hashes))
-MAIN_2_DEV_ADDS[TAG_NEW]     = sorted(set(dev_hashes) - set(main_hashes))
-MAIN_2_DEV_ADDS[TAG_UPDATED] = sorted(
-    n
-    for n in main_hashes
-    if (
-        not n in MAIN_2_DEV_ADDS[TAG_REMOVED]
-        and
-        dev_hashes[n] != main_hashes[n]
-    )
-)
-
-
-# ---------------- #
-# -- REPORT ALL -- #
-# ---------------- #
-
-logging.info("Report 'this dev additions' in JSON files.")
-
-FILE_MAIN_2_DEV.write_text(
-    json_dumps(MAIN_2_DEV_ADDS)
-)
-
-(REPORT_DIR / "MAIN.json").write_text(
-    json_dumps(MAIN_PALETTES)
-)
-
-(REPORT_DIR / "DEV-THIS.json").write_text(
-    json_dumps(DEV_PALETTES)
 )
