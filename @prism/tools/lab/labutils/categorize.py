@@ -18,6 +18,13 @@ RGBCols    :TypeAlias = [float, float, float]
 PaletteCols:TypeAlias = list[RGBCols]
 
 
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+MAX_COL_SIZE = 4
+
+
 # --------------------- #
 # -- "AI" - CATEGORY -- #
 # --------------------- #
@@ -39,13 +46,14 @@ def classify_palette_colors(
     return kmeans.inertia_
 
 
-def is_monochrome(
+def has_colsize_n(
     colors   : PaletteCols,
-    threshold: float = 0.08
+    size     : int,
+    threshold: float = 0.08,
 ) -> bool:
     result = classify_palette_colors(
         colors,
-        n_clusters = 1
+        n_clusters = size
     )
 
     normalized_inertia = result / len(colors)
@@ -53,32 +61,14 @@ def is_monochrome(
     return normalized_inertia < threshold
 
 
-def is_bicolor(
-    colors   : PaletteCols,
-    threshold: float = 0.15
-) -> bool:
-    result = classify_palette_colors(
-        colors,
-        n_clusters = 2
+HAS_COLSIZE_FUNCS = [
+    lambda c, t = 0.05: has_colsize_n(
+        colors    = c,
+        size      = n,
+        threshold = t,
     )
-
-    normalized_inertia = result / len(colors)
-
-    return normalized_inertia < threshold
-
-
-def is_tricolor(
-    colors   : PaletteCols,
-    threshold: float = 0.15
-) -> bool:
-    result = classify_palette_colors(
-        colors,
-        n_clusters = 3
-    )
-
-    normalized_inertia = result / len(colors)
-
-    return normalized_inertia < threshold
+    for n in range(1, MAX_COL_SIZE + 1)
+]
 
 
 # -------------------- #

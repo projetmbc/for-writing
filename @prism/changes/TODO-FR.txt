@@ -5,7 +5,18 @@
 
 // ---------- //
 
-ajout annexe des vhoix humaines "erreur est hiumaine"
+revpir catégo avec 2, 3 , 4 et more ainisuqe sémantique au lieu de foret variation
+
+pour olus de 4, sous catégor de pallette utilisant les meme val principales
+
+
+// ---------- //
+
+doc
+
+   ---> ajout annexe des choix humaines "erreur est hiumaine"
+
+   ---> expliquer l'intére^t de u projet pour les non graphistes
 
 
 // ---------- //

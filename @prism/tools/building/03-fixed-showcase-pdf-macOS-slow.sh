@@ -38,7 +38,7 @@ readonly PRE_DOC="pre-doc/showcase"
 readonly SUFFIXES=("dark" "std")
 readonly SHOWCASE_BASE_NAME="showcase-en"
 
-ulimit -n 2048
+ulimit -n 350
 
 cd "$PROJECT_ROOT"
 
