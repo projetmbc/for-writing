@@ -1,0 +1,314 @@
+% !TEX TS-program = lualatex
+
+%%%
+% This file allows you to test a palette directly: when compiling
+% the document, a ''PROJECT-PALETTE.lua'' file is automatically
+% created. Once satisfied with the result, simply copy and paste
+% the ''PROJECT-PALETTE.lua'' file into the folder
+% ''contrib/palettes/luadraw/palettes'', giving it a name in
+% ''CamelCase'' format (this file uses only floating-point numbers
+% to ensure portable palette definitions).
+%
+%
+% caution::
+%     You can use any named colors, but you can't change the
+%     variable name ''PALETTE'' needed to automate some tasks.
+%
+%
+% note::
+%     In the Lua palette file, the ''author'' field is optional.
+%%%
+
+
+\begin{filecontents*}[overwrite]{__tmp-palette__.lua}
+-- author: First Name, Last Name  
+
+PALETTE = {
+  LimeGreen,
+  Yellow,
+  LightYellow
+}
+\end{filecontents*}
+
+
+% ----------------------- %
+% -- PALETTE RENDERING -- %
+% ----------------------- %
+
+\documentclass{tutodoc}
+
+\geometry{
+  landscape,
+  twocolumn,
+  top  = .75cm, bottom = .75cm,
+  left = .75cm, right  = .75cm
+}
+
+\usepackage[svgnames]{xcolor}
+\usepackage[3d]{luadraw}
+
+
+\begin{document}
+
+% -------------------------- %
+% -- COMMON LUA CODE USED -- %
+% -------------------------- %
+
+\directlua{dofile("__tmp-palette__.lua")}
+
+
+% ------------------- %
+% -- STANDARD CODE -- %
+% ------------------- %
+
+\begin{luacode*}
+local nb_colors = #PALETTE
+
+local file = io.open(
+  "PROJECT-PALETTE.lua",
+  "w"
+)
+
+file:write("PALETTE = {\n")
+
+for n , rgb in ipairs(PALETTE) do
+  file:write("  {")
+
+  for i, c in ipairs(rgb) do
+    file:write(c)
+
+    if i ~= 3 then
+      file:write(", ")
+    end
+  end
+
+  file:write("}")
+
+  if n ~= nb_colors then
+    file:write(",")
+  end
+
+  file:write("\n")
+end
+
+file:write("}\n")
+
+file:close()
+\end{luacode*}
+
+
+% -------------- %
+% -- SHOWCASE -- %
+% -------------- %
+
+\section*{Your palette definition}
+
+\tdoccodeinput{lua}{__tmp-palette__.lua}
+
+
+\section*{Use cases}
+
+\centering
+
+\begin{luadraw}{name = palette}
+local xmin, xmax = -5, 5
+
+local g = graph:new{
+  window = {xmin, xmax, -1, 1},
+  size   = {10, 10},
+  margin = {0.05, 0.05, 0.05, 0.05},
+}
+
+local i = cpx.I
+local N = 200
+
+g:Linewidth(18)
+
+local pos, x
+
+for k = 1, N do
+  pos = (k - 1) / (N - 1)
+  x   = xmin + 10*pos
+
+  g:Dpolyline(
+    {x - i, x + i},
+    "color = " .. palette(PALETTE, pos)
+  )
+end
+
+g:Show()
+\end{luadraw}
+
+
+\bigskip
+
+
+\begin{luadraw}{name = contour}
+local g = graph:new{
+  window = {-1, 6.5, -1.5, 11},
+  size   = {8, 8, 2},
+  margin = {.25, 0, 0, 0},
+  scale  = 1.5,
+}
+
+local i, sin, cos = cpx.I, math.sin, math.cos
+
+local f = function(x, y)
+  return (x + y) / (2 + cos(x)*sin(y))
+end
+
+local Lz = range(1, 10)
+
+local Colors = getpalette(PALETTE, 10)
+
+g:Dgradbox(
+  {0, 5 + 10*i, 1, 1},
+  {
+    legend = {"$x$", "$y$"},
+    grid   = true,
+    title  = "$z = \\frac{x + y}{2 + \\cos(x) \\sin(y)}$"
+  }
+)
+
+g:Linewidth(20)
+
+g:Dcontour(
+  f,
+  Lz,
+  {
+    view   = {0, 5, 0, 10},
+    colors = Colors
+  }
+)
+
+for k = 1, 10 do
+  local y = (2*k + 4) / 3*i
+
+  g:Dseg(
+    {5.25 + y, 5.5 + y},
+    1,
+    "color = " .. Colors[k]
+  )
+
+  g:Labelcolor(Colors[k])
+
+  g:Dlabel(
+    "$z = " .. k .. "$",
+    5.5 + y,
+    {pos = "E"}
+  )
+end
+
+g:Show()
+\end{luadraw}
+
+
+\bigskip
+
+
+\begin{luadraw}{name = level-curve-surface}
+local cos, sin = math.cos, math.sin, math.pi
+
+local g = graph3d:new{
+  window3d = {0, 5, 0, 10, 0, 11},
+  adjust2d = true,
+  size     = {12, 9, 0},
+  viewdir  = {220, 60},
+}
+
+g:Labelsize("footnotesize")
+
+local S = surface(
+  function(u, v)
+    return M(u, v, (u + v) / (2 + cos(u)*sin(v)))
+  end,
+  0, 5, 0, 10,
+  {30, 30}
+)
+
+local n = 10
+
+local Colors = getpalette(PALETTE, n, true)
+
+local niv, S1 = {}
+
+for k = 1, n do
+  S1, S = cutfacet(S, {M(0, 0, k), -vecK})
+
+  insert(
+    niv,
+    {
+      S1,
+      {
+        color     = Colors[k],
+        mode      = mShaded,
+        edgewidth = 0.5
+      }
+    }
+  )
+end
+
+insert(
+  niv,
+  {
+    S,
+    {color = Colors[n + 1]}
+  }
+)
+
+g:Dboxaxes3d({
+  grid      = true,
+  gridcolor = "gray",
+  fillcolor = "lightgray"
+})
+
+g:Dmixfacet(table.unpack(niv))
+
+for k = 1, n do
+  g:Dballdots3d(
+    M(5, 0, k),
+    rgb(Colors[k])
+  )
+end
+
+g:Dlabel(
+  "$z = \\frac{x + y}{2 + \\cos(x) \\sin(y)}$",
+  Z(
+    (g:Xinf() + g:Xsup())/2 ,
+    g:Yinf()
+  ),
+  {pos = "N"}
+)
+
+g:Show()
+\end{luadraw}
+
+
+\bigskip
+
+
+\begin{luadraw}{name = nerftiti-z-bary}
+local file = "core/nefertiti.obj"
+
+local polyhedron, bounding_box = read_obj_file(file)
+
+local g = graph3d:new{
+  window3d = bounding_box,
+  window   = {-5, 4, -7, 5},
+  viewdir  = {35, 60},
+  size     = {9, 9},
+  margin   = {0, 0, 0, 0},
+}
+
+g:Dpoly(
+  polyhedron,
+  {
+    usepalette = {PALETTE, "z" },
+    mode       = mShadedOnly
+  }
+)
+
+g:Show()
+\end{luadraw}
+
+\end{document}

@@ -5,13 +5,6 @@
 
 // ---------- //
 
-revpir catégo avec 2, 3 , 4 et more ainisuqe sémantique au lieu de foret variation
-
-pour olus de 4, sous catégor de pallette utilisant les meme val principales
-
-
-// ---------- //
-
 doc
 
    ---> ajout annexe des choix humaines "erreur est hiumaine"
@@ -48,14 +41,7 @@ la prochaine version 1.3.0 proposera des implémentations pour xcolor et CSS (a 
 
 // ---------- //
 
-màj des infos sur les palettes ignorés et les rénommages via un nouvel annexe !
-
-
-// ---------- //
-
 tools-lab
-
-   ---> normaliser les TXT / YAML utiliser dans les tools standard
 
    ---> pour le sctéegos / similar,  fichier dédiés à ec qui est ignoré, faux positifs pour maintenance plus simple
 

@@ -23,7 +23,6 @@ from cbutils.core import *
 
 DOC_KEPT = [
     "title",
-    "desc",
     "how-to-use",
 ]
 

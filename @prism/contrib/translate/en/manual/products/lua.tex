@@ -1,0 +1,84 @@
+% !TEX TS-program = lualatex
+
+% ------------------------------------------------- %
+% -- DO NOT MODIFY. FILE GENERATED AUTOMATICALLY -- %
+% ------------------------------------------------- %
+
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+
+\begin{document}
+
+% -- AUTOMATICALLY GENERATED UGLY CODE - START -- %
+
+\subsection{lua palettes}
+\label{products-lua}
+
+\begin{tdocnote}
+Initially, the {\thisproj} project was created to provide ready-to-use palettes for {\LUADRAW} which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via {\LuaLaTeX} and {\TIKZ}.
+\end{tdocnote}
+
+\subsubsection{Use a lua palette}
+
+The {\lua} palette names all use the prefix \tdoccodein{text}+pal+ followed by the name available in the file \tdoccodein{text}+palettes.json+. You can access a palette by three ways.
+
+\begin{itemize}
+\item
+\tdoccodein{lua}+palGistHeat+ is a {\lua} variable.
+
+\item
+\tdoccodein{lua}+getPal('GistHeat')+ and \tdoccodein{lua}+getPal('palGistHeat')+ are equal to \tdoccodein{lua}+palGistHeat+.
+
+\item
+\tdoccodein{lua}+palNames['palGistHeat']+ is equal to \tdoccodein{lua}+palGistHeat+.
+\end{itemize}
+
+\begin{tdocnote}
+The {\lua} palette variables are arrays of arrays of three floats. The definition of \tdoccodein{lua}+palGistHeat+ looks like the following partial code.
+
+\begin{tdoccode}{lua}
+palGistHeat = {
+    {0.0, 0.0, 0.0},
+    {0.105882, 0.0, 0.0},
+    {0.211764, 0.0, 0.0},
+    -- ... With 7 more RBG colors.
+}
+\end{tdoccode}
+\end{tdocnote}
+
+The \tdoccodein{lua}+getPal+ function has some options. To explain how this works, let's consider the following use case.
+
+\begin{tdoccode}{lua}
+mypal = getPal(
+    'GistHeat',
+    {
+        extract = {2, 5, 8, 9},
+        shift   = 1,
+        reverse = true
+    }
+)
+\end{tdoccode}
+
+To simplify the explanations, we will refer to the colors in the standard palette \tdoccodein{text}+'GistHeat'+ as \tdoccodein{lua}+coul_1+, \tdoccodein{lua}+coul_2+, etc. The options are then \textbf{processed in the following order}.
+
+\begin{enumerate}
+\item
+\tdoccodein{text}+{coul_2, coul_5, coul_8, coul_9}+ is the result of the extraction.
+
+\item
+\tdoccodein{text}+{coul_9, coul_2, coul_5, coul_8}+ comes from the shifting applied to the extracted palette (colors move to the right if \tdoccodein{text}+shift+ is positive).
+
+\item
+\tdoccodein{text}+{coul_8, coul_5, coul_2, coul_9}+ is the reversed version of the shifted palette.
+
+\end{enumerate}
+
+\begin{tdocnote}
+The reversed version of any palette can be obtained using \tdoccodein{lua}+getPal(palname, {reverse = true})+.
+\end{tdocnote}
+
+% -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
+
+\end{document}

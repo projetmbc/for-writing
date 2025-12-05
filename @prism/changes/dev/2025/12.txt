@@ -17,6 +17,10 @@ Equal palettes within contributions were not flagged as problematic. This will b
 :update:
 --------
 
+[[:api:]]
+\Prods: ''luadraw'' becomes ''lua''.
+
+
 [[:doc:]]
 Manual: improved palette categorization through human review only.
 

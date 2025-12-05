@@ -6,9 +6,8 @@ We will briefly explain the following structure of the `contrib/products` folder
 <!-- FOLDER STRUCT. AUTO - START -->
 ~~~
 + contrib
-  + [s]css
   + changes
-  + luadraw
+  + lua
   + readme
   + status
 ~~~

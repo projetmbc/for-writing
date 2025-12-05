@@ -16,9 +16,11 @@ The @prism project
 - [Credits](#MULTIMD-TOC-ANCHOR-1)
 - [Supported implementations](#MULTIMD-TOC-ANCHOR-2)
     - [JSON, the versatile default format](#MULTIMD-TOC-ANCHOR-3)
-    - [luadraw palettes](#MULTIMD-TOC-ANCHOR-4)
-        - [Description](#MULTIMD-TOC-ANCHOR-5)
-        - [Use a luadraw palette](#MULTIMD-TOC-ANCHOR-6)
+    - [lua palettes](#MULTIMD-TOC-ANCHOR-4)
+        - [Use a lua palette](#MULTIMD-TOC-ANCHOR-5)
+    - [luadraw palettes](#MULTIMD-TOC-ANCHOR-6)
+        - [Description](#MULTIMD-TOC-ANCHOR-7)
+        - [Use a luadraw palette](#MULTIMD-TOC-ANCHOR-8)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
 About @prism <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -79,16 +81,63 @@ By default, a file `palettes.json` is provided to allow unsupported coding langu
 }
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
-### luadraw palettes <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+### lua palettes <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
+> ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use palettes for [`luadraw`](https://github.com/pfradin/luadraw) which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLaTeX` and `TikZ`.*
 
 <a id="MULTIMD-TOC-ANCHOR-5"></a>
+#### Use a lua palette <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
+The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by three ways.
+
+- `palGistHeat` is a `Lua` variable.
+- `getPal('GistHeat')` and `getPal('palGistHeat')` are equal to `palGistHeat`.
+- `palNames['palGistHeat']` is equal to `palGistHeat`.
+
+> ***NOTE.*** *The `Lua` palette variables are arrays of arrays of three floats. The definition of `palGistHeat` looks like the following partial code.*
+
+~~~lua
+palGistHeat = {
+    {0.0, 0.0, 0.0},
+    {0.105882, 0.0, 0.0},
+    {0.211764, 0.0, 0.0},
+    -- ... With 7 more RBG colors.
+}
+~~~
+
+The `getPal` function has some options. To explain how this works, let's consider the following use case.
+
+~~~lua
+mypal = getPal(
+    'GistHeat',
+    {
+        extract = {2, 5, 8, 9},
+        shift   = 1,
+        reverse = true
+    }
+)
+~~~
+
+To simplify the explanations, we will refer to the colors
+in the standard palette `'GistHeat'` as `coul_1`, `coul_2`, etc. The options are then **processed in the following order**.
+
+1. `{coul_2, coul_5, coul_8, coul_9}` is the result of the extraction.
+2. `{coul_9, coul_2, coul_5, coul_8}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).
+3. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted palette.
+
+> ***NOTE.*** *The reversed version of any palette can be obtained using `getPal(palname, {reverse = true})`.*
+
+<a id="MULTIMD-TOC-ANCHOR-6"></a>
+### luadraw palettes <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
+<a id="MULTIMD-TOC-ANCHOR-7"></a>
 #### Description <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 You can use `@prism` palettes with [`luadraw`](https://github.com/pfradin/luadraw) which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLaTeX` and `TikZ`.
 
 > ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use palettes for `luadraw`.*
 
-<a id="MULTIMD-TOC-ANCHOR-6"></a>
+<a id="MULTIMD-TOC-ANCHOR-8"></a>
 #### Use a luadraw palette <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by three ways.
