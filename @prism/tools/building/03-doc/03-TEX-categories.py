@@ -17,17 +17,35 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+
+# ----------------------------- #
+# -- IMPORT LABUTILS - START -- #
+
+LAB_TOOLS_DIR = BUILD_TOOLS_DIR.parent / "lab"
+
+sys.path.append(str(LAB_TOOLS_DIR))
+
+from labutils import *
+
+# -- IMPORT LABUTILS - END -- #
+# --------------------------- #
+
+
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
 EN_SORTED_TITLES = {
-    'deficient-blind': "Colorblind-friendly palettes",
-    'bicolor'        :  "Two-color palettes",
-    'tricolor'       :  "Three-color palettes",
-    'rainbow'        :  "Rainbow-style palettes",
-    'big-var'        :  "High-contrast palettes",
+    'deficient-blind'  : "Colorblind-friendly palettes",
+    TAG_CATEGO_SIZE_2  :  "Two-color palettes",
+    TAG_CATEGO_SIZE_3  :  "Three-color palettes",
+    TAG_CATEGO_SIZE_4  :  "Four-color palettes",
+    TAG_CATEGO_SMOOTH  :  "Smooth palettes",
+    TAG_CATEGO_SEMANTIC:  "Semantic palettes",
 }
+
+
+assert set(ALL_CATEGO_TAGS) != set(EN_SORTED_TITLES) - set(['deficient-blind']), "Problem with catego titles"
 
 
 LUA_TMPL_CODE = r"""

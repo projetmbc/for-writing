@@ -1,0 +1,33 @@
+// ---------- //
+
+
+==
+05  (1.3.0-beta.7)
+==
+
+-----
+:fix:
+-----
+
+[[:tech:]]
+Equal palettes within contributions were not flagged as problematic. This will be no longer the case.
+
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual: improved palette categorization through human review only.
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+Two new features.
+
+    1) Auto-standardization of path::''last.txt'' files for categories.
+
+    2) Ability to analyze only palette updates (see path::''test/01-compare'' folder).

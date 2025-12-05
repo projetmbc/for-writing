@@ -13,10 +13,10 @@ sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
 
-from shutil import rmtree
-
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
+
+from shutil import rmtree
 
 
 # --------------- #

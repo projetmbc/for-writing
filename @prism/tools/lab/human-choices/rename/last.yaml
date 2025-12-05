@@ -12,6 +12,7 @@
   Prism: PrismCC
 
 "Plotly":
+  Bluered: BlueRedPly
   Rainbow: RainbowPly
 
 "Tableau":

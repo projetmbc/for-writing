@@ -5,6 +5,14 @@
 XXXXXXXXXX  (1.3.0)
 ==
 
+-----
+:new:
+-----
+
+[[:api:]]
+New palettes: add support of the \palettable project.
+
+
 --------
 :update:
 --------
@@ -14,7 +22,7 @@ Here are the improvements.
 
     1) Manual.
 
-        + Added list of removed palettes.
+        + Added lists of renamed and removed palettes.
 
         + Added two appendixes.
 
@@ -22,4 +30,4 @@ Here are the improvements.
 
             * All palettes grouped by user-friendly categories.
 
-    1) Incorporating the \palettable project additionally helped refine the palette references.
+    1) Better palette references.

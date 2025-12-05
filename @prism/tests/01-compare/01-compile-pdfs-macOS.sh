@@ -32,10 +32,10 @@ function nocompile {
 # -- COMPILE TEX FILES -- #
 # ----------------------- #
 
-readonly TEX_FOLDERS=("similar")
+readonly TEX_FOLDERS=("single" "check")
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR/human"
 
 
 for folder in "${TEX_FOLDERS[@]}"
@@ -62,5 +62,5 @@ do
         -pdflatex="$texcmd --interaction=nonstopmode --halt-on-error --shell-escape %O %S" \
         "$file_name" || nocompile "$file_name"
     )
-  done < <(find "$folder" -name 'main*.tex' -print0 | sort -z)
+  done < <(find "$folder" -name '*.tex' -print0 | sort -z)
 done

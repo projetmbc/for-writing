@@ -250,6 +250,7 @@
     "Jet"
   ],
   "new-names": {
+    "Bluered::Plotly": "BlueRedPly",
     "Gray::Tableau": "GrayTab",
     "Prism::CartoColors": "PrismCC",
     "Rainbow::Plotly": "RainbowPly"

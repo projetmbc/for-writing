@@ -1,0 +1,67 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+# CATEGORY = 'col-size-4'
+
+
+# -- A -- #
+
+Afmhot
+Aquatic1
+Aquatic2
+Aquatic3
+
+# -- B -- #
+
+Batlow
+BatlowK
+BatlowW
+BlindFish
+
+# -- G -- #
+
+Gnuplot
+GrandBudapest5
+
+# -- H -- #
+
+Hot
+
+# -- I -- #
+
+Inferno
+
+# -- J -- #
+
+JimSpecial
+
+# -- L -- #
+
+Lipari
+
+# -- M -- #
+
+Magma
+Moonrise4
+Moonrise6
+Moonrise7
+
+# -- P -- #
+
+Phase
+Plasma
+
+# -- R -- #
+
+RomaO
+Royal1
+
+# -- T -- #
+
+Thermal
+Tokyo
+
+# -- Z -- #
+
+Zissou

@@ -17,6 +17,8 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+from natsort import natsorted
+
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
@@ -183,7 +185,7 @@ def extract_palname(filename: str) -> str:
 # -- REMOVED OLD SINGLE PALETTE SHOWCASES -- #
 # ------------------------------------------ #
 
-for tex_file in sorted([
+for tex_file in natsorted([
     f
     for f in SINGLE_DIR.glob("main-*.tex")
 ]):
@@ -266,7 +268,7 @@ for kind, showfile in ALL_SHOWCASE_TEX_FILES.items():
     ]
 
 # Compilation will be done later!
-    for tex_file in sorted(
+    for tex_file in natsorted(
         [
             f
             for f in SINGLE_DIR.glob(f"*-{kind}.tex")

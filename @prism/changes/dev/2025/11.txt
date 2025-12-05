@@ -10,7 +10,7 @@
 --------
 
 [[:api:]]
-Fine-grained duplicate name handling with optional renaming for genuinely new palettes.
+Fine-grained management of duplicate names with optional renaming for truly new palettes.
 
 
 // ---------- //

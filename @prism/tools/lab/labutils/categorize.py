@@ -2,12 +2,9 @@
 
 from typing import TypeAlias
 
-from collections import Counter
+from collections import defaultdict
 
 import numpy as np
-
-from scipy.spatial.distance import euclidean, cosine
-from sklearn.cluster        import KMeans
 
 
 # ------------ #
@@ -22,58 +19,43 @@ PaletteCols:TypeAlias = list[RGBCols]
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
+MIN_COL_SIZE = 2
 MAX_COL_SIZE = 4
 
 
-# --------------------- #
-# -- "AI" - CATEGORY -- #
-# --------------------- #
+ALL_CATEGO_TAGS = []
 
-def classify_palette_colors(
-    colors    : PaletteCols,
-    n_clusters: int
-) -> float:
-    colors = np.array(colors)
+for n in range(MIN_COL_SIZE, MAX_COL_SIZE + 1):
+    varname = f"TAG_CATEGO_SIZE_{n}"
 
-    kmeans = KMeans(
-        n_clusters   = n_clusters,
-        random_state = 42,
-        n_init       = 10
-    )
+    globals()[varname] = f"col-size-{n}"
 
-    labels = kmeans.fit_predict(colors)
+    ALL_CATEGO_TAGS.append(globals()[varname])
 
-    return kmeans.inertia_
-
-
-def has_colsize_n(
-    colors   : PaletteCols,
-    size     : int,
-    threshold: float = 0.08,
-) -> bool:
-    result = classify_palette_colors(
-        colors,
-        n_clusters = size
-    )
-
-    normalized_inertia = result / len(colors)
-
-    return normalized_inertia < threshold
-
-
-HAS_COLSIZE_FUNCS = [
-    lambda c, t = 0.05: has_colsize_n(
-        colors    = c,
-        size      = n,
-        threshold = t,
-    )
-    for n in range(1, MAX_COL_SIZE + 1)
+ALL_CATEGO_TAGS += [
+    TAG_CATEGO_SMOOTH         := "smooth",
+    TAG_CATEGO_SEMANTIC       := "semantic",
+    TAG_CATEGO_NO_CATEGO_FOUND:= "no-catego-found",
 ]
 
 
-# -------------------- #
-# -- "AI" - SIMILAR -- #
-# -------------------- #
+# -------------- #
+# -- CATEGORY -- #
+# -------------- #
+
+def classify_palettes(
+    palettes: dict[str, PaletteCols]
+):
+    categories = {
+        TAG_CATEGO_NO_CATEGO_FOUND: list(palettes),
+    }
+
+    return categories
+
+
+# ------------- #
+# -- SIMILAR -- #
+# ------------- #
 
 def create_palette_spectrum(colors: PaletteCols) -> None:
     spectrum = np.zeros(30)

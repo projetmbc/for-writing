@@ -1,0 +1,144 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+# CATEGORY = 'col-size-3'
+
+
+# -- A -- #
+
+Acton
+AgSunset
+Algae
+Amp
+ArmyRose
+
+# -- B -- #
+
+Bam
+BamO
+Bamako
+Berlin
+Bilbao
+BlueGray
+BlueGreen
+BrBG
+Brg
+Broc
+BrocO
+BrownBlue10
+BrownBlue12
+BuPu
+BurningGrass
+Bwr
+
+# -- C -- #
+
+Cividis
+Coolwarm
+Cork
+CorkO
+
+# -- D -- #
+
+Darjeeling4
+Davos
+Deep
+Dense
+
+# -- E -- #
+
+Earth
+
+# -- F -- #
+
+Fall
+FantasticFox1
+
+# -- G -- #
+
+Geyser
+GistHeat
+GnBu
+GrandBudapest1
+GrandBudapest2
+GreenMagenta
+
+# -- H -- #
+
+Haline
+
+# -- I -- #
+
+Ice
+Imola
+IsleOfDogs1
+
+# -- L -- #
+
+Lajolla
+Lapaz
+
+# -- M -- #
+
+Margot3
+Matter
+Moonrise3
+
+# -- N -- #
+
+Navia
+NaviaW
+Nuuk
+
+# -- O -- #
+
+Oslo
+
+# -- P -- #
+
+PRGn
+PiYG
+Pink
+PuBuGn
+PuOr
+PuRd
+Purple
+
+# -- R -- #
+
+RdBu
+RdGy
+RdYlBu
+RdYlGn
+Red
+RedYellowBlue
+Roma
+
+# -- S -- #
+
+Seismic
+Solar
+Spectral
+Sunset
+
+# -- T -- #
+
+TealRose
+Tempo
+Temps
+Tropic
+Turku
+Twilight
+TwilightShifted
+
+# -- V -- #
+
+Vanimo
+Vik
+VikO
+Viridis
+
+# -- Y -- #
+
+YlGnBu

@@ -107,7 +107,33 @@ for folder, contribs in sorted(contribs_accepted.items()):
             logcom    = logging
         )
 
+# Equal palettes in contribs are forbidden!
+TAG_EQUAL_TO   = STATUS_TAG[PAL_STATUS.EQUAL_TO]
+TAG_REVERSE_OF = STATUS_TAG[PAL_STATUS.REVERSE_OF]
 
+for namectxt in PAL_REPORT:
+    if not '::' in namectxt:
+        continue
+
+    name, ctxt = extract_namectxt(namectxt)
+
+    if ctxt == TAG_APRISM:
+        info = PAL_REPORT[namectxt]
+
+        if TAG_EQUAL_TO in info:
+            other = info[TAG_EQUAL_TO]
+
+        else:
+            other = info[TAG_REVERSE_OF]
+
+        log_raise_error(
+            context   = "Contrib. palettes.",
+            desc      = f"'{name}' = '{other}'.",
+            exception = ValueError,
+            xtra      = "Two equal palettes found in contribs."
+        )
+
+# We continue as usual...
 nb_contribs = resume_nbpals_build(
     context     = CTXT,
     nb_new_pals = nb_contribs,

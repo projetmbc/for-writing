@@ -23,10 +23,17 @@ from json import (
     load  as json_load,
 )
 
+from natsort import natsorted
+
 
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
+
+LAST_FILE_NAME      =  "last.txt"
+TAG_UNCLASSIFIED    = "__UNCLASSIFIED__"
+TAG_DEFICIENT_BLIND = "deficient-blind"
+
 
 PROJ_DIR = THIS_DIR
 
@@ -78,9 +85,9 @@ def extract_names(file: Path) -> [str]:
     return sorted(names)
 
 
-# ------------------ #
-# -- "CLUSTERIZE" -- #
-# ------------------ #
+# -------------------- #
+# -- HUMAN CLUSTERS -- #
+# -------------------- #
 
 logging.info("JSON file of palette categories.")
 
@@ -114,7 +121,7 @@ for n in ALL_PALETTES:
 if nocatego:
     nocatego.sort(key = lambda x: x.lower())
 
-    all_categories["__UNCLASSIFIED__"] = nocatego
+    all_categories[TAG_UNCLASSIFIED] = nocatego
 
 
 # -- COLOUR-VISION DEFICIENT / COLOUR-BLIND PEOPLE -- #
@@ -122,7 +129,7 @@ if nocatego:
 logging.info(f"Work on 'Scientific Colour Maps'.")
 
 for n in ALL_SCICOLMAP_NAMES:
-    all_categories['deficient-blind'].append(n)
+    all_categories[TAG_DEFICIENT_BLIND].append(n)
 
 
 # -- NOTHING LEFT TO DO -- #
@@ -131,12 +138,13 @@ PAL_CATEGO_JSON_FILE.write_text(
     json_dumps(all_categories)
 )
 
+
 # --------------------------------------------- #
 # --  SOME UNCLASSIFIED ==> STOP THE PROCESS -- #
 # --------------------------------------------- #
 
-if all_categories["__UNCLASSIFIED__"]:
-    unclassified = all_categories["__UNCLASSIFIED__"]
+if all_categories[TAG_UNCLASSIFIED]:
+    unclassified = all_categories[TAG_UNCLASSIFIED]
 
     plurial = "" if len(unclassified) == 1 else "s"
 
@@ -153,3 +161,47 @@ if all_categories["__UNCLASSIFIED__"]:
         exception = ValueError,
         xtra      = xtra,
     )
+
+del all_categories[TAG_UNCLASSIFIED]
+del all_categories[TAG_DEFICIENT_BLIND]
+
+
+# ---------------------------------------- #
+# --  STD VERSION OF LAST HUMAN CHOICES -- #
+# ---------------------------------------- #
+
+logging.info(f"Standard version of 'last.txt' human choices (see 'tools/lab').")
+
+TMPL_HEAD = """
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+# CATEGORY = '{catego}'
+""".strip()
+
+for catego, names in all_categories.items():
+    last_file = HUMAN_CHOICES_DIR / catego / LAST_FILE_NAME
+
+    content = [
+        TMPL_HEAD.format(catego = catego),
+        ''
+    ]
+
+    last_initial = ''
+
+    for n in natsorted(names):
+        if n[0] != last_initial:
+            last_initial = n[0]
+
+            content += [
+                '',
+                f"# -- {last_initial} -- #",
+                '',
+            ]
+
+        content.append(n)
+
+    content = '\n'.join(content)
+
+    last_file.write_text(content)

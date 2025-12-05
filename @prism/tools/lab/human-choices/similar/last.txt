@@ -5,7 +5,7 @@
 # -- NO CLUSTER --
 #
 #: Accent, Acton, Autumn, , AgSunset, Antique, ArmyRose
-#: Berlin, BlindFish, BlueRed, BrBG, Brg, Buda, BurningGrass, Bold,BrwnYl,
+#: Berlin, BlindFish, BlueRed, BlueRedPly, BrBG, Brg, Buda, BurningGrass, Bold,BrwnYl,
 #: ColorBlind, Cool, Coolwarm, Cubehelix, Cubehelix1,,
 #: Dark2,,
 #: Earth,

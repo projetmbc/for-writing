@@ -1,0 +1,103 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+# CATEGORY = 'col-size-2'
+
+
+# -- A -- #
+
+AgGrnYl
+Autumn
+
+# -- B -- #
+
+Binary
+BluGrn
+BluYl
+BlueRedPly
+Blues
+Blues7
+Blues10
+Bone
+BrwnYl
+BuGn
+Buda
+Burg
+BurgYl
+
+# -- C -- #
+
+Cool
+Copper
+
+# -- D -- #
+
+Darjeeling1
+DarkMint
+Devon
+
+# -- E -- #
+
+Emrld
+
+# -- G -- #
+
+GrayC
+GrayTab
+Grays
+Greens
+
+# -- L -- #
+
+Lemon
+
+# -- M -- #
+
+Magenta
+Mint
+
+# -- O -- #
+
+OrRd
+OrYel
+Oranges
+
+# -- P -- #
+
+Peach
+PinkYl
+PuBu
+Purp
+PurpOr
+Purples
+
+# -- R -- #
+
+RdPu
+RedOr
+Reds
+
+# -- S -- #
+
+Speed
+Spring
+Summer
+SunsetDark
+
+# -- T -- #
+
+Teal
+TealGrn
+Turbid
+
+# -- W -- #
+
+Winter
+Wistia
+
+# -- Y -- #
+
+YlGn
+YlOrBr
+YlOrRd

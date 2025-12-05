@@ -12,6 +12,7 @@
           & Prism & \Rightarrow & PrismCC \\
         \hline
         Plotly
+          & Bluered & \Rightarrow & BlueRedPly \\
           & Rainbow & \Rightarrow & RainbowPly \\
         \hline
         Tableau

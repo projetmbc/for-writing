@@ -1,0 +1,120 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+# CATEGORY = 'smooth'
+
+
+# -- B -- #
+
+Blackbody
+BlueDarkOrange12
+BlueDarkOrange18
+BlueDarkRed12
+BlueDarkRed18
+BlueOrange8
+BlueOrange10
+BlueOrange12
+BlueOrangeRed
+BlueRed
+
+# -- C -- #
+
+CMRmap
+Cavalcanti
+Chevalier
+Cube1
+CubeYF
+Cubehelix
+Cubehelix1
+Cubehelix2
+Cubehelix3
+Curl
+
+# -- D -- #
+
+Darjeeling2
+Darjeeling3
+Delta
+
+# -- E -- #
+
+Electric
+
+# -- F -- #
+
+FantasticFox2
+
+# -- G -- #
+
+GasFlame
+GeoRainbow
+GistEarth
+GistNcar
+GistRainbow
+Glasgow
+Gnuplot2
+
+# -- H -- #
+
+Hawaii
+Hsv
+
+# -- I -- #
+
+IsleOfDogs3
+
+# -- J -- #
+
+Jet
+
+# -- L -- #
+
+LinearL
+Lisbon
+
+# -- M -- #
+
+Managua
+Margot1
+Margot2
+Mendl
+Moonrise1
+Moonrise2
+Moonrise5
+
+# -- N -- #
+
+NipySpectral
+
+# -- O -- #
+
+Ocean
+Oleron
+Oxy
+
+# -- P -- #
+
+PastelRainbow
+PerceptualRainbow
+Picnic
+Portland
+PrismCC
+PurpleGray
+
+# -- R -- #
+
+Rainbow
+RainbowPly
+Royal2
+Royal3
+
+# -- S -- #
+
+ShiftRainbow
+
+# -- T -- #
+
+Terrain
+Tofino
+Turbo
