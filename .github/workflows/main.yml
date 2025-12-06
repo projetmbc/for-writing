@@ -44,10 +44,10 @@ jobs:
         ls -la "$TEXMFHOME/tex/lualatex/luadraw/"
 
     - name: Make launch script executable
-      run: chmod +x @prism/tools/building/02-fixed-nodoc-pdfs-macOS-slow.sh
+      run: chmod +x @prism/tools/building/PARASHOWCASE.sh
 
     - name: Run launch script
-      run: ./@prism/tools/building/02-fixed-nodoc-pdfs-macOS-slow.sh
+      run: ./@prism/tools/building/PARASHOWCASE.sh
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
