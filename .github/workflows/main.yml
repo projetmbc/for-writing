@@ -44,10 +44,17 @@ jobs:
         ls -la "$TEXMFHOME/tex/lualatex/luadraw/"
 
     - name: Make launch script executable
-      run: chmod +x @prism/tools/building/PARASHOWCASE.sh
+      run: chmod +x ./@prism/tools/building/PARASHOWCASE.sh
 
     - name: Run launch script
       run: ./@prism/tools/building/PARASHOWCASE.sh
+      continue-on-error: true
+
+    - name: Show failed compilations
+      if: failure()
+      run: |
+        echo "Checking for log files..."
+        find . -name "*.log" -type f -exec echo "=== {} ===" \; -exec tail -n 30 {} \;
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4

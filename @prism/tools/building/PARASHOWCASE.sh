@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Fix for GitHub Actions: disable tput colors
+export TERM=dumb
+
 # ------------------- #
 # -- NO ARG NEEDED -- #
 # ------------------- #
@@ -44,10 +47,27 @@ function build_one_file {
 
   (
     cd "$local_dir" || exit 1
-    SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 \
-      latexmk -quiet -pdf \
+
+    # Capture full output for debugging
+    if ! SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 \
+      latexmk -pdf \
       -pdflatex="$texcmd --interaction=nonstopmode --halt-on-error --shell-escape %O %S" \
-      "$file_name" || { nocompile "$file_name"; exit 1; }
+      "$file_name" 2>&1; then
+
+      echo "========================================" >&2
+      echo "COMPILATION FAILED: $file_name" >&2
+      echo "========================================" >&2
+
+      # Show last 50 lines of log file if it exists
+      log_file="${file_name%.tex}.log"
+      if [[ -f "$log_file" ]]; then
+        echo "Last 50 lines of $log_file:" >&2
+        tail -n 50 "$log_file" >&2
+      fi
+
+      nocompile "$file_name"
+      exit 1
+    fi
   )
 
   return $?
