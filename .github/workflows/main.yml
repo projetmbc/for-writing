@@ -1,0 +1,59 @@
+name: Build LaTeX with luadraw
+
+on:
+  push:
+    branches: [ actions ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install TeX Live
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-full
+
+    - name: Install luadraw
+      run: |
+        # Clone le projet luadraw
+        git clone https://github.com/pfradin/luadraw.git /tmp/luadraw
+
+        # Trouver le répertoire TEXMFHOME
+        TEXMFHOME=$(kpsewhich -var-value TEXMFHOME)
+        echo "TEXMFHOME: $TEXMFHOME"
+
+        # Créer les répertoires nécessaires
+        mkdir -p "$TEXMFHOME/tex/lualatex/luadraw"
+
+        # Copier les fichiers luadraw
+        cp -r /tmp/luadraw/tex/* "$TEXMFHOME/tex/lualatex/luadraw/" 2>/dev/null || true
+
+        # Si la structure est différente, copier tous les fichiers .sty et .lua
+        find /tmp/luadraw -name "*.sty" -exec cp {} "$TEXMFHOME/tex/lualatex/luadraw/" \;
+        find /tmp/luadraw -name "*.lua" -exec cp {} "$TEXMFHOME/tex/lualatex/luadraw/" \;
+
+        # Mettre à jour la base de données TeX
+        texhash "$TEXMFHOME"
+
+        # Vérifier l'installation
+        echo "Contenu de $TEXMFHOME/tex/lualatex/luadraw:"
+        ls -la "$TEXMFHOME/tex/lualatex/luadraw/"
+
+    - name: Make launch script executable
+      run: chmod +x @prism/tools/building/02-fixed-nodoc-pdfs-macOS-slow.sh
+
+    - name: Run launch script
+      run: ./@prism/tools/building/02-fixed-nodoc-pdfs-macOS-slow.sh
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-outputs
+        path: |
+          **/*.pdf
+          **/*.log
+        if-no-files-found: warn
