@@ -17,6 +17,10 @@ New palettes: add support of the \palettable project.
 :update:
 --------
 
+[[:api:]]
+\Prods: ''luadraw'' becomes ''lua''.
+
+
 [[:doc:]]
 Here are the improvements.
 
@@ -30,4 +34,14 @@ Here are the improvements.
 
             * All palettes grouped by user-friendly categories.
 
+        + Added explanations about the utility of palettes for non-designers.
+
     1) Better palette references.
+
+
+-----
+:fix:
+-----
+
+[[:api:]]
+\lua \prod: fixed path::''use-std.tex'' and path::''use-dark.tex''.

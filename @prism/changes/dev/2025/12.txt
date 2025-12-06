@@ -2,6 +2,34 @@
 
 
 ==
+06  (1.3.0-beta.8)
+==
+
+--------
+:update:
+--------
+
+[[:api:]]
+\Prods: ''luadraw'' becomes ''lua''.
+
+
+[[:doc:]]
+Manual: added explanations about the utility of palettes for non-designers.
+
+
+-----
+:fix:
+-----
+
+[[:api:]]
+\lua \prod: fixed path::''use-std.tex'' and path::''use-dark.tex''.
+
+
+
+// ---------- //
+
+
+==
 05  (1.3.0-beta.7)
 ==
 
@@ -10,15 +38,7 @@
 -----
 
 [[:tech:]]
-Equal palettes within contributions were not flagged as problematic. This will be no longer the case.
-
-
---------
-:update:
---------
-
-[[:api:]]
-\Prods: ''luadraw'' becomes ''lua''.
+Equal palettes within \contribs were not flagged as problematic. This will be no longer the case.
 
 
 [[:doc:]]
@@ -30,8 +50,8 @@ Manual: improved palette categorization through human review only.
 --------
 
 [[:tech:]]
-Two new features.
+Two new \feats.
 
-    1) Auto-standardization of path::''last.txt'' files for categories.
+    1) Auto-standardization of path::''last.txt'' files for \categos.
 
     2) Ability to analyze only palette updates (see path::''test/01-compare'' folder).

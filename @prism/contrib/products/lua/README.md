@@ -6,19 +6,19 @@
   ---------------------------------------------------------------->
 
 
-lua palettes
+Lua palettes
 ============
 
 > ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use palettes for [`luadraw`](https://github.com/pfradin/luadraw) which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLaTeX` and `TikZ`.*
 
-Create a palette using lua
+Create a palette using Lua
 --------------------------
 
 > ***CAUTION.*** *Only the folders `dev` (for creation) and `palettes` (for submission) are used for palette creation. Don't modify any other folders.*
 
 For the moment, development requires working with `LaTeX` and the `luadraw` package: refer to the `TEX` files in the `dev/luadraw` folder.
 
-Use a lua palette
+Use a Lua palette
 -----------------
 
 The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by three ways.

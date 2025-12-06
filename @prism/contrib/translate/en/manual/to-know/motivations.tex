@@ -9,27 +9,47 @@
 
 \section{Motivations}
 
-Originally, this project was born out of a desire to enhance \LUADRAW\ with a set of color palettes to easily produce something like the following 3D plot.
+This project was born out of a desire to enhance \LUADRAW\ with a set of color palettes to easily produce graphics like the 3D plot shown below.
 %
+Despite the availability of palette generation tools such as \coolors, the choice has been made to offer pre-built palettes, because this serves several key purposes for non-designers.
+%
+\begin{itemize}
+    \item \textbf{Reduced cognitive load:} pre-configuration eliminates design decisions, allowing to focus on content.
+
+    \item \textbf{Consistency:} it becomes easy to ensure visual coherence across documents and projects, regardless of technology.
+
+    \item \textbf{Accessibility compliance:} some pre-configured palettes guarantee colorblind-safe combinations.
+
+    \item \textbf{Perceptual uniformity:} most palettes ensure distinguishable and meaningful colors for data visualization, while others serve artistic purposes.
+\end{itemize}
+
+
 \begin{center}
     \subimport{../../../common/}{surface.luadraw}
 \end{center}
 
-Technically, a finite list of colors is provided to \LUADRAW\, which then uses linear interpolation to calculate the intermediate colors. In the previous case, the finite color palette used is defined as follows.
+
+% -------------------- %
+
+
+Technically, to generate the graphics in this section, \LUADRAW\ is provided with a finite list of colors and uses linear interpolations to calculate the intermediate color values. In the example above, the finite color palette used is defined as follows.
 %
 \begin{center}
     \subimport{../../../common/}{palette-example.luadraw}
 \end{center}
 
-Using this palette, \LUADRAW\ is able to produce the following spectrum, allowing us to create the graph above.
+Using this palette, \LUADRAW\ can produce the following spectrum, allowing us to create the graphic above.
 %
 \begin{center}
     \subimport{../../../common/}{spectrum-example.luadraw}
 \end{center}
 
 
+% -------------------- %
+
+
 \begin{tdocnote}
-    Using the \LUADRAW\ implementation of \thisproj, see the section \ref{products-luadraw}, we can create the palettes below made from the previous one named \tdoccodein{lua}+'GeoRainbow'+. Each instruction used is given below each palette.
+    Using the \lua\ implementation of \thisproj, see the section \ref{products-lua}, via \LUADRAW, we can create the palettes below made from the previous one named \tdoccodein{lua}+'GeoRainbow'+. Each instruction used is given below each palette.
     %
     \begin{center}
         \subimport{../../../common/}{palette-reversed.luadraw}
@@ -49,11 +69,11 @@ Using this palette, \LUADRAW\ is able to produce the following spectrum, allowin
 
     \smallskip
     
-    This features provide remarkable creative flexibility: with the same surface as before, but using the setting
+    This features provide remarkable creative flexibility: with the same surface as before, using the setting
     \tdoccodein{lua}+getPal('GeoRainbow', {extract = {2, 3, 7, 8, 5, 6}, reverse = true})+
     instead of 
     \tdoccodein{lua}+getPal('GeoRainbow')+,
-    we instantly change the visual tone, shifting from a seaside feel to a snow-covered world.
+    we change the visual tone, shifting from a seaside feel to a snow-covered world.
     %
     \begin{center}
         \subimport{../../../common/}{surface-options.luadraw}

@@ -5,23 +5,14 @@
 
 // ---------- //
 
-doc
+githuba ction pour show case ==> vire scritp actuel qui n'a plus de raison d'^tre
 
-   ---> ajout annexe des choix humaines "erreur est hiumaine"
-
-   ---> expliquer l'intére^t de u projet pour les non graphistes
+un shocase ~15 sec   ==> on aparléllis en passant via des liste de fichiers à compiler et quand parallélisme ok on passe à lasuite !
 
 
 // ---------- //
 
 bash qui nettoie ce qui ne doit aps apparaotre dans le m main : apriori just les tests de comparaions des palettes
-
-
-// ---------- //
-
-githuba ction pour show case ==> vire scritp actuel qui n'a plus de raison d'^tre
-
-un shocase ~15 sec   ==> on aparléllis en passant via des liste de fichiers à compiler et quand parallélisme ok on passe à lasuite !
 
 
 // ---------- //

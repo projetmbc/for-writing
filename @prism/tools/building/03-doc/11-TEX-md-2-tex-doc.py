@@ -95,6 +95,11 @@ TRANSLATE_DIR      = PROJ_DIR / "contrib" / "translate"
 EN_MANUAL_DIR      = TRANSLATE_DIR / "en" / "manual" / "products"
 _SUB_EN_MANUAL_DIR = EN_MANUAL_DIR.relative_to(TRANSLATE_DIR)
 
+EN_MANUAL_DIR.mkdir(
+    parents  = True,
+    exist_ok = True,
+)
+
 
 MANUAL_PROD_ABOUT_YAML = EN_MANUAL_DIR / "about.yaml"
 
@@ -110,6 +115,20 @@ MD_FILES_TO_CONVERT += [
 
 
 CONVERTER_MD_2_TEX = MdToLatexConverter(shift_down_level = 1)
+
+
+# Remove unused ''TeX'' files while keeping others to prevent
+# unnecessary ''latexmk'' recompilation.
+_names_kept = set(
+    f.stem
+    for f in MD_FILES_TO_CONVERT
+)
+_names_kept.remove("products")
+_names_kept.add("preamble")
+
+for texfile in EN_MANUAL_DIR.glob("*.tex"):
+    if not texfile.stem in _names_kept:
+        texfile.unlink()
 
 
 # ----------- #
@@ -203,7 +222,7 @@ toc = {
 }
 
 with MANUAL_PROD_ABOUT_YAML.open("w") as f:
-    yaml.dump(toc, f)
+    yaml_dump(toc, f)
 
 content = MANUAL_PROD_ABOUT_YAML.read_text()
 content = content.replace('\n-', '\n  -')

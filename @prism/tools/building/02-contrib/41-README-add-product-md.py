@@ -16,6 +16,8 @@ from cbutils.core import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+from shutil import rmtree
+
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
@@ -51,14 +53,20 @@ CONTRIB_DIR = PROJ_DIR / "contrib" / "products"
 PRODS_DIR   = PROJ_DIR / "products"
 README_DIR  = PROJ_DIR / "readme" / "products"
 
+# We need an empty ''MD'' file dir!
+if README_DIR.is_dir():
+    rmtree(README_DIR)
+
+README_DIR.mkdir(parents =True)
+
 
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
 
 def header_up(content: str) -> str:
-    content = PATTERN_MD_H1.sub(r'### \1', content)
-    content = PATTERN_MD_H2.sub(r'\n#### \1', content)
+    content = PATTERN_MD_H1.sub(r'### \1\n', content)
+    content = PATTERN_MD_H2.sub('', content)
 
     return content
 

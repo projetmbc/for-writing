@@ -1,4 +1,4 @@
-Use a lua palette
+Use a Lua palette
 -----------------
 
 <!--YAML
