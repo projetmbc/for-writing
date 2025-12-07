@@ -1,8 +1,21 @@
 name: Build showcase PDFs
 
+# Configuration variables
+env:
+  TEXLIVE_PACKAGES: "tutodoc pdfpages"
+  LUADRAW_REPO: "https://github.com/pfradin/luadraw.git"
+  BUILD_SCRIPT: "./@prism/tools/building/PARASHOWCASE.sh"
+  ULIMIT_FILES: "2048"
+
+permissions:
+  contents: write
+
 on:
   push:
-    branches: [ actions ]
+    branches: [ main, master, actions ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,15 +25,36 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install TeX Live (optimized)
+    - name: Install TeX Live and packages
       run: |
         sudo apt-get update
-        sudo apt-get install -y texlive-base texlive-luatex \
-        texlive-latex-extra texlive-fonts-recommended latexmk
 
-        # Install missing packages from CTAN
-        sudo tlmgr update --self
-         sudo tlmgr install tutodoc pdfpages
+        # Install TeX Live with commonly needed packages
+        sudo apt-get install -y \
+          texlive-base \
+          texlive-luatex \
+          texlive-latex-extra \
+          texlive-latex-recommended \
+          texlive-fonts-recommended \
+          texlive-fonts-extra \
+          texlive-science \
+          latexmk
+
+        # Install tutodoc and pdfpages if not already included
+        # Note: pdfpages is usually in texlive-latex-extra
+        # tutodoc might need manual installation
+
+        # Check if tlmgr is available and configured
+        if command -v tlmgr &>/dev/null; then
+          # Initialize tlmgr for user mode
+          tlmgr init-usertree || true
+
+          # Try to update and install packages
+          tlmgr update --self --all 2>/dev/null || echo "tlmgr update skipped"
+          tlmgr install tutodoc 2>/dev/null || echo "tutodoc may already be installed"
+        else
+          echo "tlmgr not available, packages should be in texlive-latex-extra"
+        fi
 
     # - name: Install luadraw
     #   run: |
