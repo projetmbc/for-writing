@@ -1,4 +1,4 @@
-name: Build LaTeX with luadraw
+name: Build showcase PDFs
 
 on:
   push:
@@ -12,14 +12,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install TeX Live
+    - name: Install TeX Live (optimized)
       run: |
         sudo apt-get update
-        sudo apt-get install -y texlive-full
+        sudo apt-get install -y texlive-base texlive-luatex \
+        texlive-latex-extra texlive-fonts-recommended latexmk
 
-        # Install specific packages
+        # Install missing packages from CTAN
         sudo tlmgr update --self
-        sudo tlmgr install tutodoc pdfpages
+         sudo tlmgr install tutodoc pdfpages
 
     # - name: Install luadraw
     #   run: |
