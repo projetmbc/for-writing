@@ -15,8 +15,7 @@ jobs:
     - name: Install TeX Live (optimized)
       run: |
         sudo apt-get update
-        sudo apt-get install -y texlive-latex-base texlive-luatex \
-          texlive-latex-extra texlive-fonts-recommended latexmk
+        sudo apt-get install -y texlive-latex-full
 
         # Install specific packages
         sudo tlmgr update --self
