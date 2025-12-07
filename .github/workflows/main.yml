@@ -12,10 +12,7 @@ permissions:
 
 on:
   push:
-    branches: [ main, master, actions ]
-  pull_request:
-    branches: [ main, master ]
-  workflow_dispatch:
+    branches: [ actions ]
 
 jobs:
   build:
@@ -56,50 +53,50 @@ jobs:
           echo "tlmgr not available, packages should be in texlive-latex-extra"
         fi
 
-    # - name: Install luadraw
-    #   run: |
-    #     # Clone le projet luadraw
-    #     git clone https://github.com/pfradin/luadraw.git /tmp/luadraw
+    - name: Install luadraw
+      run: |
+        # Clone le projet luadraw
+        git clone https://github.com/pfradin/luadraw.git /tmp/luadraw
 
-    #     # Trouver le répertoire TEXMFHOME
-    #     TEXMFHOME=$(kpsewhich -var-value TEXMFHOME)
-    #     echo "TEXMFHOME: $TEXMFHOME"
+        # Trouver le répertoire TEXMFHOME
+        TEXMFHOME=$(kpsewhich -var-value TEXMFHOME)
+        echo "TEXMFHOME: $TEXMFHOME"
 
-    #     # Créer les répertoires nécessaires
-    #     mkdir -p "$TEXMFHOME/tex/lualatex/luadraw"
+        # Créer les répertoires nécessaires
+        mkdir -p "$TEXMFHOME/tex/lualatex/luadraw"
 
-    #     # Copier les fichiers luadraw
-    #     cp -r /tmp/luadraw/tex/* "$TEXMFHOME/tex/lualatex/luadraw/" 2>/dev/null || true
+        # Copier les fichiers luadraw
+        cp -r /tmp/luadraw/tex/* "$TEXMFHOME/tex/lualatex/luadraw/" 2>/dev/null || true
 
-    #     # Si la structure est différente, copier tous les fichiers .sty et .lua
-    #     find /tmp/luadraw -name "*.sty" -exec cp {} "$TEXMFHOME/tex/lualatex/luadraw/" \;
-    #     find /tmp/luadraw -name "*.lua" -exec cp {} "$TEXMFHOME/tex/lualatex/luadraw/" \;
+        # Si la structure est différente, copier tous les fichiers .sty et .lua
+        find /tmp/luadraw -name "*.sty" -exec cp {} "$TEXMFHOME/tex/lualatex/luadraw/" \;
+        find /tmp/luadraw -name "*.lua" -exec cp {} "$TEXMFHOME/tex/lualatex/luadraw/" \;
 
-    #     # Mettre à jour la base de données TeX
-    #     texhash "$TEXMFHOME"
+        # Mettre à jour la base de données TeX
+        texhash "$TEXMFHOME"
 
-    #     # Vérifier l'installation
-    #     echo "Contenu de $TEXMFHOME/tex/lualatex/luadraw:"
-    #     ls -la "$TEXMFHOME/tex/lualatex/luadraw/"
+        # Vérifier l'installation
+        echo "Contenu de $TEXMFHOME/tex/lualatex/luadraw:"
+        ls -la "$TEXMFHOME/tex/lualatex/luadraw/"
 
-    # - name: Make launch script executable
-    #   run: chmod +x @prism/tools/building/PARASHOWCASE.sh
+    - name: Make launch script executable
+      run: chmod +x @prism/tools/building/PARASHOWCASE.sh
 
-    # - name: Run launch script
-    #   run: ./@prism/tools/building/PARASHOWCASE.sh
-    #   continue-on-error: true
+    - name: Run launch script
+      run: ./@prism/tools/building/PARASHOWCASE.sh
+      continue-on-error: true
 
-    # - name: Show failed compilations
-    #   if: failure()
-    #   run: |
-    #     echo "Checking for log files..."
-    #     find . -name "*.log" -type f -exec echo "=== {} ===" \; -exec tail -n 30 {} \;
+    - name: Show failed compilations
+      if: failure()
+      run: |
+        echo "Checking for log files..."
+        find . -name "*.log" -type f -exec echo "=== {} ===" \; -exec tail -n 30 {} \;
 
-    # - name: Upload artifacts
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: build-outputs
-    #     path: |
-    #       **/*.pdf
-    #       **/*.log
-    #     if-no-files-found: warn
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-outputs
+        path: |
+          **/*.pdf
+          **/*.log
+        if-no-files-found: warn
