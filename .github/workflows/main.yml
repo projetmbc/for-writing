@@ -52,10 +52,10 @@ jobs:
         ls -la "$TEXMFHOME/tex/lualatex/luadraw/"
 
     - name: Make launch script executable
-      run: chmod +x @prism/tools/building/03-fixed-showcase-pdf-macOS-slow.sh
+      run: chmod +x @prism/tools/building/PARASHOWCASE.sh
 
     - name: Run launch script
-      run: ./@prism/tools/building/03-fixed-showcase-pdf-macOS-slow.sh
+      run: ./@prism/tools/building/PARASHOWCASE.sh
       continue-on-error: true
 
     - name: Show failed compilations
