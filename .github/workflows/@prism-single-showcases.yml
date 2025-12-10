@@ -58,6 +58,18 @@ jobs:
       run: ./@prism/tools/actions/SINGLE.sh
       continue-on-error: true
 
+    - name: List generated PDFs
+      run: |
+        echo "=== Searching for all PDF files ==="
+        find . -name "*.pdf" -type f
+        echo "=== Content of single folder (if exists) ==="
+        ls -la single/ || echo "single/ folder does not exist"
+
+    - name: Show failed compilations
+      if: failure()
+      run: |
+        echo "Checking for log files..."
+        find . -name "*.log" -type f -exec echo "=== {} ===" \; -exec tail -n 30 {} \;
     - name: Show failed compilations
       if: failure()
       run: |
