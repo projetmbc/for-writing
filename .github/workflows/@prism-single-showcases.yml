@@ -89,7 +89,8 @@ jobs:
         if git diff --staged --quiet; then
           echo "No PDF changes to commit"
         else
-          git commit -m "Auto-update PDFs from single folder [skip ci]"
+          TIMESTAMP=$(date +%Y%m%dT%H%M%S)
+          git commit -m "'single' folder - Auto PDF [actions: $TIMESTAMP]"
           git push
         fi
 
