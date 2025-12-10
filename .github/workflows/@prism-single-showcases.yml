@@ -70,6 +70,7 @@ jobs:
       run: |
         echo "Checking for log files..."
         find . -name "*.log" -type f -exec echo "=== {} ===" \; -exec tail -n 30 {} \;
+
     - name: Show failed compilations
       if: failure()
       run: |
@@ -84,7 +85,7 @@ jobs:
 
     - name: Commit and push PDFs
       run: |
-        git add pre-doc/showcase/single/*.pdf || true
+        git add @prism/pre-doc/showcase/single/*.pdf || true
         if git diff --staged --quiet; then
           echo "No PDF changes to commit"
         else
