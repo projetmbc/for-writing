@@ -72,7 +72,7 @@ jobs:
 
     - name: Commit and push PDFs
       run: |
-        git add single/*.pdf || true
+        git add pre-doc/showcase/single/*.pdf || true
         if git diff --staged --quiet; then
           echo "No PDF changes to commit"
         else
