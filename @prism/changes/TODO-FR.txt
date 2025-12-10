@@ -5,9 +5,16 @@
 
 // ---------- //
 
-githuba ction pour show case ==> vire scritp actuel qui n'a plus de raison d'^tre
+github actions
 
-un shocase ~15 sec   ==> on aparléllis en passant via des liste de fichiers à compiler et quand parallélisme ok on passe à lasuite !
+   --> compialtion uniquement si besoin !!! Très important !
+
+   --> reprendre idéée de la parallélisation une fois la version séquentielle OK
+
+
+// ---------- //
+
+Manuel: revoir les hyperliens pour ttes les palettes et les clusters car là ce n'est pas bon !
 
 
 // ---------- //
