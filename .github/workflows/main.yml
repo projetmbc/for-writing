@@ -64,11 +64,28 @@ jobs:
         echo "Checking for log files..."
         find . -name "*.log" -type f -exec echo "=== {} ===" \; -exec tail -n 30 {} \;
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-outputs
-        path: |
-          **/*.pdf
-          **/*.log
-        if-no-files-found: warn
+    - name: Configure Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global --add safe.directory /__w/*/
+
+    - name: Commit and push PDFs
+      run: |
+        git add single/*.pdf || true
+        if git diff --staged --quiet; then
+          echo "No PDF changes to commit"
+        else
+          git commit -m "Auto-update PDFs from single folder [skip ci]"
+          git push
+        fi
+
+# DEBUGGING.
+#     - name: Upload artifacts
+#       uses: actions/upload-artifact@v4
+#       with:
+#         name: build-outputs
+#         path: |
+#           **/*.pdf
+#           **/*.log
+#         if-no-files-found: warn
