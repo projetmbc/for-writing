@@ -24,9 +24,17 @@ from natsort import natsorted
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-PATTERN_CHGE_PAL_NAME = re.compile(r"\\newcommand\{\\PALETTE\}\{(.*)\}")
+PATTERN_CHGE_PAL_NAME = re.compile(
+    r"\\newcommand\{\\PALETTE\}\{(.*)\}"
+)
 
-PATTERN_CHGE_PAL_CREDITS  = re.compile(r"\\newcommand\{\\SRC\}\{(.*)\}")
+PATTERN_CHGE_PAL_DEF = re.compile(
+    r"PALETTE\s*=\s*([^\n]*)"
+)
+
+PATTERN_CHGE_PAL_CREDITS  = re.compile(
+    r"\\newcommand\{\\SRC\}\{(.*)\}"
+)
 
 PATTERN_UPDATE_PALSIZE = re.compile(
     r'^\s*PALSIZE\s*=\s*\d+\s*$',
@@ -221,37 +229,38 @@ for tmp_file in TMPL_TEX_FILES.values():
 
 logging.info("Add 'single palette showcase' TeX files.")
 
-for palname in ALL_PALETTES:
-    for kind, tmp_file in TMPL_SINGLE_SHOWCASE_TEX_CODES.items():
+for palname, paldef in ALL_PALETTES.items():
+    for kind, texcode in TMPL_SINGLE_SHOWCASE_TEX_CODES.items():
         palfile = SINGLE_DIR / f"{build_name(palname)}-{kind}.tex"
 
-# The name.
-        texcode = PATTERN_CHGE_PAL_NAME.sub(
-            lambda m: m.group(0).replace(
-                m.group(1),
-                palname
-            ),
-            tmp_file
-        )
+        paldef = str(paldef)
 
-# The source used.
+        for old, new in [
+            ('[', '{'),
+            (']', '}'),
+        ]:
+            paldef = paldef.replace(old, new)
+
         palsrc = ALL_SRC.get(palname, None)
-
-        if palsrc == "@prism":
-            palsrc = "Created with @prism"
-
-        else:
-            palsrc = f"Source: {palsrc}"
-
-        texcode = PATTERN_CHGE_PAL_CREDITS.sub(
-            lambda m: m.group(0).replace(
-                m.group(1),
-                palsrc
-            ),
-            texcode
+        palsrc = (
+            "Created with @prism"
+            if palsrc == "@prism" else
+            f"Source: {palsrc}"
         )
 
-# Let's write the file.
+        for repl, pat in [
+            (palname, PATTERN_CHGE_PAL_NAME),
+            (paldef , PATTERN_CHGE_PAL_DEF),
+            (palsrc , PATTERN_CHGE_PAL_CREDITS),
+        ]:
+            texcode = pat.sub(
+                lambda m: m.group(0).replace(
+                    m.group(1),
+                    repl
+                ),
+                texcode
+            )
+
         palfile.write_text(texcode)
 
 
