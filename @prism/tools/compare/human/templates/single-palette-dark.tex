@@ -1,16 +1,9 @@
 % !TEX TS-program = lualatex
 
-
-\begin{filecontents*}[overwrite]{__tmp-palette-1__.lua}
-PALETTE = {{0.3922, 0.5843, 0.9294}, {0.464066, 0.7281, 0.9098}, {0.411766, 0.767333, 0.7477}, {0.2353, 0.702, 0.4431}, {0.481033, 0.769933, 0.278433}, {0.707166, 0.731999, 0.2902}, {0.9137, 0.5882, 0.4784}, {0.932033, 0.530733, 0.494133}, {0.895433, 0.454933, 0.454933}, {0.8039, 0.3608, 0.3608}}
-\end{filecontents*}
-
-
 \documentclass[theme = dark]{tutodoc}
 
-\newcommand{\PALETTE}{GeoRainbow}
-\newcommand{\SRC}{PREVIOUS VERSION}
-
+\newcommand{\PALETTE}{Lemon}
+\newcommand{\SRC}{Main or dev?}
 
 \geometry{
   top    = 1cm,
@@ -41,7 +34,9 @@ PALETTE = {{0.3922, 0.5843, 0.9294}, {0.464066, 0.7281, 0.9098}, {0.411766, 0.76
 % -- COMMON LUA CODE USED -- %
 % -------------------------- %
 
-\directlua{dofile('__tmp-palette-1__.lua')}
+\directlua{
+PALETTE = {{.3,.4,.7},LightSkyBlue,Plum,LightCoral,LightSalmon,Khaki,PaleGreen,LightSalmon,Khaki,PaleGreen}
+}
 
 
 \directlua{

@@ -41,7 +41,7 @@ with LAST_UPDATES_JSON.open() as f:
 if not LAST_UPDATES:
     logging.info("Nothing to do.")
 
-    exit(0)
+    exit()
 
 
 HUMAN_CHECK_DIR        = THIS_DIR / "human"
@@ -102,7 +102,7 @@ TMPL_TEX_INCLUDE_PDF = r"""
     {palname},
     lab-pal-{palname}
   }}%
-]{{../../single/{kind}-{i}.pdf}}
+]{{../../single/{kind}-{palname}-{src}.pdf}}
 """.strip()
 
 
@@ -123,17 +123,23 @@ HEADER_TEX_CODES = {
 
 now = datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
 
-logging.info(f"Building '{now}.tex'.")
 
-for kind in ["dark", "std"]:
-    i = 0
+all_singles = dict()
 
-    tex_code = [
-        "% !TEX TS-program = lualatex",
-        HEADER_TEX_CODES[kind],
-        START_FINAL_TEX_CODE,
-    ]
+for kind in ['dark', 'std']:
+    all_singles[kind] = natsorted(
+        HUMAN_CHECK_SINGLE_DIR.glob(f"{kind}-*.tex")
+    )
 
+if not all_singles['dark']:
+    logging.info(f"'No TeX files' build.")
+
+    exit()
+
+
+logging.info(f"Building '{now} TeX files'.")
+
+for kind in ['dark', 'std']:
     showfile = HUMAN_CHECK_BCKUP_DIR / f"{now}" / f"{kind}.tex"
 
     showfile.parent.mkdir(
@@ -141,21 +147,24 @@ for kind in ["dark", "std"]:
         exist_ok = True
     )
 
-    for texfile in natsorted(
-        HUMAN_CHECK_SINGLE_DIR.glob(f"{kind}-*.tex")
-    ):
-        i += 1
+    tex_code = [
+        "% !TEX TS-program = lualatex",
+        HEADER_TEX_CODES[kind],
+        START_FINAL_TEX_CODE,
+    ]
+
+    for texfile in all_singles[kind]:
+        _ , palname, src = texfile.stem.split('-')
 
         tex_code.append(
             TMPL_TEX_INCLUDE_PDF.format(
-                palname = f"Palette {i}",
-                i       = i,
                 kind    = kind,
+                src     = src,
+                palname = palname,
             )
         )
 
     tex_code.append(r"\end{document}")
-
     tex_code = '\n\n'.join(tex_code) + '\n'
 
     showfile.write_text(tex_code)

@@ -83,7 +83,6 @@ if report:
     )
 
 else:
-
     logging.info(
         "'No updated palette' found."
     )
