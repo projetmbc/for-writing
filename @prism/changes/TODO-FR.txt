@@ -3,13 +3,26 @@
 ======
 
 
+
+
+
+
+
+
+
+
+
 // ---------- //
 
-github actions
+showcase
 
-   --> compialtion uniquement si besoin !!! Très important !
+   ---> on passe via un dossier et des showcase par catégorie, plus utile et outil de déboggage au passage
 
-   --> reprendre idéée de la parallélisation une fois la version séquentielle OK
+   ---> améiorer les exemples avec des graphs 2D en plus de type stat 2D uniquement : utile pour les couleurs sémantiques
+
+             + diahg bataon
+
+             + diag "disuqe"
 
 
 // ---------- //
@@ -42,22 +55,6 @@ la prochaine version 1.3.0 proposera des implémentations pour xcolor et CSS (a 
 tools-lab
 
    ---> pour le sctéegos / similar,  fichier dédiés à ec qui est ignoré, faux positifs pour maintenance plus simple
-
-
-// ---------- //
-
-showcase
-
-   ---> MODE DEV : on affine en recompilant que si, et uniquement si la paelette associé a été modifieé.
-
-   ---> en lcal plus de compile de tout ==> passer via un git action !!!!
-
-   ---> MODE NON DEV : tout est refait
-
-   ---> Ajout de la catégo finale
-
-            + chgt noms ctégos : big-var --> semantic
-                                 rainbow --> ? (voir si affinable pour usage humain plus simple couleurs dapért milieu et fin)
 
 
 // ---------- //
