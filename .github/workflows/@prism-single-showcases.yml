@@ -1,0 +1,104 @@
+name: Build showcase PDFs
+
+# Configuration variables
+env:
+  TEXLIVE_PACKAGES: "tutodoc pdfpages"
+  LUADRAW_REPO: "https://github.com/pfradin/luadraw.git"
+  BUILD_SCRIPT: "./@prism/tools/building/PARASHOWCASE.sh"
+  ULIMIT_FILES: "2048"
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [ actions ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: texlive/texlive:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install luadraw
+        run: |
+          # Clone le projet luadraw
+          git clone https://github.com/pfradin/luadraw.git /tmp/luadraw
+
+          # Trouver le répertoire TEXMFHOME
+          TEXMFHOME=$(kpsewhich -var-value TEXMFHOME)
+          echo "TEXMFHOME: $TEXMFHOME"
+
+          # Créer les répertoires nécessaires
+          mkdir -p "$TEXMFHOME/tex/lualatex/luadraw"
+
+          # Copier les fichiers luadraw
+          cp -r /tmp/luadraw/tex/* "$TEXMFHOME/tex/lualatex/luadraw/" 2>/dev/null || true
+
+          # Si la structure est différente, copier tous les fichiers .sty et .lua
+          find /tmp/luadraw -name "*.sty" -exec cp {} "$TEXMFHOME/tex/lualatex/luadraw/" \;
+          find /tmp/luadraw -name "*.lua" -exec cp {} "$TEXMFHOME/tex/lualatex/luadraw/" \;
+
+          # Mettre à jour la base de données TeX
+          texhash "$TEXMFHOME"
+
+          echo "Contenu de $TEXMFHOME/tex/lualatex/luadraw:"
+          ls -la "$TEXMFHOME/tex/lualatex/luadraw/"
+
+      - name: Make launch script executable
+        run: chmod +x @prism/tools/actions/SINGLE.sh
+
+      - name: Run launch script
+        run: ./@prism/tools/actions/SINGLE.sh
+        continue-on-error: true
+
+      - name: List generated PDFs
+        run: |
+          echo "=== Searching for all PDF files ==="
+          find . -name "*.pdf" -type f
+          echo "=== Content of single folder (if exists) ==="
+          ls -la single/ || echo "single/ folder does not exist"
+
+      - name: Show failed compilations
+        if: failure()
+        run: |
+          echo "Checking for log files..."
+          find . -name "*.log" -type f -exec echo "=== {} ===" \; -exec tail -n 30 {} \;
+
+      - name: Show failed compilations
+        if: failure()
+        run: |
+          echo "Checking for log files..."
+          find . -name "*.log" -type f -exec echo "=== {} ===" \; -exec tail -n 30 {} \;
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Commit and push PDFs
+        run: |
+          git add @prism/pre-doc/showcase/single/*.pdf || true
+          if git diff --staged --quiet; then
+            echo "No PDF changes to commit"
+          else
+            TIMESTAMP=$(date +%Y%m%dT%H%M%S)
+            git commit -m "'single' folder - Auto PDF [actions: $TIMESTAMP]"
+            git push
+          fi
+
+# DEBUGGING.
+#       - name: Upload artifacts
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: build-outputs
+#           path: |
+#             **/*.pdf
+#             **/*.log
+#           if-no-files-found: warn
