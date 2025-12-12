@@ -40,8 +40,8 @@
 
   PALSIZE = 10
 
-  PALDIM   = 1
-  PALDELTA = .3
+  PALDIM   = .75
+  PALDELTA = .2
 
   xmin, xmax = -100, 100
 
@@ -65,7 +65,6 @@
 % -- DISCRETE SPECTRUM -- %
 % ----------------------- %
 
-\bigskip
 \bigskip
 
 \begin{luadraw}{name = showcase-palette-\PALETTE-std}
@@ -105,7 +104,6 @@ g:Show()
 % ------------------------- %
 
 \bigskip
-\bigskip
 
 \begin{luadraw}{name = showcase-spectrum-\PALETTE-std}
 -- Let's work!
@@ -117,7 +115,7 @@ local g = graph:new{
 g:Linewidth(10)
 
 local A  = Z(-5, 4)
-local h  = Z(0, -1.5)
+local h  = Z(0, -PALDIM*1.30)
 local dh = Z(0, -1.1)
 
 local L = PALDIM * PALSIZE + PALDELTA * (PALSIZE - 1)
@@ -164,6 +162,8 @@ local g = graph3d:new{
   bbox     = false
 }
 
+g:Scale(.6)
+
 g:Dpoly(
   polyhedron,
   {
@@ -171,76 +171,6 @@ g:Dpoly(
     mode       = mShadedOnly
   }
 )
-
-g:Show()
-\end{luadraw}
-
-
-% ------------------------- %
-% -- CONTINUOUS SPECTRUM -- %
-% ------------------------- %
-
-\newpage
-
-\begin{luadraw}{name = showcase-contour-\PALETTE-std}
-local g = graph:new{
-  window = {-1, 6.5, -1.5, 11},
-  size   = {16, 14, 0},
-  margin = {0, 0, 0, 0},
-  bbox   = false
-}
-
-local i = cpx.I
-
-local sin, cos = math.sin, math.cos
-
-local f = function(x, y)
-  return (x + y) / (2 + cos(x)*sin(y))
-end
-
-local Lz = range(1, 10)
-
-local colors = getpalette(PALETTE, 10)
-
-g:Linewidth(3)
-
-g:Dgradbox(
-  {0, 5 + 10*i, 1, 1},
-  {
-    grid         = true,
-    gridcolor    = COL_1,
-    subgridcolor = COL_2
-  }
-)
-
-g:Linewidth(20)
-
-g:Dcontour(
-  f,
-  Lz,
-  {
-    view   = {0, 5, 0, 10},
-    colors = colors
-  }
-)
-
-for k = 1, 10 do
-  local y = (2*k + 4) / 3*i
-
-  g:Dseg(
-    {5.25 + y, 5.5 + y},
-    1,
-    "color = " .. colors[k]
-  )
-
-  g:Labelcolor(colors[k])
-
-  g:Dlabel(
-    "$z = " .. k .. "$",
-    5.5 + y,
-    {pos = "E"}
-  )
-end
 
 g:Show()
 \end{luadraw}
@@ -258,11 +188,13 @@ local cos, sin = math.cos, math.sin, math.pi
 local g = graph3d:new{
   window3d = {0, 5, 0, 10, 0, 11},
   adjust2d = true,
-  size     = {11.5, 9.5, 0},
+  size     = {14.5, 9.5, 0},
   bbox     = false,
   viewdir  = {220, 60},
   margin   = {0, 0, 0, 0}
 }
+
+g:Scale(.65)
 
 g:Linewidth(2)
 
@@ -318,6 +250,85 @@ for k = 1, n do
   g:Dballdots3d(
     M(5, 0, k),
     rgb(colors[k])
+  )
+end
+
+g:Show()
+\end{luadraw}
+
+
+% ------------------- %
+% -- 2D BAR CHARTS -- %
+% ------------------- %
+
+
+
+
+% ------------------------- %
+% -- CONTINUOUS SPECTRUM -- %
+% ------------------------- %
+
+\newpage
+
+\begin{luadraw}{name = showcase-contour-\PALETTE-std}
+local g = graph:new{
+  window = {-1, 6.5, -1.5, 11},
+  size   = {16, 14, 0},
+  margin = {0, 0, 0, 0},
+  bbox   = false
+}
+
+g:Scale(.75)
+
+local i = cpx.I
+
+local sin, cos = math.sin, math.cos
+
+local f = function(x, y)
+  return (x + y) / (2 + cos(x)*sin(y))
+end
+
+local Lz = range(1, 10)
+
+local colors = getpalette(PALETTE, 10)
+
+g:Linewidth(3)
+
+g:Dgradbox(
+  {0, 5 + 10*i, 1, 1},
+  {
+    grid         = true,
+    gridcolor    = COL_1,
+    subgridcolor = COL_2
+  }
+)
+
+g:Linewidth(20)
+
+g:Dcontour(
+  f,
+  Lz,
+  {
+    view   = {0, 5, 0, 10},
+    colors = colors
+  }
+)
+
+for k = 1, 10 do
+  local y = (2*k + 4) / 3*i
+
+  g:Dseg(
+    {5.25 + y, 5.5 + y},
+    1,
+    "color = " .. colors[k]
+  )
+
+  g:Labelcolor(colors[k])
+
+  g:Dlabel(
+    "$z = " .. k .. "$",
+    5.5 + y,
+    {pos = "E"}
   )
 end
 

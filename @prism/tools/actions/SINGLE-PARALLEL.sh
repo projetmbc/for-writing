@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-
 # ------------------- #
 # -- NO ARG NEEDED -- #
 # ------------------- #
@@ -9,7 +8,6 @@ if [[ $# -ne 0 ]]; then
   echo "CRITICAL - Too much arguments!" >&2
   exit 1
 fi
-
 
 # ----------------------------- #
 # -- OPEN BROKEN LATEX FILES -- #
@@ -62,6 +60,9 @@ readonly MAX_JOBS=8  # Set to 8, 16, or higher for more parallel jobs
 
 cd "$PROJECT_ROOT"
 
+# Start timer
+START_TIME=$(date +%s)
+
 echo "Bash version: $BASH_VERSION"
 echo "Using $MAX_JOBS parallel jobs"
 echo ""
@@ -82,7 +83,7 @@ tmp_dir=$(mktemp -d)
 trap "rm -rf $tmp_dir" EXIT
 
 # Handle Ctrl+C gracefully
-# trap 'echo ""; echo "Interrupted! Killing all jobs..."; kill $(jobs -p) 2>/dev/null; exit 130' INT TERM
+trap 'echo ""; echo "Interrupted! Killing all jobs..."; kill $(jobs -p) 2>/dev/null; exit 130' INT TERM
 
 # Track running PIDs in a simple array
 running_pids=()
@@ -148,12 +149,27 @@ for ((i=1; i<=numfile; i++)); do
   fi
 done
 
+# Calculate execution time
+END_TIME=$(date +%s)
+ELAPSED=$((END_TIME - START_TIME))
+MINUTES=$((ELAPSED / 60))
+SECONDS=$((ELAPSED % 60))
+
 echo ""
 echo "====================================="
 if [[ $failed -eq 0 ]]; then
   echo "✓ All ${#tex_files[@]} files compiled successfully!"
 else
   echo "✗ ERROR: $failed file(s) failed to compile!"
+fi
+echo "-------------------------------------"
+if [[ $MINUTES -gt 0 ]]; then
+  echo "Total execution time: ${MINUTES}m ${SECONDS}s"
+else
+  echo "Total execution time: ${SECONDS}s"
+fi
+echo "====================================="
+
+if [[ $failed -ne 0 ]]; then
   exit 1
 fi
-echo "======================================"

@@ -35,13 +35,13 @@ Despite the availability of palette generation tools such as \coolors, the choic
 Technically, to generate the graphics in this section, \LUADRAW\ is provided with a finite list of colors and uses linear interpolations to calculate the intermediate color values. In the example above, the finite color palette used is defined as follows.
 %
 \begin{center}
-    \subimport{../../../common/}{palette-example.luadraw}
+    \subimport{../../../common/}{palette.luadraw}
 \end{center}
 
 Using this palette, \LUADRAW\ can produce the following spectrum, allowing us to create the graphic above.
 %
 \begin{center}
-    \subimport{../../../common/}{spectrum-example.luadraw}
+    \subimport{../../../common/}{spectrum.luadraw}
 \end{center}
 
 
@@ -68,10 +68,10 @@ Using this palette, \LUADRAW\ can produce the following spectrum, allowing us to
     \end{center}
 
     \smallskip
-    
+
     This features provide remarkable creative flexibility: with the same surface as before, using the setting
     \tdoccodein{lua}+getPal('GeoRainbow', {extract = {2, 3, 7, 8, 5, 6}, reverse = true})+
-    instead of 
+    instead of
     \tdoccodein{lua}+getPal('GeoRainbow')+,
     we change the visual tone, shifting from a seaside feel to a snow-covered world.
     %

@@ -2,7 +2,7 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{luadraw}{name = surface-example-options}
+\begin{luadraw}{name = surface-options}
 require 'luadraw_palettes'
 
 local pal = getPal(
