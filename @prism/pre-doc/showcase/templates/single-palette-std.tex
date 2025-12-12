@@ -36,7 +36,7 @@
 
 \directlua{
   PALNAME = "\PALETTE"
-  PALETTE = {{0.498039, 0.788235, 0.498039}, {0.498039, 0.788235, 0.498039}, {0.498039, 0.788235, 0.498039}, {0.498039, 0.788235, 0.498039}, {0.498039, 0.788235, 0.498039}, {0.498039, 0.788235, 0.498039}, {0.498039, 0.788235, 0.498039}, {0.498039, 0.788235, 0.498039}, {0.913289, 0.935947, 0.610021}, {0.4, 0.4, 0.4}}
+  PALETTE = {{0.498039, 0.788235, 0.498039}, {0.690196, 0.705881, 0.757298}, {0.882352, 0.721568, 0.661437}, {0.99477, 0.835294, 0.550326}, {0.913289, 0.935947, 0.610021}, {0.306317, 0.487581, 0.680174}, {0.700653, 0.146404, 0.562091}, {0.855772, 0.162962, 0.316775}, {0.671459, 0.366448, 0.159041}, {0.4, 0.4, 0.4}}
 
   PALSIZE = 10
 
@@ -61,9 +61,9 @@
 {\itshape \SRC}
 
 
-% ----------------------- %
-% -- DISCRETE SPECTRUM -- %
-% ----------------------- %
+% ------------- %
+% -- PALETTE -- %
+% ------------- %
 
 \bigskip
 
@@ -99,9 +99,9 @@ g:Show()
 \end{luadraw}
 
 
-% ------------------------- %
-% -- CONTINUOUS SPECTRUM -- %
-% ------------------------- %
+% -------------- %
+% -- SPECTRUM -- %
+% -------------- %
 
 \bigskip
 
@@ -257,13 +257,6 @@ g:Show()
 \end{luadraw}
 
 
-% ------------------- %
-% -- 2D BAR CHARTS -- %
-% ------------------- %
-
-
-
-
 % ------------------------- %
 % -- CONTINUOUS SPECTRUM -- %
 % ------------------------- %
@@ -329,6 +322,126 @@ for k = 1, 10 do
     "$z = " .. k .. "$",
     5.5 + y,
     {pos = "E"}
+  )
+end
+
+g:Show()
+\end{luadraw}
+
+
+% ---------------------------- %
+% -- DELAUNAY TRIANGULATION -- %
+% ---------------------------- %
+
+\vfill
+
+\begin{luadraw}{name = showcase-delaunay-\PALETTE-std}
+local g = graph3d:new{
+  bbox           = false,
+  pictureoptions = "scale = 1.95"
+}
+
+g:Linewidth(6)
+
+local i = cpx.I
+
+local L = {
+   0.285 + 1.46*i,
+   1.556 - 0.142*i,
+   2.344 + 1.313*i,
+  -2.38  + 1.218*i,
+   1.548 - 0.624*i,
+   0.969 + 1.819*i,
+  -0.086 - 2.191*i,
+  -0.477 + 1.834*i,
+  -0.904 + 1.322*i,
+  -2.892 + 0.025*i
+}
+
+local T = delaunay(L)
+local n = #T
+
+local num = 7 -- Choose a triangle.
+
+local colors = getpalette(PALETTE,n)
+
+for k = 1, n do
+  g:Dpolyline(
+    T[k],
+    true,
+       "color = " .. COL_2
+    .. ", fill = " .. colors[k]
+  ) 
+end
+
+g:Ddots(L, "color = " .. COL_2)
+
+g:Show()
+\end{luadraw}
+
+
+% --------------- %
+% -- 2D CHARTS -- %
+% --------------- %
+
+\vfill
+
+\begin{luacode*}
+function read_CSV(file, ignore_header)
+  local data = {}
+
+  for line in io.lines(file) do
+    if ignore_header then
+      ignore_header = false
+
+    else
+      local result = {}
+
+      for part in string.gmatch(line, "([^,]+)") do
+        table.insert(result, tonumber(part))
+      end
+
+      table.insert(data, result)
+    end
+  end
+
+  return data
+end
+\end{luacode*}
+
+
+\begin{luadraw}{name = showcase-chart-2D-\PALETTE-std}
+local g = graph:new{
+  window = {-5, 5, -4, 4},
+}
+
+g:Daxes(
+  {0, 1, 1},
+  {
+    arrows       = "->", 
+    grid         = true,
+    gridcolor    = COL_1,
+    subgridcolor = COL_2
+  }
+)
+
+local data = read_CSV(
+  "../core/data-2D.csv",
+  true
+)
+
+local i = cpx.I
+
+local xyR
+
+local colors = getpalette(PALETTE, 10)
+
+for _, xyR in ipairs(data) do
+  local col = colors[xyR[3]]
+
+  g:Dcircle(
+    xyR[1] + i*(xyR[2] -.5), .3 + .05*xyR[3],
+    "fill = " .. col
   )
 end
 

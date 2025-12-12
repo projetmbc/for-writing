@@ -16,7 +16,7 @@ The @prism project
 - [Credits](#MULTIMD-TOC-ANCHOR-1)
 - [Supported implementations](#MULTIMD-TOC-ANCHOR-2)
     - [JSON, the versatile default format](#MULTIMD-TOC-ANCHOR-3)
-    - [Lua palettes](#MULTIMD-TOC-ANCHOR-4)
+    - [Lua](#MULTIMD-TOC-ANCHOR-4)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
 About @prism <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -77,7 +77,7 @@ By default, a file `palettes.json` is provided to allow unsupported coding langu
 }
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
-### Lua palettes <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+### Lua <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 > ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use palettes for [`luadraw`](https://github.com/pfradin/luadraw) which is a package that greatly facilitates the creation of high-quality 2D and 3D plots via `LuaLaTeX` and `TikZ`.*
 
