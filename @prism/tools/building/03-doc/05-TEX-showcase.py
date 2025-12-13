@@ -32,8 +32,8 @@ PATTERN_CHGE_PAL_DEF = re.compile(
     r"PALETTE\s*=\s*([^\n]*)"
 )
 
-PATTERN_CHGE_PAL_CREDITS  = re.compile(
-    r"\\newcommand\{\\SRC\}\{(.*)\}"
+PATTERN_CHGE_PAL_CREDITS = re.compile(
+    r"\\newcommand\{\\CREDIT\}\{(.*)\}"
 )
 
 PATTERN_UPDATE_PALSIZE = re.compile(
@@ -167,7 +167,7 @@ HEADER_TEX_CODES = {
 PAL_CREDITS_FILE = REPORT_DIR / "PAL-CREDITS.json"
 
 with PAL_CREDITS_FILE.open(mode = "r") as f:
-    ALL_SRC = json_load(f)
+    ALL_CREDITS = json_load(f)
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"
@@ -241,17 +241,17 @@ for palname, paldef in ALL_PALETTES.items():
         ]:
             paldef = paldef.replace(old, new)
 
-        palsrc = ALL_SRC.get(palname, None)
-        palsrc = (
+        palcredit = ALL_CREDITS.get(palname, None)
+        palcredit = (
             "Created with @prism"
-            if palsrc == "@prism" else
-            f"Source: {palsrc}"
+            if palcredit == "@prism" else
+            f"Source: {palcredit}"
         )
 
         for repl, pat in [
-            (palname, PATTERN_CHGE_PAL_NAME),
-            (paldef , PATTERN_CHGE_PAL_DEF),
-            (palsrc , PATTERN_CHGE_PAL_CREDITS),
+            (palname  , PATTERN_CHGE_PAL_NAME),
+            (paldef   , PATTERN_CHGE_PAL_DEF),
+            (palcredit, PATTERN_CHGE_PAL_CREDITS),
         ]:
             texcode = pat.sub(
                 lambda m: m.group(0).replace(
