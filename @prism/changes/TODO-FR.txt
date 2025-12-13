@@ -3,127 +3,18 @@
 ======
 
 
+// ---------- //
+
+la prochaine version 1.3.0 proposera des implémentations pour xcolor et CSS (a minima).
+
+1.3.0 uniqument lorsque  product et contrib
+
+   ---> dans la doc, indiquer que luadraw intéègre la produit luadraw automatiquement, plus besoin de bidouiller
+
+
+// ---------- //
+
 githubaction non paralle pour le manuel, par contre on garder ciompile local des traductions car au pire on laisse en tache de fond les appendices
-
-
-
-=============================================================================
-EXPLICATION DE LA PARALLÉLISATION DU SCRIPT
-=============================================================================
-
-1. CONFIGURATION DU NOMBRE DE JOBS
------------------------------------
-readonly MAX_JOBS=4  # Maximum 4 compilations en même temps
-
-- Définit combien de processus peuvent tourner simultanément
-- Changez à 8, 16, etc. pour plus de parallélisme
-
-
-2. TRACKING DES PROCESSUS ACTIFS
----------------------------------
-running_pids=()  # Tableau vide pour stocker les PIDs
-
-- Stocke les PIDs (identifiants) des processus en cours d'exécution
-
-
-3. BOUCLE PRINCIPALE DE PARALLÉLISATION
-----------------------------------------
-for tex_file in "${tex_files[@]}"; do
-  numfile=$((numfile + 1))
-
-  # === ATTENTE SI TROP DE JOBS ===
-  while true; do
-    # Nettoyer les PIDs terminés
-    new_pids=()
-    if [[ ${#running_pids[@]} -gt 0 ]]; then
-      for pid in "${running_pids[@]}"; do
-        if kill -0 "$pid" 2>/dev/null; then  # Vérifie si le processus existe
-          new_pids+=("$pid")  # Garde seulement les PIDs actifs
-        fi
-      done
-    fi
-
-    # Mettre à jour la liste
-    running_pids=()
-    if [[ ${#new_pids[@]} -gt 0 ]]; then
-      running_pids=("${new_pids[@]}")
-    fi
-
-    # Si on a de la place, on sort de la boucle d'attente
-    if [[ ${#running_pids[@]} -lt $MAX_JOBS ]]; then
-      break
-    fi
-
-    sleep 0.1  # Attendre 100ms avant de revérifier
-  done
-
-CE QUE FAIT CETTE BOUCLE :
-- VÉRIFIE combien de jobs tournent actuellement
-- NETTOIE les PIDs des jobs terminés avec "kill -0 $pid" (ne tue pas, juste vérifie)
-- ATTEND (sleep 0.1) si on a déjà MAX_JOBS en cours
-- CONTINUE quand un slot se libère
-
-
-4. LANCEMENT EN ARRIÈRE-PLAN
------------------------------
-  # Lance la compilation EN ARRIÈRE-PLAN avec &
-  (
-    if compile_tex_file "$tex_file" "$numfile"; then
-      echo "0" > "$tmp_dir/status_$numfile"
-    else
-      echo "1" > "$tmp_dir/status_$numfile"
-    fi
-  ) &  # <-- Le & lance en arrière-plan !
-
-  running_pids+=("$!")  # Ajoute le PID du nouveau job
-  echo "[Active jobs: ${#running_pids[@]}/$MAX_JOBS]"
-done
-
-LE SYMBOLE & EST LA CLÉ :
-- Sans & : le script attend que la compilation finisse (séquentiel)
-- Avec & : le script continue immédiatement (parallèle)
-- $! : variable spéciale = PID du dernier processus lancé en arrière-plan
-
-
-5. ATTENTE FINALE
------------------
-wait  # Attend que TOUS les jobs restants se terminent
-
-
-=============================================================================
-SCHÉMA DU FONCTIONNEMENT
-=============================================================================
-
-Fichier 1 → [Compile] ──────────────→ Fini
-Fichier 2 → [Compile] ────────→ Fini
-Fichier 3 → [Compile] ──────────────────→ Fini
-Fichier 4 → [Compile] ───────────→ Fini
-Fichier 5 → ATTEND... → [Compile] ────→ Fini
-            ↑
-            MAX_JOBS=4 atteint, doit attendre qu'un slot se libère
-
-
-=============================================================================
-RÉSUMÉ
-=============================================================================
-Le script lance des compilations en arrière-plan (&), surveille combien
-tournent en même temps, et attend (sleep 0.1) quand la limite MAX_JOBS est
-atteinte avant d'en lancer d'autres.
-
-
-=============================================================================
-COMMANDES BASH CLÉ
-=============================================================================
-& : Lance un processus en arrière-plan
-$! : PID du dernier processus lancé
-kill -0 $pid : Teste si un processus existe (sans le tuer)
-wait : Attend tous les processus en arrière-plan
-${#array[@]} : Nombre d'éléments dans un tableau
-sleep 0.1 : Attend 0.1 seconde
-
-
-
-
 
 
 // ---------- //
@@ -131,17 +22,6 @@ sleep 0.1 : Attend 0.1 seconde
 showcase
 
    ---> on passe via un dossier et des showcase par catégorie, plus utile et outil de déboggage au passage
-
-   ---> améiorer les exemples avec des graphs 2D en plus de type stat 2D uniquement : utile pour les couleurs sémantiques
-
-             + diahg bataon
-
-             + diag "disuqe"
-
-
-// ---------- //
-
-Manuel: revoir les hyperliens pour ttes les palettes et les clusters car là ce n'est pas bon !
 
 
 // ---------- //
@@ -156,30 +36,9 @@ TOOLS : virer TAG_NAMES_IGNORED et asymptote traité commes les autres
 
 // ---------- //
 
-scintific color catgéorie en elle meme donc plus dans les autres !!!
-
-
-// ---------- //
-
-la prochaine version 1.3.0 proposera des implémentations pour xcolor et CSS (a minima).
-
-
-// ---------- //
-
 tools-lab
 
    ---> pour le sctéegos / similar,  fichier dédiés à ec qui est ignoré, faux positifs pour maintenance plus simple
-
-
-// ---------- //
-
-1.3.0 uniqument lorsque  product et contrib
-
-   ---> on doit apsser juste à du lua, et luadraw donne l'und es moyens de dev possibles
-
-   ---> que garde-t-on alors dans le manuel : juste le how oto use it, autre ???
-
-   ---> dans la doc, indiquer que luadraw intéègre la produit luadraw automatiquement, plus besoin de bidouiller
 
 
 // ---------- //

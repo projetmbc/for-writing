@@ -38,10 +38,12 @@ Here are the improvements.
 
     1) Better palette references.
 
+    1) Better showcase with 2D chart and Delaunay triangulation added.
+
 
 -----
 :fix:
 -----
 
 [[:api:]]
-\lua \prod: fixed path::''use-std.tex'' and path::''use-dark.tex''.
+\lua \prod: fixed path::''use-std.tex'' and path::''use-dark.tex'' files.

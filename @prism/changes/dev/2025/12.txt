@@ -1,22 +1,21 @@
 ==
-12
+12  (1.3.0-beta.9)
 ==
 
 --------
 :update:
 --------
 
-[[:doc:]] OK
-meilleur showcase with 2D chart and delaunay triangle added
+[[:doc:]]
+\Doc: better showcase with 2D chart and Delaunay triangulation added.
 
 
 -----
 :fix:
 -----
 
-[[:doc:]] OK
-\phantomsection added to fix PDF anchor in manual
-
+[[:doc:]]
+Manual: fix \pdf bookmark anchors of appendixes by adding ''\phantomsection''.
 
 
 --------
@@ -24,10 +23,7 @@ meilleur showcase with 2D chart and delaunay triangle added
 --------
 
 [[:flow:]]
-compilation siolé ok et ne dependnat plus de palettes.lua ; si on compile tout d'un coup il faut  77m 5s pour 516 ficheir showcase , e qui est raisonnable
-
-
-1min de sc pour valider 516 fichiers, cela devient très raisonnable !
+\latex compilation: isolated compilation works without path::''palettes.lua''. Performance: with 516 single palette files, 77min 5s for batch compilation, 40s for validation.
 
 
 // ---------- //

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+START_TIME=$(date +%s)
+
+
 # ------------------------------------ #
 # -- SAFE MODE: FAIL FAST ON ERRORS -- #
 # ------------------------------------ #
@@ -188,3 +191,21 @@ done < <(find . -type f -name "*.sh" ! -name "$THIS_NAME" -print0 | sort -z)
 # -- Nothing left to do -- #
 
 print_colored "$COLOR_EXEC" "[OK] All tools executed successfully."
+
+# -- Execution time -- #
+
+END_TIME=$(date +%s)
+ELAPSED=$((END_TIME - START_TIME))
+MINUTES=$((ELAPSED / 60))
+SECONDS=$((ELAPSED % 60))
+
+echo ""
+echo "=============================="
+
+if [[ $MINUTES -gt 0 ]]; then
+  echo "Full execution time: ${MINUTES}m ${SECONDS}s"
+else
+  echo "Full execution time: ${SECONDS}s"
+fi
+
+echo "=============================="
