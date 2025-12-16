@@ -1,3 +1,22 @@
+// ---------- //
+
+
+==
+16  (1.3.0-beta.9)
+==
+
+
+--------
+:update:
+--------
+
+[[:doc:]]
+\Doc: a short section describing the \luadraw integration has been added.
+
+
+// ---------- //
+
+
 ==
 12  (1.3.0-beta.9)
 ==
@@ -7,7 +26,7 @@
 --------
 
 [[:doc:]]
-\Doc: better showcase with 2D chart and Delaunay triangulation added.
+\Doc: better showcase with \2d chart and Delaunay triangulation added.
 
 
 -----

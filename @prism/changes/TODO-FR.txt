@@ -5,16 +5,7 @@
 
 // ---------- //
 
-la prochaine version 1.3.0 proposera des implémentations pour xcolor et CSS (a minima).
-
-1.3.0 uniqument lorsque  product et contrib
-
-   ---> dans la doc, indiquer que luadraw intéègre la produit luadraw automatiquement, plus besoin de bidouiller
-
-
-// ---------- //
-
-githubaction non paralle pour le manuel, par contre on garder ciompile local des traductions car au pire on laisse en tache de fond les appendices
+1.3.0 uniqument lorsque des implémentations pour xcolor et CSS (a minima).
 
 
 // ---------- //
@@ -22,6 +13,11 @@ githubaction non paralle pour le manuel, par contre on garder ciompile local des
 showcase
 
    ---> on passe via un dossier et des showcase par catégorie, plus utile et outil de déboggage au passage
+
+
+// ---------- //
+
+githubaction non paralle pour le manuel, par contre on garder ciompile local des traductions car au pire on laisse en tache de fond les appendices
 
 
 // ---------- //
