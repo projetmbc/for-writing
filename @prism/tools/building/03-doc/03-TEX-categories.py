@@ -44,7 +44,6 @@ EN_SORTED_TITLES = {
     TAG_CATEGO_SEMANTIC:  "Semantic palettes",
 }
 
-
 assert set(ALL_CATEGO_TAGS) != set(EN_SORTED_TITLES) - set(['deficient-blind']), "Problem with catego titles"
 
 
@@ -83,6 +82,7 @@ CATEGO_DIR    = PROJ_DIR / "contrib" / "translate" / "common" / "category"
 EN_MANUAL_DIR = PROJ_DIR / "contrib" / "translate" / "en" / "manual"
 
 
+JSON_EN_TITLES    = REPORT_DIR / 'CATEGORY-EN-TITLES.json'
 ALL_PALS_TEX_FILE = EN_MANUAL_DIR / "appendixes" / "all-palettes.tex"
 
 
@@ -187,3 +187,10 @@ content = f"""
 """.strip() + '\n'
 
 ALL_PALS_TEX_FILE.write_text(content)
+
+
+logging.info("Store 'catego. EN titles' in a JSON file.")
+
+JSON_EN_TITLES.write_text(
+    json_dumps(EN_SORTED_TITLES)
+)

@@ -49,7 +49,7 @@ HUMAN_CHECK_SINGLE_DIR = HUMAN_CHECK_DIR / "single"
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-SINGLE_TMPL_DIR = THIS_DIR / "human" / "templates"
+SINGLE_TMPL_DIR = THIS_DIR / "human" / "template"
 
 SINGLE_TMPLS = dict()
 

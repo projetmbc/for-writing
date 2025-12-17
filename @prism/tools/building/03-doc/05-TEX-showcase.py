@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# DEBUG - ON
+from rich import print
+# DEBUG - OFF
+
 # ---------------------------- #
 # -- IMPORT CBUTILS - START -- #
 
@@ -54,7 +58,9 @@ START_FINAL_TEX_CODE = r"""
 
 \def\thesection{\arabic{section}}
 
-\title{\raisebox{-.20ex}{@}prism palettes -- Version """.lstrip() + VERSION + r"""}
+\title{\raisebox{-.20ex}{@}prism palettes -- Version """.lstrip() \
++ VERSION + \
+r"""  \\ __CATEGO__}
 \date{}
 
 \begin{document}
@@ -85,7 +91,7 @@ TMPL_TEX_INCLUDE_PDF = r"""
     {palname},
     lab-pal-{palname}
   }}%
-]{{single/main-{palname}-{kind}.pdf}}
+]{{../single/main-{palname}-{kind}.pdf}}
 """.strip()
 
 
@@ -113,9 +119,14 @@ REPORT_DIR = BUILD_TOOLS_DIR / "REPORT"
 PRODS_DIR  = PROJ_DIR / "products"
 PREDOC_DIR = PROJ_DIR / "pre-doc" / "showcase"
 SINGLE_DIR = PREDOC_DIR / "single"
+CATEGO_DIR = PREDOC_DIR / "catego"
 
 
 SINGLE_DIR.mkdir(exist_ok = True)
+CATEGO_DIR.mkdir(exist_ok = True)
+
+
+JSON_EN_TITLES = REPORT_DIR / 'CATEGORY-EN-TITLES.json'
 
 
 # ------------------ #
@@ -130,21 +141,13 @@ TEX_FILE_KINDS = [
 # We don't use the 'main' prefix since each showcase PDF needs
 # to be compiled separately beforehand. A Bash script will handle
 # this accordingly.
-ALL_SHOWCASE_TEX_FILES = dict()
-
 TMPL_TEX_FILES = {
-    k: PREDOC_DIR / "templates" / f"single-palette-{k}.tex"
+    k: PREDOC_DIR / "template" / f"single-palette-{k}.tex"
     for k in TEX_FILE_KINDS
 }
 
 TMPL_SINGLE_SHOWCASE_TEX_CODES = {
     k: TMPL_TEX_FILES[k].read_text()
-    for k in TEX_FILE_KINDS
-}
-
-
-ALL_SHOWCASE_TEX_FILES = {
-    k: PREDOC_DIR / f"showcase-en-{k}.tex"
     for k in TEX_FILE_KINDS
 }
 
@@ -170,6 +173,12 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
     ALL_CREDITS = json_load(f)
 
 
+PAL_CATEGO_JSON_FILE = REPORT_DIR / "PAL-CATEGORY.json"
+
+with PAL_CATEGO_JSON_FILE.open(mode = "r") as f:
+    ALL_CATEGOS = json_load(f)
+
+
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
@@ -177,41 +186,30 @@ with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
 
 
+with JSON_EN_TITLES.open(mode = "r") as f:
+    CATEGO_TITLES = json_load(f)
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
 
-def build_name(name: str) -> str:
-    return f"main-{name}"
+def build_name(
+    name: str,
+    kind: str
+) -> str:
+    return f"main-{name}-{kind}"
 
 
 def extract_palname(filename: str) -> str:
     return filename.split('-')[1]
 
 
-# ------------------------------------------ #
-# -- REMOVED OLD SINGLE PALETTE SHOWCASES -- #
-# ------------------------------------------ #
+# ------------------------------- #
+# -- PALETTE SIZE IN TEMPLATES -- #
+# ------------------------------- #
 
-for tex_file in natsorted([
-    f
-    for f in SINGLE_DIR.glob("main-*.tex")
-]):
-    palname = extract_palname(tex_file.stem)
-
-    if not palname in ALL_PALETTES:
-        logging.warning(f"Removing '{tex_file.name}' and its friends.")
-
-        for ext in TEX_EXT_N_FRIENDS:
-            remove_me = tex_file.parent / f"{tex_file.stem}.{ext}"
-            remove_me.unlink(missing_ok = True)
-
-
-# ------------------------------ #
-# -- SINGLE PALETTE SHOWCASES -- #
-# ------------------------------ #
-
-logging.info("Update the template files (size of palettes).")
+logging.info("Update the template files: value of palette size.")
 
 texpalsize = f"\n  PALSIZE = {PALSIZE}\n"
 
@@ -224,14 +222,49 @@ for tmp_file in TMPL_TEX_FILES.values():
 
 
 # ------------------------------ #
-# -- SINGLE PALETTE SHOWCASES -- #
+# -- REMOVED OBSOLETE FILES -- #
 # ------------------------------ #
+
+for folder, globpat, paldict in [
+    (
+        SINGLE_DIR,
+        "main-*.tex",
+        ALL_PALETTES
+    ),
+    (
+        CATEGO_DIR,
+        f"*-[{'|'.join(TEX_FILE_KINDS)}].tex",
+        ALL_CATEGOS
+    ),
+]:
+    for tex_file in natsorted([
+        f
+        for f in folder.glob(globpat)
+    ]):
+        palname = extract_palname(tex_file.stem)
+
+        if not palname in paldict:
+            logging.warning(
+                 "Removing "
+                f"'{tex_file.parent.name}/{tex_file.name}'"
+                 " and its friends."
+            )
+
+            for ext in TEX_EXT_N_FRIENDS:
+                remove_me = tex_file.parent / f"{tex_file.stem}.{ext}"
+                remove_me.unlink(missing_ok = True)
+
+
+# -------------------------- #
+# -- UPDATED SINGLE FILES -- #
+# -------------------------- #
 
 logging.info("Add 'single palette showcase' TeX files.")
 
+# Compilation will be done later!
 for palname, paldef in ALL_PALETTES.items():
     for kind, texcode in TMPL_SINGLE_SHOWCASE_TEX_CODES.items():
-        palfile = SINGLE_DIR / f"{build_name(palname)}-{kind}.tex"
+        palfile = SINGLE_DIR / f"{build_name(palname, kind)}.tex"
 
         paldef = str(paldef)
 
@@ -264,35 +297,45 @@ for palname, paldef in ALL_PALETTES.items():
         palfile.write_text(texcode)
 
 
-# ------------------- #
-# -- FULL SHOWCASE -- #
-# ------------------- #
-
-logging.info("Building 'full palette showcase' TeX files.")
-
-for kind, showfile in ALL_SHOWCASE_TEX_FILES.items():
-    tex_code = [
-        HEADER_TEX_CODES[kind],
-        START_FINAL_TEX_CODE,
-    ]
+# ----------------------- #
+# -- CATEGO. SHOWCASES -- #
+# ----------------------- #
 
 # Compilation will be done later!
-    for tex_file in natsorted(
-        [
-            f
-            for f in SINGLE_DIR.glob(f"*-{kind}.tex")
-        ],
-        key = lambda x: str(x).lower()
-    ):
-        tex_code.append(
-            TMPL_TEX_INCLUDE_PDF.format(
-                palname = extract_palname(tex_file.stem),
-                kind    = kind,
+for kind in natsorted(TEX_FILE_KINDS):
+    logging.info(
+        f"Building '[{kind.upper()}] catego showcase' TeX files."
+    )
+
+    single_paths = {
+        extract_palname(f.name): f
+        for f in SINGLE_DIR.glob(f"*-{kind}.tex")
+    }
+
+    for catego, palettes in ALL_CATEGOS.items():
+        tex_code = [
+            HEADER_TEX_CODES[kind],
+            START_FINAL_TEX_CODE.replace(
+                '__CATEGO__',
+                CATEGO_TITLES[catego]
+            ),
+        ]
+
+        for palname in natsorted(
+            palettes,
+            key = lambda x: str(x).lower()
+        ):
+            tex_file = SINGLE_DIR / f"{build_name(palname, kind)}.tex"
+
+            tex_code.append(
+                TMPL_TEX_INCLUDE_PDF.format(
+                    palname = extract_palname(tex_file.stem),
+                    kind    = kind,
+                )
             )
-        )
 
-    tex_code.append(r"\end{document}")
+        tex_code.append(r"\end{document}")
 
-    tex_code = '\n\n'.join(tex_code) + '\n'
+        tex_code = '\n\n'.join(tex_code) + '\n'
 
-    showfile.write_text(tex_code)
+        (CATEGO_DIR / f"{catego}-{kind}.tex").write_text(tex_code)

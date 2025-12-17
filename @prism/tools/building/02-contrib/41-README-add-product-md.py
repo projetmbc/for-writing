@@ -76,7 +76,11 @@ def header_up(content: str) -> str:
 # ----------------------- #
 
 for prod_dir in PRODS_DIR.glob("*"):
-    if not prod_dir.is_dir():
+    if (
+        not prod_dir.is_dir()
+        or
+        prod_dir.name == "showcase"
+    ):
         continue
 
     name = prod_dir.name

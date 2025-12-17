@@ -2,9 +2,31 @@
 
 
 ==
-16  (1.3.0-beta.9)
+17  (1.3.0-beta.10)
 ==
 
+--------
+:update:
+--------
+
+[[:doc:]]
+\Doc: showcases are now organized by \catego with one \pdf per \catego (this conveniently validates category choices in context).
+
+
+--------
+:fordev:
+--------
+
+[[:flow:]]    ????
+\latex compilation: paralelized compilation for english manual standalone files and new showcase \catego files.
+
+
+// ---------- //
+
+
+==
+16  (1.3.0-beta.9)
+==
 
 --------
 :update:
@@ -42,7 +64,7 @@ Manual: fix \pdf bookmark anchors of appendixes by adding ''\phantomsection''.
 --------
 
 [[:flow:]]
-\latex compilation: isolated compilation works without path::''palettes.lua''. Performance: with 516 single palette files, merly 55min for batch compilation, 40s for validation.
+\latex compilation: paralelized compilation works without path::''palettes.lua''. Performance: with 516 single palette files, merly 55min for batch compilation, 40s for validation.
 
 
 // ---------- //
@@ -99,6 +121,6 @@ Manual: improved palette categorization through human review only.
 [[:tech:]]
 Two new \feats.
 
-    1) Auto-standardization of path::''last.txt'' files for \categos.
+    1) Auto-standardization of path::''last.txt'' files for \categoos.
 
     2) Ability to analyze only palette updates (see path::''test/01-compare'' folder).
