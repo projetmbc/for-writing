@@ -10,6 +10,11 @@
 
 // ---------- //
 
+doc : mettre à jour la --> les refs pour showcase : on passe de 1 pdf à plusieurs par catgéorie, et indiquer que c'est pratique, et aussi que si mal ranger le faire savoir
+
+
+// ---------- //
+
 TOOLS : virer TAG_NAMES_IGNORED et asymptote traité commes les autres
 
 
