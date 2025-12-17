@@ -10,23 +10,6 @@
 
 // ---------- //
 
-showcase
-
-   ---> on passe via un dossier et des showcase par catégorie, plus utile et outil de déboggage au passage
-
-
-// ---------- //
-
-githubaction non paralle pour le manuel, par contre on garder ciompile local des traductions car au pire on laisse en tache de fond les appendices
-
-
-// ---------- //
-
-bash qui nettoie ce qui ne doit aps apparaotre dans le m main : apriori just les tests de comparaions des palettes
-
-
-// ---------- //
-
 TOOLS : virer TAG_NAMES_IGNORED et asymptote traité commes les autres
 
 
