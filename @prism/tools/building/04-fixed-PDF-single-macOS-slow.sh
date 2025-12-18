@@ -51,6 +51,7 @@ function compile_tex_file {
 
   (
     cd "$local_dir" || exit 1
+
     SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 \
       latexmk -quiet -pdf \
       -pdflatex="$texcmd --interaction=nonstopmode --halt-on-error --shell-escape %O %S" \

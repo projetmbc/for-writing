@@ -36,11 +36,13 @@ Here are the improvements.
 
         + Added explanations about the utility of palettes for non-designers.
 
-    1) Showcases are now organized by category (one \pdf per category).
+    1) Showcases.
+
+        + Use of several category files (one \pdf per category).
+
+        + Better showcase with 2D chart and Delaunay triangulation added.
 
     1) Better palette references.
-
-    1) Better showcase with 2D chart and Delaunay triangulation added.
 
 
 -----

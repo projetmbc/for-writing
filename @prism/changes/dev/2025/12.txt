@@ -10,15 +10,15 @@
 --------
 
 [[:doc:]]
-\Doc: showcases are now organized by \catego with one \pdf per \catego (this conveniently validates category choices in context).
+\Doc: showcases are now organized by \catego with one \pdf per \catego (this conveniently allows to validate category choices in context).
 
 
 --------
 :fordev:
 --------
 
-[[:flow:]]    ????
-\latex compilation: paralelized compilation for english manual standalone files and new showcase \catego files.
+[[:flow:]]
+\latex compilation: paralelized compilation for english manual standalone files, and also for new showcase \catego files.
 
 
 // ---------- //
@@ -64,7 +64,7 @@ Manual: fix \pdf bookmark anchors of appendixes by adding ''\phantomsection''.
 --------
 
 [[:flow:]]
-\latex compilation: paralelized compilation works without path::''palettes.lua''. Performance: with 516 single palette files, merly 55min for batch compilation, 40s for validation.
+\latex compilation of single palette showcase: paralelized compilation works without path::''palettes.lua''. Performance: with 516 single palette files, merly 55min for batch compilation, 40s for validation.
 
 
 // ---------- //

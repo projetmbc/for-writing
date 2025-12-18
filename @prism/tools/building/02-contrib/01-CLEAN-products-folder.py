@@ -45,4 +45,4 @@ else:
         p.unlink() if p.is_file() else rmtree(p)
 
 
-(PRODS_DIR / "showcase" / "en").mkdir(parents = True)
+(PRODS_DIR / "showcase").mkdir(parents = True)
