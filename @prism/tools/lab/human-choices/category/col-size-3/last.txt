@@ -9,41 +9,53 @@
 
 Acton
 AgSunset
-Algae
-Amp
 ArmyRose
 
 # -- B -- #
 
 Bam
 BamO
-Bamako
+Batlow
+BatlowK
+BatlowW
 Berlin
 Bilbao
+BlueDarkOrange12
+BlueDarkOrange18
+BlueDarkRed12
+BlueDarkRed18
 BlueGray
 BlueGreen
+BlueOrange8
+BlueOrange10
+BlueOrange12
+BlueOrangeRed
 BrBG
 Brg
 Broc
 BrocO
 BrownBlue10
 BrownBlue12
-BuPu
 BurningGrass
 Bwr
 
 # -- C -- #
 
-Cividis
+Cool
 Coolwarm
 Cork
 CorkO
+CubeYF
+Cubehelix2
+Cubehelix3
+Curl
 
 # -- D -- #
 
-Darjeeling4
+Darjeeling1
 Davos
 Deep
+Delta
 Dense
 
 # -- E -- #
@@ -58,10 +70,10 @@ FantasticFox1
 # -- G -- #
 
 Geyser
-GistHeat
-GnBu
+GistEarth
+Glasgow
+Gnuplot
 GrandBudapest1
-GrandBudapest2
 GreenMagenta
 
 # -- H -- #
@@ -70,19 +82,21 @@ Haline
 
 # -- I -- #
 
-Ice
-Imola
 IsleOfDogs1
+
+# -- J -- #
+
+Jet
 
 # -- L -- #
 
-Lajolla
-Lapaz
+Lemon
+LinearL
+Lipari
 
 # -- M -- #
 
 Margot3
-Matter
 Moonrise3
 
 # -- N -- #
@@ -93,41 +107,43 @@ Nuuk
 
 # -- O -- #
 
-Oslo
+Ocean
 
 # -- P -- #
 
 PRGn
+PerceptualRainbow
 PiYG
-Pink
+Picnic
+Portland
 PuBuGn
 PuOr
-PuRd
-Purple
 
 # -- R -- #
 
+Rainbow
 RdBu
 RdGy
 RdYlBu
 RdYlGn
-Red
 RedYellowBlue
 Roma
+RomaO
+Royal1
 
 # -- S -- #
 
 Seismic
-Solar
 Spectral
 Sunset
 
 # -- T -- #
 
 TealRose
-Tempo
 Temps
+Tokyo
 Tropic
+Turbo
 Turku
 Twilight
 TwilightShifted
@@ -138,7 +154,3 @@ Vanimo
 Vik
 VikO
 Viridis
-
-# -- Y -- #
-
-YlGnBu

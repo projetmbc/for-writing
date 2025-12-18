@@ -7,60 +7,68 @@
 
 # -- A -- #
 
-Afmhot
 Aquatic1
 Aquatic2
 Aquatic3
 
 # -- B -- #
 
-Batlow
-BatlowK
-BatlowW
+Blackbody
 BlindFish
+
+# -- C -- #
+
+Cavalcanti
+Chevalier
+Cube1
+Cubehelix
+Cubehelix1
+
+# -- D -- #
+
+Darjeeling3
+Darjeeling4
 
 # -- G -- #
 
-Gnuplot
+GasFlame
+GeoRainbow
+Gnuplot2
+GrandBudapest4
 GrandBudapest5
 
 # -- H -- #
 
-Hot
-
-# -- I -- #
-
-Inferno
-
-# -- J -- #
-
-JimSpecial
+Hawaii
+Hsv
 
 # -- L -- #
 
-Lipari
+Lisbon
 
 # -- M -- #
 
-Magma
+Managua
+Margot2
+Moonrise1
 Moonrise4
 Moonrise6
 Moonrise7
 
 # -- P -- #
 
+PastelRainbow
 Phase
-Plasma
 
 # -- R -- #
 
-RomaO
-Royal1
+RainbowPly
+Royal3
 
 # -- T -- #
 
-Thermal
-Tokyo
+Terrain
+Tofino
 
 # -- Z -- #
 

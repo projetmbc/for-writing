@@ -13,6 +13,7 @@ Antique
 
 # -- B -- #
 
+BlueRed
 Bold
 Bukavu
 
@@ -33,14 +34,7 @@ Flag
 # -- G -- #
 
 G10
-GistStern
-GrandBudapest3
-GrandBudapest4
 GreenOrange
-
-# -- I -- #
-
-IsleOfDogs2
 
 # -- L -- #
 

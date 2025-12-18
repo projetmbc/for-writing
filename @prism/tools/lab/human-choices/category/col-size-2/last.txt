@@ -7,11 +7,15 @@
 
 # -- A -- #
 
+Afmhot
 AgGrnYl
+Algae
+Amp
 Autumn
 
 # -- B -- #
 
+Bamako
 Binary
 BluGrn
 BluYl
@@ -22,39 +26,61 @@ Blues10
 Bone
 BrwnYl
 BuGn
+BuPu
 Buda
 Burg
 BurgYl
 
 # -- C -- #
 
-Cool
+CMRmap
+Cividis
 Copper
 
 # -- D -- #
 
-Darjeeling1
 DarkMint
 Devon
 
 # -- E -- #
 
+Electric
 Emrld
 
 # -- G -- #
 
+GistHeat
+GnBu
+GrandBudapest2
 GrayC
 GrayTab
 Grays
 Greens
 
+# -- H -- #
+
+Hot
+
+# -- I -- #
+
+Ice
+Imola
+Inferno
+
+# -- J -- #
+
+JimSpecial
+
 # -- L -- #
 
-Lemon
+Lajolla
+Lapaz
 
 # -- M -- #
 
 Magenta
+Magma
+Matter
 Mint
 
 # -- O -- #
@@ -62,24 +88,31 @@ Mint
 OrRd
 OrYel
 Oranges
+Oslo
 
 # -- P -- #
 
 Peach
+Pink
 PinkYl
+Plasma
 PuBu
+PuRd
 Purp
 PurpOr
+Purple
 Purples
 
 # -- R -- #
 
 RdPu
+Red
 RedOr
 Reds
 
 # -- S -- #
 
+Solar
 Speed
 Spring
 Summer
@@ -89,6 +122,8 @@ SunsetDark
 
 Teal
 TealGrn
+Tempo
+Thermal
 Turbid
 
 # -- W -- #
@@ -99,5 +134,6 @@ Wistia
 # -- Y -- #
 
 YlGn
+YlGnBu
 YlOrBr
 YlOrRd

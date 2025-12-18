@@ -2,6 +2,21 @@
 
 
 ==
+18  (1.3.0-beta.11)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+\Categos: tanhks to to the use of one \pdf per \catego, the categories have been improved.
+
+
+// ---------- //
+
+
+==
 17  (1.3.0-beta.10)
 ==
 
