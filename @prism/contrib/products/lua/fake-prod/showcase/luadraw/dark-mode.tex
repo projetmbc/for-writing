@@ -83,17 +83,17 @@ for k = 1, PALSIZE do
   local color = rgb(PALETTE[k])
 
   g:Drectangle(
-    A, A  +  PALDIM, A  +  PALDIM  +  v,
+    A, A + PALDIM, A + PALDIM + v,
     "color = " .. COL_1 .. ", fill = " .. color
   )
 
   g:Dlabel(
     "\\Large$" .. k .. "$",
-    A  +  Z(PALDIM, 1.15*PALDIM) / 2,
+    A + Z(PALDIM, 1.15*PALDIM) / 2,
     {pos="S"}
   )
 
-  A = A  +  PALDIM  +  PALDELTA
+  A = A + PALDIM + PALDELTA
 end
 
 g:Show()
@@ -119,7 +119,7 @@ local A  = Z(-5, 4)
 local h  = Z(0, -PALDIM*1.30)
 local dh = Z(0, -1.1)
 
-local L = PALDIM * PALSIZE  +  PALDELTA * (PALSIZE - 1)
+local L = PALDIM * PALSIZE + PALDELTA * (PALSIZE - 1)
 local N = 100
 
 local dl = L / N
@@ -128,15 +128,15 @@ for k = 1, N do
   local color = palette(PALETTE, (k - 1) / (N - 1))
 
   g:Drectangle(
-    A, A  +  h, A  +  h  +  dl,
+    A, A + h, A + h + dl,
     "color = " .. color .. ", fill = " .. color
   )
 
-  A = A  +  dl
+  A = A + dl
 end
 
 g:Drectangle(
-  A, A  +  h, A  +  h - L,
+  A, A + h, A + h - L,
   "color = " .. COL_1
 )
 
@@ -201,7 +201,7 @@ g:Linewidth(2)
 
 local S = surface(
   function(u, v)
-    return M(u, v, (u  +  v) / (2  +  cos(u)*sin(v)))
+    return M(u, v, (u + v) / (2 + cos(u)*sin(v)))
   end,
   0, 5, 0, 10,
   {30, 30}
@@ -233,7 +233,7 @@ insert(
   niv,
   {
     S,
-    {color = colors[n  +  1]}
+    {color = colors[n + 1]}
   }
 )
 
@@ -279,7 +279,7 @@ local i = cpx.I
 local sin, cos = math.sin, math.cos
 
 local f = function(x, y)
-  return (x  +  y) / (2  +  cos(x)*sin(y))
+  return (x + y) / (2 + cos(x)*sin(y))
 end
 
 local Lz = range(1, 10)
@@ -289,7 +289,7 @@ local colors = getpalette(PALETTE, 10)
 g:Linewidth(3)
 
 g:Dgradbox(
-  {0, 5  +  10*i, 1, 1},
+  {0, 5 + 10*i, 1, 1},
   {
     grid         = true,
     gridcolor    = COL_1,
@@ -309,10 +309,10 @@ g:Dcontour(
 )
 
 for k = 1, 10 do
-  local y = (2*k  +  4) / 3*i
+  local y = (2*k + 4) / 3*i
 
   g:Dseg(
-    {5.25  +  y, 5.5  +  y},
+    {5.25 + y, 5.5 + y},
     1,
     "color = " .. colors[k]
   )
@@ -321,7 +321,7 @@ for k = 1, 10 do
 
   g:Dlabel(
     "$z = " .. k .. "$",
-    5.5  +  y,
+    5.5 + y,
     {pos = "E"}
   )
 end
@@ -337,9 +337,10 @@ g:Show()
 \vfill
 
 \begin{luadraw}{name = showcase-delaunay-\PALETTE-dark}
-local g = graph3d:new{bbox = false}
-
-g:Scale(2)
+local g = graph3d:new{
+  bbox           = false,
+  pictureoptions = "scale = 1.95"
+}
 
 g:Linewidth(6)
 
@@ -361,19 +362,18 @@ local L = {
 local T = delaunay(L)
 local n = #T
 
-local num = 7 -- Choose a triangle.
-
 local colors = getpalette(PALETTE,n) 
 
 for k = 1, n do
   g:Dpolyline(
     T[k],
     true,
-    "fill = " .. colors[k]
+       "color = " .. COL_2
+    .. ", fill = " .. colors[k]
   ) 
 end
 
-g:Ddots(L)
+g:Ddots(L, "color = " .. COL_2)
 
 g:Show()
 \end{luadraw}
@@ -417,8 +417,10 @@ local g = graph:new{
 g:Daxes(
   {0, 1, 1},
   {
-    arrows = "->", 
-    grid   = true
+    arrows       = "->", 
+    grid         = true,
+    gridcolor    = COL_1,
+    subgridcolor = COL_2
   }
 )
 

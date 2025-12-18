@@ -10,7 +10,7 @@
 --------
 
 [[:doc:]]
-\Categos: tanhks to to the use of one \pdf per \catego, the categories have been improved.
+\Categos: thanks to the use of one \pdf per \catego, the categories have been improved.
 
 
 // ---------- //

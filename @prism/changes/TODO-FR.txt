@@ -10,6 +10,27 @@
 
 // ---------- //
 
+implementation
+
+   ---> lua (et autres) : ajout d'un fichier tests aussi des focntionnalités shift, revere, extract dans le dev
+
+   ---> CSS / SCSS  (les deux)
+
+            + vite  acr hyper intuitif via appli HTML de Claude l'AI + faire un truc avec des courbes et Nerfetiti pour le dev
+
+            + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
+
+            + reprendre BlindFish pour qu'il soit moins sombre sur la fin
+
+   ---> LaTeX : extraction eet compagine via L3
+
+            + point de départ pour un mini package latex vi des maj auto!
+
+   ---> Python : après on en fait la pub sur Matplotlib
+
+
+// ---------- //
+
 TOOLS : virer TAG_NAMES_IGNORED et asymptote traité commes les autres
 
 
@@ -31,27 +52,6 @@ nouveaux proj intégérs  OU  crédit pour la doc  OU  pour compléter showcase 
    ---> https://r02b.github.io/seaborn_palettes/
 
    ---> https://blog.scientific-python.org/matplotlib/pypalettes/
-
-
-// ---------- //
-
-implementation
-
-   ---> lua (et autres) : ajout d'un fichier tests aussi des focntionnalités shift, revere, extract
-
-   ---> CSS / SCSS  (les deux)
-
-            + vite  acr hyper intuitif via appli HTML de Claude l'AI + faire un truc avec des courbes et Nerfetiti pour le dev
-
-            + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
-
-            + reprendre BlindFish pour qu'il soit moins sombre sur la fin
-
-   ---> LaTeX : extraction eet compagine via L3
-
-            + point de départ pour un mini package latex vi des maj auto!
-
-   ---> Python : après on en fait la pub sur Matplotlib
 
 
 // ---------- //

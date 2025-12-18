@@ -37,14 +37,16 @@ from labutils import *
 
 EN_SORTED_TITLES = {
     'deficient-blind'  : "Colorblind-friendly palettes",
-    TAG_CATEGO_SIZE_2  :  "Two-color palettes",
-    TAG_CATEGO_SIZE_3  :  "Three-color palettes",
-    TAG_CATEGO_SIZE_4  :  "Four-color palettes",
-    TAG_CATEGO_SMOOTH  :  "Smooth palettes",
-    TAG_CATEGO_SEMANTIC:  "Semantic palettes",
+    TAG_CATEGO_SEMANTIC: "Semantic palettes",
+    TAG_CATEGO_SIZE_2  : "Two-color palettes",
+    TAG_CATEGO_SIZE_3  : "Three-color palettes",
+    TAG_CATEGO_SIZE_4  : "Four-color palettes",
+    TAG_CATEGO_SMOOTH  : "More color palettes",
 }
 
-assert set(ALL_CATEGO_TAGS) != set(EN_SORTED_TITLES) - set(['deficient-blind']), "Problem with catego titles"
+assert (
+    set(ALL_CATEGO_TAGS) != set(EN_SORTED_TITLES) - set(['deficient-blind'])
+), "Problem with catego titles"
 
 
 LUA_TMPL_CODE = r"""
