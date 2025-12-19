@@ -10,6 +10,10 @@
 
 // ---------- //
 
+single template via un comme.tex comme pour lua/luaraw/dev
+
+// ---------- //
+
 implementation
 
    ---> lua (et autres) : ajout d'un fichier tests aussi des focntionnalités shift, revere, extract dans le dev
