@@ -3,21 +3,20 @@
 --     author = Christophe, Bal
 --
 --
--- note::
---     Here is the luadraw definition used.
+-- Here is the luadraw code used.
 --
---     lua::
---         _ , myFireBrick = mixcolor(FireBrick, .75, LightSalmon, .25)
+-- lua::
+--      _ , myFireBrick = mixcolor(FireBrick, .75, LightSalmon, .25)
 --
---         PALETTE = {
---           Gray,
---           SlateGray,
---           LightSkyBlue,
---           LightPink,
---           Pink,
---           LightSalmon,
---           myFireBrick,
---         }
+--     PALETTE = {
+--       Gray,
+--       SlateGray,
+--       LightSkyBlue,
+--       LightPink,
+--       Pink,
+--       LightSalmon,
+--       myFireBrick,
+--     }
 ------
 
 PALETTE = {

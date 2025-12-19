@@ -77,6 +77,7 @@ BUILD_TIKZ = false
 
 % -------------------- %
 
+\newpage
 \section{{History}}
 
 \small

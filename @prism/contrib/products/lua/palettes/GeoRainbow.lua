@@ -7,19 +7,18 @@
 --     The prefix “Geo” stands for “Geographic”.
 --
 --
--- note::
---     Here is the luadraw definition used.
+-- Here is the luadraw code used.
 --
---     lua::
---         PALETTE = {
---           CornflowerBlue,
---           LightSkyBlue,
---           MediumSeaGreen,
---           YellowGreen,
---           DarkSalmon,
---           LightCoral,
---           IndianRed,
---         }
+-- lua::
+--     PALETTE = {
+--       CornflowerBlue,
+--       LightSkyBlue,
+--       MediumSeaGreen,
+--       YellowGreen,
+--       DarkSalmon,
+--       LightCoral,
+--       IndianRed,
+--     }
 ------
 
 PALETTE = {

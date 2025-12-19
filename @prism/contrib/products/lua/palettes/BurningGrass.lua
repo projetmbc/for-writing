@@ -3,17 +3,16 @@
 --     author = Christophe, Bal
 --
 --
--- note::
---     Here is the luadraw definition used.
+-- Here is the luadraw code used.
 --
---     lua::
---         PALETTE = {
---           DarkGreen,
---           Green,
---           Yellow,
---           Orange,
---           Red,
---         }
+-- lua::
+--     PALETTE = {
+--       DarkGreen,
+--       Green,
+--       Yellow,
+--       Orange,
+--       Red,
+--     }
 ------
 
 PALETTE = {

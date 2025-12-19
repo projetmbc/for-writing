@@ -5,18 +5,21 @@
 --
 -- note::
 --     The name is a reference to the movie "Saturday Night Fever".
---     Here is the luadraw definition used.
+--     Here is the luadraw code used.
 --
---     lua::
---         PALETTE = {
---           Cyan,
---           DodgerBlue,
---           Magenta,
---           Red,
---           Orange,
---           Gold,
---           LimeGreen,
---         }
+--
+-- Here is the luadraw code used.
+--
+-- lua::
+--     PALETTE = {
+--       Cyan,
+--       DodgerBlue,
+--       Magenta,
+--       Red,
+--       Orange,
+--       Gold,
+--       LimeGreen,
+--     }
 ------
 
 PALETTE = {
