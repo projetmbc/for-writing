@@ -36,6 +36,7 @@ We will briefly explain the following structure of the `contrib/products` folder
   + lua
   + readme
   + status
+  + template-stucture
 ~~~
 
 Here is how the different folders are used.
@@ -43,7 +44,8 @@ Here is how the different folders are used.
 1. `changes` is used to communicate changes related to contributions.
 2. `readme`, managed by the `@prism` developer, is used to generate the `contrib/products/README.md` file.
 3. `status`, managed by the `@prism` developer, contains `YAML` files indicating whether an implementation has been accepted or not, along with the reason for this status. ***No coding skill is needed to read these `YAML` files.***
-4. The other folders are the contributions themselves, the development process for which is explained in the following section.
+4. `template-structure` provides a starting structure for adding new implementations.
+5. The other folders are the contributions themselves, the development process for which is explained in the following section.
 
 <a id="MULTIMD-TOC-ANCHOR-1"></a>
 How to propose new palettes? <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -194,9 +196,10 @@ PALETTES_FILE_NAME = "..."
 #
 #
 # warning::
-#     Except if it is totally impossible, the code returned must
-#     offer the ability to access a palette via the string name of
-#     the variable associated with it.
+#     Except if it is totally impossible, the code build must offer
+#     the ability to access a palette via the string name of the
+#     variable associated with it, and also to propose ways to
+#     transform palettes (extraction, shift and reverse order).
 ###
 def build_code(
     credits : str,
@@ -243,3 +246,21 @@ Here is the purpose of each of these files.
 2. `title.md` is the title for the specific technology. You can add here a short description.
 3. `how-to-create.md` gives the process to follow to create new palettes as a developer.
 4. `how-to-use.md` explains how to use one of the `@prism` palettes available as a user.
+
+> ***WARNING.*** *`how-to-use.md` is used for building the `PDF` documentation with `LaTeX` in the background. Although this introduces some writing limitations, the validation process will guide you past them. For example, to achieve inline colored code, which `Markdown` doesn't support, do like in the following example. You can use as many magic comments `<!--YAML ... -->` as necessary, inserting them wherever you like.*
+
+~~~markdown
+<!--YAML
+inlinecode:
+  lua:
+    - palGistHeat
+    - getPal('GistHeat')
+    - getPal('palGistHeat')
+-->
+
+The `Lua` palette names...
+
+  * `palGistHeat` is a `Lua` variable.
+
+  * `getPal('GistHeat')` and `getPal('palGistHeat')`...
+~~~

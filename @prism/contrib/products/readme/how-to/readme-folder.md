@@ -19,4 +19,23 @@ Here is the purpose of each of these files.
 
   1. `how-to-create.md` gives the process to follow to create new palettes as a developer.
 
-  1. `how-to-use.md` explains how to use one of the `@prism` palettes available as a user.
+  1. `how-to-use.md` explains how to use one of the `@prism` palettes available as a user. 
+
+
+> ***WARNING.*** *`how-to-use.md` is used for building the `PDF` documentation with `LaTeX` in the background. Although this introduces some writing limitations, the validation process will guide you past them. For example, to achieve inline colored code, which `Markdown` doesn't support, do like in the following example. You can use as many magic comments `<!--YAML ... -->`  as necessary, inserting them wherever you like.*
+
+~~~markdown
+<!--YAML
+inlinecode:
+  lua:
+    - palGistHeat
+    - getPal('GistHeat')
+    - getPal('palGistHeat')
+-->
+
+The `Lua` palette names...
+
+  * `palGistHeat` is a `Lua` variable.
+
+  * `getPal('GistHeat')` and `getPal('palGistHeat')`...
+~~~

@@ -84,12 +84,12 @@ PALETTES_FILE_NAME = "palettes.lua"
 #     credits  : the credits to the ''@prism'' project that should
 #                be added as a comment at the beginning of the final
 #                product code.
-#     palettes : the Python dictionnary of all the palettes.
+#     palettes : the ''Python'' dictionnary of all the palettes.
 #
 #     :return: the code of the final product with all the palettes
-#              ready to be used, with a function ''getPal'' to access
-#              a palette via its string name, or create new palettes
-#              from an existing one.
+#              ready to be used, with also a function ''getPal'' to
+#              access one palette via its string name, or create new
+#              palettes from an existing one.
 ###
 def build_code(
     credits : str,

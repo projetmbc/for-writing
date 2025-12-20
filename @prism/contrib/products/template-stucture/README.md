@@ -6,15 +6,15 @@
   ---------------------------------------------------------------->
 
 
-LaTeX palettes
-==============
+ONE-TECHNO palettes
+===================
 
-Create a palette using LaTeX
-----------------------------
+Create a palette using ONE-TECHNO
+---------------------------------
 
 TODO
 
-Use a LaTeX palette
--------------------
+Use a ONE-TECHNO palette
+------------------------
 
 TODO

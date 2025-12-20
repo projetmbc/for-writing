@@ -57,9 +57,10 @@ PALETTES_FILE_NAME = "..."
 #
 #
 # warning::
-#     Except if it is totally impossible, the code returned must
-#     offer the ability to access a palette via the string name of
-#     the variable associated with it.
+#     Except if it is totally impossible, the code build must offer
+#     the ability to access a palette via the string name of the
+#     variable associated with it, and also to propose ways to
+#     transform palettes (extraction, shift and reverse order).
 ###
 def build_code(
     credits : str,
