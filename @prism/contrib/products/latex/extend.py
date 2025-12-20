@@ -1,8 +1,3 @@
-### The extend.py file
-
-This file must follow the following template.
-
-~~~python
 #!/usr/bin/env python3
 
 # -------------------- #
@@ -74,4 +69,3 @@ def build_code(
 
 if __name__ == "__main__":
     ...
-~~~
