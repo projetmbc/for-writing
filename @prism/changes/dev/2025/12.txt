@@ -10,7 +10,15 @@
 --------
 
 [[:api:]]
-\lua product: improvement of the path::''PROJECT-PALETTE.lua'' file with the addition of developer's comments automatically added.
+\lua product.
+
+    1) Improvement of the path::''PROJECT-PALETTE.lua'' file with the addition of developer's comments automatically added.
+
+    1) Add the path::''transform.tex'' to test the transformations of palettes. Ceci a mis au jour un poubli: la mise à jourd es palettes des produits.
+
+
+[[:tech:]]
+Showcases: the single template \latex codes use a path::''core/common.tex'' file.
 
 
 // ---------- //

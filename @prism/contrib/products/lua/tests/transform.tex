@@ -1,6 +1,296 @@
 % !TEX TS-program = lualatex
 
 %%%
-% This file juste the available transformation of a palette..
+% This file tests the available transformations of a palette.
 %%%
 
+\documentclass[theme = dark]{tutodoc}
+
+\newcommand{\PALETTE}{Blackbody}
+
+\geometry{
+  top    = 1cm,
+  bottom = 1cm,
+  left   = 1cm,
+  right  = 1cm,
+%  showframe
+}
+
+\usepackage[svgnames]{xcolor}
+\usepackage[3d]{luadraw}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\centering
+
+
+% -------------------------- %
+% -- COMMON LUA CODE USED -- %
+% -------------------------- %
+
+
+\directlua{dofile('../palettes.lua')}
+
+
+\directlua{
+  PALNAME = "\PALETTE"
+  
+  PALSIZE = 10
+
+  PALDIM   = 1
+  PALDELTA = .3
+
+  xmin, xmax = -100, 100
+
+  COL_1 = "lightgray!95"
+  COL_2 = "lightgray!20!black"
+}
+
+
+% ------------------ %
+% -- PALETTE NAME -- %
+% ------------------ %
+
+\centering
+
+{\Huge\bfseries\PALETTE\vphantom{g}}
+
+
+% ----------------------- %
+% -- PALETTE - DEFAULT -- %
+% ----------------------- %
+
+\bigskip
+\bigskip
+
+{\Large\bfseries Default}
+
+\smallskip
+
+\begin{luadraw}{name = palette-default}
+PALETTE = getPal(PALNAME)
+
+local g = graph:new{
+  window = {xmin, xmax, -5, 5},
+  bbox   = false
+}
+
+g:Linewidth(10)
+
+local A = Z(-20, 4)
+local v = Z(0, -PALDIM)
+
+for k = 1, PALSIZE do
+  local color = rgb(PALETTE[k])
+
+  g:Drectangle(
+    A, A + PALDIM, A + PALDIM + v,
+    "color = " .. COL_1 .. ", fill = " .. color
+  )
+
+  g:Dlabel(
+    "\\Large$" .. k .. "$",
+    A + Z(PALDIM, 1.15*PALDIM) / 2,
+    {pos="S"}
+  )
+
+  A = A + PALDIM + PALDELTA
+end
+
+g:Show()
+\end{luadraw}
+
+
+% --------------------- %
+% -- PALETTE - SHIFT -- %
+% --------------------- %
+
+\bigskip
+\bigskip
+
+{\Large\bfseries Shift +3}
+
+\smallskip
+
+\begin{luadraw}{name = palette-reversed}
+PALETTE = getPal(
+  PALNAME, 
+  {shift = 3}
+)
+
+local g = graph:new{
+  window = {xmin, xmax, -5, 5},
+  bbox   = false
+}
+
+g:Linewidth(10)
+
+local A = Z(-20, 4)
+local v = Z(0, -PALDIM)
+
+for k = 1, PALSIZE do
+  local color = rgb(PALETTE[k])
+
+  g:Drectangle(
+    A, A + PALDIM, A + PALDIM + v,
+    "color = " .. COL_1 .. ", fill = " .. color
+  )
+
+  g:Dlabel(
+    "\\Large$" .. k .. "$",
+    A + Z(PALDIM, 1.15*PALDIM) / 2,
+    {pos="S"}
+  )
+
+  A = A + PALDIM + PALDELTA
+end
+
+g:Show()
+\end{luadraw}
+
+
+\bigskip
+\bigskip
+
+{\Large\bfseries Shift -3}
+
+\smallskip
+
+\begin{luadraw}{name = palette-reversed}
+PALETTE = getPal(
+  PALNAME, 
+  {shift = -3}
+)
+
+local g = graph:new{
+  window = {xmin, xmax, -5, 5},
+  bbox   = false
+}
+
+g:Linewidth(10)
+
+local A = Z(-20, 4)
+local v = Z(0, -PALDIM)
+
+for k = 1, PALSIZE do
+  local color = rgb(PALETTE[k])
+
+  g:Drectangle(
+    A, A + PALDIM, A + PALDIM + v,
+    "color = " .. COL_1 .. ", fill = " .. color
+  )
+
+  g:Dlabel(
+    "\\Large$" .. k .. "$",
+    A + Z(PALDIM, 1.15*PALDIM) / 2,
+    {pos="S"}
+  )
+
+  A = A + PALDIM + PALDELTA
+end
+
+g:Show()
+\end{luadraw}
+
+
+% ------------------------ %
+% -- PALETTE - REVERSED -- %
+% ------------------------ %
+
+\bigskip
+\bigskip
+
+{\Large\bfseries Reversed}
+
+\smallskip
+
+\begin{luadraw}{name = palette-reversed}
+PALETTE = getPal(
+  PALNAME, 
+  {reverse = true}
+)
+
+local g = graph:new{
+  window = {xmin, xmax, -5, 5},
+  bbox   = false
+}
+
+g:Linewidth(10)
+
+local A = Z(-20, 4)
+local v = Z(0, -PALDIM)
+
+for k = 1, PALSIZE do
+  local color = rgb(PALETTE[k])
+
+  g:Drectangle(
+    A, A + PALDIM, A + PALDIM + v,
+    "color = " .. COL_1 .. ", fill = " .. color
+  )
+
+  g:Dlabel(
+    "\\Large$" .. k .. "$",
+    A + Z(PALDIM, 1.15*PALDIM) / 2,
+    {pos="S"}
+  )
+
+  A = A + PALDIM + PALDELTA
+end
+
+g:Show()
+\end{luadraw}
+
+
+% ----------------------- %
+% -- PALETTE - EXTRACT -- %
+% ----------------------- %
+
+\bigskip
+\bigskip
+
+{\Large\bfseries Extract 1 - 3 - 6 - 10}
+
+\smallskip
+
+\begin{luadraw}{name = palette-reversed}
+PALETTE = getPal(
+  PALNAME, 
+  {
+    extract = {1, 3, 6, 10}
+  }
+)
+
+local g = graph:new{
+  window = {xmin, xmax, -5, 5},
+  bbox   = false
+}
+
+g:Linewidth(10)
+
+local A = Z(-20, 4)
+local v = Z(0, -PALDIM)
+
+for k = 1, 4 do
+  local color = rgb(PALETTE[k])
+
+  g:Drectangle(
+    A, A + PALDIM, A + PALDIM + v,
+    "color = " .. COL_1 .. ", fill = " .. color
+  )
+
+  g:Dlabel(
+    "\\Large$" .. k .. "$",
+    A + Z(PALDIM, 1.15*PALDIM) / 2,
+    {pos="S"}
+  )
+
+  A = A + PALDIM + PALDELTA
+end
+
+g:Show()
+\end{luadraw}
+
+
+\end{document}

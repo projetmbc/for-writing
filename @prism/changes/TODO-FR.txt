@@ -3,14 +3,23 @@
 ======
 
 
+2026 sera WIMS, ou ne sera pas...
+
+T'as eu vent la nouvelle est tombée... Voici le lien vers un framadate pour WIMS.
+
+Sur ceux, salut à vous bande de cylindres et à la rentrée.
+
+Liens musicaux pour bien finir l'année, sauf pour Stéphane.
+
+Bertrand Belin - La nouvelle : https://www.youtube.com/watch?v=dYPppx4pUm8&themeRefresh=1
+
+Yves Jarvis - All Cylinders : https://www.youtube.com/watch?v=z1gvLfnnkoo
+
+
 // ---------- //
 
 1.3.0 uniquement lorsque des implémentations pour xcolor et CSS (a minima).
 
-
-// ---------- //
-
-single template via un comme.tex comme pour lua/luaraw/dev
 
 // ---------- //
 
