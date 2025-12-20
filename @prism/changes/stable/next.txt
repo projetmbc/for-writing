@@ -30,19 +30,19 @@ Here are the improvements.
 
         + Added two appendixes.
 
-            * Similar palettes.
+            * All palettes grouped by user-friendly \categos.
 
-            * All palettes grouped by user-friendly categories.
+            * Similar palettes.
 
         + Added explanations about the utility of palettes for non-designers.
 
-    1) Showcases.
+    1) Better palette references.
 
-        + Use of several category files (one \pdf per category).
+    1) Better showcases.
+
+        + Several category \pdf files (one \pdf per category and theme).
 
         + Better showcase with 2D chart and Delaunay triangulation added.
-
-    1) Better palette references.
 
 
 -----
