@@ -1,2 +1,2 @@
-LaTeX & LuaLaTex palettes
-=========================
+LaTeX palettes
+==============

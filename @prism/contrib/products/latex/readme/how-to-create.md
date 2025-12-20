@@ -4,7 +4,7 @@ inlinecode:
     - PALETTE
 -->
 
-Create a palette using LaTeX & LuaLaTex
----------------------------------------
+Create a palette using LaTeX
+----------------------------
 
 TODO

@@ -32,6 +32,7 @@ We will briefly explain the following structure of the `contrib/products` folder
 ~~~
 + contrib
   + changes
+  + latex
   + lua
   + readme
   + status
@@ -145,8 +146,18 @@ This file must follow the following template.
 # -- IMPORT ALLOWED -- #
 # -------------------- #
 
+from typing import TypeAlias
+
 import ast
 import re
+
+
+# ------------ #
+# -- TYPING -- #
+# ------------ #
+
+RGBCols    :TypeAlias = [float, float, float]
+PaletteCols:TypeAlias = list[RGBCols]
 
 
 # -------------------- #
@@ -161,7 +172,7 @@ import re
 #              will be used to produce the "universal" \json version
 #              of the palette.
 ###
-def parse(code: str) -> list[ [float, float, float] ]:
+def parse(code: str) -> PaletteCols:
     ...
 
 
@@ -189,7 +200,7 @@ PALETTES_FILE_NAME = "..."
 ###
 def build_code(
     credits : str,
-    palettes: dict[ str, list[ [float, float, float] ] ]
+    palettes: dict[str, PaletteCols]
 ) -> str:
     ...
 

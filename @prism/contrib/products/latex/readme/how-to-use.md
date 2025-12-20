@@ -1,4 +1,4 @@
-Use a LaTeX or LuaLaTex palette
--------------------------------
+Use a LaTeX palette
+-------------------
 
 TODO
