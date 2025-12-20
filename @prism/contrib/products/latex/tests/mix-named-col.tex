@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{multido}
+
+\definecolor{color1}{RGB}{0,100,255} % bleu
+\definecolor{color2}{RGB}{255,150,0} % orange
+
+\begin{document}
+
+% 21 valeurs (0 à 100 inclus) → 20 transitions
+\multido{\i=0+2}{51}{%
+  \textcolor{color1!\i!color2}{\rule{2pt}{1em}}%
+}
+
+\multido{\i=0+5}{21}{%
+{\fboxsep=1pt\fboxrule=0.4pt%
+ \fcolorbox{black}{color1!\i!color2}{\rule{.5em}{1em}}}
+}
+
+
+
+\end{document}
