@@ -6,8 +6,6 @@
 
 \documentclass[theme = dark]{tutodoc}
 
-\newcommand{\PALETTE}{Blackbody}
-
 \geometry{
   top    = 1cm,
   bottom = 1cm,
@@ -30,13 +28,24 @@
 % -- COMMON LUA CODE USED -- %
 % -------------------------- %
 
-
-\directlua{dofile('../palettes.lua')}
-
+\directlua{dofile('../palapi.lua')}
 
 \directlua{
-  PALNAME = "\PALETTE"
-  
+  palFakeOne = {
+    {0.0, 0.0, 0.0},
+    {0.400871, 0.0, 0.0},
+    {0.801742, 0.0, 0.0},
+    {0.90196, 0.274509, 0.0},
+    {0.90196, 0.640522, 0.0},
+    {0.923747, 0.862745, 0.222222},
+    {0.96732, 0.941176, 0.666666},
+    {0.958605, 0.976034, 1.0},
+    {0.793028, 0.880174, 1.0},
+    {0.62745, 0.784313, 1.0}
+  }
+
+  PALNAME = "FakeOne"
+
   PALSIZE = 10
 
   PALDIM   = 1
@@ -96,7 +105,7 @@ end
 
 \centering
 
-{\Huge\bfseries\PALETTE\vphantom{g}}
+{\Huge\bfseries Fake Palette}
 
 
 % ----------------------- %
@@ -122,13 +131,13 @@ drawpal(PALNAME, PALSIZE)
 \bigskip
 \bigskip
 
-{\Large\bfseries Shift +3}
+{\Large\bfseries Shift +\,3}
 
 \smallskip
 
 \begin{luadraw}{name = palette-shift-plus-3}
 drawpal(
-  PALNAME, PALSIZE, 
+  PALNAME, PALSIZE,
   {shift = 3}
 )
 \end{luadraw}
@@ -137,13 +146,13 @@ drawpal(
 \bigskip
 \bigskip
 
-{\Large\bfseries Shift -3}
+{\Large\bfseries Shift -\,3}
 
 \smallskip
 
 \begin{luadraw}{name = palette-shift-minus-3}
 drawpal(
-  PALNAME, PALSIZE, 
+  PALNAME, PALSIZE,
   {shift = -3}
 )
 \end{luadraw}
@@ -162,7 +171,7 @@ drawpal(
 
 \begin{luadraw}{name = palette-reversed}
 drawpal(
-  PALNAME, PALSIZE, 
+  PALNAME, PALSIZE,
   {reverse = true}
 )
 \end{luadraw}
@@ -181,7 +190,7 @@ drawpal(
 
 \begin{luadraw}{name = palette-extract-1-3-6-10}
 drawpal(
-  PALNAME, 4, 
+  PALNAME, 4,
   {extract = {1, 3, 6, 10}}
 )
 \end{luadraw}

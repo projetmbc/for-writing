@@ -151,7 +151,7 @@ local cos, sin = math.cos, math.sin, math.pi
 local g = graph3d:new{
   window3d = {0, 5, 0, 10, 0, 11},
   adjust2d = true,
-  size     = {14.5, 9.5, 0},
+  size     = {22, 17, 0},
   bbox     = false,
   viewdir  = {220, 60},
   margin   = {0, 0, 0, 0}
@@ -319,12 +319,12 @@ local L = {
   -0.477 + 1.834*i,
   -0.904 + 1.322*i,
   -2.892 + 0.025*i
-} 
+}
 
 local T = delaunay(L)
 local n = #T
 
-local colors = getpalette(PALETTE,n) 
+local colors = getpalette(PALETTE,n)
 
 for k = 1, n do
   g:Dpolyline(
@@ -332,7 +332,7 @@ for k = 1, n do
     true,
        "color = " .. COL_2
     .. ", fill = " .. colors[k]
-  ) 
+  )
 end
 
 g:Ddots(L, "color = " .. COL_2)
@@ -342,7 +342,7 @@ g:Show()
 
 
 % --------------- %
-% -- 2D CHARTS -- %    
+% -- 2D CHARTS -- %
 % --------------- %
 
 \vfill
@@ -357,11 +357,11 @@ function read_CSV(file, ignore_header)
 
     else
       local result = {}
-      
+
       for part in string.gmatch(line, "([^,]+)") do
         table.insert(result, tonumber(part))
       end
-      
+
       table.insert(data, result)
     end
   end
@@ -379,7 +379,7 @@ local g = graph:new{
 g:Daxes(
   {0, 1, 1},
   {
-    arrows       = "->", 
+    arrows       = "->",
     grid         = true,
     gridcolor    = COL_1,
     subgridcolor = COL_2
@@ -394,9 +394,9 @@ local data = read_CSV(
 local i = cpx.I
 
 local xyR
- 
+
 local colors = getpalette(PALETTE, 10)
- 
+
 for _, xyR in ipairs(data) do
   local col = colors[xyR[3]]
 

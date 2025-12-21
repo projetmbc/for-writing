@@ -1,3 +1,0 @@
-### @prism for LaTeX
-
-XXX

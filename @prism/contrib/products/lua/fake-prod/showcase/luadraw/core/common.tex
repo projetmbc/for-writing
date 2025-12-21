@@ -149,7 +149,7 @@ local cos, sin = math.cos, math.sin, math.pi
 local g = graph3d:new{
   window3d = {0, 5, 0, 10, 0, 11},
   adjust2d = true,
-  size     = {14.5, 9.5, 0},
+  size     = {22, 17, 0},
   bbox     = false,
   viewdir  = {220, 60},
   margin   = {0, 0, 0, 0}
@@ -332,7 +332,7 @@ for k = 1, n do
     true,
        "color = " .. COL_2
     .. ", fill = " .. colors[k]
-  ) 
+  )
 end
 
 g:Ddots(L, "color = " .. COL_2)
@@ -379,7 +379,7 @@ local g = graph:new{
 g:Daxes(
   {0, 1, 1},
   {
-    arrows       = "->", 
+    arrows       = "->",
     grid         = true,
     gridcolor    = COL_1,
     subgridcolor = COL_2

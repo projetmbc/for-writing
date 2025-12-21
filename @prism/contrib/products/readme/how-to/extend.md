@@ -1,6 +1,6 @@
 ### The extend.py file
 
-This file must follow the following template.
+This file must follow the following commented template.
 
 ~~~python
 #!/usr/bin/env python3

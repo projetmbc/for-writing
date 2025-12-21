@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{expl3}
+\usepackage{pgffor}
+
+\ExplSyntaxOn
+
+% ============================================
+% DÉFINITION DU SYSTÈME DE PALETTES
+% ============================================
+
+% Stockage des palettes (prop list de séquences)
+\prop_new:N \g_palette_storage_prop
+
+% Créer une nouvelle palette
+% #1 = nom de la palette
+\cs_new_protected:Nn \palette_new:n
+  {
+    \seq_new:c { g_palette_#1_seq }
+    \prop_gput:Nnn \g_palette_storage_prop { #1 } { exists }
+  }
+
+% Ajouter une couleur RGB à une palette
+% #1 = nom de la palette
+% #2 = triplet RGB (r,g,b) avec valeurs entre 0 et 1
+\cs_new_protected:Nn \palette_add_color:nn
+  {
+    \seq_gput_right:cn { g_palette_#1_seq } { #2 }
+  }
+
+% Obtenir le nombre de couleurs dans une palette
+% #1 = nom de la palette
+\cs_new:Nn \palette_count:n
+  {
+    \int_eval:n { \seq_count:c { g_palette_#1_seq } }
+  }
+
+% Obtenir une couleur par son index (1-based)
+% #1 = nom de la palette
+% #2 = index (1, 2, 3, ...)
+% Retourne le triplet RGB
+\cs_new:Nn \palette_get_color:nn
+  {
+    \seq_item:cn { g_palette_#1_seq } { #2 }
+  }
+
+% Définir une couleur xcolor depuis une palette
+% #1 = nom de la couleur à créer
+% #2 = nom de la palette
+% #3 = index dans la palette
+\cs_new_protected:Nn \palette_define_xcolor:nnn
+  {
+    \exp_args:Nnx \definecolor { #1 } { rgb } { \palette_get_color:nn { #2 } { #3 } }
+  }
+
+% Utiliser directement une couleur de palette
+% #1 = nom de la palette
+% #2 = index
+\cs_new_protected:Nn \palette_use_color:nn
+  {
+    \exp_args:Nx \color [rgb]{ \palette_get_color:nn { #1 } { #2 } }
+  }
+
+% ============================================
+% INTERFACE UTILISATEUR (Document commands)
+% ============================================
+
+\NewDocumentCommand \paletteNew { m }
+  {
+    \palette_new:n { #1 }
+  }
+
+\NewDocumentCommand \paletteAddColor { m m }
+  {
+    \palette_add_color:nn { #1 } { #2 }
+  }
+
+\NewDocumentCommand \paletteCount { m }
+  {
+    \palette_count:n { #1 }
+  }
+
+\NewDocumentCommand \paletteGetColor { m m }
+  {
+    \palette_get_color:nn { #1 } { #2 }
+  }
+
+\NewDocumentCommand \paletteDefineColor { m m m }
+  {
+    \palette_define_xcolor:nnn { #1 } { #2 } { #3 }
+  }
+
+\NewDocumentCommand \paletteColor { m m }
+  {
+    \palette_use_color:nn { #1 } { #2 }
+  }
+
+\ExplSyntaxOff
+
+% ============================================
+% EXEMPLE D'UTILISATION
+% ============================================
+
+\begin{document}
+
+% Créer une palette "Blackbody"
+\paletteNew{Blackbody}
+\paletteAddColor{Blackbody}{0.0, 0.0, 0.0}
+\paletteAddColor{Blackbody}{0.4, 0.0, 0.2}
+\paletteAddColor{Blackbody}{0.8, 0.2, 0.0}
+\paletteAddColor{Blackbody}{1.0, 0.6, 0.0}
+\paletteAddColor{Blackbody}{1.0, 1.0, 0.4}
+\paletteAddColor{Blackbody}{1.0, 1.0, 1.0}
+
+% Créer une palette "Ocean"
+\paletteNew{Ocean}
+\paletteAddColor{Ocean}{0.0, 0.1, 0.3}
+\paletteAddColor{Ocean}{0.0, 0.3, 0.6}
+\paletteAddColor{Ocean}{0.2, 0.5, 0.8}
+\paletteAddColor{Ocean}{0.5, 0.7, 0.9}
+\paletteAddColor{Ocean}{0.8, 0.9, 1.0}
+
+\section*{Démonstration des palettes}
+
+\subsection*{Palette Blackbody}
+
+Nombre de couleurs : \paletteCount{Blackbody}
+
+\bigskip
+
+% Afficher toutes les couleurs
+\foreach \i in {1,...,\paletteCount{Blackbody}} {%
+  \paletteColor{Blackbody}{\i}%
+  \rule{2cm}{1cm}\quad
+}
+
+\bigskip
+
+% Utilisation dans du texte
+{\paletteColor{Blackbody}{1} Noir} \quad
+{\paletteColor{Blackbody}{3} Rouge-orangé} \quad
+{\paletteColor{Blackbody}{5} Jaune pâle} \quad
+{\paletteColor{Blackbody}{6} Blanc}
+
+\subsection*{Palette Ocean}
+
+Nombre de couleurs : \paletteCount{Ocean}
+
+\bigskip
+
+\foreach \i in {1,...,\paletteCount{Ocean}} {%
+  \paletteColor{Ocean}{\i}%
+  \rule{2cm}{1cm}\quad
+}
+
+\subsection*{Définir des couleurs nommées}
+
+% Créer des couleurs xcolor depuis la palette
+\paletteDefineColor{myred}{Blackbody}{3}
+\paletteDefineColor{myblue}{Ocean}{3}
+
+\textcolor{myred}{Texte en rouge} et \textcolor{myblue}{texte en bleu}.
+
+\subsection*{Accès direct aux valeurs RGB}
+
+La couleur 2 de Blackbody a les valeurs RGB : \paletteGetColor{Blackbody}{2}
+
+\end{document}

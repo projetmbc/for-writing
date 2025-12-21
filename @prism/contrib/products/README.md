@@ -139,7 +139,7 @@ This folder allows you to know the status of your proposal. Its structure mimics
 <a id="MULTIMD-TOC-ANCHOR-7"></a>
 ### The extend.py file <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-This file must follow the following template.
+This file must follow the following commented template.
 
 ~~~python
 #!/usr/bin/env python3
