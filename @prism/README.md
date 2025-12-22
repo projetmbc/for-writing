@@ -52,12 +52,18 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 Supported implementations <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 -------------------------
 
-The implementations are inside the folder `products`.
+All implementations are in the `products` folder. Each implementation provides at least the palette definitions. When supported, you can do the following actions.
+
+- Pick specific colors from a palette.
+- Shift the palette left or right by any number of steps.
+- Reverse the color order.
+
+> ***NOTE.*** *Extra features are limited to discrete palette operations. For example, color interpolation is not provided, as this is usually handled out of the box by visualization and formatting tools.*
 
 <a id="MULTIMD-TOC-ANCHOR-3"></a>
 ### JSON, the versatile default format <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-By default, a file `palettes.json` is provided to allow unsupported coding languages to also integrate `@prism` palettes. Here are the first line of this file.
+A `palettes.json` file containing only palette definitions is provided by default, allowing unsupported programming languages to integrate `@prism` palettes. Below is the first line of the file.
 
 ~~~json
 {

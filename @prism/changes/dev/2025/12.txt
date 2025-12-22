@@ -2,6 +2,21 @@
 
 
 ==
+22  (1.3.0-beta.15)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Main \readme and manual: added explanations about the minimal common optional sets of extra features implemented.
+
+
+// ---------- //
+
+
+==
 21  (1.3.0-beta.14)
 ==
 

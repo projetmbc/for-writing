@@ -16,14 +16,7 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
-doc: indiquer que pas de shading car c'est courant comme outil, on est juste là pour finir des données
-
-
-// ---------- //
-
 implementation
-
-   ---> lua (et autres) : ajout d'un fichier tests aussi des focntionnalités shift, revere, extract dans le dev
 
    ---> CSS / SCSS  (les deux)
 
