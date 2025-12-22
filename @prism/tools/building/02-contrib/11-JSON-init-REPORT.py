@@ -122,13 +122,29 @@ def extract_renamed(choices: dict) -> [str]:
     if not choices:
         return dict()
 
+# Get suffixes.
+    if '_suffixes' in choices:
+        suffixes = choices['_suffixes']
+        del choices['_suffixes']
+
+    else:
+        suffixes = dict()
+
     renames = dict()
 
     for ctxt in sorted(
         choices,
         key = lambda x: x.lower()
     ):
+        suf = suffixes[ctxt]
+
         for old, new in choices[ctxt].items():
+            if new == '.':
+                new = f"{old}{suf}"
+
+            else:
+                new = new.replace('*', suf)
+
             renames[namectxt(old, ctxt)] = new
 
     return renames

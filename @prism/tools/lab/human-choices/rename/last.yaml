@@ -2,18 +2,20 @@
 # -- Last Human Selection -- #
 # -------------------------- #
 
-# Suffixes used.
-#
-#     + CartoColors = CC
-#     + Plotly      = Ply
-#     + Tableau     = Tab
+_suffixes:
+  CartoColors: CC
+  Plotly     : Ply
+  Tableau    : Tab
 
-"CartoColors":
-  Prism: PrismCC
+# . asks to add the suffix to the existing name.
+# * is an alias for the suffix.
 
-"Plotly":
-  Bluered: BlueRedPly
-  Rainbow: RainbowPly
+CartoColors:
+  Prism: .
 
-"Tableau":
-  Gray: GrayTab
+Plotly:
+  Bluered: BlueRed*
+  Rainbow: .
+
+Tableau:
+  Gray: .

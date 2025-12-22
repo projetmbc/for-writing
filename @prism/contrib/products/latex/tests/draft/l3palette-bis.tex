@@ -4,7 +4,7 @@
 \usepackage{expl3}
 
 \ExplSyntaxOn
-% Définition des palettes
+% --- Définition des palettes ---
 \definecolor{palette@Blackbody@1}{rgb}{0.0,0.0,0.0}
 \definecolor{palette@Blackbody@2}{rgb}{0.2,0.0,0.0}
 \definecolor{palette@Blackbody@3}{rgb}{0.4,0.0,0.0}
@@ -18,21 +18,22 @@
 \definecolor{palette@Ocean@4}{rgb}{0.2,0.8,0.9}
 \definecolor{palette@Ocean@5}{rgb}{0.4,1.0,1.0}
 
-% Commande pour obtenir le nom de couleur "valide"
-\cs_new:Npn \paletteColorName #1#2 { palette@#1@#2 }
+% --- Commande pour récupérer le nom "valide" ---
+\cs_new:Npn \paletteColor #1#2
+  { \csname palette@#1@#2\endcsname }
 \ExplSyntaxOff
 
 \begin{document}
 
 \begin{tikzpicture}
-  % Blackbody
+  % --- Blackbody ---
   \foreach \i in {1,...,6} {
-    \fill [color=\csname palette@Blackbody@\i\endcsname] (\i,0) rectangle ++(1,1);
+    \fill [color=\paletteColor{Blackbody}{\i}] (\i,0) rectangle ++(1,1);
   }
 
-  % Ocean
+  % --- Ocean ---
   \foreach \i in {1,...,5} {
-    \fill [color=\csname palette@Ocean@\i\endcsname] (\i,2) rectangle ++(1,1);
+    \fill [color=\paletteColor{Ocean}{\i}] (\i,2) rectangle ++(1,1);
   }
 \end{tikzpicture}
 

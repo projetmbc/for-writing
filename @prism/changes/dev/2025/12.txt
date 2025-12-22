@@ -13,6 +13,14 @@
 Main \readme and manual: added explanations about the minimal common optional sets of extra features implemented.
 
 
+--------
+:fordev:
+--------
+
+[[:flow:]]
+Palette renaming: the \yaml file is easier to update.
+
+
 // ---------- //
 
 

@@ -68,7 +68,7 @@ TAB_2 = TAB_1*2
 
 
 # --------------------------- #
-# -- IMAGES FOR CAMPARISON -- #
+# -- IMAGES FOR COMPARISON -- #
 # --------------------------- #
 
 print("+ Looking for images to build.")
