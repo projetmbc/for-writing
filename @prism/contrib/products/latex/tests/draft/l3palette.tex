@@ -5,191 +5,132 @@
 
 \ExplSyntaxOn
 
-% ============================================
-% DÉFINITION DU SYSTÈME DE PALETTES
-% ============================================
+% =================================================
+% PALETTES — STOCKAGE
+% =================================================
 
-% Créer une nouvelle palette
+\seq_new:N \l__palette_work_seq
+
 \cs_new_protected:Nn \palette_new:n
-  {
-    \seq_new:c { g_palette_#1_seq }
-  }
+  { \seq_new:c { g_palette_#1_seq } }
 
-% Ajouter une couleur RGB à une palette
 \cs_new_protected:Nn \palette_add_color:nn
   {
     \seq_gput_right:cn { g_palette_#1_seq } { #2 }
+    \int_set:Nn \l_tmpa_int { \seq_count:c { g_palette_#1_seq } }
+    \definecolor{palette@#1@\int_use:N\l_tmpa_int}{rgb}{#2}
   }
 
-% Obtenir le nombre de couleurs
-\cs_new:Nn \palette_count:n
+\cs_new_protected:Nn \palette_add_colors:nn
   {
-    \seq_count:c { g_palette_#1_seq }
+    \clist_map_inline:nn { #2 }
+      { \palette_add_color:nn { #1 } { ##1 } }
   }
 
-% Obtenir une couleur par index
-\cs_new:Nn \palette_get_color:nn
+\cs_new_protected:Nn \palette_create:nn
   {
-    \seq_item:cn { g_palette_#1_seq } { #2 }
+    \palette_new:n { #1 }
+    \palette_add_colors:nn { #1 } { #2 }
   }
 
-% Définir une couleur xcolor depuis une palette
-\cs_new_protected:Nn \palette_define_xcolor:nnn
-  {
-    \definecolor{#1}{rgb}{\seq_item:cn{g_palette_#2_seq}{#3}}
-  }
+\cs_new:Nn \palette_get_color_name:nn
+  { palette@#1@#2 }
 
-% Utiliser directement une couleur
-\cs_new_protected:Nn \palette_use_color:nn
-  {
-    \definecolor{palette@temp}{rgb}{\seq_item:cn{g_palette_#1_seq}{#2}}
-    \color{palette@temp}
-  }
+% =================================================
+% OPÉRATIONS SUR LA PALETTE COURANTE
+% =================================================
 
-% Boucle sur toutes les couleurs d'une palette
-\cs_new_protected:Nn \palette_map:nn
+\cs_new_protected:Nn \palette_from:n
+  { \seq_set_eq:NN \l__palette_work_seq g_palette_#1_seq }
+
+\cs_new_protected:Nn \palette_reverse:
+  { \seq_reverse:N \l__palette_work_seq }
+
+\cs_new_protected:Nn \palette_select:n
   {
-    \int_step_inline:nn { \palette_count:n { #1 } }
+    \seq_clear:N \l_tmpa_seq
+    \clist_map_inline:nn { #1 }
       {
-        \group_begin:
-        \definecolor{palette@temp}{rgb}{\seq_item:cn{g_palette_#1_seq}{##1}}
-        \color{palette@temp}
-        #2
-        \group_end:
+        \seq_put_right:Nn \l_tmpa_seq
+          { \seq_item:Nn \l__palette_work_seq { ##1 } }
+      }
+    \seq_set_eq:NN \l__palette_work_seq \l_tmpa_seq
+  }
+
+\cs_new_protected:Nn \palette_shift:n
+  {
+    \int_set:Nn \l_tmpa_int { #1 }
+    \int_mod:nn { \l_tmpa_int } { \seq_count:N \l__palette_work_seq }
+    \int_compare:nNnTF { \l_tmpa_int } < { 0 }
+      { \int_add:Nn \l_tmpa_int { \seq_count:N \l__palette_work_seq } }
+      { }
+
+    \int_step_inline:nn { \l_tmpa_int }
+      {
+        \seq_pop_right:NN \l__palette_work_seq \l_tmpb_tl
+        \seq_put_left:NV \l__palette_work_seq \l_tmpb_tl
       }
   }
 
-% ============================================
+\cs_new_protected:Nn \palette_to:n
+  {
+    \palette_new:n { #1 }
+    \seq_map_inline:Nn \l__palette_work_seq
+      { \palette_add_color:nn { #1 } { ##1 } }
+  }
+
+% =================================================
 % INTERFACE UTILISATEUR
-% ============================================
+% =================================================
 
-\NewDocumentCommand \paletteNew { m }
-  { \palette_new:n { #1 } }
+\NewDocumentCommand \palCreate { m m }
+  { \palette_create:nn { #1 } { #2 } }
 
-\NewDocumentCommand \paletteAddColor { m m }
-  { \palette_add_color:nn { #1 } { #2 } }
+\NewDocumentCommand \paletteFrom { m }
+  { \palette_from:n { #1 } }
 
-\NewDocumentCommand \paletteCount { m }
-  { \palette_count:n { #1 } }
+\NewDocumentCommand \paletteReverse { }
+  { \palette_reverse: }
 
-\NewDocumentCommand \paletteGetColor { m m }
-  { \palette_get_color:nn { #1 } { #2 } }
+\NewDocumentCommand \paletteSelect { m }
+  { \palette_select:n { #1 } }
 
-\NewDocumentCommand \paletteDefineColor { m m m }
-  { \palette_define_xcolor:nnn { #1 } { #2 } { #3 } }
+\NewDocumentCommand \paletteShift { m }
+  { \palette_shift:n { #1 } }
 
-\NewDocumentCommand \paletteColor { m m }
-  { \palette_use_color:nn { #1 } { #2 } }
+\NewDocumentCommand \paletteTo { m }
+  { \palette_to:n { #1 } }
 
-\NewDocumentCommand \paletteMap { m m }
-  { \palette_map:nn { #1 } { #2 } }
+% ⚠️ CORRECTION CRITIQUE ICI
+\NewExpandableDocumentCommand \palUse { m m }
+  { color=\palette_get_color_name:nn { #1 } { #2 } }
 
 \ExplSyntaxOff
 
-% ============================================
-% EXEMPLE D'UTILISATION
-% ============================================
+% =================================================
+% EXEMPLE
+% =================================================
 
 \begin{document}
 
-% Créer palette "Blackbody"
-\paletteNew{Blackbody}
-\paletteAddColor{Blackbody}{0.0, 0.0, 0.0}
-\paletteAddColor{Blackbody}{0.4, 0.0, 0.2}
-\paletteAddColor{Blackbody}{0.8, 0.2, 0.0}
-\paletteAddColor{Blackbody}{1.0, 0.6, 0.0}
-\paletteAddColor{Blackbody}{1.0, 1.0, 0.4}
-\paletteAddColor{Blackbody}{1.0, 1.0, 1.0}
+\palCreate{Blackbody}{
+ {0,0,0},
+ {0.4,0,0.2},
+ {0.8,0.2,0},
+ {1,0.6,0},
+ {1,1,0.4},
+ {1,1,1}
+}
 
-% Créer palette "Ocean"
-\paletteNew{Ocean}
-\paletteAddColor{Ocean}{0.0, 0.1, 0.3}
-\paletteAddColor{Ocean}{0.0, 0.3, 0.6}
-\paletteAddColor{Ocean}{0.2, 0.5, 0.8}
-\paletteAddColor{Ocean}{0.5, 0.7, 0.9}
-\paletteAddColor{Ocean}{0.8, 0.9, 1.0}
-
-\section*{Démonstration des palettes}
-
-\subsection*{Palette Blackbody}
-Nombre de couleurs : \paletteCount{Blackbody}
-
-\bigskip
-
-% Afficher toutes les couleurs
-\paletteMap{Blackbody}{\rule{2cm}{1cm}\quad}
-
-\bigskip
-
-% Utilisation dans du texte
-{\paletteColor{Blackbody}{1} Noir} \quad
-{\paletteColor{Blackbody}{3} Rouge-orangé} \quad
-{\paletteColor{Blackbody}{5} Jaune pâle} \quad
-{\paletteColor{Blackbody}{6} Blanc}
-
-\subsection*{Palette Ocean}
-Nombre de couleurs : \paletteCount{Ocean}
-
-\bigskip
-
-\paletteMap{Ocean}{\rule{2cm}{1cm}\quad}
-
-\subsection*{Définir des couleurs nommées}
-
-% Créer des couleurs xcolor depuis la palette
-\paletteDefineColor{myred}{Blackbody}{3}
-\paletteDefineColor{myblue}{Ocean}{3}
-
-\textcolor{myred}{Texte en rouge} et \textcolor{myblue}{texte en bleu}.
-
-\subsection*{Accès direct aux valeurs RGB}
-
-La couleur 2 de Blackbody a les valeurs RGB : \paletteGetColor{Blackbody}{2}
-
-\subsection*{Utilisation avec TikZ}
-
-% Définir toutes les couleurs Blackbody pour TikZ
-\paletteDefineColor{bb1}{Blackbody}{1}
-\paletteDefineColor{bb2}{Blackbody}{2}
-\paletteDefineColor{bb3}{Blackbody}{3}
-\paletteDefineColor{bb4}{Blackbody}{4}
-\paletteDefineColor{bb5}{Blackbody}{5}
-\paletteDefineColor{bb6}{Blackbody}{6}
-
-% Définir les couleurs Ocean
-\paletteDefineColor{ocean1}{Ocean}{1}
-\paletteDefineColor{ocean2}{Ocean}{2}
-\paletteDefineColor{ocean3}{Ocean}{3}
-\paletteDefineColor{ocean4}{Ocean}{4}
-\paletteDefineColor{ocean5}{Ocean}{5}
-
-\bigskip
+\paletteFrom{Blackbody}
+  \paletteReverse
+  \paletteSelect{2,3,4}
+  \paletteShift{1}
+\paletteTo{BlackbodyCustom}
 
 \begin{tikzpicture}
-  % Gradient Blackbody
-  \foreach \i in {1,...,6} {
-    \fill[bb\i] (\i-1,0) rectangle (\i,1);
-  }
-  \node at (3,-0.5) {Palette Blackbody};
-  
-  % Gradient Ocean
-  \foreach \i in {1,...,5} {
-    \fill[ocean\i] (\i-1,2) rectangle (\i,3);
-  }
-  \node at (2.5,1.5) {Palette Ocean};
-  
-  % Cercles colorés
-  \foreach \i in {1,...,6} {
-    \fill[bb\i] (7+\i*0.7, 0.5) circle (0.3);
-  }
-  
-  \foreach \i in {1,...,5} {
-    \fill[ocean\i] (7+\i*0.7, 2.5) circle (0.3);
-  }
+\foreach \i in {1,...,3}
+  \fill[\palUse{BlackbodyCustom}{\i}] (\i,0) rectangle ++(1,1);
 \end{tikzpicture}
-
-\bigskip
-
-\textbf{Note :} Les couleurs définies avec \texttt{\textbackslash paletteDefineColor} sont de vraies couleurs xcolor créées via \texttt{\textbackslash definecolor}, utilisables partout (TikZ, \texttt{\textbackslash textcolor}, backgrounds, etc.).
 
 \end{document}
