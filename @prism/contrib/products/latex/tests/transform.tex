@@ -1,128 +1,8 @@
 \documentclass{article}
-\usepackage{xcolor}
-\usepackage{expl3}
+\usepackage[svgnames]{xcolor}
 \usepackage{tikz}
 
-\ExplSyntaxOn
-
-% ============================================
-% DÉFINITION DU SYSTÈME DE PALETTES
-% ============================================
-
-% Créer une nouvelle palette
-\cs_new_protected:Nn \palette_new:n
-  {
-    \seq_new:c { g_palette_#1_seq }
-  }
-
-% Ajouter une couleur RGB à une palette
-\cs_new_protected:Nn \palette_add_color:nn
-  {
-    \seq_gput_right:cn { g_palette_#1_seq } { #2 }
-    % Définir automatiquement la couleur avec un nom standard
-    \int_set:Nn \l_tmpa_int { \seq_count:c { g_palette_#1_seq } }
-    \definecolor{palette@#1@\int_use:N\l_tmpa_int}{rgb}{#2}
-  }
-
-% Ajouter plusieurs couleurs d'un coup (liste CSV)
-\cs_new_protected:Nn \palette_add_colors:nn
-  {
-    \clist_map_inline:nn { #2 }
-      {
-        \palette_add_color:nn { #1 } { ##1 }
-      }
-  }
-
-% Créer une palette avec toutes ses couleurs en une seule commande
-\cs_new_protected:Nn \palette_create:nn
-  {
-    \palette_new:n { #1 }
-    \palette_add_colors:nn { #1 } { #2 }
-  }
-
-% Obtenir le nombre de couleurs
-\cs_new:Nn \palette_count:n
-  {
-    \seq_count:c { g_palette_#1_seq }
-  }
-
-% Obtenir une couleur par index
-\cs_new:Nn \palette_get_color:nn
-  {
-    \seq_item:cn { g_palette_#1_seq } { #2 }
-  }
-
-% Obtenir le NOM d'une couleur (expandable, pour TikZ)
-\cs_new:Nn \palette_get_color_name:nn
-  {
-    palette@#1@#2
-  }
-
-% Définir une couleur xcolor depuis une palette
-\cs_new_protected:Nn \palette_define_xcolor:nnn
-  {
-    \definecolor{#1}{rgb}{\seq_item:cn{g_palette_#2_seq}{#3}}
-  }
-
-% Utiliser directement une couleur
-\cs_new_protected:Nn \palette_use_color:nn
-  {
-    \color{palette@#1@#2}
-  }
-
-% Boucle sur toutes les couleurs d'une palette
-\cs_new_protected:Nn \palette_map:nn
-  {
-    \int_step_inline:nn { \palette_count:n { #1 } }
-      {
-        \group_begin:
-        \color{palette@#1@##1}
-        #2
-        \group_end:
-      }
-  }
-
-% ============================================
-% INTERFACE UTILISATEUR
-% ============================================
-
-\NewDocumentCommand \paletteNew { m }
-  { \palette_new:n { #1 } }
-
-\NewDocumentCommand \paletteAddColor { m m }
-  { \palette_add_color:nn { #1 } { #2 } }
-
-\NewDocumentCommand \paletteAddColors { m m }
-  { \palette_add_colors:nn { #1 } { #2 } }
-
-\NewDocumentCommand \palCreate { m m }
-  { \palette_create:nn { #1 } { #2 } }
-
-\NewDocumentCommand \paletteCount { m }
-  { \palette_count:n { #1 } }
-
-\NewDocumentCommand \paletteGetColor { m m }
-  { \palette_get_color:nn { #1 } { #2 } }
-
-\NewDocumentCommand \palDefineColor { m m m }
-  { \palette_define_xcolor:nnn { #1 } { #2 } { #3 } }
-
-\NewDocumentCommand \palColor { m m }
-  { \palette_use_color:nn { #1 } { #2 } }
-
-\NewDocumentCommand \paletteMap { m m }
-  { \palette_map:nn { #1 } { #2 } }
-
-\NewExpandableDocumentCommand \palUse { m m }
-  { \palette_get_color_name:nn { #1 } { #2 } }
-
-\ExplSyntaxOff
-
-% ============================================
-% EXEMPLE D'UTILISATION
-% ============================================
-
-\begin{document}
+\usepackage{palapi}
 
 % ===== MÉTHODE PRINCIPALE : \palCreate =====
 % Une seule commande pour créer une palette complète !
@@ -130,11 +10,11 @@
 \newcommand\myname{Blackbody}
 
 \palCreate{\myname}{
-  {0.0, 0.0, 0.0}, 
-  {0.4, 0.0, 0.2}, 
-  {0.8, 0.2, 0.0}, 
-  {1.0, 0.6, 0.0}, 
-  {1.0, 1.0, 0.4}, 
+  {0.0, 0.0, 0.0},
+  {0.4, 0.0, 0.2},
+  {0.8, 0.2, 0.0},
+  {1.0, 0.6, 0.0},
+  {1.0, 1.0, 0.4},
   {1.0, 1.0, 1.0}
 }
 
@@ -153,138 +33,248 @@
 }
 
 % Alternative : ajouter des couleurs après coup
-% \paletteAddColor{Sunset}{1.0, 0.9, 0.6}
+\paletteAddColor{Sunset}{1.0, 0.9, 0.6}
 
-\section*{Démonstration des palettes}
 
-\subsection*{Création simple}
+% ============================================
+% EXEMPLE D'UTILISATION
+% ============================================
 
-\textbf{Syntaxe principale :}
+\begin{document}
 
-\texttt{\textbackslash paletteCreate\{NomPalette\}\{\{r,g,b\}, \{r,g,b\}, ...\}}
+\section*{Nouvelles fonctionnalités du système de palettes}
 
-\bigskip
+% ===== 1. Créer une palette depuis des RGB =====
+\subsection*{1. Palette classique (RGB)}
 
-Exemple :
-\begin{verbatim}
-\palCreate{Ocean}{
-  {0.0, 0.1, 0.3},
-  {0.0, 0.3, 0.6},
-  {0.2, 0.5, 0.8}
+\palCreate{Blackbody}{
+  {0.0, 0.0, 0.0}, 
+  {0.4, 0.0, 0.2}, 
+  {0.8, 0.2, 0.0}, 
+  {1.0, 0.6, 0.0}, 
+  {1.0, 1.0, 0.4}, 
+  {1.0, 1.0, 1.0}
 }
-\end{verbatim}
 
-\subsection*{Palette Blackbody}
 Nombre de couleurs : \paletteCount{Blackbody}
 
 \bigskip
-
-% Afficher toutes les couleurs
 \paletteMap{Blackbody}{\rule{2cm}{1cm}\quad}
 
-\bigskip
+% ===== 2. Créer une palette depuis des noms de couleurs =====
+\subsection*{2. \textbackslash palCreateFromNames : Palette depuis noms xcolor}
 
-% Utilisation dans du texte
-{\palColor{Blackbody}{1} Noir} \quad
-{\palColor{Blackbody}{3} Rouge-orangé} \quad
-{\palColor{Blackbody}{5} Jaune pâle} \quad
-{\palColor{Blackbody}{6} Blanc}
-
-\subsection*{Palette Ocean}
-Nombre de couleurs : \paletteCount{Ocean}
+\textbf{Syntaxe :} \texttt{\textbackslash palCreateFromNames\{Nom\}\{color1, color2, ...\}}
 
 \bigskip
 
-\paletteMap{Ocean}{\rule{2cm}{1cm}\quad}
+\begin{verbatim}
+\palCreateFromNames{Traffic}{red, orange, yellow, green, blue}
+\end{verbatim}
 
-\subsection*{Palette Sunset}
-Nombre de couleurs : \paletteCount{Sunset}
+\palCreateFromNames{Traffic}{red, orange, yellow, green, blue}
+
+Nombre de couleurs : \paletteCount{Traffic}
+
+\bigskip
+\paletteMap{Traffic}{\rule{2cm}{1cm}\quad}
 
 \bigskip
 
-\paletteMap{Sunset}{\rule{2cm}{1cm}\quad}
+Autre exemple avec couleurs prédéfinies :
+\begin{verbatim}
+\palCreateFromNames{Nature}{
+  OliveGreen, ForestGreen, LimeGreen, 
+  YellowGreen, SpringGreen
+}
+\end{verbatim}
 
-\subsection*{Définir des couleurs nommées}
-
-% Créer des couleurs xcolor depuis la palette
-\palDefineColor{myred}{Blackbody}{3}
-\palDefineColor{myblue}{Ocean}{3}
-
-\textcolor{myred}{Texte en rouge} et \textcolor{myblue}{texte en bleu}.
-
-\subsection*{Accès direct aux valeurs RGB}
-
-La couleur 2 de Blackbody a les valeurs RGB : \paletteGetColor{Blackbody}{2}
-
-\subsection*{Utilisation avec TikZ}
-
-% Méthode 1 : Définir des couleurs nommées personnalisées
-\palDefineColor{bb1}{Blackbody}{1}
-\palDefineColor{bb2}{Blackbody}{2}
-\palDefineColor{bb3}{Blackbody}{3}
-\palDefineColor{bb4}{Blackbody}{4}
-\palDefineColor{bb5}{Blackbody}{5}
-\palDefineColor{bb6}{Blackbody}{6}
+\palCreateFromNames{Nature}{OliveGreen, ForestGreen, LimeGreen, YellowGreen, SpringGreen}
 
 \bigskip
+\paletteMap{Nature}{\rule{2cm}{1cm}\quad}
+
+% ===== 3. Extraire des couleurs =====
+\subsection*{3. \textbackslash palExtract : Extraire des couleurs}
+
+\textbf{Syntaxe :} \texttt{\textbackslash palExtract\{NouvelleP.\}\{SourceP.\}\{indices\}}
+
+\bigskip
+
+Extraire les couleurs 1, 3 et 5 de Blackbody :
+\begin{verbatim}
+\palExtract{WarmColors}{Blackbody}{1, 3, 5}
+\end{verbatim}
+
+\palExtract{WarmColors}{Blackbody}{1, 3, 5}
+
+Nombre de couleurs : \paletteCount{WarmColors}
+
+\bigskip
+\paletteMap{WarmColors}{\rule{2cm}{1cm}\quad}
+
+\bigskip
+
+Extraire les couleurs paires de Traffic :
+\begin{verbatim}
+\palExtract{EvenTraffic}{Traffic}{2, 4}
+\end{verbatim}
+
+\palExtract{EvenTraffic}{Traffic}{2, 4}
+
+\bigskip
+\paletteMap{EvenTraffic}{\rule{2cm}{1cm}\quad}
+
+% ===== 4. Décalage circulaire =====
+\subsection*{4. \textbackslash palShift : Décalage circulaire}
+
+\textbf{Syntaxe :} \texttt{\textbackslash palShift\{Palette\}\{n\}}
+
+\quad (n > 0 : décalage droite ; n < 0 : décalage gauche)
+
+\bigskip
+
+\textbf{Palette originale Traffic :}
+
+\paletteMap{Traffic}{\rule{1.5cm}{1cm}\quad}
+
+\bigskip
+
+Décaler de 2 positions vers la droite :
+\begin{verbatim}
+\palCreate{TrafficShift2}{...copie de Traffic...}
+\palShift{TrafficShift2}{2}
+\end{verbatim}
+
+\palCreateFromNames{TrafficShift2}{red, orange, yellow, green, blue}
+\palShift{TrafficShift2}{2}
+
+\paletteMap{TrafficShift2}{\rule{1.5cm}{1cm}\quad}
+
+\bigskip
+
+Décaler de 2 positions vers la gauche :
+\begin{verbatim}
+\palCreate{TrafficShiftM2}{...copie de Traffic...}
+\palShift{TrafficShiftM2}{-2}
+\end{verbatim}
+
+\palCreateFromNames{TrafficShiftM2}{red, orange, yellow, green, blue}
+\palShift{TrafficShiftM2}{-2}
+
+\paletteMap{TrafficShiftM2}{\rule{1.5cm}{1cm}\quad}
+
+% ===== 5. Inverser l'ordre =====
+\subsection*{5. \textbackslash palReverse : Inverser l'ordre}
+
+\textbf{Syntaxe :} \texttt{\textbackslash palReverse\{Palette\}}
+
+\bigskip
+
+\textbf{Blackbody original :}
+
+\paletteMap{Blackbody}{\rule{1.5cm}{1cm}\quad}
+
+\bigskip
+
+Inverser Blackbody :
+\begin{verbatim}
+\palCreate{BlackbodyRev}{
+  {0.0, 0.0, 0.0}, {0.4, 0.0, 0.2}, {0.8, 0.2, 0.0}, 
+  {1.0, 0.6, 0.0}, {1.0, 1.0, 0.4}, {1.0, 1.0, 1.0}
+}
+\palReverse{BlackbodyRev}
+\end{verbatim}
+
+\palCreate{BlackbodyRev}{
+  {0.0, 0.0, 0.0}, 
+  {0.4, 0.0, 0.2}, 
+  {0.8, 0.2, 0.0}, 
+  {1.0, 0.6, 0.0}, 
+  {1.0, 1.0, 0.4}, 
+  {1.0, 1.0, 1.0}
+}
+\palReverse{BlackbodyRev}
+
+\paletteMap{BlackbodyRev}{\rule{1.5cm}{1cm}\quad}
+
+% ===== 6. Utilisation avec TikZ =====
+\subsection*{6. Utilisation avec TikZ}
 
 \begin{tikzpicture}
-  % Rectangles Blackbody avec noms personnalisés
-  \foreach \i in {1,...,6} {
-    \fill[bb\i] (\i-1,0) rectangle (\i,1);
-  }
-  \node at (3,-0.5) {Blackbody (noms personnalisés)};
-  
-  % Rectangles Ocean avec \palUse
+  % Palette Traffic originale
   \foreach \i in {1,...,5} {
-    \fill[\palUse{Ocean}{\i}] (\i-1,2) rectangle (\i,3);
+    \fill[\palUse{Traffic}{\i}] (\i-1,0) rectangle (\i,1);
   }
-  \node at (2.5,1.5) {Ocean (\textbackslash paletteColorName)};
+  \node[anchor=west] at (5.2,0.5) {Traffic};
   
-  % Rectangles Sunset
-  \foreach \i in {1,...,3} {
-    \fill[\palUse{Sunset}{\i}] (\i-1+1.5,4) rectangle (\i+1.5,5);
-  }
-  \node at (2.5,3.5) {Sunset};
-  
-  % Cercles Blackbody
-  \foreach \i in {1,...,6} {
-    \fill[\palUse{Blackbody}{\i}] (7+\i*0.7, 0.5) circle (0.3);
-  }
-  
-  % Cercles Ocean
+  % Palette Traffic décalée
   \foreach \i in {1,...,5} {
-    \fill[\palUse{Ocean}{\i}] (7+\i*0.7, 2.5) circle (0.3);
+    \fill[\palUse{TrafficShift2}{\i}] (\i-1,1.5) rectangle (\i,2.5);
   }
+  \node[anchor=west] at (5.2,2) {Traffic shift +2};
   
-  % Cercles Sunset
-  \foreach \i in {1,...,3} {
-    \fill[\palUse{Sunset}{\i}] (8.5+\i*0.7, 4.5) circle (0.3);
+  % Palette BlackbodyRev
+  \foreach \i in {1,...,6} {
+    \fill[\palUse{BlackbodyRev}{\i}] (\i-1,3) rectangle (\i,4);
   }
+  \node[anchor=west] at (6.2,3.5) {Blackbody inversé};
+  
+  % Palette WarmColors
+  \foreach \i in {1,...,3} {
+    \fill[\palUse{WarmColors}{\i}] (\i-1+1.5,4.5) rectangle (\i+1.5,5.5);
+  }
+  \node[anchor=west] at (4.7,5) {WarmColors (extrait)};
 \end{tikzpicture}
 
-\bigskip
+% ===== 7. Combinaisons avancées =====
+\subsection*{7. Combinaisons avancées}
+
+Créer une palette, l'inverser, puis extraire certaines couleurs :
+
+\begin{verbatim}
+\palCreateFromNames{Rainbow}{
+  red, orange, yellow, green, cyan, blue, violet
+}
+\palReverse{Rainbow}
+\palExtract{CoolRainbow}{Rainbow}{1, 3, 5, 7}
+\end{verbatim}
+
+\palCreateFromNames{Rainbow}{red, orange, yellow, green, cyan, blue, violet}
+\palReverse{Rainbow}
+\palExtract{CoolRainbow}{Rainbow}{1, 3, 5, 7}
 
 \bigskip
 
-\textbf{Création de palettes :}
-
-\texttt{\textbackslash paletteCreate\{Nom\}\{\{r,g,b\}, \{r,g,b\}, ...\}} - Méthode recommandée
+\textbf{Rainbow inversé :} \paletteMap{Rainbow}{\rule{1.2cm}{0.8cm}\quad}
 
 \bigskip
 
-\textbf{Utilisation des couleurs :}
+\textbf{CoolRainbow (extrait) :} \paletteMap{CoolRainbow}{\rule{1.5cm}{0.8cm}\quad}
+
+% ===== Résumé des commandes =====
+\section*{Résumé des commandes}
+
+\subsection*{Création de palettes}
 \begin{itemize}
-\item Dans du texte : \texttt{\{\textbackslash paletteColor\{Nom\}\{index\} Texte\}}
-\item Dans TikZ : \texttt{\textbackslash fill[\textbackslash paletteColorName\{Nom\}\{index\}] ...}
-\item Nommée : \texttt{\textbackslash paletteDefineColor\{mycolor\}\{Nom\}\{index\}}
+\item \texttt{\textbackslash palCreate\{Nom\}\{\{r,g,b\}, ...\}} : depuis RGB
+\item \texttt{\textbackslash palCreateFromNames\{Nom\}\{color1, ...\}} : depuis noms xcolor
 \end{itemize}
 
-\textbf{Commandes avancées :}
+\subsection*{Manipulation de palettes}
 \begin{itemize}
-\item \texttt{\textbackslash paletteAddColor\{Nom\}\{r,g,b\}} : Ajouter une couleur
-\item \texttt{\textbackslash paletteCount\{Nom\}} : Nombre de couleurs
-\item \texttt{\textbackslash paletteMap\{Nom\}\{code\}} : Boucle sur toutes les couleurs
+\item \texttt{\textbackslash palExtract\{Nouvelle\}\{Source\}\{indices\}} : extraire couleurs
+\item \texttt{\textbackslash palShift\{Nom\}\{n\}} : décalage circulaire
+\item \texttt{\textbackslash palReverse\{Nom\}} : inverser l'ordre
+\end{itemize}
+
+\subsection*{Utilisation}
+\begin{itemize}
+\item \texttt{\{\textbackslash palColor\{Nom\}\{i\} Texte\}} : dans du texte
+\item \texttt{\textbackslash fill[\textbackslash palUse\{Nom\}\{i\}] ...} : dans TikZ
+\item \texttt{\textbackslash palDefineColor\{mycolor\}\{Nom\}\{i\}} : nommer une couleur
+\item \texttt{\textbackslash paletteCount\{Nom\}} : nombre de couleurs
+\item \texttt{\textbackslash paletteMap\{Nom\}\{code\}} : boucle sur les couleurs
 \end{itemize}
 
 \end{document}
