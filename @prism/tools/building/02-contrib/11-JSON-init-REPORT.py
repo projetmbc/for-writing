@@ -123,12 +123,16 @@ def extract_renamed(choices: dict) -> [str]:
         return dict()
 
 # Get suffixes.
-    if '_suffixes' in choices:
-        suffixes = choices['_suffixes']
-        del choices['_suffixes']
+    if not '_suffixes' in choices:
+        log_raise_error(
+            context   = "Renaming palettes",
+            desc      = "No suffix in YAML file (huan choices).",
+            exception = ValueError,
+            xtra      = f"\nSee: {HUMAN_RENAMING_FILE}",
+        )
 
-    else:
-        suffixes = dict()
+    suffixes = choices['_suffixes']
+    del choices['_suffixes']
 
     renames = dict()
 
@@ -136,14 +140,35 @@ def extract_renamed(choices: dict) -> [str]:
         choices,
         key = lambda x: x.lower()
     ):
-        suf = suffixes[ctxt]
+        try:
+            suf = suffixes[ctxt]
+
+        except KeyError as e:
+            log_raise_error(
+                context   = "Renaming palettes",
+                desc      = f"Missing '{ctxt}' suffix in YAML file (human choices).",
+                exception = ValueError,
+                xtra      = f"\nSee: {HUMAN_RENAMING_FILE}",
+            )
 
         for old, new in choices[ctxt].items():
             if new == '.':
                 new = f"{old}{suf}"
 
+            elif new[-1] == "*" and not '*' in new[:-1]:
+                new = f"{new[:-1]}{suf}"
+
             else:
-                new = new.replace('*', suf)
+                log_raise_error(
+                    context   = "Renaming palettes",
+                    desc      = (
+                        f"Bad '{ctxt}' renaming def in YAML file "
+                        f"(human choices): '{old}: {new}' used."
+                    ),
+                    exception = ValueError,
+                    xtra      = f"\nSee : {HUMAN_RENAMING_FILE}",
+                )
+
 
             renames[namectxt(old, ctxt)] = new
 
