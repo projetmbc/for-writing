@@ -102,7 +102,7 @@ Palettes: all final palettes are made up of 10 colors (for CSS or charts with ma
 -----
 
 [[:doc:]]
-\Pdf \doc: automatic integration of \prod \doc in ext::''MD'' format into the \latex \doc.
+\Pdf \doc: automatic integration of product \doc in ext::''MD'' format into the \latex \doc.
 
 
 --------
@@ -110,7 +110,7 @@ Palettes: all final palettes are made up of 10 colors (for CSS or charts with ma
 --------
 
 [[:api:]]
-\luadraw \prod: the ''getPal'' \func has a new optional \arg ''options'' which is a \dict like array. Here are the keys added.
+\luadraw product: the ''getPal'' \func has a new optional \arg ''options'' which is a \dict like array. Here are the keys added.
 
     + The ''extract'' key, with a list of non-zero integers, extracts some colors from the palette without changing their order.
 
@@ -225,7 +225,7 @@ Showcase: a PDF file presents each palette used with examples.
 --------
 
 [[:api:]]
-\luadraw \prod: the lua::''getPal'' \dict array is now a \func that accepts string palette names with or without the lua::''pal'' prefix.
+\luadraw product: the lua::''getPal'' \dict array is now a \func that accepts string palette names with or without the lua::''pal'' prefix.
 
 
 // ---------- //

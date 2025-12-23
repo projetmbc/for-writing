@@ -1,2 +1,2 @@
-ONE-TECHNO palettes
-===================
+ONE-TECHNO
+==========

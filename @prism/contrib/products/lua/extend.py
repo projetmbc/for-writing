@@ -26,20 +26,20 @@ PaletteCols:TypeAlias = list[RGBCols]
 
 ###
 # prototype::
-#     code : a standard ''luadraw'' definition of a palette (see the
-#            fake example below).
+#     code : a RGB ''lua'' palette definition of a palette (see the fake
+#            example below).
 #
 #     :return: a list of lists of 3 floats belonging to `[0, 1]` that
 #              will be used to produce the "universal" ''JSON'' version
 #              of the palette.
 #
 #
-# A standard ''luadraw'' palette looks like this.
+# A RGB ''lua'' palette definition looks like this.
 #
 # lua::
 #     PALETTE = {
-#       {0.498039, 0.788235, 0.498039},
-#       {0.690196, 0.705881, 0.757298},
+#       {0.3922, 0.5843, 0.9294},
+#       {0.5294, 0.8078, 0.9804},
 #       ...
 #     }
 ###
@@ -57,7 +57,7 @@ def parse(code: str) -> PaletteCols:
     )
 
     if not match:
-        raise ValueError("No table PALETTE found.")
+        raise ValueError("No lua PALETTE definition found.")
 
     palette = match.group(1)
 
@@ -97,11 +97,9 @@ def build_code(
     credits : str,
     palettes: dict[str, PaletteCols]
 ) -> str:
-# Credits.
     code = []
 
-    code_dict = []
-
+# Credits.
     credits = credits.split("\n")
 
     maxlen = max(map(len, credits))
@@ -150,7 +148,7 @@ def build_code(
 
     code.append(api_code)
 
-# Extra code because no getPal inside luadraw...
+# Extra code just for luadraw... This will be removed later!
     all_names = sorted(palettes, key = lambda x: x.lower())
     all_names = [f'"pal{n}"' for n in all_names]
     all_names = ",\n    ".join(all_names)
@@ -184,7 +182,7 @@ end
 if __name__ == "__main__":
 # Code to parse.
     code = r"""
--- ludraw definition used.
+-- luadraw definition used.
 
 -- PALETTE = {
 --   Gray,

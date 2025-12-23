@@ -240,7 +240,7 @@ Here are the small important additions.
 
         + Explanations added about the fixed numbers of colors of the final \prod and the number of colors used when creating new palettes.
 
-    1) \luadraw \product \readme: caution added about the specifi lua::''getPal'' function.
+    1) \luadraw product \readme: caution added about the specifi lua::''getPal'' function.
 
 
 --------

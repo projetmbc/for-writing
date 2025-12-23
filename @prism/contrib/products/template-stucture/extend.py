@@ -45,7 +45,7 @@ PALETTES_FILE_NAME = "..."
 #     credits  : the credits to the ''@prism'' project that should
 #                be added as a comment at the beginning of the final
 #                product code.
-#     palettes : the dictionnary of all the palettes.
+#     palettes : the ''Python'' dictionnary of all the palettes.
 #
 #     :return: the code of the final product with all the palettes
 #              ready to be used.
