@@ -30,7 +30,10 @@
 
 \cs_new_protected:Nn \palette_create_from_rgb:nn {
   \palette_new:n { #1 }
-  \palette_add_colors:nn { #1 } { #2 }
+
+  \clist_map_inline:nn { #2 }{
+    \palette_add_color:nn { #1 } { ##1 }
+  }
 }
 
 % \extractcolorspecs{color}{model-cmd}{color-cmd}
@@ -43,11 +46,21 @@
 
   \clist_map_inline:nn { #2 }{
     \group_begin:
-      \extractcolorspecs{##1}{\YYY}{\XXX}
-      \convertcolorspec{\YYY}{\XXX}{rgb}{\ZZZZ}
-      \tl_gset:Nx \g_tmpa_tl { \ZZZZ }
+      \extractcolorspecs
+        { ##1 }
+        { \@pal@model@ }
+        { \@pal@col@spec@}
+
+      \convertcolorspec
+        { \@pal@model@ }
+        { \@pal@col@spec@ }
+        { rgb }
+        { \@rgb@xcolor@ }
+
+      \tl_gset:Nx \g_tmpa_tl { \@rgb@xcolor@ }
     \group_end:
-    \palette_add_color:nn { #1 } { \g_tmpa_tl }
+
+    \exp_args:NnV \palette_add_color:nn { #1 } { \g_tmpa_tl }
   }
 }
 
@@ -56,15 +69,11 @@
 }
 
 
-\cs_new_protected:Nn \palette_add_colors:nn {
-  \clist_map_inline:nn { #2 }{
-    \palette_add_color:nn { #1 } { ##1 }
-  }
-}
 
 \cs_new_protected:Nn \palette_add_color:nn {
   \seq_gput_right:cn { g_palette_#1_seq }{ #2 }
 
+  \seq_show:c { g_palette_#1_seq }
   \int_set:Nn \l_tmpa_int {
     \seq_count:c { g_palette_#1_seq }
   }
