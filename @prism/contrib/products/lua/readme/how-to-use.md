@@ -1,6 +1,8 @@
 Use a Lua palette
 -----------------
 
+#### Simple use
+
 <!--YAML
 inlinecode:
   lua:
@@ -19,7 +21,8 @@ The `Lua` palette names all use the prefix `pal` followed by the name available 
   * `getPal('GistHeat')` and `getPal('palGistHeat')` are equal to `palGistHeat`.
 
 
-> ***NOTE.*** *The `Lua` palette variables are arrays of arrays of three floats. The definition of `palGistHeat` looks like the following partial code.*
+The `Lua` palette variables are arrays of ten arrays of three floats (making it straightforward to use a color from a palette).
+For example, the definition of `palGistHeat` looks like the following partial code.
 
 ~~~lua
 palGistHeat = {
@@ -30,6 +33,8 @@ palGistHeat = {
 }
 ~~~
 
+
+#### Building new palettes from existing ones
 
 <!--YAML
 inlinecode:
@@ -42,7 +47,7 @@ inlinecode:
     - mypal = {coul_2, coul_9, coul_8, coul_5}
 -->
 
-The `getPal` function has some options. To explain how this works, let's consider the following use case.
+The `getPal` function has several options to easily build new palettes. To illustrate how this works, consider the following use case.
 
 ~~~lua
 mypal = getPal(
@@ -55,13 +60,10 @@ mypal = getPal(
 )
 ~~~
 
-To simplify the explanations, we will refer to the colors
-in the standard palette `'GistHeat'` as `coul_1`, `coul_2`, etc. The options are then **processed in the following order**.
+To simplify the explanations, we will refer to the colors in the standard palette `'GistHeat'` as `coul_1`, `coul_2`, etc. The options are then **processed in the following order**.
 
   1. `{coul_2, coul_5, coul_8, coul_9}` is the result of the extraction.
 
   1. `{coul_9, coul_2, coul_5, coul_8}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).
 
-  1. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted palette.
-
-> ***NOTE.*** *The reversed version of any palette can be obtained using `getPal(palname, {reverse = true})`.*
+  1. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted extracted palette.

@@ -28,6 +28,7 @@ MD_PRE_REPLACEMENTS = {
     '@prism' : r'{\thisproj}',
     'luadraw': r'{\LUADRAW}',
     'TikZ'   : r'{\TIKZ}',
+    'xcolor' : r'{\xcolor}',
 }
 
 MD_PRE_REPLACEMENTS |= {

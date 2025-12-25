@@ -53,6 +53,8 @@ How to propose new palettes? <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decor
 
 For our explanations, we will use the real-world case of the `lua` contribution.
 
+> ***CAUTION.*** *Only the folders `dev` (for creation) and `palettes` (for submission) are used for palette creation. Don't modify any other folders unless you're the maintainer.*
+
 <a id="MULTIMD-TOC-ANCHOR-2"></a>
 ### Folder organization <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 

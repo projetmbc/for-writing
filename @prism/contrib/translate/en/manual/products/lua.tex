@@ -20,6 +20,8 @@
 Initially, the {\thisproj} project was created to provide ready-to-use color palettes for {\LUADRAW}, a package that greatly facilitates the creation of high-quality 2D and 3D plots using {\LuaLaTeX} and {\TIKZ}. The {\lua} implementation is now integrated into {\LUADRAW}.
 \end{tdocnote}
 
+\subsubsection{Simple use}
+
 The {\lua} palette names all use the prefix \tdoccodein{text}+pal+ followed by the name available in the file \tdoccodein{text}+palettes.json+. You can access a palette by two ways.
 
 \begin{itemize}
@@ -30,8 +32,7 @@ The {\lua} palette names all use the prefix \tdoccodein{text}+pal+ followed by t
 \tdoccodein{lua}+getPal('GistHeat')+ and \tdoccodein{lua}+getPal('palGistHeat')+ are equal to \tdoccodein{lua}+palGistHeat+.
 \end{itemize}
 
-\begin{tdocnote}
-The {\lua} palette variables are arrays of arrays of three floats. The definition of \tdoccodein{lua}+palGistHeat+ looks like the following partial code.
+The {\lua} palette variables are arrays of ten arrays of three floats (making it straightforward to use a color from a palette). For example, the definition of \tdoccodein{lua}+palGistHeat+ looks like the following partial code.
 
 \begin{tdoccode}{lua}
 palGistHeat = {
@@ -41,9 +42,10 @@ palGistHeat = {
     -- ... With 7 more RBG colors.
 }
 \end{tdoccode}
-\end{tdocnote}
 
-The \tdoccodein{lua}+getPal+ function has some options. To explain how this works, let's consider the following use case.
+\subsubsection{Building new palettes from existing ones}
+
+The \tdoccodein{lua}+getPal+ function has several options to easily build new palettes. To illustrate how this works, consider the following use case.
 
 \begin{tdoccode}{lua}
 mypal = getPal(
@@ -66,13 +68,9 @@ To simplify the explanations, we will refer to the colors in the standard palett
 \tdoccodein{text}+{coul_9, coul_2, coul_5, coul_8}+ comes from the shifting applied to the extracted palette (colors move to the right if \tdoccodein{text}+shift+ is positive).
 
 \item
-\tdoccodein{text}+{coul_8, coul_5, coul_2, coul_9}+ is the reversed version of the shifted palette.
+\tdoccodein{text}+{coul_8, coul_5, coul_2, coul_9}+ is the reversed version of the shifted extracted palette.
 
 \end{enumerate}
-
-\begin{tdocnote}
-The reversed version of any palette can be obtained using \tdoccodein{lua}+getPal(palname, {reverse = true})+.
-\end{tdocnote}
 
 % -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
 

@@ -1,3 +1,9 @@
+% ----------------------------------------------------------------- %
+% -- File created by the ''@prism'' project, version 1.2.1,      -- %
+% -- which is developed at                                       -- %
+% -- https://github.com/projetmbc/for-writing/tree/main/@prism . -- %
+% ----------------------------------------------------------------- %
+
 % ----------------------------- %
 % -- USE AND CREATE PALETTES -- %
 % ----------------------------- %
@@ -57,6 +63,33 @@
 }
 
 
+%%%
+% prototype::
+%     #1 :
+%
+%     :return:
+%%%
+\NewExpandableDocumentCommand{ \palNew }{ m }{
+  \palette_new:n { #1 }
+}
+
+
+%%%
+% prototype::
+%     #1 :
+%     #2 :
+%
+%     :action:
+%%%
+\NewExpandableDocumentCommand{ \palAddRGB }{ m m }{
+  \palette_add_rgb_color:nn { #1 }{ #2 }
+}
+\NewExpandableDocumentCommand{ \palAddName }{ m m }{
+  \palette_add_name_color:nn { #1 }{ #2 }
+}
+
+
+
 % -- Creation [L3] -- %
 
 %%%
@@ -70,7 +103,7 @@
   \palette_new:n { #1 }
 
   \clist_map_inline:nn { #2 }{
-    \palette_add_color:nn { #1 } { ##1 }
+    \palette_add_rgb_color:nn { #1 } { ##1 }
   }
 }
 
@@ -91,22 +124,7 @@
   \palette_new:n { #1 }
 
   \clist_map_inline:nn { #2 }{
-    \group_begin:
-      \extractcolorspecs
-        { ##1 }
-        { \@pal@model@ }
-        { \@pal@col@spec@}
-
-      \convertcolorspec
-        { \@pal@model@ }
-        { \@pal@col@spec@ }
-        { rgb }
-        { \@rgb@xcolor@ }
-
-      \tl_gset:Nx \g_tmpa_tl { \@rgb@xcolor@ }
-    \group_end:
-
-    \exp_args:NnV \palette_add_color:nn { #1 } { \g_tmpa_tl }
+    \palette_add_name_color:nn { #1 } { ##1 }
   }
 }
 
@@ -123,7 +141,7 @@
 %
 %     :action:
 %%%
-\cs_new_protected:Nn \palette_add_color:nn {
+\cs_new_protected:Nn \palette_add_rgb_color:nn {
   \seq_gput_right:cn { g_palette_#1_seq }{ #2 }
 
   \int_set:Nn \l_tmpa_int {
@@ -134,6 +152,25 @@
               {rgb}{#2}
 }
 
+
+\cs_new_protected:Nn \palette_add_name_color:nn {
+  \group_begin:
+    \extractcolorspecs
+      { #2 }
+      { \@pal@model@ }
+      { \@pal@col@spec@}
+
+    \convertcolorspec
+      { \@pal@model@ }
+      { \@pal@col@spec@ }
+      { rgb }
+      { \@rgb@xcolor@ }
+
+    \tl_gset:Nx \g_tmpa_tl { \@rgb@xcolor@ }
+  \group_end:
+
+  \exp_args:NnV \palette_add_rgb_color:nn { #1 } { \g_tmpa_tl }
+}
 
 %%%
 % prototype::
@@ -149,6 +186,7 @@
 %%%
 % prototype::
 %     #1 :
+%     #2 :
 %
 %     :return:
 %%%

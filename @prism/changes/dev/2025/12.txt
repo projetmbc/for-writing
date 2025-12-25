@@ -10,7 +10,7 @@
 -------
 
 [[:api:]]
-\lua product: removed dict-like \var lua::''palNames''.
+\lua product: removed dict-like \var lua::''palNames''. Therefore, the responsibility of adding this specific \var will lie with \luadraw.
 
 
 // ---------- //

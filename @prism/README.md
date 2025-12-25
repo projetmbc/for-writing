@@ -17,7 +17,12 @@ The @prism project
 - [Supported implementations](#MULTIMD-TOC-ANCHOR-2)
     - [JSON, the versatile default format](#MULTIMD-TOC-ANCHOR-3)
     - [LaTeX](#MULTIMD-TOC-ANCHOR-4)
-    - [Lua](#MULTIMD-TOC-ANCHOR-5)
+        - [Simple use](#MULTIMD-TOC-ANCHOR-5)
+        - [Creating palettes manually](#MULTIMD-TOC-ANCHOR-6)
+        - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-7)
+    - [Lua](#MULTIMD-TOC-ANCHOR-8)
+        - [Simple use](#MULTIMD-TOC-ANCHOR-9)
+        - [Building new palettes from existing ones](#MULTIMD-TOC-ANCHOR-10)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
 About @prism <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -53,11 +58,11 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 Supported implementations <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 -------------------------
 
-All implementations are in the `products` folder. Each implementation provides at least the palette definitions. When supported, you can do the following actions.
+All implementations are located in the `products` folder. Each implementation provides palette definitions and supports the use of a single color. When available, the following actions can be performed to create new palettes:
 
-- Pick specific colors from a palette.
+- Select specific colors from an existing palette.
 - Shift the palette left or right by any number of steps.
-- Reverse the color order.
+- Reverse the order of the colors.
 
 > ***NOTE.*** *Extra features are limited to discrete palette operations. For example, color interpolation is not provided, as this is usually handled out of the box by visualization and formatting tools.*
 
@@ -86,25 +91,136 @@ A `palettes.json` file containing only palette definitions is provided by defaul
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
 ### LaTeX <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
+<a id="MULTIMD-TOC-ANCHOR-5"></a>
+#### Simple use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
+To use a color from a palette, use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
+For example, `\palUse{GistHeat}{8}` is the eighth color of the `GistHeat` palette, an `xcolor` format color that can be easily used as shown in the following example.
+
+~~~latex
+\documentclass{article}
+
+\usepackage{palettes}
+\usepackage{tikz}
+
+\begin{document}
+
+\textcolor{\palUse{GistHeat}{8}}{\bfseries Colored text.}
+
+Representation of the color palette.
+
+\begin{tikzpicture}
+  \foreach \i in {1,...,10} {
+    \fill[\palUse{GistHeat}{\i}]
+      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+  }
+\end{tikzpicture}
+
+\end{document}
+~~~
+<a id="MULTIMD-TOC-ANCHOR-6"></a>
+#### Creating palettes manually <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
+For creating new palettes manually, the following high-level commands are available.
+
+1. `\palSize{<name>}` returns the palette size (useful for loops, for example).
+2. `\palCreateFromRGB` creates a palette by entering it as a `Lua` array, while `\palCreateFromName` works with named colors.
+
+The following example demonstrates these commands.
+
+~~~latex
+\documentclass{article}
+
+\usepackage{palettes}
+\usepackage[dvipsnames, svgnames]{xcolor}
+\usepackage{tikz}
+
+\palCreateFromRGB{MyRGBPal}{
+  {0.0, 0.0, 0.0},
+  {0.4, 0.0, 0.2},
+  {0.8, 0.2, 0.0},
+  {1.0, 0.6, 0.0},
+  {1.0, 1.0, 0.4},
+}
+
+\palCreateFromName{MyNamedPal}{
+  YellowGreen,
+  LimeGreen,
+  green!60!black,
+}
+
+\begin{document}
+
+\foreach \name in {MyRGBPal, MyNamedPal}{
+  \section*{\name}
+
+  \textcolor{\palUse{\name}{3}}{\bfseries Colored text.}
+
+  \bigskip
+
+  \begin{tikzpicture}
+    \foreach \i in {1,...,\palSize{\name}} {
+      \fill[\palUse{\name}{\i}]
+        (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+    }
+  \end{tikzpicture}
+}
+
+\end{document}
+~~~
+
+A lower-level approach is also available through the following commands.
+
+1. `\palNew{<name>}` defines a new (empty) palette.
+2. `\palAddName{<name>}{<color-names>}` appends a color using named colors to the palette.
+3. `\palAddRGB{<name>}{<r>, <g>, <b>}` appends an `RGB` color to the palette, where `<r>`, `<g>`, and `<b>` are decimal values ranging from 0 to 1.
+
+The following example demonstrates the flexibility offered by these low-level commands.
+
+~~~latex
+\documentclass{article}
+
+\usepackage{palettes}
+\usepackage[svgnames]{xcolor}
+\usepackage{tikz}
+
+\palNew{LowLevelPal}
+\palAddName{LowLevelPal}{IndianRed}
+\palAddRGB{LowLevelPal}{0.0, 0.0, 0.0}
+\palAddName{LowLevelPal}{green!60!black}
+\palAddRGB{LowLevelPal}{0.8, 0.2, 0.0}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \foreach \i in {1,...,\palSize{LowLevelPal}} {
+     \fill[\palUse{LowLevelPal}{\i}]
+      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+  }
+\end{tikzpicture}
+
+\end{document}
+~~~
+<a id="MULTIMD-TOC-ANCHOR-7"></a>
+#### Creating palettes from existing ones <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
 TODO
 
-`\palUse{<name>}{<indice>}`
-
-`\palSize{<name>}`
-
-> ***NOTE.*** *`\palCreateFromRGB` `\palCreateFromName`*
-
-<a id="MULTIMD-TOC-ANCHOR-5"></a>
+<a id="MULTIMD-TOC-ANCHOR-8"></a>
 ### Lua <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 > ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use color palettes for [`luadraw`](https://github.com/pfradin/luadraw), a package that greatly facilitates the creation of high-quality 2D and 3D plots using `LuaLaTeX` and `TikZ`. The `Lua` implementation is now integrated into [`luadraw`](https://github.com/pfradin/luadraw).*
+
+<a id="MULTIMD-TOC-ANCHOR-9"></a>
+#### Simple use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
 
 - `palGistHeat` is a `Lua` variable.
 - `getPal('GistHeat')` and `getPal('palGistHeat')` are equal to `palGistHeat`.
 
-> ***NOTE.*** *The `Lua` palette variables are arrays of arrays of three floats. The definition of `palGistHeat` looks like the following partial code.*
+The `Lua` palette variables are arrays of ten arrays of three floats (making it straightforward to use a color from a palette).
+For example, the definition of `palGistHeat` looks like the following partial code.
 
 ~~~lua
 palGistHeat = {
@@ -114,8 +230,10 @@ palGistHeat = {
     -- ... With 7 more RBG colors.
 }
 ~~~
+<a id="MULTIMD-TOC-ANCHOR-10"></a>
+#### Building new palettes from existing ones <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-The `getPal` function has some options. To explain how this works, let's consider the following use case.
+The `getPal` function has several options to easily build new palettes. To illustrate how this works, consider the following use case.
 
 ~~~lua
 mypal = getPal(
@@ -128,11 +246,8 @@ mypal = getPal(
 )
 ~~~
 
-To simplify the explanations, we will refer to the colors
-in the standard palette `'GistHeat'` as `coul_1`, `coul_2`, etc. The options are then **processed in the following order**.
+To simplify the explanations, we will refer to the colors in the standard palette `'GistHeat'` as `coul_1`, `coul_2`, etc. The options are then **processed in the following order**.
 
 1. `{coul_2, coul_5, coul_8, coul_9}` is the result of the extraction.
 2. `{coul_9, coul_2, coul_5, coul_8}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).
-3. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted palette.
-
-> ***NOTE.*** *The reversed version of any palette can be obtained using `getPal(palname, {reverse = true})`.*
+3. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted extracted palette.

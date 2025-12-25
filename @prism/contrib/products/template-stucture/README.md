@@ -9,12 +9,12 @@
 ONE-TECHNO
 ==========
 
-Create a palette using ONE-TECHNO
----------------------------------
+Use a ONE-TECHNO palette
+------------------------
 
 TODO
 
-Use a ONE-TECHNO palette
-------------------------
+Create a palette using ONE-TECHNO
+---------------------------------
 
 TODO

@@ -17,7 +17,8 @@
 \palCreateFromName{PalViaNames}{
   ForestGreen,
   LimeGreen,
-  YellowGreen,
+  Salmon,
+  IndianRed
 }
 
 
@@ -32,7 +33,7 @@ Nombre de couleurs : \palSize{\name}
 
 \bigskip
 
-Texte coloré Via couleur 2 : {\color{\palUse{\name}{2}}\bfseries \name} 
+Texte coloré Via couleur 2 : \textcolor{\palUse{\name}{2}}{\bfseries \name}
 
 \bigskip
 
@@ -48,12 +49,13 @@ Un joli dégradé...
 
 \pgfdeclarehorizontalshading{grad}{100bp}{
   color(0bp)=(\palUse{\name}{1});
-  color(50bp)=(\palUse{\name}{2});
-  color(100bp)=(\palUse{\name}{3})
+  color(40bp)=(\palUse{\name}{2});
+  color(60bp)=(\palUse{\name}{3});
+  color(100bp)=(\palUse{\name}{4})
 }
 
 \begin{tikzpicture}
-    \fill[shading=grad, shading angle=0] 
+    \fill[shading=grad, shading angle=0]
         (0,0) rectangle ++ (10cm,-1cm);
 \end{tikzpicture}
 }

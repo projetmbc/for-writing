@@ -16,15 +16,132 @@
 \subsection{LaTeX}
 \label{products-latex}
 
+\subsubsection{Simple use}
+
+To use a color from a palette, use \tdoccodein{text}+\palUse{<name>}{<index>}+ where \tdoccodein{text}+<name>+ is the standard palette name (without prefix), and \tdoccodein{text}+<index>+ is the color number (ranging from 1 to 10). For example, \tdoccodein{text}+\palUse{GistHeat}{8}+ is the eighth color of the \tdoccodein{text}+GistHeat+ palette, an {\xcolor} format color that can be easily used as shown in the following example.
+
+\begin{tdoccode}{latex}
+\documentclass{article}
+
+\usepackage{palettes}
+\usepackage{tikz}
+
+\begin{document}
+
+\textcolor{\palUse{GistHeat}{8}}{\bfseries Colored text.}
+
+Representation of the color palette.
+
+\begin{tikzpicture}
+  \foreach \i in {1,...,10} {
+    \fill[\palUse{GistHeat}{\i}]
+      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+  }
+\end{tikzpicture}
+
+\end{document}
+\end{tdoccode}
+
+\subsubsection{Creating palettes manually}
+
+For creating new palettes manually, the following high-level commands are available.
+
+\begin{enumerate}
+\item
+\tdoccodein{latex}+\palSize{<name>}+ returns the palette size (useful for loops, for example).
+
+\item
+\tdoccodein{latex}+\palCreateFromRGB+ creates a palette by entering it as a {\lua} array, while \tdoccodein{latex}+\palCreateFromName+ works with named colors.
+
+\end{enumerate}
+
+The following example demonstrates these commands.
+
+\begin{tdoccode}{latex}
+\documentclass{article}
+
+\usepackage{palettes}
+\usepackage[dvipsnames, svgnames]{xcolor}
+\usepackage{tikz}
+
+\palCreateFromRGB{MyRGBPal}{
+  {0.0, 0.0, 0.0},
+  {0.4, 0.0, 0.2},
+  {0.8, 0.2, 0.0},
+  {1.0, 0.6, 0.0},
+  {1.0, 1.0, 0.4},
+}
+
+\palCreateFromName{MyNamedPal}{
+  YellowGreen,
+  LimeGreen,
+  green!60!black,
+}
+
+\begin{document}
+
+\foreach \name in {MyRGBPal, MyNamedPal}{
+  \section*{\name}
+
+  \textcolor{\palUse{\name}{3}}{\bfseries Colored text.}
+
+  \bigskip
+
+  \begin{tikzpicture}
+    \foreach \i in {1,...,\palSize{\name}} {
+      \fill[\palUse{\name}{\i}]
+        (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+    }
+  \end{tikzpicture}
+}
+
+\end{document}
+\end{tdoccode}
+
+A lower-level approach is also available through the following commands.
+
+\begin{enumerate}
+\item
+\tdoccodein{latex}+\palNew{<name>}+ defines a new (empty) palette.
+
+\item
+\tdoccodein{latex}+\palAddName{<name>}{<color-names>}+ appends a color using named colors to the palette.
+
+\item
+\tdoccodein{latex}+\palAddRGB{<name>}{<r>, <g>, <b>}+ appends an \tdoccodein{text}+RGB+ color to the palette, where \tdoccodein{text}+<r>+, \tdoccodein{text}+<g>+, and \tdoccodein{text}+<b>+ are decimal values ranging from 0 to 1.
+
+\end{enumerate}
+
+The following example demonstrates the flexibility offered by these low-level commands.
+
+\begin{tdoccode}{latex}
+\documentclass{article}
+
+\usepackage{palettes}
+\usepackage[svgnames]{xcolor}
+\usepackage{tikz}
+
+\palNew{LowLevelPal}
+\palAddName{LowLevelPal}{IndianRed}
+\palAddRGB{LowLevelPal}{0.0, 0.0, 0.0}
+\palAddName{LowLevelPal}{green!60!black}
+\palAddRGB{LowLevelPal}{0.8, 0.2, 0.0}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \foreach \i in {1,...,\palSize{LowLevelPal}} {
+     \fill[\palUse{LowLevelPal}{\i}]
+      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+  }
+\end{tikzpicture}
+
+\end{document}
+\end{tdoccode}
+
+\subsubsection{Creating palettes from existing ones}
+
 TODO
-
-\tdoccodein{latex}+\palUse{<name>}{<indice>}+
-
-\tdoccodein{latex}+\palSize{<name>}+
-
-\begin{tdocnote}
-\tdoccodein{latex}+\palCreateFromRGB+ \tdoccodein{latex}+\palCreateFromName+
-\end{tdocnote}
 
 % -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
 

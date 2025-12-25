@@ -1,13 +1,13 @@
 Supported implementations
 -------------------------
 
-All implementations are in the `products` folder. Each implementation provides at least the palette definitions. When supported, you can do the following actions.
+All implementations are located in the `products` folder. Each implementation provides palette definitions and supports the use of a single color. When available, the following actions can be performed to create new palettes:
 
-  * Pick specific colors from a palette.
+  * Select specific colors from an existing palette.
 
   * Shift the palette left or right by any number of steps.
 
-  * Reverse the color order.
+  * Reverse the order of the colors.
 
 
 > ***NOTE.*** *Extra features are limited to discrete palette operations. For example, color interpolation is not provided, as this is usually handled out of the box by visualization and formatting tools.*
