@@ -5,6 +5,14 @@
 XXXXXXXXXX  (1.3.0)
 ==
 
+-------
+:break:
+-------
+
+[[:api:]]
+\lua product: removed dict-like \var lua::''palNames''.
+
+
 -----
 :new:
 -----

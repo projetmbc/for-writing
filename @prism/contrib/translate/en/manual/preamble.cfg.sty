@@ -291,6 +291,114 @@ end
 -- https://github.com/projetmbc/for-writing/tree/main/@prism . --
 -----------------------------------------------------------------
 
+-----------------------------
+-- USE AND CREATE PALETTES --
+-----------------------------
+
+------
+-- prototype::
+--     name    : a palette name with, or without, the prefix
+--               ''pal''.
+--     options : a dictionary like array (see a full example
+--               of use after).
+--
+--     :return: the expected palette.
+--
+--
+-- Let's consider the following use case where we could also
+-- have used ''"palGeoRainbow"''.
+--
+--
+-- lua::
+--     mypal = getPal(
+--       "GeoRainbow",
+--       {
+--         extract = {2, 5, 8, 9},
+--         shift   = 3,
+--         reverse = true
+--       }
+--     )
+--
+-- To simplify the explanations, we will refer to the colors
+-- in the standard palette ''GistHeat'' as ''coul_1'',
+-- ''coul_2'', etc. The options are then processed in the
+-- following order.
+--
+--     1) First,the extraction is done: ''mypal = {coul_2,
+--     coul_5, coul_8, coul_9}''.
+--
+--     2) Then, the shift is applied to the extracted palette,
+--     colors moving to the right if ''shift'' is positive:
+--     ''mypal = {coul_5, coul_8, coul_9, coul_2}''.
+--
+--
+-- Finally, inversion is applied.
+--
+-- lua::
+--     mypal = {coul_2, coul_9, coul_8, coul_5}
+------
+function getPal(name, options)
+-- Standard palette.
+    if string.sub(name, 1, 3) ~= "pal" then
+        name = "pal" .. name
+    end
+
+    local palette = _G[name]
+
+-- No option used.
+    if options == nil then
+        return palette
+    end
+
+-- Some options used.
+    local result = {}
+
+    for i, color in ipairs(palette) do
+        result[i] = {color[1], color[2], color[3]}
+    end
+
+-- Extraction.
+    if options.extract ~= nil then
+        local extracted = {}
+
+        for _ , index in ipairs(options.extract) do
+            if result[index] ~= nil then
+                table.insert(extracted, result[index])
+            end
+        end
+
+        result = extracted
+    end
+
+-- Shifting.
+    if options.shift ~= nil and options.shift ~= 0 then
+        local shifted  = {}
+        local pal_size = #result
+
+        local shift = options.shift % pal_size
+
+        for i = 1, pal_size do
+            local new_i    = ((i - 1 + shift) % pal_size) + 1
+            shifted[new_i] = result[i]
+        end
+
+        result = shifted
+    end
+
+-- Reversing.
+    if options.reverse == true then
+        local reversed = {}
+
+        for i = #result, 1, -1 do
+            table.insert(reversed, result[i])
+        end
+
+        result = reversed
+    end
+
+    return result
+end
+
 --------------------------
 -- DEFS OF EACH PALETTE --
 --------------------------
@@ -3648,383 +3756,6 @@ palZissou = {
     {0.785185, 0.74379, 0.671459},
     {0.713725, 0.764705, 0.772549}
 }
-
------------------------------
--- USE AND CREATE PALETTES --
------------------------------
-
-------
--- prototype::
---     name    : a palette name with, or without, the prefix
---               ''pal''.
---     options : a dictionary like array (see a full example
---               of use after).
---
---     :return: the expected palette.
---
---
--- Let's consider the following use case where we could also
--- have used ''"palGeoRainbow"''.
---
---
--- lua::
---     mypal = getPal(
---       "GeoRainbow",
---       {
---         extract = {2, 5, 8, 9},
---         shift   = 3,
---         reverse = true
---       }
---     )
---
--- To simplify the explanations, we will refer to the colors
--- in the standard palette ''GistHeat'' as ''coul_1'',
--- ''coul_2'', etc. The options are then processed in the
--- following order.
---
---     1) First,the extraction is done: ''mypal = {coul_2,
---     coul_5, coul_8, coul_9}''.
---
---     2) Then, the shift is applied to the extracted palette,
---     colors moving to the right if ''shift'' is positive:
---     ''mypal = {coul_5, coul_8, coul_9, coul_2}''.
---
---
--- Finally, inversion is applied.
---
--- lua::
---     mypal = {coul_2, coul_9, coul_8, coul_5}
-------
-function getPal(name, options)
--- Standard palette.
-    if string.sub(name, 1, 3) ~= "pal" then
-        name = "pal" .. name
-    end
-
-    local palette = _G[name]
-
--- No option used.
-    if options == nil then
-        return palette
-    end
-
--- Some options used.
-    local result = {}
-
-    for i, color in ipairs(palette) do
-        result[i] = {color[1], color[2], color[3]}
-    end
-
--- Extraction.
-    if options.extract ~= nil then
-        local extracted = {}
-
-        for _ , index in ipairs(options.extract) do
-            if result[index] ~= nil then
-                table.insert(extracted, result[index])
-            end
-        end
-
-        result = extracted
-    end
-
--- Shifting.
-    if options.shift ~= nil and options.shift ~= 0 then
-        local shifted  = {}
-        local pal_size = #result
-
-        local shift = options.shift % pal_size
-
-        for i = 1, pal_size do
-            local new_i    = ((i - 1 + shift) % pal_size) + 1
-            shifted[new_i] = result[i]
-        end
-
-        result = shifted
-    end
-
--- Reversing.
-    if options.reverse == true then
-        local reversed = {}
-
-        for i = #result, 1, -1 do
-            table.insert(reversed, result[i])
-        end
-
-        result = reversed
-    end
-
-    return result
-end
-
----------------------------------
--- GET ONE PALETTE BY ITS NAME --
----------------------------------
-
-palNames = {}
-
-for _ , name in ipairs({
-    "palAccent",
-    "palActon",
-    "palAfmhot",
-    "palAgGrnYl",
-    "palAgSunset",
-    "palAlgae",
-    "palAlphabet",
-    "palAmp",
-    "palAntique",
-    "palAquatic1",
-    "palAquatic2",
-    "palAquatic3",
-    "palArmyRose",
-    "palAutumn",
-    "palBam",
-    "palBamako",
-    "palBamO",
-    "palBatlow",
-    "palBatlowK",
-    "palBatlowW",
-    "palBerlin",
-    "palBilbao",
-    "palBinary",
-    "palBlackbody",
-    "palBlindFish",
-    "palBlueDarkOrange12",
-    "palBlueDarkOrange18",
-    "palBlueDarkRed12",
-    "palBlueDarkRed18",
-    "palBlueGray",
-    "palBlueGreen",
-    "palBlueOrange10",
-    "palBlueOrange12",
-    "palBlueOrange8",
-    "palBlueOrangeRed",
-    "palBlueRed",
-    "palBlueRedPly",
-    "palBlues",
-    "palBlues10",
-    "palBlues7",
-    "palBluGrn",
-    "palBluYl",
-    "palBold",
-    "palBone",
-    "palBrBG",
-    "palBrg",
-    "palBroc",
-    "palBrocO",
-    "palBrownBlue10",
-    "palBrownBlue12",
-    "palBrwnYl",
-    "palBuda",
-    "palBuGn",
-    "palBukavu",
-    "palBuPu",
-    "palBurg",
-    "palBurgYl",
-    "palBurningGrass",
-    "palBwr",
-    "palCavalcanti",
-    "palChevalier",
-    "palCividis",
-    "palCMRmap",
-    "palColorBlind",
-    "palCool",
-    "palCoolwarm",
-    "palCopper",
-    "palCork",
-    "palCorkO",
-    "palCube1",
-    "palCubehelix",
-    "palCubehelix1",
-    "palCubehelix2",
-    "palCubehelix3",
-    "palCubeYF",
-    "palCurl",
-    "palDarjeeling1",
-    "palDarjeeling2",
-    "palDarjeeling3",
-    "palDarjeeling4",
-    "palDark2",
-    "palDark24",
-    "palDarkMint",
-    "palDavos",
-    "palDeep",
-    "palDelta",
-    "palDense",
-    "palDevon",
-    "palEarth",
-    "palElectric",
-    "palEmrld",
-    "palFall",
-    "palFantasticFox1",
-    "palFantasticFox2",
-    "palFes",
-    "palFlag",
-    "palG10",
-    "palGasFlame",
-    "palGeoRainbow",
-    "palGeyser",
-    "palGistEarth",
-    "palGistHeat",
-    "palGistNcar",
-    "palGistRainbow",
-    "palGistStern",
-    "palGlasgow",
-    "palGnBu",
-    "palGnuplot",
-    "palGnuplot2",
-    "palGrandBudapest1",
-    "palGrandBudapest2",
-    "palGrandBudapest3",
-    "palGrandBudapest4",
-    "palGrandBudapest5",
-    "palGrayC",
-    "palGrays",
-    "palGrayTab",
-    "palGreenMagenta",
-    "palGreenOrange",
-    "palGreens",
-    "palHaline",
-    "palHawaii",
-    "palHot",
-    "palHsv",
-    "palIce",
-    "palImola",
-    "palInferno",
-    "palIsleOfDogs1",
-    "palIsleOfDogs2",
-    "palIsleOfDogs3",
-    "palJet",
-    "palJimSpecial",
-    "palLajolla",
-    "palLapaz",
-    "palLemon",
-    "palLight24",
-    "palLinearL",
-    "palLipari",
-    "palLisbon",
-    "palMagenta",
-    "palMagma",
-    "palManagua",
-    "palMargot1",
-    "palMargot2",
-    "palMargot3",
-    "palMatter",
-    "palMendl",
-    "palMint",
-    "palMoonrise1",
-    "palMoonrise2",
-    "palMoonrise3",
-    "palMoonrise4",
-    "palMoonrise5",
-    "palMoonrise6",
-    "palMoonrise7",
-    "palNavia",
-    "palNaviaW",
-    "palNipySpectral",
-    "palNuuk",
-    "palOcean",
-    "palOleron",
-    "palOranges",
-    "palOrRd",
-    "palOrYel",
-    "palOslo",
-    "palOxy",
-    "palPaired",
-    "palPastel",
-    "palPastel1",
-    "palPastel2",
-    "palPastelRainbow",
-    "palPeach",
-    "palPerceptualRainbow",
-    "palPhase",
-    "palPicnic",
-    "palPink",
-    "palPinkYl",
-    "palPiYG",
-    "palPlasma",
-    "palPlotly",
-    "palPortland",
-    "palPRGn",
-    "palPrism",
-    "palPrismCC",
-    "palPuBu",
-    "palPuBuGn",
-    "palPuOr",
-    "palPuRd",
-    "palPurp",
-    "palPurple",
-    "palPurpleGray",
-    "palPurples",
-    "palPurpOr",
-    "palRainbow",
-    "palRainbowPly",
-    "palRdBu",
-    "palRdGy",
-    "palRdPu",
-    "palRdYlBu",
-    "palRdYlGn",
-    "palRed",
-    "palRedOr",
-    "palReds",
-    "palRedYellowBlue",
-    "palRoma",
-    "palRomaO",
-    "palRoyal1",
-    "palRoyal2",
-    "palRoyal3",
-    "palSafe",
-    "palSeismic",
-    "palSet1",
-    "palSet2",
-    "palSet3",
-    "palShiftRainbow",
-    "palSolar",
-    "palSpectral",
-    "palSpeed",
-    "palSpring",
-    "palSummer",
-    "palSunset",
-    "palSunsetDark",
-    "palT10",
-    "palTab10",
-    "palTab20",
-    "palTab20b",
-    "palTab20c",
-    "palTableau",
-    "palTableauLight",
-    "palTableauMedium",
-    "palTeal",
-    "palTealGrn",
-    "palTealRose",
-    "palTempo",
-    "palTemps",
-    "palTerrain",
-    "palThermal",
-    "palTofino",
-    "palTokyo",
-    "palTrafficLight",
-    "palTropic",
-    "palTurbid",
-    "palTurbo",
-    "palTurku",
-    "palTwilight",
-    "palTwilightShifted",
-    "palVanimo",
-    "palVik",
-    "palVikO",
-    "palViridis",
-    "palVivid",
-    "palWinter",
-    "palWistia",
-    "palYlGn",
-    "palYlGnBu",
-    "palYlOrBr",
-    "palYlOrRd",
-    "palZissou"
-}) do
-    palNames[name] = _G[name]
-end
 
 -- AUTO LAST PALETTES - END
 \end{luacode*}

@@ -6,8 +6,8 @@
   ---------------------------------------------------------------->
 
 
-LaTeX palettes
-==============
+LaTeX
+=====
 
 Create a palette using LaTeX
 ----------------------------
@@ -18,3 +18,9 @@ Use a LaTeX palette
 -------------------
 
 TODO
+
+`\palUse{<name>}{<indice>}`
+
+`\palSize{<name>}`
+
+> ***NOTE.*** *`\palCreateFromRGB` `\palCreateFromName`*

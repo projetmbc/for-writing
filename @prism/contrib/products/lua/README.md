@@ -21,11 +21,10 @@ For the moment, development requires working with `LaTeX` and the `luadraw` pack
 Use a Lua palette
 -----------------
 
-The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by three ways.
+The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
 
 - `palGistHeat` is a `Lua` variable.
 - `getPal('GistHeat')` and `getPal('palGistHeat')` are equal to `palGistHeat`.
-- `palNames['palGistHeat']` is equal to `palGistHeat`.
 
 > ***NOTE.*** *The `Lua` palette variables are arrays of arrays of three floats. The definition of `palGistHeat` looks like the following partial code.*
 

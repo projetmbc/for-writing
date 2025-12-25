@@ -97,26 +97,25 @@ def build_code(
     credits : str,
     palettes: dict[str, PaletteCols]
 ) -> str:
-    code = []
-
 # Credits.
     credits = credits.split("\n")
 
     maxlen = max(map(len, credits))
     deco   = '-'*(maxlen + 6)
 
-    credits = [
+    credits = '\n'.join([
         f'-- {c.ljust(maxlen)} --'
         for c in credits
-    ]
+    ])
 
-    credits = '\n'.join(credits)
+    credits = f"""
+{deco}
+{credits}
+{deco}
+    """.strip()
 
-    code = [
-        deco,
-        credits,
-        deco,
-        '',
+# Palettes.
+    paldefs_code = [
         """
 --------------------------
 -- DEFS OF EACH PALETTE --
@@ -131,48 +130,59 @@ def build_code(
     for name, colors in palettes.items():
         name = f"pal{name}"
 
-        code.append(f"{name} = {{")
+        paldefs_code.append(f"{name} = {{")
 
         for r, g, b in colors:
-            code.append(f"{indent}{{{r}, {g}, {b}}},")
+            paldefs_code.append(f"{indent}{{{r}, {g}, {b}}},")
 
 # We remove the last unuseful coma.
-        code[-1] = code[-1][:-1]
+        paldefs_code[-1] = paldefs_code[-1][:-1]
 
 # Seperating defs with single empty lines.
-        code.append("}\n")
+        paldefs_code.append("}\n")
+
+    paldefs_code = '\n'.join(paldefs_code)
 
 # API code.
     api_code = Path(__file__).parent / "tests" / "palapi.lua"
-    api_code = api_code.read_text().strip() + '\n'
-
-    code.append(api_code)
-
-# Extra code just for luadraw... This will be removed later!
-    all_names = sorted(palettes, key = lambda x: x.lower())
-    all_names = [f'"pal{n}"' for n in all_names]
-    all_names = ",\n    ".join(all_names)
-
-    code.append(
-        f"""
----------------------------------
--- GET ONE PALETTE BY ITS NAME --
----------------------------------
-
-palNames = {{}}
-
-for _ , name in ipairs({{
-    {all_names}
-}}) do
-    palNames[name] = _G[name]
-end
-        """.strip() + '\n'
-    )
+    api_code = api_code.read_text().strip()
 
 # Nothing left to do.
-    code = '\n'.join(code)
+    code = f"""
+{credits}
+
+{api_code}
+
+{paldefs_code}
+    """.strip() + '\n'
 
     return code
+
+# # Extra code just for luadraw... This will be removed later!
+#     all_names = sorted(palettes, key = lambda x: x.lower())
+#     all_names = [f'"pal{n}"' for n in all_names]
+#     all_names = ",\n    ".join(all_names)
+
+#     code.append(
+#         f"""
+# ---------------------------------
+# -- GET ONE PALETTE BY ITS NAME --
+# ---------------------------------
+
+# palNames = {{}}
+
+# for _ , name in ipairs({{
+#     {all_names}
+# }}) do
+#     palNames[name] = _G[name]
+# end
+#         """.strip() + '\n'
+#     )
+
+# # Nothing left to do.
+#     code = '\n'.join(code)
+
+#     return code
 
 
 # ---------------- #

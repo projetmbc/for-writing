@@ -16,7 +16,7 @@ The @prism project
 - [Credits](#MULTIMD-TOC-ANCHOR-1)
 - [Supported implementations](#MULTIMD-TOC-ANCHOR-2)
     - [JSON, the versatile default format](#MULTIMD-TOC-ANCHOR-3)
-    - [LaTeX palettes](#MULTIMD-TOC-ANCHOR-4)
+    - [LaTeX](#MULTIMD-TOC-ANCHOR-4)
     - [Lua](#MULTIMD-TOC-ANCHOR-5)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
@@ -64,7 +64,7 @@ All implementations are in the `products` folder. Each implementation provides a
 <a id="MULTIMD-TOC-ANCHOR-3"></a>
 ### JSON, the versatile default format <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-A `palettes.json` file containing only palette definitions is provided by default, allowing unsupported programming languages to integrate `@prism` palettes. Below is the first line of the file.
+A `palettes.json` file containing only palette definitions is provided by default, allowing unsupported programming languages to integrate `@prism` palettes. Below are the first lines of the file.
 
 ~~~json
 {
@@ -84,20 +84,25 @@ A `palettes.json` file containing only palette definitions is provided by defaul
 }
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
-### LaTeX palettes <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+### LaTeX <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 TODO
+
+`\palUse{<name>}{<indice>}`
+
+`\palSize{<name>}`
+
+> ***NOTE.*** *`\palCreateFromRGB` `\palCreateFromName`*
 
 <a id="MULTIMD-TOC-ANCHOR-5"></a>
 ### Lua <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 > ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use color palettes for [`luadraw`](https://github.com/pfradin/luadraw), a package that greatly facilitates the creation of high-quality 2D and 3D plots using `LuaLaTeX` and `TikZ`. The `Lua` implementation is now integrated into [`luadraw`](https://github.com/pfradin/luadraw).*
 
-The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by three ways.
+The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
 
 - `palGistHeat` is a `Lua` variable.
 - `getPal('GistHeat')` and `getPal('palGistHeat')` are equal to `palGistHeat`.
-- `palNames['palGistHeat']` is equal to `palGistHeat`.
 
 > ***NOTE.*** *The `Lua` palette variables are arrays of arrays of three floats. The definition of `palGistHeat` looks like the following partial code.*
 
