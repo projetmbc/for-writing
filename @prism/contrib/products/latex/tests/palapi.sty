@@ -114,119 +114,7 @@
 }
 
 
-% -- L3 tools -- %
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : \csv list of \rgb triplets
-%
-%     :action: creates a new palette and populates it with
-%              \xcolor colors
-%%%
-\cs_new_protected:Nn \palette_create_from_rgb:nn {
-  \palette_new:n { #1 }
-  \clist_map_inline:nn { #2 }{
-    \palette_add_rgb_color:nn { #1 } { ##1 }
-  }
-}
-
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : \csv list of colors using names
-%
-%     :action: creates a new palette and populates it with
-%              \xcolor colors
-%%%
-\cs_new_protected:Nn \palette_create_from_name:nn {
-  \palette_new:n { #1 }
-  \clist_map_inline:nn { #2 }{
-    \palette_add_name_color:nn { #1 } { ##1 }
-  }
-}
-
-
-%%%
-% prototype::
-%     #1 : new palette name
-%     #2 : options (key-value list)
-%     #3 : source palette name
-%
-%     :action: creates a new palette from an existing palette
-%              with optional transformations
-%%%
-\keys_define:nn { palette / pal-2-pal } {
-  extract .clist_set:N = \l__palette_extract_clist,
-  extract .initial:n   = {},
-  shift   .int_set:N   = \l__palette_shift_int,
-  shift   .initial:n   = 0,
-  reverse .bool_set:N  = \l__palette_reverse_bool,
-  reverse .initial:n   = false,
-  reverse .default:n   = true,   % ← Quand on écrit juste "reverse"
-}
-
-\int_new:N \l__palette_size_int
-
-\cs_new_protected:Nn \palette_create_from_pal:nnn {
-  % Reset all options to default values
-  \clist_clear:N \l__palette_extract_clist
-  \int_set:Nn \l__palette_shift_int { 0 }
-  \bool_set_false:N \l__palette_reverse_bool
-
-  % Parse options
-  \keys_set:nn { palette / pal-2-pal } { #2 }
-
-  % Create new empty palette
-  \palette_new:n { #1 }
-
-  % Create temporary sequence to store indices
-  \seq_clear:N \l_tmpa_seq
-
-  % Determine which indices to process
-  \clist_if_empty:NTF \l__palette_extract_clist {
-    % No extraction: use all indices
-    \int_step_inline:nn { \seq_count:c { g_palette_#3_seq } } {
-      \seq_put_right:Nn \l_tmpa_seq { ##1 }
-    }
-  }{
-    % Extract specific indices
-    \clist_map_inline:Nn \l__palette_extract_clist {
-      \seq_put_right:Nn \l_tmpa_seq { ##1 }
-    }
-  }
-
-  % Apply shift if needed
-  \int_compare:nNnF { \l__palette_shift_int } = { 0 } {
-    \seq_clear:N \l_tmpb_seq
-    \int_set:Nn \l__palette_size_int { \seq_count:N \l_tmpa_seq }
-    \seq_map_inline:Nn \l_tmpa_seq {
-      \seq_put_right:Nx \l_tmpb_seq {
-        \int_eval:n {
-          \int_mod:nn {
-            ##1 - 1 - \l__palette_shift_int + 10000 * \l__palette_size_int
-          } { \l__palette_size_int } + 1
-        }
-      }
-    }
-    \seq_set_eq:NN \l_tmpa_seq \l_tmpb_seq
-  }
-
-  % Apply reverse if needed
-  \bool_if:NT \l__palette_reverse_bool {
-    \seq_reverse:N \l_tmpa_seq
-  }
-
-  % Copy colors to new palette
-  \seq_map_inline:Nn \l_tmpa_seq {
-    \tl_set:Nx \l_tmpa_tl {
-      \seq_item:cn { g_palette_#3_seq } { ##1 }
-    }
-    \palette_add_rgb_color:nn { #1 } { \l_tmpa_tl }
-  }
-}
-
+% -- Tooks -- %
 
 %%%
 % prototype::
@@ -324,6 +212,122 @@
 %%%
 \cs_new:Nn \palette_get_color_name:nn {
   palette@#1@#2
+}
+
+
+% -- Creation -- %
+
+%%%
+% prototype::
+%     #1 : palette name
+%     #2 : \csv list of \rgb triplets
+%
+%     :action: creates a new palette and populates it with
+%              \xcolor colors
+%%%
+\cs_new_protected:Nn \palette_create_from_rgb:nn {
+  \palette_new:n { #1 }
+  \clist_map_inline:nn { #2 }{
+    \palette_add_rgb_color:nn { #1 } { ##1 }
+  }
+}
+
+
+%%%
+% prototype::
+%     #1 : palette name
+%     #2 : \csv list of colors using names
+%
+%     :action: creates a new palette and populates it with
+%              \xcolor colors
+%%%
+\cs_new_protected:Nn \palette_create_from_name:nn {
+  \palette_new:n { #1 }
+  \clist_map_inline:nn { #2 }{
+    \palette_add_name_color:nn { #1 } { ##1 }
+  }
+}
+
+
+% -- Transformation -- %
+
+%%%
+% prototype::
+%     #1 : new palette name
+%     #2 : options (key-value list)
+%     #3 : source palette name
+%
+%     :action: creates a new palette from an existing palette
+%              with optional transformations
+%%%
+\keys_define:nn { palette / pal-2-pal } {
+  extract .clist_set:N = \l__palette_extract_clist,
+  extract .initial:n   = {},
+  shift   .int_set:N   = \l__palette_shift_int,
+  shift   .initial:n   = 0,
+  reverse .bool_set:N  = \l__palette_reverse_bool,
+  reverse .initial:n   = false,
+  reverse .default:n   = true,   % ← Quand on écrit juste "reverse"
+}
+
+\int_new:N \l__palette_size_int
+
+\cs_new_protected:Nn \palette_create_from_pal:nnn {
+  % Reset all options to default values
+  \clist_clear:N \l__palette_extract_clist
+  \int_set:Nn \l__palette_shift_int { 0 }
+  \bool_set_false:N \l__palette_reverse_bool
+
+  % Parse options
+  \keys_set:nn { palette / pal-2-pal } { #2 }
+
+  % Create new empty palette
+  \palette_new:n { #1 }
+
+  % Create temporary sequence to store indices
+  \seq_clear:N \l_tmpa_seq
+
+  % Determine which indices to process
+  \clist_if_empty:NTF \l__palette_extract_clist {
+    % No extraction: use all indices
+    \int_step_inline:nn { \seq_count:c { g_palette_#3_seq } } {
+      \seq_put_right:Nn \l_tmpa_seq { ##1 }
+    }
+  }{
+    % Extract specific indices
+    \clist_map_inline:Nn \l__palette_extract_clist {
+      \seq_put_right:Nn \l_tmpa_seq { ##1 }
+    }
+  }
+
+  % Apply shift if needed
+  \int_compare:nNnF { \l__palette_shift_int } = { 0 } {
+    \seq_clear:N \l_tmpb_seq
+    \int_set:Nn \l__palette_size_int { \seq_count:N \l_tmpa_seq }
+    \seq_map_inline:Nn \l_tmpa_seq {
+      \seq_put_right:Nx \l_tmpb_seq {
+        \int_eval:n {
+          \int_mod:nn {
+            ##1 - 1 - \l__palette_shift_int + 10000 * \l__palette_size_int
+          } { \l__palette_size_int } + 1
+        }
+      }
+    }
+    \seq_set_eq:NN \l_tmpa_seq \l_tmpb_seq
+  }
+
+  % Apply reverse if needed
+  \bool_if:NT \l__palette_reverse_bool {
+    \seq_reverse:N \l_tmpa_seq
+  }
+
+  % Copy colors to new palette
+  \seq_map_inline:Nn \l_tmpa_seq {
+    \tl_set:Nx \l_tmpa_tl {
+      \seq_item:cn { g_palette_#3_seq } { ##1 }
+    }
+    \palette_add_rgb_color:nn { #1 } { \l_tmpa_tl }
+  }
 }
 
 \ExplSyntaxOff
