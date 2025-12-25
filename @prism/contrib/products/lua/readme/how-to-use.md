@@ -34,6 +34,9 @@ palGistHeat = {
 ~~~
 
 
+<!-------------------->
+
+
 #### Creating palettes from existing ones
 
 <!--YAML
@@ -47,7 +50,7 @@ inlinecode:
     - mypal = {coul_2, coul_9, coul_8, coul_5}
 -->
 
-The `getPal` function has several options to easily build new palettes. To illustrate how this works, consider the following use case.
+The `getPal` function provides several options to easily build new palettes by transforming existing ones. To illustrate how this works, consider the following use case.
 
 ~~~lua
 mypal = getPal(

@@ -36,7 +36,10 @@ Representation of the color palette.
 ~~~
 
 
-#### Creating palettes manually
+<!-------------------->
+
+
+#### Creating palettes from scratch
 
 <!--YAML
 inlinecode:
@@ -69,7 +72,7 @@ The following example demonstrates these commands.
   {1.0, 1.0, 0.4},
 }
 
-\palCreateFromName{MyNamedPal}{
+\palCreateFromName{MyNameUsePal}{
   YellowGreen,
   LimeGreen,
   green!60!black,
@@ -77,7 +80,7 @@ The following example demonstrates these commands.
 
 \begin{document}
 
-\foreach \name in {MyRGBPal, MyNamedPal}{
+\foreach \name in {MyRGBPal, MyNameUsePal}{
   \section*{\name}
 
   \textcolor{\palUse{\name}{3}}{\bfseries Colored text.}
@@ -99,7 +102,7 @@ The following example demonstrates these commands.
 inlinecode:
   latex:
     - \palNew{<name>}
-    - \palAddName{<name>}{<color-names>}
+    - \palAddName{<name>}{<color-using-names>}
     - \palAddRGB{<name>}{<r>, <g>, <b>}
 -->
 
@@ -107,7 +110,7 @@ A lower-level approach is also available through the following commands.
 
   1. `\palNew{<name>}` defines a new (empty) palette.
 
-  1. `\palAddName{<name>}{<color-names>}` appends a color using named colors to the palette.
+  1. `\palAddName{<name>}{<color-using-names>}` appends a color defined with named colors to the palette.
 
   1. `\palAddRGB{<name>}{<r>, <g>, <b>}` appends an `RGB` color to the palette, where `<r>`, `<g>`, and `<b>` are decimal values ranging from 0 to 1.
 
@@ -139,6 +142,60 @@ The following example demonstrates the flexibility offered by these low-level co
 ~~~
 
 
+<!-------------------->
+
+
 #### Creating palettes from existing ones
 
-TODO
+
+<!--YAML
+inlinecode:
+  latex:
+    - \palCreateFromPal
+    - \palCreateFromPal{<new-name>}[<options>]{<existing-name>}
+-->
+
+Building new palettes by transforming existing ones can be achieved using the `\palCreateFromPal` command, which has the signature `\palCreateFromPal{<new-name>}[<options>]{<existing-name>}`. To illustrate how this works, consider the following use case.
+
+~~~latex
+\documentclass{article}
+
+\usepackage{palettes}
+\usepackage{tikz}
+
+\palCreateFromPal{BlackbodyTransformed}[
+  extract = {1, 3, 6, 9},
+  shift   = 1,
+  reverse
+]{Blackbody}
+
+\begin{document}
+
+Original color palette.
+
+\begin{tikzpicture}
+  \foreach \i in {1,...,10} {
+    \fill[\palUse{Blackbody}{\i}]
+      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+  }
+\end{tikzpicture}
+
+New color palette.
+
+\begin{tikzpicture}
+  \foreach \i in {1,...,4} {
+    \fill[\palUse{BlackbodyTransformed}{\i}]
+      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+  }
+\end{tikzpicture}
+
+\end{document}
+~~~
+
+To simplify the explanations, we will refer to the colors in the standard palette `'Blackbody'` as `coul_1`, `coul_2`, etc. The options are then **processed in the following order**.
+
+  1. `{coul_1, coul_3, coul_6, coul_9}` is the result of the extraction.
+
+  1. `{coul_9, coul_1, coul_3, coul_6}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).
+
+  1. `{coul_6, coul_3, coul_1, coul_9}` is the reversed version of the shifted extracted palette.

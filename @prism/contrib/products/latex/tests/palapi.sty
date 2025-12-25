@@ -267,8 +267,29 @@
   shift   .initial:n   = 0,
   reverse .bool_set:N  = \l__palette_reverse_bool,
   reverse .initial:n   = false,
-  reverse .default:n   = true,   % ← Quand on écrit juste "reverse"
 }
+
+
+
+% Helper function to rotate a sequence
+\cs_new_protected:Nn \__palette_seq_rotate:Nn {
+  \int_compare:nNnF { #2 } = { 0 } {
+    \int_compare:nNnTF { #2 } > { 0 } {
+      % Positive shift: move items from left to right
+      \int_step_inline:nn { #2 } {
+        \seq_pop_right:NN #1 \l_tmpa_tl
+        \seq_put_left:NV #1 \l_tmpa_tl
+      }
+    }{
+      % Negative shift: move items from right to left
+      \int_step_inline:nn { -#2 } {
+        \seq_pop_left:NN #1 \l_tmpa_tl
+        \seq_put_right:NV #1 \l_tmpa_tl
+      }
+    }
+  }
+}
+
 
 \int_new:N \l__palette_size_int
 
@@ -280,6 +301,8 @@
 
   % Parse options
   \keys_set:nn { palette / pal-2-pal } { #2 }
+
+  \int_set:Nn \l__palette_size_int { \palette_size:n { #3 } }
 
   % Create new empty palette
   \palette_new:n { #1 }
@@ -302,18 +325,7 @@
 
   % Apply shift if needed
   \int_compare:nNnF { \l__palette_shift_int } = { 0 } {
-    \seq_clear:N \l_tmpb_seq
-    \int_set:Nn \l__palette_size_int { \seq_count:N \l_tmpa_seq }
-    \seq_map_inline:Nn \l_tmpa_seq {
-      \seq_put_right:Nx \l_tmpb_seq {
-        \int_eval:n {
-          \int_mod:nn {
-            ##1 - 1 - \l__palette_shift_int + 10000 * \l__palette_size_int
-          } { \l__palette_size_int } + 1
-        }
-      }
-    }
-    \seq_set_eq:NN \l_tmpa_seq \l_tmpb_seq
+    \__palette_seq_rotate:Nn \l_tmpa_seq { \l__palette_shift_int }
   }
 
   % Apply reverse if needed

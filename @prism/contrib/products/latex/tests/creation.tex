@@ -21,36 +21,6 @@
   IndianRed
 }
 
-\palCreateFromRGB{Blackbody}{
-  {0, 0, 0},
-  {0.400871, 0, 0},
-  {0.801742, 0, 0},
-  {0.90196, 0.274509, 0},
-  {0.90196, 0.640522, 0},
-  {0.923747, 0.862745, 0.222222},
-  {0.96732, 0.941176, 0.666666},
-  {0.958605, 0.976034, 1},
-  {0.793028, 0.880174, 1},
-  {0.62745, 0.784313, 1}
-}
-
-\palCreateFromPal{BlackbodyBis}{Blackbody}
-\palCreateFromPal{Ydobkcalb}[reverse]{Blackbody}
-\palCreateFromPal{Blackbody1275}[extract={1,2,7,5}]{Blackbody}
-\palCreateFromPal{BlackbodySifhted3Plus}[shift=3]{Blackbody}
-\palCreateFromPal{BlackbodySifhted3Minus}[shift=-3]{Blackbody}
-%
-
-
-
-%% Combine options: extract, then reverse
-%\palCreateFromPal{CustomPal}[extract={1,3,5,7,9}, reverse]{Blackbody}
-%
-%% Combine all: extract, shift, then reverse
-%\palCreateFromPal{ComplexPal}[extract={2,4,6,8}, shift=1, reverse]{Blackbody}
-%
-%% No options: creates a copy
-%\palCreateFromPal{CopyPal}{Blackbody}
 
 \setlength{\parindent}{0pt}
 
@@ -58,13 +28,7 @@
 
 \foreach \name in {%
   PalViaRGB-3Cols,%
-  PalViaNames,%
-  Blackbody,%
-  BlackbodyBis,%
-  BlackbodySifhted3Plus,%
-  BlackbodySifhted3Minus,%
-  Ydobkcalb,%
-  Blackbody1275%
+  PalViaNames%
 }{
 \section*{\name}
 

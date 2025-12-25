@@ -2,6 +2,25 @@
 
 
 ==
+26  (1.3.0-beta.18)
+==
+
+-----
+:new:
+-----
+
+[[:api:]]
+Added \latex product draft. The remaining tasks are to produce clean code and establish the development process for this new product.
+
+
+[[:doc:]]
+\Readme and manual: the end-user \doc for the \latex \prod has been finalized.
+
+
+// ---------- //
+
+
+==
 25  (1.3.0-beta.17)
 ==
 

@@ -42,7 +42,7 @@ Representation of the color palette.
 \end{document}
 \end{tdoccode}
 
-\subsubsection{Creating palettes manually}
+\subsubsection{Creating palettes from scratch}
 
 For creating new palettes manually, the following high-level commands are available.
 
@@ -72,7 +72,7 @@ The following example demonstrates these commands.
   {1.0, 1.0, 0.4},
 }
 
-\palCreateFromName{MyNamedPal}{
+\palCreateFromName{MyNameUsePal}{
   YellowGreen,
   LimeGreen,
   green!60!black,
@@ -80,7 +80,7 @@ The following example demonstrates these commands.
 
 \begin{document}
 
-\foreach \name in {MyRGBPal, MyNamedPal}{
+\foreach \name in {MyRGBPal, MyNameUsePal}{
   \section*{\name}
 
   \textcolor{\palUse{\name}{3}}{\bfseries Colored text.}
@@ -105,7 +105,7 @@ A lower-level approach is also available through the following commands.
 \tdoccodein{latex}+\palNew{<name>}+ defines a new (empty) palette.
 
 \item
-\tdoccodein{latex}+\palAddName{<name>}{<color-names>}+ appends a color using named colors to the palette.
+\tdoccodein{latex}+\palAddName{<name>}{<color-using-names>}+ appends a color defined with named colors to the palette.
 
 \item
 \tdoccodein{latex}+\palAddRGB{<name>}{<r>, <g>, <b>}+ appends an \tdoccodein{text}+RGB+ color to the palette, where \tdoccodein{text}+<r>+, \tdoccodein{text}+<g>+, and \tdoccodein{text}+<b>+ are decimal values ranging from 0 to 1.
@@ -141,7 +141,56 @@ The following example demonstrates the flexibility offered by these low-level co
 
 \subsubsection{Creating palettes from existing ones}
 
-TODO
+Building new palettes by transforming existing ones can be achieved using the \tdoccodein{latex}+\palCreateFromPal+ command, which has the signature \tdoccodein{latex}+\palCreateFromPal{<new-name>}[<options>]{<existing-name>}+. To illustrate how this works, consider the following use case.
+
+\begin{tdoccode}{latex}
+\documentclass{article}
+
+\usepackage{palettes}
+\usepackage{tikz}
+
+\palCreateFromPal{BlackbodyTransformed}[
+  extract = {1, 3, 6, 9},
+  shift   = 1,
+  reverse
+]{Blackbody}
+
+\begin{document}
+
+Original color palette.
+
+\begin{tikzpicture}
+  \foreach \i in {1,...,10} {
+    \fill[\palUse{Blackbody}{\i}]
+      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+  }
+\end{tikzpicture}
+
+New color palette.
+
+\begin{tikzpicture}
+  \foreach \i in {1,...,4} {
+    \fill[\palUse{BlackbodyTransformed}{\i}]
+      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+  }
+\end{tikzpicture}
+
+\end{document}
+\end{tdoccode}
+
+To simplify the explanations, we will refer to the colors in the standard palette \tdoccodein{text}+'Blackbody'+ as \tdoccodein{text}+coul_1+, \tdoccodein{text}+coul_2+, etc. The options are then \textbf{processed in the following order}.
+
+\begin{enumerate}
+\item
+\tdoccodein{text}+{coul_1, coul_3, coul_6, coul_9}+ is the result of the extraction.
+
+\item
+\tdoccodein{text}+{coul_9, coul_1, coul_3, coul_6}+ comes from the shifting applied to the extracted palette (colors move to the right if \tdoccodein{text}+shift+ is positive).
+
+\item
+\tdoccodein{text}+{coul_6, coul_3, coul_1, coul_9}+ is the reversed version of the shifted extracted palette.
+
+\end{enumerate}
 
 % -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
 
