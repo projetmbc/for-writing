@@ -34,7 +34,7 @@ palGistHeat = {
 ~~~
 
 
-#### Building new palettes from existing ones
+#### Creating palettes from existing ones
 
 <!--YAML
 inlinecode:

@@ -22,6 +22,37 @@
 }
 
 
+\palCreateFromRGB{Blackbody}{
+  {0.000000, 0.000000, 0.000000},
+  {0.400871, 0.000000, 0.000000},
+  {0.801742, 0.000000, 0.000000},
+  {0.901960, 0.274509, 0.000000},
+  {0.901960, 0.640522, 0.000000},
+  {0.923747, 0.862745, 0.222222},
+  {0.967320, 0.941176, 0.666666},
+  {0.958605, 0.976034, 1.000000},
+  {0.793028, 0.880174, 1.000000},
+  {0.627450, 0.784313, 1.000000}
+}
+
+% Extract specific colors (indices 1, 2, and 7)
+%\palCreateFromPal{MyNewPal}[extract={1,2,7}]{Blackbody}
+
+%% Reverse all colors
+%\palCreateFromPal{ReversedPal}[reverse]{Blackbody}
+%
+%% Circular shift by 2 positions
+%\palCreateFromPal{ShiftedPal}[shift=2]{Blackbody}
+%
+%% Combine options: extract, then reverse
+%\palCreateFromPal{CustomPal}[extract={1,3,5,7,9}, reverse]{Blackbody}
+%
+%% Combine all: extract, shift, then reverse
+%\palCreateFromPal{ComplexPal}[extract={2,4,6,8}, shift=1, reverse]{Blackbody}
+%
+%% No options: creates a copy
+%\palCreateFromPal{CopyPal}{Blackbody}
+
 \setlength{\parindent}{0pt}
 
 \begin{document}

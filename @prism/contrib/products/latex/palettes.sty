@@ -4,19 +4,11 @@
 % -- https://github.com/projetmbc/for-writing/tree/main/@prism . -- %
 % ----------------------------------------------------------------- %
 
-% ----------------------------------------------------------------- %
-% -- File created by the ''@prism'' project, version 1.2.1,      -- %
-% -- which is developed at                                       -- %
-% -- https://github.com/projetmbc/for-writing/tree/main/@prism . -- %
-% ----------------------------------------------------------------- %
-
 % ----------------------------- %
 % -- USE AND CREATE PALETTES -- %
 % ----------------------------- %
 
-
 \usepackage{xcolor}
-
 
 \ExplSyntaxOn
 
@@ -24,10 +16,12 @@
 
 %%%
 % prototype::
-%     #1 :
-%     #2 :
+%     #1 : palette name
+%     #2 : \csv list of \rgb triplets (e.g., ''{1, 0, 0},
+%          {0.5, 1, 0.7}, ...'')
 %
-%     :action:
+%     :action: creates all the \vars needed to use a new
+%              palette from \rgb \vals
 %%%
 \NewDocumentCommand{ \palCreateFromRGB }{ m m }{
   \palette_create_from_rgb:nn { #1 }{ #2 }
@@ -36,10 +30,12 @@
 
 %%%
 % prototype::
-%     #1 :
-%     #2 :
+%     #1 : palette name
+%     #2 : \csv list of colors defined using names (e.g.,
+%          ''red, blue!80, orange!70!black, ...'')
 %
-%     :action:
+%     :action: creates all the \vars needed to use a new
+%              palette from named colors
 %%%
 \NewDocumentCommand{ \palCreateFromName }{ m m }{
   \palette_create_from_name:nn { #1 }{ #2 }
@@ -48,10 +44,11 @@
 
 %%%
 % prototype::
-%     #1 :
-%     #2 :
+%     #1 : palette name
+%     #2 : color index (from 1 to palette size)
 %
-%     :return:
+%     :return: the internal \xcolor name for the specified
+%              color
 %%%
 \NewExpandableDocumentCommand{ \palUse }{ m m }{
   \palette_get_color_name:nn { #1 }{ #2 }
@@ -60,9 +57,9 @@
 
 %%%
 % prototype::
-%     #1 :
+%     #1 : palette name
 %
-%     :return:
+%     :return: the number of colors in the palette
 %%%
 \NewExpandableDocumentCommand{ \palSize }{ m }{
   \palette_size:n { #1 }
@@ -71,9 +68,9 @@
 
 %%%
 % prototype::
-%     #1 :
+%     #1 : palette name
 %
-%     :return:
+%     :action: creates a new empty palette
 %%%
 \NewExpandableDocumentCommand{ \palNew }{ m }{
   \palette_new:n { #1 }
@@ -82,32 +79,41 @@
 
 %%%
 % prototype::
-%     #1 :
-%     #2 :
+%     #1 : palette name
+%     #2 : \rgb triplet (e.g., ''0.5, 0.2, 0.8'')
 %
-%     :action:
+%     :action: appends a \xcolor color to the palette
 %%%
 \NewExpandableDocumentCommand{ \palAddRGB }{ m m }{
   \palette_add_rgb_color:nn { #1 }{ #2 }
 }
+
+
+%%%
+% prototype::
+%     #1 : palette name
+%     #2 : color definine using names (e.g., "red",
+%          "blue!50", ...)
+%
+%     :action: appends a \xcolor color to the palette
+%%%
 \NewExpandableDocumentCommand{ \palAddName }{ m m }{
   \palette_add_name_color:nn { #1 }{ #2 }
 }
 
 
-
-% -- Creation [L3] -- %
+% -- L3 tools -- %
 
 %%%
 % prototype::
-%     #1 :
-%     #2 :
+%     #1 : palette name
+%     #2 : \csv list of \rgb triplets
 %
-%     :action:
+%     :action: creates a new palette and populates it with
+%              \xcolor colors
 %%%
 \cs_new_protected:Nn \palette_create_from_rgb:nn {
   \palette_new:n { #1 }
-
   \clist_map_inline:nn { #2 }{
     \palette_add_rgb_color:nn { #1 } { ##1 }
   }
@@ -116,25 +122,26 @@
 
 %%%
 % prototype::
-%     #1 :
-%     #2 :
+%     #1 : palette name
+%     #2 : \csv list of colors using names
 %
-%     :action:
+%     :action: creates a new palette and populates it with
+%              \xcolor colors
 %%%
-% \extractcolorspecs{color}{model-cmd}{color-cmd}
-% Extracts the color specification of color and puts it into model-cmd $\rangle$ and $ color-cmd $\rangle$, respectively.
-%
-% \convertcolorspec{model}{spec}{target model}{cmd}
-% Converts a color, given by the spec in model model, into target model and stores the new color specification in \cmd. target model must be of type nummodel, whereas model may also be ‘named’, in which case spec is simply the name of the color.
 \cs_new_protected:Nn \palette_create_from_name:nn {
   \palette_new:n { #1 }
-
   \clist_map_inline:nn { #2 }{
     \palette_add_name_color:nn { #1 } { ##1 }
   }
 }
 
 
+%%%
+% prototype::
+%     #1 : palette name
+%
+%     :action: initializes an empty palette (as a LaTeX3 sequence).
+%%%
 \cs_new_protected:Nn \palette_new:n {
   \seq_new:c { g_palette_#1_seq }
 }
@@ -142,10 +149,11 @@
 
 %%%
 % prototype::
-%     #1 :
-%     #2 :
+%     #1 : palette name
+%     #2 : \rgb triplet (\csv floats from 0 to 1)
 %
-%     :action:
+%     :action: appends an \rgb color to the palette and definies
+%              an internal \xcolor color.
 %%%
 \cs_new_protected:Nn \palette_add_rgb_color:nn {
   \seq_gput_right:cn { g_palette_#1_seq }{ #2 }
@@ -154,35 +162,61 @@
     \seq_count:c { g_palette_#1_seq }
   }
 
-  \definecolor{palette@#1@\int_use:N\l_tmpa_int}
-              {rgb}{#2}
+  \definecolor
+    {palette@#1@\int_use:N\l_tmpa_int}
+    {rgb}{#2}
 }
 
 
+%%%
+% prototype::
+%     #1 : palette name
+%     #2 : color defined using names (any valid \xcolor color)
+%
+%     :action: converts a color defined using names to \rgb and
+%              adds it to the palette
+%
+%
+% note::
+%     We uses \xcolor's extraction/conversion functionnalities.
+%
+%         * ''\extractcolorspecs{color}{model-cmd}{color-cmd}''
+%           extracts the color specification and stores the model
+%           and the color \spec in dedicated macros.
+%
+%         * ''\convertcolorspec{model}{spec}{target model}{cmd}''
+%           converts a color specification to the target model (we
+%           use \rgb here).
+%%%
 \cs_new_protected:Nn \palette_add_name_color:nn {
   \group_begin:
+% Extract color model and specification from the named color
     \extractcolorspecs
       { #2 }
       { \@pal@model@ }
       { \@pal@col@spec@}
 
+% Convert to RGB format
     \convertcolorspec
       { \@pal@model@ }
       { \@pal@col@spec@ }
       { rgb }
       { \@rgb@xcolor@ }
 
+% Store RGB values globally
     \tl_gset:Nx \g_tmpa_tl { \@rgb@xcolor@ }
   \group_end:
 
+% Add the converted RGB color to the palette
   \exp_args:NnV \palette_add_rgb_color:nn { #1 } { \g_tmpa_tl }
 }
 
+
 %%%
 % prototype::
-%     #1 :
+%     #1 : palette name
 %
-%     :return:
+%     :return: the number of colors in the palette
 %%%
 \cs_new:Nn \palette_size:n {
   \seq_count:c { g_palette_#1_seq }
@@ -191,10 +225,10 @@
 
 %%%
 % prototype::
-%     #1 :
-%     #2 :
+%     #1 : palette name
+%     #2 : color index (integer from 1 to palette size)
 %
-%     :return:
+%     :return: the internal xcolor name ''palette@<name>@<index>''
 %%%
 \cs_new:Nn \palette_get_color_name:nn {
   palette@#1@#2

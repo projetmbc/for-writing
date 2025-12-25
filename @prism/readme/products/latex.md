@@ -48,9 +48,9 @@ inlinecode:
 
 For creating new palettes manually, the following high-level commands are available.
 
-  1. `\palSize{<name>}` returns the palette size (useful for loops, for example).
-
   1. `\palCreateFromRGB` creates a palette by entering it as a `Lua` array, while `\palCreateFromName` works with named colors.
+
+  1. `\palSize{<name>}` returns the palette size (useful for loops, for example).
 
 The following example demonstrates these commands.
 

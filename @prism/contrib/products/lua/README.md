@@ -32,7 +32,7 @@ palGistHeat = {
     -- ... With 7 more RBG colors.
 }
 ~~~
-#### Building new palettes from existing ones
+#### Creating palettes from existing ones
 
 The `getPal` function has several options to easily build new palettes. To illustrate how this works, consider the following use case.
 

@@ -22,7 +22,7 @@ The @prism project
         - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-7)
     - [Lua](#MULTIMD-TOC-ANCHOR-8)
         - [Simple use](#MULTIMD-TOC-ANCHOR-9)
-        - [Building new palettes from existing ones](#MULTIMD-TOC-ANCHOR-10)
+        - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-10)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
 About @prism <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -123,8 +123,8 @@ Representation of the color palette.
 
 For creating new palettes manually, the following high-level commands are available.
 
-1. `\palSize{<name>}` returns the palette size (useful for loops, for example).
-2. `\palCreateFromRGB` creates a palette by entering it as a `Lua` array, while `\palCreateFromName` works with named colors.
+1. `\palCreateFromRGB` creates a palette by entering it as a `Lua` array, while `\palCreateFromName` works with named colors.
+2. `\palSize{<name>}` returns the palette size (useful for loops, for example).
 
 The following example demonstrates these commands.
 
@@ -231,7 +231,7 @@ palGistHeat = {
 }
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-10"></a>
-#### Building new palettes from existing ones <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+#### Creating palettes from existing ones <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The `getPal` function has several options to easily build new palettes. To illustrate how this works, consider the following use case.
 
