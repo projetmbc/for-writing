@@ -157,18 +157,26 @@
 %     :action: creates a new palette from an existing palette
 %              with optional transformations
 %%%
-\keys_define:nn { palette / from-pal } {
+\keys_define:nn { palette / pal-2-pal } {
   extract .clist_set:N = \l__palette_extract_clist,
-  shift   .int_set:N   = \l__palette_shift_int,
-  reverse .bool_set:N  = \l__palette_reverse_bool,
   extract .initial:n   = {},
+  shift   .int_set:N   = \l__palette_shift_int,
   shift   .initial:n   = 0,
+  reverse .bool_set:N  = \l__palette_reverse_bool,
   reverse .initial:n   = false,
+  reverse .default:n   = true,   % ← Quand on écrit juste "reverse"
 }
 
+\int_new:N \l__palette_size_int
+
 \cs_new_protected:Nn \palette_create_from_pal:nnn {
+  % Reset all options to default values
+  \clist_clear:N \l__palette_extract_clist
+  \int_set:Nn \l__palette_shift_int { 0 }
+  \bool_set_false:N \l__palette_reverse_bool
+
   % Parse options
-  \keys_set:nn { palette / from-pal } { #2 }
+  \keys_set:nn { palette / pal-2-pal } { #2 }
 
   % Create new empty palette
   \palette_new:n { #1 }
@@ -190,14 +198,17 @@
   }
 
   % Apply shift if needed
-  \int_compare:nNnT { \l__palette_shift_int } > { 0 } {
+  \int_compare:nNnF { \l__palette_shift_int } = { 0 } {
     \seq_clear:N \l_tmpb_seq
-    \int_set:Nn \l_tmpa_int { \seq_count:N \l_tmpa_seq }
+    \int_set:Nn \l__palette_size_int { \seq_count:N \l_tmpa_seq }
     \seq_map_inline:Nn \l_tmpa_seq {
-      \int_set:Nn \l_tmpb_int {
-        \int_mod:nn { ##1 - 1 + \l__palette_shift_int } { \l_tmpa_int } + 1
+      \seq_put_right:Nx \l_tmpb_seq {
+        \int_eval:n {
+          \int_mod:nn {
+            ##1 - 1 - \l__palette_shift_int + 10000 * \l__palette_size_int
+          } { \l__palette_size_int } + 1
+        }
       }
-      \seq_put_right:Nx \l_tmpb_seq { \int_use:N \l_tmpb_int }
     }
     \seq_set_eq:NN \l_tmpa_seq \l_tmpb_seq
   }
@@ -209,7 +220,9 @@
 
   % Copy colors to new palette
   \seq_map_inline:Nn \l_tmpa_seq {
-    \seq_get:cnN { g_palette_#3_seq } { ##1 } \l_tmpa_tl
+    \tl_set:Nx \l_tmpa_tl {
+      \seq_item:cn { g_palette_#3_seq } { ##1 }
+    }
     \palette_add_rgb_color:nn { #1 } { \l_tmpa_tl }
   }
 }

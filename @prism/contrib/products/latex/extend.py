@@ -95,6 +95,13 @@ def build_code(
     credits : str,
     palettes: dict[str, PaletteCols]
 ) -> str:
+    def float2dec(x: float) -> str:
+        x = f"{x:.6f}"
+        x = x.rstrip('0')
+        x = x.rstrip('.')
+
+        return x
+
 # Credits.
     credits = credits.split("\n")
 
@@ -132,7 +139,8 @@ def build_code(
         paldefs_code.append(f"{name}{{")
 
         for r, g, b in colors:
-            paldefs_code.append(f"{indent}{{{r:.6f}, {g:.6f}, {b:.6f}}},")
+            r, g, b = map(float2dec, [r, g, b])
+            paldefs_code.append(f"{indent}{{{r}, {g}, {b}}},")
 
 # We remove the last unuseful coma.
         paldefs_code[-1] = paldefs_code[-1][:-1]
@@ -182,7 +190,7 @@ if __name__ == "__main__":
   {0.4, 0.0, 0.2},
   {0.8, 0.2, 0.0},
   {1.0, 0.6, 0.0},
-  {1.0, 1.0, 0.4},
+  {1.0, 1.0, 0.45678},
 }
     """
 
