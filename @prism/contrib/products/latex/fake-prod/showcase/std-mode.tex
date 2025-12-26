@@ -1,0 +1,45 @@
+\documentclass{tutodoc}
+
+\newcommand{\PALETTE}{Blackbody}
+
+\geometry{
+  top    = 1cm,
+  bottom = 1cm,
+  left   = 1cm,
+  right  = 1cm,
+%  showframe
+}
+
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[
+%  a4paper,
+%  landscape
+%]
+
+\usepackage{../palettes}
+
+\usepackage[svgnames]{xcolor}
+\usepackage{tikz}
+
+
+% -------------------- %
+% -- COMMON SETTING -- %
+% -------------------- %
+
+\colorlet{COL1}{black!80}
+\colorlet{COL2}{LightGray!25!white}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\centering
+
+
+% ---------------- %
+% -- LET'S DRAW -- %
+% ---------------- %
+
+\input{./core/common.tex}
+
+\end{document}

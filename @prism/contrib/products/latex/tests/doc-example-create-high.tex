@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage{../palettes}
-\usepackage[dvipsnames, svgnames]{xcolor}
+\usepackage[svgnames]{xcolor}
 \usepackage{tikz}
 
 \palCreateFromRGB{MyRGBPal}{
@@ -12,7 +12,7 @@
   {1.0, 1.0, 0.4},
 }
 
-\palCreateFromName{MyNameUsePal}{
+\palCreateFromNames{MyNameUsePal}{
   YellowGreen,
   LimeGreen,
   green!60!black,
@@ -20,7 +20,7 @@
 
 \begin{document}
 
-\foreach \name in {MyRGBPal, MyNamedPal}{
+\foreach \name in {MyRGBPal, MyNameUsePal}{
   \section*{\name}
 
   \textcolor{\palUse{\name}{3}}{\bfseries Colored text.}

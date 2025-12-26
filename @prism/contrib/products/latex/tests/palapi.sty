@@ -31,7 +31,7 @@
 %     :action: creates all the \vars needed to use a new
 %              palette from named colors
 %%%
-\NewDocumentCommand{ \palCreateFromName }{ m m }{
+\NewDocumentCommand{ \palCreateFromNames }{ m m }{
   \palette_create_from_name:nn { #1 }{ #2 }
 }
 
@@ -109,7 +109,7 @@
 %
 %     :action: appends a \xcolor color to the palette
 %%%
-\NewExpandableDocumentCommand{ \palAddName }{ m m }{
+\NewExpandableDocumentCommand{ \palAddNames }{ m m }{
   \palette_add_name_color:nn { #1 }{ #2 }
 }
 

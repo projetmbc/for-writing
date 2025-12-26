@@ -5,7 +5,7 @@
 % the document, a ''PROJECT-PALETTE.lua'' file is automatically
 % created. Once satisfied with the result, simply copy and paste
 % the ''PROJECT-PALETTE.lua'' file into the folder
-% ''contrib/palettes/luadraw/palettes'', giving it a name in
+% ''contrib/palettes/lua/palettes'', giving it a name in
 % ''CamelCase'' format (this file uses only floating-point numbers
 % to ensure portable palette definitions).
 %
@@ -19,10 +19,10 @@
 %     In the Lua palette file, the ''author'' field is optional.
 %%%
 
-\begin{filecontents*}[overwrite]{luadraw-pal-def.lua}
+\begin{filecontents*}[overwrite]{pal-def.lua}
 ------
 -- this::
---     author = First Name, Last Name  
+--     author = First Name, Last Name
 ------
 
 -- Dev comments?
@@ -64,7 +64,7 @@ PALETTE = {
 % -- COMMON LUA CODE USED -- %
 % -------------------------- %
 
-\directlua{dofile("luadraw-pal-def.lua")}
+\directlua{dofile("pal-def.lua")}
 
 
 % -------------- %
@@ -73,7 +73,7 @@ PALETTE = {
 
 \section*{Your palette definition}
 
-\tdoccodeinput{lua}{luadraw-pal-def.lua}
+\tdoccodeinput{lua}{pal-def.lua}
 
 
 \section*{Use cases}

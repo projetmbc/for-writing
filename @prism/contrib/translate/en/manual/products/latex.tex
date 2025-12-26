@@ -16,9 +16,9 @@
 \subsection{LaTeX}
 \label{products-latex}
 
-\subsubsection{Simple use}
+\subsubsection{Basic use}
 
-To use a color from a palette, use \tdoccodein{text}+\palUse{<name>}{<index>}+ where \tdoccodein{text}+<name>+ is the standard palette name (without prefix), and \tdoccodein{text}+<index>+ is the color number (ranging from 1 to 10). For example, \tdoccodein{text}+\palUse{GistHeat}{8}+ is the eighth color of the \tdoccodein{text}+GistHeat+ palette, an {\xcolor} format color that can be easily used as shown in the following example.
+To use a color from a palette, use \tdoccodein{text}+\palUse{<name>}{<index>}+ where \tdoccodein{text}+<name>+ is the standard palette name (without prefix), and \tdoccodein{text}+<index>+ is the color number (ranging from 1 to 10). For example, \tdoccodein{text}+\palUse{GistHeat}{8}+ is the eighth color of the \tdoccodein{text}+GistHeat+ palette, an {\xcolor} format color that can be easily used as shown in the following compilable example.
 
 \begin{tdoccode}{latex}
 \documentclass{article}
@@ -48,7 +48,7 @@ For creating new palettes manually, the following high-level commands are availa
 
 \begin{enumerate}
 \item
-\tdoccodein{latex}+\palCreateFromRGB+ creates a palette by entering it as a {\lua} array, while \tdoccodein{latex}+\palCreateFromName+ works with named colors.
+\tdoccodein{latex}+\palCreateFromRGB+ creates a palette by entering it as a {\lua} array, while \tdoccodein{latex}+\palCreateFromNames+ works with named colors.
 
 \item
 \tdoccodein{latex}+\palSize{<name>}+ returns the palette size (useful for loops, for example).
@@ -58,11 +58,8 @@ For creating new palettes manually, the following high-level commands are availa
 The following example demonstrates these commands.
 
 \begin{tdoccode}{latex}
-\documentclass{article}
-
 \usepackage{palettes}
-\usepackage[dvipsnames, svgnames]{xcolor}
-\usepackage{tikz}
+\usepackage[svgnames]{xcolor}
 
 \palCreateFromRGB{MyRGBPal}{
   {0.0, 0.0, 0.0},
@@ -72,31 +69,16 @@ The following example demonstrates these commands.
   {1.0, 1.0, 0.4},
 }
 
-\palCreateFromName{MyNameUsePal}{
+\palCreateFromNames{MyNameUsePal}{
   YellowGreen,
   LimeGreen,
   green!60!black,
 }
-
-\begin{document}
-
-\foreach \name in {MyRGBPal, MyNameUsePal}{
-  \section*{\name}
-
-  \textcolor{\palUse{\name}{3}}{\bfseries Colored text.}
-
-  \bigskip
-
-  \begin{tikzpicture}
-    \foreach \i in {1,...,\palSize{\name}} {
-      \fill[\palUse{\name}{\i}]
-        (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
-    }
-  \end{tikzpicture}
-}
-
-\end{document}
 \end{tdoccode}
+
+\begin{tdocnote}
+All built-in palettes are created using the \tdoccodein{latex}+\palCreateFromRGB+ macro.
+\end{tdocnote}
 
 A lower-level approach is also available through the following commands.
 
@@ -105,7 +87,7 @@ A lower-level approach is also available through the following commands.
 \tdoccodein{latex}+\palNew{<name>}+ defines a new (empty) palette.
 
 \item
-\tdoccodein{latex}+\palAddName{<name>}{<color-using-names>}+ appends a color defined with named colors to the palette.
+\tdoccodein{latex}+\palAddNames{<name>}{<color-using-names>}+ appends a color defined with named colors to the palette.
 
 \item
 \tdoccodein{latex}+\palAddRGB{<name>}{<r>, <g>, <b>}+ appends an \tdoccodein{text}+RGB+ color to the palette, where \tdoccodein{text}+<r>+, \tdoccodein{text}+<g>+, and \tdoccodein{text}+<b>+ are decimal values ranging from 0 to 1.
@@ -115,82 +97,33 @@ A lower-level approach is also available through the following commands.
 The following example demonstrates the flexibility offered by these low-level commands.
 
 \begin{tdoccode}{latex}
-\documentclass{article}
-
 \usepackage{palettes}
 \usepackage[svgnames]{xcolor}
-\usepackage{tikz}
 
 \palNew{LowLevelPal}
-\palAddName{LowLevelPal}{IndianRed}
+\palAddNames{LowLevelPal}{IndianRed}
 \palAddRGB{LowLevelPal}{0.0, 0.0, 0.0}
-\palAddName{LowLevelPal}{green!60!black}
+\palAddNames{LowLevelPal}{green!60!black}
 \palAddRGB{LowLevelPal}{0.8, 0.2, 0.0}
-
-\begin{document}
-
-\begin{tikzpicture}
-  \foreach \i in {1,...,\palSize{LowLevelPal}} {
-     \fill[\palUse{LowLevelPal}{\i}]
-      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
-  }
-\end{tikzpicture}
-
-\end{document}
 \end{tdoccode}
 
 \subsubsection{Creating palettes from existing ones}
 
-Building new palettes by transforming existing ones can be achieved using the \tdoccodein{latex}+\palCreateFromPal+ command, which has the signature \tdoccodein{latex}+\palCreateFromPal{<new-name>}[<options>]{<existing-name>}+. To illustrate how this works, consider the following use case.
+Building new palettes by transforming existing ones can be achieved using the \tdoccodein{latex}+\palCreateFromPal+ command, which has the signature \tdoccodein{latex}+\palCreateFromPal{<new-name>}[<options>]{<existing-name>}+. The following example shows how to do this (all options are used).
 
 \begin{tdoccode}{latex}
-\documentclass{article}
-
 \usepackage{palettes}
-\usepackage{tikz}
 
 \palCreateFromPal{BlackbodyTransformed}[
   extract = {1, 3, 6, 9},
   shift   = 1,
   reverse
 ]{Blackbody}
-
-\begin{document}
-
-Original color palette.
-
-\begin{tikzpicture}
-  \foreach \i in {1,...,10} {
-    \fill[\palUse{Blackbody}{\i}]
-      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
-  }
-\end{tikzpicture}
-
-New color palette.
-
-\begin{tikzpicture}
-  \foreach \i in {1,...,4} {
-    \fill[\palUse{BlackbodyTransformed}{\i}]
-      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
-  }
-\end{tikzpicture}
-
-\end{document}
 \end{tdoccode}
 
-To simplify the explanations, we will refer to the colors in the standard palette \tdoccodein{text}+'Blackbody'+ as \tdoccodein{text}+coul_1+, \tdoccodein{text}+coul_2+, etc. The options are then \textbf{processed in the following order}.
-
-\begin{enumerate}
-\item
-\tdoccodein{text}+{coul_1, coul_3, coul_6, coul_9}+ is the result of the extraction.
-
-\item
-\tdoccodein{text}+{coul_9, coul_1, coul_3, coul_6}+ comes from the shifting applied to the extracted palette (colors move to the right if \tdoccodein{text}+shift+ is positive).
-
-\item
-\tdoccodein{text}+{coul_6, coul_3, coul_1, coul_9}+ is the reversed version of the shifted extracted palette.
-
-\end{enumerate}
+\begin{tdocnote}
+\tdoccodein{latex}+\palCreateFromPal{<new-name>}{<existing-name>}+ build a copy of an existing palette.
+\end{tdocnote}
 
 % -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
 

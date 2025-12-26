@@ -208,7 +208,7 @@
   { \palette_create:nn { #1 } { #2 } }
 
 % NOUVELLES COMMANDES
-\NewDocumentCommand \palCreateFromNames { m m }
+\NewDocumentCommand \palCreateFromNamess { m m }
   { \palette_create_from_names:nn { #1 } { #2 } }
 
 \NewDocumentCommand \palExtract { m m m }
@@ -324,10 +324,10 @@ Nombre de couleurs : \paletteCount{Blackbody}
 \bigskip
 
 \begin{verbatim}
-\palCreateFromNames{Traffic}{red, orange, yellow, green, blue}
+\palCreateFromNamess{Traffic}{red, orange, yellow, green, blue}
 \end{verbatim}
 
-\palCreateFromNames{Traffic}{red, orange, yellow, green, blue}
+\palCreateFromNamess{Traffic}{red, orange, yellow, green, blue}
 
 Nombre de couleurs : \paletteCount{Traffic}
 
@@ -338,13 +338,13 @@ Nombre de couleurs : \paletteCount{Traffic}
 
 Autre exemple avec couleurs prédéfinies :
 \begin{verbatim}
-\palCreateFromNames{Nature}{
+\palCreateFromNamess{Nature}{
   OliveGreen, ForestGreen, LimeGreen,
   YellowGreen, SpringGreen
 }
 \end{verbatim}
 
-\palCreateFromNames{Nature}{OliveGreen, ForestGreen, LimeGreen, YellowGreen, SpringGreen}
+\palCreateFromNamess{Nature}{OliveGreen, ForestGreen, LimeGreen, YellowGreen, SpringGreen}
 
 \bigskip
 \paletteMap{Nature}{\rule{2cm}{1cm}\quad}
@@ -401,7 +401,7 @@ Décaler de 2 positions vers la droite :
 \palShift{TrafficShift2}{2}
 \end{verbatim}
 
-\palCreateFromNames{TrafficShift2}{red, orange, yellow, green, blue}
+\palCreateFromNamess{TrafficShift2}{red, orange, yellow, green, blue}
 \palShift{TrafficShift2}{2}
 
 \paletteMap{TrafficShift2}{\rule{1.5cm}{1cm}\quad}
@@ -414,7 +414,7 @@ Décaler de 2 positions vers la gauche :
 \palShift{TrafficShiftM2}{-2}
 \end{verbatim}
 
-\palCreateFromNames{TrafficShiftM2}{red, orange, yellow, green, blue}
+\palCreateFromNamess{TrafficShiftM2}{red, orange, yellow, green, blue}
 \palShift{TrafficShiftM2}{-2}
 
 \paletteMap{TrafficShiftM2}{\rule{1.5cm}{1cm}\quad}
@@ -488,14 +488,14 @@ Inverser Blackbody :
 Créer une palette, l'inverser, puis extraire certaines couleurs :
 
 \begin{verbatim}
-\palCreateFromNames{Rainbow}{
+\palCreateFromNamess{Rainbow}{
   red, orange, yellow, green, cyan, blue, violet
 }
 \palReverse{Rainbow}
 \palExtract{CoolRainbow}{Rainbow}{1, 3, 5, 7}
 \end{verbatim}
 
-\palCreateFromNames{Rainbow}{red, orange, yellow, green, cyan, blue, violet}
+\palCreateFromNamess{Rainbow}{red, orange, yellow, green, cyan, blue, violet}
 \palReverse{Rainbow}
 \palExtract{CoolRainbow}{Rainbow}{1, 3, 5, 7}
 

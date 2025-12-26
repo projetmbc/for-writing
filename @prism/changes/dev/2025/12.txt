@@ -17,6 +17,14 @@ Added \latex product draft. The remaining tasks are to produce clean code and es
 \Readme and manual: the end-user \doc for the \latex \prod has been finalized.
 
 
+--------
+:update:
+--------
+
+[[:doc:]]
+\Readme and manual: transform \api is explained once in the preamble of the product section.
+
+
 // ---------- //
 
 

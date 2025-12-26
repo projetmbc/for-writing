@@ -1,10 +1,4 @@
-<!--YAML
-inlinecode:
-  lua:
-    - PALETTE
--->
-
 Create a palette using LaTeX
 ----------------------------
 
-TODO
+The development involves working with `LaTeX` and `TikZ`: refer to the `TEX` files in the `dev` folder.

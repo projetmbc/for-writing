@@ -13,6 +13,15 @@ from markdown_it.token import Token
 # -- CONSTANTS -- #
 # --------------- #
 
+SPECIAL_QUOTES = {
+    'TIP'      : "tip",
+    'NOTE'     : "note",
+    'IMPORTANT': "imp",
+    'CAUTION'  : "caut",
+    'WARNING'  : "warn",
+}
+
+
 TEX_ESCAPE_IT = {
     '\\': r'\textbackslash{}',
     '{': r'\{',
@@ -158,14 +167,16 @@ def transform_latex_quote(text):
 
     def replacer(match):
         note_label = match.group(1)  # "NOTE." par exemple
-        content = match.group(2)      # Le contenu après NOTE.
+        content = match.group(2)     # Le contenu après NOTE.
 
-        # Vérifier que c'est bien une NOTE
-        if note_label.strip().upper().startswith('NOTE'):
-            return f'\\begin{{tdocnote}}\n{content}\n\\end{{tdocnote}}'
+        if (
+            note_label[-1] == '.'
+            and
+            note_label[:-1] in SPECIAL_QUOTES
+        ):
+            prefix = SPECIAL_QUOTES[note_label[:-1]]
 
-        if note_label.strip().upper().startswith('CAUTION'):
-            return f'\\begin{{tdoccaut}}\n{content}\n\\end{{tdoccaut}}'
+            return f'\\begin{{tdoc{prefix}}}\n{content}\n\\end{{tdoc{prefix}}}'
 
         return match.group(0)  # Si ce n'est pas une NOTE, ne rien changer
 

@@ -6,7 +6,7 @@
 [1]: https://github.com/pfradin/luadraw
 
 
-#### Simple use
+#### Basic use
 
 <!--YAML
 inlinecode:
@@ -44,22 +44,12 @@ palGistHeat = {
 
 #### Creating palettes from existing ones
 
-<!--YAML
-inlinecode:
-  lua:
-    - 'GistHeat'
-    - coul_1
-    - coul_2
-    - mypal = {coul_2, coul_5, coul_8, coul_9}
-    - mypal = {coul_5, coul_8, coul_9, coul_2}
-    - mypal = {coul_2, coul_9, coul_8, coul_5}
--->
-
-The `getPal` function provides several options to easily build new palettes by transforming existing ones. To illustrate how this works, consider the following use case.
+The `getPal` function provides options to build new palettes by transforming existing ones.
+The following example shows how to do this (all options are used).
 
 ~~~lua
-mypal = getPal(
-    'GistHeat',
+BlackbodyTransformed = getPal(
+    'Blackbody',
     {
         extract = {2, 5, 8, 9},
         shift   = 1,
@@ -67,11 +57,3 @@ mypal = getPal(
     }
 )
 ~~~
-
-To simplify the explanations, we will refer to the colors in the standard palette `'GistHeat'` as `coul_1`, `coul_2`, etc. The options are then **processed in the following order**.
-
-  1. `{coul_2, coul_5, coul_8, coul_9}` is the result of the extraction.
-
-  1. `{coul_9, coul_2, coul_5, coul_8}` comes from the shifting applied to the extracted palette (colors move to the right if `shift` is positive).
-
-  1. `{coul_8, coul_5, coul_2, coul_9}` is the reversed version of the shifted extracted palette.

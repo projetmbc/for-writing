@@ -3,11 +3,14 @@ Supported implementations
 
 All implementations are located in the `products` folder. Each implementation provides palette definitions and supports the use of a single color. When available, the following actions can be performed to create new palettes:
 
-  * Select specific colors from an existing palette.
+  * Select specific colors from an existing palette using their indices.
 
-  * Shift the palette left or right by any number of steps.
+  * Shift the palette left (negative value) or right (positive value) by any number of steps.
 
   * Reverse the order of the colors.
+
+
+> ***IMPORTANT.*** *To explain how new palettes can be built, we will refer to the colors in the standard palette as `coul_1`, `coul_2`, etc., and suppose that the extracted indices are `{1, 3, 6, 9}`, the shift used is `+1`, and the `reverse` option is enabled. The new palette will then be built sequentially as follows: first `{coul_1, coul_3, coul_6, coul_9}` (extraction), second `{coul_9, coul_1, coul_3, coul_6}` (shift to the right), and finally `{coul_6, coul_3, coul_1, coul_9}` (reverse).*
 
 
 > ***NOTE.*** *Extra features are limited to discrete palette operations. For example, color interpolation is not provided, as this is usually handled out of the box by visualization and formatting tools.*
