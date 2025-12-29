@@ -12,7 +12,8 @@ BUILD_TOOLS_DIR = THIS_DIR.parent.parent
 sys.path.append(str(BUILD_TOOLS_DIR))
 
 
-from cbutils.core import *
+from cbutils.core   import *
+from cbutils.texnco import *
 
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
@@ -24,13 +25,20 @@ from shutil import rmtree
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-GLOB_BY_DIRS = {
+COMMON_EXTS = [
+    "pdf",
+] + LATEX_TEMP_EXT
+
+FILE_GLOB_BY_DIRS = {
     'dev': [
-        "*.pdf",
-        "*.sty",
+        f"*.{ext}"
+        for ext in [
+            "sty",
+        ] + COMMON_EXTS
     ],
     'fake-prod/showcase': [
-        "*.pdf",
+        f"*.{ext}"
+        for ext in COMMON_EXTS
     ],
 }
 
@@ -57,7 +65,7 @@ relpath = CONTRIB_PROD_DIR.relative_to(PROJ_DIR)
 
 logging.info(f"Clean '{relpath}' folder.")
 
-for subdir, patterns in GLOB_BY_DIRS.items():
+for subdir, patterns in FILE_GLOB_BY_DIRS.items():
     subpath = CONTRIB_PROD_DIR
 
     for p in subdir.split('/'):
