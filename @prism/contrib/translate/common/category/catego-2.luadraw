@@ -36,6 +36,7 @@ PALETTES = {
   {'Tableau', 'Tableau'},
   {'TableauLight', 'Tableau'},
   {'TableauMedium', 'Tableau'},
+  {'TdocCol', '@prism'},
   {'TrafficLight', 'Tableau'},
   {'Vivid', 'CartoColors'}
 }
