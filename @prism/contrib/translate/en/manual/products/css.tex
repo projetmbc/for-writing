@@ -1,19 +1,24 @@
-Use a CSS palette
------------------
+% !TEX TS-program = lualatex
 
-<!--YAML
-inlinecode:
-  css:
-    - --pal<name>-<nb>
-    - <name>
-    - <nb>
--->
+% ------------------------------------------------- %
+% -- DO NOT MODIFY. FILE GENERATED AUTOMATICALLY -- %
+% ------------------------------------------------- %
 
-The very basic `CSS` implementation provides only ten variables per palette, named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging from 1 to 10.
-Each palette color variable is defined as an `RGB` value using percentage notation.
-For example, the `GistHeat` palette color definitions look like the following partial code.
+\documentclass{tutodoc}
 
-~~~css
+\usepackage{../preamble.cfg}
+
+
+\begin{document}
+
+% -- AUTOMATICALLY GENERATED UGLY CODE - START -- %
+
+\subsection{CSS}
+\label{products-css}
+
+The very basic {\css} implementation provides only ten variables per palette, named according to the pattern \tdoccodein{css}+--pal<name>-<nb>+, where \tdoccodein{css}+<name>+ is the standard palette name and \tdoccodein{css}+<nb>+ is the desired index ranging from 1 to 10. Each palette color variable is defined as an \tdoccodein{text}+RGB+ value using percentage notation. For example, the \tdoccodein{text}+GistHeat+ palette color definitions look like the following partial code.
+
+\begin{tdoccode}{css}
 :root {
   /* Previous palettes. */
 
@@ -24,12 +29,11 @@ For example, the `GistHeat` palette color definitions look like the following pa
 
   /* Additional palettes. */
 }
-~~~
-
+\end{tdoccode}
 
 Here are two possible use cases.
 
-~~~css
+\begin{tdoccode}{css}
 .warning-text {
   color: var(--palGistHeat-3);
 }
@@ -49,12 +53,11 @@ Here are two possible use cases.
     var(--palGistHeat-10)
   );
 }
-~~~
-
+\end{tdoccode}
 
 The following example shows how to create gradient variables by selectively extracting and rearranging colors from a palette.
 
-~~~css
+\begin{tdoccode}{css}
 :root {
   --transformed-gist-heat-gradient: linear-gradient(
     90deg,
@@ -68,4 +71,8 @@ The following example shows how to create gradient variables by selectively extr
 .transformed-gist-heat-gradient {
   background: var(--transformed-gist-heat-gradient);
 }
-~~~
+\end{tdoccode}
+
+% -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
+
+\end{document}

@@ -5,7 +5,7 @@ author: Christophe, BAL
 #    + ko
 #    + ok
 #    + update
-status: ko
+status: ok
 
 # Classical comments.
 #    + [on hold]  New API not yet analysed.
@@ -13,4 +13,4 @@ status: ko
 #    + [ko]       API rejected because ...
 #    + [ok]       API accepted.
 #    + [update]   Working on...
-comment: In construction...
+comment: Proposal from the project maintainer, built mainly with the help of a conversational AI agent. ;-)

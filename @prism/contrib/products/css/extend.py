@@ -38,7 +38,7 @@ def parse(code: str) -> PaletteCols:
 # -- BUILD FINAL CODE -- #
 # ---------------------- #
 
-PALETTES_FILE_NAME = "..."
+PALETTES_FILE_NAME = "palettes.css"
 
 ###
 # prototype::
@@ -61,7 +61,7 @@ def build_code(
     credits : str,
     palettes: dict[str, PaletteCols]
 ) -> str:
-    ...
+    return ""
 
 
 # ---------------- #

@@ -43,6 +43,11 @@ ajouter via latex la palette sympa Blackbody en extrayant de 6 à 10 trouver par
 
 // ---------- //
 
+2.0.0 : on améliore la gestion des palettes sémantiques qui doivent avoir la bonne taille et none celle de 10 imposé, ceci va demander de tenir compte des défs originelles
+
+
+// ---------- //
+
 implementation
 
    ---> CSS / SCSS  (les deux)

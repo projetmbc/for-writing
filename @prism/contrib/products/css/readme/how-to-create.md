@@ -1,4 +1,4 @@
-Create a palette using ONE-TECHNO
----------------------------------
+Create a palette using CSS
+--------------------------
 
-TODO
+Development workflow uses the `dev/test-dark-or-std.html` `HTML` file, which features an intuitive interface. This approach provides an efficient method for rapid palette iteration and prototyping.

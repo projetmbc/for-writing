@@ -6,15 +6,71 @@
   ---------------------------------------------------------------->
 
 
-ONE-TECHNO
-==========
+CSS
+===
 
-Use a ONE-TECHNO palette
-------------------------
+Use a CSS palette
+-----------------
 
-TODO
+The very basic `CSS` implementation provides only ten variables per palette, named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging from 1 to 10.
+Each palette color variable is defined as an `RGB` value using percentage notation.
+For example, the `GistHeat` palette color definitions look like the following partial code.
 
-Create a palette using ONE-TECHNO
----------------------------------
+~~~css
+:root {
+  /* Previous palettes. */
 
-TODO
+  --palGistHeat-1 = rgb(0% 0% 0.0%)
+  --palGistHeat-2 = rgb(10.5882% 0% 0%)
+  --palGistHeat-3 = rgb(21.1764% 0% 0%)
+  /* ... With 7 more RBG colors.*/
+
+  /* Additional palettes. */
+}
+~~~
+
+Here are two possible use cases.
+
+~~~css
+.warning-text {
+  color: var(--palGistHeat-3);
+}
+
+.gist-heat-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--palGistHeat-1),
+    var(--palGistHeat-2),
+    var(--palGistHeat-3),
+    var(--palGistHeat-4),
+    var(--palGistHeat-5),
+    var(--palGistHeat-6),
+    var(--palGistHeat-7),
+    var(--palGistHeat-8),
+    var(--palGistHeat-9),
+    var(--palGistHeat-10)
+  );
+}
+~~~
+
+The following example shows how to create gradient variables by selectively extracting and rearranging colors from a palette.
+
+~~~css
+:root {
+  --transformed-gist-heat-gradient: linear-gradient(
+    90deg,
+    var(--palGistHeat-6),
+    var(--palGistHeat-3),
+    var(--palGistHeat-9),
+    var(--palGistHeat-1)
+  );
+}
+
+.transformed-gist-heat-gradient {
+  background: var(--transformed-gist-heat-gradient);
+}
+~~~
+Create a palette using CSS
+--------------------------
+
+Development workflow uses the `dev/test-dark-or-std.html` `HTML` file, which features an intuitive interface. This approach provides an efficient method for rapid palette iteration and prototyping.

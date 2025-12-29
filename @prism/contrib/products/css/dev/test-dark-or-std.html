@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Testeur de Palette</title>
+
+  <link rel="stylesheet" href="./core/styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header-controls">
+      <h1>🎨 Testeur de Palette de Couleurs</h1>
+      <div class="theme-toggle">
+        <span class="theme-label">☀️</span>
+        <label class="switch">
+          <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+          <span class="slider"></span>
+        </label>
+        <span class="theme-label">🌙</span>
+      </div>
+    </div>
+
+    <div class="input-section">
+      <label for="colorInput">Entrez vos couleurs (format: #RRGGBB avec commentaires optionnels)</label>
+      <textarea id="colorInput" placeholder="Exemple:
+#000000  /* Noir */
+#242424  /* Gris 14% */
+#494949  /* Gris 29% */
+#6D6D6D  /* Gris 43% */
+#929292  /* Gris 57% */
+#B6B6B6  /* Gris 71% */
+#DBDBDB  /* Gris 86% */
+#FFFFFF  /* Blanc */"></textarea>
+      <div id="error" class="error"></div>
+    </div>
+
+    <div class="input-section">
+      <label for="headerInput">En-tête CSS (métadonnées, description, etc.)</label>
+      <textarea id="headerInput" placeholder="this:: author = First Name, Last Name">this:: author = First Name, Last Name</textarea>
+    </div>
+
+    <div class="controls">
+      <button class="btn-primary" onclick="loadPalette()">📊 Charger la palette</button>
+      <button class="btn-secondary" onclick="downloadCSS()">💾 Télécharger CSS</button>
+      <button class="btn-secondary" onclick="resetPalette()">🔄 Réinitialiser</button>
+    </div>
+
+    <div class="palette-display">
+      <h2 class="viz-title">Votre Palette (${colors.length} couleurs)</h2>
+      <div class="palette-grid" id="paletteGrid"></div>
+    </div>
+
+    <div class="palette-display" id="interpolatedSection" style="display: none;">
+      <h2 class="viz-title">Palette interpolée (10 couleurs pour export CSS)</h2>
+      <div class="palette-grid" id="interpolatedGrid"></div>
+    </div>
+
+    <div class="visualizations">
+      <div class="viz-section">
+        <h3 class="viz-title">Dégradé linéaire</h3>
+        <div class="gradient-bar" id="gradientBar"></div>
+      </div>
+
+      <div class="viz-section">
+        <h3 class="viz-title">Cercles concentriques</h3>
+        <div style="display: flex; justify-content: center;">
+          <svg id="concentricCircles" width="400" height="400" style="border-radius: 10px;"></svg>
+        </div>
+      </div>
+
+      <div class="viz-section">
+        <h3 class="viz-title">Courbe sinusoïdale</h3>
+        <svg id="sineWave" width="100%" height="400" style="border-radius: 10px;"></svg>
+      </div>
+    </div>
+  </div>
+
+  <script src="./core/script.js"></script>
+</body>
+</html>

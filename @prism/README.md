@@ -16,14 +16,15 @@ The @prism project
 - [Credits](#MULTIMD-TOC-ANCHOR-1)
 - [Supported implementations](#MULTIMD-TOC-ANCHOR-2)
     - [JSON, the versatile default format](#MULTIMD-TOC-ANCHOR-3)
-    - [LaTeX](#MULTIMD-TOC-ANCHOR-4)
-        - [Basic use](#MULTIMD-TOC-ANCHOR-5)
-        - [Creating palettes from scratch](#MULTIMD-TOC-ANCHOR-6)
-        - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-7)
-        - [Retrieving the internal definition of a palette](#MULTIMD-TOC-ANCHOR-8)
-    - [Lua](#MULTIMD-TOC-ANCHOR-9)
-        - [Basic use](#MULTIMD-TOC-ANCHOR-10)
-        - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-11)
+    - [CSS](#MULTIMD-TOC-ANCHOR-4)
+    - [LaTeX](#MULTIMD-TOC-ANCHOR-5)
+        - [Basic use](#MULTIMD-TOC-ANCHOR-6)
+        - [Creating palettes from scratch](#MULTIMD-TOC-ANCHOR-7)
+        - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-8)
+        - [Retrieving the internal definition of a palette](#MULTIMD-TOC-ANCHOR-9)
+    - [Lua](#MULTIMD-TOC-ANCHOR-10)
+        - [Basic use](#MULTIMD-TOC-ANCHOR-11)
+        - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-12)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
 About @prism <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -92,9 +93,70 @@ A `palettes.json` file containing only palette definitions is provided by defaul
 }
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
+### CSS <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
+The very basic `CSS` implementation provides only ten variables per palette, named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging from 1 to 10.
+Each palette color variable is defined as an `RGB` value using percentage notation.
+For example, the `GistHeat` palette color definitions look like the following partial code.
+
+~~~css
+:root {
+  /* Previous palettes. */
+
+  --palGistHeat-1 = rgb(0% 0% 0.0%)
+  --palGistHeat-2 = rgb(10.5882% 0% 0%)
+  --palGistHeat-3 = rgb(21.1764% 0% 0%)
+  /* ... With 7 more RBG colors.*/
+
+  /* Additional palettes. */
+}
+~~~
+
+Here are two possible use cases.
+
+~~~css
+.warning-text {
+  color: var(--palGistHeat-3);
+}
+
+.gist-heat-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--palGistHeat-1),
+    var(--palGistHeat-2),
+    var(--palGistHeat-3),
+    var(--palGistHeat-4),
+    var(--palGistHeat-5),
+    var(--palGistHeat-6),
+    var(--palGistHeat-7),
+    var(--palGistHeat-8),
+    var(--palGistHeat-9),
+    var(--palGistHeat-10)
+  );
+}
+~~~
+
+The following example shows how to create gradient variables by selectively extracting and rearranging colors from a palette.
+
+~~~css
+:root {
+  --transformed-gist-heat-gradient: linear-gradient(
+    90deg,
+    var(--palGistHeat-6),
+    var(--palGistHeat-3),
+    var(--palGistHeat-9),
+    var(--palGistHeat-1)
+  );
+}
+
+.transformed-gist-heat-gradient {
+  background: var(--transformed-gist-heat-gradient);
+}
+~~~
+<a id="MULTIMD-TOC-ANCHOR-5"></a>
 ### LaTeX <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-<a id="MULTIMD-TOC-ANCHOR-5"></a>
+<a id="MULTIMD-TOC-ANCHOR-6"></a>
 #### Basic use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 To use a color from a palette, use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
@@ -121,7 +183,7 @@ Representation of the color palette.
 
 \end{document}
 ~~~
-<a id="MULTIMD-TOC-ANCHOR-6"></a>
+<a id="MULTIMD-TOC-ANCHOR-7"></a>
 #### Creating palettes from scratch <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 For creating new palettes manually, the following high-level commands are available.
@@ -167,7 +229,7 @@ The following example demonstrates the flexibility offered by these low-level co
 \palAddNames{LowLevelPal}{green!60!black}
 \palAddRGB{LowLevelPal}{0.8, 0.2, 0.0}
 ~~~
-<a id="MULTIMD-TOC-ANCHOR-7"></a>
+<a id="MULTIMD-TOC-ANCHOR-8"></a>
 #### Creating palettes from existing ones <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 Building new palettes by transforming existing ones can be achieved using the `\palCreateFromPal` command, which has the signature `\palCreateFromPal{<new-name>}[<options>]{<existing-name>}`.
@@ -182,19 +244,19 @@ The following example shows how to do this (all options are used).
 ~~~
 > ***TIP.*** *`\palCreateFromPal{<new-name>}{<existing-name>}` build a copy of an existing palette.*
 
-<a id="MULTIMD-TOC-ANCHOR-8"></a>
+<a id="MULTIMD-TOC-ANCHOR-9"></a>
 #### Retrieving the internal definition of a palette <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The internally stored definition of a palette named `MyPal`, for example, is `\g_palette_MyPal_seq` which is a `L3` variable (keep in mind the pattern `\g_palette_PaletteName_seq`).
 
 > ***NOTE.*** *Variables of type `\g_palette_PaletteName_seq` are not used internally to retrieve the colors themselves; they are only there for technical reasons related to the development process of new palettes via `LaTeX`.*
 
-<a id="MULTIMD-TOC-ANCHOR-9"></a>
+<a id="MULTIMD-TOC-ANCHOR-10"></a>
 ### Lua <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 > ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use color palettes for [`luadraw`](https://github.com/pfradin/luadraw), a package that greatly facilitates the creation of high-quality 2D and 3D plots using `LuaLaTeX` and `TikZ`. The `Lua` implementation is now integrated into [`luadraw`](https://github.com/pfradin/luadraw).*
 
-<a id="MULTIMD-TOC-ANCHOR-10"></a>
+<a id="MULTIMD-TOC-ANCHOR-11"></a>
 #### Basic use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
@@ -213,7 +275,7 @@ palGistHeat = {
     -- ... With 7 more RBG colors.
 }
 ~~~
-<a id="MULTIMD-TOC-ANCHOR-11"></a>
+<a id="MULTIMD-TOC-ANCHOR-12"></a>
 #### Creating palettes from existing ones <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The `getPal` function provides options to build new palettes by transforming existing ones.
