@@ -20,30 +20,50 @@ from cbutils.core import *
 from shutil import rmtree
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+GLOB_BY_DIRS = {
+    'dev': [
+        "*/*.pdf",
+        "*/*.lua",
+        "*/*.sty",
+    ],
+    'fake-prod/showcase': [
+        "*/*.pdf",
+    ],
+}
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 PROJ_DIR = THIS_DIR
 
 while (PROJ_DIR.name != "@prism"):
     PROJ_DIR = PROJ_DIR.parent
 
-CONTRIB_LUADRAW_DIR = (
-    PROJ_DIR / "contrib" / "products" / "lua" / "dev" / "luadraw"
+CONTRIB_PROD_DIR = (
+    PROJ_DIR / "contrib" / "products" / "lua"
 )
 
 
 # ------------------------------- #
-# -- EMPTY CONTRIB PROD FOLDER -- #
+# -- CLEAN CONTRIB PROD FOLDER -- #
 # ------------------------------- #
 
-relpath = CONTRIB_LUADRAW_DIR.relative_to(PROJ_DIR)
+relpath = CONTRIB_PROD_DIR.relative_to(PROJ_DIR)
 
 logging.info(f"Clean '{relpath}' folder.")
 
-for p in CONTRIB_LUADRAW_DIR.glob("*.pdf"):
-    p.unlink()
+for subdir, patterns in GLOB_BY_DIRS.items():
+    subpath = CONTRIB_PROD_DIR
 
-for p in CONTRIB_LUADRAW_DIR.glob("*.lua"):
-    p.unlink()
+    for p in subdir.split('/'):
+        subpath /= p
+
+        for g in patterns:
+            for f in subpath.glob(g):
+                f.unlink()

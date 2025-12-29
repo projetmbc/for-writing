@@ -18,7 +18,11 @@
 --------
 
 [[:tech:]]
-Tools: short names for easier log reading in the terminal.
+Tools.
+
+    1) Better cleaning of \contrib \prod folders.
+
+    1) Short names for easier log reading in the terminal.
 
 
 // ---------- //
