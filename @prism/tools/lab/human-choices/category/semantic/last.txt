@@ -66,7 +66,9 @@ Tab20c
 Tableau
 TableauLight
 TableauMedium
+TdocBW
 TdocCol
+TdocDark
 TrafficLight
 
 # -- V -- #

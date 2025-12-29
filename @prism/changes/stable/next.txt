@@ -22,6 +22,8 @@ The new features are as follows.
 
     1) Added palettes from the \palettable \proj.
 
+    1) Three new palettes ''TdocBW'', ''TdocCol'' and ''TdocDark'' made for \tutodoc.
+
     1) Added \latex product.
 
 

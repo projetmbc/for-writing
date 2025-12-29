@@ -10,7 +10,11 @@
 -----
 
 [[:api:]]
-\latex product: added full \dev process. This new product is complete.
+Here are the new features.
+
+    1) \latex product: added full \dev process. This new product is complete.
+
+    2) Three new palettes ''TdocBW'', ''TdocCol'' and ''TdocDark'' made for \tutodoc using the \latex \prod.
 
 
 --------
