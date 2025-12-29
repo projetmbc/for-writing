@@ -20,9 +20,15 @@ from cbutils.core import *
 from shutil import rmtree
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 PROJ_DIR = THIS_DIR
 

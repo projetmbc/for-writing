@@ -10,7 +10,15 @@
 -----
 
 [[:api:]]
-\latex product: added full \dev process.
+\latex product: added full \dev process. This new product is complete.
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+Tools: short names for easier log reading in the terminal.
 
 
 // ---------- //

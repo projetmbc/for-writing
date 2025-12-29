@@ -20,9 +20,10 @@ The @prism project
         - [Basic use](#MULTIMD-TOC-ANCHOR-5)
         - [Creating palettes from scratch](#MULTIMD-TOC-ANCHOR-6)
         - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-7)
-    - [Lua](#MULTIMD-TOC-ANCHOR-8)
-        - [Basic use](#MULTIMD-TOC-ANCHOR-9)
-        - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-10)
+        - [Retrieving the internal definition of a palette](#MULTIMD-TOC-ANCHOR-8)
+    - [Lua](#MULTIMD-TOC-ANCHOR-9)
+        - [Basic use](#MULTIMD-TOC-ANCHOR-10)
+        - [Creating palettes from existing ones](#MULTIMD-TOC-ANCHOR-11)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
 About @prism <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -125,13 +126,12 @@ Representation of the color palette.
 
 For creating new palettes manually, the following high-level commands are available.
 
-1. `\palCreateFromRGB` creates a palette by entering it as a `Lua` array, while `\palCreateFromNames` works with named colors.
+1. `\palCreateFromRGB` creates a palette by entering it as an array-like variable, while `\palCreateFromNames` works with named colors.
 2. `\palSize{<name>}` returns the palette size (useful for loops, for example).
 
-The following example demonstrates these commands.
+The following example demonstrates the `\palCreateFromRGB` and `\palCreateFromNames` commands (we don't have put `\usepackage{palettes}`).
 
 ~~~latex
-\usepackage{palettes}
 \usepackage[svgnames]{xcolor}
 
 \palCreateFromRGB{MyRGBPal}{
@@ -144,22 +144,21 @@ The following example demonstrates these commands.
 
 \palCreateFromNames{MyNameUsePal}{
   YellowGreen,
-  LimeGreen,
   green!60!black,
+  LimeGreen!80,
 }
 ~~~
 > ***NOTE.*** *All built-in palettes are created using the `\palCreateFromRGB` macro.*
 
 A lower-level approach is also available through the following commands.
 
-1. `\palNew{<name>}` defines a new (empty) palette.
+1. `\palNew{<name>}` initializes a new (empty) palette.
 2. `\palAddNames{<name>}{<color-using-names>}` appends a color defined with named colors to the palette.
 3. `\palAddRGB{<name>}{<r>, <g>, <b>}` appends an `RGB` color to the palette, where `<r>`, `<g>`, and `<b>` are decimal values ranging from 0 to 1.
 
 The following example demonstrates the flexibility offered by these low-level commands.
 
 ~~~latex
-\usepackage{palettes}
 \usepackage[svgnames]{xcolor}
 
 \palNew{LowLevelPal}
@@ -175,22 +174,27 @@ Building new palettes by transforming existing ones can be achieved using the `\
 The following example shows how to do this (all options are used).
 
 ~~~latex
-\usepackage{palettes}
-
 \palCreateFromPal{BlackbodyTransformed}[
   extract = {1, 3, 6, 9},
   shift   = 1,
   reverse
 ]{Blackbody}
 ~~~
-> ***NOTE.*** *`\palCreateFromPal{<new-name>}{<existing-name>}` build a copy of an existing palette.*
+> ***TIP.*** *`\palCreateFromPal{<new-name>}{<existing-name>}` build a copy of an existing palette.*
 
 <a id="MULTIMD-TOC-ANCHOR-8"></a>
+#### Retrieving the internal definition of a palette <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
+The internally stored definition of a palette named `MyPal`, for example, is `\g_palette_MyPal_seq` which is a `L3` variable (keep in mind the pattern `\g_palette_PaletteName_seq`).
+
+> ***NOTE.*** *Variables of type `\g_palette_PaletteName_seq` are not used internally to retrieve the colors themselves; they are only there for technical reasons related to the development process of new palettes via `LaTeX`.*
+
+<a id="MULTIMD-TOC-ANCHOR-9"></a>
 ### Lua <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 > ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use color palettes for [`luadraw`](https://github.com/pfradin/luadraw), a package that greatly facilitates the creation of high-quality 2D and 3D plots using `LuaLaTeX` and `TikZ`. The `Lua` implementation is now integrated into [`luadraw`](https://github.com/pfradin/luadraw).*
 
-<a id="MULTIMD-TOC-ANCHOR-9"></a>
+<a id="MULTIMD-TOC-ANCHOR-10"></a>
 #### Basic use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
@@ -209,7 +213,7 @@ palGistHeat = {
     -- ... With 7 more RBG colors.
 }
 ~~~
-<a id="MULTIMD-TOC-ANCHOR-10"></a>
+<a id="MULTIMD-TOC-ANCHOR-11"></a>
 #### Creating palettes from existing ones <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The `getPal` function provides options to build new palettes by transforming existing ones.

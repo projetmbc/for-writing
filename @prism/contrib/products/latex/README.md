@@ -42,13 +42,12 @@ Representation of the color palette.
 
 For creating new palettes manually, the following high-level commands are available.
 
-1. `\palCreateFromRGB` creates a palette by entering it as a `Lua` array, while `\palCreateFromNames` works with named colors.
+1. `\palCreateFromRGB` creates a palette by entering it as an array-like variable, while `\palCreateFromNames` works with named colors.
 2. `\palSize{<name>}` returns the palette size (useful for loops, for example).
 
-The following example demonstrates these commands.
+The following example demonstrates the `\palCreateFromRGB` and `\palCreateFromNames` commands (we don't have put `\usepackage{palettes}`).
 
 ~~~latex
-\usepackage{palettes}
 \usepackage[svgnames]{xcolor}
 
 \palCreateFromRGB{MyRGBPal}{
@@ -61,22 +60,21 @@ The following example demonstrates these commands.
 
 \palCreateFromNames{MyNameUsePal}{
   YellowGreen,
-  LimeGreen,
   green!60!black,
+  LimeGreen!80,
 }
 ~~~
 > ***NOTE.*** *All built-in palettes are created using the `\palCreateFromRGB` macro.*
 
 A lower-level approach is also available through the following commands.
 
-1. `\palNew{<name>}` defines a new (empty) palette.
+1. `\palNew{<name>}` initializes a new (empty) palette.
 2. `\palAddNames{<name>}{<color-using-names>}` appends a color defined with named colors to the palette.
 3. `\palAddRGB{<name>}{<r>, <g>, <b>}` appends an `RGB` color to the palette, where `<r>`, `<g>`, and `<b>` are decimal values ranging from 0 to 1.
 
 The following example demonstrates the flexibility offered by these low-level commands.
 
 ~~~latex
-\usepackage{palettes}
 \usepackage[svgnames]{xcolor}
 
 \palNew{LowLevelPal}
@@ -91,15 +89,19 @@ Building new palettes by transforming existing ones can be achieved using the `\
 The following example shows how to do this (all options are used).
 
 ~~~latex
-\usepackage{palettes}
-
 \palCreateFromPal{BlackbodyTransformed}[
   extract = {1, 3, 6, 9},
   shift   = 1,
   reverse
 ]{Blackbody}
 ~~~
-> ***NOTE.*** *`\palCreateFromPal{<new-name>}{<existing-name>}` build a copy of an existing palette.*
+> ***TIP.*** *`\palCreateFromPal{<new-name>}{<existing-name>}` build a copy of an existing palette.*
+
+#### Retrieving the internal definition of a palette
+
+The internally stored definition of a palette named `MyPal`, for example, is `\g_palette_MyPal_seq` which is a `L3` variable (keep in mind the pattern `\g_palette_PaletteName_seq`).
+
+> ***NOTE.*** *Variables of type `\g_palette_PaletteName_seq` are not used internally to retrieve the colors themselves; they are only there for technical reasons related to the development process of new palettes via `LaTeX`.*
 
 Create a palette using LaTeX
 ----------------------------

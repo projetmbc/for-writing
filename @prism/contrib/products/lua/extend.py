@@ -151,38 +151,14 @@ def build_code(
     code = f"""
 {credits}
 
+
 {api_code}
+
 
 {paldefs_code}
     """.strip() + '\n'
 
     return code
-
-# # Extra code just for luadraw... This will be removed later!
-#     all_names = sorted(palettes, key = lambda x: x.lower())
-#     all_names = [f'"pal{n}"' for n in all_names]
-#     all_names = ",\n    ".join(all_names)
-
-#     code.append(
-#         f"""
-# ---------------------------------
-# -- GET ONE PALETTE BY ITS NAME --
-# ---------------------------------
-
-# palNames = {{}}
-
-# for _ , name in ipairs({{
-#     {all_names}
-# }}) do
-#     palNames[name] = _G[name]
-# end
-#         """.strip() + '\n'
-#     )
-
-# # Nothing left to do.
-#     code = '\n'.join(code)
-
-#     return code
 
 
 # ---------------- #

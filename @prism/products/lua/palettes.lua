@@ -4,6 +4,7 @@
 -- https://github.com/projetmbc/for-writing/tree/main/@prism . --
 -----------------------------------------------------------------
 
+
 -----------------------------
 -- USE AND CREATE PALETTES --
 -----------------------------
@@ -111,6 +112,7 @@ function getPal(name, options)
 
     return result
 end
+
 
 --------------------------
 -- DEFS OF EACH PALETTE --

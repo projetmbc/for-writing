@@ -26,6 +26,8 @@ from yaml import dump as yaml_dump
 
 MD_PRE_REPLACEMENTS = {
     '@prism' : r'{\thisproj}',
+    'LaTeX'  : r'{\LaTeX}',
+    'L3'     : r'{\LaTeX3}',
     'luadraw': r'{\LUADRAW}',
     'TikZ'   : r'{\TIKZ}',
     'xcolor' : r'{\xcolor}',
