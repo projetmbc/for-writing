@@ -12,14 +12,19 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+ajout de palette latex corerspondonant aux couleurs de tutotodocs suivant le thème choisi : ecci illusrtre l'usage et fait cas d'utilisation
+
+// ---------- //
+
 1.3.0 uniquement lorsque des implémentations pour xcolor et CSS (a minima).
 
 
 ajouter via latex la palette sympa Blackbody en extrayant de 6 à 10 trouver par hasard
 
-api latex : il manque la modif d'une couleur dune palette
+api latex : il manque la modif d'une couleur isolé dune palette
 
 metrre ceci aussi dans api car lua et json c'est autio mas pas en latex
+
 
 // ---------- //
 

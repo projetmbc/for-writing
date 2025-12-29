@@ -136,7 +136,7 @@
 %              an internal \xcolor color.
 %%%
 \cs_new_protected:Nn \palette_add_rgb_color:nn {
-  \seq_gput_right:cn { g_palette_#1_seq }{ #2 }
+  \seq_gput_right:cx { g_palette_#1_seq }{ #2 }
 
   \int_set:Nn \l_tmpa_int {
     \seq_count:c { g_palette_#1_seq }

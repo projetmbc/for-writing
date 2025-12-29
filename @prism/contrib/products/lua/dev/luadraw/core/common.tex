@@ -21,38 +21,25 @@ local dev_file = io.open(
 local in_header = false
 
 local magic_comments = {}
-local luadraw_code   = {
-}
+local luadraw_code   = {}
+
+for line in dev_file:lines() do
+  if line:match("^%-%-%-%-%-%-+$") then
+    in_header = not in_header
+
+  elseif in_header then
+    table.insert(magic_comments, line)
+
+  else
+    table.insert(luadraw_code, line)
+  end
+end
 
 local luadraw_precode = [[--
 --
 -- Here is the luadraw code used.
 --
 -- lua::]]
-
-local content
-
-for line in dev_file:lines() do
-  if line:match("^%-%-%-%-%-%-+$") then
-    in_header = not in_header
-
-    if in_header then
-      table.insert(magic_comments, "------")
-end
-
-  else
-    if not line:match("^%-%-%s*(.*)$") then
-      in_header = false
-    end
-
-    if in_header then
-      table.insert(magic_comments, line)
-
-    else
-      table.insert(luadraw_code, line)
-    end
-  end
-end
 
 local function est_vide(ligne)
   return ligne:match("^%s*$") ~= nil
