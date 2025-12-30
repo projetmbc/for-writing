@@ -52,7 +52,7 @@ Here are two possible use cases.
 ~~~
 
 
-The following example shows how to create gradient variables by selectively extracting and rearranging colors from a palette.
+The example below demonstrates creating gradient variables through selective color extraction and custom reordering.
 
 ~~~css
 :root {

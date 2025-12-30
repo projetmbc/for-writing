@@ -45,6 +45,18 @@ ajouter via latex la palette sympa Blackbody en extrayant de 6 à 10 trouver par
 
 2.0.0 : on améliore la gestion des palettes sémantiques qui doivent avoir la bonne taille et none celle de 10 imposé, ceci va demander de tenir compte des défs originelles
 
+    ---> matplotlib en local : qualtitative <--> semantic (on reprend au passage ce vocabulaire)
+
+    ---> si non qualittaive,on garde 10 couleurs
+
+    ---> syst de màj des sources est un slow : telecharge + nettoyage
+
+    ---> sipas connection, pas un souci mais un warnning
+
+    ---> on doit alors pouvoir imposer une taille pour certains palettes
+
+    ---> uen fois tout mis à plat, on peut ajouter les palettes proposées par AI Claude
+
 
 // ---------- //
 
