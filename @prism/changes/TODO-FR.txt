@@ -11,6 +11,9 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+semantic à reprendre maintenant que plus de taille fixé !!!
+
+
 Information
 - Link / Reference
 - Note / Info
@@ -26,24 +29,19 @@ Changements & historique
 - Outdated / Deprecated
 
 
-
-
-// ---------- //
-
-ajout de palette latex corerspondonant aux couleurs de tutotodocs suivant le thème choisi : ecci illusrtre l'usage et fait cas d'utilisation
-
-
 // ---------- //
 
 1.3.0 uniquement lorsque des implémentations pour xcolor et CSS (a minima).
 
 
-ajouter via latex la palette sympa Blackbody en extrayant de 6 à 10 trouver par hasard
+// ---------- //
+
+??? ajouter via latex la palette sympa Blackbody en extrayant de 6 à 10 trouver par hasard
 
 
 // ---------- //
 
-2.0.0 : on améliore la gestion des palettes sémantiques qui doivent avoir la bonne taille et none celle de 10 imposé, ceci va demander de tenir compte des défs originelles
+2.0.0 à faire vite : on améliore la gestion des palettes sémantiques qui doivent avoir la bonne taille et none celle de 10 imposé, ceci va demander de tenir compte des défs originelles
 
     ---> matplotlib en local : qualtitative <--> semantic (on reprend au passage ce vocabulaire)
 
@@ -55,26 +53,16 @@ ajouter via latex la palette sympa Blackbody en extrayant de 6 à 10 trouver par
 
     ---> on doit alors pouvoir imposer une taille pour certains palettes
 
-    ---> uen fois tout mis à plat, on peut ajouter les palettes proposées par AI Claude
+    ---> uen fois tout mis à plat, on peut ajouter les palettes proposées par AI Claude + faire package latex (o veut pas créer de pllution)
 
 
 // ---------- //
 
 implementation
 
-   ---> CSS / SCSS  (les deux)
+   ---> SCSS avec une API dans ce cas
 
-            + vite  acr hyper intuitif via appli HTML de Claude l'AI + faire un truc avec des courbes et Nerfetiti pour le dev
-
-            + ajoutde pallets selectionnes parmi celels proposé par claude et on indique que c'était le point de départ
-
-            + reprendre BlindFish pour qu'il soit moins sombre sur la fin
-
-   ---> LaTeX : extraction eet compagine via L3
-
-            + point de départ pour un mini package latex vi des maj auto!
-
-   ---> Python : après on en fait la pub sur Matplotlib
+   ---> Python : après on en fait la pub sur Matplotlib (attendre la version avec semantic/qualititative palettes)
 
 
 // ---------- //
