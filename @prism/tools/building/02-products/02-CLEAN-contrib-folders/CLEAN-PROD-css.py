@@ -61,6 +61,6 @@ for subdir, patterns in FILE_GLOB_BY_DIRS.items():
     for p in subdir.split('/'):
         subpath /= p
 
-        for g in patterns:
-            for f in subpath.glob(g):
-                f.unlink()
+    for g in patterns:
+        for f in subpath.glob(g):
+            f.unlink()

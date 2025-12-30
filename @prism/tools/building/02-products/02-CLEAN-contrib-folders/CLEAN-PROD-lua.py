@@ -103,7 +103,7 @@ for subdir, patterns in FOLDER_GLOB_BY_DIRS.items():
     for p in subdir.split('/'):
         subpath /= p
 
-        for g in patterns:
-            for d in subpath.glob(g):
-                if d.is_dir():
-                    rmtree(d)
+    for g in patterns:
+        for d in subpath.glob(g):
+            if d.is_dir():
+                rmtree(d)

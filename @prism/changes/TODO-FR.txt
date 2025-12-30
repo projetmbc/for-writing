@@ -8,16 +8,6 @@ WIMS : https://beta.framadate.org/polls/a427c29572513d61aec9/a8dcb2b97684271a0d2
 https://beta.framadate.org/polls/a427c29572513d61aec9
 
 
-// ---------- //
-
-reprise du code de fabrication des palettes externes
-
-    + matplotlib.py
-    + asymptote.py
-    + scicolmap.py
-    + colorbrewer.py
-    + palettable.py
-
 
 // ---------- //
 
@@ -55,7 +45,12 @@ Changements & historique
 
     ---> matplotlib en local : qualtitative <--> semantic (on reprend au passage ce vocabulaire)
 
-    ---> si non qualittaive,on garde 10 couleurs
+    ---> Ajout de préfixe pour retrouver rapidment les palettes semantqites/qaulititatives :lourdingue mais au final plus explicite!
+
+              + SemPalName : sémantique
+              + QuantPalName : squantitiative/continue
+
+    ---> si non qualittaive, on garde 10 couleurs (cela reste modifiable via un paramètre en cas de besoin)
 
     ---> syst de màj des sources est un slow : telecharge + nettoyage
 
@@ -64,6 +59,16 @@ Changements & historique
     ---> on doit alors pouvoir imposer une taille pour certains palettes
 
     ---> uen fois tout mis à plat, on peut ajouter les palettes proposées par AI Claude + faire package latex (o veut pas créer de pllution)
+
+
+reprise du code de fabrication des palettes externes
+
+    + matplotlib.py        ??????????
+    + asymptote.py         ????????
+    + scicolmap.py         ??????
+    + colorbrewer.py       ????
+    + palettable.py        ??
+
 
 
 // ---------- //
