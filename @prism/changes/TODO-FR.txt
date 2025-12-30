@@ -30,9 +30,16 @@ Importance & attention
 - Warning / Critical
 
 Changements & historique
-- Last / Updated
+- Last
+- Updated
 - Outdated / Deprecated
 
+
+// ---------- //
+
+showcase
+
+    ---> mettre aussi e stransormations quand l(-'API le propose)
 
 // ---------- //
 
