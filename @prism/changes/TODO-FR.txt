@@ -8,6 +8,21 @@ WIMS : https://beta.framadate.org/polls/a427c29572513d61aec9/a8dcb2b97684271a0d2
 https://beta.framadate.org/polls/a427c29572513d61aec9
 
 
+// ---------- //
+
+reprise du code de fabrication des palettes externes
+
+    + matplotlib.py
+    + asymptote.py
+    + scicolmap.py
+    + colorbrewer.py
+    + palettable.py
+
+
+// ---------- //
+
+1.3.0 uniquement lorsque des implémentations pour xcolor et CSS (a minima).
+
 
 // ---------- //
 
@@ -27,11 +42,6 @@ Importance & attention
 Changements & historique
 - Last / Updated
 - Outdated / Deprecated
-
-
-// ---------- //
-
-1.3.0 uniquement lorsque des implémentations pour xcolor et CSS (a minima).
 
 
 // ---------- //
