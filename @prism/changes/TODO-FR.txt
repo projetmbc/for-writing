@@ -47,8 +47,8 @@ Changements & historique
 
     ---> Ajout de préfixe pour retrouver rapidment les palettes semantqites/qaulititatives :lourdingue mais au final plus explicite!
 
-              + SemPalName : sémantique
-              + QuantPalName : squantitiative/continue
+              + SmPalName : sémantique
+              + QntPalName : quantitiative/continue
 
     ---> si non qualittaive, on garde 10 couleurs (cela reste modifiable via un paramètre en cas de besoin)
 
