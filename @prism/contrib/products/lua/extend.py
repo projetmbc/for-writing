@@ -26,7 +26,7 @@ PaletteCols:TypeAlias = list[RGBCols]
 
 ###
 # prototype::
-#     code : a RGB ''lua'' palette definition of a palette (see the fake
+#     code : a RGB ''Lua'' palette definition of a palette (see the fake
 #            example below).
 #
 #     :return: a list of lists of 3 floats belonging to `[0, 1]` that
@@ -34,13 +34,13 @@ PaletteCols:TypeAlias = list[RGBCols]
 #              of the palette.
 #
 #
-# A RGB ''lua'' palette definition looks like this.
+# A RGB ''Lua'' palette definition looks like this.
 #
 # lua::
 #     PALETTE = {
 #       {0.3922, 0.5843, 0.9294},
 #       {0.5294, 0.8078, 0.9804},
-#       ...
+#       -- ...
 #     }
 ###
 def parse(code: str) -> PaletteCols:
@@ -57,7 +57,7 @@ def parse(code: str) -> PaletteCols:
     )
 
     if not match:
-        raise ValueError("No lua PALETTE definition found.")
+        raise ValueError("No Lua PALETTE definition found.")
 
     palette = match.group(1)
 
@@ -133,7 +133,9 @@ def build_code(
         paldefs_code.append(f"{name} = {{")
 
         for r, g, b in colors:
-            paldefs_code.append(f"{indent}{{{r}, {g}, {b}}},")
+            paldefs_code.append(
+                f"{indent}{{{r}, {g}, {b}}},"
+            )
 
 # We remove the last unuseful coma.
         paldefs_code[-1] = paldefs_code[-1][:-1]
@@ -168,7 +170,7 @@ def build_code(
 if __name__ == "__main__":
 # Code to parse.
     code = r"""
--- luadraw definition used.
+-- Lua definition used.
 
 -- PALETTE = {
 --   Gray,

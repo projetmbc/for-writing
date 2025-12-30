@@ -36,11 +36,11 @@ PaletteCols:TypeAlias = list[RGBCols]
 #
 # A RGB ''LaTeX'' palette definition looks like this.
 #
-# lua::
+# latex::
 #     \palCreateFromRGB{PALETTE}{
 #       {0.3922, 0.5843, 0.9294},
 #       {0.5294, 0.8078, 0.9804},
-#       ...
+#       % ...
 #     }
 ###
 def parse(code: str) -> PaletteCols:
@@ -140,7 +140,10 @@ def build_code(
 
         for r, g, b in colors:
             r, g, b = map(float2dec, [r, g, b])
-            paldefs_code.append(f"{indent}{{{r}, {g}, {b}}},")
+
+            paldefs_code.append(
+                f"{indent}{{{r}, {g}, {b}}},"
+            )
 
 # We remove the last unuseful coma.
         paldefs_code[-1] = paldefs_code[-1][:-1]
@@ -175,7 +178,7 @@ def build_code(
 if __name__ == "__main__":
 # Code to parse.
     code = r"""
-% latex definition used.
+% LaTeX definition used.
 
 % PALETTE = {
 %   Gray,

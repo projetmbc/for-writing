@@ -70,3 +70,48 @@ def build_code(
 
 if __name__ == "__main__":
     ...
+
+# Code to parse.
+#     code = r"""
+# -- Lua definition used.
+
+# -- PALETTE = {
+# --   Gray,
+# --   SlateGray,
+# --   LightSkyBlue,
+# --   LightPink,
+# --   Pink,
+# --   LightSalmon,
+# --   FireBrick,
+# -- }
+
+# PALETTE = {
+#   {0.502, 0.502, 0.502},
+#   {0.4392, 0.502, 0.5647},
+#   {0.5294, 0.8078, 0.9804},
+#   {1, 0.7137, 0.7569},
+#   {1, 0.7529, 0.7961},
+#   {1, 0.6275, 0.4784},
+#   {0.698, 0.1333, 0.1333},
+# }
+#     """
+
+#     from rich import print
+
+#     print_section = lambda t: print(f'\n--- {t} --\n')
+
+#     print_section('INITIAL CODE')
+#     print(code.strip())
+
+#     std_data = parse(code)
+
+#     print_section('STD DATA (JSON)')
+#     print(std_data)
+
+#     print_section('SPECIFIC CODE')
+#     print(
+#         build_code(
+#             credits  = 'Credits...',
+#             palettes = {"TEST": std_data}
+#         )
+#     )
