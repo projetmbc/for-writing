@@ -36,7 +36,7 @@ CTXT = TAG_MPL
 
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != "@prism"):
+while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 REPORT_DIR = BUILD_TOOLS_DIR / "REPORT"

@@ -68,7 +68,7 @@ CTXT = TAG_PALETTABLE
 
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != "@prism"):
+while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR        = PROJ_DIR / "products"

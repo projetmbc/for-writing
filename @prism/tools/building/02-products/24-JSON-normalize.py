@@ -12,6 +12,7 @@ BUILD_TOOLS_DIR = THIS_DIR.parent
 sys.path.append(str(BUILD_TOOLS_DIR))
 
 from cbutils.core import *
+from cbutils      import *
 
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
@@ -35,7 +36,7 @@ PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
 
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != "@prism"):
+while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR  = PROJ_DIR / "products"
