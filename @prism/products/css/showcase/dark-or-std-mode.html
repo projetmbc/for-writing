@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
 
-  <title>Palette Studio - Theme Support</title>
+  <title>🎨 @prism palette studio (Viewer))</title>
 
   <link rel  = "stylesheet"
         href = "../palettes.css">
@@ -14,25 +16,57 @@
 <body>
 
 <div class="container">
-  <div class="header">
-    <h1>🎨 Palette Studio</h1>
-    <button class="theme-switch" onclick="toggleTheme()" id="themeBtn">🌙 Mode Sombre</button>
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+    <h1>🎨 @prism</h1>
+
+    <div class="nav-buttons">
+      <button onclick="pickRandom()"
+              class="btn-tool">
+        🎲 RANDOM
+      </button>
+
+      <button onclick="document.body.classList.toggle('dark-mode')"
+              class="btn-tool">
+        🌓 THEME
+      </button>
+    </div>
   </div>
 
-  <div id="tabsInterface" class="tabs-container"></div>
+  <div class="selector-engine">
+    <div id="alphabetBar"
+         class="alphabet-bar">
+    </div>
 
-  <div class="hidden-inputs">
-    <input type="text" id="pName">
-    <input type="number" id="pSize">
+    <div id="scrollZone"
+         class="palette-scroll-zone">
+    </div>
   </div>
 
   <div id="resultArea" style="display:none">
-    <h2 id="currentTitle" style="margin-bottom: 15px;"></h2>
-    <div class="palette-preview" id="palettePreview"></div>
-    <div class="spectrum-bar" id="continuousSpectrum"></div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+      <h2 id="currentTitle"
+          style="font-size: 1rem;">
+      </h2>
+
+      <label id="colorCount"
+             style="margin-bottom:0;">
+      </label>
+    </div>
+
+    <label>Spectrum</label>
+    <div class="spectrum-bar"
+         id="continuousSpectrum">
+    </div>
+
+    <label>Palette</label>
+    <div class="palette-preview"
+         id="palettePreview">
+    </div>
 
     <div class="viz-box">
-      <svg id="canvas" width="800" height="400" viewBox="0 0 800 400"></svg>
+      <svg id="canvas"
+           viewBox="0 0 750 250">
+      </svg>
     </div>
   </div>
 </div>
@@ -41,4 +75,5 @@
 <script src="./core/graphic.js"></script>
 
 </body>
+
 </html>

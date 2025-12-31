@@ -1,43 +1,63 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
 
-  <title>🎨 @prism palette studio - RGB% Edition</title>
+  <title>🎨 @prism palette studio (RGB%)</title>
 
   <link rel  = "stylesheet"
         href = "./core/styles.css">
 </head>
+
 <body>
 
 <div class="container">
   <div class="header">
-    <h1>🎨 @prism palette studio</h1>
-    <button class="btn-theme" onclick="toggleTheme()" id="themeBtn">🌓 Theme</button>
+    <h1>🎨 @prism palette dev.</h1>
+    <button class   = "btn-theme"
+            onclick = "toggleTheme()"
+            id      = "themeBtn">
+      🌓 Theme
+    </button>
   </div>
 
   <div class="editor-grid">
     <div style="display:flex; flex-direction:column; gap:15px;">
       <div>
         <label>Palette name</label>
-        <input type="text" id="pName" value="Fictive Random" oninput="updateAll()">
+        <input type    = "text"
+               id      = "pName"
+               value   = "Fictive Random"
+               oninput = "updateAll()">
       </div>
 
       <div>
         <label>Size</label>
-        <input type="number" id="pSize" value="10" min="2" oninput="updateAll()">
+        <input type    = "number"
+               id      = "pSize"
+               value   = "10"
+               min     = "2"
+               oninput = "updateAll()">
       </div>
-      <button class="btn-download" onclick="downloadCSS()">Download CSS</button>
+      <button class   = "btn-download"
+              onclick = "downloadCSS()">
+        Download CSS
+      </button>
     </div>
 
     <div>
       <label>Colors (one per line - RGB%)</label>
-      <textarea id="pList" oninput="updateAll()"></textarea>
+      <textarea id      = "pList"
+                oninput = "updateAll()">
+      </textarea>
     </div>
 
     <div>
       <label>Notes / CSS Comments</label>
-      <textarea id="pNotes" oninput="updateAll()">
+      <textarea id      = "pNotes"
+                oninput = "updateAll()">
 this::
     author = First Name, Last Name
 </textarea>
@@ -45,15 +65,21 @@ this::
   </div>
 
   <div class="viz-section">
-    <div class="discrete-bar" id="palettePreview"></div>
-    <div class="continuous-spectrum" id="spectrum"></div>
-    <div class="viz-box">
-      <svg id="canvas" viewBox="0 0 800 400"></svg>
+    <div class = "discrete-bar"
+         id    = "palettePreview">
+    </div>
+    <div class = "continuous-spectrum"
+         id    = "spectrum">
+    </div>
+    <div class = "viz-box">
+      <svg id      = "canvas"
+           viewBox = "0 0 800 400">
+      </svg>
     </div>
   </div>
 </div>
 
+<script src = "./core/graphic.js"></script>
 
-<script src="./core/graphic.js"></script>
 </body>
 </html>

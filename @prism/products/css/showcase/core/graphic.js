@@ -1,130 +1,149 @@
-function initTabs() {
-  const container = document.getElementById('tabsInterface');
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const alphaArray = alphabet.split('');
+function initInterface() {
+  const alphaBar = document.getElementById('alphabetBar');
 
-  let htmlTabs = '<div class="tabs-header">';
-  let htmlContent = '';
+  if (typeof palsize === 'undefined') return;
 
-  for (let i = 0; i < alphaArray.length; i += 4) {
-    const groupe = alphaArray.slice(i, i + 4);
-    const label = `${groupe[0]}-${groupe[groupe.length - 1]}`;
-    const tabId = `tab-${label}`;
+  const availableLetters = [
+    ...new Set(
+      Object.keys(palsize)
+        .map(name => name[0].toUpperCase())
+    )
+  ];
 
-    // Bouton
-    htmlTabs += `<button class="tab-btn" onclick="openTab(event, '${tabId}')">${label}</button>`;
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    .split('')
+    .forEach(
+      L => {
+        const btn = document.createElement('button');
 
-    // Panneau
-    htmlContent += `<div id="${tabId}" class="tab-content">`;
+        btn.className   = `letter-btn ${availableLetters.includes(L) ? '' : 'disabled'}`;
+        btn.id          = `btn-letter-${L}`;
+        btn.textContent = L;
 
-    // Filtrer les palettes
-    const palselect = Object.keys(palsize).filter(p =>
-      groupe.includes(p[0].toUpperCase())
+        if (!btn.classList.contains('disabled')) btn.onclick = () => filterByLetter(L, btn);
+
+        alphaBar.appendChild(btn);
+      }
     );
 
-    if (palselect.length === 0) {
-      htmlContent += `<p style="grid-column: 1/-1; opacity: 0.5;">Aucune palette</p>`;
-    } else {
-      palselect.forEach(nom => {
-        htmlContent += `
-          <button class="palette-choice" onclick="selectPalette('${nom}', ${palsize[nom]})">
-            <strong>${nom}</strong><br>
-            <small>${palsize[nom]} couleurs</small>
-          </button>`;
-      });
+  const first = document.querySelector('.letter-btn:not(.disabled)');
+
+  if (first) first.click();
+}
+
+function filterByLetter(letter, btn, targetPalette = null) {
+  document
+    .querySelectorAll('.letter-btn')
+    .forEach(
+      b => b.classList.remove('active')
+    );
+
+  btn.classList.add('active');
+
+  const scrollZone = document.getElementById('scrollZone');
+
+  scrollZone.innerHTML = '';
+
+  const matches = Object
+    .keys(palsize)
+    .filter(name => name[0].toUpperCase() === letter)
+    .sort();
+
+  matches.forEach(
+    name => {
+      const pBtn = document.createElement('button');
+
+      pBtn.className = `palette-choice ${targetPalette === name ? 'selected' : ''}`;
+      pBtn.innerHTML = `<strong>${name}</strong><small>${palsize[name]} tons</small>`;
+      pBtn.onclick   = () => selectPalette(name, palsize[name], pBtn);
+
+      scrollZone.appendChild(pBtn);
+
+      if(targetPalette === name) setTimeout(() => pBtn.scrollIntoView({ block: 'nearest' }), 50);
     }
-    htmlContent += `</div>`;
-  }
-
-  container.innerHTML = htmlTabs + '</div>' + htmlContent;
-
-  // Ouvrir le premier onglet par défaut
-  document.querySelector('.tab-btn').click();
+  );
 }
 
-function openTab(evt, tabId) {
-  document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(tb => tb.classList.remove('active'));
-  document.getElementById(tabId).classList.add('active');
-  evt.currentTarget.classList.add('active');
+function pickRandom() {
+  const keys = Object.keys(palsize);
+
+  const key = keys[Math.floor(Math.random() * keys.length)];
+
+  const letterBtn = document.getElementById(`btn-letter-${key[0].toUpperCase()}`);
+
+  filterByLetter(key[0].toUpperCase(), letterBtn, key);
+
+  selectPalette(key, palsize[key]);
 }
 
-// 3. Sélection et Dessin
-function selectPalette(nom, taille) {
-  document.getElementById('pName').value = nom;
-  document.getElementById('pSize').value = taille;
-  document.getElementById('currentTitle').textContent = `Palette : ${nom}`;
-  draw();
+function selectPalette(nom, taille, btnElement = null) {
+  document
+    .querySelectorAll('.palette-choice')
+    .forEach(b => b.classList.remove('selected'));
+
+  if(btnElement) btnElement.classList.add('selected');
+
+  document.getElementById('currentTitle').textContent = nom;
+  document.getElementById('colorCount').textContent   = `${taille} colors`;
+  document.getElementById('resultArea').style.display = 'block';
+
+  draw(nom, taille);
 }
 
-function toggleTheme() {
-  const body = document.body;
-  const btn = document.getElementById('themeBtn');
-  body.classList.toggle('dark-mode');
-  btn.textContent = body.classList.contains('dark-mode') ? "☀️ Mode Clair" : "🌙 Mode Sombre";
-}
+function draw(name, size) {
+  const colors = [];
 
-function draw() {
-  const name = document.getElementById('pName').value.trim();
-  const size = parseInt(document.getElementById('pSize').value);
-  const area = document.getElementById('resultArea');
-  const preview = document.getElementById('palettePreview');
-  const spectrum = document.getElementById('continuousSpectrum');
+  for (let i = 1; i <= size; i++) colors.push(`var(--pal${name}-${i})`);
+
+  document.getElementById('palettePreview').innerHTML = colors.map(
+    c => `<div class="swatch" style="background:${c}"></div>`
+  ).join('');
+
+  document.getElementById('continuousSpectrum').style.background = `linear-gradient(90deg, ${colors.join(', ')})`;
+
   const svg = document.getElementById('canvas');
 
-  if (!name || size < 1) return;
-  area.style.display = 'block';
-
-  const colorVars = [];
-  for (let i = 1; i <= size; i++) {
-    colorVars.push(`var(--pal${name}-${i})`);
-  }
-
-  preview.innerHTML = colorVars.map(v => `<div class="swatch" style="background: ${v}"></div>`).join('');
-  spectrum.style.background = `linear-gradient(to right, ${colorVars.join(', ')})`;
-
-  // SVG graphics
   svg.innerHTML = '';
-  const centerX = 200;
-  const centerY = 200;
-  const maxR = 150;
-  const rStep = maxR / size;
 
-  // Dessiner les cercles concentriques
-  colorVars.forEach((v, i) => {
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx", centerX);
-    circle.setAttribute("cy", centerY);
-    circle.setAttribute("r", maxR - (i * rStep));
-    circle.setAttribute("fill", v);
-    svg.appendChild(circle);
-  });
+  const centerY = 125;
+  const circleX = 130;
+  const waveStartX = 280;
+  const maxR = 100;
 
-  // Dessiner les ondes sinusoïdales
-  const startX = 400;
-  const width = 500;
+  colors.forEach((c, i) => {
+// Cercles
+    const circ = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "circle"
+    );
 
-  colorVars.forEach((v, i) => {
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    const yBase = 200 + (i * 6) - (size * 3);
+    circ.setAttribute("cx", circleX);
+    circ.setAttribute("cy", centerY);
+    circ.setAttribute("r", maxR - (i * (maxR/size)));
+    circ.setAttribute("fill", c);
 
-    // CORRECTION : Calculer la position Y de départ avec le sinus dès le 'M'
-    let startY = yBase + Math.sin(0 * 0.03 + i) * 60;
-    let d = `M ${startX} ${startY}`;
+    svg.appendChild(circ);
 
-    // La boucle commence à 10 pour continuer le tracé
-    for (let x = 0; x <= width; x += 1) {
-      d += ` L ${startX + x} ${yBase + Math.sin(x * 0.03 + i) * 60}`;
-    }
+// Ondes
+    const path = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path"
+    );
+
+    const yBase = centerY + (i * 7) - (size * 3.5);
+
+    let d = `M ${waveStartX} ${yBase + Math.sin(i) * 40}`;
+
+    for (let x = 1; x <= 440; x += 2) d += ` L ${waveStartX + x} ${yBase + Math.sin(x * 0.04 + i) * 40}`;
 
     path.setAttribute("d", d);
-    path.setAttribute("stroke", v);
+    path.setAttribute("stroke", c);
     path.setAttribute("fill", "none");
     path.setAttribute("stroke-width", "4");
     path.setAttribute("stroke-linecap", "round");
+
     svg.appendChild(path);
   });
 }
 
-// Lancement au chargement
-window.onload = initTabs;
+window.onload = initInterface;
