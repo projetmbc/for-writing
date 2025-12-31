@@ -1,34 +1,3 @@
-// 1. Tableau associatif : Nom -> Taille
-const palettesData = {
-  "Accent": 10,
-  "Alizari": 12,
-  "Amber": 9,
-  "Azure": 8,
-  "Bordeaux": 11,
-  "Bronze": 10,
-  "Berry": 14,
-  "Cyan": 10,
-  "Cobalt": 12,
-  "Crimson": 8,
-  "Default": 5,
-  "DeepSea": 15,
-  "Dragon": 10,
-  "Emerald": 10,
-  "Electric": 7,
-  "Earthy": 12,
-  "Fuchsia": 10,
-  "Forest": 11,
-  "Fire": 9,
-  "Gold": 8,
-  "Graphite": 10,
-  "Grape": 13,
-  "Hot": 10,
-  "Heliotrope": 10,
-  "Indigo": 10,
-  "Ice": 6
-};
-
-// 2. Génération des onglets (Groupes de 4 lettres)
 function initTabs() {
   const container = document.getElementById('tabsInterface');
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -133,19 +102,19 @@ function draw() {
 
   // Dessiner les ondes sinusoïdales
   const startX = 400;
-  const width = 350;
+  const width = 500;
 
   colorVars.forEach((v, i) => {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     const yBase = 200 + (i * 6) - (size * 3);
 
     // CORRECTION : Calculer la position Y de départ avec le sinus dès le 'M'
-    let startY = yBase + Math.sin(0 * 0.03 + i) * 30;
+    let startY = yBase + Math.sin(0 * 0.03 + i) * 60;
     let d = `M ${startX} ${startY}`;
 
     // La boucle commence à 10 pour continuer le tracé
-    for (let x = 10; x <= width; x += 10) {
-      d += ` L ${startX + x} ${yBase + Math.sin(x * 0.03 + i) * 30}`;
+    for (let x = 00; x <= width; x += 1) {
+      d += ` L ${startX + x} ${yBase + Math.sin(x * 0.03 + i) * 60}`;
     }
 
     path.setAttribute("d", d);
