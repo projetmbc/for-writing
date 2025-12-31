@@ -2,7 +2,7 @@
 
 
 ==
-XXXXXXXXXX  (1.3.0)
+31  (1.3.0)   ????
 ==
 
 -------
@@ -24,7 +24,7 @@ The new features are as follows.
 
     1) Three new palettes ''TdocBW'', ''TdocCol'' and ''TdocDark'' made for \tutodoc.
 
-    1) Added \latex product.
+    1) Added \css and \latex products.
 
 
 --------

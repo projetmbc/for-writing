@@ -95,6 +95,8 @@ A `palettes.json` file containing only palette definitions is provided by defaul
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
 ### CSS <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
+> ***NOTE.*** *The `HTML`, `CSS`, and `JavaScript` files for product development and demonstration were created using `Claude` and `Gemini` AI assistants.*
+
 The very basic `CSS` implementation provides only ten variables per palette, named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging from 1 to 10.
 Each palette color variable is defined as an `RGB` value using percentage notation.
 For example, the `GistHeat` palette color definitions look like the following partial code.

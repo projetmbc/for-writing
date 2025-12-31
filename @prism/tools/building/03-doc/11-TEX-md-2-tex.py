@@ -25,14 +25,25 @@ from yaml import dump as yaml_dump
 # ------------------ #
 
 MD_PRE_REPLACEMENTS = {
-    '@prism'    : r'{\thisproj}',
-    'CSS'       : r'{\css}',
+#  + A
+    '@prism': r'{\thisproj}',
+#  + C
+    'CSS'   : r'{\css}',
+    'Claude': r'{\claudeAI}',
+#  + G
+    'Gemini': r'{\geminiAI}',
+#  + H
+    'HTML': r'{\html}',
+#  + J
     'JavaScript': r'{\javascript}',
-    'LaTeX'     : r'{\LaTeX}',
-    'L3'        : r'{\LaTeX3}',
-    'luadraw'   : r'{\LUADRAW}',
-    'TikZ'      : r'{\TIKZ}',
-    'xcolor'    : r'{\xcolor}',
+#  + L
+    'LaTeX'  : r'{\LaTeX}',
+    'L3'     : r'{\LaTeX3}',
+    'luadraw': r'{\LUADRAW}',
+#  + T
+    'TikZ': r'{\TIKZ}',
+#  + X
+    'xcolor': r'{\xcolor}',
 }
 
 MD_PRE_REPLACEMENTS |= {

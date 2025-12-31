@@ -16,6 +16,14 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+doc
+
+    --> expliquer les différents types de palettes
+
+    --> catégorie simplifier : color blind pas relis ailleurs + utilisation de tikz seul pour accélére la compilation !
+
+// ---------- //
+
 semantic à reprendre maintenant que plus de taille fixé !!!
 
 
@@ -39,11 +47,7 @@ Changements & historique
 
 showcase
 
-    ---> mettre aussi e stransormations quand l(-'API le propose)
-
-// ---------- //
-
-??? ajouter via latex la palette sympa Blackbody en extrayant de 6 à 10 trouver par hasard
+    ---> mettre aussi les transfos quand l'API le propose
 
 
 // ---------- //
@@ -90,6 +94,11 @@ implementation
 // ---------- //
 
 TOOLS : virer TAG_NAMES_IGNORED et asymptote traité commes les autres
+
+
+// ---------- //
+
+??? ajouter via latex la palette sympa Blackbody en extrayant de 6 à 10 trouver par hasard
 
 
 // ---------- //

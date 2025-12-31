@@ -1,3 +1,4 @@
+/* Variables CSS */
 :root {
   --accent: #6366f1;
   --bg-page: #f0f2f5;
@@ -15,13 +16,19 @@ body.dark-mode {
   --svg-bg: #0f172a;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Reset global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Structure principale */
 body {
   font-family: 'Segoe UI', system-ui, sans-serif;
   background: var(--bg-page);
   color: var(--text-main);
   padding: 20px;
-  transition: background 0.3s;
 }
 
 .container {
@@ -30,65 +37,115 @@ body {
   background: var(--bg-container);
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
 
+/* Grille d'édition */
 .editor-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  background: rgba(0,0,0,0.02);
+  background: rgba(0, 0, 0, 0.02);
   padding: 20px;
   border-radius: 15px;
   margin-bottom: 30px;
 }
 
 @media (min-width: 900px) {
-  .editor-grid { grid-template-columns: 250px 1fr 1fr; }
+  .editor-grid {
+    grid-template-columns: 250px 1fr 1fr;
+  }
 }
 
-.config-panel { display: flex; flex-direction: column; gap: 15px; }
-label { font-weight: bold; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+/* Formulaires */
+label {
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  display: block;
+}
 
-input[type="text"], input[type="number"], textarea {
+input[type="text"],
+input[type="number"],
+textarea {
   width: 100%;
   padding: 12px;
   border: 2px solid var(--border-color);
   border-radius: 10px;
   background: var(--bg-container);
   color: var(--text-main);
-  font-family: 'Cascadia Code', 'Courier New', monospace;
-  font-size: 0.9rem;
+  font-family: 'Cascadia Code', monospace;
+  font-size: 0.85rem;
 }
 
-textarea { min-height: 280px; line-height: 1.4; resize: vertical; }
+textarea {
+  min-height: 280px;
+  line-height: 1.5;
+}
 
-.btn-download { background: #10b981; color: white; padding: 12px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
-.btn-theme { background: var(--border-color); color: var(--text-main); padding: 8px 12px; border: none; border-radius: 10px; cursor: pointer; }
+/* Boutons */
+.btn-download {
+  background: #10b981;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-/* --- Sections Visualisation --- */
-.viz-section { margin-top: 20px; }
+.btn-theme {
+  background: var(--border-color);
+  color: var(--text-main);
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
-.palette-label { margin-bottom: 8px; display: block; }
+/* Visualisation des couleurs */
+.discrete-bar {
+  display: flex;
+  height: 60px;
+  gap: 4px;
+  margin-bottom: 15px;
+}
 
-.discrete-bar { display: flex; height: 60px; gap: 4px; margin-bottom: 15px; }
 .swatch {
-  flex: 1; border-radius: 6px; position: relative; cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
+  flex: 1;
+  border-radius: 6px;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
-.swatch input[type="color"] { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+
+.swatch input[type="color"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
 
 .continuous-spectrum {
-  height: 40px;
+  height: 60px;
   width: 100%;
   border-radius: 6px;
   margin-bottom: 30px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
+/* Zone de visualisation SVG */
 .viz-box {
   border: 2px solid var(--border-color);
   border-radius: 20px;
@@ -97,4 +154,9 @@ textarea { min-height: 280px; line-height: 1.4; resize: vertical; }
   display: flex;
   justify-content: center;
 }
-svg { width: 100%; max-width: 800px; height: auto; }
+
+svg {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
