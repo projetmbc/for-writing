@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@prism - Sommaire</title>
+  <style>
+    :root {
+      --accent: #6366f1;
+      --bg: #f0f2f5;
+      --card: #ffffff;
+      --text: #1e293b;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .toc-container {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc-item {
+      margin: 10px 0;
+    }
+
+    .toc-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background: #f8fafc;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+    }
+
+    .toc-link:hover {
+      border-color: var(--accent);
+      background: #f1f5f9;
+      transform: translateY(-2px);
+    }
+
+    .toc-link .icon {
+      font-size: 1.2rem;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      background: var(--accent);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toc-container">
+    <h1>The monorepo for-writing</h1>
+
+    <ul class="toc-list">
+      <li class="toc-item">
+        <a href="../@prism/products/css/showcase/dark-or-std-mode.html" class="toc-link">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="icon">💎</span>
+            <div style="text-align: left;">
+              <div style="font-weight: bold;">@prism</div>
+              <div style="font-size: 0.75rem; opacity: 0.6;">Palettes ready-to-use.</div>
+            </div>
+          </div>
+          <span class="badge">v1.0</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>
