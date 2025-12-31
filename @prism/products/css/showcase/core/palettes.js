@@ -1,6 +1,14 @@
-// Fictive list just for tests...
-const palettesData = {
-  "Accent": 10,
+/***
+Just a fictive list just for tests...
+
+warning::
+    A script must build the real list of all palette names
+    and sizes for the final product.
+***/
+
+const palsize = {
+//  + A - D
+  "Accent": 10,   // Look at the fake ''palettes.css''.
   "Alizari": 12,
   "Amber": 9,
   "Azure": 8,
@@ -13,6 +21,8 @@ const palettesData = {
   "Default": 5,
   "DeepSea": 15,
   "Dragon": 10,
+
+//  + E - H
   "Emerald": 10,
   "Electric": 7,
   "Earthy": 12,
@@ -24,6 +34,19 @@ const palettesData = {
   "Grape": 13,
   "Hot": 10,
   "Heliotrope": 10,
+  "Hibiscus": 6,
+
+//  + I - L
   "Indigo": 10,
-  "XyZ": 6
+  "Jade": 14,
+  "Jungle": 9,
+  "Kaki": 5,
+  "Kiwi": 8,
+  "Lapis": 12,
+  "Lemon": 7,
+
+//  + X - Z
+  "Xylophone": 6,
+  "Yéti": 13,
+  "Zénith": 11
 };

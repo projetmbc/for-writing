@@ -18,18 +18,18 @@ function initTabs() {
     htmlContent += `<div id="${tabId}" class="tab-content">`;
 
     // Filtrer les palettes
-    const palettesFiltrees = Object.keys(palettesData).filter(p =>
+    const palselect = Object.keys(palsize).filter(p =>
       groupe.includes(p[0].toUpperCase())
     );
 
-    if (palettesFiltrees.length === 0) {
+    if (palselect.length === 0) {
       htmlContent += `<p style="grid-column: 1/-1; opacity: 0.5;">Aucune palette</p>`;
     } else {
-      palettesFiltrees.forEach(nom => {
+      palselect.forEach(nom => {
         htmlContent += `
-          <button class="palette-choice" onclick="selectPalette('${nom}', ${palettesData[nom]})">
+          <button class="palette-choice" onclick="selectPalette('${nom}', ${palsize[nom]})">
             <strong>${nom}</strong><br>
-            <small>${palettesData[nom]} couleurs</small>
+            <small>${palsize[nom]} couleurs</small>
           </button>`;
       });
     }
@@ -113,7 +113,7 @@ function draw() {
     let d = `M ${startX} ${startY}`;
 
     // La boucle commence à 10 pour continuer le tracé
-    for (let x = 00; x <= width; x += 1) {
+    for (let x = 0; x <= width; x += 1) {
       d += ` L ${startX + x} ${yBase + Math.sin(x * 0.03 + i) * 60}`;
     }
 
