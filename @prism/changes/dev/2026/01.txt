@@ -2,7 +2,7 @@
 
 
 ==
-01  (1.3.0)    ????
+01  (1.3.0)
 ==
 
 -----
@@ -11,3 +11,7 @@
 
 [[:api:]]
 \css \prod cleaned. This new product is complete.
+
+
+[[:doc:]]
+A \demo is available online (the showcase of the \css \prod is used).

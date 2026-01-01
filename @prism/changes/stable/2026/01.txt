@@ -1,0 +1,73 @@
+// ---------- //
+
+
+==
+01  (1.3.0)
+==
+
+-------
+:break:
+-------
+
+[[:api:]]
+Two breaking chnages.
+
+    1) \Prods: \luadraw becomes \lua.
+
+    1) \lua product: removed dict-like \var lua::''palNames''. Therefore, the responsibility of adding this specific \var will lie with \luadraw.
+
+
+-----
+:new:
+-----
+
+[[:api:]]
+The new features are as follows.
+
+    1) Added \css and \latex products.
+
+    1) Added palettes from the \palettable \proj.
+
+    1) Added three semantic palettes ''TdocBW'', ''TdocCol'' and ''TdocDark'' made for \tutodoc using the \latex \prod.
+
+
+[[:doc:]]
+A \demo is available online (the showcase of the \css \prod is used).
+
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Here are the improvements.
+
+    1) Manual.
+
+        + Added lists of renamed and removed palettes.
+
+        + Added two appendixes.
+
+            * All palettes grouped by user-friendly \categos.
+
+            * Similar palettes.
+
+        + Added explanations about the utility of palettes for non-designers.
+
+        + Added explanations about the minimal common optional sets of extra features implemented.
+
+    1) Better palette references.
+
+    1) Better showcases.
+
+        + Several category \pdf files (one \pdf per category and theme).
+
+        + 2D chart and Delaunay triangulation added.
+
+
+-----
+:fix:
+-----
+
+[[:api:]]
+\lua \prod: fixed path::''use-std.tex'' and path::''use-dark.tex'' files.

@@ -128,3 +128,133 @@ nouveaux proj intégérs  OU  crédit pour la doc  OU  pour compléter showcase 
 Asymptote
 
     ---> comment fonctione segmented palette
+
+
+// ---------- //
+
+sass
+
+$accents: (
+  1: rgb(49.8039%, 78.8235%, 49.8039%),
+  2: rgb(69.0196%, 70.5881%, 75.7298%),
+  3: rgb(88.2352%, 72.1568%, 66.1437%),
+  4: rgb(99.477%, 83.5294%, 55.0326%),
+  5: rgb(91.3289%, 93.5947%, 61.0021%),
+  6: rgb(30.6317%, 48.7581%, 68.0174%),
+  7: rgb(70.0653%, 14.6404%, 56.2091%),
+  8: rgb(85.5772%, 16.2962%, 31.6775%),
+  9: rgb(67.1459%, 36.6448%, 15.9041%),
+  10: rgb(40%, 40%, 40%)
+);
+
+// Exemple d'utilisation :
+.element {
+  background-color: map-get($accents, 1);
+}
+
+
+@function map-reverse($map) {
+  $keys: map-keys($map);
+  $reversed-map: ();
+
+  @for $i from length($keys) through 1 {
+    $key: nth($keys, $i);
+    $reversed-map: map-merge($reversed-map, ($key: map-get($map, $key)));
+  }
+
+  return $reversed-map;
+}
+
+$accents-reversed: map-reverse($accents);
+
+
+@function map-shift($map, $steps: 1) {
+  $keys: map-keys($map);
+  $len: length($keys);
+  $shifted-map: ();
+
+  @for $i from 1 through $len {
+    // Calcul du nouvel index circulaire
+    $new-index: ($i + $steps - 1) % $len + 1;
+
+    $old-key: nth($keys, $i);
+    $new-val: map-get($map, nth($keys, $new-index));
+
+    $shifted-map: map-merge($shifted-map, ($old-key: $new-val));
+  }
+
+  return $shifted-map;
+}
+
+$accents-shifted: map-shift($accents, 1);
+
+
+@function map-pick($map, $keys-to-keep) {
+  $filtered-map: ();
+
+  @each $key in $keys-to-keep {
+    @if map-has-key($map, $key) {
+      $filtered-map: map-merge($filtered-map, ($key: map-get($map, $key)));
+    }
+  }
+
+  return $filtered-map;
+}
+
+// Utilisation : on ne garde que la 1, la 4 et la 10
+$accents-selective: map-pick($accents, 1 4 10);
+
+
+
+@function transform-palette-ordered($map, $extract: null, $shift: 0, $reverse: false) {
+  $result: $map;
+
+  // 1. EXTRACTION (Pick)
+  @if $extract != null {
+    $result: map-pick($result, $extract);
+  }
+
+  // 2. SHIFT
+  @if $shift != 0 {
+    $result: map-shift($result, $shift);
+  }
+
+  // 3. REVERSE
+  @if $reverse == true {
+    $result: map-reverse($result);
+  }
+
+  return $result;
+}
+
+$theme-configs: (
+  "default": (),
+
+  // Exemple : on extrait 1, 2, 3, on décale de 1, puis on inverse
+  "complex-variant": (
+    extract: (1, 2, 3, 4, 5),
+    shift: 2,
+    reverse: true
+  ),
+
+  // Autre exemple : seulement un shift et un reverse
+  "alt-theme": (
+    shift: 1,
+    reverse: true
+  )
+);
+
+@each $name, $params in $theme-configs {
+  [data-theme="#{$name}"] {
+    // On récupère les valeurs avec des valeurs par défaut
+    $extract: if(map-has-key($params, extract), map-get($params, extract), null);
+    $shift:   if(map-has-key($params, shift), map-get($params, shift), 0);
+    $reverse: if(map-has-key($params, reverse), map-get($params, reverse), false);
+
+    $current-palette: transform-palette-ordered($accents, $extract, $shift, $reverse);
+
+    @each $id, $color in $current-palette {
+      --palAccent-#{$id}: #{$color};
+    }
+  }
+}

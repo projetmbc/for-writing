@@ -1,0 +1,65 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../../preamble.cfg}
+
+
+\begin{document}
+
+\small
+
+
+\begin{tdocbreak}
+    \item \LUADRAW\ product becomes \lua\ product.
+
+
+    \item \lua\ product: the dict-like variable \tdoccodein{lua}+palNames+ has been removed. Therefore, the responsibility of adding this specific variable will lie with \LUADRAW.
+\end{tdocbreak}
+
+
+\begin{tdocnew}
+    \item New \css\ and \LaTeX\ products have been coded.
+
+
+    \item The \palettable\ palettes have been added.
+
+
+    \item Three semantic palettes \tdoccodein{text}+TdocBW+, \tdoccodein{text}+TdocCol+ and \tdoccodein{text}+TdocDark+ have been created to be used by the \tutodoc\ class (\LaTeX\ creation process used).
+
+
+    \item Added an \thisdemo\ (the \css\ product showcase is used).
+\end{tdocnew}
+
+
+\begin{tdocupdate}
+    \item Manual.
+    %
+    \begin{itemize}
+        \item Added lists of renamed and removed palettes.
+
+        \item Added two appendixes, one with all palettes grouped by user-friendly categories, and another showing similar palettes.
+
+        \item Added explanations about the utility of palettes for non-designers.
+
+        \item Added explanations about the minimal common optional sets of extra features implemented.
+    \end{itemize}
+
+
+    \item Better palette references.
+
+    \item Better showcases.
+    %
+    \begin{itemize}
+        \item Several category \pdf\ files are proposed (one \pdf\ per category and theme).
+
+        \item 2D chart and Delaunay triangulation added.
+    \end{itemize}
+\end{tdocupdate}
+
+
+\begin{tdocfix}
+    \item \lua\ product: the \tdoccodein{text}+use-std.tex+ and \tdoccodein{text}+use-dark.tex+ codes have been fixed.
+\end{tdocfix}
+
+\end{document}
