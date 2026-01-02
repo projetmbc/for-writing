@@ -42,14 +42,14 @@ EXT_SRC_DIR.mkdir(
 )
 
 
-REPORT_DIR = THIS_DIR.parent / "REPORT"
+REPORT_DIR = THIS_DIR.parent / "UPDATES"
 REPORT_DIR.mkdir(
     parents  = True,
     exist_ok = True
 )
 
 
-UPDATES_BACKUP_JSON = REPORT_DIR / "UPDATES_BACKUP.json"
+UPDATES_BACKUP_JSON = REPORT_DIR / "BACKUP.json"
 
 if UPDATES_BACKUP_JSON.is_file():
     with UPDATES_BACKUP_JSON.open(mode = "r") as f:
@@ -59,7 +59,7 @@ else:
     UPDATES_BACKUP = dict()
 
 
-UPDATES_NEEDED_JSON = REPORT_DIR / "UPDATES_NEEDED.json"
+UPDATES_NEEDED_JSON = REPORT_DIR / "NEEDED.json"
 
 
 # ----------- #
