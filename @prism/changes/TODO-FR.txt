@@ -28,6 +28,24 @@ Nouvelle chaîne de production pour garder les tailles origibelles des palettes 
 
 // ---------- //
 
+licens des aplettes intégrés automatquiuement !!!
+
+
+// ---------- //
+
+s'appuyer sur les classificatiosn existencntes !!!
+ es comparer
+
+ nouvelels catego comme divergentes ?
+
+
+// ---------- //
+
+demo en ligne : ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
+s
+
+// ---------- //
+
 classification faite sympa : https://pratiman-91.github.io/colormaps/docs/Diverging#cartocolors
 
 

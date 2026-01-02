@@ -45,7 +45,7 @@ while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR        = PROJ_DIR / "products"
-ORIGINAL_SRC_DIR = PROJ_DIR /"PALETTE-EXTRA-RESOURCES" / "ScientificColourMaps" / "ScientificColourMaps8"
+ORIGINAL_SRC_DIR = PROJ_DIR /"EXTRA-RESOURCES" / "ScientificColourMaps" / "ScientificColourMaps8"
 REPORT_DIR       = BUILD_TOOLS_DIR / "REPORT"
 
 

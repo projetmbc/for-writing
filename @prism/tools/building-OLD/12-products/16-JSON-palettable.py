@@ -72,7 +72,7 @@ while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR        = PROJ_DIR / "products"
-ORIGINAL_SRC_DIR = PROJ_DIR /"PALETTE-EXTRA-RESOURCES" / "Palettable" / "palettable-master" / "palettable"
+ORIGINAL_SRC_DIR = PROJ_DIR /"EXTRA-RESOURCES" / "Palettable" / "palettable-master" / "palettable"
 REPORT_DIR       = BUILD_TOOLS_DIR / "REPORT"
 
 

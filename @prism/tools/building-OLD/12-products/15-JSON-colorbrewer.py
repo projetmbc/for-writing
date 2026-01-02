@@ -30,7 +30,7 @@ while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR        = PROJ_DIR / "products"
-ORIGINAL_SRC_DIR = PROJ_DIR /"PALETTE-EXTRA-RESOURCES" / "Colorbrewer"
+ORIGINAL_SRC_DIR = PROJ_DIR /"EXTRA-RESOURCES" / "Colorbrewer"
 REPORT_DIR       = THIS_DIR.parent / "REPORT"
 
 
