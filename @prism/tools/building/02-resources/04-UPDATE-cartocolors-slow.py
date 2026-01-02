@@ -84,4 +84,37 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-# logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+
+THIS_RESRC_DIR /= "CartoColor-master"
+
+for p in THIS_RESRC_DIR.glob("*"):
+    if p.is_dir():
+        if p.name != "src":
+            rmtree(p)
+
+    elif not p.name in [
+        "README.md",
+    ]:
+        p.unlink()
+
+    else:
+        p.rename(p.parent.parent / p.name)
+
+
+THIS_RESRC_DIR /= "src"
+
+for p in THIS_RESRC_DIR.glob("*"):
+    if p.is_dir():
+        rmtree(p)
+
+    elif not p.name in [
+        "carto.ts",
+    ]:
+        p.unlink()
+
+    else:
+        p.rename(p.parent.parent.parent / p.name)
+
+
+rmtree(THIS_RESRC_DIR.parent)
