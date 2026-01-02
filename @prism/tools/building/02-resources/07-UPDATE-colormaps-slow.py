@@ -84,4 +84,20 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-# logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+
+
+for p in THIS_RESRC_DIR.glob("*/LICENSE"):
+    p.rename(THIS_RESRC_DIR / p.name)
+
+
+clean_src_dirs(
+    local_src_dir = THIS_RESRC_DIR / "colormaps-main",
+    globs_kept    = [
+        f"colormaps/colormaps/{n}/*.rgb"
+        for n in [
+            "sciviz",
+            "colorcet",
+        ]
+    ],
+)

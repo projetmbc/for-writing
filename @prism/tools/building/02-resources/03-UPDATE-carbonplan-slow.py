@@ -86,35 +86,11 @@ download_and_unzip(
 
 logging.info(f"Cleaning '{THIS_RESRC}' folder.")
 
-THIS_RESRC_DIR /= "colormaps-main"
-
-for p in THIS_RESRC_DIR.glob("*"):
-    if p.is_dir():
-        if p.name != "export":
-            rmtree(p)
-
-    elif not p.name in [
+clean_src_files(
+    local_src_dir = THIS_RESRC_DIR / "colormaps-main",
+    globs_kept    = [
         "LICENSE",
-    ]:
-        p.unlink()
-
-    else:
-        p.rename(p.parent.parent / p.name)
-
-
-THIS_RESRC_DIR /= "export"
-
-for p in THIS_RESRC_DIR.glob("*"):
-    if p.is_dir():
-        rmtree(p)
-
-    elif not p.name in [
-        "colormaps.json",
-    ]:
-        p.unlink()
-
-    else:
-        p.rename(p.parent.parent.parent / p.name)
-
-
-rmtree(THIS_RESRC_DIR.parent)
+        "export/colormaps.json",
+        "src/colormaps.mjs",
+    ],
+)

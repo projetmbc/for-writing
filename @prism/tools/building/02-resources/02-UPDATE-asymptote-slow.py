@@ -84,39 +84,10 @@ download_and_unzip(
 
 logging.info(f"Cleaning '{THIS_RESRC}' folder.")
 
-clean_src(
+clean_src_files(
     local_src_dir = THIS_RESRC_DIR / "asymptote-master",
-    sub_dirs_kept = ["base"],
-)
-
-
-for p in THIS_RESRC_DIR.glob("*"):
-    if p.is_dir():
-        if p.name != "base":
-            rmtree(p)
-
-    elif not p.name in [
+    globs_kept    = [
         "LICENSE",
-    ]:
-        p.unlink()
-
-    else:
-        p.rename(p.parent.parent / p.name)
-
-
-THIS_RESRC_DIR /= "base"
-
-for p in THIS_RESRC_DIR.glob("*"):
-    if p.is_dir():
-        rmtree(p)
-
-    elif not p.name in [
-        "colormap.asy",
-    ]:
-        p.unlink()
-
-    else:
-        p.rename(p.parent.parent.parent / p.name)
-
-
-rmtree(THIS_RESRC_DIR.parent)
+        "base/colormap.asy"
+    ],
+)

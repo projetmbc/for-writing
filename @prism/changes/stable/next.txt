@@ -6,3 +6,30 @@
 ==
 
 ???
+
+    + Asymptote
+
+    + CarbonPlan
+
+    + CARTOColors
+
+    + CMasher
+
+    + Colorbrewer
+
+    + Colormaps
+
+    + NCARNCLColorTables
+
+    + Palettable
+
+    + ScientificColourMaps8
+
+
+licens des aplettes intégrés automatquiuement !!!
+
+
+s'appuyer sur les classificatiosn existencntes !!!
+ es comparer
+
+ nouvelels catego comme divergentes ?

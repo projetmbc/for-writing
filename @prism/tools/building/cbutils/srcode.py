@@ -66,41 +66,28 @@ def download_and_unzip(
         )
 
 
-def clean_src(
+def clean_src_files(
     local_src_dir: Path,
-    sub_dirs_kept: [Path],
+    globs_kept   : [str],
+) -> None:
+    for g in globs_kept:
+        for p in local_src_dir.glob(g):
+            p.rename(local_src_dir.parent / p.name)
 
-):
-    TODO
-
-    for p in local_src_dir.glob("*"):
-        if p.is_dir():
-            if p.name in sub_dirs_kept:
-                rmtree(p)
-
-        elif not p.name in [
-            "LICENSE",
-        ]:
-            p.unlink()
-
-        else:
-            p.rename(p.parent.parent / p.name)
+    rmtree(local_src_dir)
 
 
-    for subdir in sub_dirs_kept:
-        subdir = local_src_dir / subdir
+def clean_src_dirs(
+    local_src_dir: Path,
+    globs_kept   : [str],
+) -> None:
+    for g in globs_kept:
+        for p in local_src_dir.glob(g):
+            subdir = local_src_dir.parent / p.parent.name
 
-        for p in subdir.glob("*"):
-            if p.is_dir():
-                rmtree(p)
+            if not subdir.is_dir():
+                subdir.mkdir()
 
-            elif not p.name in [
-                "colormap.asy",
-            ]:
-                p.unlink()
-
-            else:
-                p.rename(p.parent.parent.parent / p.name)
-
+            p.rename(subdir / p.name)
 
     rmtree(local_src_dir)

@@ -84,41 +84,29 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-# logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+logging.info(f"Cleaning '{THIS_RESRC}' folder.")
 
 
-# THIS_RESRC_DIR /= "palettable-master"
-
-# for p in THIS_RESRC_DIR.glob("*"):
-#     if p.is_dir():
-#         if p.name != "palettable":
-#             rmtree(p)
-
-#     else:
-#         p.unlink()
+for p in THIS_RESRC_DIR.glob("*/license.txt"):
+    p.rename(THIS_RESRC_DIR / p.name)
 
 
-# to_ignore = [
-#     "data",
-#     "test",
-# ]
-
-# THIS_RESRC_DIR /= "palettable"
-
-# for p in THIS_RESRC_DIR.glob("*"):
-#     if p.is_file():
-#         p.unlink()
-
-# for p in THIS_RESRC_DIR.rglob("*"):
-#     if p.is_dir():
-#         if p.name in to_ignore:
-#             rmtree(p)
-
-#     elif p.name == "__init__.py":
-#         p.unlink()
+clean_src_dirs(
+    local_src_dir = THIS_RESRC_DIR / "palettable-master",
+    globs_kept    = [
+        f"palettable/{n}/*.py"
+        for n in [
+            "tableau",
+            "wesanderson",
+            "plotly",
+            "mycarta",
+            "lightbartlein",
+            "cubehelix",
+            "cmocean",
+        ]
+    ],
+)
 
 
-# for p in THIS_RESRC_DIR.glob("*"):
-#     p.rename(THIS_RESRC_DIR.parent.parent / p.name)
-
-# rmtree(THIS_RESRC_DIR.parent)
+for p in THIS_RESRC_DIR.glob("*/__init__.py"):
+    p.unlink()

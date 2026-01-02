@@ -84,4 +84,12 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-# logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+
+clean_src_files(
+    local_src_dir = THIS_RESRC_DIR / "CMasher-master",
+    globs_kept    = [
+        "LICENSE",
+        "src/cmasher/colormaps/*/*.py",
+    ],
+)

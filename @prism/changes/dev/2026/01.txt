@@ -2,7 +2,32 @@
 
 
 ==
-02  (1.3.0)
+02  (2.0.0-beta.1)
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+Refactoring the generation code based on existing \projs. The \projs listed below will serve as a foundation, supplemented by several new additions. Licenses are automatically retrieved, and for \projs providing their own classifications, these are imported directly to minimize manual processing.
+
+    + \asymptote
+    + \carbonplan
+    + \cartocolors
+    + \cmasher
+    + \colorbrewer
+    + \colormaps
+    + \ncl_colortables
+    + \palettable
+    + \scicolmap
+
+
+// ---------- //
+
+
+==
+01  (1.3.0)
 ==
 
 -----
@@ -15,8 +40,3 @@
 
 [[:doc:]]
 A \demo is available online (the showcase of the \css \prod is used).
-
-
-
-
-{"Colorbrewer": ["2021-05-03T20:27:14Z", true], "Palettable": ["2025-08-23T21:23:31Z", true], "Asymptote": ["2025-12-07T08:48:38Z", true], "Colormaps": ["2024-07-04T14:24:20Z", true], "Scientific Colour Maps 8": ["2023-10-05T12:00:00Z", true], "CARTOColors": ["2024-09-25T21:07:16Z", true], "CarbonPlan": ["2024-01-10T23:26:44Z", true], "CMasher": ["2025-12-02T09:50:35Z", true], "NCAR NCL color tables": ["2015-08-19T00:00:00Z", true]}

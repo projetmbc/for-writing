@@ -12,31 +12,6 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 // ---------- //
 
 
-==
-??  (2.0.0-beta.1)
-==
-
---------
-:fordev:
---------
-
-[[:tech:]]
-?????
-Nouvelle chaîne de production pour garder les tailles origibelles des palettes (on ne les fait plus avec une taille de 10).
-
-
-
-// ---------- //
-
-licens des aplettes intégrés automatquiuement !!!
-
-
-// ---------- //
-
-s'appuyer sur les classificatiosn existencntes !!!
- es comparer
-
- nouvelels catego comme divergentes ?
 
 
 // ---------- //
@@ -116,16 +91,6 @@ showcase
     ---> uen fois tout mis à plat, on peut ajouter les palettes proposées par AI Claude + faire package latex (o veut pas créer de pllution)
 
 
-reprise du code de fabrication des palettes externes
-
-    + matplotlib.py        ??????????
-    + asymptote.py         ????????
-    + scicolmap.py         ??????
-    + colorbrewer.py       ????
-    + palettable.py        ??
-
-
-
 // ---------- //
 
 implementation
@@ -164,12 +129,7 @@ nouveaux proj intégérs  OU  crédit pour la doc  OU  pour compléter showcase 
 
    ---> https://blog.scientific-python.org/matplotlib/pypalettes/
 
-
-// ---------- //
-
-Asymptote
-
-    ---> comment fonctione segmented palette
+   ---> https://github.com/andreasplesch/ncl-color-tables
 
 
 // ---------- //

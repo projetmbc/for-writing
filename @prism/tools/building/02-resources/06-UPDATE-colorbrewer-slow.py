@@ -84,20 +84,12 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-# logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+logging.info(f"Cleaning '{THIS_RESRC}' folder.")
 
-# for p in THIS_RESRC_DIR.rglob("*"):
-#     if p.is_dir():
-#         if not p.name in [
-#             "colorbrewer-master",
-#             "export",
-#         ]:
-#             rmtree(p)
-
-#     elif p.name != "colorbrewer.json":
-#         p.unlink()
-
-#     else:
-#         p.rename(THIS_RESRC_DIR / p.name)
-
-#         rmtree(p.parent.parent)
+clean_src_files(
+    local_src_dir = THIS_RESRC_DIR / "colorbrewer-master",
+    globs_kept    = [
+        "LICENCE.txt",
+        "export/colorbrewer.json",
+    ],
+)

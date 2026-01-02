@@ -76,7 +76,7 @@ logging.info(f"Downloading '{THIS_RESRC}' source code.")
 download_and_unzip(
     log_raise_error = log_raise_error,
     url             = SRC_URLS[THIS_RESRC],
-    extract_to      = THIS_RESRC_DIR,
+    extract_to      = THIS_RESRC_DIR / "temp",
 )
 
 
@@ -84,19 +84,17 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-# logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+logging.info(f"Cleaning '{THIS_RESRC}' folder.")
 
-# for p in THIS_RESRC_DIR.glob("*"):
-#     if p.is_file():
-#         p.unlink()
+clean_src_files(
+    local_src_dir = THIS_RESRC_DIR / "temp",
+    globs_kept    = [
+        "+LICENCE.pdf",
+        "*/*.py",
+        "*/*.xcmap",
+    ],
+)
 
-#     elif p.name.startswith('+'):
-#         rmtree(p)
 
-#     else:
-#         for sp in p.glob("*"):
-#             if sp.is_dir():
-#                 rmtree(sp)
-
-#             elif sp.suffix != '.py':
-#                 sp.unlink()
+for p in THIS_RESRC_DIR.glob("__init__.py"):
+    p.unlink()
