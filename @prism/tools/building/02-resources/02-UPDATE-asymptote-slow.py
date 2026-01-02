@@ -110,7 +110,6 @@ for p in THIS_RESRC_DIR.glob("*"):
 
     elif not p.name in [
         "colormap.asy",
-        "palette.asy",
     ]:
         p.unlink()
 
