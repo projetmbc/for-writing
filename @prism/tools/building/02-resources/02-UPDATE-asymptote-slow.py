@@ -17,8 +17,6 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from shutil import rmtree
-
 
 # --------------- #
 # -- CONSTANTS -- #
@@ -86,7 +84,11 @@ download_and_unzip(
 
 logging.info(f"Cleaning '{THIS_RESRC}' folder.")
 
-THIS_RESRC_DIR /= "asymptote-master"
+clean_src(
+    local_src_dir = THIS_RESRC_DIR / "asymptote-master",
+    sub_dirs_kept = ["base"],
+)
+
 
 for p in THIS_RESRC_DIR.glob("*"):
     if p.is_dir():

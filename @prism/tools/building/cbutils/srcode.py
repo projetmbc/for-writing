@@ -6,6 +6,8 @@ import io
 import requests
 import zipfile
 
+from shutil import rmtree
+
 
 def download_and_unzip(
     log_raise_error: Callable,
@@ -34,7 +36,7 @@ def download_and_unzip(
     ):
         zip_content.write(chunk)
 
-# We must gi back to the start of the ZIP file.
+# We must go back to the start of the ZIP file.
     zip_content.seek(0)
 
     try:
@@ -62,3 +64,43 @@ def download_and_unzip(
             exception = zipfile.BadZipFile,
             xtra = f"URL used = {url}"
         )
+
+
+def clean_src(
+    local_src_dir: Path,
+    sub_dirs_kept: [Path],
+
+):
+    TODO
+
+    for p in local_src_dir.glob("*"):
+        if p.is_dir():
+            if p.name in sub_dirs_kept:
+                rmtree(p)
+
+        elif not p.name in [
+            "LICENSE",
+        ]:
+            p.unlink()
+
+        else:
+            p.rename(p.parent.parent / p.name)
+
+
+    for subdir in sub_dirs_kept:
+        subdir = local_src_dir / subdir
+
+        for p in subdir.glob("*"):
+            if p.is_dir():
+                rmtree(p)
+
+            elif not p.name in [
+                "colormap.asy",
+            ]:
+                p.unlink()
+
+            else:
+                p.rename(p.parent.parent.parent / p.name)
+
+
+    rmtree(local_src_dir)
