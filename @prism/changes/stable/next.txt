@@ -5,31 +5,19 @@
 ??  (2.0.0)
 ==
 
-???
+--------
+:update:
+--------
 
-    + Asymptote
+[[:tech:]]
+The \projs listed below serves as a foundation.
 
-    + CarbonPlan
-
-    + CARTOColors
-
-    + CMasher
-
-    + Colorbrewer
-
-    + Colormaps
-
-    + NCARNCLColorTables
-
-    + Palettable
-
-    + ScientificColourMaps8
-
-
-licens des aplettes intégrés automatquiuement !!!
-
-
-s'appuyer sur les classificatiosn existencntes !!!
- es comparer
-
- nouvelels catego comme divergentes ?
+    + \asymptote
+    + \carbonplan (new)
+    + \cartocolor
+    + \cmasher (new)
+    + \colorbrewer
+    + \colormaps (new)
+    + \nclcolortable (new)
+    + \palettable
+    + \scicolmap

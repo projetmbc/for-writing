@@ -11,19 +11,12 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
-
-
-
-// ---------- //
-
 demo en ligne : ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
-s
+
 
 // ---------- //
 
 classification faite sympa : https://pratiman-91.github.io/colormaps/docs/Diverging#cartocolors
-
-
 
 
 // ---------- //
