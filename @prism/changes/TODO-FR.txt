@@ -11,6 +11,30 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+
+==
+??  (2.0.0-beta.1)
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+?????
+Nouvelle chaîne de production pour garder les tailles origibelles des palettes (on ne les fait plus avec une taille de 10).
+
+
+
+// ---------- //
+
+classification faite sympa : https://pratiman-91.github.io/colormaps/docs/Diverging#cartocolors
+
+
+
+
+// ---------- //
+
 1.3.0 uniquement lorsque des implémentations pour xcolor et CSS (a minima).
 
 il manque la création finale de palettes.js pour css/showcase
