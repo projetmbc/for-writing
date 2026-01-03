@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+exit(0)
+
 # ---------------------------- #
 # -- IMPORT CBUTILS - START -- #
 
@@ -35,7 +37,7 @@ while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 
-EXT_SRC_DIR = PROJ_DIR /"EXTRA-RESOURCES"
+EXT_SRC_DIR = PROJ_DIR / TAG_XTRA_RESRC
 EXT_SRC_DIR.mkdir(
     parents  = True,
     exist_ok = True

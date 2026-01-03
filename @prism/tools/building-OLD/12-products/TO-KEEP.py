@@ -17,27 +17,12 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from collections import defaultdict
 
-import numpy as np
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
 
-
-# ------------------ #
-# -- CONSTANTS #1 -- #
-# ------------------ #
-
-PATTERN_CMP_LIST = re.compile(
-    r'cm_data\s*=\s*(\[\[.*?\]\])',
-    re.DOTALL
-)
-
-
-# ------------------ #
-# -- CONSTANTS #2 -- #
-# ------------------ #
-
-CTXT = TAG_SCICOLMAP
-
+CTXT = TAG_COLORBREWER
 
 PROJ_DIR = THIS_DIR
 
@@ -45,8 +30,8 @@ while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR        = PROJ_DIR / "products"
-ORIGINAL_SRC_DIR = PROJ_DIR /"EXTRA-RESOURCES" / "ScientificColourMaps" / "ScientificColourMaps8"
-REPORT_DIR       = BUILD_TOOLS_DIR / "REPORT"
+ORIGINAL_SRC_DIR = PROJ_DIR / TAG_XTRA_RESRC / "Colorbrewer"
+REPORT_DIR       = THIS_DIR.parent / TAG_REPORT
 
 
 CTXT_FILE_NAME = CTXT.replace(' ', '-').upper()
@@ -77,35 +62,45 @@ with PAL_CREDITS_FILE.open(mode = "r") as f:
     PAL_CREDITS = json_load(f)
 
 
+PAL_COLORBREWER_FILE = ORIGINAL_SRC_DIR / "colorbrewer.json"
+
+with PAL_COLORBREWER_FILE.open(mode = "r") as f:
+    PAL_COLORBREWER = json_load(f)
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
 
-def exract_palette(file: Path) -> list[ [float, float, float] ]:
-    content = file.read_text()
+def extract_palette(pal_def: dict) -> list[ [float, float, float] ]:
+    max_size = 0
 
-    match = PATTERN_CMP_LIST.search(content)
+    for s in pal_def:
+        if s == "type":
+            continue
 
-    if not match:
-        BUG_KO
+        max_size = max(int(s), max_size)
 
-    palette = eval(match.group(1))
+    pal_def = pal_def[str(max_size)]
+    pal_def = pal255_to_pal01([
+        eval(c.replace("rgb", ""))
+        for c in pal_def
+    ])
 
-    return palette
+    return pal_def
 
 
-# -------------------------- #
-# -- FROM SCI. COLOR MAPS -- #
-# -------------------------- #
+# ---------------------- #
+# -- FROM COLORBREWER -- #
+# ---------------------- #
 
 logging.info(f"Work with the '{CTXT}' source code.")
 
 nb_new_pals = len(ALL_PALETTES)
 
-for pyfile in sorted(ORIGINAL_SRC_DIR.glob("*/*.py"), key = lambda x: str(x).lower()):
-    pal_name = pyfile.stem
+for pal_name, pal_def in PAL_COLORBREWER.items():
     std_name = stdname(pal_name)
-    pal_def  = exract_palette(pyfile)
+    pal_def  = extract_palette(pal_def)
 
     aprism_name, ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,

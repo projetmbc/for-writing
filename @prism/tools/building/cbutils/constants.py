@@ -4,31 +4,65 @@
 # -- MAIN EXTERNAL SOURCES -- #
 # --------------------------- #
 
+TAG_ORIGINAL_NAME = "original-name"
+TAG_KIND          = "kind"
+TAG_RGB_COLS      = "rgb-cols"
+
+TAG_SEQ = "sequential"
+TAG_QUAL = "qualitiative"
+
+TAG_REPORT     = "REPORT"
+TAG_XTRA_RESRC = "EXTRA-RESOURCES"
+
+
+TAGS_XTRA_PROJS = [
 #  + C
-TAG_CARBONPLAN  = 'CarbonPlan'
-TAG_CARTOCOLORS = 'CARTOColors'
-TAG_CMASHER     = 'CMasher'
-TAG_COLORBREWER = 'Colorbrewer'
+    TAG_CARBONPLAN := 'CarbonPlan',
+    TAG_CARTOCOLORS:= 'CARTOColors',
+    TAG_CMASHER    := 'CMasher',
+    TAG_COLORBREWER:= 'Colorbrewer',
+
+#  + M
+    TAG_MATPLOTLIB:= 'Matplotlib',
 
 #  + N
-TAG_NCLCOLTABLES = 'NCAR NCL color tables'
+    TAG_NCLCOLTABLES:= 'NCAR NCL color tables',
 
 #  + P
-TAG_PALETTABLE  = 'Palettable'
+    TAG_PALETTABLE:= 'Palettable',
+    TAG_PLOTLY    := 'Plotly',
 
 #  + S
-TAG_SCICOLMAPS  = 'Scientific Colour Maps 8'
+    TAG_SCICOLMAPS:= 'Scientific Colour Maps',
 
-
-# ------------------------------------ #
 # -- COMPLEMENTARY EXTERNAL SOURCES -- #
-# ------------------------------------ #
 
 #  + A
-TAG_ASYMPTOTE = 'Asymptote'
+    TAG_ASYMPTOTE:= 'Asymptote',
 
 #  + C
-TAG_COLORMAPS = 'Colormaps'
+    TAG_COLORMAPS:= 'Colormaps',
+]
+
+
+# ------------------- #
+# -- SUB RESOURCES -- #
+# ------------------- #
+
+PALETTABLE_SUB_FOLDERS = [
+    (TAG_CMOCEAN       := "cmocean"),
+    (TAG_CUBEHELIX     := "Cubehelix"),
+    (TAG_LIGHT_BARTLEIN:= "Light Bartlein"),
+    (TAG_MYCARTA       := "MyCarta"),
+    (TAG_PLOTLY        := "Plotly"),
+    (TAG_TABLEAU       := "Tableau"),
+    (TAG_WESANDERSON   := "Wes Anderson"),
+]
+
+PALETTABLE_SUB_FOLDERS = {
+    t.replace(' ', '').lower(): t
+    for t in PALETTABLE_SUB_FOLDERS
+}
 
 
 # -------------------------- #

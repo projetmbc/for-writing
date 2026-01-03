@@ -31,7 +31,7 @@ from matplotlib import colormaps
 # -- CONSTANTS -- #
 # --------------- #
 
-CTXT = TAG_MPL
+CTXT = TAG_MATPLOTLIB
 
 
 PROJ_DIR = THIS_DIR
@@ -39,7 +39,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-REPORT_DIR = BUILD_TOOLS_DIR / "REPORT"
+REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
 PROD_JSON_DIR = PROJ_DIR / "products" / "json"

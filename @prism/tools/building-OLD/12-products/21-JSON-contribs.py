@@ -37,7 +37,7 @@ while (PROJ_DIR.name != TAG_APRISM):
 
 PRODS_DIR        = PROJ_DIR / "products"
 CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
-REPORT_DIR       = BUILD_TOOLS_DIR / "REPORT"
+REPORT_DIR       = BUILD_TOOLS_DIR / TAG_REPORT
 
 
 # ------------------ #

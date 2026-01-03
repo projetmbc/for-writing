@@ -34,7 +34,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != "@prism"):
     PROJ_DIR = PROJ_DIR.parent
 
-REPORT_DIR  = BUILD_TOOLS_DIR / "REPORT"
+REPORT_DIR  = BUILD_TOOLS_DIR / TAG_REPORT
 COMPARE_DIR = THIS_DIR / "compare"
 
 

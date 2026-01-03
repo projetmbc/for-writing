@@ -40,7 +40,7 @@ while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR  = PROJ_DIR / "products"
-REPORT_DIR = THIS_DIR.parent / "REPORT"
+REPORT_DIR = THIS_DIR.parent / TAG_REPORT
 
 
 PROD_JSON_DIR = PRODS_DIR / "json"

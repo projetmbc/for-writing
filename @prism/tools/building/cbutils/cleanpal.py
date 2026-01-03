@@ -6,7 +6,8 @@ from enum import Enum
 
 import numpy as np
 
-from .normval import stdfloat
+from .constants import *
+from .normval   import stdfloat
 
 
 # ------------ #
@@ -54,30 +55,20 @@ TAG_METH  = 'method'
 TAG_AUTO  = 'auto'
 TAG_HUMAN = 'human'
 
-TAG_APRISM      = "@prism"
-TAG_ASY         = "Asymptote"
-TAG_COLORBREWER = "Colorbrewer"
 
-TAG_MPL         = "Matplotlib"
-TAG_PALETTABLE  = "Palettable"
-TAG_SCICOLMAP   = "Scientific Colour Maps"
+TAG_APRISM = "@prism"
 
 
-PALETTABLE_SUB_FOLDERS = [
-    (TAG_CARTOCOLOR    := "CartoColors"),
-    (TAG_CMOCEAN       := "cmocean"),
-    (TAG_CUBEHELIX     := "Cubehelix"),
-    (TAG_LIGHT_BARTLEIN:= "Light Bartlein"),
-    (TAG_MYCARTA       := "MyCarta"),
-    (TAG_PLOTLY        := "Plotly"),
-    (TAG_TABLEAU       := "Tableau"),
-    (TAG_WESANDERSON   := "Wes Anderson"),
-]
-
-PALETTABLE_SUB_FOLDERS = {
-    t.replace(' ', '').lower(): t
-    for t in PALETTABLE_SUB_FOLDERS
-}
+def resrc_std_palette(
+    pal_name: str,
+    pal_kind: str,
+    pal_def : PaletteCols,
+):
+    return {
+        TAG_ORIGINAL_NAME: pal_name,
+        TAG_KIND         : pal_kind,
+        TAG_RGB_COLS     : pal_def,
+    }
 
 
 def minimize_palette(p: PaletteCols) -> PaletteCols:

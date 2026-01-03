@@ -68,7 +68,7 @@ def report_gradient_clash(
 
     if not projname in all_palettes:
         projname = build_projname(
-            namectxt(name, TAG_MPL)
+            namectxt(name, TAG_MATPLOTLIB)
         )
 
     leg_tested = f"'{name}' from '{context}'"

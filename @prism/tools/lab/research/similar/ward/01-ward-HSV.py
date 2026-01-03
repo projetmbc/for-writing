@@ -44,7 +44,7 @@ with PAL_JSON_FILE.open('r') as f:
 
 PAL_SIMILAR_FILE = (
     PROJ_DIR / "tools" / "building"
-             / "REPORT" / "PAL-SIMILAR.json"
+             / TAG_REPORT / "PAL-SIMILAR.json"
 )
 
 with PAL_SIMILAR_FILE.open('r') as f:

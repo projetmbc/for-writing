@@ -74,7 +74,7 @@ if REBUILD:
 
 else:
     PAL_CATEGO_FILE = (
-        PROJ_DIR / "tools" / "building" / "REPORT"
+        PROJ_DIR / "tools" / "building" / TAG_REPORT
                  / "PAL-CATEGORY.json"
     )
 

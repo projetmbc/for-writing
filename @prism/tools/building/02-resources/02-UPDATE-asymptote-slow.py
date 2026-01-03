@@ -31,10 +31,10 @@ while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 
-THIS_RESRC_DIR = PROJ_DIR / "EXTRA-RESOURCES" / stdname(THIS_RESRC)
+THIS_RESRC_DIR = PROJ_DIR / TAG_XTRA_RESRC / stdname(THIS_RESRC)
 
 
-UPDATES_NEEDED_JSON =  THIS_DIR.parent / "REPORT" / "UPDATES_NEEDED.json"
+UPDATES_NEEDED_JSON =  THIS_DIR.parent /  "UPDATES" / "NEEDED.json"
 
 with UPDATES_NEEDED_JSON.open(mode = "r") as f:
     UPDATES_NEEDED = json_load(f)

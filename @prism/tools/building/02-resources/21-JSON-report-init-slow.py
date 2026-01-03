@@ -31,7 +31,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-REPORT_DIR        = BUILD_TOOLS_DIR / "REPORT"
+REPORT_DIR        = BUILD_TOOLS_DIR / TAG_REPORT
 HUMAN_CHOICES_DIR = PROJ_DIR / "tools" / "lab" / "human-choices"
 
 
@@ -54,7 +54,7 @@ HUMAN_RENAMING      = safe_load(HUMAN_RENAMING_FILE.read_text())
 # -- EMPTY THE REPORT FOLDER -- #
 # ----------------------------- #
 
-REPORT_DIR  = THIS_DIR.parent / "REPORT"
+REPORT_DIR  = THIS_DIR.parent / TAG_REPORT
 
 if REPORT_DIR.is_dir():
     rmtree(REPORT_DIR)
