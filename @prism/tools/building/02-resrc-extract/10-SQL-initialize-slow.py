@@ -21,9 +21,6 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-import hashlib
-import sqlite3
-
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
@@ -44,7 +41,8 @@ SQLITE_DB_FILE = REPORT_DIR / "palettes.db"
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-PRECISION = YAML_CONFIG['PRECISION']
+PRECISION       = YAML_CONFIG['PRECISION']
+AUTO_QUAL_CATEGO_SIZE = int(YAML_CONFIG['AUTO_QUAL_CATEGO_SIZE'])
 
 
 # ----------- #
@@ -63,6 +61,36 @@ def get_palhash(palette: PaletteCols) -> str:
     return hashcode
 
 
+_UNMANAGED_KINDS = ['']
+
+def get_std_kind(
+    kind: str,
+    size: int
+) -> str:
+    if (
+        (not kind and len(paldef) <= AUTO_QUAL_CATEGO_SIZE)
+        or
+        kind in ['qual', TAG_QUALITATIVE]
+    ):
+        kind = TAG_QUALITATIVE
+
+    elif kind in ['div', 'diverging', TAG_DIVERGENT]:
+        kind = TAG_DIVERGENT
+
+    elif kind in ['seq', TAG_SEQUENTIAL]:
+        kind = TAG_SEQUENTIAL
+
+    elif kind in [TAG_COLORBLIND]:
+        kind = TAG_COLORBLIND
+
+    elif not kind in _UNMANAGED_KINDS:
+        _UNMANAGED_KINDS.append(kind)
+
+        logging.warning(f"Unmanaged kind '{kind}'.")
+
+    return kind
+
+
 # ----------------------- #
 # -- DB INITIALIZATION -- #
 # ----------------------- #
@@ -74,15 +102,16 @@ conn = sqlite3.connect(SQLITE_DB_FILE)
 cursor = conn.cursor()
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS palettes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    stdname TEXT NOT NULL,
-    projname TEXT NOT NULL,
-    hash_normal TEXT NOT NULL,
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    name         TEXT NOT NULL,
+    source       TEXT NOT NULL,
+    kind         TEXT NOT NULL,
+    hash_normal  TEXT NOT NULL,
     hash_reverse TEXT NOT NULL
 )
 ''')
-
 conn.commit()
+
 
 for resrc_json in REPORT_DIR.glob("RESRC-PALS-*.json"):
     projname = resrc_json.stem.split('-')
@@ -91,8 +120,11 @@ for resrc_json in REPORT_DIR.glob("RESRC-PALS-*.json"):
 
     data = json_load(resrc_json.open())
 
-    for stdname, infos in data.items():
+    for name, infos in data.items():
+        kind   = infos[TAG_KIND]
         paldef = infos[TAG_RGB_COLS]
+
+        stdkind = get_std_kind(kind, len(paldef))
 
         hash_normal  = get_palhash(paldef)
         hash_reverse = get_palhash(paldef[::-1])
@@ -101,17 +133,17 @@ for resrc_json in REPORT_DIR.glob("RESRC-PALS-*.json"):
             cursor = conn.cursor()
             cursor.execute(
                 '''
-INSERT INTO palettes (stdname, projname, hash_normal, hash_reverse)
-VALUES (?, ?, ?, ?)
+INSERT INTO palettes (name, source, kind, hash_normal, hash_reverse)
+VALUES (?, ?, ?, ?, ?)
                 ''',
                 (
-                    stdname,
+                    name,
                     projname,
+                    stdkind,
                     hash_normal,
                     hash_reverse
                 )
             )
-
             conn.commit()
 
         except Exception:
@@ -119,7 +151,7 @@ VALUES (?, ?, ?, ?)
 
             log_raise_error(
                 context   = "SQLite database.",
-                desc      = f"Insertion fails for '{stdname}'.",
+                desc      = f"Insertion fails for '{name}'.",
                 exception = Exception,
             )
 

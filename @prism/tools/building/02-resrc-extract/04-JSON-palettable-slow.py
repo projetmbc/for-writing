@@ -98,7 +98,7 @@ def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
 
         pals[stdname] = resrc_std_palette(
             palname,
-            TAG_SEQ,
+            TAG_SEQUENTIAL,
             pal255_to_pal01(cols),
             PRECISION + 2
         )
@@ -139,7 +139,7 @@ def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
 
             pals[stdname] = resrc_std_palette(
                 palname,
-                TAG_QUAL,
+                TAG_QUALITATIVE,
                 pal255_to_pal01(cols),
                 PRECISION + 2
             )
@@ -186,7 +186,7 @@ def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
 
         pals[stdname] = resrc_std_palette(
             palname,
-            TAG_QUAL,
+            TAG_QUALITATIVE,
             pal255_to_pal01(cols),
             PRECISION + 2
         )

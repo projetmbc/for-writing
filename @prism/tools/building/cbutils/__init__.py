@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+import hashlib
+import sqlite3
+
 from .cleanpal   import *
 from .constants  import *
 from .jsonupdate import *

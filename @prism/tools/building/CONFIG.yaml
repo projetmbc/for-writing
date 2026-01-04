@@ -13,3 +13,5 @@ ASK_GITHUB: false
 # Optimizing data weight: 4-decimal precision exceeds human visual
 # acuity and ensures 8-bit color integrity.
 PRECISION: 4
+
+AUTO_QUAL_CATEGO_SIZE: 25

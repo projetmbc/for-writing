@@ -2,6 +2,21 @@
 
 
 ==
+?????????  (2.0.0-beta.4)
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]] ????
+Extracted data from external \projs is written directly to the \sqlite \db.
+
+
+// ---------- //
+
+
+==
 04  (2.0.0-beta.3)
 ==
 
@@ -14,7 +29,7 @@ Here are the updates.
 
     1) Added an \sqlite \db to easily search for similarities.
 
-    1) Added suport of \matplotlib "messy" source code. This was more challenging due to \matplotlib's internal palette computations.
+    1) Added suport of \matplotlib "messy" source code. This was more "challenging" due to \matplotlib's internal palette computations.
 
 
 // ---------- //

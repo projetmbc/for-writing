@@ -26,9 +26,8 @@ TAG_KIND          = "kind"
 
 TAG_COLORBLIND = 'colorblind'
 TAG_DIVERGENT  = 'divergent'
-
-TAG_SEQ = "sequential"
-TAG_QUAL = "qualitiative"
+TAG_QUALITATIVE = "qualitative"
+TAG_SEQUENTIAL  = "sequential"
 
 TAG_REPORT     = "REPORT"
 TAG_XTRA_RESRC = "EXTRA-RESOURCES"
