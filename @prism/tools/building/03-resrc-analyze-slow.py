@@ -73,12 +73,12 @@ GRPS_BY_NAMES = defaultdict(set)
 GRPS_BY_PALS  = defaultdict(set)
 
 def get_palette_hash(palette: PaletteCols) -> str:
-    palette = [
+    paldef = [
         [round(v, PRECISION) for v in c]
         for c in palette
     ]
 
-    palstr   = json_dumps(palette, sort_keys = True)
+    palstr   = json_dumps(paldef, sort_keys = True)
     hashcode = hashlib.md5(palstr.encode()).hexdigest()
 
     return hashcode
@@ -89,13 +89,13 @@ def resume_data(
     data
 ) -> None:
     for palname, data in data.items():
-        palette = data["rgb-cols"]
+        paldef = data[TAG_RGB_COLS]
 
         infos = (projname, palname)
 
         GRPS_BY_NAMES[palname].add(infos)
 
-        hashcode = get_palette_hash(palette)
+        hashcode = get_palette_hash(paldef)
 
         GRPS_BY_PALS[hashcode].add(infos)
 

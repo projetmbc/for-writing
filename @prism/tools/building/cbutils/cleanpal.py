@@ -57,14 +57,14 @@ TAG_HUMAN = 'human'
 
 
 def resrc_std_palette(
-    pal_name: str,
+    palname: str,
     pal_kind: str,
-    pal_def : PaletteCols,
+    paldef : PaletteCols,
 ):
     return {
-        TAG_ORIGINAL_NAME: pal_name,
+        TAG_ORIGINAL_NAME: palname,
         TAG_KIND         : pal_kind,
-        TAG_RGB_COLS     : pal_def,
+        TAG_RGB_COLS     : paldef,
     }
 
 

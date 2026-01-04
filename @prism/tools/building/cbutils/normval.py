@@ -24,7 +24,7 @@ def _capitalize(text: str) -> str:
     return text[0].upper() + text[1:]
 
 
-def stdname(name: str) -> str:
+def get_stdname(name: str) -> str:
     parts = re.split(r"[^a-zA-Z0-9]+", name)
     parts = [_capitalize(p) for p in parts if p]
 

@@ -72,22 +72,22 @@ with PAL_COLORBREWER_FILE.open(mode = "r") as f:
 # -- TOOLS -- #
 # ----------- #
 
-def extract_palette(pal_def: dict) -> list[ [float, float, float] ]:
+def extract_palette(paldef: dict) -> list[ [float, float, float] ]:
     max_size = 0
 
-    for s in pal_def:
+    for s in paldef:
         if s == "type":
             continue
 
         max_size = max(int(s), max_size)
 
-    pal_def = pal_def[str(max_size)]
-    pal_def = pal255_to_pal01([
+    paldef = paldef[str(max_size)]
+    paldef = pal255_to_pal01([
         eval(c.replace("rgb", ""))
-        for c in pal_def
+        for c in paldef
     ])
 
-    return pal_def
+    return paldef
 
 
 # ---------------------- #
@@ -98,20 +98,20 @@ logging.info(f"Work with the '{CTXT}' source code.")
 
 nb_new_pals = len(ALL_PALETTES)
 
-for pal_name, pal_def in PAL_COLORBREWER.items():
-    std_name = stdname(pal_name)
-    pal_def  = extract_palette(pal_def)
+for palname, paldef in PAL_COLORBREWER.items():
+    stdname = get_stdname(palname)
+    paldef  = extract_palette(paldef)
 
     aprism_name, ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
-        name      = std_name,
-        candidate = pal_def,
+        name      = stdname,
+        candidate = paldef,
         palettes  = ALL_PALETTES,
         ignored   = PAL_REPORT,
         logcom    = logging
     )
 
-    ORIGINAL_NAMES[aprism_name] = pal_name
+    ORIGINAL_NAMES[aprism_name] = palname
     PAL_CREDITS[aprism_name]    = CTXT
 
 

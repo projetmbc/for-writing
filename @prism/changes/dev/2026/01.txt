@@ -5,8 +5,17 @@
 04  (2.0.0-beta.3)
 ==
 
+--------
+:fordev:
+--------
+
 [[:tech:]]
-Normalizing external palette data enables automated similarity analysis, drastically minimizing the need for human intervention."
+Here are the updates.
+
+    1) ???
+    Normalizing external palette data enables automated similarity analysis, drastically minimizing the need for human intervention."
+
+    1) Added suport of \matplotlib "messy" source code. This was more challenging due to \matplotlib's internal palette computations.
 
 
 // ---------- //
@@ -43,15 +52,15 @@ Standardizing the retrieval of external palettes by including their possible typ
 [[:tech:]]
 Refactoring the generation code based on existing \projs. The \projs listed below will serve as a foundation. Licenses are automatically retrieved, and for \projs providing their own classifications, these are imported directly to minimize manual processing.
 
-    + \asymptote (complementary)
-    + \carbonplan (main & new)
-    + \cartocolor (main)
-    + \cmasher (main & new)
-    + \colorbrewer (main)
-    + \colormaps (complementary & new)
-    + \nclcolortable (main & new)
-    + \palettable (main)
-    + \scicolmap (main)
+    + \asymptote
+    + \carbonplan (new)
+    + \cartocolor
+    + \cmasher (new)
+    + \colorbrewer
+    + \colormaps (new)
+    + \nclcolortable (new)
+    + \palettable
+    + \scicolmap
 
 
 // ---------- //

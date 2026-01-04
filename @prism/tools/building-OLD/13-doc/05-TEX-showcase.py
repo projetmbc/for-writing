@@ -28,11 +28,11 @@ from natsort import natsorted
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-PATTERN_CHGE_PAL_NAME = re.compile(
+PATTERN_CHGE_palname = re.compile(
     r"\\newcommand\{\\PALETTE\}\{(.*)\}"
 )
 
-PATTERN_CHGE_PAL_DEF = re.compile(
+PATTERN_CHGE_paldef = re.compile(
     r"PALETTE\s*=\s*([^\n]*)"
 )
 
@@ -282,8 +282,8 @@ for palname, paldef in ALL_PALETTES.items():
         )
 
         for repl, pat in [
-            (palname  , PATTERN_CHGE_PAL_NAME),
-            (paldef   , PATTERN_CHGE_PAL_DEF),
+            (palname  , PATTERN_CHGE_palname),
+            (paldef   , PATTERN_CHGE_paldef),
             (palcredit, PATTERN_CHGE_PAL_CREDITS),
         ]:
             texcode = pat.sub(

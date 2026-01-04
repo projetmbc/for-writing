@@ -93,15 +93,15 @@ for folder, contribs in sorted(contribs_accepted.items()):
         contrib_file = folder / one_contrib
 
         palette_name = Path(Path(one_contrib).stem).stem
-        palette_name = stdname(palette_name)
-        pal_def      = extend.parse(contrib_file.read_text())
+        palette_name = get_stdname(palette_name)
+        paldef      = extend.parse(contrib_file.read_text())
 
         PAL_CREDITS[palette_name] = CTXT
 
         _ , ALL_PALETTES, PAL_REPORT =  update_palettes(
             context   = CTXT,
             name      = palette_name,
-            candidate = pal_def,
+            candidate = paldef,
             palettes  = ALL_PALETTES,
             ignored   = PAL_REPORT,
             logcom    = logging

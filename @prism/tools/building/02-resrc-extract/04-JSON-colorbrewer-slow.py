@@ -29,7 +29,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / stdname(THIS_RESRC)
+RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
@@ -62,13 +62,13 @@ def extract_palette(pal_data: dict) -> [str, PaletteCols]:
 
     max_size = str(max_size)
 
-    pal_def = pal_data[str(max_size)]
-    pal_def = pal255_to_pal01([
+    paldef = pal_data[str(max_size)]
+    paldef = pal255_to_pal01([
         eval(c.replace("rgb", ""))
-        for c in pal_def
+        for c in paldef
     ])
 
-    return kind, pal_def
+    return kind, paldef
 
 
 # ---------------------- #
@@ -79,15 +79,15 @@ logging.info(f"Analyzing '{THIS_RESRC}' source code.")
 
 pals = dict()
 
-for pal_name, pal_data in ORIGINAL_RESRC_PALS.items():
-    std_name = stdname(pal_name)
+for palname, pal_data in ORIGINAL_RESRC_PALS.items():
+    stdname = get_stdname(palname)
 
-    pal_kind, pal_def = extract_palette(pal_data)
+    pal_kind, paldef = extract_palette(pal_data)
 
-    pals[std_name] = resrc_std_palette(
-        pal_name,
+    pals[stdname] = resrc_std_palette(
+        palname,
         pal_kind,
-        pal_def,
+        paldef,
     )
 
 

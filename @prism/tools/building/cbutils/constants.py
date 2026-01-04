@@ -21,8 +21,11 @@ with (THIS_DIR / '../CONFIG.yaml').open(mode = 'r') as stream:
 TAG_APRISM = "@prism"
 
 TAG_ORIGINAL_NAME = "original-name"
-TAG_KIND          = "kind"
 TAG_RGB_COLS      = "rgb-cols"
+TAG_KIND          = "kind"
+
+TAG_COLORBLIND = 'colorblind'
+TAG_DIVERGENT  = 'divergent'
 
 TAG_SEQ = "sequential"
 TAG_QUAL = "qualitiative"
@@ -94,6 +97,8 @@ GITHUB_IDS = {
     TAG_CMASHER    : "1313e/CMasher",
     TAG_COLORBREWER: "axismaps/colorbrewer",
     TAG_COLORMAPS  : "pratiman-91/colormaps",
+#  + M
+    TAG_MATPLOTLIB: "matplotlib/matplotlib",
 #  + N
     TAG_NCLCOLTABLES:"andreasplesch/ncl-color-tables",
 #  + P
@@ -101,20 +106,13 @@ GITHUB_IDS = {
 }
 
 
+# GitHub URLs
 _github_url = "https://github.com/{ids}/archive/refs/heads/master.zip"
+
 SRC_URLS = {
-#  + A
-    TAG_ASYMPTOTE: _github_url.format(ids = GITHUB_IDS[TAG_ASYMPTOTE]),
-#  + C
-    TAG_CARBONPLAN : _github_url.format(ids = GITHUB_IDS[TAG_CARBONPLAN]),
-    TAG_CARTOCOLORS: _github_url.format(ids = GITHUB_IDS[TAG_CARTOCOLORS]),
-    TAG_CMASHER    : _github_url.format(ids = GITHUB_IDS[TAG_CMASHER]),
-    TAG_COLORBREWER: _github_url.format(ids = GITHUB_IDS[TAG_COLORBREWER]),
-    TAG_COLORMAPS  : _github_url.format(ids = GITHUB_IDS[TAG_COLORMAPS]),
-#  + N
-    TAG_NCLCOLTABLES: _github_url.format(ids = GITHUB_IDS[TAG_NCLCOLTABLES]),
-#  + P
-    TAG_PALETTABLE: _github_url.format(ids = GITHUB_IDS[TAG_PALETTABLE]),
-#  + S
-    TAG_SCICOLMAPS : "https://zenodo.org/api/records/8409685/files-archive",
+    t: _github_url.format(ids = GITHUB_IDS[t])
+    for t in GITHUB_IDS
 }
+
+# Other URLs
+SRC_URLS[TAG_SCICOLMAPS] = "https://zenodo.org/api/records/8409685/files-archive"

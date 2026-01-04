@@ -88,7 +88,7 @@ for cmap_name in allnames:
         continue
 
     cmap     = colormaps[cmap_name]
-    std_name = stdname(cmap_name)
+    stdname = get_stdname(cmap_name)
 
     candidate = minimize_palette([
         [
@@ -100,7 +100,7 @@ for cmap_name in allnames:
 
     aprism_name, ALL_PALETTES, PAL_REPORT = update_palettes(
         context   = CTXT,
-        name      = std_name,
+        name      = stdname,
         candidate = candidate,
         palettes  = ALL_PALETTES,
         ignored   = PAL_REPORT,

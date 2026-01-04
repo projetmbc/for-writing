@@ -65,11 +65,11 @@ for kind in ["dark", "std"]:
 # -- CONSTANTS #3 -- #
 # ------------------ #
 
-PATTERN_CHGE_PAL_NAME = re.compile(
+PATTERN_CHGE_palname = re.compile(
     r"\\newcommand\{\\PALETTE\}\{(.*)\}"
 )
 
-PATTERN_CHGE_PAL_DEF = re.compile(
+PATTERN_CHGE_paldef = re.compile(
     r"PALETTE = ([^\n]*)"
 )
 
@@ -133,8 +133,8 @@ def fill_tex_tmpl(
     texcode = tmpl
 
     for repltxt, pattern in [
-        (paldef , PATTERN_CHGE_PAL_DEF),
-        (palname, PATTERN_CHGE_PAL_NAME),
+        (paldef , PATTERN_CHGE_paldef),
+        (palname, PATTERN_CHGE_palname),
         (context, PATTERN_CHGE_SRC),
     ]:
         texcode = pattern.sub(

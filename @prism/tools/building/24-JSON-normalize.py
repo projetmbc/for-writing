@@ -7,7 +7,7 @@ from pathlib import Path
 import              sys
 
 THIS_DIR  = Path(__file__).parent
-BUILD_TOOLS_DIR = THIS_DIR.parent
+BUILD_TOOLS_DIR = THIS_DIR
 
 sys.path.append(str(BUILD_TOOLS_DIR))
 
@@ -68,6 +68,9 @@ def compact_nblists(json_code: str) -> str:
 logging.info("Normalize all reporting JSON codes.")
 
 for jsonfile in REPORT_DIR.glob("*.json"):
+    if jsonfile.name.startswith('RESRC'):
+        continue
+
     with jsonfile.open(mode = "r") as f:
         code = json_load(f)
 
@@ -80,7 +83,12 @@ for jsonfile in REPORT_DIR.glob("*.json"):
     jsonfile.write_text(json_code)
 
 
+
+
+exit()
+
 logging.info("Normalize JSON product code.")
+
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     palettes = json_load(f)
@@ -94,6 +102,6 @@ json_code = json_dumps(
 json_code = compact_nblists(json_code)
 
 
-logging.info("Update palette JSON file.")
+logging.info("Update palette JSON files.")
 
 PAL_JSON_FILE.write_text(json_code)

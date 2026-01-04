@@ -55,7 +55,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / stdname(THIS_RESRC)
+RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
@@ -81,16 +81,16 @@ def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
 
     pals = {}
 
-    for pal_name, cols in src_pals.items():
-        if not pal_name.endswith('_16'):
+    for palname, cols in src_pals.items():
+        if not palname.endswith('_16'):
             print(name)
             BUG_TODO
 
-        pal_name = pal_name[:-3]
-        std_name = stdname(pal_name)
+        palname = palname[:-3]
+        stdname = get_stdname(palname)
 
-        pals[std_name] = resrc_std_palette(
-            pal_name,
+        pals[stdname] = resrc_std_palette(
+            palname,
             TAG_SEQ,
             pal255_to_pal01(cols),
         )
@@ -120,17 +120,17 @@ def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
         src_names,
         src_pals
     ):
-        pal_name, _ , pal_size = name.partition('_')
+        palname, _ , pal_size = name.partition('_')
 
-        std_name = stdname(pal_name)
+        stdname = get_stdname(palname)
 
         pal_size = int(pal_size)
 
-        if pal_size > last_sizes[std_name]:
-            last_sizes[std_name] = pal_size
+        if pal_size > last_sizes[stdname]:
+            last_sizes[stdname] = pal_size
 
-            pals[std_name] = resrc_std_palette(
-                pal_name,
+            pals[stdname] = resrc_std_palette(
+                palname,
                 TAG_QUAL,
                 pal255_to_pal01(cols),
             )
@@ -170,13 +170,13 @@ def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
 
     pals = {}
 
-    for pal_name, cols in src_pals.items():
-        std_name = stdname(pal_name)
+    for palname, cols in src_pals.items():
+        stdname = get_stdname(palname)
 
         cols = cols['colors']
 
-        pals[std_name] = resrc_std_palette(
-            pal_name,
+        pals[stdname] = resrc_std_palette(
+            palname,
             TAG_QUAL,
             pal255_to_pal01(cols),
         )
@@ -258,7 +258,7 @@ def extract_std(
     )
 
     pals = {
-        stdname(kind_and_names[n][1]): resrc_std_palette(
+        get_stdname(kind_and_names[n][1]): resrc_std_palette(
             kind_and_names[n][1],
             kind_and_names[n][0],
             p,

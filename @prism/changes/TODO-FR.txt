@@ -9,6 +9,56 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 
 
+
+
+// ---------- //
+
+intégrer en externe directement si possible
+
+# developed by Cynthia Brewer (https://colorbrewer2.org/).
+# the viewer has colorblindness. https://jfly.uni-koeln.de/color/#pallet
+# <http://www.kennethmoreland.com/color-maps/>
+# https://www.mathworks.com/matlabcentral/fileexchange/2662-cmrmap-m
+#   https://github.com/wistia/heatmap-palette
+#   https://wistia.com/learn/culture/heatmaps-for-colorblindness
+# https://github.com/vega/vega/wiki/Scales
+# https://arxiv.org/abs/2107.02270
+
+
+// ---------- //
+
+on propose haute résolution, pour faire moins de calcul, et sinon 2à (max des palettes sméantiques")
+
+// ---------- //
+
+dans la démo en ligne !!!
+
+https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
+
+
+// ---------- //
+
+matplotlib._cm.py CREDITS ?
+
+Palette	Catégorie
+  > Origine / Particularité
+
+Viridis, Magma, Inferno, Plasma
+  > Perceptuellement Uniforme	Créées en 2015 pour être le standard (lisibles en noir et blanc).
+
+Cividis
+  > Accessibilité	Optimisée pour les daltoniens (vision jaune/bleu).
+
+Twilight / Shifted
+  > Cyclique	Pour les données circulaires (angles, phases de la lune).
+
+Turbo
+  > Arc-en-ciel amélioré	Créée par Google pour remplacer Jet sans ses défauts.
+
+Berlin, Managua, Vanimo
+  > Scientifique (S-CM)	Par Fabio Crameri ; respectent les données physiques (relief, courants).
+
+
 // ---------- //
 
 --------

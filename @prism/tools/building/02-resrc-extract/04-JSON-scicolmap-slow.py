@@ -44,7 +44,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / stdname(THIS_RESRC)
+RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
@@ -90,15 +90,15 @@ logging.info(f"Analyzing '{THIS_RESRC}' source code.")
 pals = dict()
 
 for pyfile in sorted(RESRC_DIR.glob("*.py"), key = lambda x: str(x).lower()):
-    pal_name = pyfile.stem
-    std_name = stdname(pal_name)
+    palname = pyfile.stem
+    stdname = get_stdname(palname)
 
-    pal_kind, pal_def = extract_palette(pyfile)
+    pal_kind, paldef = extract_palette(pyfile)
 
-    pals[std_name] = resrc_std_palette(
-        pal_name,
-        pal_kind,
-        pal_def,
+    pals[stdname] = resrc_std_palette(
+        palname,
+        TAG_COLORBLIND,
+        paldef,
     )
 
 

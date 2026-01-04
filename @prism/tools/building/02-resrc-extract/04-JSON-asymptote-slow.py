@@ -17,10 +17,6 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from collections import defaultdict
-
-import requests
-
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
@@ -61,7 +57,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / stdname(THIS_RESRC)
+RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
@@ -81,23 +77,18 @@ logging.info(f"Analyzing '{THIS_RESRC}' source code.")
 
 pals = dict()
 
-for pal_name, body in PATTERN_ASY_COLORMAP.findall(ASY_CODE):
-    std_name = stdname(pal_name)
+for palname, body in PATTERN_ASY_COLORMAP.findall(ASY_CODE):
+    stdname = get_stdname(palname)
 
-
-    pal_def = [
-        [
-            round(float(r), 4),
-            round(float(g), 4),
-            round(float(b), 4)
-        ]
-        for r, g, b in PATTERN_ASY_RGB.findall(body)
+    paldef = [
+        list(map(float, rgb))
+        for rgb in PATTERN_ASY_RGB.findall(body)
     ]
 
-    pals[std_name] = resrc_std_palette(
-        pal_name,
+    pals[stdname] = resrc_std_palette(
+        palname,
         '',
-        pal_def,
+        paldef,
     )
 
 

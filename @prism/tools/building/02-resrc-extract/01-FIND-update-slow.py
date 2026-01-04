@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-exit(0)
+# exit(0)
 
 # ---------------------------- #
 # -- IMPORT CBUTILS - START -- #
@@ -18,6 +18,10 @@ from cbutils      import *
 
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
+
+if not YAML_CONFIG['ASK_GITHUB']:
+    logging.warning("'NO SEARCH' for needed updates.")
+    exit(0)
 
 import os
 import re
@@ -140,11 +144,15 @@ GITHUB_HEADERS = {}
 
 if GITHUB_TOKEN:
     GITHUB_HEADERS['Authorization'] = f'token {GITHUB_TOKEN}'
-    logging.info("✓ GitHub token configured (authenticated requests)")
+
+    logging.info("GitHub token configured (authenticated requests)")
 
 else:
-    logging.warning("⚠ No GitHub token. Rate limit: 60 requests/hour")
-    logging.warning("  Set GITHUB_TOKEN environment variable for 5000 requests/hour")
+    logging.warning(
+        "No GitHub token. Rate limit: 60 requests/hour."
+        "\n"
+        "Set GITHUB_TOKEN environment variable for 5000 requests/hour"
+    )
 
 
 # ------------------------------------- #

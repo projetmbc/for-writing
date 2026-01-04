@@ -17,14 +17,12 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from shutil import rmtree
-
 
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_RESRC = TAG_COLORMAPS
+THIS_RESRC = TAG_MATPLOTLIB
 
 
 PROJ_DIR = THIS_DIR
@@ -86,18 +84,19 @@ download_and_unzip(
 
 logging.info(f"Cleaning '{THIS_RESRC}' folder.")
 
-
-for p in THIS_RESRC_DIR.glob("*/LICENSE"):
-    p.rename(THIS_RESRC_DIR / p.name)
-
-
-clean_src_dirs(
-    local_src_dir = THIS_RESRC_DIR / "colormaps-main",
+clean_src_files(
+    local_src_dir = THIS_RESRC_DIR / "matplotlib-main",
     globs_kept    = [
-        f"colormaps/colormaps/{n}/*.rgb"
-        for n in [
-            "sciviz",
-            "colorcet",
-        ]
+        "LICENSE/LICENSE",
+        "LICENSE/LICENSE_SOLARIZED",
+        "LICENSE/LICENSE_YORICK",
+        "lib/matplotlib/_cm*.py"
     ],
 )
+
+for pyfile in THIS_RESRC_DIR.glob('*.py'):
+    if pyfile.stem not in [
+        '_cm',
+        '_cm_listed',
+    ]:
+        pyfile.unlink()
