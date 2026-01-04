@@ -153,6 +153,7 @@ for match in PATTERN_MPL_COLORMAP_BRACES_LISTED.finditer(MPL_CODE_LISTED):
         palname,
         '',
         paldef,
+        PRECISION + 2
     )
 
 # EXCEPTIONS: twilight_shifted_data!
@@ -169,6 +170,7 @@ pals['TwilightShifted'] = resrc_std_palette(
     'twilight_shifted',
     '',
     paldef,
+    PRECISION + 2
 )
 
 
@@ -191,6 +193,7 @@ for match in PATTERN_MPL_COLORMAP_BRACES.finditer(MPL_CODE):
         palname,
         '',
         paldef,
+        PRECISION + 2
     )
 
 
@@ -267,6 +270,7 @@ for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
         palname,
         '',
         paldef,
+        PRECISION + 2
     )
 
 
@@ -293,6 +297,7 @@ for match in PATTERN_MPL_COLORMAP_DATA_NAME.finditer(MPL_CODE):
         palname,
         '',
         paldef,
+        PRECISION + 2
     )
 
 

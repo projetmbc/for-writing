@@ -56,15 +56,34 @@ TAG_AUTO  = 'auto'
 TAG_HUMAN = 'human'
 
 
+
+
+def norm_float_pal(
+    pal: PaletteCols,
+    precision: int
+) -> PaletteCols:
+    new_pal = list(
+        list(
+            map(
+                lambda x: round(x, precision), rgb
+            )
+        )
+        for rgb in pal
+    )
+
+    return new_pal
+
+
 def resrc_std_palette(
     palname: str,
     pal_kind: str,
     paldef : PaletteCols,
+    precision: int
 ):
     return {
         TAG_ORIGINAL_NAME: palname,
         TAG_KIND         : pal_kind,
-        TAG_RGB_COLS     : paldef,
+        TAG_RGB_COLS     : norm_float_pal(paldef, precision + 2),
     }
 
 

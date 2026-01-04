@@ -59,6 +59,13 @@ RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
+# ------------------ #
+# -- CONSTANTS #3 -- #
+# ------------------ #
+
+PRECISION = YAML_CONFIG['PRECISION']
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
@@ -93,6 +100,7 @@ def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
             palname,
             TAG_SEQ,
             pal255_to_pal01(cols),
+            PRECISION + 2
         )
 
     return pals
@@ -133,6 +141,7 @@ def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
                 palname,
                 TAG_QUAL,
                 pal255_to_pal01(cols),
+                PRECISION + 2
             )
 
     return pals
@@ -179,6 +188,7 @@ def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
             palname,
             TAG_QUAL,
             pal255_to_pal01(cols),
+            PRECISION + 2
         )
 
 
@@ -262,6 +272,7 @@ def extract_std(
             kind_and_names[n][1],
             kind_and_names[n][0],
             p,
+            PRECISION + 2
         )
         for n, p in oripals.items()
     }

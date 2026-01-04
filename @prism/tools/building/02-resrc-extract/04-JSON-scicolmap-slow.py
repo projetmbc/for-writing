@@ -52,6 +52,13 @@ RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_PALS_JSON = REPORT_DIR / f"RESRC-PALS-{RESRC_PALS_JSON}.json"
 
 
+# ------------------ #
+# -- CONSTANTS #3 -- #
+# ------------------ #
+
+PRECISION = YAML_CONFIG['PRECISION']
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
@@ -99,6 +106,7 @@ for pyfile in sorted(RESRC_DIR.glob("*.py"), key = lambda x: str(x).lower()):
         palname,
         TAG_COLORBLIND,
         paldef,
+        PRECISION + 2
     )
 
 

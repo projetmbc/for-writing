@@ -12,8 +12,7 @@
 [[:tech:]]
 Here are the updates.
 
-    1) ???
-    Normalizing external palette data enables automated similarity analysis, drastically minimizing the need for human intervention."
+    1) Added an \sqlite \db to easily search for similarities.
 
     1) Added suport of \matplotlib "messy" source code. This was more challenging due to \matplotlib's internal palette computations.
 

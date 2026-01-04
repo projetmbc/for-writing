@@ -18,9 +18,9 @@ from cbutils      import *
 # -------------------------- #
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
 THIS_RESRC = TAG_COLORBREWER
 
@@ -35,6 +35,13 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_PALS_JSON = REPORT_DIR / f"RESRC-PALS-{RESRC_PALS_JSON}.json"
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+PRECISION = YAML_CONFIG['PRECISION']
 
 
 # ------------------ #
@@ -88,6 +95,7 @@ for palname, pal_data in ORIGINAL_RESRC_PALS.items():
         palname,
         pal_kind,
         paldef,
+        PRECISION + 2
     )
 
 

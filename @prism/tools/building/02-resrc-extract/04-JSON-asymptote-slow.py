@@ -69,6 +69,13 @@ ASY_CODE = RESRC_DIR / "colormap.asy"
 ASY_CODE = ASY_CODE.read_text()
 
 
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+PRECISION = YAML_CONFIG['PRECISION']
+
+
 # ------------------------------- #
 # -- FROM ASYMPTOTE COLOR MAPS -- #
 # ------------------------------- #
@@ -89,6 +96,7 @@ for palname, body in PATTERN_ASY_COLORMAP.findall(ASY_CODE):
         palname,
         '',
         paldef,
+        PRECISION + 2
     )
 
 
