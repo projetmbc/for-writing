@@ -11,6 +11,22 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+--------
+:fordev:
+--------
+
+[[:tech:]]  ?
+Standardizing the retrieval of external palettes done for the following \projs.
+
+    + \carbonplan     ??????????
+    + \cartocolor     ????????
+    + \cmasher        ??????
+    + \colormaps      ????   comparer  light et dark et ignorer si c'est le cas, sinon on créer deux version !
+    + \nclcolortable  ??
+
+
+// ---------- //
+
 demo en ligne : ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
 
 

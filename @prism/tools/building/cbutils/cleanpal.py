@@ -56,9 +56,6 @@ TAG_AUTO  = 'auto'
 TAG_HUMAN = 'human'
 
 
-TAG_APRISM = "@prism"
-
-
 def resrc_std_palette(
     pal_name: str,
     pal_kind: str,

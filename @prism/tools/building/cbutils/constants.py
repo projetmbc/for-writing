@@ -4,6 +4,8 @@
 # -- MAIN EXTERNAL SOURCES -- #
 # --------------------------- #
 
+TAG_APRISM = "@prism"
+
 TAG_ORIGINAL_NAME = "original-name"
 TAG_KIND          = "kind"
 TAG_RGB_COLS      = "rgb-cols"
