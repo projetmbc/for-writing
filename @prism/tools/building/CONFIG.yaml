@@ -1,0 +1,3 @@
+# Optimizing data weight: 4-decimal precision exceeds human visual
+# acuity and ensures 8-bit color integrity.
+PRECISION: 4

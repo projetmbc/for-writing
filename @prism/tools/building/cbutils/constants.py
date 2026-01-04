@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
 
+from pathlib import Path
+import              yaml
+
+
+# ----------------- #
+# -- YAML CONFIG -- #
+# ----------------- #
+
+THIS_DIR = Path(__file__).parent
+
+with (THIS_DIR / '../CONFIG.yaml').open(mode = 'r') as stream:
+    YAML_CONFIG = yaml.safe_load(stream)
+
+
 # --------------------------- #
 # -- MAIN EXTERNAL SOURCES -- #
 # --------------------------- #
