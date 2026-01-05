@@ -14,7 +14,7 @@ ASK_GITHUB: false
 # acuity and ensures 8-bit color integrity.
 PRECISION: 4
 
-AUTO_QUAL_CATEGO_SIZE: 25
+AUTO_QUAL_CATEGO_SIZE: 30
 
 # We associate each category with allowed alias.
 CATEGORY:

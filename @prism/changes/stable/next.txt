@@ -9,6 +9,14 @@
 :update:
 --------
 
+[[:api:]]
+??? support amélioré des ypes de palettes qui peuvent petre multiples mais qui sont un maxiumu géré en amont !
+
+
+--------
+:update:
+--------
+
 [[:tech:]]
 The \projs listed below serves as a foundation.
 

@@ -2,6 +2,21 @@
 
 
 ==
+06  (2.0.0-beta.4)     ?????
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]]  ???
+\Contribs: XXXX  prise en compte des metadat dans les contribs, on les extrait et un fonction dédier finit le job
+
+
+// ---------- //
+
+
+==
 05
 ==
 

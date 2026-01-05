@@ -131,14 +131,17 @@ def has_uniformed_steps(steps: list[float]) -> bool:
     return len(diffs) == 1
 
 
-# ---------------------------------- #
-# -- FIXED OR COMPUTED COLOR MAPS -- #
-# ---------------------------------- #
+
+# --------------------- #
+# -- FROM MATPLOTLIB -- #
+# --------------------- #
 
 logging.info(f"Analyzing '{THIS_RESRC}' source code.")
 
 pals = dict()
 
+
+# -- HARD CODED COLOR MAPS -- #
 
 # The easy part.
 for match in PATTERN_MPL_COLORMAP_BRACES_LISTED.finditer(MPL_CODE_LISTED):
@@ -156,7 +159,7 @@ for match in PATTERN_MPL_COLORMAP_BRACES_LISTED.finditer(MPL_CODE_LISTED):
         PRECISION + 2
     )
 
-# EXCEPTIONS: twilight_shifted_data!
+# Special case of twilight_shifted_data.
 pal_twilight = pals['Twilight'][TAG_RGB_COLS]
 
 paldef = (
@@ -173,8 +176,7 @@ pals['TwilightShifted'] = resrc_std_palette(
     PRECISION + 2
 )
 
-
-# Hard coded palettes.
+# "Brace" coded palettes.
 for match in PATTERN_MPL_COLORMAP_BRACES.finditer(MPL_CODE):
     palname = match.group(1)
     stdname = get_stdname(palname)
@@ -196,20 +198,19 @@ for match in PATTERN_MPL_COLORMAP_BRACES.finditer(MPL_CODE):
         PRECISION + 2
     )
 
-
-# Old-style hard coded palettes.
+# Old-style coded palettes.
 for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
     palname = match.group(1)
     stdname = get_stdname(palname)
 
-# Hard coded palette def?
+# + Palette def?
     try:
         paldef = eval(match.group(2))
 
     except Exception as e:
         continue
 
-# RGB same length defs?
+# + RGB same length defs?
     lenghts = set(
         len(d)
         for d in paldef.values()
@@ -220,7 +221,7 @@ for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
 
     common_len = lenghts.pop()
 
-# No RGB jump?
+# + No RGB jump?
     if not all(
         y == yy
         for d in paldef.values()
@@ -228,7 +229,7 @@ for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
     ):
         continue
 
-# Uniform steps?
+# + Uniform steps?
     if common_len != 2:
         is_uniform = True
 
@@ -241,7 +242,7 @@ for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
         if not is_uniform:
             continue
 
-# A new def.
+# + A new def.
     cols = {}
 
     for k in [
@@ -273,6 +274,8 @@ for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
         PRECISION + 2
     )
 
+
+# -- COMPUTED COLOR MAPS -- #
 
 # For the remaining palettes that are computed, we adopted
 # a hybrid approach by relying on matplotlib to produce a

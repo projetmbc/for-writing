@@ -193,7 +193,7 @@ for resrc_json in REPORT_DIR.glob("PALS-*.json"):
 conn.close()
 
 logging.info(
-     "SQLite DB file "
+     "SQLite DB - File "
     f"'{SQLITE_DB_FILE.relative_to(PROJ_DIR)}' "
      "build."
 )

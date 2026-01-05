@@ -88,7 +88,7 @@ def build_code(
 ) -> str:
     def float2percentage(x: float) -> str:
         x *= 100
-        x = f"{x:.4f}"
+        x = f"{x:.6f}"
         x = x.rstrip('0')
         x = x.rstrip('.')
 
