@@ -24,10 +24,21 @@ TAG_ORIGINAL_NAME = "original-name"
 TAG_RGB_COLS      = "rgb-cols"
 TAG_KIND          = "kind"
 
-TAG_COLORBLIND = 'colorblind'
-TAG_DIVERGENT  = 'divergent'
-TAG_QUALITATIVE = "qualitative"
-TAG_SEQUENTIAL  = "sequential"
+
+KIND_ALIAS = dict()
+
+for kind, alias in YAML_CONFIG['CATEGORY'].items():
+    varname = f"tag_{kind}"
+    varname = varname.upper()
+
+    globals()[varname] = kind
+
+    KIND_ALIAS[kind] = kind
+
+    if not alias is None:
+        for a in alias:
+            KIND_ALIAS[a] = kind
+
 
 TAG_REPORT     = "REPORT"
 TAG_XTRA_RESRC = "EXTRA-RESOURCES"

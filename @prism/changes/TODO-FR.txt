@@ -9,6 +9,34 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 
 
+// ---------- //
+
+plusieurs categos OK
+
++
+
+viridis:
+    - sequential    # Primary: smooth gradient
+    - colorblind    # Feature: CVD safe
+    - dark_mode     # Usage: high contrast on black
+
++
+
+1. Le cas "Colorblind" (Accessibilité)
+
+C'est l'exemple le plus courant. Une palette peut être à la fois Sequential (pour un dégradé) et Colorblind (parce que les contrastes de luminosité permettent aux personnes daltoniennes de distinguer les étapes).
+
+    Exemple : La célèbre palette Viridis est techniquement Sequential, mais elle est presque toujours étiquetée Colorblind car elle est conçue pour être lisible par tous.
+
+2. Le cas "Divergent" vs "Sequential"
+
+Une palette Divergent est techniquement l'assemblage de deux palettes Sequential qui se rejoignent sur un point neutre (souvent le blanc ou le gris).
+
+    Si vous n'utilisez qu'une moitié de la palette (du neutre vers un extrême), elle devient Sequential.
+
+3. Le cas "Qualitative" vs "Sequential"
+
+Certaines palettes Qualitative (couleurs distinctes) peuvent être perçues comme Sequential si les couleurs suivent une logique de luminosité (du plus clair au plus foncé), même si les teintes changent.
 
 
 // ---------- //
@@ -425,3 +453,23 @@ $theme-configs: (
     }
   }
 }
+
+
+// ---------- //
+
+def log_completion(message: str):
+    logger = logging.getLogger()
+
+    file_handler = next(
+        h
+        for h in logger.handlers
+        if isinstance(h, logging.FileHandler)
+    )
+
+    file_handler.setLevel(logging.INFO)
+
+    logging.info(message)
+
+    file_handler.setLevel(logging.ERROR)
+
+log_completion("Building finished.")

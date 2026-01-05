@@ -41,8 +41,7 @@ SQLITE_DB_FILE = REPORT_DIR / "palettes.db"
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-PRECISION       = YAML_CONFIG['PRECISION']
-AUTO_QUAL_CATEGO_SIZE = int(YAML_CONFIG['AUTO_QUAL_CATEGO_SIZE'])
+PRECISION = YAML_CONFIG['PRECISION']
 
 
 # ----------- #
@@ -61,34 +60,21 @@ def get_palhash(palette: PaletteCols) -> str:
     return hashcode
 
 
-_UNMANAGED_KINDS = ['']
-
 def get_std_kind(
     kind: str,
     size: int
 ) -> str:
-    if (
-        (not kind and len(paldef) <= AUTO_QUAL_CATEGO_SIZE)
-        or
-        kind in ['qual', TAG_QUALITATIVE]
-    ):
-        kind = TAG_QUALITATIVE
+    stdkind = KIND_ALIAS.get(kind, '')
 
-    elif kind in ['div', 'diverging', TAG_DIVERGENT]:
-        kind = TAG_DIVERGENT
+# Automatic qualitative categorization will be performed later.
+    if not stdkind and kind:
+        log_raise_error(
+            context   = "Palette SQLite DB creation",
+            desc      = f"Unmanaged palette kind '{kind}'.",
+            exception = ValueError,
+        )
 
-    elif kind in ['seq', TAG_SEQUENTIAL]:
-        kind = TAG_SEQUENTIAL
-
-    elif kind in [TAG_COLORBLIND]:
-        kind = TAG_COLORBLIND
-
-    elif not kind in _UNMANAGED_KINDS:
-        _UNMANAGED_KINDS.append(kind)
-
-        logging.warning(f"Unmanaged kind '{kind}'.")
-
-    return kind
+    return stdkind
 
 
 # ----------------------- #
@@ -105,7 +91,7 @@ CREATE TABLE IF NOT EXISTS palettes (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     name         TEXT NOT NULL,
     source       TEXT NOT NULL,
-    size         INTEGER,
+    size         INTEGER NOT NULL,
     kind         TEXT NOT NULL,
     hash_normal  TEXT NOT NULL,
     hash_reverse TEXT NOT NULL
