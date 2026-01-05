@@ -11,6 +11,11 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+matplotlib : respecter les choix faits !!!!
+
+
+// ---------- //
+
 plusieurs categos OK
 
 +
@@ -21,6 +26,8 @@ viridis:
     - dark_mode     # Usage: high contrast on black
 
 +
+
+dans la doc expliquer les categos utilisées et les cas possibles de chevauchment et garder idée de l'appendice par catégo mais via un systeme d'importaion de pdf autonomes compilé une seule fois et utilisé autant de fois que nécéessaire
 
 1. Le cas "Colorblind" (Accessibilité)
 

@@ -60,13 +60,13 @@ def get_palhash(palette: PaletteCols) -> str:
     return hashcode
 
 
+# Automatic qualitative categorization will be performed later.
 def get_std_kind(
     kind: str,
     size: int
 ) -> str:
     stdkind = KIND_ALIAS.get(kind, '')
 
-# Automatic qualitative categorization will be performed later.
     if not stdkind and kind:
         log_raise_error(
             context   = "Palette SQLite DB creation",
@@ -77,11 +77,59 @@ def get_std_kind(
     return stdkind
 
 
+def dbadd_palette(
+    conn,
+    name        : str,
+    projname    : str,
+    size        : int,
+    stdkind     : str,
+    hash_normal : str,
+    hash_reverse: str
+) -> None:
+    placeholders = ['?']*(len(locals()) - 1)
+    placeholders = ", ".join(placeholders)
+
+    try:
+        cursor = conn.cursor()
+
+        cursor.execute(
+            f'''
+INSERT INTO palettes (
+    name,
+    source,
+    size,
+    kind,
+    hash_normal,
+    hash_reverse
+) VALUES ({placeholders})
+            ''',
+            (
+                name,
+                projname,
+                size,
+                stdkind,
+                hash_normal,
+                hash_reverse
+            )
+        )
+
+        conn.commit()
+
+    except Exception:
+        conn.close()
+
+        log_raise_error(
+            context   = "SQLite database.",
+            desc      = f"Insertion fails for '{name}'.",
+            exception = Exception,
+        )
+
+
 # ----------------------- #
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info(f"Building SQLite DB.")
+logging.info(f"SQLite DB - Creation.")
 
 conn = sqlite3.connect(SQLITE_DB_FILE)
 
@@ -100,6 +148,12 @@ CREATE TABLE IF NOT EXISTS palettes (
 conn.commit()
 
 
+# --------------------- #
+# -- EXTRA RESOURCES -- #
+# --------------------- #
+
+logging.info(f"SQLite DB - Extra resource integration.")
+
 for resrc_json in REPORT_DIR.glob("PALS-*.json"):
     projname = resrc_json.stem.split('-')
     projname = projname[2:]
@@ -116,45 +170,25 @@ for resrc_json in REPORT_DIR.glob("PALS-*.json"):
         hash_normal  = get_palhash(paldef)
         hash_reverse = get_palhash(paldef[::-1])
 
-        try:
-            cursor = conn.cursor()
-            cursor.execute(
-                '''
-INSERT INTO palettes (
-    name,
-    source,
-    size,
-    kind,
-    hash_normal,
-    hash_reverse
-) VALUES (
-    ?,
-    ?,
-    ?,
-    ?,
-    ?,
-    ?
-)
-                ''',
-                (
-                    name,
-                    projname,
-                    len(paldef),
-                    stdkind,
-                    hash_normal,
-                    hash_reverse
-                )
-            )
-            conn.commit()
+        dbadd_palette(
+            conn         = conn,
+            name         = name,
+            projname     = projname,
+            size         = len(paldef),
+            stdkind      = stdkind,
+            hash_normal  = hash_normal,
+            hash_reverse = hash_reverse
+        )
 
-        except Exception:
-            conn.close()
 
-            log_raise_error(
-                context   = "SQLite database.",
-                desc      = f"Insertion fails for '{name}'.",
-                exception = Exception,
-            )
+# --------------------- #
+# -- EXTRA RESOURCES -- #
+# --------------------- #
+
+
+# ------------------------ #
+# -- NOTHING LEFT TO DO -- #
+# ------------------------ #
 
 conn.close()
 
