@@ -80,14 +80,17 @@ def get_std_kind(
 def dbadd_palette(
     conn,
     name        : str,
-    projname    : str,
+    source      : str,
     size        : int,
-    stdkind     : str,
+    kind        : str,
     hash_normal : str,
     hash_reverse: str
 ) -> None:
     placeholders = ['?']*(len(locals()) - 1)
     placeholders = ", ".join(placeholders)
+
+    if not source:
+        TODO
 
     try:
         cursor = conn.cursor()
@@ -105,9 +108,9 @@ INSERT INTO palettes (
             ''',
             (
                 name,
-                projname,
+                source,
                 size,
-                stdkind,
+                kind,
                 hash_normal,
                 hash_reverse
             )
@@ -134,8 +137,9 @@ logging.info(f"SQLite DB - Creation.")
 conn = sqlite3.connect(SQLITE_DB_FILE)
 
 cursor = conn.cursor()
+cursor.execute('DROP TABLE IF EXISTS palettes;')
 cursor.execute('''
-CREATE TABLE IF NOT EXISTS palettes (
+CREATE TABLE palettes (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     name         TEXT NOT NULL,
     source       TEXT NOT NULL,
@@ -145,6 +149,7 @@ CREATE TABLE IF NOT EXISTS palettes (
     hash_reverse TEXT NOT NULL
 )
 ''')
+
 conn.commit()
 
 
@@ -152,11 +157,11 @@ conn.commit()
 # -- EXTRA RESOURCES -- #
 # --------------------- #
 
-logging.info(f"SQLite DB - Extra resource integration.")
+logging.info(f"SQLite DB - 'Extra resource' integration.")
 
 for resrc_json in REPORT_DIR.glob("PALS-*.json"):
     projname = resrc_json.stem.split('-')
-    projname = projname[2:]
+    projname = projname[1:]
     projname = '-'.join(projname)
 
     data = json_load(resrc_json.open())
@@ -173,9 +178,9 @@ for resrc_json in REPORT_DIR.glob("PALS-*.json"):
         dbadd_palette(
             conn         = conn,
             name         = name,
-            projname     = projname,
+            source       = projname,
             size         = len(paldef),
-            stdkind      = stdkind,
+            kind         = stdkind,
             hash_normal  = hash_normal,
             hash_reverse = hash_reverse
         )
@@ -184,6 +189,9 @@ for resrc_json in REPORT_DIR.glob("PALS-*.json"):
 # --------------------- #
 # -- EXTRA RESOURCES -- #
 # --------------------- #
+
+logging.info(f"SQLite DB - 'Contribs' integration.")
+TODO
 
 
 # ------------------------ #
