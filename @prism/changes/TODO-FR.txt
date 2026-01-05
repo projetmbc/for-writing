@@ -13,43 +13,17 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
-matplotlib._cm.py CREDITS ? + CATEGO DANS SOURCE ???
+plusiers catégorie possibles finalement : par exemple qualtitatif et diverent comme hot de plotly
 
++
 
-Palette	Catégorie
-  > Origine / Particularité
-
-Viridis, Magma, Inferno, Plasma
-  > Perceptuellement Uniforme	Créées en 2015 pour être le standard (lisibles en noir et blanc).
-
-Cividis
-  > Accessibilité	Optimisée pour les daltoniens (vision jaune/bleu).
-
-Twilight / Shifted
-  > Cyclique	Pour les données circulaires (angles, phases de la lune).
-
-Turbo
-  > Arc-en-ciel amélioré	Créée par Google pour remplacer Jet sans ses défauts.
-
-Berlin, Managua, Vanimo
-  > Scientifique (S-CM)	Par Fabio Crameri ; respectent les données physiques (relief, courants).
-// ---------- //
-
-intégrer en externe directement si possible
-
-# developed by Cynthia Brewer (https://colorbrewer2.org/).
-# the viewer has colorblindness. https://jfly.uni-koeln.de/color/#pallet
-# <http://www.kennethmoreland.com/color-maps/>
-# https://www.mathworks.com/matlabcentral/fileexchange/2662-cmrmap-m
-#   https://github.com/wistia/heatmap-palette
-#   https://wistia.com/learn/culture/heatmaps-for-colorblindness
-# https://github.com/vega/vega/wiki/Scales
-# https://arxiv.org/abs/2107.02270
+classification faite sympa : https://pratiman-91.github.io/colormaps/docs/Diverging#cartocolors
 
 
 // ---------- //
 
 on propose haute résolution, pour faire moins de calcul, et sinon 2à (max des palettes sméantiques")
+
 
 // ---------- //
 
@@ -171,13 +145,6 @@ WHERE p1.id < p2.id
 
 // ---------- //
 
-dans la démo en ligne !!!
-
-https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
-
-
-// ---------- //
-
 --------
 :fordev:
 --------
@@ -192,14 +159,54 @@ Standardizing the retrieval of external palettes done for the following \projs.
     + \nclcolortable  ??
 
 
+
+
+
+
+
 // ---------- //
 
-demo en ligne : ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
+matplotlib._cm.py CREDITS ?
+
+
+Palette	Catégorie
+  > Origine / Particularité
+
+Viridis, Magma, Inferno, Plasma
+  > Perceptuellement Uniforme	Créées en 2015 pour être le standard (lisibles en noir et blanc).
+
+Cividis
+  > Accessibilité	Optimisée pour les daltoniens (vision jaune/bleu).
+
+Twilight / Shifted
+  > Cyclique	Pour les données circulaires (angles, phases de la lune).
+
+Turbo
+  > Arc-en-ciel amélioré	Créée par Google pour remplacer Jet sans ses défauts.
+
+Berlin, Managua, Vanimo
+  > Scientifique (S-CM)	Par Fabio Crameri ; respectent les données physiques (relief, courants).
+// ---------- //
+
+intégrer en externe directement si possible
+
+# developed by Cynthia Brewer (https://colorbrewer2.org/).
+# the viewer has colorblindness. https://jfly.uni-koeln.de/color/#pallet
+# <http://www.kennethmoreland.com/color-maps/>
+# https://www.mathworks.com/matlabcentral/fileexchange/2662-cmrmap-m
+#   https://github.com/wistia/heatmap-palette
+#   https://wistia.com/learn/culture/heatmaps-for-colorblindness
+# https://github.com/vega/vega/wiki/Scales
+# https://arxiv.org/abs/2107.02270
 
 
 // ---------- //
 
-classification faite sympa : https://pratiman-91.github.io/colormaps/docs/Diverging#cartocolors
+dans la démo en ligne !!!
+
+    --> ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
+
+    --> https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
 
 
 // ---------- //
@@ -247,24 +254,11 @@ showcase
 
 // ---------- //
 
-2.0.0 à faire vite : on améliore la gestion des palettes sémantiques qui doivent avoir la bonne taille et none celle de 10 imposé, ceci va demander de tenir compte des défs originelles
+Ajout palettes proposées par AI Claude
 
-    ---> matplotlib en local : qualtitative <--> semantic (on reprend au passage ce vocabulaire)
++
 
-    ---> Ajout de préfixe pour retrouver rapidment les palettes semantqites/qaulititatives :lourdingue mais au final plus explicite!
-
-              + SmPalName : sémantique
-              + QntPalName : quantitiative/continue
-
-    ---> si non qualittaive, on garde 10 couleurs (cela reste modifiable via un paramètre en cas de besoin)
-
-    ---> syst de màj des sources est un slow : telecharge + nettoyage
-
-    ---> sipas connection, pas un souci mais un warnning
-
-    ---> on doit alors pouvoir imposer une taille pour certains palettes
-
-    ---> uen fois tout mis à plat, on peut ajouter les palettes proposées par AI Claude + faire package latex (o veut pas créer de pllution)
+faire package latex (o veut pas créer de pllution)
 
 
 // ---------- //
@@ -274,11 +268,6 @@ implementation
    ---> SCSS avec une API dans ce cas
 
    ---> Python : après on en fait la pub sur Matplotlib (attendre la version avec semantic/qualititative palettes)
-
-
-// ---------- //
-
-TOOLS : virer TAG_NAMES_IGNORED et asymptote traité commes les autres
 
 
 // ---------- //

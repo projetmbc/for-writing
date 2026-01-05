@@ -22,22 +22,7 @@ from cbutils      import *
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-PATTERN_PALETTE = re.compile(
-    r'cm_data\s*=\s*(\[\[.*?\]\])',
-    re.DOTALL
-)
-
-
-PATTERN_KIND = re.compile(
-    r'<Kind>(.*?)</Kind>'
-)
-
-
-# ------------------ #
-# -- CONSTANTS #2 -- #
-# ------------------ #
-
-THIS_RESRC = TAG_SCICOLMAPS
+THIS_RESRC = TAG_COLORBREWER
 
 PROJ_DIR = THIS_DIR
 
@@ -49,62 +34,66 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
 RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
-RESRC_PALS_JSON = REPORT_DIR / f"RESRC-PALS-{RESRC_PALS_JSON}.json"
+RESRC_PALS_JSON = REPORT_DIR / f"PALS-{RESRC_PALS_JSON}.json"
 
 
 # ------------------ #
-# -- CONSTANTS #3 -- #
+# -- CONSTANTS #2 -- #
 # ------------------ #
 
 PRECISION = YAML_CONFIG['PRECISION']
+
+
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
+ORIGINAL_RESRC_PALS_JSON = RESRC_DIR / f"{THIS_RESRC.lower()}.json"
+
+with ORIGINAL_RESRC_PALS_JSON.open(mode = "r") as f:
+    ORIGINAL_RESRC_PALS = json_load(f)
 
 
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
 
-def extract_palette(file: Path) -> tuple[str, PaletteCols]:
-    rep = []
+def extract_palette(pal_data: dict) -> [str, PaletteCols]:
+    kind = pal_data["type"]
 
-    for e, p, k in [
-        ('xcmap', PATTERN_KIND, 'kind'),
-        ('py', PATTERN_PALETTE, 'value'),
-    ]:
-        content = (
-            file.parent / f"{file.stem}.{e}"
-        ).read_text()
+    max_size = max(
+        int(k)
+        for k in pal_data
+        if k != "type"
+    )
 
-        match = p.search(content)
+    max_size = str(max_size)
 
-        if not match:
-            log_raise_error(
-                context   = "Extra resource",
-                desc      = f"'{THIS_RESRC}' - Matching palette {k}fails",
-                exception = ValueError,
-            )
+    paldef = pal_data[str(max_size)]
+    paldef = pal255_to_pal01([
+        eval(c.replace("rgb", ""))
+        for c in paldef
+    ])
 
-        rep.append(match.group(1))
-
-    return rep[0], eval(rep[1])
+    return kind, paldef
 
 
-# -------------------------- #
-# -- FROM SCI. COLOR MAPS -- #
-# -------------------------- #
+# ---------------------- #
+# -- FROM COLORBREWER -- #
+# ---------------------- #
 
 logging.info(f"Analyzing '{THIS_RESRC}' source code.")
 
 pals = dict()
 
-for pyfile in sorted(RESRC_DIR.glob("*.py"), key = lambda x: str(x).lower()):
-    palname = pyfile.stem
+for palname, pal_data in ORIGINAL_RESRC_PALS.items():
     stdname = get_stdname(palname)
 
-    pal_kind, paldef = extract_palette(pyfile)
+    pal_kind, paldef = extract_palette(pal_data)
 
     pals[stdname] = resrc_std_palette(
         palname,
-        TAG_COLORBLIND,
+        pal_kind,
         paldef,
         PRECISION + 2
     )

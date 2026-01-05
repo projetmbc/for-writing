@@ -105,6 +105,7 @@ CREATE TABLE IF NOT EXISTS palettes (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     name         TEXT NOT NULL,
     source       TEXT NOT NULL,
+    size         INTEGER,
     kind         TEXT NOT NULL,
     hash_normal  TEXT NOT NULL,
     hash_reverse TEXT NOT NULL
@@ -113,7 +114,7 @@ CREATE TABLE IF NOT EXISTS palettes (
 conn.commit()
 
 
-for resrc_json in REPORT_DIR.glob("RESRC-PALS-*.json"):
+for resrc_json in REPORT_DIR.glob("PALS-*.json"):
     projname = resrc_json.stem.split('-')
     projname = projname[2:]
     projname = '-'.join(projname)
@@ -133,12 +134,26 @@ for resrc_json in REPORT_DIR.glob("RESRC-PALS-*.json"):
             cursor = conn.cursor()
             cursor.execute(
                 '''
-INSERT INTO palettes (name, source, kind, hash_normal, hash_reverse)
-VALUES (?, ?, ?, ?, ?)
+INSERT INTO palettes (
+    name,
+    source,
+    size,
+    kind,
+    hash_normal,
+    hash_reverse
+) VALUES (
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?
+)
                 ''',
                 (
                     name,
                     projname,
+                    len(paldef),
                     stdkind,
                     hash_normal,
                     hash_reverse

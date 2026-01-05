@@ -7,21 +7,24 @@ from rich.logging import RichHandler
 from rich.console import Console
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
 LOG_FILE = "tools.log"
 
-
 RICH_FORMAT_PATTERN = re.compile(r'\[.*?\]')
 
+STYLES = {
+    logging.WARNING : "dark_goldenrod",
+    logging.ERROR   : "bright_red",
+    logging.CRITICAL: "black on wheat1",
+}
 
-FSTR_NO_CHANGE      = "{}"
-FSTR_COLOR_WARNING  = "[dark_goldenrod]{}[/dark_goldenrod]"
-FSTR_COLOR_CRITICAL = "[black on wheat1]{}[/black on wheat1]"
-FSTR_COLOR_ERROR    = "[bright_red]{}[/bright_red]"
 
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 LOG_PRINTERS = {
     (TAG_INFO    := "info")    : logging.info,
@@ -35,29 +38,21 @@ LOG_PRINTERS = {
 # -- FORMATTING -- #
 # ---------------- #
 
+
 ###
-# For the terminal, we change the colours used depending on the type
+# For the terminal, we change the colors used depending on the type
 # of message (we use the formatting mark-up ''rich'' language).
 ###
-class ColorFilter(logging.Filter):
-    def filter(self, record: logging.LogRecord) -> bool:
-        levelno = record.levelno
+class RichColorFormatter(logging.Formatter):
+    def format(self, record):
+        level = record.levelno
+        msg   = record.getMessage()
 
-        if levelno >= logging.CRITICAL:
-            format_str = FSTR_COLOR_CRITICAL
+        if level in STYLES:
+            color      = STYLES[level]
+            record.msg = f"[{color}]{msg}[/{color}]"
 
-        elif levelno >= logging.ERROR:
-            format_str = FSTR_COLOR_ERROR
-
-        elif levelno >= logging.WARNING:
-            format_str = FSTR_COLOR_WARNING
-
-        else:
-            format_str = FSTR_NO_CHANGE
-
-        record.msg = format_str.format(record.msg)
-
-        return True
+        return super().format(record)
 
 
 ###
@@ -66,12 +61,13 @@ class ColorFilter(logging.Filter):
 ###
 class FileFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
-        original_message = record.getMessage()
-        cleaned_message  = RICH_FORMAT_PATTERN.sub('', original_message)
+        msg = record.getMessage()
 
-        record.msg        = cleaned_message
+        if isinstance(msg, str):
+            record.msg = RICH_FORMAT_PATTERN.sub('', msg)
+
         formatted_message = super().format(record)
-        record.msg        = original_message
+        record.msg        = msg
 
         return formatted_message
 
@@ -82,18 +78,18 @@ class FileFormatter(logging.Formatter):
 
 ###
 # prototype::
-#     no_color  : set to ''False'', the log information will be
-#                 printed in color; otherwise, it will be printed
-#                 in black and white.
+#     no_color : set to ''False'', the log information will be
+#                printed in color; otherwise, it will be printed
+#                in black and white.
 #
-#     :action: the function lives up to its name...
+#     :action: the function lives up to its name.
 ###
 def setup_logging(no_color: bool = False) -> None:
 # Terminal handler
 #
 # ''color_system = "auto"'' detects whether the output is a real
 # terminal. If not—such as when output is redirected via a pipe—no
-# color is used
+# color is used.
     console = Console(
         stderr       = True,
         color_system = None if no_color else "auto"
@@ -104,20 +100,19 @@ def setup_logging(no_color: bool = False) -> None:
         rich_tracebacks = True,
         markup          = True
     )
+
     term_handler.setLevel(logging.INFO)
-    term_handler.addFilter(ColorFilter())
-
-# File handler
-    file_handler = logging.FileHandler(
-        LOG_FILE,
-        mode = "a"
+    term_handler.setFormatter(
+        RichColorFormatter("%(message)s")
     )
+
+# File handler.
+    file_handler = logging.FileHandler(LOG_FILE, mode = "a")
+
     file_handler.setLevel(logging.ERROR)
-
-    file_formatter = FileFormatter(
-        "%(asctime)s [%(levelname)s] %(message)s"
+    file_handler.setFormatter(
+        FileFormatter("%(asctime)s [%(levelname)s] %(message)s")
     )
-    file_handler.setFormatter(file_formatter)
 
 # Apply our config.
     logging.basicConfig(

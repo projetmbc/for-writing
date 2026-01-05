@@ -2,15 +2,15 @@
 
 
 ==
-?????????  (2.0.0-beta.4)
+05
 ==
 
 --------
 :fordev:
 --------
 
-[[:tech:]] ????
-Extracted data from external \projs is written directly to the \sqlite \db.
+[[:tech:]]
+Logging: cleaned terminal output.
 
 
 // ---------- //
@@ -25,7 +25,7 @@ Extracted data from external \projs is written directly to the \sqlite \db.
 --------
 
 [[:tech:]]
-Here are the updates.
+External palettes: here are the updates.
 
     1) Added an \sqlite \db to easily search for similarities.
 
@@ -44,7 +44,7 @@ Here are the updates.
 --------
 
 [[:tech:]]
-Standardizing the retrieval of external palettes by including their possible type from the \src \proj. For now, only the following \projs have been integrated.
+External palettes: standardizing the retrieval by including their possible type from the \src \proj. For now, only the following \projs have been integrated.
 
     + \asymptote
     + \colorbrewer
