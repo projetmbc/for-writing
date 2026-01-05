@@ -1,6 +1,7 @@
 ------
 -- this::
 --     author = Patrick, Fradin
+--     kind   = qualitative, sequential
 --
 --
 -- Here is the luadraw code used.

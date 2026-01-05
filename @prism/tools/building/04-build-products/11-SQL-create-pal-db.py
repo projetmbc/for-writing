@@ -132,7 +132,7 @@ INSERT INTO palettes (
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info(f"SQLite DB - Creation.")
+logging.info(f"SQLite DB - 'Table creation'.")
 
 conn = sqlite3.connect(SQLITE_DB_FILE)
 
@@ -153,11 +153,11 @@ CREATE TABLE palettes (
 conn.commit()
 
 
-# --------------------- #
-# -- EXTRA RESOURCES -- #
-# --------------------- #
+# ----------------------- #
+# -- PALETTES METADATA -- #
+# ----------------------- #
 
-logging.info(f"SQLite DB - 'Extra resource' integration.")
+logging.info(f"SQLite DB - 'Palettes integration'.")
 
 for resrc_json in REPORT_DIR.glob("PALS-*.json"):
     projname = resrc_json.stem.split('-')
@@ -186,14 +186,6 @@ for resrc_json in REPORT_DIR.glob("PALS-*.json"):
         )
 
 
-# --------------------- #
-# -- EXTRA RESOURCES -- #
-# --------------------- #
-
-logging.info(f"SQLite DB - 'Contribs' integration.")
-TODO
-
-
 # ------------------------ #
 # -- NOTHING LEFT TO DO -- #
 # ------------------------ #
@@ -201,5 +193,7 @@ TODO
 conn.close()
 
 logging.info(
-    f"SQLite DB '{SQLITE_DB_FILE.relative_to(PROJ_DIR)}' build."
+     "SQLite DB file "
+    f"'{SQLITE_DB_FILE.relative_to(PROJ_DIR)}' "
+     "build."
 )

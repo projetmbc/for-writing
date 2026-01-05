@@ -1,6 +1,7 @@
 ------
 -- this::
 --     author = Christophe, Bal
+--     kind   = qualitative, sequential
 --
 --
 -- note::

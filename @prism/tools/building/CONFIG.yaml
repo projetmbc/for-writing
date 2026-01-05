@@ -39,4 +39,4 @@ CATEGORY:
   cyclic: # No alias.
 
 # OK????   High-contrast palettes optimized for terminal interfaces or applications using dark backgrounds.
-  darkmode: # No alias.
+  dark: # No alias.

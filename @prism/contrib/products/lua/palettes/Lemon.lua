@@ -1,6 +1,7 @@
 ------
 -- this::
 --     author = Christophe, Bal
+--     kind   = sequential, dark
 --
 --
 -- Here is the luadraw code used.
