@@ -1,11 +1,10 @@
 ------
 -- this::
 --     author = Christophe, Bal
---     kind   = sequential, dark
+--     kind   = qualitative, sequential, dark
 ------
 
 ------
---
 -- Here is the luadraw code used.
 --
 -- lua::

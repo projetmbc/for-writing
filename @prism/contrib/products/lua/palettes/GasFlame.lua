@@ -5,7 +5,6 @@
 ------
 
 ------
---
 -- Here is the luadraw code used.
 --
 -- lua::

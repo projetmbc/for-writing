@@ -5,7 +5,6 @@
 ------
 
 ------
---
 -- note::
 --     The prefix “Geo” stands for “Geographic”.
 --

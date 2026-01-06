@@ -75,9 +75,9 @@ def norm_float_pal(
 
 
 def resrc_std_palette(
-    palname: str,
-    pal_kind: str,
-    paldef : PaletteCols,
+    palname  : str,
+    pal_kind : str,
+    paldef   : PaletteCols,
     precision: int
 ):
     return {

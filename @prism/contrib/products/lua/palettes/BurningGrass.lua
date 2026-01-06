@@ -1,9 +1,10 @@
 ------
 -- this::
 --     author = Christophe, Bal
---     kind   = divergent
---
---
+--     kind   = qualitative, sequential, divergent
+------
+
+------
 -- Here is the luadraw code used.
 --
 -- lua::

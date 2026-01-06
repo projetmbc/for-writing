@@ -61,11 +61,16 @@ def get_palhash(palette: PaletteCols) -> str:
 
 
 # Automatic qualitative categorization will be performed later.
-def get_std_kind(
-    kind: str,
-    size: int
-) -> str:
-    stdkind = KIND_ALIAS.get(kind, '')
+def get_std_kind(kind: str) -> str:
+    _stdkind = set()
+
+    for k in kind.split(','):
+        k = k.strip()
+        k = KIND_ALIAS.get(k, '')
+
+        _stdkind.add(k)
+
+    stdkind = '|'.join(sorted(_stdkind))
 
     if not stdkind and kind:
         log_raise_error(
@@ -87,7 +92,7 @@ def dbadd_palette(
     hash_reverse: str
 ) -> None:
     placeholders = ['?']*(len(locals()) - 1)
-    placeholders = ", ".join(placeholders)
+    placeholders = ",".join(placeholders)
 
     if not source:
         TODO
@@ -157,7 +162,7 @@ conn.commit()
 # -- PALETTES METADATA -- #
 # ----------------------- #
 
-logging.info(f"SQLite DB - 'Palettes integration'.")
+logging.info(f"SQLite DB - 'Palette integration'.")
 
 for resrc_json in REPORT_DIR.glob("PALS-*.json"):
     projname = resrc_json.stem.split('-')
@@ -170,7 +175,7 @@ for resrc_json in REPORT_DIR.glob("PALS-*.json"):
         kind   = infos[TAG_KIND]
         paldef = infos[TAG_RGB_COLS]
 
-        stdkind = get_std_kind(kind, len(paldef))
+        stdkind = get_std_kind(kind)
 
         hash_normal  = get_palhash(paldef)
         hash_reverse = get_palhash(paldef[::-1])

@@ -6,8 +6,8 @@
 from pathlib import Path
 import              sys
 
-THIS_DIR  = Path(__file__).parent
-BUILD_TOOLS_DIR = THIS_DIR.parent
+THIS_DIR        = Path(__file__).parent
+BUILD_TOOLS_DIR = THIS_DIR
 
 sys.path.append(str(BUILD_TOOLS_DIR))
 
@@ -64,7 +64,7 @@ pals = dict()
 for folder, contribs in sorted(contribs_accepted.items()):
     technno = folder.parent.name
 
-    logging.info(f"Work on '{technno}'.")
+    logging.info(f"'{technno}' contribs.")
 
     extend = import_from_path(
         module_name = "extend",
@@ -72,20 +72,20 @@ for folder, contribs in sorted(contribs_accepted.items()):
     )
 
     for one_contrib in sorted(contribs):
+        logging.info(f"Contrib '{one_contrib}'.")
+
         palname = Path(one_contrib).stem
         stdname = get_stdname(palname)
 
         contrib_file = folder / one_contrib
         contrib_code = contrib_file.read_text()
 
-        TODO
-
-        palkind, paldef = extend.parse(contrib_code)
+        paldata = extend.parse(contrib_code)
 
         pals[stdname] = resrc_std_palette(
             palname,
-            palkind,
-            paldef,
+            paldata[TAG_METADATA][TAG_KIND],
+            paldata[TAG_PALETTE],
             PRECISION + 2
         )
 

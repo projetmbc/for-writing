@@ -22,7 +22,12 @@ TAG_APRISM = "@prism"
 
 TAG_ORIGINAL_NAME = "original-name"
 TAG_RGB_COLS      = "rgb-cols"
-TAG_KIND          = "kind"
+
+TAG_METADATA = "metadata"
+TAG_AUTHOR   = "author"
+TAG_KIND     = "kind"
+
+TAG_PALETTE  = "palette"
 
 
 KIND_ALIAS = dict()

@@ -10,7 +10,7 @@
 --------
 
 [[:tech:]]
-\Contribs: metadata handling via a dedicated magic comment.
+\Contribs integrated in the new workflow with metadata handling via a dedicated magic comment.
 
 
 // ---------- //
