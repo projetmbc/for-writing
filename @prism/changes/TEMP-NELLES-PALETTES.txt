@@ -1,20 +1,120 @@
 FRADIN
 
 sympa
-   {LightSkyBlue,CornflowerBlue,LightCoral,IndianRed,DarkSalmon,YellowGreen,MediumSeaGreen}
-   {LightCyan,LightSkyBlue,Plum,LightCoral,LightSalmon,Khaki,PaleGreen}
+
+{
+   LightSkyBlue,
+   CornflowerBlue,
+   LightCoral,
+   IndianRed,
+   DarkSalmon,
+   YellowGreen,
+   MediumSeaGreen
+}
+
+{
+   LightCyan,
+   LightSkyBlue,
+   Plum,
+   LightCoral,
+   LightSalmon,
+   Khaki,
+   PaleGreen
+}
+
 
 new?
-   {Purple, Indigo, Blue, Green, Yellow, Orange, Red}
-   {Cyan,DodgerBlue,Magenta,Red,Orange,Gold,LimeGreen}
+
+{
+   Purple,
+   Indigo,
+   Blue,
+   Green,
+   Yellow,
+   Orange,
+   Red
+}
+
+{
+   Cyan,
+   DodgerBlue,
+   Magenta,
+   Red,
+   Orange,
+   Gold,
+   LimeGreen
+}
 
 
-/* ========================================
+// ---------- //
+
+
+via la vesrion CSS des contribs de @prism
+
+
+HASARD #1
+rgb(12% 15% 25%)
+rgb(85% 70% 45%)
+rgb(95% 90% 80%)
+rgb(30% 50% 60%)
+
+
+HASARD #2
+rgb(100% 40% 40%)
+rgb(100% 70% 30%)
+rgb(40% 80% 60%)
+rgb(30% 50% 80%)
+rgb(50% 20% 60%)
+rgb(20% 10% 20%)
+
+
+HASARD #3
+rgb(37.278% 68.113% 18.345%)
+rgb(76.258% 8.524% 51.556%)
+rgb(5.615% 55.321% 2.157%)
+rgb(92.830% 47.752% 10.157%)
+rgb(1.393% 71.849% 86.562%)
+rgb(30.606% 45.701% 18.773%)
+rgb(74.951% 79.144% 88.369%)
+rgb(70.082% 79.799% 2.540%)
+rgb(41.418% 56.056% 6.854%)
+rgb(62.516% 28.403% 87.470%)
+
+
+HASARD #4
+rgb(42.630% 59.245% 69.325%)
+rgb(46.106% 6.005% 70.480%)
+rgb(32.250% 4.469% 8.664%)
+rgb(50.920% 84.048% 72.545%)
+rgb(93.127% 60.142% 4.139%)
+rgb(2.619% 53.713% 39.278%)
+rgb(86.023% 82.959% 75.112%)
+rgb(59.950% 45.418% 53.955%)
+rgb(99.991% 37.762% 7.742%)
+rgb(98.969% 57.869% 39.844%)
+
+
+HASARD #5
+rgb(79.386% 28.265% 16.454%)
+rgb(91.121% 57.220% 36.767%)
+rgb(89.383% 81.249% 23.421%)
+rgb(99.563% 2.790% 53.837%)
+rgb(98.876% 94.195% 19.730%)
+rgb(18.790% 31.084% 59.691%)
+rgb(84.825% 62.043% 90.884%)
+rgb(11.367% 7.642% 44.272%)
+rgb(49.355% 30.048% 57.012%)
+rgb(85.335% 62.196% 12.440%)
+
+
+// ---------- //
+
+
+CHAGPT ensuite
+
+/* ===================
    PALETTES ORIGINALES
-   ======================================== */
-
-
-
+   =================== */
 
 
 /* MATHEMATICA-LIKE */
@@ -30,13 +130,6 @@ new?
 #B58595  /* Mauve */
 
 
-
-
-
-
-
-
-
 /* SPORT 1 */
 #228B22  /* Gazon terrain */
 #FF4500  /* Orange vif */
@@ -48,13 +141,6 @@ new?
 #32CD32  /* Vert fluo */
 #FF6347  /* Rouge tomate */
 #4169E1  /* Bleu royal */
-
-
-
-
-
-
-
 
 
 /* SPORT 2 */
@@ -70,13 +156,6 @@ new?
 #1E90FF  /* Bleu électrique */
 
 
-
-
-
-
-
-
-
 /* BONBONS */
 #FF1493  /* Fraise Tagada */
 #FFD700  /* Citron acidulé */
@@ -90,13 +169,6 @@ new?
 #7FFF00  /* Pomme verte */
 
 
-
-
-
-
-
-
-
 /* BONBONS */
 #FF1493  /* Fraise Tagada */
 #FF69B4  /* Bubble gum */
@@ -108,10 +180,6 @@ new?
 #6A5ACD  /* Myrtille sucrée */
 #00FF7F  /* Menthe fraîche */
 #7FFF00  /* Pomme verte */
-
-
-
-
 
 
 /* GRADIENT ARC-EN-CIEL */
@@ -132,11 +200,6 @@ new?
 }
 
 
-
-
-
-
-
 /* MÉTAUX */
 #2C2C2C  /* Graphite */
 #434343  /* Fer sombre */
@@ -150,21 +213,11 @@ new?
 #8B4513  /* Bronze */
 
 
-
-
-
-
-
-
-
 /* VOLCANIQUE */
 #4A4A4A  /* Gris pierre sombre */
 #8B0000  /* Rouge lave */
 #D2691E  /* Orange basalte */
 #FFFFFF  /* Neige immaculée */
-
-
-
 
 
 /* FRUITS TROPICAUX */
@@ -180,13 +233,6 @@ new?
 #8B008B  /* Magenta profond (mangue pourpre) */
 
 
-
-
-
-
-
-
-
 /* PALETTE SATURÉE MAGENTA-VIOLET */
 #6030D0  /* Bleu-violet intense */
 #8520A0  /* Violet pimpé */
@@ -198,13 +244,6 @@ new?
 #C595C5  /* Violet rosé */
 #D5B5D5  /* Violet pastel */
 #E6D5E6  /* Violet pastel très clair */
-
-
-
-
-
-
-
 
 
 /* PALETTE 2D - FORTS CONTRASTES */
@@ -222,10 +261,10 @@ new?
 
 
 
-
-/* ========================================
+/* ======================
    PALETTES SCIENTIFIQUES
-   ======================================== */
+   ====================== */
+
 
 /* PAPIER pH (pH 1-14) */
 #C41E3A  /* pH 1 - Rouge acide fort */
@@ -244,9 +283,6 @@ new?
 #4A5F6E  /* pH 14 - Bleu basique fort */
 
 
-
-
-
 /* TEST À LA FLAMME (Ordre spectral : rouge → violet) */
 #DC143C  /* Lithium (Li) - Rouge carmin */
 #DC143C  /* Strontium (Sr) - Rouge cramoisi */
@@ -257,14 +293,6 @@ new?
 #00CED1  /* Cuivre (Cu) - Bleu-vert turquoise */
 #4169E1  /* Cuivre + chlorure - Bleu royal */
 #9370DB  /* Potassium (K) - Violet lilas */
-
-
-
-
-
-
-
-
 
 
 /* TEMPÉRATURE DE FLAMME (600-1500°C) */
@@ -280,13 +308,6 @@ new?
 #4169E1  /* ~1500°C - Bleu royal */
 
 
-
-
-
-
-
-
-
 /* CORPS NOIR - TEMPÉRATURE D'ÉTOILES (1000-40000K) */
 #FF4500  /* ~1000K - Rouge-orange (naines rouges) */
 #FF6347  /* ~2000K - Rouge */
@@ -300,13 +321,6 @@ new?
 #0000CD  /* ~40000K - Bleu profond (étoiles chaudes) */
 
 
-
-
-
-
-
-
-
 /* SPECTRE VISIBLE (380-700 nm) */
 #8B00FF  /* ~380-450nm - Violet */
 #4B0082  /* ~450nm - Indigo */
@@ -315,16 +329,9 @@ new?
 #FFFF00  /* ~570-590nm - Jaune */
 #FF7F00  /* ~590-620nm - Orange */
 #FF0000  /* ~620-700nm - Rouge */
-
-
 /* COLORATION DE GRAM (Microbiologie) */
 #6A0DAD  /* Gram positif - Violet cristal */
 #FF1493  /* Gram négatif - Rose safranine */
-
-
-
-
-
 
 
 /* INDICATEURS REDOX (Ordre réduction → oxydation) */
@@ -334,17 +341,10 @@ new?
 #191970  /* Lugol + amidon - Bleu-noir */
 
 
-
-
-
 /* HEAT MAP BIOLOGIQUE (Expression génétique : faible → forte) */
 #00FF00  /* Sous-expression (faible) - Vert */
 #000000  /* Expression normale (moyenne) - Noir */
 #FF0000  /* Sur-expression (forte) - Rouge */
-
-
-
-
 
 
 /* HEAT MAP ALTERNATIVE (Minimum → Maximum) */
@@ -353,8 +353,6 @@ new?
 #FFFF00  /* Moyen - Jaune */
 #FF8C00  /* Élevé - Orange */
 #FF0000  /* Maximum (très fort) - Rouge */
-
-
 
 
 /* ÉCHELLE DE SAFFIR-SIMPSON (Ouragans) */
@@ -380,12 +378,10 @@ new?
 
 
 
-
-
-
-/* ========================================
+/* ===================
    PALETTES NATURELLES
-   ======================================== */
+   =================== */
+
 
 /* OCÉAN PROFOND (gradient de profondeur) */
 #E0F7FA  /* Surface - Cyan pâle */
@@ -394,7 +390,6 @@ new?
 #006064  /* 1000m - Bleu profond */
 #1A237E  /* 4000m - Bleu abyssal */
 #000051  /* Fosse - Bleu nuit */
-
 
 
 /* AUTOMNE FORESTIER */
@@ -406,6 +401,7 @@ new?
 #FF8C00  /* Citrouille */
 #FF6347  /* Rouge feuille */
 #8B0000  /* Bordeaux */
+
 
 /* AURORE BORÉALE */
 #0A0E27  /* Nuit polaire */
@@ -419,13 +415,10 @@ new?
 
 
 
-
-
-
-
-/* ========================================
+/* ==================
    PALETTES CHIMIQUES
-   ======================================== */
+   ================== */
+
 
 /* MÉTAUX DE TRANSITION (solutions aqueuses) */
 #87CEEB  /* Cu²⁺ - Bleu cuivre */
@@ -448,14 +441,10 @@ new?
 
 
 
-
-
-
-
-
-/* ========================================
+/* ==================
    PALETTES DATA/TECH
-   ======================================== */
+   ================== */
+
 
 /* MATRICES/CYBERPUNK */
 #0D0D0D  /* Fond terminal */
@@ -481,11 +470,10 @@ new?
 
 
 
-
-
-/* ========================================
+/* ====================
    PALETTES GÉOLOGIQUES
-   ======================================== */
+   ==================== */
+
 
 /* STRATES SÉDIMENTAIRES */
 #8B7355  /* Argile */
@@ -507,15 +495,10 @@ new?
 #FFD700  /* Citrine */
 
 
-
-
-
-
-
-
-/* ========================================
+/* ====================
    PALETTES BIOLOGIQUES
-   ======================================== */
+   ==================== */
+
 
 /* PHOTOSYNTHÈSE (absorption lumineuse) */
 #006400  /* Chlorophylle a - Pic bleu */
@@ -523,8 +506,6 @@ new?
 #FFA500  /* Caroténoïdes */
 #FF6347  /* Phycobiliprotéines */
 #8B008B  /* Anthocyanes */
-
-
 
 
 /* TISSUS BIOLOGIQUES (microscopie) */
@@ -537,15 +518,10 @@ new?
 
 
 
-
-
-
-
-
-
-/* ========================================
+/* ======================
    PALETTES ASTRONOMIQUES
-   ======================================== */
+   ====================== */
+
 
 /* NÉBULEUSES */
 #8B0000  /* Hydrogène Hα - Rouge */
@@ -557,15 +533,10 @@ new?
 
 
 
-
-
-
-
-
-
 /* ========================================
    PALETTES ARTISTIQUES - HAUTE DISTINCTION
    ======================================== */
+
 
 /* MONDRIAN (Néoplasticisme - contraste maximal) */
 #FFFFFF  /* Blanc */
@@ -575,8 +546,6 @@ new?
 #FFFF00  /* Jaune primaire */
 
 
-
-
 /* ROTHKO (Color Field - contrastes émotionnels) */
 #8B0000  /* Rouge sombre */
 #FF4500  /* Orange brûlé */
@@ -584,7 +553,6 @@ new?
 #4B0082  /* Indigo profond */
 #2F4F4F  /* Gris ardoise */
 #8B4513  /* Brun terre */
-
 
 
 /* MATISSE (Fauvisme - couleurs pures non mélangées) */
@@ -616,7 +584,6 @@ new?
 #FFFFFF  /* Blanc */
 
 
-
 /* PICASSO - PÉRIODE BLEUE */
 #0C2340  /* Bleu nuit */
 #1A4D7E  /* Bleu profond */
@@ -625,16 +592,12 @@ new?
 #B0C4DE  /* Bleu poudre */
 
 
-
-
 /* PICASSO - PÉRIODE ROSE */
 #FFC0CB  /* Rose pâle */
 #FFB6C1  /* Rose clair */
 #FF69B4  /* Rose vif */
 #DB7093  /* Rose antique */
 #C71585  /* Violet-rouge */
-
-
 
 
 /* VAN GOGH - NUIT ÉTOILÉE */
@@ -646,15 +609,12 @@ new?
 #2F4F4F  /* Gris-vert */
 
 
-
 /* HOKUSAI - LA GRANDE VAGUE */
 #1E3A5F  /* Bleu prussien profond */
 #4682B4  /* Bleu acier */
 #87CEEB  /* Bleu ciel */
 #F5F5DC  /* Écume beige */
 #8B4513  /* Brun Mont Fuji */
-
-
 
 
 /* ART DÉCO (1920s - géométrie luxe) */
@@ -677,7 +637,6 @@ new?
 #000000  /* Noir */
 
 
-
 /* POP ART (Warhol, Lichtenstein) */
 #FF0000  /* Rouge pur */
 #FFFF00  /* Jaune pur */
@@ -687,6 +646,7 @@ new?
 #000000  /* Noir */
 #FFFFFF  /* Blanc */
 
+
 /* KLIMT - L'OR ET L'ORNEMENTAL */
 #FFD700  /* Or */
 #DAA520  /* Or sombre */
@@ -694,7 +654,6 @@ new?
 #228B22  /* Vert forêt */
 #8B0000  /* Rouge bordeaux */
 #000000  /* Noir */
-
 
 
 /* JAPONISME - UKIYO-E */
@@ -706,7 +665,6 @@ new?
 #F5F5DC  /* Beige papier */
 
 
-
 /* IMPRESSIONNISME - MONET */
 #87CEEB  /* Bleu ciel */
 #98FB98  /* Vert pâle */
@@ -714,7 +672,6 @@ new?
 #E6E6FA  /* Lavande */
 #FAFAD2  /* Jaune lumière */
 #DDA0DD  /* Prune */
-
 
 
 /* EXPRESSIONNISME - MUNCH */
@@ -726,7 +683,6 @@ new?
 #000000  /* Noir existentiel */
 
 
-
 /* BAUHAUS - ALBERS (Interaction couleur) */
 #E74C3C  /* Rouge */
 #3498DB  /* Bleu */
@@ -734,7 +690,6 @@ new?
 #2ECC71  /* Vert */
 #9B59B6  /* Violet */
 #34495E  /* Gris anthracite */
-
 
 
 /* DE STIJL - RIETVELD */
@@ -746,15 +701,12 @@ new?
 #FFFFFF  /* Blanc */
 
 
-
 /* ROTHKO - ORANGE ET JAUNE */
 #FF8C00  /* Orange */
 #FFD700  /* Jaune */
 #FF6347  /* Rouge-orange */
 #B8860B  /* Or sombre */
 #8B4513  /* Brun */
-
-
 
 
 /* STREET ART - BASQUIAT */
@@ -775,16 +727,11 @@ new?
 #808080  /* Gris industriel */
 
 
-et
 
-/* ========================================
+
+/* ===============================
    PALETTES BASIQUES FONDAMENTALES
-   ======================================== */
-
-
-
-
-
+   =============================== */
 
 
 /* COULEURS PRIMAIRES - SYNTHÈSE ADDITIVE (RGB - Lumière) */
@@ -793,18 +740,10 @@ et
 #0000FF  /* Bleu */
 
 
-
-
-
-
 /* COULEURS PRIMAIRES - SYNTHÈSE SOUSTRACTIVE (CMY - Pigments) */
 #00FFFF  /* Cyan */
 #FF00FF  /* Magenta */
 #FFFF00  /* Jaune */
-
-
-
-
 
 
 /* COULEURS PRIMAIRES - PEINTURE TRADITIONNELLE (RYB) */
@@ -813,18 +752,10 @@ et
 #0000FF  /* Bleu */
 
 
-
-
-
-
 /* COULEURS SECONDAIRES - SYNTHÈSE ADDITIVE */
 #00FFFF  /* Cyan (Vert + Bleu) */
 #FF00FF  /* Magenta (Rouge + Bleu) */
 #FFFF00  /* Jaune (Rouge + Vert) */
-
-
-
-
 
 
 /* COULEURS SECONDAIRES - PEINTURE TRADITIONNELLE */
@@ -833,18 +764,9 @@ et
 #8B00FF  /* Violet (Bleu + Rouge) */
 
 
-
-
-
-
 /* NOIR ET BLANC */
 #000000  /* Noir */
 #FFFFFF  /* Blanc */
-
-
-
-
-
 
 
 /* NIVEAUX DE GRIS (8 niveaux) */
@@ -856,6 +778,7 @@ et
 #B6B6B6  /* Gris 71% */
 #DBDBDB  /* Gris 86% */
 #FFFFFF  /* Blanc */
+
 
 /* ROUE CHROMATIQUE COMPLÈTE (12 couleurs) */
 #FF0000  /* Rouge */
@@ -872,79 +795,3 @@ et
 #8000FF  /* Bleu-violet */
 #FF00FF  /* Violet */
 #FF0080  /* Violet-rouge */
-
-
-
-
-HASARD #1
-
-rgb(12% 15% 25%)
-rgb(85% 70% 45%)
-rgb(95% 90% 80%)
-rgb(30% 50% 60%)
-
-
-
-
-HASARD #2
-
-rgb(100% 40% 40%)
-rgb(100% 70% 30%)
-rgb(40% 80% 60%)
-rgb(30% 50% 80%)
-rgb(50% 20% 60%)
-rgb(20% 10% 20%)
-
-
-HASARD #3
-
-rgb(37.278% 68.113% 18.345%)
-rgb(76.258% 8.524% 51.556%)
-rgb(5.615% 55.321% 2.157%)
-rgb(92.830% 47.752% 10.157%)
-rgb(1.393% 71.849% 86.562%)
-rgb(30.606% 45.701% 18.773%)
-rgb(74.951% 79.144% 88.369%)
-rgb(70.082% 79.799% 2.540%)
-rgb(41.418% 56.056% 6.854%)
-rgb(62.516% 28.403% 87.470%)
-
-
-
-
-
-
-
-
-HASARD #4
-
-rgb(42.630% 59.245% 69.325%)
-rgb(46.106% 6.005% 70.480%)
-rgb(32.250% 4.469% 8.664%)
-rgb(50.920% 84.048% 72.545%)
-rgb(93.127% 60.142% 4.139%)
-rgb(2.619% 53.713% 39.278%)
-rgb(86.023% 82.959% 75.112%)
-rgb(59.950% 45.418% 53.955%)
-rgb(99.991% 37.762% 7.742%)
-rgb(98.969% 57.869% 39.844%)
-
-
-
-
-
-
-
-
-HASARD #5
-
-rgb(79.386% 28.265% 16.454%)
-rgb(91.121% 57.220% 36.767%)
-rgb(89.383% 81.249% 23.421%)
-rgb(99.563% 2.790% 53.837%)
-rgb(98.876% 94.195% 19.730%)
-rgb(18.790% 31.084% 59.691%)
-rgb(84.825% 62.043% 90.884%)
-rgb(11.367% 7.642% 44.272%)
-rgb(49.355% 30.048% 57.012%)
-rgb(85.335% 62.196% 12.440%)

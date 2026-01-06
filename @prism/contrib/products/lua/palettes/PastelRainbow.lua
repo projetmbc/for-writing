@@ -2,8 +2,9 @@
 -- this::
 --     author = Christophe, Bal
 --     kind   = qualitative, sequential
---
---
+------
+
+------
 -- Here is the luadraw code used.
 --
 -- lua::

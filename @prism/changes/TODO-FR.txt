@@ -3,6 +3,10 @@
 ======
 
 
+mypy . --html-report typing_report
+
+
+
 WIMS : https://beta.framadate.org/polls/a427c29572513d61aec9/a8dcb2b97684271a0d27/admin
 
 https://beta.framadate.org/polls/a427c29572513d61aec9

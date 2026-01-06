@@ -32,9 +32,7 @@ for line in dev_file:lines() do
   end
 end
 
-local luadraw_precode = [[--
---
--- Here is the luadraw code used.
+local luadraw_precode = [[-- Here is the luadraw code used.
 --
 -- lua::]]
 
@@ -51,10 +49,16 @@ while #luadraw_code > 0 and est_vide(luadraw_code[#luadraw_code]) do
 end
 
 if #magic_comments > 0 then
+  final_file:write("------\n")
+
   for i = 1, #magic_comments do
     final_file:write(magic_comments[i] .. "\n")
   end
+
+  final_file:write("------\n\n")
 end
+
+final_file:write("------\n")
 
 final_file:write(luadraw_precode .. "\n")
 

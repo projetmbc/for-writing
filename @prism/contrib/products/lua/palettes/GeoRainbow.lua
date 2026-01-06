@@ -2,7 +2,9 @@
 -- this::
 --     author = Christophe, Bal
 --     kind   = qualitative, sequential
---
+------
+
+------
 --
 -- note::
 --     The prefix “Geo” stands for “Geographic”.

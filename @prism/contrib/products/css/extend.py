@@ -4,7 +4,13 @@
 # -- IMPORT ALLOWED -- #
 # -------------------- #
 
-from typing import TypeAlias
+from typing import (
+    Annotated,
+    Optional,
+    TypeAlias, TypedDict,
+)
+
+from pathlib import Path
 
 import ast
 import re
@@ -14,8 +20,68 @@ import re
 # -- TYPING -- #
 # ------------ #
 
-RGBCols    :TypeAlias = [float, float, float]
+RGBCols    :TypeAlias = Annotated[list[float], 3]
 PaletteCols:TypeAlias = list[RGBCols]
+
+class PaletteData(TypedDict):
+    metadata: dict[str, str]
+    palette : PaletteCols
+
+
+# --------------------- #
+# -- THIS EXTRACTION -- #
+# --------------------- #
+
+_METADA_NAMES = [
+    "author",
+    "kind",
+]
+
+_PATTERN_PAL_METADATA = re.compile(
+    rf' {{4}}({'|'.join(_METADA_NAMES)})\s*=(.*)'
+)
+
+def get_thisdata(
+    content: str,
+    prefix : str = ""
+) -> dict[str, str]:
+    gobble = len(prefix)
+
+    in_this_block = False
+
+    metadata = dict()
+
+    for line in content.split('\n'):
+        if not line.strip():
+            continue
+
+        if prefix:
+            if not line.startswith(prefix):
+                raise ValueError(
+                    "Illegal 'this' magic comment."
+                )
+
+            line = line[gobble:]
+
+        if line.rstrip() == 'this::':
+            in_this_block = True
+
+        elif in_this_block:
+            match = _PATTERN_PAL_METADATA.search(line)
+
+            if match:
+                what = match.group(1)
+                val  = match.group(2).strip()
+
+                metadata[what] = val
+
+    return metadata
+
+
+def std_metadata(metadata: dict[str, str]) -> None:
+    for k in _METADA_NAMES:
+        if not k in metadata:
+            metadata[k] = ''
 
 
 # -------------------- #
@@ -27,9 +93,11 @@ PaletteCols:TypeAlias = list[RGBCols]
 #     code : a RGB ''CSS'' palette definition of a palette (see the
 #            fake example below).
 #
-#     :return: a list of lists of 3 floats belonging to `[0, 1]` that
-#              will be used to produce the "universal" \json version
-#              of the palette.
+#     :return: a dictionary ''{'metadata': ..., 'palette': ...}''
+#              giving palette metadata as a ''str-str'' dictionary,
+#              and the palette colors as a list of lists of 3 floats
+#              belonging to `[0, 1]` that will be used to produce
+#              the "universal" ''JSON'' version of the palette.
 #
 #
 # A RGB ''CSS'' palette definition looks like this.
@@ -39,7 +107,21 @@ PaletteCols:TypeAlias = list[RGBCols]
 #     --palPALETTE-2: rgb(52.94% 80.78% 98.04%);
 #     /* ... */
 ###
-def parse(code: str) -> PaletteCols:
+def parse(code: str) -> PaletteData:
+# Kind.
+    metadata = dict()
+
+    comments = re.findall(r'/\*{3}([\s\S]*?)\*{3}/', code)
+
+    for block in comments:
+        metadata = get_thisdata(block)
+
+        if metadata:
+            break
+
+    std_metadata(metadata)
+
+# Palette.
     code = '\n'.join(
         line
         for line in code.split('\n')
@@ -56,14 +138,18 @@ def parse(code: str) -> PaletteCols:
     matches = pattern.findall(code)
 
     if not matches:
-        raise ValueError("No CSS PALETTE creation found.")
+        raise ValueError("No CSS PALETTE definition found.")
 
     palette = [
         list(map(lambda x: float(x) / 100, rgb))
         for rgb in matches
     ]
 
-    return palette
+# Nothing left to do.
+    return {
+        'metadata': metadata,
+        'palette' : palette
+    }
 
 
 # ---------------------- #
@@ -88,22 +174,22 @@ def build_code(
 ) -> str:
     def float2percentage(x: float) -> str:
         x *= 100
-        x = f"{x:.6f}"
-        x = x.rstrip('0')
-        x = x.rstrip('.')
+        _x = f"{x:.6f}"
+        _x = _x.rstrip('0')
+        _x = _x.rstrip('.')
 
-        return f"{x}%"
+        return f"{_x}%"
 
 # Credits.
-    credits = credits.split("\n")
+    _credits = credits.split("\n")
 
-    maxlen = max(map(len, credits))
+    maxlen = max(map(len, _credits))
     deco   = '-'*(maxlen + 6)
     deco   = f"/* {deco} */"
 
     credits = '\n'.join([
         f'/* -- {c.ljust(maxlen)} -- */'
-        for c in credits
+        for c in _credits
     ])
 
     credits = f"""
@@ -113,7 +199,7 @@ def build_code(
     """.strip()
 
 # Palettes.
-    paldefs_code = [
+    _paldefs_code = [
         """
 /* -------------------------- */
 /* -- DEFS OF EACH PALETTE -- */
@@ -130,23 +216,23 @@ def build_code(
         name = f"--pal{name}"
 
         for i, (r, g, b) in enumerate(colors, start = 1):
-            r, g, b = map(float2percentage, [r, g, b])
+            _r, _g, _b = map(float2percentage, [r, g, b])
 
 
-            paldefs_code.append(
-                f"{indent}{name}-{i}: rgb({r} {g} {b});"
+            _paldefs_code.append(
+                f"{indent}{name}-{i}: rgb({_r} {_g} {_b});"
             )
 
 # Seperating defs with single empty lines.
-        paldefs_code.append("")
+        _paldefs_code.append("")
 
 # We remove the last unuseful empty line.
-    paldefs_code.pop(-1)
+    _paldefs_code.pop(-1)
 
 # Close the root block.
-    paldefs_code.append("}")
+    _paldefs_code.append("}")
 
-    paldefs_code = '\n'.join(paldefs_code)
+    paldefs_code = '\n'.join(_paldefs_code)
 
 # Nothing left to do.
     code = f"""
@@ -167,6 +253,12 @@ def build_code(
 if __name__ == "__main__":
 # Code to parse.
     code = r"""
+/***
+this::
+    author = First Name, Last Name
+    kind   = ?
+***/
+
 /* CSS definition. */
 
 --palPALETTE-1: rgb(0% 0% 0%);
@@ -192,6 +284,6 @@ if __name__ == "__main__":
     print(
         build_code(
             credits  = 'Credits...',
-            palettes = {"TEST": std_data}
+            palettes = {"CHECKER": std_data['palette']}
         )
     )

@@ -2,7 +2,9 @@
 -- this::
 --     author = Christophe, Bal
 --     kind   = divergent
---
+------
+
+------
 --
 -- Here is the luadraw code used.
 --

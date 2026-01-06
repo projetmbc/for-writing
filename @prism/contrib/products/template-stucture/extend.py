@@ -4,7 +4,11 @@
 # -- IMPORT ALLOWED -- #
 # -------------------- #
 
-from typing import TypeAlias
+from typing import (
+    Annotated,
+    Optional,
+    TypeAlias, TypedDict,
+)
 
 import ast
 import re
@@ -14,8 +18,55 @@ import re
 # -- TYPING -- #
 # ------------ #
 
-RGBCols    :TypeAlias = [float, float, float]
+RGBCols    :TypeAlias = Annotated[list[float], 3]
 PaletteCols:TypeAlias = list[RGBCols]
+
+class PaletteData(TypedDict):
+    metadata: dict[str, str]
+    palette : PaletteCols
+
+
+# --------------------- #
+# -- THIS EXTRACTION -- #
+# --------------------- #
+
+_METADA_NAMES = [
+    "author",
+    "kind",
+]
+
+_PATTERN_PAL_METADATA = re.compile(
+    rf' {{4}}({'|'.join(_METADA_NAMES)})\s*=(.*)'
+)
+
+def get_thisdata(content: str) -> dict[str, str]:
+    in_this_block = False
+
+    metadata = dict()
+
+    for line in content.split('\n'):
+        if not line.strip():
+            continue
+
+        if line.rstrip() == 'this::':
+            in_this_block = True
+
+        elif in_this_block:
+            match = _PATTERN_PAL_METADATA.search(line)
+
+            if match:
+                what = match.group(1)
+                val  = match.group(2).strip()
+
+                metadata[what] = val
+
+    return metadata
+
+
+def std_metadata(metadata: dict[str, str]) -> None:
+    for k in _METADA_NAMES:
+        if not k in metadata:
+            metadata[k] = ''
 
 
 # -------------------- #
@@ -26,11 +77,13 @@ PaletteCols:TypeAlias = list[RGBCols]
 # prototype::
 #     code : a definition of a palette with the technology chosen.
 #
-#     :return: a list of lists of 3 floats belonging to `[0, 1]` that
-#              will be used to produce the "universal" \json version
-#              of the palette.
+#     :return: a dictionary ''{'metadata': ..., 'palette': ...}''
+#              giving palette metadata as a ''str-str'' dictionary,
+#              and the palette colors as a list of lists of 3 floats
+#              belonging to `[0, 1]` that will be used to produce
+#              the "universal" ''JSON'' version of the palette.
 ###
-def parse(code: str) -> PaletteCols:
+def parse(code: str) -> PaletteData:
     ...
 
 

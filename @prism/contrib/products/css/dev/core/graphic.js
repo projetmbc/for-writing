@@ -145,7 +145,7 @@ function downloadCSS() {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join('');
 
-  let css = notes ? `/*\n${notes}\n*/\n\n` : "";
+  let css = notes ? `/***\n${notes}\n***/\n\n` : "";
   css += `/* Palette: ${stdname} */\n:root {\n`;
   css += colorsArr.map((c, i) => `  --pal${stdname}-${i + 1}: ${c};`).join('\n');
   css += `\n}`;

@@ -2,8 +2,9 @@
 -- this::
 --     author = Christophe, Bal
 --     kind   = qualitative, sequential
---
---
+------
+
+------
 -- note::
 --     The name is a reference to the movie "Saturday Night Fever".
 --     Here is the luadraw code used.
