@@ -1,0 +1,18 @@
+clean:
+  data:
+    latex_temp_ext:
+      - aux
+      - log
+      - synctex.gz
+
+    only_tex_sty_ext:
+      - \latex_temp_ext
+      - pdf
+
+    only_tex_ext:
+      - \only_tex_sty_ext
+      - sty
+
+  gobble:
+    - dev/*/*.@only_tex_ext
+    - fake-prod/showcase/*.\only_tex_sty_ext

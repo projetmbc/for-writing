@@ -1,0 +1,111 @@
+import sqlite3
+
+def report_duplicates(db_path):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    # Requête pour regrouper par hash et lister les noms
+    query = '''
+    SELECT
+        hash_normal,
+        COUNT(*) as nb,
+        GROUP_CONCAT(stdname || ' (' || projname || ')', ' / ')
+    FROM palettes
+    GROUP BY hash_normal
+    HAVING nb > 1
+    ORDER BY nb DESC
+    '''
+
+    cursor.execute(query)
+    rows = cursor.fetchall()
+
+    if not rows:
+        print("✅ Aucune palette en double trouvée.")
+    else:
+        print(f"🔍 {len(rows)} groupes de doublons détectés :\n")
+        for hash_val, count, names in rows:
+            print(f"[{count}x] Hash: {hash_val[:10]}...")
+            print(f"    Palettes: {names}\n")
+
+    conn.close()
+
+# Utilisation
+# report_duplicates(SQLITE_DB_FILE)
+
+
+
+
+
+def report_mirrors(db_path):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    # On cherche où le normal de l'un égale le reverse de l'autre
+    query = '''
+    SELECT
+        p1.stdname, p1.projname,
+        p2.stdname, p2.projname
+    FROM palettes p1
+    JOIN palettes p2 ON p1.hash_normal = p2.hash_reverse
+    WHERE p1.id < p2.id  -- Évite de trouver le même couple deux fois
+    '''
+
+    cursor.execute(query)
+    rows = cursor.fetchall()
+
+    for name1, proj1, name2, proj2 in rows:
+        print(f"🔄 Miroir trouvé :")
+        print(f"    A: {name1} [{proj1}]")
+        print(f"    B: {name2} [{proj2}] (Inversée)\n")
+
+    conn.close()
+
+
+def report_name_conflicts(db_path):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    # On cherche les lignes qui ont le même nom standard
+    # mais des hashs différents
+    query = '''
+    SELECT
+        p1.stdname,
+        p1.projname, p1.hash_normal,
+        p2.projname, p2.hash_normal
+    FROM palettes p1
+    JOIN palettes p2 ON p1.stdname = p2.stdname
+    WHERE p1.id < p2.id
+      AND p1.hash_normal != p2.hash_normal
+      AND p1.hash_normal != p2.hash_reverse
+    '''
+
+    cursor.execute(query)
+    rows = cursor.fetchall()
+
+    if not rows:
+        print("✅ Aucun conflit de nom trouvé (noms identiques = palettes identiques).")
+    else:
+        print(f"⚠️ Alerte : {len(rows)} conflits de contenu pour des noms identiques :\n")
+        for name, proj1, hash1, proj2, hash2 in rows:
+            print(f"Conflict sur '{name}':")
+            print(f"  - Source A [{proj1}]: {hash1[:8]}...")
+            print(f"  - Source B [{proj2}]: {hash2[:8]}...")
+            print("-" * 30)
+
+    conn.close()
+
+
+
+vrais conflits !
+
+SELECT
+    p1.stdname AS Nom_Conflit,
+    p1.projname AS Projet_A,
+    p2.projname AS Projet_B,
+    p1.hash_normal AS Hash_A,
+    p2.hash_normal AS Hash_B
+FROM palettes p1
+JOIN palettes p2 ON p1.stdname = p2.stdname
+WHERE p1.id < p2.id
+  AND p1.hash_normal != p2.hash_normal
+  AND p1.hash_normal != p2.hash_reverse;
