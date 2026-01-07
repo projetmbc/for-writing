@@ -15,5 +15,5 @@ clean:
       - sty
 
   gobble:
-    - dev/*/*.@only_tex_ext
-    - fake-prod/showcase/*.\only_tex_sty_lua_ext
+    - dev/luadraw/*.\only_tex_ext
+    - fake-prod/showcase/luadraw/*.\only_tex_sty_lua_ext

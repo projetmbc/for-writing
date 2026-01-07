@@ -2,20 +2,19 @@
 
 
 ==
-07  (2.0.0-beta.4)  ????
+07  (2.0.0-beta.4)
 ==
 
 --------
 :fordev:
 --------
 
-[[:tech:]]  ????
+[[:tech:]]
 \Contribs.
 
     1) Added \python \api for \contribs.
 
-    1) ???
-    Un fichier de config \yaml indique ce qu'il faut nettoyer lors de la finalisation d'une contribution.
+    1) A \yaml config file indicates what to clean up upon \contrib finalization.
 
 
 // ---------- //

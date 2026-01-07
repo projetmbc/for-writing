@@ -14,6 +14,15 @@ with (THIS_DIR / '../CONFIG.yaml').open(mode = 'r') as stream:
     YAML_CONFIG = yaml.safe_load(stream)
 
 
+# -------------------- #
+# -- CONTRIB CONFIG -- #
+# -------------------- #
+
+TAG_CLEAN  = "clean"
+TAG_DATA   = "data"
+TAG_GOBBLE = "gobble"
+
+
 # --------------------------- #
 # -- MAIN EXTERNAL SOURCES -- #
 # --------------------------- #
