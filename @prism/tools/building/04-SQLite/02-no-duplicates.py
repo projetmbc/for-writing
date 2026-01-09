@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
-from rich import print
+# from rich import print
 # -- DEBUG - OFF -- #
 
 # ---------------------------- #
@@ -10,8 +10,8 @@ from rich import print
 from pathlib import Path
 import              sys
 
-_THIS_DIR  = Path(__file__).parent
-BUILD_TOOLS_DIR = _THIS_DIR.parent
+THIS_DIR  = Path(__file__).parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
 sys.path.append(str(BUILD_TOOLS_DIR))
 
@@ -20,8 +20,6 @@ from cbutils      import *
 
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
-
-import yaml
 
 
 # ----------- #
@@ -92,17 +90,19 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
+AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
-FULL_SQLITE_DB_FILE = REPORT_DIR / "full-palettes.db"
+FULL_SQLITE_DB_FILE  = REPORT_DIR / "full-palettes.db"
+FINAL_SQLITE_DB_FILE = AUDIT_DIR / "final-palettes.db"
 
 
-with (_THIS_DIR / 'PRIORITY.yaml').open(mode = 'r') as stream:
+with (AUDIT_DIR / 'PRIORITY.yaml').open(mode = 'r') as stream:
     PRIORITY_CONFIG = yaml.safe_load(stream)
 
 
-with (_THIS_DIR / 'IGNORED.yaml').open(mode = 'r') as stream:
+with (AUDIT_DIR / 'IGNORED.yaml').open(mode = 'r') as stream:
     IGNORED_CONFIG = yaml.safe_load(stream)
 
 PALS_IGNORED = set()
@@ -113,7 +113,7 @@ if not IGNORED_CONFIG is None:
             PALS_IGNORED.add((n, src))
 
 
-with (_THIS_DIR / 'RENAMED.yaml').open(mode = 'r') as stream:
+with (AUDIT_DIR / 'RENAMED.yaml').open(mode = 'r') as stream:
     RENAMED_CONFIG = yaml.safe_load(stream)
 
 if RENAMED_CONFIG is None:
@@ -127,9 +127,9 @@ else:
 # -- CONSTANTS #3 -- #
 # ------------------ #
 
-PALS_IDENTICAL_JSON     = REPORT_DIR / f"AUDIT-IDENTICAL.json"
-PALS_MIRROR_JSON        = REPORT_DIR / f"AUDIT-MIRROR.json"
-PALS_NAME_CONFLICT_JSON = REPORT_DIR / f"AUDIT-NAME-CONFLICT.json"
+EQUAL_JSON         = REPORT_DIR / "AUDIT-EQUAL.json"
+MIRROR_JSON        = REPORT_DIR / "AUDIT-MIRROR.json"
+NAME_CONFLICT_JSON = REPORT_DIR / "AUDIT-NAME-CONFLICT.json"
 
 
 PALS_SAME = {
@@ -293,11 +293,11 @@ jsonify_dict = lambda d: {
 }
 
 
-PALS_IDENTICAL_JSON.write_text(
+EQUAL_JSON.write_text(
     json_dumps(jsonify_dict(PALS_EQUALS))
 )
 
-PALS_MIRROR_JSON.write_text(
+MIRROR_JSON.write_text(
     json_dumps(jsonify_dict(PALS_MIRRORS))
 )
 
@@ -307,7 +307,7 @@ _PALS_NAME_CONFLICT = {
     for k, v in PALS_NAME_CONFLICT.items()
 }
 
-PALS_NAME_CONFLICT_JSON.write_text(
+NAME_CONFLICT_JSON.write_text(
     json_dumps(_PALS_NAME_CONFLICT)
 )
 
@@ -317,9 +317,30 @@ PALS_NAME_CONFLICT_JSON.write_text(
 # -------------------------------------- #
 
 if PALS_NAME_CONFLICT:
+    reslover = PROJ_DIR / "tools" / "lab" / "resolve" /"name-conflicts.py"
+
     log_raise_error(
         context   = "Conflicts need NOAI resolution",
-        desc      = "Same name but different palettes found.",
+        desc      = "Same name for different and not mirror palettes.",
         exception = ValueError,
-        xtra      = f"See '{PALS_NAME_CONFLICT_JSON.relative_to(PROJ_DIR)}'."
+        xtra      = f"Open\n{reslover}"
     )
+
+
+# ----------------------- #
+# -- DB INITIALIZATION -- #
+# ----------------------- #
+
+logging.info(f"SQLite DB - 'FINAL table creation'.")
+
+with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+    cursor.execute('DROP TABLE IF EXISTS palettes;')
+    cursor.execute('''
+CREATE TABLE palettes (
+    id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    name   TEXT NOT NULL,
+    source TEXT NOT NULL,
+    kind   TEXT NOT NULL,
+)
+    ''')

@@ -1,0 +1,8 @@
+- - Gray::CMOCEAN
+  - Gray::MATPLOTLIB
+- - Hot::MATPLOTLIB
+  - Hot::PLOTLY
+- - Jet::MATPLOTLIB
+  - Jet::PLOTLY
+- - YlOrRd::COLORBREWER
+  - YlOrRd::MATPLOTLIB

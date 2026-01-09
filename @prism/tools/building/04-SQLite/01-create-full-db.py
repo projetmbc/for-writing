@@ -86,7 +86,6 @@ def dbadd_palette(
     conn,
     name        : str,
     source      : str,
-    size        : int,
     kind        : str,
     hash_normal : str,
     hash_reverse: str
@@ -106,7 +105,6 @@ def dbadd_palette(
 INSERT INTO palettes (
     name,
     source,
-    size,
     kind,
     hash_normal,
     hash_reverse
@@ -115,7 +113,6 @@ INSERT INTO palettes (
             (
                 name,
                 source,
-                size,
                 kind,
                 hash_normal,
                 hash_reverse
@@ -148,7 +145,6 @@ CREATE TABLE palettes (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     name         TEXT NOT NULL,
     source       TEXT NOT NULL,
-    size         INTEGER NOT NULL,
     kind         TEXT NOT NULL,
     hash_normal  TEXT NOT NULL,
     hash_reverse TEXT NOT NULL
@@ -181,7 +177,6 @@ with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
                 conn         = conn,
                 name         = name,
                 source       = projname,
-                size         = len(paldef),
                 kind         = stdkind,
                 hash_normal  = hash_normal,
                 hash_reverse = hash_reverse

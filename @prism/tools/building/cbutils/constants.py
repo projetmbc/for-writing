@@ -63,6 +63,7 @@ for kind, alias in YAML_CONFIG['CATEGORY'].items():
             KIND_ALIAS[a] = kind
 
 
+TAG_AUDIT      = "AUDIT"
 TAG_REPORT     = "REPORT"
 TAG_XTRA_RESRC = "EXTRA-RESOURCES"
 
