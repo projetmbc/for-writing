@@ -5,20 +5,21 @@ We will briefly explain the following structure of the `contrib/products` folder
 
 <!-- FOLDER STRUCT. AUTO - START -->
 ~~~
-+ contrib
++ products
   + changes
-  + css
-  + latex
-  + lua
+  + contributils
   + readme
   + status
   + template-stucture
+  + [...]
 ~~~
 <!-- FOLDER STRUCT. AUTO - END -->
 
 Here is how the different folders are used.
 
   1. `changes` is used to communicate changes related to contributions.
+
+  1. `contributils` is a small module for easily implementing the `extend.py` `Python` file for contributions.
 
   1. `readme`, managed by the `@prism` developer, is used to generate the `contrib/products/README.md` file.
 

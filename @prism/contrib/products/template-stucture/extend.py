@@ -1,72 +1,32 @@
 #!/usr/bin/env python3
 
-# -------------------- #
-# -- IMPORT ALLOWED -- #
-# -------------------- #
+###
+# To simplify coding, the small ''contributils'' module imported
+# below provides the following functionality.
+#
+#     1) ''get_thisdata(content, prefix)'' removes any prefix at
+#     the beginning of lines of the content, then extracts the
+#     metadata provided via the special ''this'' block.
+#
+#     2) ''std_metadata(metadata)'' is used to provide a complete
+#     metadata dictionary, potentially with empty data fields.
+###
 
-from typing import (
-    Annotated,
-    Optional,
-    TypeAlias, TypedDict,
-)
+# --------------------------------- #
+# -- IMPORT CONTRIBUTILS - START -- #
 
-import ast
-import re
+from pathlib import Path
+import              sys
 
+THIS_DIR          = Path(__file__).parent
+CONTRIB_PRODS_DIR = THIS_DIR.parent
 
-# ------------ #
-# -- TYPING -- #
-# ------------ #
+sys.path.append(str(CONTRIB_PRODS_DIR))
 
-RGBCols    :TypeAlias = Annotated[list[float], 3]
-PaletteCols:TypeAlias = list[RGBCols]
+from contributils import *
 
-class PaletteData(TypedDict):
-    metadata: dict[str, str]
-    palette : PaletteCols
-
-
-# --------------------- #
-# -- THIS EXTRACTION -- #
-# --------------------- #
-
-_METADA_NAMES = [
-    "author",
-    "kind",
-]
-
-_PATTERN_PAL_METADATA = re.compile(
-    rf' {{4}}({'|'.join(_METADA_NAMES)})\s*=(.*)'
-)
-
-def get_thisdata(content: str) -> dict[str, str]:
-    in_this_block = False
-
-    metadata = dict()
-
-    for line in content.split('\n'):
-        if not line.strip():
-            continue
-
-        if line.rstrip() == 'this::':
-            in_this_block = True
-
-        elif in_this_block:
-            match = _PATTERN_PAL_METADATA.search(line)
-
-            if match:
-                what = match.group(1)
-                val  = match.group(2).strip()
-
-                metadata[what] = val
-
-    return metadata
-
-
-def std_metadata(metadata: dict[str, str]) -> None:
-    for k in _METADA_NAMES:
-        if not k in metadata:
-            metadata[k] = ''
+# -- IMPORT CONTRIBUTILS - END -- #
+# ------------------------------- #
 
 
 # -------------------- #
@@ -126,8 +86,15 @@ if __name__ == "__main__":
 
 # Code to parse.
 #     code = r"""
-# -- Lua definition used.
-
+#
+# ------
+# -- this::
+# --     author = Jhon, Doe
+# --     kind   = qualtitatice, dark
+# ------
+#
+# -- Luadraw definition used.
+#
 # -- PALETTE = {
 # --   Gray,
 # --   SlateGray,
@@ -137,7 +104,7 @@ if __name__ == "__main__":
 # --   LightSalmon,
 # --   FireBrick,
 # -- }
-
+#
 # PALETTE = {
 #   {0.502, 0.502, 0.502},
 #   {0.4392, 0.502, 0.5647},
@@ -148,23 +115,21 @@ if __name__ == "__main__":
 #   {0.698, 0.1333, 0.1333},
 # }
 #     """
-
-#     from rich import print
-
+#
 #     print_section = lambda t: print(f'\n--- {t} --\n')
-
+#
 #     print_section('INITIAL CODE')
 #     print(code.strip())
-
+#
 #     std_data = parse(code)
-
+#
 #     print_section('STD DATA (JSON)')
 #     print(std_data)
-
+#
 #     print_section('SPECIFIC CODE')
 #     print(
 #         build_code(
 #             credits  = 'Credits...',
-#             palettes = {"TEST": std_data}
+#             palettes = {"CHECKER": std_data['palette']}
 #         )
 #     )

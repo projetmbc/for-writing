@@ -2,7 +2,26 @@
 
 
 ==
-07  (2.0.0-beta.4)
+09  (2.0.0-beta.6)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+\Readmes.
+
+    1) Added explanations about the \python ''contributils'' module.
+
+    1) More robust automatic content integration.
+
+
+// ---------- //
+
+
+==
+07  (2.0.0-beta.5)
 ==
 
 --------

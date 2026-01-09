@@ -169,3 +169,5 @@ for techno in sorted(contribs_accepted[CONTRIB_PROD_DIR]):
     for g in expgobble:
         for f in techno_dir.glob(g):
             f.unlink()
+
+            logging.info(f"Removed '{f.relative_to(PROJ_DIR)}'.")

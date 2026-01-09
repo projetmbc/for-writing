@@ -1800,7 +1800,6 @@ _twilight_data = [
 _twilight_shifted_data = (_twilight_data[len(_twilight_data)//2:] +
                           _twilight_data[:len(_twilight_data)//2])
 _twilight_shifted_data.reverse()
-
 _turbo_data = [[0.18995, 0.07176, 0.23217],
                [0.19483, 0.08339, 0.26149],
                [0.19956, 0.09498, 0.29024],

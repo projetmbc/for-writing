@@ -7,6 +7,7 @@ from .cleanpal   import *
 from .constants  import *
 from .jsonupdate import *
 from .mdutils    import *
+from .misc       import *
 from .normval    import *
 from .report     import *
 from .srcode     import *

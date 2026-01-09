@@ -197,7 +197,7 @@ if __name__ == "__main__":
 --     kind   = ?
 ------
 
--- Lua definition used.
+-- Luadraw definition used.
 
 -- PALETTE = {
 --   Gray,

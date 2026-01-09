@@ -17,9 +17,10 @@ _PATTERN_PAL_METADATA = re.compile(
     rf' {{4}}({'|'.join(_METADA_NAMES)})\s*=(.*)'
 )
 
+
 def get_thisdata(
     content: str,
-    prefix : str = ""
+    prefix : str = ''
 ) -> dict[str, str]:
     gobble = len(prefix)
 
