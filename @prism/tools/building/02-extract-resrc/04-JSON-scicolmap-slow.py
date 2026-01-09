@@ -49,7 +49,7 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
 RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
-RESRC_PALS_JSON = REPORT_DIR / f"PALS-{RESRC_PALS_JSON}.json"
+RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 
 
 # ------------------ #

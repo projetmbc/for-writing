@@ -51,7 +51,7 @@ def reverse_build_name_n_srcname(
 # ------------------ #
 
 SPECIAL_QUERIES = {
-    TAG_IDENTICAL: """
+    TAG_EQUAL: """
 SELECT
     COUNT(*) as nb,
     GROUP_CONCAT(name || '::' || source, ',')
@@ -70,7 +70,7 @@ AND p1.id < p2.id
 }
 
 
-QUERY_NAME_CONFLICT = """
+QUERY_PALS_NAME_CONFLICT = """
 SELECT
     p1.name,
     p1.source,
@@ -127,18 +127,20 @@ else:
 # -- CONSTANTS #3 -- #
 # ------------------ #
 
-PALS_IDENTICAL_JSON = REPORT_DIR / f"SAME-PALS-IDENTICAL.json"
-PALS_MIRROR_JSON    = REPORT_DIR / f"SAME-PALS-MIRROR.json"
+PALS_IDENTICAL_JSON     = REPORT_DIR / f"AUDIT-IDENTICAL.json"
+PALS_MIRROR_JSON        = REPORT_DIR / f"AUDIT-MIRROR.json"
+PALS_NAME_CONFLICT_JSON = REPORT_DIR / f"AUDIT-NAME-CONFLICT.json"
 
 
 PALS_SAME = {
-    TAG_IDENTICAL: [],
-    TAG_MIRROR   : [],
+    TAG_EQUAL : [],
+    TAG_MIRROR: [],
 }
 
 
-PALS_EQUALS  = dict()
-PALS_MIRRORS = dict()
+PALS_EQUALS             = dict()
+PALS_MIRRORS            = dict()
+PALS_PALS_NAME_CONFLICT = defaultdict(set)
 
 
 # ----------------------------- #
@@ -147,7 +149,7 @@ PALS_MIRRORS = dict()
 
 # -- DB EXTRACTION -- #
 
-logging.info(f"DATA cleaning - 'Equal or mirror palettes'.")
+logging.info(f"DATA cleaning - 'Equal or mirror'.")
 
 
 with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
@@ -161,7 +163,7 @@ with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
 
 # -- IDENTICAL PALETTES -- #
 
-for _ , _equal_pals in PALS_SAME[TAG_IDENTICAL]:
+for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
     equal_pals = set(
         extract_name_n_srcname(nsn)
         for nsn in _equal_pals.split(',')
@@ -178,7 +180,7 @@ for _ , _equal_pals in PALS_SAME[TAG_IDENTICAL]:
         tab = "\n  + "
 
         equal_pals = [
-            revers_build_name_n_srcname(*nsn)
+            reverse_build_name_n_srcname(*nsn)
             for nsn in equal_pals
         ]
         equal_pals.sort()
@@ -254,24 +256,70 @@ for mirror_pals in PALS_SAME[TAG_MIRROR]:
         PALS_MIRRORS[pal_alias_1] = pal_alias_2
 
 
-# --------------- #
-# -- HOMONYMS? -- #
-# --------------- #
+# --------------------- #
+# -- NAME CONFLICTS? -- #
+# --------------------- #
 
-logging.info(f"DATA cleaning - 'Same name, but dfferent palettes'.")
+logging.info(f"DATA cleaning - 'Same name / Different palettes'.")
 
-name_conflict = defaultdict(set)
+PALS_NAME_CONFLICT = defaultdict(set)
 
-# Extraction for DB.
+# -- DB EXTRACTION -- #
+
 with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
-    cursor.execute(QUERY_NAME_CONFLICT)
+    cursor.execute(QUERY_PALS_NAME_CONFLICT)
 
     for name, *sources in cursor.fetchall():
         for s in sources:
-            if not (name, s) in PALS_IGNORED:
-                name_conflict[name].add(s)
+            pal = (name, s)
+            pal = PALS_EQUALS.get(pal, pal)
+
+            if not pal in PALS_IGNORED:
+                PALS_NAME_CONFLICT[name].add(pal[1])
+
+# Error will be indicated after updating the JSON file.
 
 
+# ------------------ #
+# -- JSON UPDATES -- #
+# ------------------ #
 
-print(name_conflict)
+logging.info(f"DATA cleaning - 'Update JSON audit files'.")
+
+jsonify_dict = lambda d: {
+    build_name_n_srcname(*nsn_1): build_name_n_srcname(*nsn_2)
+    for nsn_1, nsn_2 in d.items()
+}
+
+
+PALS_IDENTICAL_JSON.write_text(
+    json_dumps(jsonify_dict(PALS_EQUALS))
+)
+
+PALS_MIRROR_JSON.write_text(
+    json_dumps(jsonify_dict(PALS_MIRRORS))
+)
+
+
+_PALS_NAME_CONFLICT = {
+    k: list(v)
+    for k, v in PALS_NAME_CONFLICT.items()
+}
+
+PALS_NAME_CONFLICT_JSON.write_text(
+    json_dumps(_PALS_NAME_CONFLICT)
+)
+
+
+# -------------------------------------- #
+# -- NAME CONFLICTS MUST BE RESOLVED! -- #
+# -------------------------------------- #
+
+if PALS_NAME_CONFLICT:
+    log_raise_error(
+        context   = "Conflicts need NOAI resolution",
+        desc      = "Same name but different palettes found.",
+        exception = ValueError,
+        xtra      = f"See '{PALS_NAME_CONFLICT_JSON.relative_to(PROJ_DIR)}'."
+    )

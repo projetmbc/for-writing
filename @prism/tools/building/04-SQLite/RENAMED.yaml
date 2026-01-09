@@ -1,0 +1,18 @@
+_SUFFIXES_:
+  CartoColors: CC
+  Plotly     : Ply
+  Tableau    : Tab
+
+
+# '.' asks to add the suffix to the existing name.
+# '*' is an alias for the suffix.
+
+# CartoColors:
+#   Prism: .
+
+# Plotly:
+#   Bluered: BlueRed*
+#   Rainbow: .
+
+# Tableau:
+#   Gray: .

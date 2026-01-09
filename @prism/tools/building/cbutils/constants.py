@@ -18,9 +18,9 @@ with (THIS_DIR / '../CONFIG.yaml').open(mode = 'r') as stream:
 # -- PALETTE CLASSIFICATION -- #
 # ---------------------------- #
 
-TAG_KEPT      = "kept"
-TAG_IDENTICAL = "identical"
-TAG_MIRROR    = "mirror"
+TAG_KEPT   = "kept"
+TAG_EQUAL  = "equal"
+TAG_MIRROR = "mirror"
 
 
 # -------------------- #

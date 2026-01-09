@@ -95,6 +95,7 @@ def dbadd_palette(
     placeholders = ",".join(placeholders)
 
     if not source:
+        print(name)
         TODO
 
     try:
@@ -162,10 +163,8 @@ CREATE TABLE palettes (
 logging.info(f"SQLite DB - 'Palette integration'.")
 
 with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
-    for resrc_json in REPORT_DIR.glob("PALS-*.json"):
-        projname = resrc_json.stem.split('-')
-        projname = projname[1:]
-        projname = '-'.join(projname)
+    for resrc_json in REPORT_DIR.glob("*.json"):
+        projname = resrc_json.stem
 
         data = json_load(resrc_json.open())
 

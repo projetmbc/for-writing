@@ -329,7 +329,7 @@ for subdir in sorted(RESRC_DIR.glob("*")):
     pals = extract(subdir)
 
     resrc_pals_json = subdir.name.replace(' ', '-').upper()
-    resrc_pals_json = REPORT_DIR / f"PALS-{resrc_pals_json}.json"
+    resrc_pals_json = REPORT_DIR / f"{resrc_pals_json}.json"
 
     logging.info(f"'{resrc_pals_json.relative_to(PROJ_DIR)}' update.")
 
