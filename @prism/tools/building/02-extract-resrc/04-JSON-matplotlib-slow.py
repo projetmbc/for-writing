@@ -153,10 +153,10 @@ for match in PATTERN_MPL_COLORMAP_BRACES_LISTED.finditer(MPL_CODE_LISTED):
     paldef = eval(match.group(2))
 
     pals[stdname] = resrc_std_palette(
-        palname,
-        '',
-        paldef,
-        PRECISION + 2
+        palname   = palname,
+        pal_kind  = '',
+        paldef    = paldef,
+        precision = PRECISION + 2,
     )
 
 # Special case of twilight_shifted_data.
@@ -170,10 +170,10 @@ paldef = (
 paldef.reverse()
 
 pals['TwilightShifted'] = resrc_std_palette(
-    'twilight_shifted',
-    '',
-    paldef,
-    PRECISION + 2
+    palname   = 'twilight_shifted',
+    pal_kind  = '',
+    paldef    = paldef,
+    precision = PRECISION + 2,
 )
 
 # "Brace" coded palettes.
@@ -192,10 +192,10 @@ for match in PATTERN_MPL_COLORMAP_BRACES.finditer(MPL_CODE):
 
 
     pals[stdname] = resrc_std_palette(
-        palname,
-        '',
-        paldef,
-        PRECISION + 2
+        palname   = palname,
+        pal_kind  = '',
+        paldef    = paldef,
+        precision = PRECISION + 2,
     )
 
 # Old-style coded palettes.
@@ -268,12 +268,11 @@ for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
         ])
 
     pals[stdname] = resrc_std_palette(
-        palname,
-        '',
-        paldef,
-        PRECISION + 2
+        palname   = palname,
+        pal_kind  = '',
+        paldef    = paldef,
+        precision = PRECISION + 2,
     )
-
 
 # -- COMPUTED COLOR MAPS -- #
 
@@ -297,10 +296,10 @@ for match in PATTERN_MPL_COLORMAP_DATA_NAME.finditer(MPL_CODE):
     ]
 
     pals[stdname] = resrc_std_palette(
-        palname,
-        '',
-        paldef,
-        PRECISION + 2
+        palname   = palname,
+        pal_kind  = '',
+        paldef    = paldef,
+        precision = PRECISION + 2,
     )
 
 

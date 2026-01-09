@@ -5,6 +5,13 @@
 09  (2.0.0-beta.6)
 ==
 
+-------
+:break:
+-------
+
+[[:api:]]   ?????
+\Categos: the size category is no longer needed since the new \api provides full \defs. For example, a 3-color smooth palette is now simply a smooth palette fully defined with 3 colors.
+
 --------
 :update:
 --------

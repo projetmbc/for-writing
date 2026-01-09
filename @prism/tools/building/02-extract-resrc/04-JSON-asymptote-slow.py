@@ -93,10 +93,10 @@ for palname, body in PATTERN_ASY_COLORMAP.findall(ASY_CODE):
     ]
 
     pals[stdname] = resrc_std_palette(
-        palname,
-        '',
-        paldef,
-        PRECISION + 2
+        palname   = palname,
+        pal_kind  = '',
+        paldef    = paldef,
+        precision = PRECISION + 2,
     )
 
 

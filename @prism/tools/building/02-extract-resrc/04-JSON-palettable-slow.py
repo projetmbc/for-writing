@@ -97,10 +97,10 @@ def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
         stdname = get_stdname(palname)
 
         pals[stdname] = resrc_std_palette(
-            palname,
-            TAG_SEQUENTIAL,
-            pal255_to_pal01(cols),
-            PRECISION + 2
+            palname   = palname,
+            pal_kind  = TAG_SEQUENTIAL,
+            paldef    = pal255_to_pal01(cols),
+            precision = PRECISION + 2,
         )
 
     return pals
@@ -138,10 +138,10 @@ def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
             last_sizes[stdname] = pal_size
 
             pals[stdname] = resrc_std_palette(
-                palname,
-                TAG_QUALITATIVE,
-                pal255_to_pal01(cols),
-                PRECISION + 2
+                palname   = palname,
+                pal_kind  = TAG_QUALITATIVE,
+                paldef    = pal255_to_pal01(cols),
+                precision = PRECISION + 2,
             )
 
     return pals
@@ -185,13 +185,11 @@ def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
         cols = cols['colors']
 
         pals[stdname] = resrc_std_palette(
-            palname,
-            TAG_QUALITATIVE,
-            pal255_to_pal01(cols),
-            PRECISION + 2
+            palname   = palname,
+            pal_kind  = TAG_QUALITATIVE,
+            paldef    = pal255_to_pal01(cols),
+            precision = PRECISION + 2,
         )
-
-
 
     return pals
 
@@ -269,10 +267,10 @@ def extract_std(
 
     pals = {
         get_stdname(kind_and_names[n][1]): resrc_std_palette(
-            kind_and_names[n][1],
-            kind_and_names[n][0],
-            p,
-            PRECISION + 2
+            palname   = kind_and_names[n][1],
+            pal_kind  = kind_and_names[n][0],
+            paldef    = p,
+            precision = PRECISION + 2,
         )
         for n, p in oripals.items()
     }

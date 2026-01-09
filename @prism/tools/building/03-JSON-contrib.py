@@ -83,10 +83,10 @@ for folder, contribs in sorted(contribs_accepted.items()):
         paldata = extend.parse(contrib_code)
 
         pals[stdname] = resrc_std_palette(
-            palname,
-            paldata[TAG_METADATA][TAG_KIND],
-            paldata[TAG_PALETTE],
-            PRECISION + 2
+            palname   = palname,
+            pal_kind  = paldata[TAG_METADATA][TAG_KIND],
+            paldef    = paldata[TAG_PALETTE],
+            precision = PRECISION + 2,
         )
 
 

@@ -1,0 +1,76 @@
+# -------------------------- #
+# -- Last Human Selection -- #
+# -------------------------- #
+
+# CATEGORY = 'semantic'
+
+
+# -- A -- #
+
+Accent
+Alphabet
+Antique
+
+# -- B -- #
+
+BlueRed
+Bold
+Bukavu
+
+# -- C -- #
+
+ColorBlind
+
+# -- D -- #
+
+Dark2
+Dark24
+
+# -- F -- #
+
+Fes
+Flag
+
+# -- G -- #
+
+G10
+GreenOrange
+
+# -- L -- #
+
+Light24
+
+# -- P -- #
+
+Paired
+Pastel
+Pastel1
+Pastel2
+Plotly
+Prism
+
+# -- S -- #
+
+Safe
+Set1
+Set2
+Set3
+
+# -- T -- #
+
+T10
+Tab10
+Tab20
+Tab20b
+Tab20c
+Tableau
+TableauLight
+TableauMedium
+TdocBW
+TdocCol
+TdocDark
+TrafficLight
+
+# -- V -- #
+
+Vivid
