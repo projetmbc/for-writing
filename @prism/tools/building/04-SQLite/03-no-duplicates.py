@@ -29,7 +29,7 @@ import yaml
 # ----------- #
 
 def extract_name_n_srcname(name_srcname: str) -> (str, str):
-    return name_srcname.split('::')
+    return tuple(name_srcname.split('::'))
 
 
 def build_name_n_srcname(
@@ -50,26 +50,25 @@ def reverse_build_name_n_srcname(
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-QUERY_SAME_HASH = """
+SPECIAL_QUERIES = {
+    TAG_IDENTICAL: """
 SELECT
     COUNT(*) as nb,
-    GROUP_CONCAT(
-       name || '::' || source,
-       ','
-    )
+    GROUP_CONCAT(name || '::' || source, ',')
 FROM palettes
 GROUP BY hash_normal
 HAVING nb > 1
-"""
-
-QUERY_MIRROR_HASH = """
+    """,
+    TAG_MIRROR: """
 SELECT
-    p1.name, p1.source,
-    p2.name, p2.source
+    GROUP_CONCAT(p1.name || '::' || p1.source),
+    GROUP_CONCAT(p2.name || '::' || p2.source)
 FROM palettes p1, palettes p2
 WHERE p1.hash_normal = p2.hash_reverse
 AND p1.id < p2.id
-"""
+    """,
+}
+
 
 QUERY_NAME_CONFLICT = """
 SELECT
@@ -96,9 +95,7 @@ while (PROJ_DIR.name != TAG_APRISM):
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
-FULL_SQLITE_DB_FILE     = REPORT_DIR / "full-palettes.db"
-FINAL_SQLITE_DB_FILE    = REPORT_DIR / "final-palettes.db"
-CONFLICT_SQLITE_DB_FILE = REPORT_DIR / "conflict-palettes.db"
+FULL_SQLITE_DB_FILE = REPORT_DIR / "full-palettes.db"
 
 
 with (_THIS_DIR / 'PRIORITY.yaml').open(mode = 'r') as stream:
@@ -137,77 +134,47 @@ PALS_MIRROR_JSON    = REPORT_DIR / f"SAME-PALS-MIRROR.json"
 PALS_SAME = {
     TAG_IDENTICAL: [],
     TAG_MIRROR   : [],
-    TAG_KEPT     : [],
 }
 
 
-# ------------------------ #
-# -- DB INITIALIZATIONS -- #
-# ------------------------ #
-
-logging.info(f"SQLite DB - 'FINAL table creation'.")
-
-with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
-    cursor = conn.cursor()
-    cursor.execute('DROP TABLE IF EXISTS palettes;')
-    cursor.execute('''
-CREATE TABLE palettes (
-    id     INTEGER PRIMARY KEY AUTOINCREMENT,
-    name   TEXT NOT NULL,
-    source TEXT NOT NULL,
-    size   INTEGER NOT NULL,
-    kind   TEXT NOT NULL
-)
-    ''')
+PALS_EQUALS  = dict()
+PALS_MIRRORS = dict()
 
 
-logging.info(f"SQLite DB - 'CONFLICT table creation'.")
+# ----------------------------- #
+# -- EQUAL / MIRROR PALETTES -- #
+# ----------------------------- #
 
-with sqlite3.connect(CONFLICT_SQLITE_DB_FILE) as conn:
-    cursor = conn.cursor()
-    cursor.execute('DROP TABLE IF EXISTS palettes;')
-    cursor.execute('''
-CREATE TABLE palettes (
-    id       INTEGER PRIMARY KEY AUTOINCREMENT,
-    name_1   TEXT NOT NULL,
-    source_1 TEXT NOT NULL,
-    name_2   TEXT NOT NULL,
-    source_2 TEXT NOT NULL
-)
-    ''')
+# -- DB EXTRACTION -- #
+
+logging.info(f"DATA cleaning - 'Equal or mirror palettes'.")
 
 
-# ----------------------- #
-# -- REMOVE DUPLICATES -- #
-# ----------------------- #
-
-# Extraction for DB.
 with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
 
-    for tag, query in [
-        (TAG_IDENTICAL, QUERY_SAME_HASH  ),
-        (TAG_MIRROR   , QUERY_MIRROR_HASH),
-    ]:
+    for tag, query in SPECIAL_QUERIES.items():
         cursor.execute(query)
 
         PALS_SAME[tag] = list(cursor.fetchall())
 
-# Identical palettes.
+
+# -- IDENTICAL PALETTES -- #
+
 for _ , _equal_pals in PALS_SAME[TAG_IDENTICAL]:
     equal_pals = set(
-        tuple(extract_name_n_srcname(nsn))
+        extract_name_n_srcname(nsn)
         for nsn in _equal_pals.split(',')
     )
 
     equal_pals -= PALS_IGNORED
 
+# No equality (some palettes ignored).
     if len(equal_pals) == 1:
         continue
 
-    if len(
-        set(n for n, _ in equal_pals)
-    ) != 1:
+# Identical palettes but different names
+    if 1 != len(set(n for n, _ in equal_pals)):
         tab = "\n  + "
 
         equal_pals = [
@@ -218,13 +185,14 @@ for _ , _equal_pals in PALS_SAME[TAG_IDENTICAL]:
 
         log_raise_error(
             context   = "Conflicts need NOAI resolution",
-            desc      = "Identical palettes with different names",
+            desc      = "Identical palettes but different names",
             exception = Exception,
             xtra      = f"See:{tab}{tab.join(equal_pals)}"
         )
 
+# Looking for the "higher" palette.
     higher_projs = set()
-    higher_val  = 0
+    higher_val   = 0
 
     for name, src in equal_pals:
         if (
@@ -238,6 +206,7 @@ for _ , _equal_pals in PALS_SAME[TAG_IDENTICAL]:
         elif higher_val == PRIORITY_CONFIG[src]:
             higher_projs.add(src)
 
+# Do we have a same priority conflicts?
     if len(higher_projs) != 1:
         tab = "\n  + "
 
@@ -251,45 +220,45 @@ for _ , _equal_pals in PALS_SAME[TAG_IDENTICAL]:
             xtra      = f"See:{tab}{tab.join(higher_projs)}"
         )
 
+# No problem! Let's record our choices.
     pal_kept = (name, list(higher_projs)[0])
 
-    PALS_SAME[TAG_KEPT].append(pal_kept)
+    for p in equal_pals:
+        if p == pal_kept:
+            continue
 
-    PALS_IGNORED |= equal_pals - set([pal_kept])
+        PALS_EQUALS[p] = pal_kept
 
-# Mirror palettes.
-for name_1, src_1, name_2, src_2 in PALS_SAME[TAG_MIRROR]:
-    if (
-        (name_2, src_2) in PALS_IGNORED
-        or
-        PRIORITY_CONFIG[src_1] > PRIORITY_CONFIG[src_2]
-    ):
-        pal_kept = (name_1, src_1)
 
-    elif (
-        (name_1, src_1) in PALS_IGNORED
-        or
-        PRIORITY_CONFIG[src_1] < PRIORITY_CONFIG[src_2]
-    ):
-        pal_kept = (name_2, src_2)
+# -- MIRROR PALETTES -- #
 
-    elif name_1 < name_2:
-        pal_kept = (name_1, src_1)
+for mirror_pals in PALS_SAME[TAG_MIRROR]:
+    pal_1, pal_2 = [
+        extract_name_n_srcname(nsn)
+        for nsn in mirror_pals
+    ]
+
+    pal_alias_1 = PALS_EQUALS.get(pal_1, pal_1)
+    pal_alias_2 = PALS_EQUALS.get(pal_2, pal_2)
+
+    if PRIORITY_CONFIG[pal_alias_1[1]] > PRIORITY_CONFIG[pal_alias_2[1]]:
+        PALS_MIRRORS[pal_alias_2] = pal_alias_1
+
+    elif PRIORITY_CONFIG[pal_alias_1[1]] < PRIORITY_CONFIG[pal_alias_2[1]]:
+        PALS_MIRRORS[pal_alias_1] = pal_alias_2
+
+    elif pal_alias_1[0] < pal_alias_2[0]:
+        PALS_MIRRORS[pal_alias_2] = pal_alias_1
 
     else:
-        pal_kept = (name_2, src_2)
-
-    PALS_SAME[TAG_KEPT].append(pal_kept)
-
-    # PALS_IGNORED |= set([
-    #     (name_1, src_1),
-    #     (name_2, src_2)
-    # ]) - set([pal_kept])
+        PALS_MIRRORS[pal_alias_1] = pal_alias_2
 
 
 # --------------- #
 # -- HOMONYMS? -- #
 # --------------- #
+
+logging.info(f"DATA cleaning - 'Same name, but dfferent palettes'.")
 
 name_conflict = defaultdict(set)
 
