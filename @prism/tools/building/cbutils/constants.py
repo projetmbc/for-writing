@@ -22,6 +22,8 @@ TAG_KEPT   = "kept"
 TAG_EQUAL  = "equal"
 TAG_MIRROR = "mirror"
 
+TAG_SUFFIXES = "_SUFFIXES_"
+
 
 # -------------------- #
 # -- CONTRIB CONFIG -- #

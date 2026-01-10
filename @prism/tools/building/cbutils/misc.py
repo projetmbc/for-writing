@@ -111,3 +111,22 @@ def tag_update(
     """.strip() + '\n'
 
     txtfile.write_text(content)
+
+
+
+def extract_name_n_srcname(name_srcname: str) -> (str, str):
+    return tuple(name_srcname.split('::'))
+
+
+def build_name_n_srcname(
+    name: str,
+    srcname: str,
+) -> str:
+    return '::'.join([name, srcname])
+
+
+def reverse_build_name_n_srcname(
+    name: str,
+    srcname: str,
+) -> str:
+    return build_name_n_srcname(srcname, name)

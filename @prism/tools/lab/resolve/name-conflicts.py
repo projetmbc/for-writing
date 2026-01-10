@@ -6,8 +6,8 @@
 # from rich import print
 # -- DEBUG - OFF -- #
 
-# ---------------------------- #
-# -- IMPORT CBUTILS - START -- #
+# ----------------------------- #
+# -- IMPORT LABUTILS - START -- #
 
 from pathlib import Path
 import              sys
@@ -19,8 +19,8 @@ sys.path.append(str(LAB_DIR))
 
 from labutils import *
 
-# -- IMPORT CBUTILS - END -- #
-# -------------------------- #
+# -- IMPORT LABUTILS - END -- #
+# --------------------------- #
 
 from json import load as json_load
 from yaml import (
@@ -79,10 +79,29 @@ if VISUAL_SIMILAR is None:
 
 
 
-
-
-DEBUG_REPORT = dict()
-
+DEBUG_REPORT = {
+    "Gray":{
+        "TABLEAU":{"status":TAG_SIMILAR,"ref":None,"alias":"MidGray","size":5},
+        "MATPLOTLIB":{"status":TAG_SIMILAR,"ref":"CMOCEAN","alias":"BW","size":2},
+        "CMOCEAN":{"status":TAG_IGNORE,"ref":"MATPLOTLIB","alias":"Gray","size":256}
+    },
+    "YlOrRd":{
+        "MATPLOTLIB":{"status":TAG_UNIQUE,"ref":None,"alias":None,"size":9},
+        "COLORBREWER":{"status":TAG_SIMILAR,"ref":"MATPLOTLIB","alias":None,"size":8}
+    },
+    "Hot":{
+        "MATPLOTLIB":{"status":TAG_UNIQUE,"ref":None,"alias":None,"size":256},
+        "PLOTLY":{"status":TAG_SIMILAR,"ref":"MATPLOTLIB","alias":None,"size":4}
+    },
+    "Jet":{
+        "MATPLOTLIB":{"status":TAG_UNIQUE,"ref":None,"alias":None,"size":256},
+        "PLOTLY":{"status":TAG_SIMILAR,"ref":"MATPLOTLIB","alias":None,"size":6}
+    },
+    "Rainbow":{
+        "MATPLOTLIB":{"status":TAG_UNIQUE,"ref":None,"alias":None,"size":256},
+        "PLOTLY":{"status":TAG_SIMILAR,"ref":None,"alias":None,"size":9}
+    }
+}
 
 
 
@@ -113,20 +132,20 @@ def sauvegarder_resultats(report: dict) -> None:
 
 # To ignore.
             if infos[TAG_STATUS] == TAG_IGNORE:
-                if infos[TAG_REF] is None:
-                    names = IGNORED.get(src, [])
-                    names.append(name)
-                    names = list(set(names))
-                    names.sort()
-
-                    IGNORED[src] = names
-
 # Here we have seen a visual euqality.
-                else:
+                if not infos[TAG_REF] is None:
                     visual_equals = VISUAL_EQUAL.get(name, dict())
                     visual_equals[src] = infos[TAG_REF]
 
                     VISUAL_EQUAL[name] = visual_equals
+
+                names = IGNORED.get(src, [])
+                names.append(name)
+                names = list(set(names))
+                names.sort()
+
+                IGNORED[src] = names
+
 
 # Similar with a reference to another source, or
 # no similarity seen (so no reference added).
@@ -218,16 +237,9 @@ def sauvegarder_resultats(report: dict) -> None:
 
 
 
+# sauvegarder_resultats(DEBUG_REPORT)
 
-
-
-
-
-sauvegarder_resultats(DEBUG_REPORT)
-
-exit()
-
-
+# exit()
 
 
 

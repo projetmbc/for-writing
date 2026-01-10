@@ -135,7 +135,7 @@ INSERT INTO palettes (
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info(f"SQLite DB - 'FULL table creation'.")
+logging.info(f"SQLite DB - 'Init FULL table'.")
 
 with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
