@@ -16,13 +16,25 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+besoin de config yaml global lab et builder, voir test car la c'est fragile !!!
+
+
+// ---------- //
+
+dans lab : outils comparer la dernier main à celel qui vient d'etre construite
+
+
+
+// ---------- //
+
 metadat des palettes à enrichir
 
     --> qualitatif, on peut indiquer meaning : liste orodonné (cf admonitions par exemple de tdoc)
 
+
 // ---------- //
 
-demo discrete par paquet de 10 d'om 3 ligne maximume ou 40 plus tard si besoin, avec visuellemnt l'effet de dégra dé si sous couleur sémantique choisi
+demo discrete par paquet de 10 d'om 3 ligne maximume ou 4 plus tard si besoin, avec visuellemnt l'effet de dégra dé si sous couleur sémantique choisi
 
 on peut faire le choix d'une taille de 30 et de na pas affcet de couleur, dans ce cas on choisira noir comme val par défaut
 
@@ -30,6 +42,8 @@ on peut faire le choix d'une taille de 30 et de na pas affcet de couleur, dans c
 // ---------- //
 
 classification faite sympa : https://pratiman-91.github.io/colormaps/docs/Diverging#cartocolors
+
+ce qui sera dans yaml sera forcméent prioritaire !!!
 
 extraire de façon automatisé et ajouté ceci dans la base de ddonnées
 
