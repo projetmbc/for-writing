@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# -- DEBUG - ON -- #
+from rich import print
+# -- DEBUG - OFF -- #
+
 # ---------------------------- #
 # -- IMPORT CBUTILS - START -- #
 
@@ -41,7 +45,7 @@ RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-PRECISION = YAML_CONFIG['PRECISION']
+PRECISION = YAML_CONFIGS[TAG_METADATA]['PRECISION']
 
 
 # ---------------------------- #
@@ -84,7 +88,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
 
         pals[stdname] = resrc_std_palette(
             palname   = palname,
-            pal_kind  = paldata[TAG_METADATA][TAG_KIND],
+            pal_kind  = paldata[TAG_METADATA.lower()][TAG_KIND],
             paldef    = paldata[TAG_PALETTE],
             precision = PRECISION + 2,
         )

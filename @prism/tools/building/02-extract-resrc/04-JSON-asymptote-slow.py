@@ -46,9 +46,9 @@ PATTERN_ASY_CHANNEL = re.compile(
 )
 
 
-# ------------------ #
-# -- CONSTANTS #2 -- #
-# ------------------ #
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
 
 THIS_RESRC = TAG_ASYMPTOTE
 
@@ -57,7 +57,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / get_stdname(THIS_RESRC)
+RESRC_DIR  = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
@@ -67,13 +67,6 @@ RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 
 ASY_CODE = RESRC_DIR / "colormap.asy"
 ASY_CODE = ASY_CODE.read_text()
-
-
-# ------------------ #
-# -- CONSTANTS #2 -- #
-# ------------------ #
-
-PRECISION = YAML_CONFIG['PRECISION']
 
 
 # ------------------------------- #
@@ -96,7 +89,7 @@ for palname, body in PATTERN_ASY_COLORMAP.findall(ASY_CODE):
         palname   = palname,
         pal_kind  = '',
         paldef    = paldef,
-        precision = PRECISION + 2,
+        precision = PAL_PRECISION + 2,
     )
 
 

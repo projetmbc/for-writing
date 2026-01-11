@@ -55,15 +55,8 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / get_stdname(THIS_RESRC)
+RESRC_DIR  = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
-
-
-# ------------------ #
-# -- CONSTANTS #3 -- #
-# ------------------ #
-
-PRECISION = YAML_CONFIG['PRECISION']
 
 
 # ----------- #
@@ -100,7 +93,7 @@ def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
             palname   = palname,
             pal_kind  = TAG_SEQUENTIAL,
             paldef    = pal255_to_pal01(cols),
-            precision = PRECISION + 2,
+            precision = PAL_PRECISION + 2,
         )
 
     return pals
@@ -141,7 +134,7 @@ def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
                 palname   = palname,
                 pal_kind  = TAG_QUALITATIVE,
                 paldef    = pal255_to_pal01(cols),
-                precision = PRECISION + 2,
+                precision = PAL_PRECISION + 2,
             )
 
     return pals
@@ -188,7 +181,7 @@ def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
             palname   = palname,
             pal_kind  = TAG_QUALITATIVE,
             paldef    = pal255_to_pal01(cols),
-            precision = PRECISION + 2,
+            precision = PAL_PRECISION + 2,
         )
 
     return pals
@@ -270,7 +263,7 @@ def extract_std(
             palname   = kind_and_names[n][1],
             pal_kind  = kind_and_names[n][0],
             paldef    = p,
-            precision = PRECISION + 2,
+            precision = PAL_PRECISION + 2,
         )
         for n, p in oripals.items()
     }

@@ -1,17 +1,54 @@
 #!/usr/bin/env python3
 
+# -- DEBUG - ON -- #
+from rich import print
+# -- DEBUG - OFF -- #
+
 from pathlib import Path
 import              yaml
 
 
-# ----------------- #
-# -- YAML CONFIG -- #
-# ----------------- #
+# ------------------ #
+# -- THIS PROJECT -- #
+# ------------------ #
+
+TAG_APRISM = "@prism"
 
 THIS_DIR = Path(__file__).parent
 
-with (THIS_DIR / '../CONFIG.yaml').open(mode = 'r') as stream:
-    YAML_CONFIG = yaml.safe_load(stream)
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != TAG_APRISM):
+    PROJ_DIR = PROJ_DIR.parent
+
+
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
+
+def get_tag_varname(name: str) -> str:
+    varname = f"tag_{name}"
+    varname = varname.upper()
+
+    return varname
+
+
+# ------------------ #
+# -- YAML CONFIGS -- #
+# ------------------ #
+
+YAML_CONFIGS = dict()
+
+for p in (PROJ_DIR / 'tools' / 'config').glob('*.yaml'):
+    name    = p.stem
+    varname = get_tag_varname(name)
+
+    with p.open(mode = 'r') as f:
+         data = yaml.safe_load(f)
+
+    globals()[varname] = name
+
+    YAML_CONFIGS[name] = data
 
 
 # ---------------------------- #
@@ -38,21 +75,22 @@ TAG_GOBBLE = "gobble"
 # -- MAIN EXTERNAL SOURCES -- #
 # --------------------------- #
 
-TAG_APRISM = "@prism"
+PAL_PRECISION = YAML_CONFIGS[TAG_METADATA]['PRECISION']
 
 TAG_ORIGINAL_NAME = "original-name"
 TAG_RGB_COLS      = "rgb-cols"
 
-TAG_METADATA = "metadata"
-TAG_AUTHOR   = "author"
-TAG_KIND     = "kind"
+TAG_AUTHOR = "author"
+TAG_KIND   = "kind"
 
 TAG_PALETTE  = "palette"
 
 
 KIND_ALIAS = dict()
 
-for kind, alias in YAML_CONFIG['CATEGORY'].items():
+for kind, about in YAML_CONFIGS[TAG_METADATA]['CATEGORY'].items():
+    alias = about['alias']
+
     varname = f"tag_{kind}"
     varname = varname.upper()
 
@@ -65,9 +103,9 @@ for kind, alias in YAML_CONFIG['CATEGORY'].items():
             KIND_ALIAS[a] = kind
 
 
-TAG_AUDIT      = "AUDIT"
-TAG_REPORT     = "REPORT"
-TAG_XTRA_RESRC = "EXTRA-RESOURCES"
+TAG_AUDIT     = "AUDIT"
+TAG_REPORT    = "REPORT"
+TAG_RESOURCES = "RESOURCES"
 
 
 TAGS_XTRA_PROJS = [

@@ -17,7 +17,7 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-if not YAML_CONFIG['ASK_GITHUB']:
+if not YAML_CONFIGS[TAG_WORKFLOW]['ASK_GITHUB']:
     logging.warning("'NO SEARCH' for needed updates.")
     exit(0)
 
@@ -39,7 +39,7 @@ while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 
-EXT_SRC_DIR = PROJ_DIR / TAG_XTRA_RESRC
+EXT_SRC_DIR = PROJ_DIR / TAG_RESOURCES
 EXT_SRC_DIR.mkdir(
     parents  = True,
     exist_ok = True

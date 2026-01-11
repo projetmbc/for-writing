@@ -84,15 +84,15 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
-REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
-
+AUDIT_DIR     = BUILD_TOOLS_DIR / TAG_AUDIT
+REPORT_DIR    = BUILD_TOOLS_DIR / TAG_REPORT
+RESOURCES_DIR = BUILD_TOOLS_DIR / TAG_RESOURCES
 
 FULL_SQLITE_DB_FILE  = REPORT_DIR / "full-palettes.db"
 FINAL_SQLITE_DB_FILE = AUDIT_DIR / "final-palettes.db"
 
 
-with (AUDIT_DIR / 'PRIORITY.yaml').open(mode = 'r') as f:
+with (RESOURCES_DIR / 'PRIORITY.yaml').open(mode = 'r') as f:
     PRIORITY = yaml.safe_load(f)
 
 

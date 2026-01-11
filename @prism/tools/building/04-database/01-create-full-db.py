@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
-# from rich import print
+from rich import print
 # -- DEBUG - OFF -- #
 
 # ---------------------------- #
@@ -41,7 +41,7 @@ FULL_SQLITE_DB_FILE = REPORT_DIR / "full-palettes.db"
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-PRECISION = YAML_CONFIG['PRECISION']
+PRECISION = YAML_CONFIGS[TAG_METADATA]['PRECISION']
 
 
 # ----------- #

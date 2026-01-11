@@ -44,19 +44,12 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / get_stdname(THIS_RESRC)
+RESRC_DIR  = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
 RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
-
-
-# ------------------ #
-# -- CONSTANTS #3 -- #
-# ------------------ #
-
-PRECISION = YAML_CONFIG['PRECISION']
 
 
 # ----------- #
@@ -106,7 +99,7 @@ for pyfile in sorted(RESRC_DIR.glob("*.py"), key = lambda x: str(x).lower()):
         palname   = palname,
         pal_kind  = TAG_COLORBLIND,
         paldef    = paldef,
-        precision = PRECISION + 2,
+        precision = PAL_PRECISION + 2,
     )
 
 

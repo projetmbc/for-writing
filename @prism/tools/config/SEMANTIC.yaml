@@ -1,0 +1,71 @@
+# ---------------------------- #
+# -- SEMANTIC CONTENT TYPES -- #
+# ---------------------------- #
+
+ADMONITIONS:
+  note: |
+    Neutral additional information or context
+  tip: |
+    Advice, recommendation, or best practice for the user
+  warning: |
+    Point of vigilance to avoid potential errors
+  important: |
+    Crucial information that must not be ignored
+  danger: |
+    Critical alert regarding major risks or data loss
+  question: |
+    Point of reflection or inquiry to engage the reader
+
+MATHEMATICAL_SCIENTIFIC:
+  definition: |
+    Formal and precise statement of a concept
+  theorem: |
+    Mathematically proven statement or proposition
+  lemma: |
+    Intermediate result used to prove a larger theorem
+  corollary: |
+    Direct and immediate consequence of a theorem
+  axiom: |
+    Fundamental truth accepted without demonstration
+  proof: |
+    Logical sequence of steps justifying a result
+  property: |
+    Inherent technical characteristic of an object
+  hypothesis: |
+    Initial supposition serving as a basis for reasoning
+
+PEDAGOGICAL:
+  objective: |
+    Specific goal the learner should master at the end
+  example: |
+    Concrete illustration to demystify a notion
+  exercise: |
+    Direct practice, task, or application for training
+  case_study: |
+    In-depth analysis of a real-world scenario
+  analogy: |
+    Comparison with a simpler concept for better grasp
+  quiz: |
+    Rapid assessment to verify knowledge retention
+  key_takeaway: |
+    Essential summary or point to remember
+  common_pitfall: |
+    Classic mistake that beginners should avoid
+
+TECHNICAL_STRUCTURAL:
+  abstract: |
+    Short synthetic overview of the entire content
+  glossary: |
+    Brief definitions of specialized technical terms
+  code_snippet: |
+    Programming block or configuration file excerpt
+  quote: |
+    Cited words from an external authority or source
+  methodology: |
+    Description of the specific approach followed
+  result: |
+    Direct outcome of an experiment, calculation, or process
+  reference: |
+    Bibliographic source, citation, or external link
+  history: |
+    Temporal evolution or background of a concept

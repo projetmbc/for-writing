@@ -67,7 +67,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-RESRC_DIR  = PROJ_DIR / TAG_XTRA_RESRC / get_stdname(THIS_RESRC)
+RESRC_DIR  = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
@@ -108,13 +108,6 @@ MPL_CODE = re.sub(
 )
 
 
-# ------------------ #
-# -- CONSTANTS #3 -- #
-# ------------------ #
-
-PRECISION = YAML_CONFIG['PRECISION']
-
-
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
@@ -123,7 +116,7 @@ def has_uniformed_steps(steps: list[float]) -> bool:
     diffs = {
         round(
             steps[i + 1] - steps[i],
-            PRECISION
+            PAL_PRECISION
         )
         for i in range(len(steps)-1)
     }
@@ -156,7 +149,7 @@ for match in PATTERN_MPL_COLORMAP_BRACES_LISTED.finditer(MPL_CODE_LISTED):
         palname   = palname,
         pal_kind  = '',
         paldef    = paldef,
-        precision = PRECISION + 2,
+        precision = PAL_PRECISION + 2,
     )
 
 # Special case of twilight_shifted_data.
@@ -173,7 +166,7 @@ pals['TwilightShifted'] = resrc_std_palette(
     palname   = 'twilight_shifted',
     pal_kind  = '',
     paldef    = paldef,
-    precision = PRECISION + 2,
+    precision = PAL_PRECISION + 2,
 )
 
 # "Brace" coded palettes.
@@ -195,7 +188,7 @@ for match in PATTERN_MPL_COLORMAP_BRACES.finditer(MPL_CODE):
         palname   = palname,
         pal_kind  = '',
         paldef    = paldef,
-        precision = PRECISION + 2,
+        precision = PAL_PRECISION + 2,
     )
 
 # Old-style coded palettes.
@@ -271,7 +264,7 @@ for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
         palname   = palname,
         pal_kind  = '',
         paldef    = paldef,
-        precision = PRECISION + 2,
+        precision = PAL_PRECISION + 2,
     )
 
 # -- COMPUTED COLOR MAPS -- #
@@ -291,7 +284,7 @@ for match in PATTERN_MPL_COLORMAP_DATA_NAME.finditer(MPL_CODE):
     paldef = cmap(np.linspace(0, 1, 256))
 
     paldef = [
-        [round(float(c), PRECISION) for c in rgb[:3]]
+        [round(float(c), PAL_PRECISION) for c in rgb[:3]]
         for rgb in paldef
     ]
 
@@ -299,7 +292,7 @@ for match in PATTERN_MPL_COLORMAP_DATA_NAME.finditer(MPL_CODE):
         palname   = palname,
         pal_kind  = '',
         paldef    = paldef,
-        precision = PRECISION + 2,
+        precision = PAL_PRECISION + 2,
     )
 
 
