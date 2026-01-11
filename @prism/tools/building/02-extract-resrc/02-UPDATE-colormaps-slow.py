@@ -99,5 +99,7 @@ clean_src_dirs(
             "sciviz",
             "colorcet",
         ]
+    ] + [
+        "docs/docs/*.md"
     ],
 )
