@@ -46,10 +46,10 @@ with UPDATES_NEEDED_JSON.open(mode = "r") as f:
 # -- SOMETHING TO DO? -- #
 # ---------------------- #
 
-if not UPDATES_NEEDED[THIS_RESRC]:
-    logging.info(f"'{THIS_RESRC}' - No update.")
+# if not UPDATES_NEEDED[THIS_RESRC]:
+#     logging.info(f"'{THIS_RESRC}' - No update.")
 
-    exit(0)
+#     exit(0)
 
 
 # ----------------------- #
@@ -84,6 +84,7 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
+exit()
 logging.info(f"Cleaning '{THIS_RESRC}' folder.")
 
 

@@ -133,3 +133,8 @@ PALS_KINDS = {
 RESRC_KINDS_JSON.write_text(
     json_dumps(PALS_KINDS)
 )
+
+
+
+
+print(PALS_KINDS)
