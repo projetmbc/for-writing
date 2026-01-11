@@ -122,7 +122,7 @@ st.markdown(
 )
 
 final_report = dict()
-changes_detected = 0
+nbchges_made = 0
 
 st.title("🎯 Conflict management")
 
@@ -135,10 +135,10 @@ for name, sources in palgrps.items():
 
         for src, colors in sources.items():
             uid = build_name_n_srcname(name, src)
-            n_colors = len(colors)
+            nbcols = len(colors)
 
             st.markdown(
-                f"📂 **Source : {src}** — `{n_colors}` colors"
+                f"📂 **Source : {src}** — `{nbcols}` colors"
             )
 
             st.markdown(
@@ -150,26 +150,26 @@ for name, sources in palgrps.items():
                 unsafe_allow_html = True
             )
 
-            c2, c3, c4 = st.columns([1, 2, 2])
+            cb_ignore, sel_similar, txt_naming = st.columns([1, 2, 2])
 
-            is_ign = c2.checkbox(
+            is_ign = cb_ignore.checkbox(
                 "Ignore",
                 key = f"i_{uid}"
             )
 
-            possibilites = [GUI_TAG_NONE] + [
+            possibilities = [GUI_TAG_NONE] + [
                 p
                 for p in projets_valides
                 if p != src
             ]
 
-            ref_project = c3.selectbox(
-                "Ref.",
-                possibilites,
+            projref = sel_similar.selectbox(
+                "Similar to...",
+                possibilities,
                 key = f"ref_{uid}"
             )
 
-            alias = c4.text_input(
+            alias = txt_naming.text_input(
                 "New name",
                 key = f"al_{uid}"
             )
@@ -178,18 +178,18 @@ for name, sources in palgrps.items():
             if (
                 is_ign
                 or
-                ref_project != GUI_TAG_NONE
+                projref != GUI_TAG_NONE
                 or
                 alias.strip() != ""
             ):
-                changes_detected += 1
+                nbchges_made += 1
 
             if uid not in final_report:
                 final_report[uid] = {
                     TAG_IS_IGNORED: is_ign,
                     TAG_REF: (
-                        ref_project
-                        if ref_project != GUI_TAG_NONE else
+                        projref
+                        if projref != GUI_TAG_NONE else
                         ''
                     ),
                     TAG_ALIAS: (
@@ -197,7 +197,7 @@ for name, sources in palgrps.items():
                         if alias else
                         ''
                     ),
-                    # TAG_SIZE: n_colors
+                    # TAG_SIZE: nbcols
                 }
 
     st.divider()
@@ -206,9 +206,9 @@ for name, sources in palgrps.items():
 title_save = "💾 Save audit"
 
 with st.sidebar:
-    if changes_detected > 0:
+    if nbchges_made > 0:
         st.info(
-            f"🔄 Modification #{st.session_state.save_count + 1} ({changes_detected} modifs)"
+            f"🔄 Modification #{st.session_state.save_count + 1} ({nbchges_made} modifs)"
         )
 
         if st.button(
@@ -220,7 +220,6 @@ with st.sidebar:
             st.session_state.save_count += 1
 
             for k in list(st.session_state.keys()):
-
                 if k != "save_count":
                     del st.session_state[k]
 

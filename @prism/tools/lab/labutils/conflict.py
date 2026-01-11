@@ -40,8 +40,8 @@ REPORT_DIR = AUDIT_DIR.parent / "REPORT"
 
 VISUAL_SIMILAR_YAML = AUDIT_DIR / "VISUAL-SIMILAR.yaml"
 VISUAL_EQUAL_YAML   = AUDIT_DIR / "VISUAL-EQUAL.yaml"
-IGNORED_YAML        = AUDIT_DIR / "IGNORED.yaml"
-RENAMED_YAML        = AUDIT_DIR / "RENAMED.yaml"
+IGNORED_YAML        = AUDIT_DIR / "ignored.yaml"
+RENAMED_YAML        = AUDIT_DIR / "renamed.yaml"
 
 NAME_CONFLICT_JSON = REPORT_DIR / "AUDIT-NAME-CONFLICT.json"
 
@@ -71,21 +71,6 @@ def save_yaml(path, object):
 
 
 
-
-# ------------------ #
-# -- EXTRACT DATA -- #
-# ------------------ #
-
-IGNORED        = load_yaml_safely(IGNORED_YAML,dict)
-RENAMED        = load_yaml_safely(RENAMED_YAML,dict)
-VISUAL_EQUAL   = load_yaml_safely(VISUAL_EQUAL_YAML,dict)
-VISUAL_SIMILAR = load_yaml_safely(VISUAL_SIMILAR_YAML,list)
-
-
-if not TAG_SUFFIXES in RENAMED:
-    RENAMED[TAG_SUFFIXES] = dict()
-
-
 # -------------------- #
 # -- PALS FUNCTIONS -- #
 # -------------------- #
@@ -101,7 +86,22 @@ def build_name_n_srcname(
     return '::'.join([name, srcname])
 
 
+_nb_chges_saved = 0
+
 def update_data(report  : dict) -> None:
+    global _nb_chges_saved
+
+    _nb_chges_saved += 1
+
+    ignored        = load_yaml_safely(IGNORED_YAML,dict)
+    renamed        = load_yaml_safely(RENAMED_YAML,dict)
+    visual_equal   = load_yaml_safely(VISUAL_EQUAL_YAML,dict)
+    VISUAL_SIMILAR = load_yaml_safely(VISUAL_SIMILAR_YAML,list)
+
+    if not TAG_SUFFIXES in renamed:
+        renamed[TAG_SUFFIXES] = dict()
+
+
     for nsn, infos in report.items():
         name, src = extract_name_n_srcname(nsn)
 
@@ -109,34 +109,34 @@ def update_data(report  : dict) -> None:
 
 # To ignore.
         if infos[TAG_IS_IGNORED]:
-# Ignored because of a visual "equality".
+# ignored because of a visual "equality".
             if infos[TAG_REF]:
-                visual_equals = VISUAL_EQUAL.get(name, dict())
+                visual_equals = visual_equal.get(name, dict())
                 visual_equals[src] = infos[TAG_REF]
 
-                VISUAL_EQUAL[name] = visual_equals
+                visual_equal[name] = visual_equals
 
-# Ignored with or without a visual "equality".
-            names = IGNORED.get(src, [])
+# ignored with or without a visual "equality".
+            names = ignored.get(src, [])
             names.append(name)
             names = list(set(names))
             names.sort()
 
-            IGNORED[src] = names
+            ignored[src] = names
 
             continue
 
-# Renamed.
+# renamed.
         if infos[TAG_ALIAS]:
-            if not src in RENAMED[TAG_SUFFIXES]:
+            if not src in renamed[TAG_SUFFIXES]:
                 suffix = input(f"Which suffix for '{src}'?\n")
 
-                RENAMED[TAG_SUFFIXES][src] = suffix
+                renamed[TAG_SUFFIXES][src] = suffix
 
-            renames = RENAMED.get(src, dict())
+            renames = renamed.get(src, dict())
             renames[name] = infos[TAG_ALIAS]
 
-            RENAMED[src] = renames
+            renamed[src] = renames
 
 # Similar to another source.
         if infos[TAG_REF]:
@@ -178,17 +178,17 @@ def update_data(report  : dict) -> None:
 
 # Update human readable files.
     for p, o in [
-        (IGNORED_YAML, IGNORED),
-        (VISUAL_EQUAL_YAML, VISUAL_EQUAL),
+        (IGNORED_YAML, ignored),
+        (VISUAL_EQUAL_YAML, visual_equal),
         (VISUAL_SIMILAR_YAML, _visual_similar),
     ]:
         save_yaml(p, o)
 
 
-    suffixes  = RENAMED[TAG_SUFFIXES]
+    suffixes  = renamed[TAG_SUFFIXES]
     _suffixes = {TAG_SUFFIXES: suffixes}
 
-    del RENAMED[TAG_SUFFIXES]
+    del renamed[TAG_SUFFIXES]
 
     suffix_code = yaml_dump(_suffixes).strip()
 
@@ -197,7 +197,7 @@ def update_data(report  : dict) -> None:
 # '*' is an alias for the suffix.
     """.strip()
 
-    names_code  = yaml_dump(RENAMED).strip()
+    names_code  = yaml_dump(renamed).strip()
 
     full_code = f"""
 {suffix_code}
@@ -208,6 +208,8 @@ def update_data(report  : dict) -> None:
     """.strip() + '\n'
 
     RENAMED_YAML.write_text(full_code)
+
+    print(f"  > Update #{_nb_chges_saved}.")
 
 
 
