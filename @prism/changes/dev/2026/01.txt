@@ -2,6 +2,21 @@
 
 
 ==
+11  (2.0.0-beta.7)   ???
+==
+
+integration de kind donne dans la doc de colormpas, meme si ke spalettes de ce projet serint intégrés plus tard
+
++
+
+plus de ind à la main lors de l'extraction des resources, on passe via des 05-KINDS-<nom projet>.py
+
+
+
+// ---------- //
+
+
+==
 09  (2.0.0-beta.6)
 ==
 
