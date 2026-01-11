@@ -1,35 +1,5 @@
 #!/usr/bin/env python3
 
-import streamlit as st
-import yaml
-import os
-import signal
-
-# --- DATA ---
-FAKE_DATA = {
-    'COLORBREWER':{
-        'Accent': [[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8],],
-    'Set3': [[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],],
-
-    },
-    'TABLEAU':{
-    'Gray': [[0.37, 0.38, 0.41]] * 56 + [[0.81, 0.81, 0.81]]},
-    'MATPLOTLIB': {
-    'Viridis': [[0.26, 0.0, 0.32], [0.12, 0.72, 0.54], [0.99, 0.9, 0.14]]}
-}
-
-
-
-
-
-
-
-
-
-
-
-#!/usr/bin/env python3
-
 from pathlib import Path
 import sys
 import os
@@ -43,36 +13,6 @@ LAB_DIR  = THIS_DIR.parent
 sys.path.append(str(LAB_DIR))
 
 from labutils import * # --------------------------- #
-
-# ------------------- #
-# -- CSS FUNCTIONS -- #
-# ------------------- #
-
-def normalize_rgb(rgb):
-    return [int(c*255) for c in rgb]
-
-def generate_gradient_css(colors):
-    rgb_points = [f"rgb({r},{g},{b})" for r, g, b in [normalize_rgb(c) for c in colors]]
-    return f"linear-gradient(to right, {', '.join(rgb_points)})"
-
-def generate_discrete_grid(colors, border_color):
-    """Grille de carrés : Taille fixe 45px (identique hauteur spectre)"""
-    html = '''
-    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;
-                max-width: 500px; align-items: flex-start;">'''
-    for c in colors:
-        r, g, b = normalize_rgb(c)
-        html += f'''
-            <div style="
-                width: 45px;
-                height: 45px;
-                flex: 0 0 45px;
-                background: rgb({r},{g},{b});
-                border-radius: 4px;
-                border: 1px solid {border_color};">
-            </div>'''
-    html += '</div>'
-    return html
 
 # --------- #
 # -- GUI -- #

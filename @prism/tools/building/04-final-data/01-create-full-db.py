@@ -162,6 +162,9 @@ with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
     for resrc_json in REPORT_DIR.glob("*.json"):
         projname = resrc_json.stem
 
+        if projname.startswith('KIND-'):
+            continue
+
         data = json_load(resrc_json.open())
 
         for name, infos in data.items():

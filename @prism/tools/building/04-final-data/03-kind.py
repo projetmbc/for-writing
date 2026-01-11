@@ -182,9 +182,6 @@ MISSING_KIND_JSON.write_text(
 # ------------------------- #
 
 if MISSING_KINDS:
-    for k in MISSING_KINDS:
-        print(k)
-
     nb = len(MISSING_KINDS)
 
     plurial = '' if nb == 1 else 's'

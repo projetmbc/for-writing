@@ -23,30 +23,6 @@ import signal
 import streamlit as st
 
 
-# ------------------- #
-# -- CSS FUNCTIONS -- #
-# ------------------- #
-
-def normalize_rgb(rgb):
-    return map(
-        lambda c: int(c*255),
-        rgb
-    )
-
-
-def generate_gradient_css(colors):
-    rgb_points = []
-
-    for c in colors:
-        r, g, b = normalize_rgb(c)
-        rgb_points.append(f"rgb({r},{g},{b})")
-
-    css_points = ', '.join(rgb_points)
-    css_code   = f"linear-gradient(to right, {css_points})"
-
-    return css_code
-
-
 # --------- #
 # -- GUI -- #
 # --------- #
