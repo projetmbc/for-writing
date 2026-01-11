@@ -3,12 +3,6 @@
 PRECISION: 4
 
 
-# The choice of `30` makes it possible to consider, for example,
-# semantic colors associated with colors (for example, hovered
-# link, visited link, inactive link).s
-AUTO_QUAL_CATEGO_SIZE: 30
-
-
 # We associate each category with allowed alias.
 CATEGORY:
   colorblind:

@@ -2,6 +2,12 @@
 # -- SEMANTIC CONTENT TYPES -- #
 # ---------------------------- #
 
+# The choice of `30` makes it possible to consider, for example,
+# semantic colors associated with colors (for example, hovered
+# link, visited link, inactive link).
+AUTO_QUAL_CATEGO_SIZE : 40
+
+
 ADMONITIONS:
   note: |
     Neutral additional information or context
@@ -16,7 +22,7 @@ ADMONITIONS:
   question: |
     Point of reflection or inquiry to engage the reader
 
-MATHEMATICAL_SCIENTIFIC:
+SCIENCE:
   definition: |
     Formal and precise statement of a concept
   theorem: |
@@ -34,7 +40,7 @@ MATHEMATICAL_SCIENTIFIC:
   hypothesis: |
     Initial supposition serving as a basis for reasoning
 
-PEDAGOGICAL:
+PEDAGOGY:
   objective: |
     Specific goal the learner should master at the end
   example: |
@@ -52,7 +58,7 @@ PEDAGOGICAL:
   common_pitfall: |
     Classic mistake that beginners should avoid
 
-TECHNICAL_STRUCTURAL:
+CONTENT:
   abstract: |
     Short synthetic overview of the entire content
   glossary: |

@@ -104,6 +104,10 @@ def build_name_n_srcname(
     return TAG_NSN_SEP.join([name, srcname])
 
 
+# --------------------- #
+# -- 'CONFLICT' LOAD -- #
+# --------------------- #
+
 # ----------------------- #
 # -- 'CONFLICT' UPDATE -- #
 # ----------------------- #

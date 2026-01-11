@@ -6,11 +6,16 @@ import os
 import signal
 
 # --- DATA ---
-data = {
-    'Accent::COLORBREWER': [[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8],],
-    'Set3::COLORBREWER': [[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],],
-    'Gray::TABLEAU': [[0.37, 0.38, 0.41]] * 56 + [[0.81, 0.81, 0.81]],
-    'Viridis::MATPLOTLIB': [[0.26, 0.0, 0.32], [0.12, 0.72, 0.54], [0.99, 0.9, 0.14]]
+FAKE_DATA = {
+    'COLORBREWER':{
+        'Accent': [[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8],],
+    'Set3': [[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],[0.49, 0.78, 0.31], [0.99, 0.41, 0.23], [1.0, 1.0, 0.6],[0.55, 0.71, 0.8], [1.0, 1.0, 0.7], [0.75, 0.5, 0.75],],
+
+    },
+    'TABLEAU':{
+    'Gray': [[0.37, 0.38, 0.41]] * 56 + [[0.81, 0.81, 0.81]]},
+    'MATPLOTLIB': {
+    'Viridis': [[0.26, 0.0, 0.32], [0.12, 0.72, 0.54], [0.99, 0.9, 0.14]]}
 }
 
 
@@ -23,120 +28,162 @@ data = {
 
 
 
-KIND_OPTIONS = ["linear", "diverging", "sequential", "qualitative", "cyclic", "scientific"]
+#!/usr/bin/env python3
 
-# --- FONCTIONS DE RENDU ---
-def to_rgb(c):
-    return f"rgb({int(c[0]*255)},{int(c[1]*255)},{int(c[2]*255)})"
+from pathlib import Path
+import sys
+import os
+import signal
+import streamlit as st
+
+# ----------------------------- #
+# -- IMPORT LABUTILS - START -- #
+THIS_DIR = Path(__file__).parent
+LAB_DIR  = THIS_DIR.parent
+sys.path.append(str(LAB_DIR))
+
+from labutils import * # --------------------------- #
+
+# ------------------- #
+# -- CSS FUNCTIONS -- #
+# ------------------- #
+
+def normalize_rgb(rgb):
+    return [int(c*255) for c in rgb]
 
 def generate_gradient_css(colors):
-    rgb_pts = [to_rgb(c) for c in colors]
-    return f"linear-gradient(to right, {', '.join(rgb_pts)})"
+    rgb_points = [f"rgb({r},{g},{b})" for r, g, b in [normalize_rgb(c) for c in colors]]
+    return f"linear-gradient(to right, {', '.join(rgb_points)})"
 
 def generate_discrete_grid(colors, border_color):
-    """Génère une grille de carrés (10 max par ligne)."""
-    # Flex-wrap permet de passer à la ligne automatiquement
-    # width: calc(10% - gap) assure exactement 10 carrés par ligne
-    html = '<div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px;">'
+    """Grille de carrés : Taille fixe 45px (identique hauteur spectre)"""
+    html = '''
+    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;
+                max-width: 500px; align-items: flex-start;">'''
     for c in colors:
+        r, g, b = normalize_rgb(c)
         html += f'''
             <div style="
-                width: calc(10% - 4px);
-                aspect-ratio: 1 / 1;
-                background: {to_rgb(c)};
-                border-radius: 3px;
-                border: 1px solid {border_color};"
-                title="{to_rgb(c)}">
+                width: 45px;
+                height: 45px;
+                flex: 0 0 45px;
+                background: rgb({r},{g},{b});
+                border-radius: 4px;
+                border: 1px solid {border_color};">
             </div>'''
     html += '</div>'
     return html
 
-# --- CONFIG ---
-st.set_page_config(page_title="Audit Expert", layout="wide")
+# --------- #
+# -- GUI -- #
+# --------- #
+
+GUI_TAG_DARK  = "Sombre"
+GUI_TAG_LIGHT = "Clair"
+KIND_OPTIONS  = ["linear", "diverging", "sequential", "qualitative", "cyclic", "scientific"]
+
+@st.cache_data
+def load_all_data():
+    return FAKE_DATA
+    if not NAME_CONFLICT_JSON.exists(): return {}
+    with NAME_CONFLICT_JSON.open("r") as f: conflicts = json_load(f)
+    palgrps, json_cache = {}, {}
+    for name, sources in conflicts.items():
+        paldefs = {}
+        for src in sources:
+            if src not in json_cache:
+                p = REPORT_DIR / f"{src}.json"
+                if p.exists(): json_cache[src] = json_load(p.open())
+            if src in json_cache and name in json_cache[src]:
+                paldefs[src] = json_cache[src][name][TAG_RGB_COLS]
+        if paldefs: palgrps[name] = paldefs
+    return palgrps
+
+st.set_page_config(page_title="Audit @prism - Types", layout="wide")
 
 if "save_count" not in st.session_state:
     st.session_state.save_count = 0
 
-# --- CALCUL DES MODIFICATIONS ---
-final_report = {}
-changes_detected = 0
-for k in data.keys():
-    val = st.session_state.get(f"m_{k}", [])
-    final_report[k] = val
-    if val:
-        changes_detected += 1
+palgrps = load_all_data()
 
 # --- SIDEBAR ---
 with st.sidebar:
-    st.header("⚡ Actions Globales")
+    st.header("⚡ Actions")
     if st.button("🪄 Auto-Qual (≤ 20)", use_container_width=True):
-        for full_key, colors in data.items():
-            if len(colors) <= 20:
-                curr = st.session_state.get(f"m_{full_key}", [])
-                if "qualitative" not in curr:
-                    curr.append("qualitative")
-                    st.session_state[f"m_{full_key}"] = curr
+        for name, sources in palgrps.items():
+            for src, colors in sources.items():
+                if len(colors) <= 20:
+                    uid = build_name_n_srcname(name, src)
+                    st.session_state[f"k_{uid}"] = ["qualitative"]
         st.rerun()
 
     st.divider()
-    st.header("⚙️ Paramètres")
-    mode = st.radio("Thème", ["Sombre", "Clair"])
+    st.header("⚙️ Style")
+    mode = st.radio("Thème", [GUI_TAG_DARK, GUI_TAG_LIGHT], label_visibility="collapsed")
 
     st.divider()
-    with st.expander("🛑 Danger Zone"):
-        if st.button("Éteindre le Serveur", use_container_width=True, type="secondary"):
+    with st.expander("🛑 Stop"):
+        if st.button("Close GUI", use_container_width=True):
             os.kill(os.getpid(), signal.SIGINT)
 
-# --- STYLE ---
-bg, txt, border = ("#1e1e1e", "#eee", "#444") if mode == "Sombre" else ("#fff", "#000", "#ccc")
-st.markdown(f"<style>.stApp {{ background-color: {bg}; color: {txt}; }}</style>", unsafe_allow_html=True)
+# --- THEME ---
+bg, txt, border = (("#1e1e1e", "#eee", "#444") if mode == GUI_TAG_DARK else ("#fff", "#000", "#ccc"))
+st.markdown(f"<style>.stApp {{ background-color: {bg}; color: {txt}; }} label, p {{ color: {txt} !important; }}</style>", unsafe_allow_html=True)
 
-# --- MAIN CONTENT ---
-st.title("🏷️ Classification Multi-Kind")
+# --- CONTENT ---
+st.title("🎯 Classification des Palettes")
 
-for full_key in sorted(data.keys()):
-    colors = data[full_key]
-    name, source = full_key.split('::')
-    n_colors = len(colors)
+final_report = {}
+nbchges_made = 0
 
-    col_info, col_kind = st.columns([3, 1])
-    with col_info:
-        st.markdown(f"**{name}** — `{n_colors}` pts <small>({source})</small>", unsafe_allow_html=True)
+for name, sources in palgrps.items():
+    with st.expander(f"Palette : {name}", expanded=True):
+        for src, colors in sources.items():
+            uid = build_name_n_srcname(name, src)
+            nbcols = len(colors)
 
-        # 1. Grille discrète si taille <= 30 (10 par ligne)
-        if n_colors <= 30:
-            st.markdown(generate_discrete_grid(colors, border), unsafe_allow_html=True)
+            st.markdown(f"📂 **Source : {src}** — `{nbcols}` couleurs")
 
-        # 2. Spectre continu (plus fin, servant de référence)
-        st.markdown(f'''
-            <div style="background:{generate_gradient_css(colors)};
-            height:8px; border-radius:4px; border:1px solid {border}; margin-bottom:25px; opacity: 0.6;">
-            </div>''', unsafe_allow_html=True)
+            # --- VISUALISATION ---
+            if nbcols <= 30:
+                st.markdown(generate_discrete_grid(colors, border), unsafe_allow_html=True)
 
-    with col_kind:
-        st.multiselect("Kind", options=KIND_OPTIONS, key=f"m_{full_key}", label_visibility="collapsed")
+            st.markdown(
+                f'<div style="background:{generate_gradient_css(colors)}; '
+                f'height:45px; border-radius:6px; border:1px solid {border}; '
+                f'margin-bottom:15px; width: 100%;"></div>',
+                unsafe_allow_html=True
+            )
+
+            # --- SELECTION DU TYPE ---
+            sel_kinds = st.multiselect(
+                "Choisir le(s) type(s) :",
+                options=KIND_OPTIONS,
+                key=f"k_{uid}",
+                placeholder="Sélectionner..."
+            )
+
+            if sel_kinds:
+                nbchges_made += 1
+                final_report[uid] = {"kinds": sel_kinds}
 
 st.divider()
 
-# --- ZONE DE VALIDATION ---
+# --- VALIDATION ---
 col_btn, col_stat = st.columns([1.5, 4])
 
 with col_btn:
-    if st.button("✅ Valider l'Audit", type="primary", use_container_width=True, disabled=(changes_detected == 0)):
-        csv_export = {k: ",".join(v) for k, v in final_report.items() if v}
-        st.session_state.last_result = yaml.dump(csv_export, sort_keys=False, allow_unicode=True)
+    if st.button("💾 Enregistrer l'Audit", type="primary", use_container_width=True, disabled=(nbchges_made == 0)):
+        # On passe le rapport simplifié à update_data
+        update_data(final_report)
         st.session_state.save_count += 1
+        # Reset des widgets
         for k in list(st.session_state.keys()):
-            if k.startswith("m_"): del st.session_state[k]
+            if k.startswith("k_"): del st.session_state[k]
         st.rerun()
 
 with col_stat:
-    if changes_detected > 0:
-        st.info(f"🔄 Modification n°{st.session_state.save_count + 1} : {changes_detected} palette(s) qualifiée(s)")
+    if nbchges_made > 0:
+        st.info(f"🔄 {nbchges_made} palette(s) qualifiée(s) pour la modification #{st.session_state.save_count + 1}")
     else:
-        st.write(f"✨ Prêt (Dernière validation : n°{st.session_state.save_count})")
-
-if "last_result" in st.session_state:
-    st.markdown("---")
-    st.subheader("📄 Dernier export généré")
-    st.code(st.session_state.last_result, language='yaml')
+        st.write(f"✨ Prêt (Dernière sauvegarde : #{st.session_state.save_count})")
