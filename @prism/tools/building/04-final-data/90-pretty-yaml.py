@@ -28,11 +28,13 @@ from string import ascii_uppercase
 THIS_DIR = Path(__file__).parent
 AUDIT_DIR  = THIS_DIR.parent / TAG_AUDIT
 
-VISUAL_SIMILAR_YAML = AUDIT_DIR / "VISUAL-SIMILAR.yaml"
-VISUAL_EQUAL_YAML   = AUDIT_DIR / "VISUAL-EQUAL.yaml"
-IGNORED_YAML        = AUDIT_DIR / "IGNORED.yaml"
-RENAMED_YAML        = AUDIT_DIR / "RENAMED.yaml"
-
+ALL_YAMLS = [
+    AUDIT_DIR / "HUMAN-KIND.yaml",
+    AUDIT_DIR / "IGNORED.yaml",
+    AUDIT_DIR / "RENAMED.yaml",
+    VISUAL_SIMILAR_YAML:= AUDIT_DIR / "VISUAL-SIMILAR.yaml",
+    AUDIT_DIR / "VISUAL-EQUAL.yaml",
+]
 
 class IndentDumper(yaml.SafeDumper):
     def increase_indent(self, flow=False, indentless=False):
@@ -162,10 +164,5 @@ def humanize_yaml(
 
 
 # Update of YAML files - Human friendly version.
-for p in [
-    IGNORED_YAML,
-    VISUAL_EQUAL_YAML,
-    VISUAL_SIMILAR_YAML,
-    RENAMED_YAML,
-]:
+for p in ALL_YAMLS:
     humanize_yaml(p)

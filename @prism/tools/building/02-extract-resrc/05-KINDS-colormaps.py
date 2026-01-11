@@ -21,9 +21,14 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-
+XTRA_PREFIXES = [
+    'cet',
+    'gmt',
+    'mpl',
+]
 
 THIS_RESRC = TAG_COLORMAPS
+
 
 
 PROJ_DIR = THIS_DIR
@@ -63,9 +68,9 @@ def parse_markdown_palettes(text):
         if not lines:
             continue
 
-        project_name = lines[0].strip()
+        projname = lines[0].strip()
 
-        if "Table of contents" in project_name or not project_name:
+        if "Table of contents" in projname or not projname:
             continue
 
         palettes = []
@@ -81,7 +86,7 @@ def parse_markdown_palettes(text):
                         palettes.append(palette_name)
 
         if palettes:
-            projects[project_name] = palettes
+            projects[projname] = palettes
 
     return palkind, projects
 
@@ -103,7 +108,17 @@ for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
 
     for src, names in data.items():
         for n in names:
-            nsn = f"{n}::{src}"
+            n = get_stdname(n)
+            n = n.lower()
+
+            for p in XTRA_PREFIXES:
+                if n.startswith(p):
+                    n = n[len(p):]
+                    break
+
+
+
+            nsn = f"{n.lower()}::{src.lower()}"
 
             _PALS_KINDS[nsn].add(palkind)
 
