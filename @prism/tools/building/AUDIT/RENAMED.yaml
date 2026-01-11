@@ -2,8 +2,8 @@ _SUFFIXES_:
   CARTOCOLORS: CC
   COLORBREWER: CBW
   MATPLOTLIB: MPL
-  PLOTLY: Ply
-  TABLEAU: Tab
+  PLOTLY: PLY
+  TABLEAU: TAB
 
 # '.' asks to add the suffix to the existing name.
 # '*' is an alias for the suffix.
