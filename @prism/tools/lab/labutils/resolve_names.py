@@ -17,8 +17,6 @@ from yaml import (
     dump as yaml_dump
 )
 
-from string import ascii_uppercase
-
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
@@ -87,66 +85,6 @@ def save_yaml(
 
     else:
         path.write_text("")
-
-
-def get_initial_inlist(
-    line: str
-) -> str:
-    while(line[0] == '-'):
-        line = line[1:].strip()
-
-    return line[0]
-
-
-def get_initial_indict(
-    line: str
-) -> str:
-    return line[0]
-
-
-def humanize_yaml(
-    path: Path,
-) -> None:
-# Method to get initial.
-    what = path.stem
-
-    if what == VISUAL_SIMILAR_YAML.stem:
-        get_initial = get_initial_inlist
-
-    else:
-        get_initial = get_initial_indict
-
-# Let's work.
-    hard_lines = path.read_text().split('\n')
-
-    _new_code    = []
-    last_initial = ''
-
-    for line in hard_lines:
-        add_initial = False
-
-        if line.strip():
-            if line[0] != ' ':
-                this_initial = get_initial(line)
-
-                add_initial = (
-                    this_initial != last_initial
-                    and
-                    this_initial in ascii_uppercase
-                )
-
-        if add_initial:
-            _new_code.append(f"\n#  + {this_initial}")
-
-            last_initial = this_initial
-
-        _new_code.append(line)
-
-    new_code = '\n'.join(_new_code)
-    new_code = new_code.replace('\n'*3, '\n'*2)
-    new_code = new_code.strip()
-
-    path.write_text(new_code)
 
 
 # --------------------------- #
@@ -297,15 +235,6 @@ def update_data(report  : dict) -> None:
     RENAMED_YAML.write_text(full_code)
 
     print(f"  > Update #{_nb_chges_saved}.")
-
-# Update of YAML files - Human friendly version.
-    for p in [
-        IGNORED_YAML,
-        VISUAL_EQUAL_YAML,
-        VISUAL_SIMILAR_YAML,
-        RENAMED_YAML,
-    ]:
-        humanize_yaml(p)
 
 
 # ---------------- #

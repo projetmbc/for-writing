@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
-# from rich import print
+from rich import print
 # -- DEBUG - OFF -- #
 
 # ---------------------------- #
@@ -92,11 +92,14 @@ FULL_SQLITE_DB_FILE  = REPORT_DIR / "full-palettes.db"
 FINAL_SQLITE_DB_FILE = AUDIT_DIR / "final-palettes.db"
 
 
-with (RESOURCES_DIR / 'PRIORITY.yaml').open(mode = 'r') as f:
+PRIORITY_YAML = RESOURCES_DIR / 'PRIORITY.yaml'
+
+with PRIORITY_YAML.open(mode = 'r') as f:
     PRIORITY = yaml.safe_load(f)
 
+IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
 
-with (AUDIT_DIR / 'IGNORED.yaml').open(mode = 'r') as f:
+with IGNORED_YAML.open(mode = 'r') as f:
     IGNORED = yaml.safe_load(f)
 
 PALS_IGNORED = set()
@@ -180,7 +183,11 @@ for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
             context   = "Conflicts need NOAI resolution",
             desc      = "Identical palettes but different names",
             exception = Exception,
-            xtra      = f"See:{tab}{tab.join(equal_pals)}"
+            xtra      = (
+                f"See:{tab}{tab.join(equal_pals)}"
+                 "\n"
+                f"Open '{IGNORED_YAML}'."
+            )
         )
 
 # Looking for the "higher" palette.

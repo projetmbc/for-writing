@@ -69,7 +69,7 @@ else:
 # -- CONSTANTS #3 -- #
 # ------------------ #
 
-MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING_KIND.json"
+MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING-KIND.json"
 
 MISSING_KINDS = []
 

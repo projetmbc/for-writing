@@ -5,3 +5,7 @@ CMOCEAN:
 #  + P
 PLOTLY:
 - D3
+
+#  + T
+TABLEAU:
+- Tableau
