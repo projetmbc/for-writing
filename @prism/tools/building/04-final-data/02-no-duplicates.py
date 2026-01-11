@@ -157,6 +157,8 @@ with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
 
 # -- IDENTICAL PALETTES -- #
 
+grps_equal_pals = list()
+
 for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
     equal_pals = set(
         extract_name_n_srcname(nsn)
@@ -171,24 +173,9 @@ for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
 
 # Identical palettes but different names
     if 1 != len(set(n for n, _ in equal_pals)):
-        tab = "\n  + "
+        grps_equal_pals.append(equal_pals)
 
-        equal_pals = [
-            reverse_build_name_n_srcname(*nsn)
-            for nsn in equal_pals
-        ]
-        equal_pals.sort()
-
-        log_raise_error(
-            context   = "Conflicts need NOAI resolution",
-            desc      = "Identical palettes but different names",
-            exception = Exception,
-            xtra      = (
-                f"See:{tab}{tab.join(equal_pals)}"
-                 "\n"
-                f"Open '{IGNORED_YAML}'."
-            )
-        )
+        continue
 
 # Looking for the "higher" palette.
     higher_projs = set()
@@ -228,6 +215,47 @@ for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
             continue
 
         EQUALS[p] = pal_kept
+
+
+# Identical palettes but different names
+if grps_equal_pals:
+    _xtra_what = []
+
+    tab_1 = "  + "
+    tab_2 = "    - "
+
+    for i, equal_pals in enumerate(grps_equal_pals, 1):
+        _xtra_what.append(f"{tab_1}Group #{i}")
+
+        equal_pals = list(equal_pals)
+
+        equal_pals.sort(
+            key     = lambda nsn: int(PRIORITY[nsn[1]]),
+            reverse = True,
+        )
+
+        equal_pals = [
+            (
+                f"Prio[{PRIORITY[nsn[1]]}] "
+                f"{reverse_build_name_n_srcname(*nsn)}"
+            )
+            for nsn in equal_pals
+        ]
+
+        for w in equal_pals:
+            _xtra_what.append(f"{tab_2}{w}")
+
+    xtra_what = '\n'.join(_xtra_what)
+
+    log_raise_error(
+        context   = "Conflicts need NOAI resolution",
+        desc      = "Identical palettes but different names",
+        exception = Exception,
+        xtra      = (
+            f"See:\n{xtra_what}\n"
+            f"Open '{IGNORED_YAML}'."
+        )
+    )
 
 
 # -- MIRROR PALETTES -- #
@@ -329,7 +357,7 @@ if PALS_NAME_CONFLICT:
         context   = "Conflicts need NOAI resolution",
         desc      = "Same name for different and not mirror palettes.",
         exception = ValueError,
-        xtra      = f'Use:\nstreamlit run "{reslover}"'
+        xtra      = f'Use:\n---\nstreamlit run "{reslover}"\n---'
     )
 
 

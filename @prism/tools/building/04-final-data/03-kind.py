@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+exit(0)
 # -- DEBUG - ON -- #
 from rich import print
 # -- DEBUG - OFF -- #
@@ -121,5 +122,6 @@ if MISSING_KINDS:
         context   = "Missing kinds need NOAI resolution",
         desc      = "Palettes need to have at least one kind.",
         exception = ValueError,
-        xtra      = f'Use:\nstreamlit run "{reslover}"'
+        xtra      = (
+            f'Use:\n---\nstreamlit run "{reslover}"\n---')
     )

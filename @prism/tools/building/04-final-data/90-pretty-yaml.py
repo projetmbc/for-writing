@@ -34,6 +34,10 @@ IGNORED_YAML        = AUDIT_DIR / "IGNORED.yaml"
 RENAMED_YAML        = AUDIT_DIR / "RENAMED.yaml"
 
 
+class IndentDumper(yaml.SafeDumper):
+    def increase_indent(self, flow=False, indentless=False):
+        return super(IndentDumper, self).increase_indent(flow, False)
+
 
 def get_initial_inlist(
     line: str
@@ -58,25 +62,12 @@ def get_comment_initial(
 
     return line[5:].strip()
 
-def humanize_yaml(
-    path: Path,
-) -> None:
-# Method to get initial.
-    what = path.stem
 
-    if what == VISUAL_SIMILAR_YAML.stem:
-        get_initial = get_initial_inlist
-
-    else:
-        get_initial = get_initial_indict
-
-# Let's work.
-    hard_lines = path.read_text().split('\n')
-
+def get_initialized_code(code, get_initial):
     _new_code    = []
     last_initial = ''
 
-    for line in hard_lines:
+    for line in code.split('\n'):
         add_initial = False
 
         if line.strip():
@@ -108,6 +99,65 @@ def humanize_yaml(
     new_code = new_code.replace('\n'*3, '\n'*2)
     new_code = new_code.strip()
 
+    return new_code
+
+
+def humanize_yaml(
+    path: Path,
+) -> None:
+# Method to get initial.
+    what = path.stem
+
+    if what == VISUAL_SIMILAR_YAML.stem:
+        get_initial = get_initial_inlist
+
+    else:
+        get_initial = get_initial_indict
+
+# Data.
+    _new_code = []
+
+    with path.open(mode = "r") as f:
+        data = safe_load(f)
+
+    if TAG_SUFFIXES in data:
+        header = yaml.dump(
+            {TAG_SUFFIXES: data[TAG_SUFFIXES]},
+            sort_keys = False,
+        )
+
+        header = header.strip()
+
+        del data[TAG_SUFFIXES]
+
+    else:
+        header = ''
+
+    mini_code = get_initialized_code(
+        yaml.dump(
+            data,
+            Dumper=IndentDumper, indent=2,
+            sort_keys = True
+        ),
+        get_initial
+    )
+
+    if header:
+        _new_code += [
+            header,
+            '',
+            f"""
+# '.' asks to add the suffix to the existing name.
+# '*' is an alias for the suffix.
+            """.strip(),
+            ''
+        ]
+
+    _new_code.append(mini_code)
+
+    new_code = '\n'.join(_new_code)
+
+# Update file.
     path.write_text(new_code)
 
 

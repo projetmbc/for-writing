@@ -25,6 +25,9 @@ PLOTLY: 10
 #  + S
 SCIENTIFIC-COLOUR-MAPS: 10
 
+#  + T
+TABLEAU: 10
+
 
 # -- AGGREGATING SOURCES (Moderate priority) -- #
 

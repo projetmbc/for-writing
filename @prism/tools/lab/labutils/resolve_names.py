@@ -204,41 +204,14 @@ def update_data(report  : dict) -> None:
         sorted(list(g)) for g in groupes
     ])
 
-
 # Update of YAML files - Hard version.
     for p, o in [
         (IGNORED_YAML, ignored),
         (VISUAL_EQUAL_YAML, visual_equal),
         (VISUAL_SIMILAR_YAML, _visual_similar),
+        (RENAMED_YAML, renamed),
     ]:
         save_yaml(p, o)
-
-
-    suffixes  = renamed[TAG_SUFFIXES]
-    _suffixes = {TAG_SUFFIXES: suffixes}
-
-    del renamed[TAG_SUFFIXES]
-
-    suffix_code = yaml_dump(_suffixes).strip()
-
-    comment = f"""
-# '.' asks to add the suffix to the existing name.
-# '*' is an alias for the suffix.
-    """.strip()
-
-    names_code  = yaml_dump(renamed).strip()
-
-    full_code = f"""
-{suffix_code}
-
-{comment}
-
-{names_code}
-    """.strip() + '\n'
-
-    RENAMED_YAML.write_text(full_code)
-
-    print(f"  > Update #{_nb_chges_saved}.")
 
 
 # ---------------- #
