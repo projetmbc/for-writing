@@ -35,6 +35,11 @@ PATTERN_KIND = re.compile(
     r"_PALETTE_TYPE\s*=\s*['\"]([^'\"]+)['\"]"
 )
 
+PATTERN_KIND_UNSTD = re.compile(
+    r"^_?palette_type\s*=\s*(['\"])(.*?)\1",
+    re.MULTILINE
+)
+
 PATTERN_NAMES_TO_DATA = re.compile(
     r'_NAMES_TO_DATA\s*=\s*\{([^}]+)\}'
 )
@@ -65,9 +70,19 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 # -- SPECIAL PALETTABLE SPECS -- #
 
+def extract_kind_unstd(code: str) -> str:
+    match = PATTERN_KIND_UNSTD.search(code)
+
+    palkind = match.group(2) if match else ''
+
+    return palkind
+
+
 def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
-    src_code = folder / f"{folder.name}.py"
-    src_code = src_code.read_text()
+    _src_code = folder / f"{folder.name}.py"
+    src_code = _src_code.read_text()
+
+    palkind = extract_kind_unstd(src_code)
 
     for d in [
         'palette_rgb',
@@ -91,7 +106,7 @@ def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
 
         pals[stdname] = resrc_std_palette(
             palname   = palname,
-            pal_kind  = TAG_SEQUENTIAL,
+            palkind   = palkind,
             paldef    = pal255_to_pal01(cols),
             precision = PAL_PRECISION + 2,
         )
@@ -100,8 +115,10 @@ def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
 
 
 def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
-    src_code = folder / f"{folder.name}.py"
-    src_code = src_code.read_text()
+    _src_code = folder / f"{folder.name}.py"
+    src_code = _src_code.read_text()
+
+    palkind = extract_kind_unstd(src_code)
 
     _ , _ , src_code = src_code.partition('palette_names =')
 
@@ -132,7 +149,7 @@ def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
 
             pals[stdname] = resrc_std_palette(
                 palname   = palname,
-                pal_kind  = TAG_QUALITATIVE,
+                palkind   = palkind,
                 paldef    = pal255_to_pal01(cols),
                 precision = PAL_PRECISION + 2,
             )
@@ -141,8 +158,10 @@ def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
 
 
 def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
-    src_code = folder / f"{folder.name}.py"
-    src_code = src_code.read_text()
+    _src_code = folder / f"{folder.name}.py"
+    src_code = _src_code.read_text()
+
+    palkind = extract_kind_unstd(src_code)
 
     _ , _ , src_code = src_code.partition('_palettes =')
 
@@ -179,7 +198,7 @@ def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
 
         pals[stdname] = resrc_std_palette(
             palname   = palname,
-            pal_kind  = TAG_QUALITATIVE,
+            palkind   = palkind,
             paldef    = pal255_to_pal01(cols),
             precision = PAL_PRECISION + 2,
         )
@@ -261,7 +280,7 @@ def extract_std(
     pals = {
         get_stdname(kind_and_names[n][1]): resrc_std_palette(
             palname   = kind_and_names[n][1],
-            pal_kind  = kind_and_names[n][0],
+            palkind  = kind_and_names[n][0],
             paldef    = p,
             precision = PAL_PRECISION + 2,
         )

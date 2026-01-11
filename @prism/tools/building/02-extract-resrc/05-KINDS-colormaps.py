@@ -36,16 +36,26 @@ THIS_RESRC_DIR = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
 
 
 
+REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
+
+
+_RESRC_KINDS_JSON = THIS_RESRC.replace(' ', '-').upper()
+RESRC_KINDS_JSON  = REPORT_DIR / f"KIND-{_RESRC_KINDS_JSON}.json"
+
+
 
 def parse_markdown_palettes(text):
-    # 1. Extraire le type de schéma (Titre #)
     type_match = re.search(r'^#\s+(.+)', text, re.MULTILINE)
-    schema_type = type_match.group(1).replace(' Schemes', '').strip() if type_match else "Unknown"
 
-    results = {schema_type: {}}
+    if type_match:
+        palkind = type_match.group(1).replace(' Schemes', '').strip()
 
-    # 2. Découper par section de projet (Titre ##)
-    # On cherche tout ce qui commence par ## jusqu'au prochain ## ou la fin
+    else:
+        palkind = ''
+
+    projects = {}
+
+
     sections = re.split(r'\n##\s+', text)
 
     for section in sections:
@@ -55,29 +65,56 @@ def parse_markdown_palettes(text):
 
         project_name = lines[0].strip()
 
-        # Ignorer la section "Table of contents"
         if "Table of contents" in project_name or not project_name:
             continue
 
-        # 3. Extraire les noms des palettes dans les tableaux
-        # On cherche les lignes qui commencent par | et qui ne sont pas des en-têtes
         palettes = []
+
         for line in lines:
             if line.startswith('|') and '---' not in line and 'Name' not in line:
-                # On prend le premier élément entre les pipes
                 parts = line.split('|')
+
                 if len(parts) > 1:
                     palette_name = parts[1].strip()
+
                     if palette_name:
                         palettes.append(palette_name)
 
         if palettes:
-            results[schema_type][project_name] = palettes
+            projects[project_name] = palettes
 
-    return results
+    return palkind, projects
 
 # --- Exécution et affichage ---
 
-for mdpath in THIS_RESRC_DIR.glob('docs/*.md'):
-    print()
-    print(parse_markdown_palettes(mdpath.read_text()))
+_PALS_KINDS = defaultdict(set)
+
+for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
+    palkind, data = parse_markdown_palettes(mdpath.read_text())
+
+    palkind = palkind.lower()
+
+    if not palkind in KIND_ALIAS:
+        print(f"{palkind=}")
+
+        TODO
+
+    palkind = KIND_ALIAS[palkind]
+
+    for src, names in data.items():
+        for n in names:
+            nsn = f"{n}::{src}"
+
+            _PALS_KINDS[nsn].add(palkind)
+
+
+# We want a deterministic output.
+PALS_KINDS = {
+    nsn: ', '.join(sorted(_PALS_KINDS[nsn]))
+    for nsn in sorted(_PALS_KINDS)
+}
+
+
+RESRC_KINDS_JSON.write_text(
+    json_dumps(PALS_KINDS)
+)

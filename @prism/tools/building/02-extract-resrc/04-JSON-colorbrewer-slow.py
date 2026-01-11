@@ -82,11 +82,11 @@ pals = dict()
 for palname, pal_data in ORIGINAL_RESRC_PALS.items():
     stdname = get_stdname(palname)
 
-    pal_kind, paldef = extract_palette(pal_data)
+    palkind, paldef = extract_palette(pal_data)
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        pal_kind  = pal_kind,
+        palkind  = palkind,
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )

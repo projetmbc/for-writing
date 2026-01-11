@@ -1,0 +1,153 @@
+# ------- #
+# -- A -- #
+# ------- #
+
+ASYMPTOTE:
+  name  : Asymptote
+  github: vectorgraphics/asymptote
+  desc  : |
+    Technical palettes derived from the vector graphics language
+
+
+# ------- #
+# -- C -- #
+# ------- #
+
+CARBONPLAN:
+  name  : CarbonPlan
+  github: carbonplan/colormaps
+  desc  : |
+    Specialized palettes for climate and environmental data visualization
+
+
+CARTOCOLORS:
+  name  : CARTOColors
+  github: CartoDB/cartocolor
+  desc  : |
+    Data-driven color schemes optimized for cartographic and GIS applications
+
+
+CMASHER:
+  name  : CMasher
+  github: 1313e/CMasher
+  desc  : |
+    Perceptually uniform, scientific colormaps designed to be CVD-accessible
+
+
+CMOCEAN:
+  name  : cmocean
+  inside: PALETTABLE
+  desc  : |
+    Perceptually uniform colormaps specifically designed for oceanographic data visualization
+
+
+COLORBREWER:
+  name  : Colorbrewer
+  github: axismaps/colorbrewer
+  desc  : |
+    Classic cartographic palettes based on Cynthia Brewer's research
+
+
+COLORMAPS:
+  name  : Colormaps
+  github: pratiman-91/colormaps
+  desc  : |
+    Curated collection of diverse colormaps for general scientific plotting
+
+
+CUBEHELIX:
+  name  : Cubehelix
+  inside: PALETTABLE
+  desc  : |
+    Color schemes that transition to black/white linearly, maintaining readability when printed in grayscale
+
+
+# ------- #
+# -- L -- #
+# ------- #
+
+LIGHT_BARTLEIN:
+  name  : Light Bartlein
+  inside: PALETTABLE
+  desc  : |
+    Specialized divergent palettes for climate change and meteorological anomaly mapping
+
+
+# ------- #
+# -- M -- #
+# ------- #
+
+MATPLOTLIB:
+  name  : Matplotlib
+  github: matplotlib/matplotlib
+  desc  : |
+    Foundational colormaps from the standard Python visualization engine
+
+
+MYCARTA:
+  name  : MyCarta
+  inside: PALETTABLE
+  desc  : |
+    Geoscience-focused palettes designed by Jose M. Pozo for high perceptual contrast
+
+
+# ------- #
+# -- N -- #
+# ------- #
+
+NCLCOLTABLES:
+  name  : NCAR NCL color tables
+  github: andreasplesch/ncl-color-tables
+  desc  : |
+    Official color tables from the NCAR Command Language (Earth sciences)
+
+
+# ------- #
+# -- P -- #
+# ------- #
+
+PALETTABLE:
+  name  : Palettable
+  github: jiffyclub/palettable
+  desc  : |
+    Library providing access to a wide range of external colormap collections
+
+
+PLOTLY:
+  name  : Plotly
+  inside: PALETTABLE
+  desc  : |
+    Native color scales for web-based interactive visualizations
+
+
+# ------- #
+# -- S -- #
+# ------- #
+
+SCICOLMAPS:
+  name: Scientific Colour Maps
+  url : https://zenodo.org/api/records/8409685/files-archive
+  desc  : |
+    F. Crameri's perceptually uniform and fair scientific color schemes
+
+
+# ------- #
+# -- T -- #
+# ------- #
+
+TABLEAU:
+  name  : Tableau
+  inside: PALETTABLE
+  desc  : |
+    Professional qualitative palettes optimized for clarity in business intelligence and dashboards
+
+
+# ------- #
+# -- W -- #
+# ------- #
+
+WESANDERSON:
+  name  : Wes Anderson
+  inside: PALETTABLE
+  desc  : |
+    Aesthetic palettes inspired by the distinct color palettes of Wes Anderson's cinematography

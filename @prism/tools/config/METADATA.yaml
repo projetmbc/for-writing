@@ -27,11 +27,13 @@ CATEGORY:
   sequential:
     alias:
       - seq
+      - scientific colormaps
     desc: |
       Ideal for data that follows a logical order from low to high value. Usually based on a single hue or multiple hues with increasing lightness.
 
   cyclic:
-    alias: # No alias.
+    alias:
+      - circular
     desc: |
       For data that repeats periodically (e.g., 24h time, angles, or seasons). The start and end colors are identical to create a seamless loop.
 

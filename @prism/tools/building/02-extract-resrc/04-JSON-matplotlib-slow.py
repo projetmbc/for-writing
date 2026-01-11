@@ -147,7 +147,7 @@ for match in PATTERN_MPL_COLORMAP_BRACES_LISTED.finditer(MPL_CODE_LISTED):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        pal_kind  = '',
+        palkind  = '',
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )
@@ -164,7 +164,7 @@ paldef.reverse()
 
 pals['TwilightShifted'] = resrc_std_palette(
     palname   = 'twilight_shifted',
-    pal_kind  = '',
+    palkind  = '',
     paldef    = paldef,
     precision = PAL_PRECISION + 2,
 )
@@ -186,7 +186,7 @@ for match in PATTERN_MPL_COLORMAP_BRACES.finditer(MPL_CODE):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        pal_kind  = '',
+        palkind  = '',
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )
@@ -262,7 +262,7 @@ for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        pal_kind  = '',
+        palkind  = '',
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )
@@ -290,7 +290,7 @@ for match in PATTERN_MPL_COLORMAP_DATA_NAME.finditer(MPL_CODE):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        pal_kind  = '',
+        palkind  = '',
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )

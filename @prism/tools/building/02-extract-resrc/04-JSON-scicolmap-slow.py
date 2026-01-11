@@ -93,11 +93,11 @@ for pyfile in sorted(RESRC_DIR.glob("*.py"), key = lambda x: str(x).lower()):
     palname = pyfile.stem
     stdname = get_stdname(palname)
 
-    pal_kind, paldef = extract_palette(pyfile)
+    _ , paldef = extract_palette(pyfile)
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        pal_kind  = TAG_COLORBLIND,
+        palkind  = TAG_COLORBLIND,
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )
