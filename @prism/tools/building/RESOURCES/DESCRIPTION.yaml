@@ -1,0 +1,96 @@
+# --------------------------------- #
+# -- PALETTE SOURCE DESCRIPTIONS -- #
+# --------------------------------- #
+
+_TYPES_:
+  standalone:
+    description: |
+      Dedicated colormap libraries with curated, high-quality color schemes
+    purpose: |
+      Primary sources designed specifically for data visualization and cartography
+
+  aggregator:
+    description: |
+      Meta-libraries that bundle colormaps from multiple sources
+    purpose: |
+      Convenience wrappers that may contain duplicates from standalone sources
+
+  external:
+    description: |
+      Additional external dependencies and standard library palettes
+    purpose: |
+      Complementary sources or fallback options
+
+
+# -- STANDALONE SOURCES -- #
+
+#  + C
+CARBONPLAN:
+  type: standalone
+  description: |
+      Specialized palettes for climate and environmental data visualization
+
+CARTOCOLORS:
+  type: standalone
+  description: |
+      Data-driven color schemes optimized for cartographic and GIS applications
+
+CMASHER:
+  type: standalone
+  description: |
+      Perceptually uniform, scientific colormaps designed to be CVD-accessible
+
+COLORBREWER:
+  type: standalone
+  description: |
+      Classic cartographic palettes based on Cynthia Brewer's research
+
+COLORMAPS:
+  type: standalone
+  description: |
+      Curated collection of diverse colormaps for general scientific plotting
+
+#  + N
+NCLCOLTABLES:
+  type: standalone
+  description: |
+      Official color tables from the NCAR Command Language (Earth sciences)
+
+#  + P
+PLOTLY:
+  type: standalone
+  description: |
+      Native color scales for web-based interactive visualizations
+
+#  + S
+SCIENTIFIC-COLOUR-MAPS:
+  type: standalone
+  description: |
+      F. Crameri's perceptually uniform and fair scientific color schemes
+
+# -- AGGREGATING SOURCES -- #
+
+#  + P
+PALETTABLE:
+  type: aggregator
+  description: |
+      Library providing access to a wide range of external colormap collections
+
+# -- COMPLEMENTARY EXTERNAL SOURCES -- #
+
+#  + A
+"@PRISM":
+  type: external
+  description: |
+      Local project-specific palettes and custom extensions
+
+ASYMPTOTE:
+  type: external
+  description: |
+      Technical palettes derived from the vector graphics language
+
+#  + M
+MATPLOTLIB:
+  type: external
+  description: |
+      Foundational colormaps from the standard Python visualization engine

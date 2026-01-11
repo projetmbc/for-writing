@@ -8,13 +8,20 @@ _SUFFIXES_:
 # '.' asks to add the suffix to the existing name.
 # '*' is an alias for the suffix.
 
+#  + C
 COLORBREWER:
   YlOrRd: .
+
+#  + M
 MATPLOTLIB:
   Gray: BW
+
+#  + P
 PLOTLY:
   Hot: .
   Jet: .
   Rainbow: .
+
+#  + T
 TABLEAU:
   Gray: MidGray

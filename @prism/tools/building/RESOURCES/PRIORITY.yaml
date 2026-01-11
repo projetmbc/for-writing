@@ -1,0 +1,42 @@
+# ----------------------------- #
+# -- PALETTE SOURCE PRIORITY -- #
+# ----------------------------- #
+
+# Priority coefficients: higher values = higher priority.
+#
+# Projects with equal priority values are non-comparable
+
+
+# -- STANDALONE SOURCES (Higher priority) -- #
+
+#  + C
+CARBONPLAN : 10
+CARTOCOLORS: 10
+CMASHER    : 10
+COLORBREWER: 10
+COLORMAPS  : 10
+
+#  + N
+NCLCOLTABLES: 10
+
+#  + P
+PLOTLY: 10
+
+#  + S
+SCIENTIFIC-COLOUR-MAPS: 10
+
+
+# -- AGGREGATING SOURCES (Moderate priority) -- #
+
+#  + P
+PALETTABLE: 1
+
+
+# -- COMPLEMENTARY EXTERNAL SOURCES (Low priority) -- #
+
+#  + A
+"@PRISM" : -10
+ASYMPTOTE: -2
+
+#  + M
+MATPLOTLIB: -1

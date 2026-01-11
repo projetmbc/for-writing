@@ -4,6 +4,11 @@
 from rich import print
 # -- DEBUG - OFF -- #
 
+from typing import (
+    Any,
+    Callable,
+)
+
 from pathlib import Path
 
 from json import load as json_load
@@ -12,22 +17,29 @@ from yaml import (
     dump as yaml_dump
 )
 
+from string import ascii_uppercase
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
 
-TAG_ALIAS    = 'alias'
-TAG_IGNORE   = 'ignore'
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+TAG_ALIAS      = 'alias'
+TAG_REF        = 'ref'
+TAG_IS_IGNORED = 'is-ignored'
+
 TAG_RGB_COLS = 'rgb-cols'
-TAG_REF      = 'ref'
-TAG_SIMILAR  = 'similar'
-TAG_IS_IGNORED   = 'is-ignored'
 TAG_SIZE     = 'size'
-TAG_UNIQUE   = 'unique'
 
 TAG_SUFFIXES = '_SUFFIXES_'
 
+
+TAG_NSN_SEP = '::'
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 THIS_DIR = Path(__file__).parent
 PROJ_DIR = THIS_DIR
@@ -40,8 +52,8 @@ REPORT_DIR = AUDIT_DIR.parent / "REPORT"
 
 VISUAL_SIMILAR_YAML = AUDIT_DIR / "VISUAL-SIMILAR.yaml"
 VISUAL_EQUAL_YAML   = AUDIT_DIR / "VISUAL-EQUAL.yaml"
-IGNORED_YAML        = AUDIT_DIR / "ignored.yaml"
-RENAMED_YAML        = AUDIT_DIR / "renamed.yaml"
+IGNORED_YAML        = AUDIT_DIR / "IGNORED.yaml"
+RENAMED_YAML        = AUDIT_DIR / "RENAMED.yaml"
 
 NAME_CONFLICT_JSON = REPORT_DIR / "AUDIT-NAME-CONFLICT.json"
 
@@ -50,45 +62,123 @@ NAME_CONFLICT_JSON = REPORT_DIR / "AUDIT-NAME-CONFLICT.json"
 # -- YAML HELPERS -- #
 # ------------------ #
 
-def load_yaml_safely(path, default_factory):
+def load_yaml_safely(
+    path       : Path,
+    obj_factory: Callable
+) -> Any:
     if not path.is_file():
         path.touch()
 
-        return default_factory()
+        return obj_factory()
 
     data = safe_load(path.read_text())
+    data = data if data is not None else obj_factory()
 
-    return data if data is not None else default_factory()
+    return data
 
 
-def save_yaml(path, object):
-    if object:
+def save_yaml(
+    path: Path,
+    obj : Any
+) -> None:
+    if obj:
         with path.open("w") as f:
-            yaml_dump(object, f)
+            yaml_dump(obj, f)
 
     else:
         path.write_text("")
 
 
+def get_initial_inlist(
+    line: str
+) -> str:
+    while(line[0] == '-'):
+        line = line[1:].strip()
 
-# -------------------- #
-# -- PALS FUNCTIONS -- #
-# -------------------- #
+    return line[0]
 
-def extract_name_n_srcname(name_srcname: str) -> (str, str):
-    return tuple(name_srcname.split('::'))
+
+def get_initial_indict(
+    line: str
+) -> str:
+    return line[0]
+
+
+def humanize_yaml(
+    path: Path,
+) -> None:
+# Method to get initial.
+    what = path.stem
+
+    if what == VISUAL_SIMILAR_YAML.stem:
+        get_initial = get_initial_inlist
+
+    else:
+        get_initial = get_initial_indict
+
+# Let's work.
+    hard_lines = path.read_text().split('\n')
+
+    _new_code    = []
+    last_initial = ''
+
+    for line in hard_lines:
+        add_initial = False
+
+        if line.strip():
+            if line[0] != ' ':
+                this_initial = get_initial(line)
+
+                add_initial = (
+                    this_initial != last_initial
+                    and
+                    this_initial in ascii_uppercase
+                )
+
+        if add_initial:
+            _new_code.append(f"\n#  + {this_initial}")
+
+            last_initial = this_initial
+
+        _new_code.append(line)
+
+    new_code = '\n'.join(_new_code)
+    new_code = new_code.replace('\n'*3, '\n'*2)
+    new_code = new_code.strip()
+
+    path.write_text(new_code)
+
+
+# --------------------------- #
+# -- NAME AND SOURCE - UID -- #
+# --------------------------- #
+
+def extract_name_n_srcname(
+    name_srcname: str
+) -> (str, str):
+    return tuple(name_srcname.split(TAG_NSN_SEP))
 
 
 def build_name_n_srcname(
     name: str,
     srcname: str,
 ) -> str:
-    return '::'.join([name, srcname])
+    return TAG_NSN_SEP.join([name, srcname])
 
+
+# ----------------------- #
+# -- 'CONFLICT' UPDATE -- #
+# ----------------------- #
 
 _nb_chges_saved = 0
 
 def update_data(report  : dict) -> None:
+# -- DEBUG - ON -- #
+    # print(report)
+    # exit(1)
+# -- DEBUG - OFF -- #
+
+# Vars used.
     global _nb_chges_saved
 
     _nb_chges_saved += 1
@@ -101,22 +191,22 @@ def update_data(report  : dict) -> None:
     if not TAG_SUFFIXES in renamed:
         renamed[TAG_SUFFIXES] = dict()
 
-
+# Let's iterate on the date.
     for nsn, infos in report.items():
         name, src = extract_name_n_srcname(nsn)
 
         visual_similar = []
 
-# To ignore.
+# -- TO IGNORE -- #
         if infos[TAG_IS_IGNORED]:
-# ignored because of a visual "equality".
+#   + Ignored because of a visual "equality".
             if infos[TAG_REF]:
                 visual_equals = visual_equal.get(name, dict())
                 visual_equals[src] = infos[TAG_REF]
 
                 visual_equal[name] = visual_equals
 
-# ignored with or without a visual "equality".
+#   + Ignored with or without a visual "equality".
             names = ignored.get(src, [])
             names.append(name)
             names = list(set(names))
@@ -126,7 +216,7 @@ def update_data(report  : dict) -> None:
 
             continue
 
-# renamed.
+# -- RENAMED -- #
         if infos[TAG_ALIAS]:
             if not src in renamed[TAG_SUFFIXES]:
                 suffix = input(f"Which suffix for '{src}'?\n")
@@ -138,7 +228,7 @@ def update_data(report  : dict) -> None:
 
             renamed[src] = renames
 
-# Similar to another source.
+# -- SIMILAR TO ANOTHER SOURCE -- #
         if infos[TAG_REF]:
             visual_similar.append(
                 set([
@@ -147,7 +237,7 @@ def update_data(report  : dict) -> None:
                 ])
             )
 
-# Finalize the full list of similar palettes.
+# We must build the stored list of similar palettes.
     groupes = []
 
     visual_similar += [
@@ -155,19 +245,16 @@ def update_data(report  : dict) -> None:
     ]
 
     for s in visual_similar:
-        # On cherche les groupes existants qui ont une intersection avec le set actuel
         nouveaux_groupes = []
         fusion_actuelle = s
 
         for g in groupes:
             if not g.isdisjoint(s):
-                # Si ça se croise, on l'ajoute à notre fusion
                 fusion_actuelle = fusion_actuelle.union(g)
+
             else:
-                # Sinon, on garde le groupe tel quel pour le moment
                 nouveaux_groupes.append(g)
 
-        # On ajoute le set fusionné à la liste des groupes
         nouveaux_groupes.append(fusion_actuelle)
         groupes = nouveaux_groupes
 
@@ -176,7 +263,7 @@ def update_data(report  : dict) -> None:
     ])
 
 
-# Update human readable files.
+# Update of YAML files - Hard version.
     for p, o in [
         (IGNORED_YAML, ignored),
         (VISUAL_EQUAL_YAML, visual_equal),
@@ -211,44 +298,47 @@ def update_data(report  : dict) -> None:
 
     print(f"  > Update #{_nb_chges_saved}.")
 
+# Update of YAML files - Human friendly version.
+    for p in [
+        IGNORED_YAML,
+        VISUAL_EQUAL_YAML,
+        VISUAL_SIMILAR_YAML,
+        RENAMED_YAML,
+    ]:
+        humanize_yaml(p)
 
 
-
-
-
-
+# ---------------- #
+# -- LOCAL TEST -- #
+# ---------------- #
 
 if __name__ == "__main__":
     report = {
-    'Gray::TABLEAU': {
-        'is-ignored': False,
-        'is-similar': False,
-        'ref': '',
-        'alias': 'MidGray',
-    },
-    'Gray::MATPLOTLIB': {
-        'is-ignored': False,
-        'is-similar': False,
-        'ref': '',
-        'alias': '',
-    },
-    'Gray::CMOCEAN': {
-        'is-ignored': True,
-        'is-similar': False,
-        'ref': 'MATPLOTLIB',
-        'alias': '',
-    },
-    'Rainbow::MATPLOTLIB': {
-        'is-ignored': False,
-        'is-similar': False,
-        'ref': '',
-        'alias': '',
-    },
-    'Rainbow::PLOTLY': {
-        'is-ignored': False,
-        'is-similar': False,
-        'ref': '',
-        'alias': '.',
-    }}
+        'Gray::TABLEAU': {
+            'is-ignored': False,
+            'ref': '',
+            'alias': 'MidGray'
+        },
+        'Gray::MATPLOTLIB': {
+            'is-ignored': False,
+            'ref': '',
+            'alias': ''
+        },
+        'Gray::CMOCEAN': {
+            'is-ignored': True,
+            'ref': 'MATPLOTLIB',
+            'alias': ''
+        },
+        'Rainbow::MATPLOTLIB': {
+            'is-ignored': False,
+            'ref': '',
+            'alias': ''
+        },
+        'Rainbow::PLOTLY': {
+            'is-ignored': False,
+            'ref': '',
+            'alias': '.'
+        }
+    }
 
     update_data(report)
