@@ -2,15 +2,15 @@
 
 
 ==
-11  (2.0.0-beta.7)   ???
+11  (2.0.0-beta.7)
 ==
 
-integration de kind donne dans la doc de colormpas, meme si ke spalettes de ce projet serint intégrés plus tard
+--------
+:update:
+--------
 
-+
-
-plus de ind à la main lors de l'extraction des resources, on passe via des 05-KINDS-<nom projet>.py
-
+[[:api:]]
+Palette kinds: integrating \colormaps doc \specs. Current setup is still a \wip, reducing manual \lab management to 46 \pals.
 
 
 // ---------- //
@@ -24,8 +24,9 @@ plus de ind à la main lors de l'extraction des resources, on passe via des 05-K
 :break:
 -------
 
-[[:api:]]   ?????
+[[:api:]]
 \Categos: the size category is no longer needed since the new \api provides full \defs. For example, a 3-color smooth palette is now simply a smooth palette fully defined with 3 colors.
+
 
 --------
 :update:

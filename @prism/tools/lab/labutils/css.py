@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 
-# ------------------- #
-# -- CSS FUNCTIONS -- #
-# ------------------- #
+# --------- #
+# -- TAG -- #
+# --------- #
+
+GUI_TAG_NONE  = "None"
+GUI_TAG_DARK  = "Dark"
+GUI_TAG_LIGHT = "Light"
+
+
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
 
 def normalize_rgb(rgb):
     return map(

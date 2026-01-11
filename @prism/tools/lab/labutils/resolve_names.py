@@ -17,7 +17,8 @@ from yaml import (
     dump as yaml_dump
 )
 
-from .css import *
+from .css  import *
+from .misc import *
 
 
 # ------------------ #
@@ -89,26 +90,6 @@ def save_yaml(
         path.write_text("")
 
 
-# --------------------------- #
-# -- NAME AND SOURCE - UID -- #
-# --------------------------- #
-
-def extract_name_n_srcname(
-    name_srcname: str
-) -> (str, str):
-    return tuple(name_srcname.split(TAG_NSN_SEP))
-
-
-def build_name_n_srcname(
-    name: str,
-    srcname: str,
-) -> str:
-    return TAG_NSN_SEP.join([name, srcname])
-
-
-# --------------------- #
-# -- 'CONFLICT' LOAD -- #
-# --------------------- #
 
 # ----------------------- #
 # -- 'CONFLICT' UPDATE -- #

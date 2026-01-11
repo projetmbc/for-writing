@@ -14,29 +14,60 @@ sys.path.append(str(LAB_DIR))
 
 from labutils import * # --------------------------- #
 
+from yaml import safe_load
+
+
+CONFIG_DIR = LAB_DIR.parent / 'config'
+
+with (CONFIG_DIR / 'METADATA.yaml').open(mode = 'r') as f:
+    METADATA = safe_load(f)
+
+KIND_OPTIONS = list(METADATA['CATEGORY'])
+KIND_OPTIONS.sort()
+
+
+AUDIT_DIR = LAB_DIR.parent / "building" / "audit"
+
+HUMAN_KIND_YAML = AUDIT_DIR / "HUMAN-KIND.yaml"
+
+
+REPORT_DIR = AUDIT_DIR.parent / "REPORT"
+
+MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING-KIND.json"
+
 # --------- #
 # -- GUI -- #
 # --------- #
 
-GUI_TAG_DARK  = "Sombre"
-GUI_TAG_LIGHT = "Clair"
-KIND_OPTIONS  = ["linear", "diverging", "sequential", "qualitative", "cyclic", "scientific"]
+
 
 @st.cache_data
 def load_all_data():
-    return FAKE_DATA
-    if not NAME_CONFLICT_JSON.exists(): return {}
-    with NAME_CONFLICT_JSON.open("r") as f: conflicts = json_load(f)
+    if not MISSING_KIND_JSON.is_file():
+        return {}
+
+    with MISSING_KIND_JSON.open("r") as f:
+        conflicts = json_load(f)
+
     palgrps, json_cache = {}, {}
-    for name, sources in conflicts.items():
+
+    for nsn in conflicts:
+        name, src = extract_name_n_srcname(nsn)
+
         paldefs = {}
-        for src in sources:
-            if src not in json_cache:
-                p = REPORT_DIR / f"{src}.json"
-                if p.exists(): json_cache[src] = json_load(p.open())
-            if src in json_cache and name in json_cache[src]:
-                paldefs[src] = json_cache[src][name][TAG_RGB_COLS]
-        if paldefs: palgrps[name] = paldefs
+
+        if src not in json_cache:
+            p = REPORT_DIR / f"{src}.json"
+
+            if p.exists():
+                json_cache[src] = json_load(p.open())
+
+        if src in json_cache and name in json_cache[src]:
+            paldefs[src] = json_cache[src][name][TAG_RGB_COLS]
+
+        if paldefs:
+            palgrps[name] = paldefs
+
     return palgrps
 
 st.set_page_config(page_title="Audit @prism - Types", layout="wide")
@@ -49,12 +80,17 @@ palgrps = load_all_data()
 # --- SIDEBAR ---
 with st.sidebar:
     st.header("⚡ Actions")
-    if st.button("🪄 Auto-Qual (≤ 20)", use_container_width=True):
+    # Nouveau bouton avec la règle hybride (Qualitatif <= 30, sinon Séquentiel)
+    if st.button("🪄 Auto-Assign (30)", use_container_width=True):
         for name, sources in palgrps.items():
             for src, colors in sources.items():
-                if len(colors) <= 20:
-                    uid = build_name_n_srcname(name, src)
+                uid = build_name_n_srcname(name, src)
+
+                # Logique de décision
+                if len(colors) <= 30:
                     st.session_state[f"k_{uid}"] = ["qualitative"]
+                else:
+                    st.session_state[f"k_{uid}"] = ["sequential"]
         st.rerun()
 
     st.divider()

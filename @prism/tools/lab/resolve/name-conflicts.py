@@ -27,11 +27,6 @@ import streamlit as st
 # -- GUI -- #
 # --------- #
 
-GUI_TAG_NONE  = "None"
-GUI_TAG_DARK  = "Dark"
-GUI_TAG_LIGHT = "Light"
-
-
 @st.cache_data
 def load_all_data():
     if not NAME_CONFLICT_JSON.exists():
