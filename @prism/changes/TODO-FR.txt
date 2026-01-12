@@ -16,12 +16,16 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
-Better colormaps prject kinds extraction
+pour les json produits, il faut les normalisre : voir si audit- .. . json tous ok
 
-05-KINDS-colormaps : il reste à gérér le snoms très maison et aussi à revalider les préfies virés va le code source complet non nettoyé
+ide pour yaml
+
+
+penser ) ordonné de façon naturel vi natsort !!!!
 
 
 // ---------- //
+
 
 config yaml global : lab et builder
 

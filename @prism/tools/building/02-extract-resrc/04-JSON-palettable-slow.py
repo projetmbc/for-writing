@@ -330,12 +330,14 @@ logging.info(f"Analyzing '{THIS_RESRC}' source code.")
 
 nbtest = 0
 
+_sub_folder_2_name = RESRC_SUBDIR_NAME[TAG_PALETTABLE]
+
 for subdir in sorted(RESRC_DIR.glob("*")):
     if not subdir.is_dir():
         continue
 
     logging.info(
-        f"Working on '{PALETTABLE_SUB_FOLDERS[subdir.name]}' source code."
+        f"Working on '{_sub_folder_2_name[subdir.name]}' source code."
     )
 
     pals = extract(subdir)

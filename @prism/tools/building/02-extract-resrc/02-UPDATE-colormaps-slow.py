@@ -84,7 +84,6 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-exit()
 logging.info(f"Cleaning '{THIS_RESRC}' folder.")
 
 

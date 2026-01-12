@@ -41,6 +41,13 @@ CMOCEAN:
     Perceptually uniform colormaps specifically designed for oceanographic data visualization
 
 
+COLORCET:
+  name  : ColorCET
+  inside: COLORMAPS
+  desc  : |
+    The CET colour maps, developed by Peter Kovesi, aim to offer a large choice of the most common colour combinations in a wide variety of data formats. Many of the offered colour maps feature perceptual uniformity, although not all of them to the highest standards. The CET colour maps are continuous and cover sequential, diverging, and cyclic classes.
+
+
 COLORBREWER:
   name  : Colorbrewer
   github: axismaps/colorbrewer
@@ -100,6 +107,8 @@ NCLCOLTABLES:
   github: andreasplesch/ncl-color-tables
   desc  : |
     Official color tables from the NCAR Command Language (Earth sciences)
+  alias:
+    - NCAR NCL
 
 
 # ------- #
@@ -128,7 +137,14 @@ SCICOLMAPS:
   name: Scientific Colour Maps
   url : https://zenodo.org/api/records/8409685/files-archive
   desc  : |
-    F. Crameri's perceptually uniform and fair scientific color schemes
+    F. Crameri's perceptually uniform and fair scientific color schemes are perceptually uniform palettes designed for scientific visualization. They are colour-blind friendly, greyscale-readable, and based on CET methodology.
+
+
+SCIVIZ:
+  name  : SciViz
+  inside: COLORMAPS
+  desc  : |
+    SciViz colormaps are perceptually uniform scales engineered in CIELAB/CAM02 space to ensure data-to-color linearity. They eliminate visual artifacts (false contours), guarantee color-blind accessibility, and are specifically optimized for 3D surface shading and high-dynamic-range scientific data.
 
 
 # ------- #

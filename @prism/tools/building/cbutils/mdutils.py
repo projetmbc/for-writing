@@ -91,6 +91,24 @@ PATTERN_HTML_COMMENTS = re.compile(
 
 
 
+def is_data_row(line):
+    line = line.strip()
+
+    return (
+        line
+        and
+        line[0] == '|'
+        and
+        not '---' in line
+    )
+
+def split_data_row(line):
+    data = line.split('|')
+    data = data[1:-1]
+
+    return data
+
+
 def transform_tdoccodein(
     text,
     transformations=None

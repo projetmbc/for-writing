@@ -33,6 +33,13 @@ def get_stdname(name: str) -> str:
     return name
 
 
+def get_nospace_lower(text: str) -> str:
+    text = text.replace(' ', '')
+    text = text.lower()
+
+    return text
+
+
 # ----------- #
 # -- FLOAT -- #
 # ----------- #

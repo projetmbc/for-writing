@@ -7,6 +7,9 @@ from rich import print
 from pathlib import Path
 import              yaml
 
+from collections import defaultdict
+
+from .normval import get_nospace_lower
 
 # ------------------ #
 # -- THIS PROJECT -- #
@@ -71,19 +74,20 @@ TAG_DATA   = "data"
 TAG_GOBBLE = "gobble"
 
 
-# --------------------------- #
-# -- MAIN EXTERNAL SOURCES -- #
-# --------------------------- #
+# ----------- #
+# -- AUDIT -- #
+# ----------- #
 
 PAL_PRECISION = YAML_CONFIGS[TAG_METADATA]['PRECISION']
 
 TAG_ORIGINAL_NAME = "original-name"
-TAG_RGB_COLS      = "rgb-cols"
+TAG_RGB_COLS= "rgb-cols"
 
 TAG_AUTHOR = "author"
 TAG_KIND   = "kind"
 
-TAG_PALETTE  = "palette"
+TAG_ALIAS   = "alias"
+TAG_PALETTE = "palette"
 
 
 KIND_ALIAS = dict()
@@ -108,85 +112,61 @@ TAG_REPORT    = "REPORT"
 TAG_RESOURCES = "RESOURCES"
 
 
-TAGS_XTRA_PROJS = [
-#  + C
-    TAG_CARBONPLAN := 'CarbonPlan',
-    TAG_CARTOCOLORS:= 'CARTOColors',
-    TAG_CMASHER    := 'CMasher',
-    TAG_COLORBREWER:= 'Colorbrewer',
+# --------------- #
+# -- RESOURCES -- #
+# --------------- #
 
-#  + M
-    TAG_MATPLOTLIB:= 'Matplotlib',
-
-#  + N
-    TAG_NCLCOLTABLES:= 'NCAR NCL color tables',
-
-#  + P
-    TAG_PALETTABLE:= 'Palettable',
-    TAG_PLOTLY    := 'Plotly',
-
-#  + S
-    TAG_SCICOLMAPS:= 'Scientific Colour Maps',
-
-# -- COMPLEMENTARY EXTERNAL SOURCES -- #
-
-#  + A
-    TAG_ASYMPTOTE:= 'Asymptote',
-
-#  + C
-    TAG_COLORMAPS:= 'Colormaps',
-]
+ALL_RESRC_TAGS    = set()
+RESRC_SUBDIR_NAME = dict()
+GITHUB_IDS        = dict()
+RESRC_FILE_NAMES  = dict()
+RESRC_ALIAS       = dict()
 
 
-# ------------------- #
-# -- SUB RESOURCES -- #
-# ------------------- #
+_subdir_name = defaultdict(dict)
 
-PALETTABLE_SUB_FOLDERS = [
-    (TAG_CMOCEAN       := "cmocean"),
-    (TAG_CUBEHELIX     := "Cubehelix"),
-    (TAG_LIGHT_BARTLEIN:= "Light Bartlein"),
-    (TAG_MYCARTA       := "MyCarta"),
-    (TAG_PLOTLY        := "Plotly"),
-    (TAG_TABLEAU       := "Tableau"),
-    (TAG_WESANDERSON   := "Wes Anderson"),
-]
+for cfgname, data in YAML_CONFIGS[TAG_RESRC].items():
+    realname = data['name']
 
-PALETTABLE_SUB_FOLDERS = {
-    t.replace(' ', '').lower(): t
-    for t in PALETTABLE_SUB_FOLDERS
-}
+    ALL_RESRC_TAGS.add(realname)
+
+    # varname = varname.upper()
+    varname = f"TAG_{cfgname}"
+
+    globals()[varname] = realname
+
+    RESRC_FILE_NAMES[globals()[varname]] = cfgname
+
+    github_ID = data.get('github', '')
+    inside    = data.get('inside', '')
+
+    if inside:
+        _subdir_name[inside][get_nospace_lower(realname)] = realname
+
+    elif github_ID:
+        GITHUB_IDS[globals()[varname]] = github_ID
+
+    RESRC_ALIAS[realname.lower()] = realname
+
+    if TAG_ALIAS in data:
+        for alias in data[TAG_ALIAS]:
+            RESRC_ALIAS[alias] = realname
 
 
-# -------------------------- #
-# -- EXTERNAL SOURCE URLS -- #
-# -------------------------- #
-
-GITHUB_IDS = {
-#  + A
-    TAG_ASYMPTOTE: "vectorgraphics/asymptote",
-#  + C
-    TAG_CARBONPLAN : "carbonplan/colormaps",
-    TAG_CARTOCOLORS: "CartoDB/cartocolor",
-    TAG_CMASHER    : "1313e/CMasher",
-    TAG_COLORBREWER: "axismaps/colorbrewer",
-    TAG_COLORMAPS  : "pratiman-91/colormaps",
-#  + M
-    TAG_MATPLOTLIB: "matplotlib/matplotlib",
-#  + N
-    TAG_NCLCOLTABLES:"andreasplesch/ncl-color-tables",
-#  + P
-    TAG_PALETTABLE: "jiffyclub/palettable",
+RESRC_SUBDIR_NAME = {
+    globals()[f"TAG_{k}"]: v
+    for k, v in _subdir_name.items()
 }
 
 
 # GitHub URLs
-_github_url = "https://github.com/{ids}/archive/refs/heads/master.zip"
+__github_url = "https://github.com/{ids}/archive/refs/heads/master.zip"
 
 SRC_URLS = {
-    t: _github_url.format(ids = GITHUB_IDS[t])
+    t: __github_url.format(ids = GITHUB_IDS[t])
     for t in GITHUB_IDS
 }
+
 
 # Other URLs
 SRC_URLS[TAG_SCICOLMAPS] = "https://zenodo.org/api/records/8409685/files-archive"
