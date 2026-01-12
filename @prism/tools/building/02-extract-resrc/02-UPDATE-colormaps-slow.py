@@ -46,10 +46,10 @@ with UPDATES_NEEDED_JSON.open(mode = "r") as f:
 # -- SOMETHING TO DO? -- #
 # ---------------------- #
 
-# if not UPDATES_NEEDED[THIS_RESRC]:
-#     logging.info(f"'{THIS_RESRC}' - No update.")
+if not UPDATES_NEEDED[THIS_RESRC]:
+    logging.info(f"'{THIS_RESRC}' - No update.")
 
-#     exit(0)
+    exit(0)
 
 
 # ----------------------- #
@@ -71,7 +71,7 @@ THIS_RESRC_DIR.mkdir(
 # -- DOWNLOAD SOURCE CODE -- #
 # -------------------------- #
 
-logging.info(f"Downloading '{THIS_RESRC}' source code.")
+logging.info(f"Download '{THIS_RESRC}' source code.")
 
 download_and_unzip(
     log_raise_error = log_raise_error,
@@ -84,7 +84,7 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+logging.info(f"Clean '{THIS_RESRC}' folder.")
 
 
 for p in THIS_RESRC_DIR.glob("*/LICENSE"):

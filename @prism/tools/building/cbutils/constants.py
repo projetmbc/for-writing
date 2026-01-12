@@ -150,8 +150,7 @@ for cfgname, data in YAML_CONFIGS[TAG_RESRC].items():
 
     if TAG_ALIAS in data:
         for alias in data[TAG_ALIAS]:
-            RESRC_ALIAS[alias] = realname
-
+            RESRC_ALIAS[alias.lower()] = realname
 
 RESRC_SUBDIR_NAME = {
     globals()[f"TAG_{k}"]: v

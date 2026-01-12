@@ -1,35 +1,79 @@
-COLORBREWER:
-  Accent: qualitative
-  Blues: sequential
-  BrBG: divergent
-  BuGn: sequential
-  BuPu: sequential
-  Dark2: qualitative
-  GnBu: sequential
-  Greens: sequential
-  Greys: sequential
-  OrRd: sequential
-  Oranges: sequential
-  PRGn: divergent
-  Paired: qualitative
-  Pastel1: qualitative
-  Pastel2: qualitative
-  PiYG: divergent
-  PuBu: sequential
-  PuBuGn: sequential
-  PuOr: divergent
-  PuRd: sequential
-  Purples: sequential
-  RdBu: divergent
-  RdGy: divergent
-  RdPu: sequential
-  RdYlBu: divergent
-  RdYlGn: divergent
-  Reds: sequential
-  Set1: qualitative
-  Set2: qualitative
-  Set3: qualitative
-  Spectral: divergent
-  YlGn: sequential
-  YlGnBu: sequential
-  YlOrBr: sequential
+Accent::COLORBREWER: qualitative
+Afmhot::MATPLOTLIB: dark, sequential
+Autumn::MATPLOTLIB: qualitative, sequential
+Binary::MATPLOTLIB: qualitative, sequential
+Blues::COLORBREWER: sequential
+Bone::MATPLOTLIB: sequential
+BrBG::COLORBREWER: divergent
+Brg::MATPLOTLIB: qualitative, sequential
+BuGn::COLORBREWER: sequential
+BuPu::COLORBREWER: sequential
+Bwr::MATPLOTLIB: dark, divergent, qualitative, sequential
+CMRmap::MATPLOTLIB: qualitative, sequential
+Cividis::MATPLOTLIB: sequential
+Cool::MATPLOTLIB: qualitative, sequential
+Copper::MATPLOTLIB: sequential
+Cubehelix::MATPLOTLIB: colorblind, sequential
+Dark2::COLORBREWER: qualitative
+Flag::MATPLOTLIB: cyclic, divergent
+GistEarth::MATPLOTLIB: sequential
+GistGray::MATPLOTLIB: sequential
+GistHeat::MATPLOTLIB: sequential
+GistNcar::MATPLOTLIB: divergent, sequential
+GistRainbow::MATPLOTLIB: divergent, sequential
+GistStern::MATPLOTLIB: divergent, sequential
+GnBu::COLORBREWER: sequential
+Gnuplot2::MATPLOTLIB: sequential
+Gnuplot::MATPLOTLIB: sequential
+Greens::COLORBREWER: sequential
+Greys::COLORBREWER: sequential
+Hot::MATPLOTLIB: sequential
+Hsv::MATPLOTLIB: divergent, sequential
+Inferno::MATPLOTLIB: sequential
+Jet::MATPLOTLIB: divergent, sequential
+Magma::MATPLOTLIB: sequential
+NipySpectral::MATPLOTLIB: divergent, qualitative, sequential
+Ocean::MATPLOTLIB: divergent, sequential
+OrRd::COLORBREWER: sequential
+Oranges::COLORBREWER: sequential
+PRGn::COLORBREWER: divergent
+Paired::COLORBREWER: qualitative
+Pastel1::COLORBREWER: qualitative
+Pastel2::COLORBREWER: qualitative
+PiYG::COLORBREWER: divergent
+Pink::MATPLOTLIB: dark, sequential
+Plasma::MATPLOTLIB: sequential
+Prism::MATPLOTLIB: divergent
+PuBu::COLORBREWER: sequential
+PuBuGn::COLORBREWER: sequential
+PuOr::COLORBREWER: divergent
+PuRd::COLORBREWER: sequential
+Purples::COLORBREWER: sequential
+Rainbow::MATPLOTLIB: sequential
+RdBu::COLORBREWER: divergent
+RdGy::COLORBREWER: divergent
+RdPu::COLORBREWER: sequential
+RdYlBu::COLORBREWER: divergent
+RdYlGn::COLORBREWER: divergent
+Reds::COLORBREWER: sequential
+Seismic::MATPLOTLIB: dark, divergent, qualitative, sequential
+Set1::COLORBREWER: qualitative
+Set2::COLORBREWER: qualitative
+Set3::COLORBREWER: qualitative
+Spectral::COLORBREWER: divergent
+Spring::MATPLOTLIB: qualitative, sequential
+Summer::MATPLOTLIB: qualitative, sequential
+Tab10::MATPLOTLIB: divergent, qualitative
+Tab20::MATPLOTLIB: divergent, qualitative
+Tab20b::MATPLOTLIB: divergent, qualitative, sequential
+Tab20c::MATPLOTLIB: divergent, qualitative, sequential
+Terrain::MATPLOTLIB: divergent, sequential
+Turbo::MATPLOTLIB: sequential
+Twilight::MATPLOTLIB: divergent, sequential
+TwilightShifted::MATPLOTLIB: divergent, sequential
+Viridis::MATPLOTLIB: sequential
+Winter::MATPLOTLIB: qualitative, sequential
+YlGn::COLORBREWER: sequential
+YlGnBu::COLORBREWER: sequential
+YlOrBr::COLORBREWER: sequential
+YlOrRd::MATPLOTLIB: qualitative, sequential

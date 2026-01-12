@@ -2,5 +2,6 @@
 
 from .css           import *
 from .constants     import *
+from .normval       import *
 from .misc          import *
 from .resolve_names import *

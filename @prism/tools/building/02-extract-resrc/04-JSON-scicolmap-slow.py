@@ -85,7 +85,7 @@ def extract_palette(file: Path) -> tuple[str, PaletteCols]:
 # -- FROM SCI. COLOR MAPS -- #
 # -------------------------- #
 
-logging.info(f"Analyzing '{THIS_RESRC}' source code.")
+logging.info(f"Analyze '{THIS_RESRC}' source code.")
 
 pals = dict()
 
@@ -107,7 +107,7 @@ for pyfile in sorted(RESRC_DIR.glob("*.py"), key = lambda x: str(x).lower()):
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"'{RESRC_PALS_JSON.relative_to(PROJ_DIR)}' update.")
+logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'.")
 
 RESRC_PALS_JSON.write_text(
     json_dumps(pals)

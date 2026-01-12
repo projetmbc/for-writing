@@ -73,7 +73,7 @@ ASY_CODE = ASY_CODE.read_text()
 # -- FROM ASYMPTOTE COLOR MAPS -- #
 # ------------------------------- #
 
-logging.info(f"Analyzing '{THIS_RESRC}' source code.")
+logging.info(f"Analyze '{THIS_RESRC}' source code.")
 
 pals = dict()
 
@@ -97,7 +97,7 @@ for palname, body in PATTERN_ASY_COLORMAP.findall(ASY_CODE):
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"'{RESRC_PALS_JSON.relative_to(PROJ_DIR)}' update.")
+logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'.")
 
 RESRC_PALS_JSON.write_text(
     json_dumps(pals)

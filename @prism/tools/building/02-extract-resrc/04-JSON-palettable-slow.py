@@ -326,7 +326,7 @@ def extract(folder: Path) -> dict[str, PaletteCols]:
 # -- FROM PALETTABLE -- #
 # --------------------- #
 
-logging.info(f"Analyzing '{THIS_RESRC}' source code.")
+logging.info(f"Analyze '{THIS_RESRC}' source code.")
 
 nbtest = 0
 
@@ -337,7 +337,7 @@ for subdir in sorted(RESRC_DIR.glob("*")):
         continue
 
     logging.info(
-        f"Working on '{_sub_folder_2_name[subdir.name]}' source code."
+        f"Work on '{_sub_folder_2_name[subdir.name]}' source code."
     )
 
     pals = extract(subdir)
@@ -345,7 +345,7 @@ for subdir in sorted(RESRC_DIR.glob("*")):
     resrc_pals_json = subdir.name.replace(' ', '-').upper()
     resrc_pals_json = REPORT_DIR / f"{resrc_pals_json}.json"
 
-    logging.info(f"'{resrc_pals_json.relative_to(PROJ_DIR)}' update.")
+    logging.info(f"Update '{resrc_pals_json.relative_to(PROJ_DIR)}'.")
 
     resrc_pals_json.write_text(
         json_dumps(pals)

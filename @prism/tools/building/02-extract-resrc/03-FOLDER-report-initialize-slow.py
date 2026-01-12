@@ -36,7 +36,7 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 # -- EMPTY THE REPORT FOLDER -- #
 # ----------------------------- #
 
-logging.info(f"'Empty REPORT' folder.")
+logging.info(f"Empty 'REPORT' folder.")
 
 if REPORT_DIR.is_dir():
     rmtree(REPORT_DIR)

@@ -83,9 +83,9 @@ EMPTY_KINDS   = []
 MISSING_KINDS = []
 
 
-# ------------------ #
-# -- MISING KINDS -- #
-# ------------------ #
+# ------------------- #
+# -- MISSING KINDS -- #
+# ------------------- #
 
 logging.info(f"KINDS - 'Looking for missing ones'.")
 
@@ -94,15 +94,11 @@ with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
     cursor.execute(QUERY_NO_KIND)
 
     for name, src in cursor.fetchall():
-        if src in YAML_STORED_KINDS:
-            kind = YAML_STORED_KINDS[src].get(name, '')
+        namesrc = build_name_n_srcname(name, src)
 
-        else:
-            kind = ''
+        kind = YAML_STORED_KINDS.get(namesrc, '')
 
         if not kind:
-            namesrc = build_name_n_srcname(name, src)
-
             EMPTY_KINDS.append(namesrc)
 
 EMPTY_KINDS.sort()
@@ -114,27 +110,29 @@ EMPTY_KINDS.sort()
 
 logging.info(f"KINDS - 'Resolving undefined kinds'.")
 
-resrc_kinds = dict()
+_all_resrc_kinds = defaultdict(str)
 
-for _resrc_kinds in REPORT_DIR.glob("KIND-*json"):
-    with _resrc_kinds.open(mode = 'r') as f:
-        resrc_kinds |= json_load(f)
+for _path_resrc_kinds in REPORT_DIR.glob("KIND-*json"):
+    with _path_resrc_kinds.open(mode = 'r') as f:
+        _one_resrc_kinds = json_load(f)
 
+    for nsn, k in _one_resrc_kinds.items():
+        if nsn in _all_resrc_kinds:
+            k = f", {k}"
+
+        _all_resrc_kinds[nsn] += k
 
 for nsn in EMPTY_KINDS:
-    resolved_kind = resrc_kinds.get(nsn.lower(), '')
+    resolved_kind = _all_resrc_kinds.get(nsn.lower(), '')
 
     if not resolved_kind:
         MISSING_KINDS.append(nsn)
 
         continue
 
+    YAML_STORED_KINDS[nsn] = resolved_kind
+
     name, src = extract_name_n_srcname(nsn)
-
-    if not src in YAML_STORED_KINDS:
-        YAML_STORED_KINDS[src] = dict()
-
-    YAML_STORED_KINDS[src][name] = resolved_kind
 
     logging.info(f"Resolved '{name} [{src}]' kind.")
 
@@ -143,34 +141,39 @@ for nsn in EMPTY_KINDS:
 # -- UPDATE DB -- #
 # --------------- #
 
-logging.info(f"DATA cleaning - 'SQLite DB - Update file'.")
+logging.info(f"KINDS - 'SQLite DB - Update file'.")
 
 with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
-    for src, nk in YAML_STORED_KINDS.items():
-        for name, kind in nk.items():
-            cursor.execute(
-                QUERY_UPDATE_KIND,
-                [kind, name, src]
-            )
+
+    for namesrc, kind in YAML_STORED_KINDS.items():
+        name, src = extract_name_n_srcname(namesrc)
+
+        cursor.execute(
+            QUERY_UPDATE_KIND,
+            [kind, name, src]
+        )
 
 
 # ------------------ #
 # -- YAML UPDATES -- #
 # ------------------ #
 
-logging.info(f"DATA cleaning - 'Update YAML kinds file'.")
+logging.info(
+    f"KINDS - Update '{HUMAN_KIND_YAML.relative_to(PROJ_DIR)}'."
+)
 
 with HUMAN_KIND_YAML.open("w") as f:
     yaml_dump(YAML_STORED_KINDS, f)
-
 
 
 # ------------------ #
 # -- JSON UPDATES -- #
 # ------------------ #
 
-logging.info(f"DATA cleaning - 'Update JSON audit file'.")
+logging.info(
+    f"KINDS - Update '{MISSING_KIND_JSON.relative_to(PROJ_DIR)}'."
+)
 
 MISSING_KIND_JSON.write_text(
     json_dumps(EMPTY_KINDS)

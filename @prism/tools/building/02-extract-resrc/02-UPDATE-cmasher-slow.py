@@ -71,7 +71,7 @@ THIS_RESRC_DIR.mkdir(
 # -- DOWNLOAD SOURCE CODE -- #
 # -------------------------- #
 
-logging.info(f"Downloading '{THIS_RESRC}' source code.")
+logging.info(f"Download '{THIS_RESRC}' source code.")
 
 download_and_unzip(
     log_raise_error = log_raise_error,
@@ -84,7 +84,7 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-logging.info(f"Cleaning '{THIS_RESRC}' folder.")
+logging.info(f"Clean '{THIS_RESRC}' folder.")
 
 clean_src_files(
     local_src_dir = THIS_RESRC_DIR / "CMasher-master",

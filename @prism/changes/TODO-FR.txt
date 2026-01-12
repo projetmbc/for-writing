@@ -16,6 +16,11 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+kinds: il reste à tenir compt e des renommage : cd BW qui est Gray (Matplotlib)
+
+
+// ---------- //
+
 pour les json produits, il faut les normalisre : voir si audit- .. . json tous ok
 
 ide pour yaml

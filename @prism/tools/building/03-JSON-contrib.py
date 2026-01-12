@@ -68,7 +68,7 @@ pals = dict()
 for folder, contribs in sorted(contribs_accepted.items()):
     technno = folder.parent.name
 
-    logging.info(f"'{technno}' contribs.")
+    logging.info(f"'{technno}' techno.")
 
     extend = import_from_path(
         module_name = "extend",
@@ -76,7 +76,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
     )
 
     for one_contrib in sorted(contribs):
-        logging.info(f"Contrib '{one_contrib}'.")
+        logging.info(f"Add '{one_contrib}'.")
 
         palname = Path(one_contrib).stem
         stdname = get_stdname(palname)
@@ -88,7 +88,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
 
         pals[stdname] = resrc_std_palette(
             palname   = palname,
-            palkind  = paldata[TAG_METADATA.lower()][TAG_KIND],
+            palkind   = paldata[TAG_METADATA.lower()][TAG_KIND],
             paldef    = paldata[TAG_PALETTE],
             precision = PRECISION + 2,
         )
@@ -98,7 +98,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"'{RESRC_PALS_JSON.relative_to(PROJ_DIR)}' update.")
+logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'.")
 
 RESRC_PALS_JSON.write_text(
     json_dumps(pals)

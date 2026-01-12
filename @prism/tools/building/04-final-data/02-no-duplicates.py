@@ -320,10 +320,10 @@ for name, sources in name_conflicts.items():
 
 logging.info(f"DATA cleaning - 'Update JSON audit files'.")
 
-jsonify_dict = lambda d: {
+jsonify_dict = lambda d: get_sorted_dict({
     build_name_n_srcname(*nsn_1): build_name_n_srcname(*nsn_2)
     for nsn_1, nsn_2 in d.items()
-}
+})
 
 
 _EQUALS  = jsonify_dict(EQUALS)
@@ -363,7 +363,6 @@ if PALS_NAME_CONFLICT:
 # ----------------------- #
 
 logging.info(f"DATA cleaning - 'Building aliases'.")
-
 
 suffixes = RENAMED[TAG_SUFFIXES]
 

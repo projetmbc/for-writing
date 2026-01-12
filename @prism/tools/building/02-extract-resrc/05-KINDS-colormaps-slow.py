@@ -4,8 +4,6 @@
 from rich import print
 # -- DEBUG - OFF -- #
 
-
-
 # ---------------------------- #
 # -- IMPORT CBUTILS - START -- #
 
@@ -23,6 +21,10 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
 THIS_RESRC = TAG_COLORMAPS
 
 
@@ -31,9 +33,7 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-
 THIS_RESRC_DIR = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
-
 
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
@@ -42,6 +42,9 @@ _RESRC_KINDS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_KINDS_JSON  = REPORT_DIR / f"KIND-{_RESRC_KINDS_JSON}.json"
 
 
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 PATTERN_MD_SECTION_1 = re.compile(
     r'^#\s+(.+)',
@@ -64,9 +67,14 @@ NAMES_IGNORED = [
 ]
 
 
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
+
+# WARNING! We must work with full lower case!
 
 def extract_md_pals(content):
-    projects = {}
+    pals = []
 
     sections = PATTERN_MD_SECTION_2.split(content)
 
@@ -77,45 +85,51 @@ def extract_md_pals(content):
             continue
 
 # Which subproject?
-        projname, *lines = section.split('\n')
+        src, *lines = section.split('\n')
 
-        projname = projname.strip()
+        src = src.strip()
 
-        if projname in TITLES_IGNORED:
+        if src in TITLES_IGNORED:
             continue
 
-        projname = RESRC_ALIAS.get(projname, projname)
+        src = RESRC_ALIAS.get(src, src)
 
-        if not projname in ALL_RESRC_TAGS:
-            projname = RESRC_ALIAS.get(projname.lower(), projname)
+        if not src in ALL_RESRC_TAGS:
+            src = RESRC_ALIAS.get(src.lower(), src)
 
-        if not projname in ALL_RESRC_TAGS:
+        if not src in ALL_RESRC_TAGS:
             logging.warning(
-                f"Unknown colormaps subproject '{title}'"
+                f"Unknown colormaps subproject '{src}'"
             )
 
-# Which palettes?
-        palettes = []
+        src = RESRC_FILE_NAMES[src]
 
+# Which palettes?
         for line in lines:
             if not is_data_row(line):
                 continue
 
-            palname = split_data_row(line)[0]
-            palname = get_stdname(palname)
+            name = split_data_row(line)[0]
+            name = get_stdname(name)
 
-            if palname in NAMES_IGNORED:
+            if name in NAMES_IGNORED:
                 continue
 
-            palettes.append(palname)
+            namesrc = build_name_n_srcname(name, src)
 
-        if palettes:
-            projects[projname] = palettes
+# We must work with full lower case!
+            namesrc = namesrc.lower()
 
-    return projects
+            pals.append(namesrc)
+
+    return pals
 
 
-# --- Exécution et affichage ---
+# ------------------ #
+# -- MISING KINDS -- #
+# ------------------ #
+
+logging.info(f"Extract kinds from '{THIS_RESRC}'.")
 
 _PALS_KINDS = defaultdict(set)
 
@@ -125,38 +139,43 @@ for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
     if what == 'scientific':
         continue
 
-    if what == 'other':
-        ...#TODO
+    content = mdpath.read_text()
 
-    else:
-        palkind = what.lower()
-        pals    = extract_md_pals(mdpath.read_text())
+    if what == 'other':
+        logging.warning("Unmanaged content 'Other.md'.")
+
+        continue
+
+    palkind = what.lower()
 
     if not palkind in KIND_ALIAS:
-        print(f"{palkind=}")
-
-        TODO
+        log_raise_error(
+            context   = f"Missing kind",
+            desc      = f"Add '{palkind}' as an alias or a new kind.",
+            exception = ValueError,
+        )
 
     palkind = KIND_ALIAS[palkind]
 
-    for src, names in pals.items():
-        src = RESRC_FILE_NAMES[src]
+    pals = extract_md_pals(content)
 
-        for n in names:
-            n = get_stdname(n)
-            n = n.lower()
+    for namesrc in pals:
+        _PALS_KINDS[namesrc].add(palkind)
 
-            nsn = f"{n.lower()}::{src}"
 
-            _PALS_KINDS[nsn].add(palkind)
+# ------------------ #
+# -- JSON UPDATES -- #
+# ------------------ #
 
+logging.info(
+    f"Update '{RESRC_KINDS_JSON.relative_to(PROJ_DIR)}'."
+)
 
 # We want a deterministic output.
 PALS_KINDS = {
     nsn: ', '.join(sorted(_PALS_KINDS[nsn]))
     for nsn in sorted(_PALS_KINDS)
 }
-
 
 RESRC_KINDS_JSON.write_text(
     json_dumps(PALS_KINDS)
