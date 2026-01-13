@@ -15,21 +15,21 @@ CATEGORY:
       - div
       - diverging
     desc: |
-      Used for data with a natural midpoint (e.g., zero, average, or neutral). Colors diverge from the center towards two different extremes.
+      Used for data with one or more natural midpoints (e.g., zero, average, or optimal thresholds). Colors diverge from these centers toward different extremes to highlight deviations in multiple directions.
 
   qualitative:
     alias:
       - qual
       - discrete
     desc: |
-      Best for categorical or nominal data where no order is implied (e.g., different labels, groups, or names).
+      Used for categorical or nominal data (e.g., different labels, groups, or names).
 
   sequential:
     alias:
       - seq
       - scientific colormaps
     desc: |
-      Ideal for data that follows a logical order from low to high value. Usually based on a single hue or multiple hues with increasing lightness.
+      Used for data that follows a logical order from low to high value. Usually based on a single hue or multiple hues with increasing lightness.
 
   cyclic:
     alias:

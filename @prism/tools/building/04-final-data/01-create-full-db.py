@@ -135,7 +135,7 @@ INSERT INTO palettes (
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info(f"SQLite DB - 'Init FULL table'.")
+logging.info(f"Full SQLite DB - 'Init table'.")
 
 with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -156,7 +156,7 @@ CREATE TABLE palettes (
 # -- PALETTES METADATA -- #
 # ----------------------- #
 
-logging.info(f"SQLite DB - 'Palette integration'.")
+logging.info(f"Full SQLite DB - 'Populate table'.")
 
 with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
     for resrc_json in REPORT_DIR.glob("*.json"):
@@ -191,7 +191,7 @@ with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
 # ------------------------ #
 
 logging.info(
-     "SQLite DB - File "
+     "Full SQLite DB - File "
     f"'{FULL_SQLITE_DB_FILE.relative_to(PROJ_DIR)}' "
      "build."
 )

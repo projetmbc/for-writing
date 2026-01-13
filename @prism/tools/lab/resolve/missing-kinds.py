@@ -27,13 +27,19 @@ KIND_OPTIONS = sorted(list(METADATA['CATEGORY']))
 # --- FUNCTIONS ---
 def update_data(new_entries):
     data = {}
+
     if HUMAN_KIND_YAML.exists():
         with HUMAN_KIND_YAML.open('r', encoding='utf-8') as f:
+
             existing = yaml.safe_load(f)
-            if existing: data = existing
+
+            if existing:
+                data = existing
 
     for uid, kinds in new_entries.items():
-        data[uid] = ', '.join(sorted(kinds))
+        name, _ = extract_name_n_srcname(uid)
+
+        data[name] = '|'.join(sorted(kinds))
 
     data = get_sorted_dict(data)
 
@@ -42,18 +48,26 @@ def update_data(new_entries):
 
 @st.cache_data
 def load_all_data():
-    if not MISSING_KIND_JSON.is_file(): return {}
     with MISSING_KIND_JSON.open("r") as f:
         conflicts = json_load(f)
+
     palgrps, json_cache = {}, {}
-    for nsn in conflicts:
-        name, src = extract_name_n_srcname(nsn)
+
+    for uid, aprism_name in conflicts:
+        name, src = extract_name_n_srcname(uid)
+
+        src = src.upper()
+
         if src not in json_cache:
-            p = REPORT_DIR / f"{src}.json"
-            if p.exists(): json_cache[src] = json_load(p.open())
-        if src in json_cache and name in json_cache[src]:
-            if name not in palgrps: palgrps[name] = {}
-            palgrps[name][src] = json_cache[src][name][TAG_RGB_COLS]
+            with (REPORT_DIR / f"{src}.json").open('r') as f:
+                json_cache[src] = json_load(f)
+
+        for n in json_cache[src]:
+            if n.lower() == name.lower():
+                palgrps[aprism_name] = {
+                    src: json_cache[src][n][TAG_RGB_COLS]
+                }
+
     return palgrps
 
 # --- INITIALIZATION ---

@@ -138,6 +138,8 @@ SCICOLMAPS:
   url : https://zenodo.org/api/records/8409685/files-archive
   desc  : |
     F. Crameri's perceptually uniform and fair scientific color schemes are perceptually uniform palettes designed for scientific visualization. They are colour-blind friendly, greyscale-readable, and based on CET methodology.
+  alias:
+    - scientific
 
 
 SCIVIZ:

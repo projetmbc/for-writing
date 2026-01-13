@@ -16,7 +16,19 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+renaming : valide que ce n'est pas dejà employé dans ce qui est gardé !!!
+
+
+// ---------- //
+
 kinds: il reste à tenir compt e des renommage : cd BW qui est Gray (Matplotlib)
+
+dans BD final, on rajoute en fait l'ui et l'on utilise dans les opérations sur cette base
+
+
+UPDATE palettes
+SET kind = 'nouvelle_valeur'
+WHERE uid = 'votre_uid_specifique';
 
 
 // ---------- //
@@ -27,14 +39,6 @@ ide pour yaml
 
 
 penser ) ordonné de façon naturel vi natsort !!!!
-
-
-// ---------- //
-
-
-config yaml global : lab et builder
-
-    --> il reste à vire le stags !!!
 
 
 // ---------- //
@@ -82,11 +86,6 @@ Certaines palettes Qualitative (couleurs distinctes) peuvent être perçues comm
 
 // ---------- //
 
-qualtitatif et diverent comme hot de plotly
-
-
-// ---------- //
-
 se passer des pdf de démo et tout miser sur le html car au final c'est ben plus pratique
 
     --> on peut garder des PDFs autonomés car c'est joli !
@@ -114,9 +113,6 @@ Standardizing the retrieval of external palettes done for the following \projs.
 
 // ---------- //
 
-matplotlib._cm.py CREDITS ?
-
-
 Palette	Catégorie
   > Origine / Particularité
 
@@ -140,8 +136,8 @@ Berlin, Managua, Vanimo
 
 intégrer en externe directement si possible
 
-# developed by Cynthia Brewer (https://colorbrewer2.org/).
 # the viewer has colorblindness. https://jfly.uni-koeln.de/color/#pallet
+
 # <http://www.kennethmoreland.com/color-maps/>
 # https://www.mathworks.com/matlabcentral/fileexchange/2662-cmrmap-m
 #   https://github.com/wistia/heatmap-palette

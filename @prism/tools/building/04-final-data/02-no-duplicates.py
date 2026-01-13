@@ -25,6 +25,8 @@ from cbutils      import *
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
+# Full DB.
+
 SPECIAL_QUERIES = {
     TAG_EQUAL: """
 SELECT
@@ -44,19 +46,18 @@ AND p1.id < p2.id
     """,
 }
 
-
 QUERY_NAME_CONFLICT = """
 SELECT
     p1.name,
     p1.source,
+    p2.name,
     p2.source
 FROM palettes p1
-JOIN palettes p2 ON p1.name = p2.name
+JOIN palettes p2 ON LOWER(p1.name) = LOWER(p2.name)
 WHERE p1.id < p2.id
   AND p1.hash_normal != p2.hash_normal
   AND p1.hash_normal != p2.hash_reverse;
 """
-
 
 QUERY_EXTRACT_FOR_FINAL = """
 SELECT
@@ -66,10 +67,21 @@ SELECT
 FROM palettes p;
 """
 
+# Final DB.
+
+QUERY_CREATE_FINAL_DB = '''
+CREATE TABLE palettes (
+    id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    uid    TEXT NOT NULL,
+    name   TEXT NOT NULL,
+    kind   TEXT NOT NULL
+)
+'''
+
 QUERY_INSERT_IN_FINAL = """
 INSERT INTO palettes (
+    uid,
     name,
-    source,
     kind
 ) VALUES (?, ?, ?)
 """
@@ -94,6 +106,10 @@ FINAL_SQLITE_DB_FILE = AUDIT_DIR / "final-palettes.db"
 PRIORITY = YAML_CONFIGS['PRIORITY']
 
 
+RENAMED_YAML = AUDIT_DIR / 'RENAMED.yaml'
+RENAMED_YAML.touch()
+
+
 IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
 
 with IGNORED_YAML.open(mode = 'r') as f:
@@ -105,13 +121,6 @@ if not IGNORED is None:
     for src, names in IGNORED.items():
         for n in names:
             PALS_IGNORED.add((n, src))
-
-
-with (AUDIT_DIR / 'RENAMED.yaml').open(mode = 'r') as f:
-    RENAMED = yaml.safe_load(f)
-
-if RENAMED is None:
-    RENAMED = dict()
 
 
 # ------------------ #
@@ -138,9 +147,14 @@ NAME_CONFLICTS = defaultdict(set)
 # -- EQUAL / MIRROR PALETTES -- #
 # ----------------------------- #
 
+# WARNING! We don't apply any renaming because this ones resolve
+# conflict names (same lower names for different palettes).
+
 # -- DB EXTRACTION -- #
 
-logging.info(f"DATA cleaning - 'Equal or mirror'.")
+logging.info(
+    f"DATA cleaning - 'Equal or mirror' (no renaming here)."
+)
 
 
 with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
@@ -152,14 +166,14 @@ with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
         PALS_SAME[tag] = list(cursor.fetchall())
 
 
-# -- IDENTICAL PALETTES -- #
+# -- SAME NAME / SAME PALETTE / DIFFERNT TECHNO. -- #
 
 grps_equal_pals = list()
 
 for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
     equal_pals = set(
-        extract_name_n_srcname(nsn)
-        for nsn in _equal_pals.split(',')
+        extract_name_n_srcname(uid)
+        for uid in _equal_pals.split(',')
     )
 
     equal_pals -= PALS_IGNORED
@@ -168,7 +182,7 @@ for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
     if len(equal_pals) == 1:
         continue
 
-# Identical palettes but different names
+# Identical palettes but different names.
     if 1 != len(set(n for n, _ in equal_pals)):
         grps_equal_pals.append(equal_pals)
 
@@ -214,7 +228,8 @@ for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
         EQUALS[p] = pal_kept
 
 
-# Identical palettes but different names
+# -- DIFFERENT NAMES / SAME PALETTE -- #
+
 if grps_equal_pals:
     _xtra_what = []
 
@@ -227,16 +242,16 @@ if grps_equal_pals:
         equal_pals = list(equal_pals)
 
         equal_pals.sort(
-            key     = lambda nsn: int(PRIORITY[nsn[1]]),
+            key     = lambda uid: int(PRIORITY[uid[1]]),
             reverse = True,
         )
 
         equal_pals = [
             (
-                f"Prio[{PRIORITY[nsn[1]]}] "
-                f"{reverse_build_name_n_srcname(*nsn)}"
+                f"Prio[{PRIORITY[uid[1]]}] "
+                f"{reverse_build_name_n_srcname(*uid)}"
             )
-            for nsn in equal_pals
+            for uid in equal_pals
         ]
 
         for w in equal_pals:
@@ -259,8 +274,8 @@ if grps_equal_pals:
 
 for mirror_pals in PALS_SAME[TAG_MIRROR]:
     pal_1, pal_2 = [
-        extract_name_n_srcname(nsn)
-        for nsn in mirror_pals
+        extract_name_n_srcname(uid)
+        for uid in mirror_pals
     ]
 
     pal_alias_1 = EQUALS.get(pal_1, pal_1)
@@ -279,39 +294,62 @@ for mirror_pals in PALS_SAME[TAG_MIRROR]:
         MIRRORS[pal_alias_1] = pal_alias_2
 
 
+# ----------- #
+# -- ALIAS -- #
+# ----------- #
+
+logging.info(f"DATA cleaning - 'Building alias'.")
+
+with RENAMED_YAML.open(mode = 'r') as f:
+    _RENAMED = yaml.safe_load(f)
+
+RENAMED = (
+    dict()
+    if _RENAMED is None else
+    builde_new_palnames(_RENAMED)
+)
+
+assert len(list(RENAMED.values())) == len(set(RENAMED.values()))
+
+# NEWNAME_2_UID = {
+#     v: k
+#     for k, v in RENAMED.items()
+# }
+
+
 # --------------------- #
 # -- NAME CONFLICTS? -- #
 # --------------------- #
 
-logging.info(f"DATA cleaning - 'Same name / Different palettes'.")
+logging.info(f"DATA cleaning - 'Same lower name / Different palettes'.")
+
+# -- DB EXTRACTION -- #
 
 name_conflicts = defaultdict(set)
-
-# -- DB EXTRACTION -- #  RENAMED
 
 with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(QUERY_NAME_CONFLICT)
 
-    for name, *sources in cursor.fetchall():
-        for s in sources:
-            pal = (name, s)
+    for data in cursor.fetchall():
+        for pal in zip(data[::2], data[1::2]):
+            if build_name_n_srcname(*pal) in RENAMED:
+                continue
+
             pal = EQUALS.get(pal, pal)
 
-            if not(
-                name in RENAMED.get(s, [])
-                or
-                pal in PALS_IGNORED
-            ):
-                name_conflicts[name].add(pal[1])
+            if not pal in PALS_IGNORED:
+                name_conflicts[pal[0].lower()].add(pal)
 
-PALS_NAME_CONFLICT = dict()
+PALS_NAME_CONFLICT = []
 
 for name, sources in name_conflicts.items():
     if len(sources) > 1:
-        PALS_NAME_CONFLICT[name] = list(sources)
+        PALS_NAME_CONFLICT.append(list(sources))
 
-# Error will be indicated after updating the JSON file.
+PALS_NAME_CONFLICT.sort()
+
+# NOTE. Error will be indicated after updating the JSON file.
 
 
 # ------------------ #
@@ -321,8 +359,8 @@ for name, sources in name_conflicts.items():
 logging.info(f"DATA cleaning - 'Update JSON audit files'.")
 
 jsonify_dict = lambda d: get_sorted_dict({
-    build_name_n_srcname(*nsn_1): build_name_n_srcname(*nsn_2)
-    for nsn_1, nsn_2 in d.items()
+    build_name_n_srcname(*uid_1): build_name_n_srcname(*uid_2)
+    for uid_1, uid_2 in d.items()
 })
 
 
@@ -362,55 +400,22 @@ if PALS_NAME_CONFLICT:
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info(f"DATA cleaning - 'Building aliases'.")
-
-suffixes = RENAMED[TAG_SUFFIXES]
-
-del RENAMED[TAG_SUFFIXES]
-
-ALIASES = dict()
-
-for src, newnames in RENAMED.items():
-    for old, new in newnames.items():
-        if new == '.':
-            new = old + suffixes[src]
-
-        elif '*' in new:
-            new = new.replace('*', suffixes[src])
-
-        ALIASES[
-            build_name_n_srcname(old, src)
-        ] = build_name_n_srcname(new, src)
-
-
-# ----------------------- #
-# -- DB INITIALIZATION -- #
-# ----------------------- #
-
-logging.info(f"DATA cleaning - SQLite DB - 'Init FINAL table'.")
+logging.info(f"DATA cleaning - Final SQLite DB - 'Init table'.")
 
 with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
-
     cursor.execute('DROP TABLE IF EXISTS palettes;')
-
-    cursor.execute('''
-CREATE TABLE palettes (
-    id     INTEGER PRIMARY KEY AUTOINCREMENT,
-    name   TEXT NOT NULL,
-    source TEXT NOT NULL,
-    kind   TEXT NOT NULL
-)
-    ''')
+    cursor.execute(QUERY_CREATE_FINAL_DB)
 
 
 # ----------------- #
 # -- POPULATE DB -- #
 # ----------------- #
 
-logging.info(f"DATA cleaning - SQLite DB - 'Populate FINAL table'.")
+logging.info(f"DATA cleaning - Final SQLite DB - 'Populate table'.")
 
-kept = set()
+already_kept = set()
+
 
 with (
     sqlite3.connect(FULL_SQLITE_DB_FILE) as full_conn,
@@ -433,18 +438,18 @@ with (
 
                 break
 
-        name_src = ALIASES.get(name_src, name_src)
+        aprism_name_src = RENAMED.get(name_src, name_src)
 
-        if name_src in kept:
+        if aprism_name_src in already_kept:
             continue
 
-        kept.add(name_src)
+        already_kept.add(aprism_name_src)
 
-        name, src = extract_name_n_srcname(name_src)
+        aprism_name, _ = extract_name_n_srcname(aprism_name_src)
 
         final_cursor.execute(
             QUERY_INSERT_IN_FINAL,
-            [name, src, kind]
+            [name_src.lower(), aprism_name, kind]
         )
 
 
@@ -453,7 +458,7 @@ with (
 # ------------------------ #
 
 logging.info(
-     "DATA cleaning - SQLite DB - File "
+     "DATA cleaning - Final SQLite DB - File "
     f"'{FINAL_SQLITE_DB_FILE.relative_to(PROJ_DIR)}' "
      "build."
 )

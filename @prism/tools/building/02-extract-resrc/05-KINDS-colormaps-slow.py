@@ -58,7 +58,6 @@ PATTERN_MD_SECTION_2 = re.compile(
 
 TITLES_IGNORED = [
     '---',
-    'Scientific',
     'Table of contents',
 ]
 
@@ -94,6 +93,7 @@ def extract_md_pals(content):
 
         src = RESRC_ALIAS.get(src, src)
 
+
         if not src in ALL_RESRC_TAGS:
             src = RESRC_ALIAS.get(src.lower(), src)
 
@@ -115,12 +115,10 @@ def extract_md_pals(content):
             if name in NAMES_IGNORED:
                 continue
 
-            namesrc = build_name_n_srcname(name, src)
+            uid = build_name_n_srcname(name, src)
+            uid = uid.lower()
 
-# We must work with full lower case!
-            namesrc = namesrc.lower()
-
-            pals.append(namesrc)
+            pals.append(uid)
 
     return pals
 
@@ -134,19 +132,20 @@ logging.info(f"Extract kinds from '{THIS_RESRC}'.")
 _PALS_KINDS = defaultdict(set)
 
 for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
-    what = mdpath.stem.lower()
+    fname   = mdpath.name
+    palkind = mdpath.stem.lower()
 
-    if what == 'scientific':
+    if palkind == 'scientific':
         continue
 
     content = mdpath.read_text()
 
-    if what == 'other':
-        logging.warning("Unmanaged content 'Other.md'.")
+    if palkind == 'other':
+        logging.warning(f"Unmanaged '{fname}' (maybe later).")
 
         continue
 
-    palkind = what.lower()
+    logging.info(f"Parse '{fname}' content.")
 
     if not palkind in KIND_ALIAS:
         log_raise_error(
@@ -159,8 +158,8 @@ for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
 
     pals = extract_md_pals(content)
 
-    for namesrc in pals:
-        _PALS_KINDS[namesrc].add(palkind)
+    for uid in pals:
+        _PALS_KINDS[uid].add(palkind)
 
 
 # ------------------ #
@@ -173,9 +172,13 @@ logging.info(
 
 # We want a deterministic output.
 PALS_KINDS = {
-    nsn: ', '.join(sorted(_PALS_KINDS[nsn]))
-    for nsn in sorted(_PALS_KINDS)
+    uid: ', '.join(sorted(_PALS_KINDS[uid]))
+    for uid in sorted(_PALS_KINDS)
 }
+
+# -- DEBUG - ON -- #
+# print(PALS_KINDS)
+# -- DEBUG - OFF -- #
 
 RESRC_KINDS_JSON.write_text(
     json_dumps(PALS_KINDS)

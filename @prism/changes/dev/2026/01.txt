@@ -2,6 +2,27 @@
 
 
 ==
+13  (2.0.0-beta.8)
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+Add new features.
+
+    1) Final palette \db: the \attrs are sql::''uid'', sql::''name''  and sql::''kind''.
+
+    1) Work with lower palette names (some projects don't respect original case).
+
+    1) Lab is fully functional for missing kinds and name conflicts.
+
+
+// ---------- //
+
+
+==
 11  (2.0.0-beta.7)
 ==
 

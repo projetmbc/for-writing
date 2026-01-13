@@ -35,7 +35,7 @@ TAG_SIZE     = 'size'
 TAG_SUFFIXES = '_SUFFIXES_'
 
 
-TAG_NSN_SEP = '::'
+TAG_uid_SEP = '::'
 
 
 # ------------------ #
@@ -117,8 +117,8 @@ def update_data(report  : dict) -> None:
         renamed[TAG_SUFFIXES] = dict()
 
 # Let's iterate on the date.
-    for nsn, infos in report.items():
-        name, src = extract_name_n_srcname(nsn)
+    for uid, infos in report.items():
+        name, src = extract_name_n_srcname(uid)
 
         visual_similar = []
 

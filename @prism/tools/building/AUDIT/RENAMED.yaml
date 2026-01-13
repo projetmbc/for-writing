@@ -18,6 +18,7 @@ MATPLOTLIB:
 
 #  + P
 PLOTLY:
+  Bluered: BlueRed*
   Hot: .
   Jet: .
   Rainbow: .

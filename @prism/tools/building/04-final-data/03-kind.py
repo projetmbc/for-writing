@@ -26,14 +26,16 @@ from yaml import (
     dump as yaml_dump
 )
 
+
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
 QUERY_NO_KIND = """
 SELECT
+    uid,
     name,
-    source
+    kind
 FROM palettes
 WHERE kind = ''
 """
@@ -41,7 +43,7 @@ WHERE kind = ''
 QUERY_UPDATE_KIND = """
 UPDATE palettes
 SET kind = ?
-WHERE name = ? AND source = ?"""
+WHERE uid = ?"""
 
 
 # ------------------ #
@@ -62,15 +64,15 @@ HUMAN_KIND_YAML      = AUDIT_DIR / 'HUMAN-KIND.yaml'
 
 if HUMAN_KIND_YAML.is_file():
     with HUMAN_KIND_YAML.open('r') as f:
-        YAML_STORED_KINDS = safe_load(f)
+        HUMAN_KIND = safe_load(f)
 
-    if YAML_STORED_KINDS is None:
-        YAML_STORED_KINDS = dict()
+    if HUMAN_KIND is None:
+        HUMAN_KIND = dict()
 
 else:
     HUMAN_KIND_YAML.touch()
 
-    YAML_STORED_KINDS = dict()
+    HUMAN_KIND = dict()
 
 
 # ------------------ #
@@ -81,6 +83,7 @@ MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING-KIND.json"
 
 EMPTY_KINDS   = []
 MISSING_KINDS = []
+NAME_2_UID    = {}
 
 
 # ------------------- #
@@ -93,15 +96,15 @@ with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(QUERY_NO_KIND)
 
-    for name, src in cursor.fetchall():
+    for uid, name, src in cursor.fetchall():
+        NAME_2_UID[name] = uid
+
         namesrc = build_name_n_srcname(name, src)
 
-        kind = YAML_STORED_KINDS.get(namesrc, '')
+        kind = HUMAN_KIND.get(name, '')
 
         if not kind:
-            EMPTY_KINDS.append(namesrc)
-
-EMPTY_KINDS.sort()
+            EMPTY_KINDS.append((uid, name))
 
 
 # ------------------ #
@@ -116,25 +119,23 @@ for _path_resrc_kinds in REPORT_DIR.glob("KIND-*json"):
     with _path_resrc_kinds.open(mode = 'r') as f:
         _one_resrc_kinds = json_load(f)
 
-    for nsn, k in _one_resrc_kinds.items():
-        if nsn in _all_resrc_kinds:
-            k = f", {k}"
+    for uid, k in _one_resrc_kinds.items():
+        if uid in _all_resrc_kinds:
+            k = f"|{k}"
 
-        _all_resrc_kinds[nsn] += k
+        _all_resrc_kinds[uid] += k
 
-for nsn in EMPTY_KINDS:
-    resolved_kind = _all_resrc_kinds.get(nsn.lower(), '')
+for uid, name in EMPTY_KINDS:
+    resolved_kind = _all_resrc_kinds.get(uid, '')
 
     if not resolved_kind:
-        MISSING_KINDS.append(nsn)
+        MISSING_KINDS.append((uid, name))
 
         continue
 
-    YAML_STORED_KINDS[nsn] = resolved_kind
+    HUMAN_KIND[name] = resolved_kind
 
-    name, src = extract_name_n_srcname(nsn)
-
-    logging.info(f"Resolved '{name} [{src}]' kind.")
+    logging.info(f"Resolved '{name}' kind.")
 
 
 # --------------- #
@@ -146,12 +147,10 @@ logging.info(f"KINDS - 'SQLite DB - Update file'.")
 with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
 
-    for namesrc, kind in YAML_STORED_KINDS.items():
-        name, src = extract_name_n_srcname(namesrc)
-
+    for name, kind in HUMAN_KIND.items():
         cursor.execute(
             QUERY_UPDATE_KIND,
-            [kind, name, src]
+            [kind, NAME_2_UID[name]]
         )
 
 
@@ -164,7 +163,7 @@ logging.info(
 )
 
 with HUMAN_KIND_YAML.open("w") as f:
-    yaml_dump(YAML_STORED_KINDS, f)
+    yaml_dump(HUMAN_KIND, f)
 
 
 # ------------------ #
@@ -176,7 +175,7 @@ logging.info(
 )
 
 MISSING_KIND_JSON.write_text(
-    json_dumps(EMPTY_KINDS)
+    json_dumps(MISSING_KINDS)
 )
 
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from typing import TypeAlias
+from typing import Callable, TypeAlias
 
 from enum import Enum
 
@@ -8,6 +8,7 @@ import numpy as np
 
 from .constants import *
 from .normval   import stdfloat
+from .misc      import *
 
 
 # ------------ #
@@ -141,7 +142,7 @@ def update_palettes(
     candidate: PaletteCols,
     palettes : dict[str, PaletteCols],
     ignored  : dict[str, dict[ str, [str] ] ],
-    logcom,
+    logcom   = Callable,
 ) -> (
     str,
     dict[str, PaletteCols],
@@ -279,3 +280,37 @@ def resume_nbpals_build(
         )
 
     return nb_new_pals
+
+
+
+
+def builde_new_palnames(
+    yaml_cfg: dict
+) -> dict:
+    new_palnames = dict()
+
+    suffixes = yaml_cfg.get(TAG_SUFFIXES, [])
+
+    for techno, namerules in yaml_cfg.items():
+        if techno == TAG_SUFFIXES:
+            continue
+
+        this_suffix = suffixes[techno]
+
+        for name, rule in namerules.items():
+            if rule == '.':
+                newname = f"{name}{this_suffix}"
+
+            elif '*' in rule:
+                newname = rule.replace('*', this_suffix)
+
+            else:
+                newname = rule
+
+            uid = build_name_n_srcname(name, techno)
+
+            assert not uid in new_palnames
+
+            new_palnames[uid] = build_name_n_srcname(newname, techno)
+
+    return new_palnames
