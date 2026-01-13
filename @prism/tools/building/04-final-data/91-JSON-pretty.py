@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 
+# -- DEBUG - ON -- #
+from rich import print
+# -- DEBUG - OFF -- #
+
 # ---------------------------- #
 # -- IMPORT CBUTILS - START -- #
 
 from pathlib import Path
 import              sys
 
-THIS_DIR  = Path(__file__).parent
-BUILD_TOOLS_DIR = THIS_DIR
+THIS_DIR        = Path(__file__).parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
 sys.path.append(str(BUILD_TOOLS_DIR))
 
@@ -39,12 +43,8 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-PRODS_DIR  = PROJ_DIR / "products"
+
 REPORT_DIR = THIS_DIR.parent / TAG_REPORT
-
-
-PROD_JSON_DIR = PRODS_DIR / "json"
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 
 # ----------- #
@@ -65,13 +65,26 @@ def compact_nblists(json_code: str) -> str:
 # -- JSON NORMALIZATION -- #
 # ------------------------ #
 
-logging.info("Normalize all reporting JSON codes.")
+logging.info(f"Human friendly JSON files.")
 
-for jsonfile in REPORT_DIR.glob("*.json"):
-    if jsonfile.name.startswith('RESRC'):
+for p in sorted(REPORT_DIR.glob('*.json')):
+    tokeep = False
+
+    for prefix in [
+        'AUDIT',
+        'KIND',
+    ]:
+        if p.name.startswith(f'{prefix}-'):
+            tokeep = True
+
+            break
+
+    if not tokeep:
         continue
 
-    with jsonfile.open(mode = "r") as f:
+    logging.info(f"Pretty '{p.relative_to(PROJ_DIR)}'.")
+
+    with p.open(mode = "r") as f:
         code = json_load(f)
 
     json_code = json_dumps(
@@ -80,28 +93,4 @@ for jsonfile in REPORT_DIR.glob("*.json"):
         sort_keys = True,
     )
 
-    jsonfile.write_text(json_code)
-
-
-
-
-exit()
-
-logging.info("Normalize JSON product code.")
-
-
-with PAL_JSON_FILE.open(mode = "r") as f:
-    palettes = json_load(f)
-
-json_code = json_dumps(
-    obj       = palettes,
-    indent    = 2,
-    sort_keys = True,
-)
-
-json_code = compact_nblists(json_code)
-
-
-logging.info("Update palette JSON files.")
-
-PAL_JSON_FILE.write_text(json_code)
+    p.write_text(json_code)

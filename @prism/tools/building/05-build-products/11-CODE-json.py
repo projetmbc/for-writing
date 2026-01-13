@@ -154,7 +154,7 @@ logging.info(f"Update '{PAL_JSON_CREDITS_MD.relative_to(PROJ_DIR)}'.")
 #     Credits in the JSON files via an extra key just complicates
 #     their future use (this is a bad practice).
 
-md_credtits = CREDITS  + '\n'
+md_credtits = CREDITS + '\n'
 md_credtits = md_credtits.replace("''", "`")
 md_credtits = re.sub(
     r'(https?://[^\s]+)',

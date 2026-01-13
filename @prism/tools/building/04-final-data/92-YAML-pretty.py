@@ -31,13 +31,7 @@ from string import ascii_uppercase
 THIS_DIR  = Path(__file__).parent
 AUDIT_DIR = THIS_DIR.parent / TAG_AUDIT
 
-ALL_YAMLS = [
-    AUDIT_DIR / "HUMAN-KIND.yaml",
-    AUDIT_DIR / "IGNORED.yaml",
-    AUDIT_DIR / "RENAMED.yaml",
-    VISUAL_SIMILAR_YAML:= AUDIT_DIR / "VISUAL-SIMILAR.yaml",
-    AUDIT_DIR / "VISUAL-EQUAL.yaml",
-]
+VISUAL_SIMILAR_YAML = AUDIT_DIR / "VISUAL-SIMILAR.yaml"
 
 
 # ----------- #
@@ -182,7 +176,7 @@ def humanize_yaml(
 
 logging.info(f"Human friendly YAML files.")
 
-for p in ALL_YAMLS:
+for p in sorted(AUDIT_DIR.glob('*.yaml')):
     logging.info(f"Pretty '{p.relative_to(PROJ_DIR)}'.")
 
     humanize_yaml(p)

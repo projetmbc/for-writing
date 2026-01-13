@@ -16,19 +16,7 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
-renaming : valide que ce n'est pas dejà employé dans ce qui est gardé !!!
-
-
-// ---------- //
-
-kinds: il reste à tenir compt e des renommage : cd BW qui est Gray (Matplotlib)
-
-dans BD final, on rajoute en fait l'ui et l'on utilise dans les opérations sur cette base
-
-
-UPDATE palettes
-SET kind = 'nouvelle_valeur'
-WHERE uid = 'votre_uid_specifique';
+version palette40 àù 40 est la ataill maxi pour auto qualtitif !
 
 
 // ---------- //
