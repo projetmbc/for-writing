@@ -26,8 +26,6 @@ from json import (
     load  as json_load,
 )
 
-import shutil
-
 
 # ------------------ #
 # -- CONSTANTS #2 -- #
@@ -36,6 +34,7 @@ import shutil
 VERSION = (BUILD_TOOLS_DIR / 'VERSION.txt').read_text()
 
 CREDITS = (BUILD_TOOLS_DIR / 'CREDITS.txt').read_text()
+CREDITS = CREDITS.strip()
 CREDITS = CREDITS.format(VERSION = VERSION)
 
 
@@ -61,8 +60,9 @@ while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR     = PROJ_DIR / "products"
-PROD_JSON_DIR = PRODS_DIR / "json"
 
+
+PROD_JSON_DIR = PRODS_DIR / "json"
 
 PROD_JSON_DIR.mkdir(
     parents  = True,

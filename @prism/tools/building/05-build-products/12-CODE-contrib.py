@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-exit(0)
 # ---------------------------- #
 # -- IMPORT CBUTILS - START -- #
 
@@ -23,20 +22,18 @@ from json import (
     load  as json_load,
 )
 
-import shutil
+from shutil import copytree
 
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-QUERY_ALL_PALS = """
-SELECT
-    uid,
-    name,
-    kind
-FROM palettes
-"""
+VERSION = (BUILD_TOOLS_DIR / 'VERSION.txt').read_text()
+
+CREDITS = (BUILD_TOOLS_DIR / 'CREDITS.txt').read_text()
+CREDITS = CREDITS.strip()
+CREDITS = CREDITS.format(VERSION = VERSION)
 
 
 # ------------------ #
@@ -52,63 +49,17 @@ PRODS_DIR        = PROJ_DIR / "products"
 CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
 
 
-REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
-AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
-
-
-FINAL_SQLITE_DB_FILE = AUDIT_DIR / "final-palettes.db"
-
-
-
-
-
-
-
-
-
-TODO
-
-exit()
-
-
 # ------------------ #
 # -- EXTRACT DATA -- #
 # ------------------ #
+
+logging.info(f"Get 'JSON palette defs'.")
 
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
-
-
-PAL_JSON_CREDITS_FILE = PROD_JSON_DIR / "CREDITS.md"
-
-
-CREDITS_TXT_FILE = THIS_DIR.parent / "CREDITS.txt"
-
-CREDITS = CREDITS_TXT_FILE.read_text().strip()
-CREDITS = CREDITS.format(VERSION = VERSION)
-
-
-# ---------------------------------- #
-# -- MD CREDITS FOR THE JSON FILE -- #
-# ---------------------------------- #
-
-# warning::
-#     Credits in the JSON file via an extra key just complicates
-#     its future used (this is a bad practice).
-
-md_credtits = CREDITS  + '\n'
-md_credtits = md_credtits.replace("''", "`")
-md_credtits = re.sub(
-    r'(https?://[^\s]+)',
-    r'[\1](\1)',
-    md_credtits
-)
-
-PAL_JSON_CREDITS_FILE.touch()
-PAL_JSON_CREDITS_FILE.write_text(md_credtits)
 
 
 # ------------------------------ #
@@ -141,7 +92,7 @@ for ctxt in sorted(impl_accepted, key = lambda x: x.lower()):
     fake_dir  = impl_folder / "fake-prod"
     final_dir = PRODS_DIR / ctxt
 
-    shutil.copytree(
+    copytree(
         src = fake_dir,
         dst = final_dir,
     )

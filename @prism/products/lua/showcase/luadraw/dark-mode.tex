@@ -1,0 +1,52 @@
+% !TEX TS-program = lualatex
+
+\documentclass[theme = dark]{tutodoc}
+
+\newcommand{\PALETTE}{Binary}
+
+\geometry{
+  top    = 1cm,
+  bottom = 1cm,
+  left   = 1cm,
+  right  = 1cm,
+%  showframe
+}
+
+\usepackage{pgfpages}
+\pgfpagesuselayout{2 on 1}[
+  a4paper,
+  landscape
+]
+
+\usepackage[svgnames]{xcolor}
+\usepackage[3d]{luadraw}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\centering
+
+
+% -------------------------- %
+% -- COMMON LUA CODE USED -- %
+% -------------------------- %
+
+\directlua{dofile('../../palettes.lua')}
+
+\directlua{
+  PALNAME = "\PALETTE"
+  PALETTE = getPal(PALNAME)
+
+  COL_1 = "lightgray!95"
+  COL_2 = "lightgray!20!black"
+}
+
+
+% ---------------- %
+% -- LET'S DRAW -- %
+% ---------------- %
+
+\input{./core/common.tex}
+
+\end{document}

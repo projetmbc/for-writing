@@ -10,7 +10,7 @@
 --------
 
 [[:api:]]
-New palette \json definitions respecting the initial palette sizes.
+New palette \json definitions respect initial palette sizes.
 
 
 --------
