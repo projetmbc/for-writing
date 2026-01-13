@@ -85,7 +85,6 @@ def expand_data(data: dict) -> dict:
     return expdata
 
 
-
 def expand_gobble(
     expdata: dict,
     gobble : list[str]
@@ -148,7 +147,7 @@ for techno in sorted(contribs_accepted[CONTRIB_PROD_DIR]):
 
         continue
 
-    logging.info(f"'{techno}' contrib - Cleaning.")
+    logging.info(f"Clean '{techno}' contrib.")
 
     with about_file.open(mode = 'r') as stream:
         about_cfg = yaml.safe_load(stream)
@@ -159,7 +158,7 @@ for techno in sorted(contribs_accepted[CONTRIB_PROD_DIR]):
     gobble = clean_cfg.get(TAG_GOBBLE, [])
 
     if not gobble:
-        logging.warning(f"'{techno}' contrib - Missing gobble patterns.")
+        logging.warning(f"Missing '{techno}' contrib gobble patterns.")
 
         continue
 
@@ -170,4 +169,4 @@ for techno in sorted(contribs_accepted[CONTRIB_PROD_DIR]):
         for f in techno_dir.glob(g):
             f.unlink()
 
-            logging.info(f"Removed '{f.relative_to(PROJ_DIR)}'.")
+            logging.info(f"Remove '{f.relative_to(PROJ_DIR)}'.")

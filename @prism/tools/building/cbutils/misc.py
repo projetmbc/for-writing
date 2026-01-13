@@ -90,10 +90,7 @@ def tag_update(
 
 # A file to update.
     logger.info(
-        msg_creation_update(
-            context = f"'{error_about[TAG_FILE_PATH]}'",
-            upper   = False,
-        )
+        f"Update '{error_about[TAG_FILE_PATH]}'."
     )
 
     content = txtfile.read_text()

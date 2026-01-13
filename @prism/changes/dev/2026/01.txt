@@ -6,6 +6,14 @@
 ==
 
 --------
+:update:
+--------
+
+[[:api:]]
+New palette \json definitions respecting the initial palette sizes.
+
+
+--------
 :fordev:
 --------
 

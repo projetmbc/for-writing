@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-
+exit(0)
 # ---------------------------- #
 # -- IMPORT CBUTILS - START -- #
 
@@ -26,9 +26,22 @@ from json import (
 import shutil
 
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+QUERY_ALL_PALS = """
+SELECT
+    uid,
+    name,
+    kind
+FROM palettes
+"""
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 PROJ_DIR = THIS_DIR
 
@@ -37,6 +50,25 @@ while (PROJ_DIR.name != TAG_APRISM):
 
 PRODS_DIR        = PROJ_DIR / "products"
 CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
+
+
+REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
+AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
+
+
+FINAL_SQLITE_DB_FILE = AUDIT_DIR / "final-palettes.db"
+
+
+
+
+
+
+
+
+
+TODO
+
+exit()
 
 
 # ------------------ #

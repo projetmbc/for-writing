@@ -24,9 +24,12 @@ from cbutils      import *
 from string import ascii_uppercase
 
 
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
 
-THIS_DIR = Path(__file__).parent
-AUDIT_DIR  = THIS_DIR.parent / TAG_AUDIT
+THIS_DIR  = Path(__file__).parent
+AUDIT_DIR = THIS_DIR.parent / TAG_AUDIT
 
 ALL_YAMLS = [
     AUDIT_DIR / "HUMAN-KIND.yaml",
@@ -36,8 +39,17 @@ ALL_YAMLS = [
     AUDIT_DIR / "VISUAL-EQUAL.yaml",
 ]
 
+
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
+
 class IndentDumper(yaml.SafeDumper):
-    def increase_indent(self, flow=False, indentless=False):
+    def increase_indent(
+        self,
+        flow       = False,
+        indentless = False
+    ):
         return super(IndentDumper, self).increase_indent(flow, False)
 
 
@@ -138,7 +150,8 @@ def humanize_yaml(
     mini_code = get_initialized_code(
         yaml.dump(
             data,
-            Dumper=IndentDumper, indent=2,
+            Dumper    = IndentDumper,
+            indent    = 2,
             sort_keys = True
         ),
         get_initial
@@ -163,6 +176,13 @@ def humanize_yaml(
     path.write_text(new_code)
 
 
-# Update of YAML files - Human friendly version.
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
+
+logging.info(f"Human friendly YAML files.")
+
 for p in ALL_YAMLS:
+    logging.info(f"Pretty '{p.relative_to(PROJ_DIR)}'.")
+
     humanize_yaml(p)

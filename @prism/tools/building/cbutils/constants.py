@@ -81,7 +81,7 @@ TAG_GOBBLE = "gobble"
 PAL_PRECISION = YAML_CONFIGS[TAG_METADATA]['PRECISION']
 
 TAG_ORIGINAL_NAME = "original-name"
-TAG_RGB_COLS= "rgb-cols"
+TAG_RGB_COLS      = "rgb-cols"
 
 TAG_AUTHOR = "author"
 TAG_KIND   = "kind"

@@ -44,6 +44,3 @@ if not PRODS_DIR.is_dir():
 else:
     for p in PRODS_DIR.glob("*"):
         p.unlink() if p.is_file() else rmtree(p)
-
-
-(PRODS_DIR / "showcase").mkdir(parents = True)
