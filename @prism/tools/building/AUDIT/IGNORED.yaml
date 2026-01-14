@@ -2,9 +2,9 @@
 CMOCEAN:
   - Gray
 
-#  + P
-PLOTLY:
-  - D3
+# #  + P
+# PLOTLY:
+#   - D3
 
 #  + T
 TABLEAU:

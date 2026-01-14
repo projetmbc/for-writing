@@ -21,6 +21,14 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+
+
+
+
+
+exit(1)
+
+
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
@@ -165,8 +173,13 @@ with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
 
         PALS_SAME[tag] = list(cursor.fetchall())
 
+# -- DEBUG - ON -- #
+# print(PALS_SAME[TAG_EQUAL])
+# exit()
+# -- DEBUG - OFF -- #
 
-# -- SAME NAME / SAME PALETTE / DIFFERNT TECHNO. -- #
+
+# -- SAME NAME / SAME PALETTE / DIFFERENT TECHNO. -- #
 
 grps_equal_pals = list()
 
@@ -176,7 +189,9 @@ for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
         for uid in _equal_pals.split(',')
     )
 
+    print(equal_pals)
     equal_pals -= PALS_IGNORED
+    print(equal_pals)
 
 # No equality (some palettes ignored).
     if len(equal_pals) == 1:
@@ -228,6 +243,8 @@ for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
         EQUALS[p] = pal_kept
 
 
+print(EQUALS)
+exit(1)
 # -- DIFFERENT NAMES / SAME PALETTE -- #
 
 if grps_equal_pals:
@@ -281,15 +298,15 @@ for mirror_pals in PALS_SAME[TAG_MIRROR]:
     pal_alias_1 = EQUALS.get(pal_1, pal_1)
     pal_alias_2 = EQUALS.get(pal_2, pal_2)
 
-    if PRIORITY[pal_alias_1[1]] > PRIORITY[pal_alias_2[1]]:
+# Palette #1 takes precedence.
+    if (
+        (-PRIORITY[pal_alias_1[1]], pal_alias_1[0])
+        <
+        (-PRIORITY[pal_alias_2[1]], pal_alias_2[0])
+    ):
         MIRRORS[pal_alias_2] = pal_alias_1
 
-    elif PRIORITY[pal_alias_1[1]] < PRIORITY[pal_alias_2[1]]:
-        MIRRORS[pal_alias_1] = pal_alias_2
-
-    elif pal_alias_1[0] < pal_alias_2[0]:
-        MIRRORS[pal_alias_2] = pal_alias_1
-
+# Palette #2 takes precedence.
     else:
         MIRRORS[pal_alias_1] = pal_alias_2
 

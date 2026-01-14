@@ -61,3 +61,19 @@ REMOVED
 
 for n in sorted(set(main_pals) - set(local_pals)):
     print(n)
+
+
+
+print("""
+-------
+COMPARE
+-------
+""")
+
+for n1, n2 in [
+    ('D3', 'Tab10'),
+]:
+    print(f"{n1} > {local_pals[n1]}")
+    print(f"{n2} > {local_pals[n2]}")
+    print(f"EQUAL: {local_pals[n1] == local_pals[n2]}")
+    print(f"MIRROR: {local_pals[n1] == local_pals[n2][::-1]}")
