@@ -140,7 +140,9 @@ with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
 logging.info(f"Update '{PAL_JSON_FILE.relative_to(PROJ_DIR)}'.")
 
 PAL_JSON_FILE.write_text(
-    json_dumps(allpals)
+    clean_pal_json(
+        json_dumps(allpals)
+    )
 )
 
 
