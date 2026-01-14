@@ -1,5 +1,10 @@
-// ---------- //
+has paltette : il manquait le nettoyage des zréos et signe - inutiels !!!
 
+
+
+
+
+// ---------- //
 
 ==
 13  (2.0.0-beta.8)

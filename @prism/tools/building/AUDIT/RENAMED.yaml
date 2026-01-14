@@ -12,10 +12,6 @@ _SUFFIXES_:
 COLORBREWER:
   YlOrRd: .
 
-#  + M
-MATPLOTLIB:
-  Gray: BW
-
 #  + P
 PLOTLY:
   Bluered: BlueRed*

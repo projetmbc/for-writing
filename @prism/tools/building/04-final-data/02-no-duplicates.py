@@ -38,8 +38,8 @@ HAVING nb > 1
     """,
     TAG_MIRROR: """
 SELECT
-    GROUP_CONCAT(p1.name || '::' || p1.source),
-    GROUP_CONCAT(p2.name || '::' || p2.source)
+    CONCAT(p1.name || '::' || p1.source),
+    CONCAT(p2.name || '::' || p2.source)
 FROM palettes p1, palettes p2
 WHERE p1.hash_normal = p2.hash_reverse
 AND p1.id < p2.id

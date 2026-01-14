@@ -184,7 +184,6 @@ const palsize = {
   "Binary": 2,
   "Autumn": 2,
   "Cool": 2,
-  "BW": 2,
   "Pink": 64,
   "Spring": 2,
   "Summer": 2,

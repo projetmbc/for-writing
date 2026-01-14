@@ -22,6 +22,19 @@ PaletteCols:TypeAlias = list[RGBCols]
 # -- TOOLS -- #
 # ----------- #
 
+
+def clean_pal_json(content):
+    for old, new in [
+        ('.0,' , ','),
+        ('.0]' , ']'),
+        (' -0', ' 0'),
+        ('[-0', '[0'),
+    ]:
+        content = content.replace(old, new)
+
+    return content
+
+
 def update_jsons(
     nb_new_pals: int = -1,
     names      : dict[str, str] | None = None,

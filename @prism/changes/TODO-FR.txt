@@ -16,25 +16,65 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
-version palette40 àù 40 est la ataill maxi pour auto qualtitif !
+bug
+
+   --> binary <--> Gray mais c'est gray puis BW qui est gardé!!!!
+
+   --> des -0.0 appraissent, les vvirer !!!
 
 
 // ---------- //
 
-pour les json produits, il faut les normalisre : voir si audit- .. . json tous ok
+ajouter les palettes manquantes par rapport au dernier main
 
-ide pour yaml
+    aggregate --> Qualitative
 
-
-penser ) ordonné de façon naturel vi natsort !!!!
+puis entuite avoir un outil de compraison visuel lorsqu'uen déf change sur la haute résolution
 
 
 // ---------- //
 
-dans lab
+version palette-s40 à 40 est la ataill maxi (cf auto qualtitif) !
+ceci devraits ervir partout et on gr-arde haute résilution si esoin ponctuel !!!
 
-    --> outils comparer la dernier main à celel qui vient d'etre construite
 
+def normalize_rgb_palette(palette, target_size=40):
+    """
+    palette: list of (r, g, b) tuples
+    """
+    n = len(palette)
+    if n <= target_size:
+        return palette
+
+    new_palette = []
+
+    for i in range(target_size):
+        # Positionnement sur l'échelle 0.0 -> 1.0
+        relative_pos = i / (target_size - 1)
+        float_index = relative_pos * (n - 1)
+
+        # Identification des deux couleurs pivots
+        idx1 = int(float_index)
+        idx2 = min(idx1 + 1, n - 1)
+
+        # Ratio de mélange entre les deux couleurs
+        mix = float_index - idx1
+
+        # Interpolation linéaire sur les 3 canaux
+        # Formula: C = C1 * (1 - mix) + C2 * mix
+        interpolated_rgb = tuple(
+            int(round(palette[idx1][j] * (1 - mix) + palette[idx2][j] * mix))
+            for j in range(3)
+        )
+
+        new_palette.append(interpolated_rgb)
+
+    return new_palette
+
+
+// ---------- //
+
+penser à ordonné de façon naturel vi natsort !!!!
 
 
 // ---------- //

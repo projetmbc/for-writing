@@ -4,8 +4,7 @@ Afmhot: dark|sequential
 Autumn: qualitative|sequential
 
 #  + B
-BW: dark|qualitative|sequential
-Binary: qualitative|sequential
+Binary: dark|qualitative|sequential
 Blues: sequential
 Bone: sequential
 BrBG: divergent

@@ -1,3 +1,7 @@
+#  + C
+CMOCEAN:
+  - Gray
+
 #  + P
 PLOTLY:
   - D3

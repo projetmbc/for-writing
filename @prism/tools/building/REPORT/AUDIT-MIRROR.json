@@ -1,3 +1,4 @@
 {
-  "GistYarg::MATPLOTLIB": "GistGray::MATPLOTLIB"
+  "GistYarg::MATPLOTLIB": "GistGray::MATPLOTLIB",
+  "Gray::MATPLOTLIB": "Binary::MATPLOTLIB"
 }

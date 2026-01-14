@@ -54,7 +54,9 @@ def get_palhash(palette: PaletteCols) -> str:
         for c in palette
     ]
 
-    palstr   = json_dumps(paldef, sort_keys = True)
+    palstr = json_dumps(paldef)
+    palstr = clean_pal_json(palstr)
+
     hashcode = hashlib.md5(palstr.encode()).hexdigest()
 
     return hashcode
@@ -175,6 +177,22 @@ with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
 
             hash_normal  = get_palhash(paldef)
             hash_reverse = get_palhash(paldef[::-1])
+
+# -- DEBUG - ON -- #
+            # if (name, projname) in [
+            #     ('Binary', 'MATPLOTLIB'),
+            #     ('Gray', 'MATPLOTLIB'),
+            # ]:
+            #     palstr = clean_pal_json(json_dumps(paldef))
+            #     # palstr = json_dumps(paldef)
+
+            #     print('---')
+            #     print(name)
+            #     print(paldef)
+            #     print(f"{palstr=}")
+            #     print(f"{hash_normal=}")
+            #     print(f"{hash_reverse=}")
+# -- DEBUG - OFF -- #
 
             dbadd_palette(
                 conn         = conn,
