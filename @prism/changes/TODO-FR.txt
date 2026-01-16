@@ -16,12 +16,7 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
-bug
-
-   --> binary <--> Gray mais c'est gray puis BW qui est gardé!!!!
-
-   --> des -0.0 appraissent, les vvirer !!!
-
+besoin de garder les version utilisé pour la doc
 
 // ---------- //
 

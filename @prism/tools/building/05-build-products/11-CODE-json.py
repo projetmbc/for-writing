@@ -1,3 +1,6 @@
+exit(1)
+
+
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
@@ -79,7 +82,7 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 
 
-FINAL_SQLITE_DB_FILE = AUDIT_DIR / "final-palettes.db"
+SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
 
 # ------------------ #
@@ -125,7 +128,7 @@ logging.info(f"Build 'palette defs'.")
 
 allpals = dict()
 
-with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(QUERY_ALL_PALS)
 

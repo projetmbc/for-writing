@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+
+exit(1)
+
+
 # -- DEBUG - ON -- #
 from rich import print
 # -- DEBUG - OFF -- #
