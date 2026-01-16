@@ -307,10 +307,10 @@ def builde_new_palnames(
             else:
                 newname = rule
 
-            uid = build_name_n_srcname(name, techno)
+            uid = (name, techno)
 
             assert not uid in new_palnames
 
-            new_palnames[uid] = build_name_n_srcname(newname, techno)
+            new_palnames[uid] = newname
 
     return new_palnames

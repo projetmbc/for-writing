@@ -30,28 +30,55 @@ SQL_DROP = 'DROP TABLE IF EXISTS palettes;'
 
 SQL_CREATE = '''
 CREATE TABLE palettes (
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    is_kept      INTEGER DEFAULT 0,
-    uid          TEXT NOT NULL,
-    name         TEXT NOT NULL,
-    source       TEXT NOT NULL,
-    kind         TEXT NOT NULL,
+--
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    is_kept   INTEGER DEFAULT 1,
+    equal_to  INTEGER,
+    mirror_of INTEGER,
+    priority  INTEGER,
+--
+    name   TEXT NOT NULL,
+    source TEXT NOT NULL,
+    kind   TEXT NOT NULL,
+--
     hash_normal  TEXT NOT NULL,
-    hash_reverse TEXT NOT NULL,
-    equal_to     INTEGER DEFAULT 0,
-    mirror_of    INTEGER DEFAULT 0
+    hash_reverse TEXT NOT NULL
 )
 '''
 
-SQL_INSERT = '''
+
+SQL_INSERT_WITHOUT_EQUAL_TO = '''
 INSERT INTO palettes (
-    uid,
+--
+    priority,
+--
     name,
     source,
     kind,
+--
     hash_normal,
     hash_reverse
 ) VALUES ({placeholders})
+'''
+
+
+SQL_SET_DEFAULT_EQUAL_TO = '''
+UPDATE palettes
+SET equal_to = id
+'''
+
+
+SQL_SET_IGNORED = '''
+UPDATE palettes
+SET is_kept = 0
+WHERE name = '{name}' AND source = '{source}';
+'''
+
+
+SQL_RENAME = '''
+UPDATE palettes
+SET name = '{newname}'
+WHERE name = '{name}' AND source = '{source}';
 '''
 
 
@@ -68,6 +95,35 @@ AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
+
+
+PRIORITY = YAML_CONFIGS['PRIORITY']
+
+
+RENAMED_YAML = AUDIT_DIR / 'RENAMED.yaml'
+RENAMED_YAML.touch()
+
+with RENAMED_YAML.open(mode = 'r') as f:
+    _RENAMED = yaml.safe_load(f)
+
+RENAMED = (
+    dict()
+    if _RENAMED is None else
+    builde_new_palnames(_RENAMED)
+)
+
+
+IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
+
+with IGNORED_YAML.open(mode = 'r') as f:
+    _IGNORED = yaml.safe_load(f)
+
+IGNORED = set()
+
+if not _IGNORED is None:
+    for src, names in _IGNORED.items():
+        for n in names:
+            IGNORED.add((n, src))
 
 
 # ------------------ #
@@ -121,9 +177,9 @@ def get_std_kind(kind: str) -> str:
 
         _stdkind.add(k)
 
-    stdkind = ','.join(sorted(_stdkind))
+    std_kind = ','.join(sorted(_stdkind))
 
-    if not stdkind and kind or _xtra_pb_kinds:
+    if not std_kind and kind or _xtra_pb_kinds:
         xtra = ''
 
         if _xtra_pb_kinds:
@@ -147,18 +203,19 @@ def get_std_kind(kind: str) -> str:
             xtra      = xtra
         )
 
-    return stdkind
+    return std_kind
 
 
 def dbadd_palette(
     conn,
+    priority    : int,
     name        : str,
     source      : str,
     kind        : str,
     hash_normal : str,
     hash_reverse: str
 ) -> None:
-    placeholders = ['?']*len(locals())
+    placeholders = ['?']*(len(locals()) - 1)
     placeholders = ','.join(placeholders)
 
     if not source:
@@ -168,20 +225,18 @@ def dbadd_palette(
     try:
         cursor = conn.cursor()
 
-        uid = f"{source}::{name}".lower()
-
-# -- DEBUG - ON -- #
-        # uid = f"{source}".lower()
-# -- DEBUG - OFF -- #
-
         cursor.execute(
-            SQL_INSERT.format(
+            SQL_INSERT_WITHOUT_EQUAL_TO.format(
                 placeholders = placeholders
             ), (
-                uid,
+                # --
+                priority,
+                # --
                 name,
                 source,
+                # --
                 kind,
+                # --
                 hash_normal,
                 hash_reverse
             )
@@ -215,13 +270,17 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -- PALETTES METADATA -- #
 # ----------------------- #
 
-logging.info(f"SQLite DB - 'Populate table with hard data'.")
+logging.info(f"SQLite DB - 'Populate with hard data'.")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     for resrc_json in REPORT_DIR.glob("*.json"):
-        projname = resrc_json.stem
+        src = resrc_json.stem
 
-        if projname.startswith('KIND-'):
+        if (
+            src.startswith('KIND-')
+            or
+            src.startswith('AUDIT-')
+        ):
             continue
 
         data = json_load(resrc_json.open())
@@ -230,32 +289,40 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
             kind   = infos[TAG_KIND]
             paldef = infos[TAG_RGB_COLS]
 
-            stdkind = get_std_kind(kind)
+            std_kind = get_std_kind(kind)
 
             hash_normal  = get_palhash(paldef)
             hash_reverse = get_palhash(paldef[::-1])
 
-# -- DEBUG - ON -- #
-            # if (name, projname) in [
-            #     ('Binary', 'MATPLOTLIB'),
-            #     ('Gray', 'MATPLOTLIB'),
-            # ]:
-            #     palstr = clean_pal_json(json_dumps(paldef))
-            #     # palstr = json_dumps(paldef)
-
-            #     print('---')
-            #     print(name)
-            #     print(paldef)
-            #     print(f"{palstr=}")
-            #     print(f"{hash_normal=}")
-            #     print(f"{hash_reverse=}")
-# -- DEBUG - OFF -- #
-
             dbadd_palette(
                 conn         = conn,
+                priority     = PRIORITY[src],
                 name         = name,
-                source       = projname,
-                kind         = stdkind,
+                source       = src,
+                kind         = std_kind,
                 hash_normal  = hash_normal,
                 hash_reverse = hash_reverse
             )
+
+# Default value of ''equal_to'' attributes.
+    cursor = conn.cursor()
+    cursor.execute(SQL_SET_DEFAULT_EQUAL_TO)
+
+# Value of ''ignored'' for ignored pals.
+    for (name, src) in IGNORED:
+        query = SQL_SET_IGNORED.format(
+            name    = name,
+            source  = src,
+        )
+
+        cursor.execute(query)
+
+# Renaming.
+    for (name, src), newname in RENAMED.items():
+        query = SQL_RENAME.format(
+            name    = name,
+            source  = src,
+            newname = newname,
+        )
+
+        cursor.execute(query)

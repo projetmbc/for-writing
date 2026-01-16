@@ -1,24 +1,15 @@
+COLORBREWER:
+  YlOrRd: .
+PLOTLY:
+  Bluered: BlueRed*
+  Hot: .
+  Jet: .
+  Rainbow: .
+TABLEAU:
+  Gray: MidGray
 _SUFFIXES_:
   CARTOCOLORS: CC
   COLORBREWER: CBW
   MATPLOTLIB: MPL
   PLOTLY: PLY
   TABLEAU: TAB
-
-# '.' asks to add the suffix to the existing name.
-# '*' is an alias for the suffix.
-
-#  + C
-COLORBREWER:
-  YlOrRd: .
-
-#  + P
-PLOTLY:
-  Bluered: BlueRed*
-  Hot: .
-  Jet: .
-  Rainbow: .
-
-#  + T
-TABLEAU:
-  Gray: MidGray

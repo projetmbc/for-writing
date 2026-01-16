@@ -31,20 +31,17 @@ def load_all_data():
     Charge les conflits et les regroupe par nom (insensible à la casse).
     Structure de sortie : { "bluered": { "uid1": data, "uid2": data }, ... }
     """
-    if not NAME_CONFLICT_JSON.exists():
+    if not NAME_CONFLICT_JSON.is_file():
         return {}
 
     with NAME_CONFLICT_JSON.open("r") as f:
-        conflicts_list = json_load(f)  # Format attendu: [["Name", "Source"], ...]
+        conflicts_dict = json_load(f)  # Format attendu: {"lowername": "Name", "Source"], ...}
 
     grouped_conflicts = dict()
     json_cache = dict()
 
-    for group in conflicts_list:
-        for name, src in group:
-            group_key = name.lower()
-
-        # Cache des fichiers JSON sources pour éviter les lectures disques répétées
+    for group_key in sorted(conflicts_dict):
+        for name, src in conflicts_dict[group_key]:
             if src not in json_cache:
                 p = REPORT_DIR / f"{src}.json"
                 if p.exists():

@@ -47,7 +47,7 @@ def draw_palette_preview(colors):
 # --- GUI SETUP ---
 st.set_page_config(page_title="Similarity Lab v2", layout="wide")
 
-if "ignored_pairs" not in st.session_state: st.session_state.ignored_pairs = set()
+if "ignored_pairs" not in st.session_state: st.session_state.is_kept_pairs = set()
 if "results" not in st.session_state: st.session_state.results = []
 if "page_index" not in st.session_state: st.session_state.page_index = 0
 
@@ -65,7 +65,7 @@ with st.sidebar:
         for i in range(len(names)):
             for j in range(i + 1, len(names)):
                 pair_id = tuple(sorted((names[i], names[j])))
-                if pair_id in st.session_state.ignored_pairs: continue
+                if pair_id in st.session_state.is_kept_pairs: continue
                 dist = calculate_similarity(palettes[names[i]], palettes[names[j]])
                 if dist <= threshold:
                     res.append({'p1': names[i], 'p2': names[j], 'dist': dist, 'id': pair_id})
@@ -74,7 +74,7 @@ with st.sidebar:
 
     st.divider()
     if st.button("🗑️ Reset Ignorés"):
-        st.session_state.ignored_pairs = set()
+        st.session_state.is_kept_pairs = set()
         st.rerun()
 
 # --- MAIN CONTENT ---
@@ -82,7 +82,7 @@ st.title("🔍 Similarity Lab : Gestion des Doublons")
 
 if st.session_state.results:
     # Filtrer les résultats qui auraient été ignorés depuis le dernier scan
-    active_results = [r for r in st.session_state.results if r['id'] not in st.session_state.ignored_pairs]
+    active_results = [r for r in st.session_state.results if r['id'] not in st.session_state.is_kept_pairs]
 
     total_found = len(active_results)
     batch_size = 10
@@ -124,7 +124,7 @@ if st.session_state.results:
                 sub_col1, sub_col2 = st.columns(2)
                 with sub_col1:
                     if st.button("🙈 Ignorer", key=f"ign_{pair_id}"):
-                        st.session_state.ignored_pairs.add(pair_id)
+                        st.session_state.is_kept_pairs.add(pair_id)
                         st.rerun()
                 with sub_col2:
                     st.metric("Distance", f"{dist:.1f}")
