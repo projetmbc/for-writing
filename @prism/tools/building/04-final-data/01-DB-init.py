@@ -21,15 +21,49 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+from yaml import (
+    safe_load,
+    dump as yaml_dump
+)
+
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-SQL_DROP = 'DROP TABLE IF EXISTS palettes;'
 
-SQL_CREATE = '''
-CREATE TABLE palettes (
+
+
+exit(1)
+
+
+
+
+
+
+
+SQL_DROP = 'DROP TABLE IF EXISTS raw_pals;'
+
+SQL_CREATE_RAW_TABLE = '''
+CREATE TABLE raw_pals (
+--
+    pal_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    is_kept   INTEGER DEFAULT 1,
+    equal_to  INTEGER,
+    mirror_of INTEGER,
+    priority  INTEGER,
+--
+    name   TEXT NOT NULL,
+    source TEXT NOT NULL,
+    kind   TEXT NOT NULL,
+--
+    hash_normal  TEXT NOT NULL,
+    hash_reverse TEXT NOT NULL
+)
+'''
+
+SQL_CREATE_EQUAL_TABLE = '''
+CREATE TABLE equal_pals (
 --
     id        INTEGER PRIMARY KEY AUTOINCREMENT,
     is_kept   INTEGER DEFAULT 1,
@@ -48,7 +82,7 @@ CREATE TABLE palettes (
 
 
 SQL_INSERT_WITHOUT_EQUAL_TO = '''
-INSERT INTO palettes (
+INSERT INTO raw_pals (
 --
     priority,
 --
@@ -63,20 +97,20 @@ INSERT INTO palettes (
 
 
 SQL_SET_DEFAULT_EQUAL_TO = '''
-UPDATE palettes
+UPDATE raw_pals
 SET equal_to = id
 '''
 
 
 SQL_SET_IGNORED = '''
-UPDATE palettes
+UPDATE raw_pals
 SET is_kept = 0
 WHERE name = '{name}' AND source = '{source}';
 '''
 
 
 SQL_RENAME = '''
-UPDATE palettes
+UPDATE raw_pals
 SET name = '{newname}'
 WHERE name = '{name}' AND source = '{source}';
 '''
@@ -94,7 +128,8 @@ while (PROJ_DIR.name != TAG_APRISM):
 AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
-SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
+SQLITE_DB_FILE  = AUDIT_DIR / "palettes.db"
+ALIAS_JSON_FILE = REPORT_DIR / "AUDIT-ALIAS.json"
 
 
 PRIORITY = YAML_CONFIGS['PRIORITY']
@@ -263,7 +298,7 @@ logging.info(f"SQLite DB - 'Init table'.")
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(SQL_DROP)
-    cursor.execute(SQL_CREATE)
+    cursor.execute(SQL_CREATE_RAW_TABLE)
 
 
 # ----------------------- #
@@ -326,3 +361,19 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         )
 
         cursor.execute(query)
+
+
+# ----------------------- #
+# -- PALETTES METADATA -- #
+# ----------------------- #
+
+logging.info(f"SQLite DB - Store alias for reports.")
+
+alias = {}
+
+for nsn, aprism_name in RENAMED.items():
+    alias[aprism_name] = list(nsn)
+
+ALIAS_JSON_FILE.write_text(yaml_dump(alias))
+
+exit(1)

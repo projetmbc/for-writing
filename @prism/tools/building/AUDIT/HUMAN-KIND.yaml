@@ -1,116 +1,80 @@
 #  + A
-Accent: qualitative
-Afmhot: dark|sequential
-Autumn: qualitative|sequential
+Afmhot: dark, sequential
+Autumn: qualitative, sequential
 
 #  + B
-Binary: dark|qualitative|sequential
-Blues: sequential
+Binary: dark, qualitative, sequential
 Bone: sequential
-BrBG: divergent
-Brg: qualitative|sequential
-BuGn: sequential
-BuPu: sequential
-Bwr: dark|divergent|qualitative|sequential
+Brg: qualitative, sequential
+Bwr: dark, divergent, qualitative, sequential
 
 #  + C
-CMRmap: qualitative|sequential
+CMRmap: qualitative, sequential
 Cividis: sequential
-Cool: qualitative|sequential
+Cool: qualitative, sequential
 Copper: sequential
-Cubehelix: colorblind|sequential
-
-#  + D
-Dark2: qualitative
+Cubehelix: colorblind, sequential
 
 #  + F
-Flag: cyclic|divergent
+Flag: cyclic, divergent
 
 #  + G
 GistEarth: sequential
 GistGray: sequential
 GistHeat: sequential
-GistNcar: divergent|sequential
-GistRainbow: divergent|sequential
-GistStern: divergent|sequential
-GnBu: sequential
+GistNcar: divergent, sequential
+GistRainbow: divergent, sequential
+GistStern: divergent, sequential
 Gnuplot: sequential
 Gnuplot2: sequential
-Greens: sequential
-Greys: sequential
 
 #  + H
 Hot: sequential
-Hsv: divergent|sequential
+Hsv: divergent, sequential
 
 #  + I
 Inferno: sequential
 
 #  + J
-Jet: divergent|sequential
+Jet: divergent, sequential
 
 #  + M
 Magma: sequential
 
 #  + N
-NipySpectral: divergent|qualitative|sequential
+NipySpectral: divergent, qualitative, sequential
 
 #  + O
-Ocean: divergent|sequential
-OrRd: sequential
-Oranges: sequential
+Ocean: divergent, sequential
 
 #  + P
-PRGn: divergent
-Paired: qualitative
-Pastel1: qualitative
-Pastel2: qualitative
-PiYG: divergent
-Pink: dark|sequential
+Pink: dark, sequential
 Plasma: sequential
 Prism: divergent
-PuBu: sequential
-PuBuGn: sequential
-PuOr: divergent
-PuRd: sequential
-Purples: sequential
 
 #  + R
 Rainbow: sequential
-RdBu: divergent
-RdGy: divergent
-RdPu: sequential
-RdYlBu: divergent
-RdYlGn: divergent
-Reds: sequential
 
 #  + S
-Seismic: dark|divergent|qualitative|sequential
-Set1: qualitative
-Set2: qualitative
-Set3: qualitative
-Spectral: divergent
-Spring: qualitative|sequential
-Summer: qualitative|sequential
+Seismic: dark, divergent, qualitative, sequential
+Spring: qualitative, sequential
+Summer: qualitative, sequential
 
 #  + T
-Tab10: divergent|qualitative
-Tab20: divergent|qualitative
-Tab20b: divergent|qualitative|sequential
-Tab20c: divergent|qualitative|sequential
-Terrain: divergent|sequential
+Tab10: divergent, qualitative
+Tab20: divergent, qualitative
+Tab20b: divergent, qualitative, sequential
+Tab20c: divergent, qualitative, sequential
+Terrain: divergent, sequential
 Turbo: sequential
-Twilight: divergent|sequential
-TwilightShifted: divergent|sequential
+Twilight: divergent, sequential
+TwilightShifted: divergent, sequential
 
 #  + V
 Viridis: sequential
 
 #  + W
-Winter: qualitative|sequential
+Winter: qualitative, sequential
 
 #  + Y
-YlGn: sequential
-YlGnBu: sequential
-YlOrBr: sequential
-YlOrRd: qualitative|sequential
+YlOrRdCBW: qualitative, sequential

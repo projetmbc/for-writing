@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 
-
-exit(1)
-
-
 # -- DEBUG - ON -- #
 from rich import print
 # -- DEBUG - OFF -- #
@@ -35,19 +31,40 @@ from yaml import (
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-QUERY_NO_KIND = """
+SQL_GET_NO_KIND = '''
 SELECT
-    uid,
-    name,
-    kind
+    name, source
 FROM palettes
 WHERE kind = ''
-"""
+  AND is_kept = 1
+'''
 
-QUERY_UPDATE_KIND = """
+SQL_RESOLVE_EMPTY_KIND = '''
+SELECT
+    p1.name,
+    (
+        SELECT GROUP_CONCAT(p2.kind, ',')
+        FROM palettes p2
+        WHERE p2.kind != ''
+          AND (p2.equal_to = p1.id
+            OR p2.mirror_of = p1.id)
+    ) AS all_kinds
+FROM palettes p1
+WHERE p1.kind = ''
+  AND p1.is_kept = 1
+'''
+
+
+SQL_UPDATE_KIND = '''
 UPDATE palettes
-SET kind = ?
-WHERE uid = ?"""
+SET kind = CASE
+    WHEN kind = '' THEN
+        '{kind}'
+    ELSE kind || ', ' || '{kind}'
+END
+WHERE is_kept = 1
+  AND name = '{name}'
+'''
 
 
 # ------------------ #
@@ -63,8 +80,10 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 
 
-FINAL_SQLITE_DB_FILE = AUDIT_DIR / "final-palettes.db"
-HUMAN_KIND_YAML      = AUDIT_DIR / 'HUMAN-KIND.yaml'
+SQLITE_DB_FILE  = AUDIT_DIR / "palettes.db"
+
+
+HUMAN_KIND_YAML = AUDIT_DIR / 'HUMAN-KIND.yaml'
 
 if HUMAN_KIND_YAML.is_file():
     with HUMAN_KIND_YAML.open('r') as f:
@@ -85,89 +104,75 @@ else:
 
 MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING-KIND.json"
 
-EMPTY_KINDS   = []
-MISSING_KINDS = []
-NAME_2_UID    = {}
+
+def get_std_kind(kind):
+    _kind = [
+        k.strip()
+        for k in kind.split(',')
+        if k.strip()
+    ]
+
+    return ','.join(_kind)
+
+
+# --------------------- #
+# -- HUMAN KINDS :-) -- #
+# --------------------- #
+
+logging.info(f"KINDS - 'Add human kinds'. :-)")
+
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+
+    for name, kind in HUMAN_KIND.items():
+        query = SQL_UPDATE_KIND.format(
+            name = name,
+            kind = get_std_kind(kind),
+        )
+
+        cursor.execute(query)
+
+
+# -------------- #
+# -- DB KINDS -- #
+# -------------- #
+
+logging.info(f"KINDS - 'DB missing kind resolution'.")
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+    cursor.execute(SQL_RESOLVE_EMPTY_KIND)
+
+    for name, kind in cursor.fetchall():
+        if kind is None:
+            continue
+
+        query = SQL_UPDATE_KIND.format(
+            name = name,
+            kind = get_std_kind(kind),
+        )
+
+        cursor.execute(query)
 
 
 # ------------------- #
 # -- MISSING KINDS -- #
 # ------------------- #
 
-logging.info(f"KINDS - 'Looking for missing ones'.")
+logging.info(f"KINDS - 'Unresolved missing kinds'?")
 
-with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
-    cursor.execute(QUERY_NO_KIND)
+    cursor.execute(SQL_GET_NO_KIND)
 
-    for uid, name, src in cursor.fetchall():
-        NAME_2_UID[name] = uid
-
-        namesrc = build_name_n_srcname(name, src)
-
-        kind = HUMAN_KIND.get(name, '')
-
-        if not kind:
-            EMPTY_KINDS.append((uid, name))
+    for name, source in cursor.fetchall():
+        print(name, source)
 
 
-# ------------------ #
-# -- 'AUTO' KINDS -- #
-# ------------------ #
-
-logging.info(f"KINDS - 'Resolving undefined kinds'.")
-
-_all_resrc_kinds = defaultdict(str)
-
-for _path_resrc_kinds in REPORT_DIR.glob("KIND-*json"):
-    with _path_resrc_kinds.open(mode = 'r') as f:
-        _one_resrc_kinds = json_load(f)
-
-    for uid, k in _one_resrc_kinds.items():
-        if uid in _all_resrc_kinds:
-            k = f"|{k}"
-
-        _all_resrc_kinds[uid] += k
-
-for uid, name in EMPTY_KINDS:
-    resolved_kind = _all_resrc_kinds.get(uid, '')
-
-    if not resolved_kind:
-        MISSING_KINDS.append((uid, name))
-
-        continue
-
-    HUMAN_KIND[name] = resolved_kind
-
-    logging.info(f"Resolved '{name}' kind.")
+exit()
 
 
-# --------------- #
-# -- UPDATE DB -- #
-# --------------- #
-
-logging.info(f"KINDS - 'SQLite DB - Update file'.")
-
-with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
-    cursor = conn.cursor()
-
-    for name, kind in HUMAN_KIND.items():
-        cursor.execute(
-            QUERY_UPDATE_KIND,
-            [kind, NAME_2_UID[name]]
-        )
-
-
-# ------------------ #
-# -- YAML UPDATES -- #
-# ------------------ #
-
-logging.info(
-    f"KINDS - Update '{HUMAN_KIND_YAML.relative_to(PROJ_DIR)}'."
-)
-
-with HUMAN_KIND_YAML.open("w") as f:
-    yaml_dump(HUMAN_KIND, f)
 
 
 # ------------------ #

@@ -1,3 +1,2 @@
-#  + G
-Gray:
-  CMOCEAN: MATPLOTLIB
+- - Gray::CMOCEAN
+  - Gray::MATPLOTLIB
