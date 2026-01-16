@@ -160,7 +160,7 @@ else:
 logging.info("Looking for needed updates.")
 
 for name, ids in GITHUB_IDS.items():
-    logging.info(f"Checking '{name}' GitHub project.")
+    logging.info(f"Check '{name}' GitHub project.")
 
     try:
         last_date = get_github_last_date(ids)
