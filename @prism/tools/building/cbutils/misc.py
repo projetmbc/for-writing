@@ -116,10 +116,17 @@ def extract_name_n_srcname(name_srcname: str) -> (str, str):
 
 
 def build_name_n_srcname(
-    name: str,
+    name   : str,
     srcname: str,
 ) -> str:
     return '::'.join([name, srcname])
+
+
+def get_uid(
+    srcname: str,
+    name   : str,
+) -> str:
+    return reverse_build_name_n_srcname(name, srcname).lower()
 
 
 def reverse_build_name_n_srcname(

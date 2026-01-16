@@ -22,16 +22,41 @@ from cbutils      import *
 # -------------------------- #
 
 
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
 
+SQL_DROP = 'DROP TABLE IF EXISTS palettes;'
 
+SQL_CREATE = '''
+CREATE TABLE palettes (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    is_kept      INTEGER DEFAULT 0,
+    uid          TEXT NOT NULL,
+    name         TEXT NOT NULL,
+    source       TEXT NOT NULL,
+    kind         TEXT NOT NULL,
+    hash_normal  TEXT NOT NULL,
+    hash_reverse TEXT NOT NULL,
+    equal_to     INTEGER DEFAULT 0,
+    mirror_of    INTEGER DEFAULT 0
+)
+'''
 
-
-exit(1)
-
+SQL_INSERT = '''
+INSERT INTO palettes (
+    uid,
+    name,
+    source,
+    kind,
+    hash_normal,
+    hash_reverse
+) VALUES ({placeholders})
+'''
 
 
 # ------------------ #
-# -- CONSTANTS #1 -- #
+# -- CONSTANTS #2 -- #
 # ------------------ #
 
 PROJ_DIR = THIS_DIR
@@ -39,14 +64,14 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
+AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
-
-FULL_SQLITE_DB_FILE = REPORT_DIR / "full-palettes.db"
+SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
 
 # ------------------ #
-# -- CONSTANTS #2 -- #
+# -- CONSTANTS #3 -- #
 # ------------------ #
 
 PRECISION = YAML_CONFIGS[TAG_METADATA]['PRECISION']
@@ -72,21 +97,54 @@ def get_palhash(palette: PaletteCols) -> str:
 
 # Automatic qualitative categorization will be performed later.
 def get_std_kind(kind: str) -> str:
+    kind = kind.strip()
+
+    if not kind:
+        return kind
+
     _stdkind = set()
 
+    _xtra_pb_kinds = []
+
     for k in kind.split(','):
+        _k = k
+
         k = k.strip()
         k = KIND_ALIAS.get(k, '')
 
+        if (
+            not k
+            and
+            not _k in _xtra_pb_kinds
+        ):
+            _xtra_pb_kinds.append(_k)
+
         _stdkind.add(k)
 
-    stdkind = '|'.join(sorted(_stdkind))
+    stdkind = ','.join(sorted(_stdkind))
 
-    if not stdkind and kind:
+    if not stdkind and kind or _xtra_pb_kinds:
+        xtra = ''
+
+        if _xtra_pb_kinds:
+            plurial = '' if len(_xtra_pb_kinds) == 1 else 's'
+
+            tab = '\n  + '
+
+            xtra_pb_kinds = tab.join([
+                f"'{k}'" for k in _xtra_pb_kinds
+            ])
+
+            xtra = (
+                f' See the folowing kind{plurial}.'
+                f'{tab}{xtra_pb_kinds}'
+            )
+
         log_raise_error(
             context   = "Palette SQLite DB creation",
             desc      = f"Unmanaged palette kind '{kind}'.",
             exception = ValueError,
+            xtra      = xtra
         )
 
     return stdkind
@@ -100,8 +158,8 @@ def dbadd_palette(
     hash_normal : str,
     hash_reverse: str
 ) -> None:
-    placeholders = ['?']*(len(locals()) - 1)
-    placeholders = ",".join(placeholders)
+    placeholders = ['?']*len(locals())
+    placeholders = ','.join(placeholders)
 
     if not source:
         print(name)
@@ -110,17 +168,17 @@ def dbadd_palette(
     try:
         cursor = conn.cursor()
 
+        uid = f"{source}::{name}".lower()
+
+# -- DEBUG - ON -- #
+        # uid = f"{source}".lower()
+# -- DEBUG - OFF -- #
+
         cursor.execute(
-            f'''
-INSERT INTO palettes (
-    name,
-    source,
-    kind,
-    hash_normal,
-    hash_reverse
-) VALUES ({placeholders})
-            ''',
-            (
+            SQL_INSERT.format(
+                placeholders = placeholders
+            ), (
+                uid,
                 name,
                 source,
                 kind,
@@ -145,30 +203,21 @@ INSERT INTO palettes (
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info(f"Full SQLite DB - 'Init table'.")
+logging.info(f"SQLite DB - 'Init table'.")
 
-with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
-    cursor.execute('DROP TABLE IF EXISTS palettes;')
-    cursor.execute('''
-CREATE TABLE palettes (
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    name         TEXT NOT NULL,
-    source       TEXT NOT NULL,
-    kind         TEXT NOT NULL,
-    hash_normal  TEXT NOT NULL,
-    hash_reverse TEXT NOT NULL
-)
-    ''')
+    cursor.execute(SQL_DROP)
+    cursor.execute(SQL_CREATE)
 
 
 # ----------------------- #
 # -- PALETTES METADATA -- #
 # ----------------------- #
 
-logging.info(f"Full SQLite DB - 'Populate table'.")
+logging.info(f"SQLite DB - 'Populate table with hard data'.")
 
-with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
     for resrc_json in REPORT_DIR.glob("*.json"):
         projname = resrc_json.stem
 
@@ -210,14 +259,3 @@ with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
                 hash_normal  = hash_normal,
                 hash_reverse = hash_reverse
             )
-
-
-# ------------------------ #
-# -- NOTHING LEFT TO DO -- #
-# ------------------------ #
-
-logging.info(
-     "Full SQLite DB - File "
-    f"'{FULL_SQLITE_DB_FILE.relative_to(PROJ_DIR)}' "
-     "build."
-)

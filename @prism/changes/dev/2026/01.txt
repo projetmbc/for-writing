@@ -1,3 +1,17 @@
+// ---------- //
+
+==
+15  (2.0.0-beta.9)   ??????
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+
+une seul DB !!!
+
 has paltette : il manquait le nettoyage des zréos et signe - inutiels !!!
 
 

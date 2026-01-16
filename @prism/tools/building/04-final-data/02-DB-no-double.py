@@ -21,40 +21,39 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-
-
-
-
-
-exit(1)
-
-
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-# Full DB.
-
-SPECIAL_QUERIES = {
-    TAG_EQUAL: """
+SQL_EQUAL = '''
 SELECT
-    COUNT(*) as nb,
-    GROUP_CONCAT(name || '::' || source, ',')
+    GROUP_CONCAT(
+        id || ',' || name || ',' || source,
+        ';'
+    )
 FROM palettes
 GROUP BY hash_normal
-HAVING nb > 1
-    """,
-    TAG_MIRROR: """
+HAVING COUNT(*) > 1
+'''
+
+SQL_UPDATE_EQUAL_TO = """
+UPDATE palettes
+SET equal_to = ?
+WHERE id = ?;
+"""
+
+
+SQL_MIRROR = '''
 SELECT
-    CONCAT(p1.name || '::' || p1.source),
-    CONCAT(p2.name || '::' || p2.source)
+    p1.id, p1.name, p1.source,
+    p2.id, p2.name, p2.source
 FROM palettes p1, palettes p2
 WHERE p1.hash_normal = p2.hash_reverse
 AND p1.id < p2.id
-    """,
-}
+'''
 
-QUERY_NAME_CONFLICT = """
+
+SQL_NAME_CONFLICT = """
 SELECT
     p1.name,
     p1.source,
@@ -67,33 +66,6 @@ WHERE p1.id < p2.id
   AND p1.hash_normal != p2.hash_reverse;
 """
 
-QUERY_EXTRACT_FOR_FINAL = """
-SELECT
-    p.name,
-    p.source,
-    p.kind
-FROM palettes p;
-"""
-
-# Final DB.
-
-QUERY_CREATE_FINAL_DB = '''
-CREATE TABLE palettes (
-    id     INTEGER PRIMARY KEY AUTOINCREMENT,
-    uid    TEXT NOT NULL,
-    name   TEXT NOT NULL,
-    kind   TEXT NOT NULL
-)
-'''
-
-QUERY_INSERT_IN_FINAL = """
-INSERT INTO palettes (
-    uid,
-    name,
-    kind
-) VALUES (?, ?, ?)
-"""
-
 
 # ------------------ #
 # -- CONSTANTS #2 -- #
@@ -104,11 +76,10 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-AUDIT_DIR     = BUILD_TOOLS_DIR / TAG_AUDIT
-REPORT_DIR    = BUILD_TOOLS_DIR / TAG_REPORT
+AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
+REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
-FULL_SQLITE_DB_FILE  = REPORT_DIR / "full-palettes.db"
-FINAL_SQLITE_DB_FILE = AUDIT_DIR / "final-palettes.db"
+SQLITE_DB_FILE  = AUDIT_DIR / "palettes.db"
 
 
 PRIORITY = YAML_CONFIGS['PRIORITY']
@@ -128,7 +99,7 @@ PALS_IGNORED = set()
 if not IGNORED is None:
     for src, names in IGNORED.items():
         for n in names:
-            PALS_IGNORED.add((n, src))
+            PALS_IGNORED.add(get_uid(src, n))
 
 
 # ------------------ #
@@ -139,155 +110,168 @@ EQUAL_JSON         = REPORT_DIR / "AUDIT-EQUAL.json"
 MIRROR_JSON        = REPORT_DIR / "AUDIT-MIRROR.json"
 NAME_CONFLICT_JSON = REPORT_DIR / "AUDIT-NAME-CONFLICT.json"
 
-
-PALS_SAME = {
-    TAG_EQUAL : [],
-    TAG_MIRROR: [],
-}
-
-
-EQUALS         = dict()
-MIRRORS        = dict()
 NAME_CONFLICTS = defaultdict(set)
 
 
-# ----------------------------- #
-# -- EQUAL / MIRROR PALETTES -- #
-# ----------------------------- #
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
 
-# WARNING! We don't apply any renaming because this ones resolve
-# conflict names (same lower names for different palettes).
-
-# -- DB EXTRACTION -- #
-
-logging.info(
-    f"DATA cleaning - 'Equal or mirror' (no renaming here)."
-)
-
-
-with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
-    cursor = conn.cursor()
-
-    for tag, query in SPECIAL_QUERIES.items():
-        cursor.execute(query)
-
-        PALS_SAME[tag] = list(cursor.fetchall())
-
-# -- DEBUG - ON -- #
-# print(PALS_SAME[TAG_EQUAL])
-# exit()
-# -- DEBUG - OFF -- #
-
-
-# -- SAME NAME / SAME PALETTE / DIFFERENT TECHNO. -- #
-
-grps_equal_pals = list()
-
-for _ , _equal_pals in PALS_SAME[TAG_EQUAL]:
-    equal_pals = set(
-        extract_name_n_srcname(uid)
-        for uid in _equal_pals.split(',')
-    )
-
-    print(equal_pals)
-    equal_pals -= PALS_IGNORED
-    print(equal_pals)
-
-# No equality (some palettes ignored).
-    if len(equal_pals) == 1:
-        continue
-
-# Identical palettes but different names.
-    if 1 != len(set(n for n, _ in equal_pals)):
-        grps_equal_pals.append(equal_pals)
-
-        continue
-
+def dp_update_full_equal_pals(
+    conn,
+    id_2_nsn
+):
 # Looking for the "higher" palette.
-    higher_projs = set()
+    higher_srcs = set()
     higher_val   = 0
 
-    for name, src in equal_pals:
+    for lastid, (_ , src) in id_2_nsn.items():
         if (
-            not higher_projs
+            not higher_srcs
             or
             higher_val < PRIORITY[src]
         ):
-            higher_projs = set([src])
+            higher_srcs = set([src])
             higher_val = PRIORITY[src]
 
         elif higher_val == PRIORITY[src]:
-            higher_projs.add(src)
+            higher_srcs.add(src)
 
 # Do we have a same priority conflicts?
-    if len(higher_projs) != 1:
+    if len(higher_srcs) != 1:
         tab = "\n  + "
 
-        higher_projs = list(higher_projs)
-        higher_projs.sort()
+        higher_srcs = list(higher_srcs)
+        higher_srcs.sort()
 
         log_raise_error(
             context   = "Conflicts need NOAI resolution",
-            desc      = "No priority found for the following projects.",
+            desc      = "Equal project priorities found.",
             exception = Exception,
-            xtra      = f"See:{tab}{tab.join(higher_projs)}"
+            xtra      = f"See:{tab}{tab.join(higher_srcs)}"
         )
 
-# No problem! Let's record our choices.
-    pal_kept = (name, list(higher_projs)[0])
-
-    for p in equal_pals:
-        if p == pal_kept:
+# Let's store the infos.
+    for oneid in id_2_nsn:
+        if oneid == lastid:
             continue
 
-        EQUALS[p] = pal_kept
-
-
-print(EQUALS)
-exit(1)
-# -- DIFFERENT NAMES / SAME PALETTE -- #
-
-if grps_equal_pals:
-    _xtra_what = []
-
-    tab_1 = "  + "
-    tab_2 = "    - "
-
-    for i, equal_pals in enumerate(grps_equal_pals, 1):
-        _xtra_what.append(f"{tab_1}Group #{i}")
-
-        equal_pals = list(equal_pals)
-
-        equal_pals.sort(
-            key     = lambda uid: int(PRIORITY[uid[1]]),
-            reverse = True,
+        cursor.execute(
+            SQL_UPDATE_EQUAL_TO,
+            (lastid, oneid)
         )
 
-        equal_pals = [
-            (
-                f"Prio[{PRIORITY[uid[1]]}] "
-                f"{reverse_build_name_n_srcname(*uid)}"
+
+def report_or_not_difname_samepal(same_pal_diff_names):
+    if same_pal_diff_names:
+        _xtra_what = []
+
+        tab_1 = "  + "
+        tab_2 = "    - "
+
+        for i, equal_pals in enumerate(same_pal_diff_names, 1):
+            _xtra_what.append(f"{tab_1}Group #{i}")
+
+            equal_pals.sort(
+                key     = lambda uid: int(PRIORITY[uid[1]]),
+                reverse = True,
             )
-            for uid in equal_pals
-        ]
 
-        for w in equal_pals:
-            _xtra_what.append(f"{tab_2}{w}")
+            equal_pals = [
+                (
+                    f"Prio[{PRIORITY[uid[1]]}] "
+                    f"{reverse_build_name_n_srcname(*uid)}"
+                )
+                for uid in equal_pals
+            ]
 
-    xtra_what = '\n'.join(_xtra_what)
+            for w in equal_pals:
+                _xtra_what.append(f"{tab_2}{w}")
 
-    log_raise_error(
-        context   = "Conflicts need NOAI resolution",
-        desc      = "Identical palettes but different names",
-        exception = Exception,
-        xtra      = (
-            f"See:\n{xtra_what}\n"
-            f"Open '{IGNORED_YAML}'."
+        xtra_what = '\n'.join(_xtra_what)
+
+        log_raise_error(
+            context   = "Conflicts need NOAI resolution",
+            desc      = "Identical palettes but different names",
+            exception = Exception,
+            xtra      = (
+                f"See:\n{xtra_what}\n"
+                f"Open '{IGNORED_YAML}'."
+            )
         )
-    )
 
 
+# -------------------- #
+# -- EQUAL PALETTES -- #
+# -------------------- #
+
+logging.info("Analyze data - 'Looking for equal palettes'.")
+
+same_pal_diff_names = list()
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+    cursor.execute(SQL_EQUAL)
+
+    for _equal_pals in cursor.fetchall():
+# Pythonic data.
+        id_2_nsn = dict()
+
+        for idnsn in _equal_pals[0].split(';'):
+            _id , name, src = idnsn.split(',')
+
+            uid = get_uid(src, name)
+
+            if not uid in PALS_IGNORED:
+                id_2_nsn[_id] = (name, src)
+
+# No equality (some palettes ignored).
+        if len(id_2_nsn) == 1:
+            continue
+
+# Identical palettes but different names.
+#
+# We store the values to indicate ALL conflicts to resolve.
+        if 1 != len(
+            set(n for n, _ in id_2_nsn.values())
+        ):
+            same_pal_diff_names.append(
+                list(id_2_nsn.values())
+            )
+
+            continue
+
+# Identical palettes and same name.
+        else:
+            dp_update_full_equal_pals(conn, id_2_nsn)
+
+# -- PB! Different names / Same palette -- #
+report_or_not_difname_samepal(same_pal_diff_names)
+
+
+# --------------------- #
 # -- MIRROR PALETTES -- #
+# --------------------- #
+
+logging.info("Analyze data - 'Looking for mirror palettes'.")
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+    cursor.execute(SQL_MIRROR)
+
+    for x in cursor.fetchall():
+        print(x)
+
+
+exit(1)
+
+
+# ------------------- #
+# -- WHAT IS KEPT? -- #
+# ------------------- #
+
+
+# --  PALETTES -- #
 
 for mirror_pals in PALS_SAME[TAG_MIRROR]:
     pal_1, pal_2 = [
@@ -344,9 +328,9 @@ logging.info(f"DATA cleaning - 'Same lower name / Different palettes'.")
 
 name_conflicts = defaultdict(set)
 
-with sqlite3.connect(FULL_SQLITE_DB_FILE) as conn:
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
-    cursor.execute(QUERY_NAME_CONFLICT)
+    cursor.execute(SQL_NAME_CONFLICT)
 
     for data in cursor.fetchall():
         for pal in zip(data[::2], data[1::2]):
@@ -422,7 +406,7 @@ logging.info(f"DATA cleaning - Final SQLite DB - 'Init table'.")
 with sqlite3.connect(FINAL_SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute('DROP TABLE IF EXISTS palettes;')
-    cursor.execute(QUERY_CREATE_FINAL_DB)
+    cursor.execute(SQL_CREATE_FINAL_DB)
 
 
 # ----------------- #
@@ -435,13 +419,13 @@ already_kept = set()
 
 
 with (
-    sqlite3.connect(FULL_SQLITE_DB_FILE) as full_conn,
+    sqlite3.connect(SQLITE_DB_FILE) as full_conn,
     sqlite3.connect(FINAL_SQLITE_DB_FILE) as final_conn,
 ):
     full_cursor  = full_conn.cursor()
     final_cursor = final_conn.cursor()
 
-    full_cursor.execute(QUERY_EXTRACT_FOR_FINAL)
+    full_cursor.execute(SQL_EXTRACT_FOR_FINAL)
 
     for name, src, kind in full_cursor.fetchall():
         name_src = build_name_n_srcname(name, src)
@@ -465,7 +449,7 @@ with (
         aprism_name, _ = extract_name_n_srcname(aprism_name_src)
 
         final_cursor.execute(
-            QUERY_INSERT_IN_FINAL,
+            SQL_INSERT_IN_FINAL,
             [name_src.lower(), aprism_name, kind]
         )
 
