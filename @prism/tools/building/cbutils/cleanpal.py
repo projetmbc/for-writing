@@ -284,7 +284,7 @@ def resume_nbpals_build(
 
 
 
-def builde_new_palnames(
+def get_pal_alias(
     yaml_cfg: dict
 ) -> dict:
     new_palnames = dict()

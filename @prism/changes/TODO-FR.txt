@@ -168,6 +168,7 @@ intégrer en externe directement si possible
 # https://github.com/vega/vega/wiki/Scales
 # https://arxiv.org/abs/2107.02270
 
+https://github.com/mwaskom/seaborn/blob/master/seaborn/palettes.py
 
 // ---------- //
 
