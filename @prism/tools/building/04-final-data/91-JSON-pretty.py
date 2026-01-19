@@ -93,4 +93,6 @@ for p in sorted(REPORT_DIR.glob('*.json')):
         sort_keys = True,
     )
 
+    json_code += '\n'
+
     p.write_text(json_code)

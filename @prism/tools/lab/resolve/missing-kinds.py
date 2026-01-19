@@ -53,18 +53,14 @@ def load_all_data():
 
     palgrps, json_cache = {}, {}
 
-    for uid, aprism_name in conflicts:
-        name, src = extract_name_n_srcname(uid)
-
-        src = src.upper()
-
+    for alias, name, src in conflicts:
         if src not in json_cache:
             with (REPORT_DIR / f"{src}.json").open('r') as f:
                 json_cache[src] = json_load(f)
 
         for n in json_cache[src]:
             if n.lower() == name.lower():
-                palgrps[aprism_name] = {
+                palgrps[alias] = {
                     src: json_cache[src][n][TAG_RGB_COLS]
                 }
 

@@ -10,7 +10,7 @@ from rich import print
 from pathlib import Path
 import              sys
 
-THIS_DIR  = Path(__file__).parent
+THIS_DIR        = Path(__file__).parent
 BUILD_TOOLS_DIR = THIS_DIR.parent
 
 sys.path.append(str(BUILD_TOOLS_DIR))
@@ -65,14 +65,17 @@ WHERE p1.kind = ''
   AND p1.is_kept = 1;
 '''
 
-
 SQL_GET_NO_KIND = '''
 SELECT
-    name, source
-FROM hash
-WHERE kind    = ''
-  AND is_kept = 1
+    COALESCE(a.alias, h.name),
+    h.name,
+    h.source
+FROM hash h
+LEFT JOIN alias a ON h.pal_id = a.pal_id
+WHERE h.kind = ''
+  AND h.is_kept = 1;
 '''
+
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
@@ -115,6 +118,8 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING-KIND.json"
 
+MISSING_KINDS = []
+
 
 # ----------- #
 # -- TOOLS -- #
@@ -138,7 +143,7 @@ def get_std_kind(kind):
 # -- HUMAN KINDS :-) -- #
 # --------------------- #
 
-logging.info("Kinding ;-) - 'Add human kinds' :-)")
+logging.info("Kinding ;-) 'Add human kinds' :-)")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -156,7 +161,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -- DB KINDS -- #
 # -------------- #
 
-logging.info("Kinding ;-) - 'DB missing kind resolution'")
+logging.info("Kinding ;-) 'DB missing kind resolution'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -184,26 +189,15 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -- MISSING KINDS -- #
 # ------------------- #
 
-logging.info(f"KINDS - 'Unresolved missing kinds'?")
+logging.info("Kinding ;-) 'Unresolved missing kinds'?")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(SQL_GET_NO_KIND)
 
-    for name, source in cursor.fetchall():
-        print(name, source)
-
-
-exit(1)
-
-
-
-
-
-
-
-
-
+    MISSING_KINDS.extend([
+        list(x) for x in cursor.fetchall()
+    ])
 
 
 # ------------------ #
@@ -211,7 +205,7 @@ exit(1)
 # ------------------ #
 
 logging.info(
-    f"KINDS - Update '{MISSING_KIND_JSON.relative_to(PROJ_DIR)}'."
+    f"Kinding ;-) Update '{MISSING_KIND_JSON.relative_to(PROJ_DIR)}'."
 )
 
 MISSING_KIND_JSON.write_text(

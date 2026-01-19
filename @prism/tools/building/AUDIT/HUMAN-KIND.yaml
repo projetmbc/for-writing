@@ -1,5 +1,5 @@
 #  + A
-# Afmhot: dark, sequential
+Afmhot: dark, sequential
 Autumn: qualitative, sequential
 
 #  + B
@@ -77,4 +77,5 @@ Viridis: sequential
 Winter: qualitative, sequential
 
 #  + Y
+YlOrRd: qualitative, sequential
 YlOrRdCBW: qualitative, sequential

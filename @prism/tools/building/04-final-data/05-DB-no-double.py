@@ -13,7 +13,7 @@ from typing import Iterator
 from pathlib import Path
 import              sys
 
-THIS_DIR  = Path(__file__).parent
+THIS_DIR        = Path(__file__).parent
 BUILD_TOOLS_DIR = THIS_DIR.parent
 
 sys.path.append(str(BUILD_TOOLS_DIR))
@@ -124,7 +124,7 @@ def dp_update_full_equal_pals(
     higher_val  = float('-inf')
     kept_id     = None
 
-    for last_id, (priority, _ , src) in id_2_meta.items():
+    for pal_id, (priority, _ , src) in id_2_meta.items():
         if (
             not higher_srcs
             or
@@ -132,7 +132,7 @@ def dp_update_full_equal_pals(
         ):
             higher_srcs = set([src])
             higher_val = priority
-            kept_id    = last_id
+            kept_id    = pal_id
 
         elif higher_val == priority:
             higher_srcs.add(src)
@@ -152,14 +152,12 @@ def dp_update_full_equal_pals(
         )
 
 # Let's store the infos.
-    for oneid in id_2_meta:
-        if oneid == kept_id:
-            continue
-
-        cursor.execute(
-            SQL_UPDATE_EQUAL_TO,
-            (kept_id, oneid)
-        )
+    for one_id in id_2_meta:
+        if one_id != kept_id:
+            cursor.execute(
+                SQL_UPDATE_EQUAL_TO,
+                (kept_id, one_id)
+            )
 
 
 def report_or_not_difname_samepal(same_pal_diff_names):
@@ -242,7 +240,6 @@ def dp_update_mirror_pals(conn):
             SQL_TABLE_INSERT_MIRROR,
             tuple(pal_ids)
         )
-
 
 
 # ----------------------------- #
