@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
-from rich import print
+# from rich import print
 # -- DEBUG - OFF -- #
 
 # ---------------------------- #
@@ -49,15 +49,8 @@ INSERT INTO priority (
 # -- CONSTANTS -- #
 # --------------- #
 
-PROJ_DIR = THIS_DIR
-
-while (PROJ_DIR.name != TAG_APRISM):
-    PROJ_DIR = PROJ_DIR.parent
-
-
 AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
-
 
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 

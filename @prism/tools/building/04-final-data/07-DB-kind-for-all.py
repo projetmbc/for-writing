@@ -27,16 +27,20 @@ from yaml import (
 )
 
 
-# ------------------ #
-# -- CONSTANTS #1 -- #
-# ------------------ #
+# ----------------- #
+# -- SQL QUERIES -- #
+# ----------------- #
 
-SQL_GET_NO_KIND = '''
-SELECT
-    name, source
-FROM palettes
-WHERE kind = ''
-  AND is_kept = 1
+# WARNING! Since name conflicts are resolved by the previous script,
+# we are using palette names directly as the primary key.
+
+SQL_UPDATE_KIND = '''
+UPDATE hash
+SET kind = CASE WHEN kind = ''
+    THEN '{kind}'
+    ELSE kind || ', ' || '{kind}'
+END
+WHERE name = '{name}'
 '''
 
 SQL_RESOLVE_EMPTY_KIND = '''
@@ -44,31 +48,34 @@ SELECT
     p1.name,
     (
         SELECT GROUP_CONCAT(p2.kind, ',')
-        FROM palettes p2
+        FROM hash p2
         WHERE p2.kind != ''
-          AND (p2.equal_to = p1.id
-            OR p2.mirror_of = p1.id)
+          AND (
+              p2.equal_to = p1.pal_id
+              OR
+              EXISTS (
+                  SELECT 1 FROM mirror m
+                  WHERE (m.cand_pal_id_1 = p1.pal_id AND m.cand_pal_id_2 = p2.pal_id)
+                     OR (m.cand_pal_id_1 = p2.pal_id AND m.cand_pal_id_2 = p1.pal_id)
+              )
+          )
     ) AS all_kinds
-FROM palettes p1
+FROM hash p1
 WHERE p1.kind = ''
-  AND p1.is_kept = 1
+  AND p1.is_kept = 1;
 '''
 
 
-SQL_UPDATE_KIND = '''
-UPDATE palettes
-SET kind = CASE
-    WHEN kind = '' THEN
-        '{kind}'
-    ELSE kind || ', ' || '{kind}'
-END
-WHERE is_kept = 1
-  AND name = '{name}'
+SQL_GET_NO_KIND = '''
+SELECT
+    name, source
+FROM hash
+WHERE kind    = ''
+  AND is_kept = 1
 '''
-
 
 # ------------------ #
-# -- CONSTANTS #2 -- #
+# -- CONSTANTS #1 -- #
 # ------------------ #
 
 PROJ_DIR = THIS_DIR
@@ -76,12 +83,14 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
-AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
+AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
+
+SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
 
-SQLITE_DB_FILE  = AUDIT_DIR / "palettes.db"
-
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 HUMAN_KIND_YAML = AUDIT_DIR / 'HUMAN-KIND.yaml'
 
@@ -102,15 +111,25 @@ else:
 # -- CONSTANTS #3 -- #
 # ------------------ #
 
+REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
+
 MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING-KIND.json"
 
 
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
+
 def get_std_kind(kind):
-    _kind = [
-        k.strip()
-        for k in kind.split(',')
-        if k.strip()
-    ]
+    _kind = sorted(
+        list(
+            set(
+                k.strip()
+                for k in kind.split(',')
+                if k.strip()
+            )
+        )
+    )
 
     return ','.join(_kind)
 
@@ -119,8 +138,7 @@ def get_std_kind(kind):
 # -- HUMAN KINDS :-) -- #
 # --------------------- #
 
-logging.info(f"KINDS - 'Add human kinds'. :-)")
-
+logging.info("Kinding ;-) - 'Add human kinds' :-)")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -138,19 +156,25 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -- DB KINDS -- #
 # -------------- #
 
-logging.info(f"KINDS - 'DB missing kind resolution'.")
+logging.info("Kinding ;-) - 'DB missing kind resolution'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(SQL_RESOLVE_EMPTY_KIND)
 
     for name, kind in cursor.fetchall():
+# No matches found.
         if kind is None:
             continue
 
+# At least one match found.
+        kind = get_std_kind(kind)
+
+        logging.info(f"'{name}' is '{kind}'.")
+
         query = SQL_UPDATE_KIND.format(
             name = name,
-            kind = get_std_kind(kind),
+            kind = kind,
         )
 
         cursor.execute(query)
@@ -170,7 +194,14 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         print(name, source)
 
 
-exit()
+exit(1)
+
+
+
+
+
+
+
 
 
 

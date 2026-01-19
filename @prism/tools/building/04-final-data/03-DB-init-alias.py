@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
-from rich import print
+# from rich import print
 # -- DEBUG - OFF -- #
 
 # ---------------------------- #
@@ -57,14 +57,7 @@ WHERE p.name = ?
 # -- CONSTANTS -- #
 # --------------- #
 
-PROJ_DIR = THIS_DIR
-
-while (PROJ_DIR.name != TAG_APRISM):
-    PROJ_DIR = PROJ_DIR.parent
-
-
 AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
-
 
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
@@ -121,7 +114,7 @@ def dbadd_aliaspals(
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info("Alias DB - 'Init table'.")
+logging.info("Alias DB - 'Init table'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -129,7 +122,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
 
 if not RENAMED:
-    logging.info("Alias DB - No alias.")
+    logging.info("Alias DB - No alias")
 
     exit(0)
 
@@ -138,7 +131,7 @@ if not RENAMED:
 # -- ALIAS -- #
 # ----------- #
 
-logging.info("Alias DB - 'Populate'.")
+logging.info("Alias DB - 'Populate'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()

@@ -75,7 +75,7 @@ def extract_palette(pal_data: dict) -> [str, PaletteCols]:
 # -- FROM COLORBREWER -- #
 # ---------------------- #
 
-logging.info(f"Analyze '{THIS_RESRC}' source code.")
+logging.info(f"Analyze '{THIS_RESRC}' source code")
 
 pals = dict()
 
@@ -96,7 +96,7 @@ for palname, pal_data in ORIGINAL_RESRC_PALS.items():
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'.")
+logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
 
 RESRC_PALS_JSON.write_text(
     json_dumps(pals)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
-from rich import print
+# from rich import print
 # -- DEBUG - OFF -- #
 
 # ---------------------------- #
@@ -67,15 +67,8 @@ SET equal_to = pal_id
 # -- CONSTANTS -- #
 # --------------- #
 
-PROJ_DIR = THIS_DIR
-
-while (PROJ_DIR.name != TAG_APRISM):
-    PROJ_DIR = PROJ_DIR.parent
-
-
 AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
-
 
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
@@ -222,7 +215,7 @@ def dbadd_hashpals(
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info("hash DB - 'Init table'.")
+logging.info("hash DB - 'Init table'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -233,7 +226,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -- PALETTE hash -- #
 # ------------------ #
 
-logging.info("hash DB - 'Populate' (ignored palette handling).")
+logging.info("hash DB - 'Populate' (ignored palette handling)")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     for resrc_json in REPORT_DIR.glob("*.json"):
@@ -246,7 +239,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         ):
             continue
 
-        logging.info(f"Add '{resrc_json.relative_to(REPORT_DIR).stem}'.")
+        logging.info(f"Add '{resrc_json.relative_to(REPORT_DIR).stem}'")
 
         data = json_load(resrc_json.open())
 
@@ -254,7 +247,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
             if (name, src) in IGNORED:
                 is_kept = 0
 
-                logging.warning(f"Ignore {name} [{src}] (metadata retained for future reporting).")
+                logging.warning(f"Ignore {name} [{src}] (metadata retained for future reporting)")
 
             else:
                 is_kept = 1

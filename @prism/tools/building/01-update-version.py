@@ -35,17 +35,17 @@ TOOLS_VERSION_TXT  = THIS_DIR / "VERSION.txt"
 # -- LET'S WORK! -- #
 # ----------------- #
 
-logging.info("Look for project version number.")
+logging.info("Look for project version number")
 
 version = safe_load(PROJECT_ABOUT_YAML.read_text())
 version = version['project']['version']
 
 
-logging.info(f"'v{version}'.")
+logging.info(f"'v{version}'")
 
 
 logging.info(
-    f"Update '{TOOLS_VERSION_TXT.relative_to(PROJ_DIR)}'."
+    f"Update '{TOOLS_VERSION_TXT.relative_to(PROJ_DIR)}'"
 )
 
 TOOLS_VERSION_TXT.touch()

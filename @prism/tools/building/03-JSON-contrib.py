@@ -58,7 +58,7 @@ if CONTRIB_PROD_DIR in contribs_accepted:
     del contribs_accepted[CONTRIB_PROD_DIR]
 
 if not contribs_accepted:
-    logging.warning(f"No contrib found.")
+    logging.warning(f"No contrib found")
 
     exit(0)
 
@@ -68,7 +68,7 @@ pals = dict()
 for folder, contribs in sorted(contribs_accepted.items()):
     technno = folder.parent.name
 
-    logging.info(f"'{technno}' techno.")
+    logging.info(f"'{technno}' techno")
 
     extend = import_from_path(
         module_name = "extend",
@@ -76,7 +76,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
     )
 
     for one_contrib in sorted(contribs):
-        logging.info(f"Add '{one_contrib}'.")
+        logging.info(f"Add '{one_contrib}'")
 
         palname = Path(one_contrib).stem
         stdname = get_stdname(palname)
@@ -98,7 +98,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'.")
+logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
 
 RESRC_PALS_JSON.write_text(
     json_dumps(pals)

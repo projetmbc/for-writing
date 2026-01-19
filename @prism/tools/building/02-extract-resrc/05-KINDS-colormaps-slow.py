@@ -127,7 +127,7 @@ def extract_md_pals(content):
 # -- MISING KINDS -- #
 # ------------------ #
 
-logging.info(f"Extract kinds from '{THIS_RESRC}'.")
+logging.info(f"Extract kinds from '{THIS_RESRC}'")
 
 _PALS_KINDS = defaultdict(set)
 
@@ -141,11 +141,11 @@ for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
     content = mdpath.read_text()
 
     if palkind == 'other':
-        logging.warning(f"Unmanaged '{fname}' (maybe later).")
+        logging.warning(f"Unmanaged '{fname}' (maybe later)")
 
         continue
 
-    logging.info(f"Parse '{fname}' content.")
+    logging.info(f"Parse '{fname}' content")
 
     if not palkind in KIND_ALIAS:
         log_raise_error(
@@ -167,7 +167,7 @@ for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
 # ------------------ #
 
 logging.info(
-    f"Update '{RESRC_KINDS_JSON.relative_to(PROJ_DIR)}'."
+    f"Update '{RESRC_KINDS_JSON.relative_to(PROJ_DIR)}'"
 )
 
 # We want a deterministic output.

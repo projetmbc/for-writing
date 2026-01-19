@@ -47,7 +47,7 @@ with UPDATES_NEEDED_JSON.open(mode = "r") as f:
 # ---------------------- #
 
 if not UPDATES_NEEDED[THIS_RESRC]:
-    logging.info(f"'{THIS_RESRC}' - No update.")
+    logging.info(f"'{THIS_RESRC}' - No update")
 
     exit(0)
 
@@ -56,7 +56,7 @@ if not UPDATES_NEEDED[THIS_RESRC]:
 # -- EMPTY SOURCE CODE -- #
 # ----------------------- #
 
-logging.info(f"Empty '{THIS_RESRC}' folder.")
+logging.info(f"Empty '{THIS_RESRC}' folder")
 
 if THIS_RESRC_DIR.is_dir():
     rmtree(THIS_RESRC_DIR)
@@ -71,7 +71,7 @@ THIS_RESRC_DIR.mkdir(
 # -- DOWNLOAD SOURCE CODE -- #
 # -------------------------- #
 
-logging.info(f"Download '{THIS_RESRC}' source code.")
+logging.info(f"Download '{THIS_RESRC}' source code")
 
 download_and_unzip(
     log_raise_error = log_raise_error,
@@ -84,7 +84,7 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-logging.info(f"Clean '{THIS_RESRC}' folder.")
+logging.info(f"Clean '{THIS_RESRC}' folder")
 
 
 for p in THIS_RESRC_DIR.glob("*/LICENSE"):

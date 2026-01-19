@@ -7,72 +7,73 @@
 
 from pathlib import Path
 import sys
+import os
+import signal
+import streamlit as st
 
 THIS_DIR = Path(__file__).parent
 LAB_DIR  = THIS_DIR.parent
 sys.path.append(str(LAB_DIR))
 
+# On suppose que labutils contient les constantes :
+# NAME_CONFLICT_JSON, REPORT_DIR, TAG_RGB_COLS, GUI_TAG_DARK,
+# GUI_TAG_LIGHT, GUI_TAG_NONE, TAG_IS_IGNORED, TAG_REF, TAG_ALIAS
 from labutils import *
 
 # -- IMPORT LABUTILS - END -- #
 # --------------------------- #
 
-import os
-import signal
-import streamlit as st
-
-# --------- #
-# -- GUI -- #
-# --------- #
-
 @st.cache_data
 def load_all_data():
     """
-    Charge les conflits et les regroupe par nom (insensible à la casse).
-    Structure de sortie : { "bluered": { "uid1": data, "uid2": data }, ... }
+    Charge les conflits et les regroupe par nom.
+    Nouveau format JSON : {"ylorrd": [["YlOrRd", "YlOrRd_Alias", "MATPLOTLIB"], ...]}
     """
     if not NAME_CONFLICT_JSON.is_file():
         return {}
 
     with NAME_CONFLICT_JSON.open("r") as f:
-        conflicts_dict = json_load(f)  # Format attendu: {"lowername": "Name", "Source"], ...}
+        # Format attendu: {"group_key": [[name, alias, source], ...]}
+        conflicts_dict = json_load(f)
 
     grouped_conflicts = dict()
     json_cache = dict()
 
     for group_key in sorted(conflicts_dict):
-        for name, src in conflicts_dict[group_key]:
+        for name, alias_db, src in conflicts_dict[group_key]:
+
+            # Cache pour éviter de recharger le même fichier source JSON
             if src not in json_cache:
                 p = REPORT_DIR / f"{src}.json"
                 if p.exists():
                     json_cache[src] = json_load(p.open())
 
+            # Vérification de l'existence de la palette dans la source
             if src in json_cache and name in json_cache[src]:
                 if group_key not in grouped_conflicts:
                     grouped_conflicts[group_key] = {}
 
-            # Identifiant unique pour Streamlit (Nom|Source)
+                # UID unique pour Streamlit
                 uid = build_name_n_srcname(name, src)
 
                 grouped_conflicts[group_key][uid] = {
                     "real_name": name,
+                    "db_alias": alias_db,
                     "source": src,
                     "colors": json_cache[src][name][TAG_RGB_COLS]
                 }
 
     return grouped_conflicts
 
-
+# --- CONFIG ---
 st.set_page_config(
     page_title = "Audit @prism",
-    layout     = "wide"
+    layout      = "wide"
 )
 
-# Initialisation du compteur de sauvegarde
 if "save_count" not in st.session_state:
     st.session_state.save_count = 0
 
-# Chargement des données groupées
 palgrps = load_all_data()
 
 # --- SIDEBAR ---
@@ -81,7 +82,6 @@ with st.sidebar:
     mode = st.radio("Style", [GUI_TAG_DARK, GUI_TAG_LIGHT])
     st.divider()
 
-# Gestion des couleurs de l'interface
 bg, txt, border = (
     ("#1e1e1e", "#eee", "#444")
     if mode == GUI_TAG_DARK else
@@ -102,66 +102,70 @@ st.title("🎯 Conflict management")
 st.info(f"Grouping: **Case Insensitive** ({len(palgrps)} groups found)")
 
 for group_name, members in palgrps.items():
-    # Un expander par groupe de nom (ex: regroupe "BlueRed" et "Bluered")
     with st.expander(f"Group : {group_name.upper()}", expanded = True):
 
-        # Liste de toutes les sources du groupe pour le "Similar to"
         available_sources = sorted([m["source"] for m in members.values()])
 
         for uid, data in members.items():
-            name   = data["real_name"]
-            src    = data["source"]
-            colors = data["colors"]
-            nbcols = len(colors)
+            name    = data["real_name"]
+            db_al   = data["db_alias"]
+            src     = data["source"]
+            colors  = data["colors"]
 
-            st.markdown(f"📂 **{name}** (Source: `{src}`) — `{nbcols}` colors")
+            # Header avec info Alias si présent
+            title_str = f"📂 **{name}**"
+            if db_al and db_al != name:
+                title_str += f" *(alias: {db_al})*"
 
-            # Aperçu visuel de la palette
+            st.markdown(f"{title_str} (Source: `{src}`) — `{len(colors)}` colors")
+
+            # Preview
             st.markdown(
                 f'<div style="background:{generate_gradient_css(colors)};'
-                f'height:38px; border-radius:8px; border:1px solid {border};'
-                f'margin-bottom:12px;"></div>',
+                f'height:30px; border-radius:6px; border:1px solid {border};'
+                f'margin-bottom:10px;"></div>',
                 unsafe_allow_html = True
             )
 
-            # Contrôles d'audit
-            cb_ignore, sel_similar, txt_naming = st.columns([1, 2, 2])
+            # Controls
+            col_ign, col_sim, col_nam = st.columns([1, 2, 2])
 
-            is_ign = cb_ignore.checkbox("Ignore", key=f"i_{uid}")
+            is_ign = col_ign.checkbox("Ignore", key=f"i_{uid}")
 
             possibilities = [GUI_TAG_NONE] + [s for s in available_sources if s != src]
-            projref = sel_similar.selectbox("Similar to...", possibilities, key=f"ref_{uid}")
+            projref = col_sim.selectbox("Similar to...", possibilities, key=f"ref_{uid}")
 
-            alias = txt_naming.text_input("New name", key=f"al_{uid}")
+            # On met l'alias actuel en placeholder
+            new_alias = col_nam.text_input("New name", key=f"al_{uid}", placeholder=db_al)
 
-            # Collecte des données si modifiées
-            if is_ign or projref != GUI_TAG_NONE or alias.strip() != "":
+            # Détection de changement
+            # On considère un changement si : Ignore coché, Source Ref choisie, ou Nouveau nom saisi
+            has_new_alias = new_alias.strip() != "" and new_alias.strip() != db_al
+
+            if is_ign or projref != GUI_TAG_NONE or has_new_alias:
                 nbchges_made += 1
                 final_report[uid] = {
                     TAG_IS_IGNORED: is_ign,
                     TAG_REF: projref if projref != GUI_TAG_NONE else '',
-                    TAG_ALIAS: alias.strip()
+                    TAG_ALIAS: new_alias.strip() if new_alias.strip() != "" else db_al
                 }
 
     st.divider()
 
-# --- SIDEBAR ACTIONS ---
-title_save = "💾 Save audit"
-
+# --- SAVE LOGIC ---
 with st.sidebar:
     if nbchges_made > 0:
         st.success(f"🔄 {nbchges_made} changes detected")
-        if st.button(title_save, type="primary"):
+        if st.button("💾 Save audit", type="primary"):
             update_data(final_report)
             st.session_state.save_count += 1
-            # Nettoyage du cache session pour forcer le rafraîchissement
-            for k in list(st.session_state.keys()):
-                if k != "save_count":
-                    del st.session_state[k]
+            # Reset session state pour rafraîchir les widgets
+            for k in [k for k in st.session_state.keys() if k != "save_count"]:
+                del st.session_state[k]
             st.rerun()
     else:
         st.write(f"✨ Ready (Audit #{st.session_state.save_count})")
-        st.button(title_save, disabled=True)
+        st.button("💾 Save audit", disabled=True)
 
     st.divider()
     with st.expander("🛑 Danger Zone"):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
-from rich import print
+# from rich import print
 # -- DEBUG - OFF -- #
 
 # ---------------------------- #
@@ -48,7 +48,6 @@ CREATE TABLE mirror (
 
 AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
-
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
 
@@ -56,7 +55,7 @@ SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info("Mirror DB - 'Init table'.")
+logging.info("Mirror DB - 'Init table' (nothing else done here)")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()

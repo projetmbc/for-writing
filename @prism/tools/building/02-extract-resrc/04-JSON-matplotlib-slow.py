@@ -129,7 +129,7 @@ def has_uniformed_steps(steps: list[float]) -> bool:
 # -- FROM MATPLOTLIB -- #
 # --------------------- #
 
-logging.info(f"Analyze '{THIS_RESRC}' source code.")
+logging.info(f"Analyze '{THIS_RESRC}' source code")
 
 pals = dict()
 
@@ -318,7 +318,7 @@ for stdname, infos in pals.items():
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'.")
+logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
 
 RESRC_PALS_JSON.write_text(
     json_dumps(pals)

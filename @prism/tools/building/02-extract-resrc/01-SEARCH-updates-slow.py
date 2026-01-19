@@ -18,7 +18,7 @@ from cbutils      import *
 # -------------------------- #
 
 if not YAML_CONFIGS[TAG_WORKFLOW]['ASK_GITHUB']:
-    logging.warning("'NO SEARCH' for needed updates.")
+    logging.warning("'NO SEARCH' for needed updates")
     exit(0)
 
 import os
@@ -147,9 +147,10 @@ if GITHUB_TOKEN:
 
 else:
     logging.warning(
-        "No GitHub token. Rate limit: 60 requests/hour."
-        "\n"
-        "Set GITHUB_TOKEN environment variable for 5000 requests/hour"
+        '''
+No GitHub token. Rate limit: 60 requests/hour.
+Set GITHUB_TOKEN environment variable for 5000 requests/hour
+        '''.strip()
     )
 
 
@@ -157,10 +158,10 @@ else:
 # -- NEEDED UPDATES - GITHUB COMMITS -- #
 # ------------------------------------- #
 
-logging.info("Looking for needed updates.")
+logging.info("Looking for needed updates")
 
 for name, ids in GITHUB_IDS.items():
-    logging.info(f"Check '{name}' GitHub project.")
+    logging.info(f"Check '{name}' GitHub project")
 
     try:
         last_date = get_github_last_date(ids)
@@ -271,14 +272,14 @@ if None in needed_updates.values():
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"Update '{UPDATES_BACKUP_JSON.name}' file.")
+logging.info(f"Update '{UPDATES_BACKUP_JSON.name}' file")
 
 UPDATES_BACKUP_JSON.write_text(
     json_dumps(UPDATES_BACKUP)
 )
 
 
-logging.info(f"Update '{UPDATES_NEEDED_JSON.name}' file.")
+logging.info(f"Update '{UPDATES_NEEDED_JSON.name}' file")
 
 UPDATES_NEEDED_JSON.write_text(
     json_dumps(needed_updates)
