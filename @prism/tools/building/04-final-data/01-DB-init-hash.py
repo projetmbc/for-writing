@@ -30,16 +30,17 @@ SQL_TABLE_CREATE = '''
 DROP TABLE IF EXISTS hash;
 CREATE TABLE hash (
 --
-    pal_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pal_id INTEGER PRIMARY KEY,
     name   VARCHAR(30) NOT NULL,
     source VARCHAR(30) NOT NULL,
 --
     is_kept  INTEGER DEFAULT 1,
-    kind     VARCHAR(60) DEFAULT '',
+    equal_to INTEGER,
+    kind     TEXT DEFAULT '',
 --
-    hash_normal  VARCHAR(60) NOT NULL,
-    hash_reverse VARCHAR(60) NOT NULL
-)
+    hash_normal  TEXT NOT NULL,
+    hash_reverse TEXT NOT NULL
+);
 '''
 
 SQL_TABLE_INSERT = '''
@@ -48,11 +49,17 @@ INSERT INTO hash (
     name,
     source,
 --
+    is_kept,
     kind,
 --
     hash_normal,
     hash_reverse
 ) VALUES ({placeholders})
+'''
+
+SQL_SET_DEFAULT_EQUAL_TO = '''
+UPDATE hash
+SET equal_to = pal_id
 '''
 
 
@@ -81,6 +88,20 @@ if SQLITE_DB_FILE.is_file():
 # ------------------ #
 
 PRECISION = YAML_CONFIGS[TAG_METADATA]['PRECISION']
+
+
+IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
+IGNORED_YAML.touch()
+
+with IGNORED_YAML.open(mode = 'r') as f:
+    _IGNORED = yaml.safe_load(f)
+
+IGNORED = set()
+
+if not _IGNORED is None:
+    for src, names in _IGNORED.items():
+        for n in names:
+            IGNORED.add((n, src))
 
 
 # -------------- #
@@ -163,6 +184,7 @@ def dbadd_hashpals(
     conn,
     name        : str,
     source      : str,
+    is_kept     : bool,
     kind        : str,
     hash_normal : str,
     hash_reverse: str
@@ -179,7 +201,7 @@ def dbadd_hashpals(
             ),
             (
                 name, source,
-                kind,
+                is_kept, kind,
                 hash_normal, hash_reverse
             )
         )
@@ -190,7 +212,7 @@ def dbadd_hashpals(
         conn.close()
 
         log_raise_error(
-            context   = "Hash DB.",
+            context   = "hash DB.",
             desc      = f"Insertion fails for '[{source}] {name}'.",
             exception = Exception,
         )
@@ -200,7 +222,7 @@ def dbadd_hashpals(
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info(f"Hash DB - 'Init table'.")
+logging.info("hash DB - 'Init table'.")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -208,10 +230,10 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
 
 # ------------------ #
-# -- PALETTE HASH -- #
+# -- PALETTE hash -- #
 # ------------------ #
 
-logging.info(f"Hash DB - 'Populate'.")
+logging.info("hash DB - 'Populate' (ignored palette handling).")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     for resrc_json in REPORT_DIR.glob("*.json"):
@@ -229,6 +251,15 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         data = json_load(resrc_json.open())
 
         for name, infos in data.items():
+            if (name, src) in IGNORED:
+                is_kept = 0
+
+                logging.warning(f"Ignore {name} [{src}] (metadata retained for future reporting).")
+
+            else:
+                is_kept = 1
+
+
             kind   = infos[TAG_KIND]
             paldef = infos[TAG_RGB_COLS]
 
@@ -241,7 +272,12 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                 conn         = conn,
                 name         = name,
                 source       = src,
+                is_kept      = is_kept,
                 kind         = std_kind,
                 hash_normal  = hash_normal,
                 hash_reverse = hash_reverse
             )
+
+# Default value of ''equal_to'' attributes.
+    cursor = conn.cursor()
+    cursor.execute(SQL_SET_DEFAULT_EQUAL_TO)

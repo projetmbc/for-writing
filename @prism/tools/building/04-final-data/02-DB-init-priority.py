@@ -31,7 +31,9 @@ DROP TABLE IF EXISTS priority;
 CREATE TABLE priority (
 --
     source   VARCHAR(30) NOT NULL PRIMARY KEY,
-    priority INTEGER NOT NULL
+    priority INTEGER NOT NULL,
+--
+    FOREIGN KEY (source) REFERENCES hash (source)
 )
 '''
 
@@ -105,7 +107,7 @@ def dbadd_hashpals(
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info(f"Priority DB - 'Init table'.")
+logging.info("Priority DB - 'Init table'.")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -116,7 +118,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -- PRIORITY SOURCE -- #
 # --------------------- #
 
-logging.info(f"Priority DB - 'Populate'.")
+logging.info("Priority DB - 'Populate'.")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     for resrc_json in REPORT_DIR.glob("*.json"):

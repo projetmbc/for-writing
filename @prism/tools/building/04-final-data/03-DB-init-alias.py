@@ -29,8 +29,11 @@ from cbutils      import *
 SQL_TABLE_CREATE = '''
 DROP TABLE IF EXISTS alias;
 CREATE TABLE alias (
+--
     pal_id   INTEGER NOT NULL PRIMARY KEY,
-    alias    VARCHAR(30) NOT NULL
+    alias    VARCHAR(30) NOT NULL,
+--
+    FOREIGN KEY (pal_id) REFERENCES hash (pal_id)
 )
 '''
 
@@ -118,7 +121,7 @@ def dbadd_aliaspals(
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info(f"Alias DB - 'Init table'.")
+logging.info("Alias DB - 'Init table'.")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -126,7 +129,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
 
 if not RENAMED:
-    logging.info(f"Alias DB - No alias.")
+    logging.info("Alias DB - No alias.")
 
     exit(0)
 
@@ -135,7 +138,7 @@ if not RENAMED:
 # -- ALIAS -- #
 # ----------- #
 
-logging.info(f"Alias DB - 'Populate'.")
+logging.info("Alias DB - 'Populate'.")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()

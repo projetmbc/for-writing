@@ -1,76 +1,20 @@
-IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
-
-with IGNORED_YAML.open(mode = 'r') as f:
-    _IGNORED = yaml.safe_load(f)
-
-IGNORED = set()
-
-if not _IGNORED is None:
-    for src, names in _IGNORED.items():
-        for n in names:
-            IGNORED.add((n, src))
-
-
-
-
-
-
-
-
-
-#!/usr/bin/env python3
-
-# -- DEBUG - ON -- #
-from rich import print
-# -- DEBUG - OFF -- #
-
-# ---------------------------- #
-# -- IMPORT CBUTILS - START -- #
-
-from pathlib import Path
-import              sys
-
-THIS_DIR  = Path(__file__).parent
-BUILD_TOOLS_DIR = THIS_DIR.parent
-
-sys.path.append(str(BUILD_TOOLS_DIR))
-
-from cbutils.core import *
-from cbutils      import *
-
-# -- IMPORT CBUTILS - END -- #
-# -------------------------- #
-
-
-# ----------------- #
-# -- SQL QUERIES -- #
-# ----------------- #
-
-
-
-
-
-
-
 exit(1)
 
 
 
+SQL_TABLE_INSERT = '''
+INSERT INTO mirror (
+    pal_id_1,
+    pal_id_2
+) VALUES ({placeholders})
+'''
 
-
-
-
-
-
-
-
-SQL_TABLE_CREATE = '''
-DROP TABLE IF EXISTS same_pals;
-CREATE TABLE same_pals (
-    id             INTEGER PRIMARY KEY AUTOINCREMENT,
-    pal_id_kept    INTEGER NOT NULL,
-    pal_id_ignored INTEGER NOT NULL
-)
+SQL_GET_PALID = '''
+SELECT
+    p.pal_id
+FROM hash p
+WHERE p.name = ?
+  AND p.source = ?
 '''
 
 SQL_TABLE_INSERT = '''
@@ -87,6 +31,29 @@ FROM hash_pals p
 WHERE p.name = ?
   AND p.source = ?
 """
+
+
+
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
+IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
+IGNORED_YAML.touch()
+
+with IGNORED_YAML.open(mode = 'r') as f:
+    _IGNORED = yaml.safe_load(f)
+
+IGNORED = set()
+
+if not _IGNORED is None:
+    for src, names in _IGNORED.items():
+        for n in names:
+            IGNORED.add((n, src))
+
+
+print(IGNORED)
+
 
 
 # --------------- #
@@ -267,10 +234,7 @@ CREATE TABLE equal_pals (
 
 
 
-SQL_SET_DEFAULT_EQUAL_TO = '''
-UPDATE hashpals
-SET equal_to = id
-'''
+
 
 
 SQL_SET_IGNORED = '''
@@ -300,9 +264,7 @@ WHERE name = '{name}' AND source = '{source}';
 
 
 
-# Default value of ''equal_to'' attributes.
-    cursor = conn.cursor()
-    cursor.execute(SQL_SET_DEFAULT_EQUAL_TO)
+
 
 # Value of ''ignored'' for ignored pals.
     for (name, src) in IGNORED:
