@@ -4,54 +4,25 @@
 from rich import print
 # -- DEBUG - OFF -- #
 
+# ---------------------------- #
+# -- IMPORT CBUTILS - START -- #
 
 from pathlib import Path
+import              sys
 
-import requests
+THIS_DIR        = Path(__file__).parent
+BUILD_TOOLS_DIR = THIS_DIR.parent
 
-from json import (
-    dumps as json_dumps,
-    load  as json_load,
-)
+sys.path.append(str(BUILD_TOOLS_DIR))
+
+from cbutils.core import *
+from cbutils      import *
+
+# -- IMPORT CBUTILS - END -- #
+# -------------------------- #
 
 import matplotlib.colors as mcolors
 import numpy             as np
-
-
-# ------------------------- #
-# -- MAIN ONLINE VERSION -- #
-# ------------------------- #
-
-url = (
-    "https://raw.githubusercontent.com/"
-    "projetmbc/for-writing/main/"
-    "%40prism/products/json/palettes.json"
-)
-
-response = requests.get(url)
-response.raise_for_status()
-
-MAIN_PALS = response.json()
-
-
-# ------------------- #
-# -- LOCAL VERSION -- #
-# ------------------- #
-
-THIS_DIR = Path(__file__).parent
-PROJ_DIR = THIS_DIR
-
-while (PROJ_DIR.name != '@prism'):
-    PROJ_DIR = PROJ_DIR.parent
-
-PRODS_DIR   = PROJ_DIR / "products"
-PROD_JSON_DIR = PRODS_DIR / "json"
-
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
-
-
-with PAL_JSON_FILE.open(mode = "r") as f:
-    LOCAL_PALS = json_load(f)
 
 
 # ----------- #
@@ -101,11 +72,55 @@ def compare_rgb_palettes(small_pal, large_pal, tolerance=0.01):
         print(f"   S: {rgb_small} | L: {rgb_sampled}")
 
 
+# ------------------- #
+# -- LOCAL VERSION -- #
+# ------------------- #
+
+logging.info("MAIN vs LOCAL - Get 'last local' version")
+
+THIS_DIR = Path(__file__).parent
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != '@prism'):
+    PROJ_DIR = PROJ_DIR.parent
+
+PRODS_DIR   = PROJ_DIR / "products"
+PROD_JSON_DIR = PRODS_DIR / "json"
+
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
+
+
+with PAL_JSON_FILE.open(mode = "r") as f:
+    LOCAL_PALS = json_load(f)
+
+
+# ------------------------- #
+# -- MAIN ONLINE VERSION -- #
+# ------------------------- #
+
+logging.info("MAIN vs LOCAL - Get 'main online' version")
+
+url = (
+    "https://raw.githubusercontent.com/"
+    "projetmbc/for-writing/main/"
+    "%40prism/products/json/palettes.json"
+)
+
+response = requests.get(url)
+response.raise_for_status()
+
+MAIN_PALS = response.json()
 
 
 # --------------------- #
 # -- KEY COMPARISONS -- #
 # --------------------- #
+
+logging.info("XXXXX")
+
+
+exit(1)
+
 
 ITEM = '  + '
 
@@ -141,3 +156,9 @@ COMPARE
 """)
 
 TODO
+
+
+
+
+
+exit(1)

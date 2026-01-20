@@ -57,7 +57,7 @@ AUDIT_DB_VIEW_PNG = AUDIT_DIR / "AUDIT-DB-VIEW.png"
 
 logging.info("DB diagram - 'Gather table creation codes'")
 
-_sql_full_code = ['']
+_sql_full_code = []
 
 for pyfile in BUILD_TOOLS_DIR.glob("*-final-data/*DB-init*.py"):
     logging.info(
@@ -69,7 +69,14 @@ for pyfile in BUILD_TOOLS_DIR.glob("*-final-data/*DB-init*.py"):
     _sql_full_code += PATTERN_SQL_CREATE_TABLE.findall(pycode)
 
 
-sql_full_code = '\n\n------\n\n'.join(_sql_full_code)
+sql_full_code = ''
+
+for i, block in enumerate(_sql_full_code, start = 1):
+    title = f"TABLE #{i}"
+    deco  = '-'*(len(title) + 6)
+
+    sql_full_code += f"\n\n\n{deco}\n-- {title} --\n{deco}\n\n{block}"
+
 sql_full_code = sql_full_code.strip() + '\n'
 
 

@@ -1,4 +1,6 @@
-------
+--------------
+-- TABLE #1 --
+--------------
 
 CREATE TABLE hash (
 --
@@ -14,7 +16,10 @@ CREATE TABLE hash (
     hash_reverse TEXT NOT NULL
 );
 
-------
+
+--------------
+-- TABLE #2 --
+--------------
 
 CREATE TABLE mirror (
 --
@@ -28,7 +33,10 @@ CREATE TABLE mirror (
     FOREIGN KEY (cand_pal_id_2) REFERENCES hash (pal_id)
 );
 
-------
+
+--------------
+-- TABLE #3 --
+--------------
 
 CREATE TABLE alias (
 --
@@ -38,7 +46,10 @@ CREATE TABLE alias (
     FOREIGN KEY (pal_id) REFERENCES hash (pal_id)
 );
 
-------
+
+--------------
+-- TABLE #4 --
+--------------
 
 CREATE TABLE priority (
 --

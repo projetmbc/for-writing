@@ -17,8 +17,6 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from shutil  import rmtree
-
 
 # --------------- #
 # -- CONSTANTS -- #
@@ -29,7 +27,7 @@ PROJ_DIR = Path(__file__).parent
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
+AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
 
 # ----------------------------- #
@@ -37,13 +35,17 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 # ----------------------------- #
 
 logging.info(
-    f"Empty '{REPORT_DIR.relative_to(PROJ_DIR)}'"
+    f"Clean '{AUDIT_DIR.relative_to(PROJ_DIR)}' (only dynamic files)"
 )
 
-if REPORT_DIR.is_dir():
-    rmtree(REPORT_DIR)
-
-REPORT_DIR.mkdir(
+AUDIT_DIR.mkdir(
     parents  = True,
     exist_ok = True
 )
+
+for dynafile in AUDIT_DIR.glob("AUDIT-*"):
+    logging.warning(
+        f"Remove '{dynafile.relative_to(PROJ_DIR)}'"
+    )
+
+    dynafile.unlink()

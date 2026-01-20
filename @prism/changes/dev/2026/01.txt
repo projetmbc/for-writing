@@ -1,7 +1,21 @@
 // ---------- //
 
 ==
-20  (2.0.0-beta.9)   ??????
+20  (2.0.0-beta.10)   ??????
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]]     ????
+Added comparison between current and last main version.
+
+
+// ---------- //
+
+==
+20  (2.0.0-beta.9)
 ==
 
 --------
@@ -26,9 +40,6 @@ Here are the new features.
         + Implemented automated sanitization: removed redundant leading zeros and unnecessary negative signs.
 
         + Standardized retrieval by mapping palette kinds from /src and /proj.
-
-        + ????
-        Added comparison between current and last main version.
 
 
 // ---------- //
