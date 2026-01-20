@@ -13,20 +13,22 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 
 
-
 // ---------- //
 
-formats proposés et pourquoi
+-----
+:new:
+-----
 
-    + version on modifié
-      besoin pour haute impression
+[[:api:]]  ???
+Multiple \distrib formats are now available to meet various technical requirements.
 
-    + version de taille AUTO_QUAL_CATEGO_SIZE
-      taille limité sans empiéter sur les palettes sémantiques
+    1) High-fidelity (unmodified).
 
-    + fichers tout-en un mais aussi dssier fichiers individuels
-      si capacité limité de calcul c'est utile pour charger les plattes à la demande
-      ou juste avoir une palette employée sans toutes ses copiens
+    1) Normalized (''size <= AUTO_QUAL_CATEGO_SIZE'').
+
+    1) Modular (one file per palette).
+
+    1) Monolithic (all palettes in one file).
 
 
 // ---------- //
@@ -85,6 +87,21 @@ def normalize_rgb_palette(palette, target_size=40):
 penser à ordonné de façon naturel vi natsort !!!!
 
 
+
+// ---------- //
+
+--------
+:fordev:
+--------
+
+[[:tech:]]  ?
+Standardizing the retrieval of external palettes done for the following \projs.
+
+    + \cmasher        ??????
+    + \colormaps      ????
+    + \nclcolortable  ??
+
+
 // ---------- //
 
 metadat des palettes à enrichir
@@ -131,19 +148,6 @@ se passer des pdf de démo et tout miser sur le html car au final c'est ben plus
     ---> mettre aussi les transfos quand l'API le propose
 
 
-// ---------- //
-
---------
-:fordev:
---------
-
-[[:tech:]]  ?
-Standardizing the retrieval of external palettes done for the following \projs.
-
-    + \carbonplan     ??????????
-    + \cmasher        ??????
-    + \colormaps      ????   comparer  light et dark et ignorer si c'est égal, sinon on créer deux version !
-    + \nclcolortable  ??
 
 
 // ---------- //

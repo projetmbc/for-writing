@@ -190,6 +190,11 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
             logging.info(f"Names: '{nb} {what}'{xtra}")
 
+# -- DEBUG - ON -- #
+print(NEW_NAMES)
+print(REMOVED_NAMES)
+exit()
+# -- DEBUG - OFF -- #
 
 
 # ------------------------- #
@@ -211,6 +216,7 @@ for n in NEW_NAMES:
     results = cursor.fetchall()
 
     if len(results) != 1:
+        print(results)
         BUG_BUG
 
     alias, *ons = results[0]
@@ -237,19 +243,19 @@ for n in REMOVED_NAMES:
 yaml_code = yaml_dump(WHY_REMOVED)
 yaml_code = f'''
 # Complete with one of the following regarding new palettes, where
-# ''<new_alias>'' is the palette name in the current version.
+# ''<new_alias>'' is the @prism palette name in the current version.
 #
-#    1) <new_alias>: ignored
+#    1) ''<new_alias>: ignored''
 #
 #    (the palette exists but is intentionally excluded from the
 #    processing pipeline)
 #
-#    2) <new_alias>: renamed
+#    2) ''<new_alias>: renamed''
 #
 #    (the palette identifier has changed, requiring a mapping from
 #    the old name to the new one)
 #
-#    3) <new_alias>: superseded
+#    3) ''<new_alias>: superseded''
 #
 #    (the palette no longer exists but has a direct equivalent).
 

@@ -229,7 +229,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 logging.info("hash DB - 'Populate' (ignored palette handling)")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
-    for resrc_json in REPORT_DIR.glob("*.json"):
+    for resrc_json in sorted(REPORT_DIR.glob("*.json")):
         src = resrc_json.stem
 
         if (

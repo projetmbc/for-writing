@@ -91,7 +91,7 @@ SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
 uid_2_pal = dict()
 
-for p in REPORT_DIR.glob('*.json'):
+for p in sorted(REPORT_DIR.glob('*.json')):
     tokeep = True
 
     for prefix in [
@@ -108,7 +108,7 @@ for p in REPORT_DIR.glob('*.json'):
 
     src = p.stem
 
-    logging.info(f"Get '{src}' palette defs")
+    logging.info(f"Get '{src}' palettes")
 
     with p.open('r') as f:
         paldata = json_load(f)
@@ -124,7 +124,7 @@ for p in REPORT_DIR.glob('*.json'):
 # -- ALL PALS DICT -- #
 # ------------------- #
 
-logging.info(f"Build 'palette defs'")
+logging.info(f"Build 'all palette formats'")
 
 palettes = dict()
 
@@ -132,7 +132,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(SQL_GET_PAL_IDS)
 
-    for alias, name, src in cursor.fetchall():
+    for alias, name, src in sorted(cursor.fetchall()):
         uid = get_uid(name, src)
 
         palettes[alias] = uid_2_pal[uid]
@@ -171,3 +171,6 @@ md_credtits = re.sub(
 
 PAL_JSON_CREDITS_MD.touch()
 PAL_JSON_CREDITS_MD.write_text(md_credtits)
+
+
+exit(1)

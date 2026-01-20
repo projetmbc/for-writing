@@ -136,95 +136,95 @@ def extract_namectxt(name_n_ctxt: str) -> (str, str):
     return name_n_ctxt.split('::')
 
 
-def update_palettes(
-    context  : str,
-    name     : str,
-    candidate: PaletteCols,
-    palettes : dict[str, PaletteCols],
-    ignored  : dict[str, dict[ str, [str] ] ],
-    logcom   = Callable,
-) -> (
-    str,
-    dict[str, PaletteCols],
-    dict[ str, dict[ str, [str] ] ]
-):
-    name_n_ctxt = namectxt(name, context)
+# def update_palettes(
+#     context  : str,
+#     name     : str,
+#     candidate: PaletteCols,
+#     palettes : dict[str, PaletteCols],
+#     ignored  : dict[str, dict[ str, [str] ] ],
+#     logcom   = Callable,
+# ) -> (
+#     str,
+#     dict[str, PaletteCols],
+#     dict[ str, dict[ str, [str] ] ]
+# ):
+#     name_n_ctxt = namectxt(name, context)
 
-# New name?
-    if name_n_ctxt in ignored[TAG_NEW_NAMES]:
-        _name = name
+# # New name?
+#     if name_n_ctxt in ignored[TAG_NEW_NAMES]:
+#         _name = name
 
-        name        = ignored[TAG_NEW_NAMES][name_n_ctxt]
-        name_n_ctxt = namectxt(name, context)
+#         name        = ignored[TAG_NEW_NAMES][name_n_ctxt]
+#         name_n_ctxt = namectxt(name, context)
 
-        logcom.warning(f"'{_name}' changed to '{name}'.")
+#         logcom.warning(f"'{_name}' changed to '{name}'.")
 
-# To ignore.
-    if name_n_ctxt in ignored:
-        _meth = ignored[name_n_ctxt][TAG_METH]
+# # To ignore.
+#     if name_n_ctxt in ignored:
+#         _meth = ignored[name_n_ctxt][TAG_METH]
 
-        logcom.warning(f"'{name}' is ignored ({_meth} method).")
+#         logcom.warning(f"'{name}' is ignored ({_meth} method).")
 
-        ignored[TAG_NAMES_IGNORED].append(name)
+#         ignored[TAG_NAMES_IGNORED].append(name)
 
-        return name, palettes, ignored
+#         return name, palettes, ignored
 
-# Name already used or ignored.
-    if (
-        name in palettes
-        or
-        name in ignored[TAG_NAMES_IGNORED]
-    ):
-        prevctxts = ignored[TAG_SAME_NAME].get(name, [])
+# # Name already used or ignored.
+#     if (
+#         name in palettes
+#         or
+#         name in ignored[TAG_NAMES_IGNORED]
+#     ):
+#         prevctxts = ignored[TAG_SAME_NAME].get(name, [])
 
-        prevctxts.append([
-            context,
-            candidate
-        ])
+#         prevctxts.append([
+#             context,
+#             candidate
+#         ])
 
-        ignored[TAG_SAME_NAME][name] = prevctxts
-        ignored[TAG_NAMES_IGNORED].append(name)
+#         ignored[TAG_SAME_NAME][name] = prevctxts
+#         ignored[TAG_NAMES_IGNORED].append(name)
 
-        logcom.warning(
-            f"'{name}' already used - Human checking needed."
-        )
+#         logcom.warning(
+#             f"'{name}' already used - Human checking needed."
+#         )
 
-        return name, palettes, ignored
+#         return name, palettes, ignored
 
-# We have to analyze the palette.
-    candidate = norm_palette(candidate)
-    status    = PAL_STATUS.IS_NEW
+# # We have to analyze the palette.
+#     candidate = norm_palette(candidate)
+#     status    = PAL_STATUS.IS_NEW
 
-    for n, p in palettes.items():
-        if equalfloat_palettes(candidate, p):
-            status   = PAL_STATUS.EQUAL_TO
-            lastname = n
+#     for n, p in palettes.items():
+#         if equalfloat_palettes(candidate, p):
+#             status   = PAL_STATUS.EQUAL_TO
+#             lastname = n
 
-            break
+#             break
 
-        elif equalfloat_palettes(candidate, p[::-1]):
-            status   = PAL_STATUS.REVERSE_OF
-            lastname = n
+#         elif equalfloat_palettes(candidate, p[::-1]):
+#             status   = PAL_STATUS.REVERSE_OF
+#             lastname = n
 
-            break
+#             break
 
-    match status:
-        case PAL_STATUS.IS_NEW:
-            palettes[name] = norm_palette(candidate)
+#     match status:
+#         case PAL_STATUS.IS_NEW:
+#             palettes[name] = norm_palette(candidate)
 
-            logcom.info(f"'{name}' added.")
+#             logcom.info(f"'{name}' added.")
 
-        case _:
-            ignored[name_n_ctxt] = {
-                STATUS_TAG[status]: lastname,
-                TAG_METH          : TAG_AUTO,
-            }
+#         case _:
+#             ignored[name_n_ctxt] = {
+#                 STATUS_TAG[status]: lastname,
+#                 TAG_METH          : TAG_AUTO,
+#             }
 
-            logcom.warning(
-                f"'{name}' ignored - {STATUS_MSG[status]} '{lastname}'."
-            )
+#             logcom.warning(
+#                 f"'{name}' ignored - {STATUS_MSG[status]} '{lastname}'."
+#             )
 
-    return name, palettes, ignored
+#     return name, palettes, ignored
 
 
 def norm_palette(palette: PaletteCols) -> PaletteCols:
@@ -261,25 +261,25 @@ def norm_palette(palette: PaletteCols) -> PaletteCols:
     return result
 
 
-def resume_nbpals_build(
-    context    : str,
-    nb_new_pals: int,
-    palettes   : dict[str, PaletteCols],
-    logcom
-) -> int:
-    nb_new_pals = len(palettes) - nb_new_pals
+# def resume_nbpals_build(
+#     context    : str,
+#     nb_new_pals: int,
+#     palettes   : dict[str, PaletteCols],
+#     logcom
+# ) -> int:
+#     nb_new_pals = len(palettes) - nb_new_pals
 
-    if nb_new_pals == 0:
-        logcom.info("Nothing new found.")
+#     if nb_new_pals == 0:
+#         logcom.info("Nothing new found.")
 
-    else:
-        plurial = "" if nb_new_pals == 1 else "s"
+#     else:
+#         plurial = "" if nb_new_pals == 1 else "s"
 
-        logcom.info(
-            f"{nb_new_pals} palette{plurial} build from {context}."
-        )
+#         logcom.info(
+#             f"{nb_new_pals} palette{plurial} build from {context}."
+#         )
 
-    return nb_new_pals
+#     return nb_new_pals
 
 
 

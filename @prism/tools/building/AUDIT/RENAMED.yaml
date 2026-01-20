@@ -1,4 +1,5 @@
 _SUFFIXES_:
+  CARBONPLAN: CP
   CARTOCOLORS: CC
   COLORBREWER: CBW
   MATPLOTLIB: MPL
@@ -9,6 +10,16 @@ _SUFFIXES_:
 # '*' is an alias for the suffix.
 
 #  + C
+CARBONPLAN:
+  Blues: .
+  Cool: .
+  Earth: .
+  Greens: .
+  Greys: .
+  Oranges: .
+  Purples: .
+  Rainbow: .
+  Reds: .
 CARTOCOLORS:
   Prism: .
 COLORBREWER:
