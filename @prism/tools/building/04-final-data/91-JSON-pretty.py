@@ -65,7 +65,7 @@ def compact_nblists(json_code: str) -> str:
 # -- JSON NORMALIZATION -- #
 # ------------------------ #
 
-logging.info(f"Human friendly JSON files.")
+logging.info(f"Human friendly JSON files")
 
 for p in sorted(REPORT_DIR.glob('*.json')):
     tokeep = False
@@ -82,7 +82,7 @@ for p in sorted(REPORT_DIR.glob('*.json')):
     if not tokeep:
         continue
 
-    logging.info(f"Pretty '{p.relative_to(PROJ_DIR)}'.")
+    logging.info(f"Pretty '{p.relative_to(PROJ_DIR)}'")
 
     with p.open(mode = "r") as f:
         code = json_load(f)

@@ -175,9 +175,9 @@ def humanize_yaml(
 # -- TOOLS -- #
 # ----------- #
 
-logging.info(f"Human friendly YAML files.")
+logging.info(f"Human friendly YAML files")
 
 for p in sorted(AUDIT_DIR.glob('*.yaml')):
-    logging.info(f"Pretty '{p.relative_to(PROJ_DIR)}'.")
+    logging.info(f"Pretty '{p.relative_to(PROJ_DIR)}'")
 
     humanize_yaml(p)

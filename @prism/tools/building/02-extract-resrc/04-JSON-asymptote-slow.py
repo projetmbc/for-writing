@@ -65,8 +65,8 @@ RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 
 
-ASY_CODE = RESRC_DIR / "colormap.asy"
-ASY_CODE = ASY_CODE.read_text()
+_ASY_CODE = RESRC_DIR / "colormap.asy"
+ASY_CODE  = _ASY_CODE.read_text()
 
 
 # ------------------------------- #

@@ -143,11 +143,11 @@ for techno in sorted(contribs_accepted[CONTRIB_PROD_DIR]):
     about_file = techno_dir / 'ABOUT.yaml'
 
     if not about_file.is_file():
-        logging.warning(f"'{techno}' contrib - No clean config.")
+        logging.warning(f"'{techno}' contrib - No clean config")
 
         continue
 
-    logging.info(f"Clean '{techno}' contrib.")
+    logging.info(f"Clean '{techno}' contrib")
 
     with about_file.open(mode = 'r') as stream:
         about_cfg = yaml.safe_load(stream)
@@ -158,7 +158,7 @@ for techno in sorted(contribs_accepted[CONTRIB_PROD_DIR]):
     gobble = clean_cfg.get(TAG_GOBBLE, [])
 
     if not gobble:
-        logging.warning(f"Missing '{techno}' contrib gobble patterns.")
+        logging.warning(f"Missing '{techno}' contrib gobble patterns")
 
         continue
 
@@ -169,4 +169,4 @@ for techno in sorted(contribs_accepted[CONTRIB_PROD_DIR]):
         for f in techno_dir.glob(g):
             f.unlink()
 
-            logging.info(f"Remove '{f.relative_to(PROJ_DIR)}'.")
+            logging.info(f"Remove '{f.relative_to(PROJ_DIR)}'")

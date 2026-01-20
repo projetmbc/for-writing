@@ -205,7 +205,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # ------------------ #
 
 logging.info(
-    f"Kinding ;-) Update '{MISSING_KIND_JSON.relative_to(PROJ_DIR)}'."
+    f"Kinding ;-) Update '{MISSING_KIND_JSON.relative_to(PROJ_DIR)}'"
 )
 
 MISSING_KIND_JSON.write_text(

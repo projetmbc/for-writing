@@ -36,7 +36,7 @@ PRODS_DIR = PROJ_DIR / "products"
 # -- EMPTY PRODUCTS FOLDER -- #
 # --------------------------- #
 
-logging.info("Empty 'product' folder.")
+logging.info("Empty 'product' folder")
 
 if not PRODS_DIR.is_dir():
     PRODS_DIR.mkdir()

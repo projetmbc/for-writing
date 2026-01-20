@@ -1,3 +1,6 @@
+exit(1)
+
+
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -53,7 +56,7 @@ CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
 # -- EXTRACT DATA -- #
 # ------------------ #
 
-logging.info(f"Get 'JSON palette defs'.")
+logging.info(f"Get 'JSON palette defs'")
 
 PROD_JSON_DIR = PRODS_DIR / "json"
 PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
@@ -74,12 +77,12 @@ impl_accepted = contribs_accepted.get(
 )
 
 for ctxt in sorted(impl_accepted, key = lambda x: x.lower()):
-    logging.info(f"'{ctxt}' implementation.")
+    logging.info(f"'{ctxt}' implementation")
 
     impl_folder = CONTRIB_PROD_DIR / ctxt
 
 # Import extend.py.
-    logging.info(f"'{ctxt}': import 'extend.py'.")
+    logging.info(f"'{ctxt}': import 'extend.py'")
 
     extend = import_from_path(
         module_name = "extend",
@@ -87,7 +90,7 @@ for ctxt in sorted(impl_accepted, key = lambda x: x.lower()):
     )
 
 # Fake prod to real prod.
-    logging.info(f"'{ctxt}': copy structure.")
+    logging.info(f"'{ctxt}': copy structure")
 
     fake_dir  = impl_folder / "fake-prod"
     final_dir = PRODS_DIR / ctxt
@@ -98,7 +101,7 @@ for ctxt in sorted(impl_accepted, key = lambda x: x.lower()):
     )
 
 # The file of palettes.
-    logging.info(f"'{ctxt}': add file of palettes.")
+    logging.info(f"'{ctxt}': add file of palettes")
 
     code = extend.build_code(
         credits  = CREDITS,
@@ -119,4 +122,4 @@ nb_impl = len(impl_accepted)
 
 plurial = "" if nb_impl == 1 else "s"
 
-logging.info(f"{nb_impl} implementation{plurial} added.")
+logging.info(f"{nb_impl} implementation{plurial} added")

@@ -10,12 +10,34 @@
 
 [[:tech:]]
 
-une seul DB !!!
+une seul DB ok !!!
 
-has paltette : il manquait le nettoyage des zréos et signe - inutiels !!!
+has paltette : il manquait le nettoyage des zréos et signe - inutiels ok !!!
 
 
+External palettes: standardizing the retrieval by including their possible type from the \src \proj. For now, only the following \projs have been integrated.
 
+    + \cartocolors   ok
+
+
+new
+  + Balance
+  + Classic
+  + GistGray
+  + Greys
+  + HotPLY
+  + JetPLY
+  + MidGray
+  + OkabeIto
+  + Petroff10
+  + Petroff6
+  + Petroff8
+  + YlOrRdCBW
+
+removed
+  + GrayTab   pourquoi ?
+  + Grays     pourquoi ?
+  + Tableau   pourquoi ?
 
 
 // ---------- //

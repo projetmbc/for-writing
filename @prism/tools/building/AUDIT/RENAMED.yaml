@@ -9,6 +9,8 @@ _SUFFIXES_:
 # '*' is an alias for the suffix.
 
 #  + C
+CARTOCOLORS:
+  Prism: .
 COLORBREWER:
   YlOrRd: .
 

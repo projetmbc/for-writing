@@ -75,11 +75,11 @@ RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 
 
-MPL_CODE_LISTED = RESRC_DIR / "_cm_listed.py"
-MPL_CODE_LISTED = MPL_CODE_LISTED.read_text()
+_MPL_CODE_LISTED = RESRC_DIR / "_cm_listed.py"
+MPL_CODE_LISTED  = _MPL_CODE_LISTED.read_text()
 
-MPL_CODE = RESRC_DIR / "_cm.py"
-MPL_CODE = MPL_CODE.read_text()
+_MPL_CODE = RESRC_DIR / "_cm.py"
+MPL_CODE  = _MPL_CODE.read_text()
 
 # -- DEBUG - ON -- #
 #
@@ -122,7 +122,6 @@ def has_uniformed_steps(steps: list[float]) -> bool:
     }
 
     return len(diffs) == 1
-
 
 
 # --------------------- #

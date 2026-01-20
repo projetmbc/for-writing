@@ -50,7 +50,7 @@ with PAL_JSON_FILE.open(mode = "r") as f:
 # -- PALETTE SPECS -- #
 # ------------------- #
 
-logging.info(f"Finalize 'css' product.")
+logging.info(f"Finalize 'css' product")
 
 pal_specs = {
     n: len(c)

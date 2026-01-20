@@ -46,10 +46,10 @@ INSERT INTO alias (
 
 SQL_GET_PAL_ID = """
 SELECT
-    p.pal_id
-FROM hash p
-WHERE p.name = ?
-  AND p.source = ?
+    pal_id
+FROM hash
+WHERE name = ?
+  AND source = ?
 """
 
 

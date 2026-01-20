@@ -100,7 +100,7 @@ def dbadd_hashpals(
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info("Priority DB - 'Init table'.")
+logging.info("Priority DB - 'Init table'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -111,7 +111,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -- PRIORITY SOURCE -- #
 # --------------------- #
 
-logging.info("Priority DB - 'Populate'.")
+logging.info("Priority DB - 'Populate'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     for resrc_json in REPORT_DIR.glob("*.json"):
@@ -124,7 +124,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         ):
             continue
 
-        logging.info(f"Add '{resrc_json.relative_to(REPORT_DIR).stem}'.")
+        logging.info(f"Add '{resrc_json.relative_to(REPORT_DIR).stem}'")
 
         dbadd_hashpals(
             conn     = conn,

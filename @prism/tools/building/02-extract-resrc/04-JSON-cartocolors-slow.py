@@ -17,12 +17,24 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+from matplotlib import colors
 
-# --------------- #
-# -- CONSTANTS -- #
-# --------------- #
 
-THIS_RESRC = TAG_COLORBREWER
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+PATTERN_CARTO_BLOCK = re.compile(
+    r"const\s+(\w+)\s*=\s*(\{.*?\});",
+    re.DOTALL
+)
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+THIS_RESRC = TAG_CARTOCOLORS
 
 PROJ_DIR = THIS_DIR
 
@@ -37,14 +49,8 @@ RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 
 
-# ------------------ #
-# -- EXTRACT DATA -- #
-# ------------------ #
-
-ORIGINAL_RESRC_PALS_JSON = RESRC_DIR / f"{THIS_RESRC.lower()}.json"
-
-with ORIGINAL_RESRC_PALS_JSON.open(mode = "r") as f:
-    ORIGINAL_RESRC_PALS = json_load(f)
+_CARTO_CODE = RESRC_DIR / "carto.ts"
+CARTO_CODE  = _CARTO_CODE.read_text()
 
 
 # ----------- #
@@ -52,35 +58,55 @@ with ORIGINAL_RESRC_PALS_JSON.open(mode = "r") as f:
 # ----------- #
 
 def extract_palette(pal_data: dict) -> [str, PaletteCols]:
-    kind = pal_data["type"]
-
-    max_size = max(
-        int(k)
-        for k in pal_data
-        if k != "type"
+    kind = ', '.join(
+        sorted(pal_data['tags'])
     )
 
-    max_size = str(max_size)
+    del pal_data['tags']
 
-    paldef = pal_data[str(max_size)]
-    paldef = pal255_to_pal01([
-        eval(c.replace("rgb", ""))
-        for c in paldef
-    ])
+    _bigger_size = sorted(
+        pal_data,
+        key = lambda k: int(k)
+    )
+
+    bigger_size = _bigger_size[-1]
+
+    paldef = [
+        colors.to_rgb(c)
+        for c in pal_data[bigger_size]
+    ]
 
     return kind, paldef
 
 
 # ---------------------- #
-# -- FROM COLORBREWER -- #
+# -- FROM CARTOCOLORS -- #
 # ---------------------- #
 
 logging.info(f"Analyze '{THIS_RESRC}' source code")
 
 pals = dict()
 
-for palname, pal_data in ORIGINAL_RESRC_PALS.items():
+for match in PATTERN_CARTO_BLOCK.finditer(CARTO_CODE):
+    palname = match.group(1)
+
     stdname = get_stdname(palname)
+
+    tsdict = match.group(2)
+
+    pycode = re.sub(
+        r"(\s+)(\w+):",
+        r'\1"\2":',
+        tsdict
+    )
+
+    pycode = re.sub(
+        r",\s*([\]\}])",
+        r"\1",
+        pycode
+    )
+
+    pal_data = ast.literal_eval(pycode)
 
     palkind, paldef = extract_palette(pal_data)
 

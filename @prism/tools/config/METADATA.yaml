@@ -5,10 +5,26 @@ PRECISION: 4
 
 # We associate each category with allowed alias.
 CATEGORY:
+  aggregation:
+    alias: # No alias.
+    desc: |
+      Aggregation palettes are multi-hue, perceptually uniform color scales designed for high-density data visualization. They optimize visual contrast in overlapping datasets—such as heatmaps or hexbinning—by mapping data concentration to a progressive ramp of luminance and saturation.
+
   colorblind:
     alias: # No alias.
     desc: |
       Palettes specifically designed to be accessible to people with color vision deficiency (CVD), ensuring high contrast and legibility.
+
+  cyclic:
+    alias:
+      - circular
+    desc: |
+      For data that repeats periodically (e.g., 24h time, angles, or seasons). The start and end colors are identical to create a seamless loop.
+
+  dark:
+    alias: # No alias.
+    desc: |
+      High-contrast palettes optimized for terminal interfaces or applications using dark backgrounds.
 
   divergent:
     alias:
@@ -28,16 +44,6 @@ CATEGORY:
     alias:
       - seq
       - scientific colormaps
+      - quantitative
     desc: |
       Used for data that follows a logical order from low to high value. Usually based on a single hue or multiple hues with increasing lightness.
-
-  cyclic:
-    alias:
-      - circular
-    desc: |
-      For data that repeats periodically (e.g., 24h time, angles, or seasons). The start and end colors are identical to create a seamless loop.
-
-  dark:
-    alias: # No alias.
-    desc: |
-      High-contrast palettes optimized for terminal interfaces or applications using dark backgrounds.

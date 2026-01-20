@@ -35,7 +35,7 @@ TAG_OK     = "ok"
 #     for humanly useful rendering.
 ###
 def get_accepted_paths(project_dir: Path) -> dict[Path, str]:
-    logging.info("Looking for accepted contribs.")
+    logging.info("Looking for accepted contribs")
 
     contrib_dir    = project_dir / TAG_CONTRIB_DIR
     accepted_paths = defaultdict(list)
