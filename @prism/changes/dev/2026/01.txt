@@ -1,7 +1,7 @@
 // ---------- //
 
 ==
-15  (2.0.0-beta.9)   ??????
+20  (2.0.0-beta.9)   ??????
 ==
 
 --------
@@ -9,35 +9,26 @@
 --------
 
 [[:tech:]]
+Here are the new features.
 
-une seul DB ok !!!
+    1) About path::''palettes.db''.
 
-has paltette : il manquait le nettoyage des zréos et signe - inutiels ok !!!
+        + \Struct and multiple tables successfully validated.
 
+        + Added automated diagramming.
 
-External palettes: standardizing the retrieval by including their possible type from the \src \proj. For now, only the following \projs have been integrated.
+    1) About palette \defs.
 
-    + \cartocolors   ok
+        + 'cartocolors' fully integrated.
 
+        + Better \yaml files inside path::''tools/config'' folder.
 
-new
-  + Balance
-  + Classic
-  + GistGray
-  + Greys
-  + HotPLY
-  + JetPLY
-  + MidGray
-  + OkabeIto
-  + Petroff10
-  + Petroff6
-  + Petroff8
-  + YlOrRdCBW
+        + Implemented automated sanitization: removed redundant leading zeros and unnecessary negative signs.
 
-removed
-  + GrayTab   pourquoi ?
-  + Grays     pourquoi ?
-  + Tableau   pourquoi ?
+        + Standardized retrieval by mapping palette kinds from /src and /proj.
+
+        + ????
+        Added comparison between current and last main version.
 
 
 // ---------- //

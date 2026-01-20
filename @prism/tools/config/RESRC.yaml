@@ -6,7 +6,10 @@ ASYMPTOTE:
   name  : Asymptote
   github: vectorgraphics/asymptote
   desc  : |
-    Technical palettes derived from the vector graphics language
+    Asymptote provides technical palettes derived from its own
+    vector graphics language.
+  context:
+    - technical drawing
 
 
 # ------- #
@@ -17,56 +20,86 @@ CARBONPLAN:
   name  : CarbonPlan
   github: carbonplan/colormaps
   desc  : |
-    Specialized palettes for climate and environmental data visualization
+    CarbonPlan offers specialized palettes for climate and
+    environmental data visualization.
+  context:
+    - climate
+    - environment
 
 
 CARTOCOLORS:
   name  : CARTOColors
   github: CartoDB/cartocolor
   desc  : |
-    Data-driven color schemes optimized for cartographic and GIS applications
+    CARTOColors features data-driven color schemes optimized
+    for cartography and GIS.
+  context:
+    - cartography
+    - GIS
+    - map design
 
 
 CMASHER:
   name  : CMasher
   github: 1313e/CMasher
   desc  : |
-    Perceptually uniform, scientific colormaps designed to be CVD-accessible
+    CMasher curates perceptually uniform, scientific colormaps
+    designed to be color vision deficiency accessible.
+  context:
+    - scientific plotting
 
 
 CMOCEAN:
   name  : cmocean
   inside: PALETTABLE
   desc  : |
-    Perceptually uniform colormaps specifically designed for oceanographic data visualization
+    cmocean deploys perceptually uniform colormaps specifically
+    designed for oceanography.
+  context:
+    - oceanography
 
 
 COLORCET:
   name  : ColorCET
   inside: COLORMAPS
   desc  : |
-    The CET colour maps, developed by Peter Kovesi, aim to offer a large choice of the most common colour combinations in a wide variety of data formats. Many of the offered colour maps feature perceptual uniformity, although not all of them to the highest standards. The CET colour maps are continuous and cover sequential, diverging, and cyclic classes.
+    ColorCET supplies a large choice of perceptually uniform
+    combinations based on CET methodology.
+  context:
+    - perceptual uniformity
 
 
 COLORBREWER:
   name  : Colorbrewer
   github: axismaps/colorbrewer
   desc  : |
-    Classic cartographic palettes based on Cynthia Brewer's research
+    Colorbrewer lists classic cartographic palettes based on
+    Cynthia Brewer's research.
+  context:
+    - cartography
 
 
 COLORMAPS:
   name  : Colormaps
   github: pratiman-91/colormaps
   desc  : |
-    Curated collection of diverse colormaps for general scientific plotting
+    Colormaps gathers a curated collection of diverse scales
+    for general scientific plotting.
+  context:
+    - scientific plotting
+    - collection
 
 
 CUBEHELIX:
   name  : Cubehelix
   inside: PALETTABLE
   desc  : |
-    Color schemes that transition to black/white linearly, maintaining readability when printed in grayscale
+    Cubehelix generates color schemes that maintain readability
+    when printed in grayscale.
+  context:
+    - grayscale
+    - printing
+    - linear transition
 
 
 # ------- #
@@ -77,7 +110,10 @@ LIGHT_BARTLEIN:
   name  : Light Bartlein
   inside: PALETTABLE
   desc  : |
-    Specialized divergent palettes for climate change and meteorological anomaly mapping
+    Light Bartlein delivers specialized divergent palettes for
+    climate and meteorological mapping.
+  context:
+    - meteorology
 
 
 # ------- #
@@ -88,14 +124,21 @@ MATPLOTLIB:
   name  : Matplotlib
   github: matplotlib/matplotlib
   desc  : |
-    Foundational colormaps from the standard Python visualization engine
+    Matplotlib includes foundational colormaps from the
+    standard Python visualization engine.
+  context:
+    - technical drawing
 
 
 MYCARTA:
   name  : MyCarta
   inside: PALETTABLE
   desc  : |
-    Geoscience-focused palettes designed by Jose M. Pozo for high perceptual contrast
+    MyCarta includes geoscience-focused palettes designed
+    for high perceptual contrast.
+  context:
+    - geoscience
+    - high contrast
 
 
 # ------- #
@@ -106,7 +149,10 @@ NCLCOLTABLES:
   name  : NCAR NCL color tables
   github: andreasplesch/ncl-color-tables
   desc  : |
-    Official color tables from the NCAR Command Language (Earth sciences)
+    NCL color tables compile official scales from the NCAR
+    Command Language.
+  context:
+    - earth sciences
   alias:
     - NCAR NCL
 
@@ -119,14 +165,22 @@ PALETTABLE:
   name  : Palettable
   github: jiffyclub/palettable
   desc  : |
-    Library providing access to a wide range of external colormap collections
+    Palettable accesses a wide range of external colormap
+    collections through one library.
+  context:
+    - library
+    - collection
 
 
 PLOTLY:
   name  : Plotly
   inside: PALETTABLE
   desc  : |
-    Native color scales for web-based interactive visualizations
+    Plotly integrates native color scales designed for
+    web-based interactive visualizations.
+  context:
+    - interactive
+    - web
 
 
 # ------- #
@@ -137,7 +191,10 @@ SCICOLMAPS:
   name: Scientific Colour Maps
   url : https://zenodo.org/api/records/8409685/files-archive
   desc  : |
-    F. Crameri's perceptually uniform and fair scientific color schemes are perceptually uniform palettes designed for scientific visualization. They are colour-blind friendly, greyscale-readable, and based on CET methodology.
+    Scientific Colour Maps distribute F. Crameri's fair and
+    color vision deficiency friendly scientific schemes.
+  context:
+    - scientific visualization
   alias:
     - scientific
 
@@ -146,7 +203,13 @@ SCIVIZ:
   name  : SciViz
   inside: COLORMAPS
   desc  : |
-    SciViz colormaps are perceptually uniform scales engineered in CIELAB/CAM02 space to ensure data-to-color linearity. They eliminate visual artifacts (false contours), guarantee color-blind accessibility, and are specifically optimized for 3D surface shading and high-dynamic-range scientific data.
+    SciViz ensures data-to-color linearity using CIELAB/CAM02
+    space to eliminate visual artifacts, and guarantee
+    color-blind accessibility.
+  context:
+    - 3D shading
+    - high-dynamic-range data
+    - linearity
 
 
 # ------- #
@@ -157,7 +220,11 @@ TABLEAU:
   name  : Tableau
   inside: PALETTABLE
   desc  : |
-    Professional qualitative palettes optimized for clarity in business intelligence and dashboards
+    Tableau optimizes professional qualitative palettes for
+    business intelligence.
+  context:
+    - business intelligence
+    - dashboar
 
 
 # ------- #
@@ -168,4 +235,9 @@ WESANDERSON:
   name  : Wes Anderson
   inside: PALETTABLE
   desc  : |
-    Aesthetic palettes inspired by the distinct color palettes of Wes Anderson's cinematography
+    Wes Anderson draws inspiration from cinema to offer
+    aesthetic and distinct palettes.
+  context:
+    - aesthetic
+    - cinema
+    - design

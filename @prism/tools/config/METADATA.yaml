@@ -1,49 +1,78 @@
-# Optimizing data weight: 4-decimal precision exceeds human visual
-# acuity and ensures 8-bit color integrity.
+# ------------------------- #
+# -- RGB FLOAT PRECISION -- #
+# ------------------------- #
+
+# Optimizing data weight: 4-decimal precision exceeds human
+# visual acuity and ensures 8-bit color integrity.
 PRECISION: 4
 
 
-# We associate each category with allowed alias.
-CATEGORY:
-  aggregation:
-    alias: # No alias.
-    desc: |
-      Aggregation palettes are multi-hue, perceptually uniform color scales designed for high-density data visualization. They optimize visual contrast in overlapping datasets—such as heatmaps or hexbinning—by mapping data concentration to a progressive ramp of luminance and saturation.
+# ---------------------------- #
+# -- SEMANTIC CONTENT TYPES -- #
+# ---------------------------- #
 
-  colorblind:
-    alias: # No alias.
+# We associate each category with allowed alias.
+
+CATEGORY:
+#  + A
+  aggregation:
     desc: |
-      Palettes specifically designed to be accessible to people with color vision deficiency (CVD), ensuring high contrast and legibility.
+      Aggregation palettes optimize contrast for high-density data,
+      such as heatmaps, using progressive luminance ramps.
+    alias:   # No alias.
+
+#  + C
+  colorblind:
+    desc: |
+      Colorblind palettes provide high-contrast hues specifically
+      optimized for users with color vision deficiency.
+    alias:   # No alias.
 
   cyclic:
+    desc: |
+      Cyclic palettes create seamless loops for periodic data, such
+      as angles, seasons, or 24-hour cycles.
     alias:
       - circular
-    desc: |
-      For data that repeats periodically (e.g., 24h time, angles, or seasons). The start and end colors are identical to create a seamless loop.
 
+#  + D
   dark:
-    alias: # No alias.
     desc: |
-      High-contrast palettes optimized for terminal interfaces or applications using dark backgrounds.
+      Dark palettes offer high-contrast schemes specifically
+      optimized for terminal interfaces and dark-mode backgrounds.
+    alias:   # No alias.
 
   divergent:
+    desc: |
+      Divergent palettes highlight deviations from one or more
+      midpoints toward contrasting extremes.
     alias:
       - div
       - diverging
-    desc: |
-      Used for data with one or more natural midpoints (e.g., zero, average, or optimal thresholds). Colors diverge from these centers toward different extremes to highlight deviations in multiple directions.
 
+#  + Q
   qualitative:
+    desc: |
+      Qualitative palettes use distinct hues to separate categorical
+      data without implying any order or hierarchy.
     alias:
       - qual
       - discrete
+
+#  + S
+  semantic:
     desc: |
-      Used for categorical or nominal data (e.g., different labels, groups, or names).
+      Semantic palettes assign colors to categories — such as UI
+      states, system status, or pedagogical elements — to convey
+      immediate meaning.
+    alias:
+      - sem
 
   sequential:
+    desc: |
+      Sequential palettes represent ordered data using a single or
+      multi-hue gradient with increasing lightness.
     alias:
       - seq
       - scientific colormaps
       - quantitative
-    desc: |
-      Used for data that follows a logical order from low to high value. Usually based on a single hue or multiple hues with increasing lightness.

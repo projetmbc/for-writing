@@ -4,10 +4,12 @@
 
 # Priority coefficients: higher values = higher priority.
 #
-# Projects with equal priority values are non-comparable
+# Projects with equal priority values are non-comparable.
 
 
-# -- STANDALONE SOURCES (Higher priority) -- #
+# -- STANDALONE SOURCES -- #
+#
+# HIGH PRIORITY
 
 #  + C
 CARBONPLAN : 10
@@ -40,7 +42,9 @@ TABLEAU: 10
 WESANDERSON: 10
 
 
-# -- COMPLEMENTARY EXTERNAL SOURCES (Low priority) -- #
+# -- COMPLEMENTARY EXTERNAL SOURCES -- #
+#
+# LOW PRIORITY
 
 #  + A
 "@PRISM" : -30

@@ -38,7 +38,7 @@ CREATE TABLE mirror (
 --
     FOREIGN KEY (cand_pal_id_1) REFERENCES hash (pal_id),
     FOREIGN KEY (cand_pal_id_2) REFERENCES hash (pal_id)
-)
+);
 '''
 
 

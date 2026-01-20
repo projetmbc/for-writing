@@ -30,11 +30,11 @@ SQL_TABLE_CREATE = '''
 DROP TABLE IF EXISTS alias;
 CREATE TABLE alias (
 --
-    pal_id   INTEGER NOT NULL PRIMARY KEY,
-    alias    VARCHAR(30) NOT NULL,
+    pal_id INTEGER NOT NULL PRIMARY KEY,
+    alias  VARCHAR(30) NOT NULL,
 --
     FOREIGN KEY (pal_id) REFERENCES hash (pal_id)
-)
+);
 '''
 
 SQL_TABLE_INSERT = '''

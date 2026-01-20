@@ -34,7 +34,7 @@ CREATE TABLE priority (
     priority INTEGER NOT NULL,
 --
     FOREIGN KEY (source) REFERENCES hash (source)
-)
+);
 '''
 
 SQL_TABLE_INSERT = '''

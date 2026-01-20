@@ -1,77 +1,245 @@
-# ---------------------------- #
-# -- SEMANTIC CONTENT TYPES -- #
-# ---------------------------- #
+# --------------------------------------- #
+# -- MAX SIZE FOR QUALITATIVE PALETTES -- #
+# --------------------------------------- #
 
-# The choice of `30` makes it possible to consider, for example,
-# semantic colors associated with colors (for example, hovered
-# link, visited link, inactive link).
+# The choice of `40` allows for the inclusion of additional
+# useful semantic states (for example: initial, hovered,
+# visited, and inactive links).
 AUTO_QUAL_CATEGO_SIZE : 40
 
+# ----------------------------------- #
+# -- SORTED SEMANTIC CONTENT TYPES -- #
+# ----------------------------------- #
 
+#  + GENERAL PURPOSE
+
+# Size = 9
 ADMONITIONS:
-  note: |
-    Neutral additional information or context
-  tip: |
-    Advice, recommendation, or best practice for the user
-  warning: |
-    Point of vigilance to avoid potential errors
-  important: |
-    Crucial information that must not be ignored
-  danger: |
-    Critical alert regarding major risks or data loss
   question: |
-    Point of reflection or inquiry to engage the reader
+    A question poses a point of reflection or inquiry to engage
+    the reader.
 
-SCIENCE:
-  definition: |
-    Formal and precise statement of a concept
-  theorem: |
-    Mathematically proven statement or proposition
-  lemma: |
-    Intermediate result used to prove a larger theorem
-  corollary: |
-    Direct and immediate consequence of a theorem
-  axiom: |
-    Fundamental truth accepted without demonstration
-  proof: |
-    Logical sequence of steps justifying a result
-  property: |
-    Inherent technical characteristic of an object
-  hypothesis: |
-    Initial supposition serving as a basis for reasoning
+  technical: |
+    A technical block provides specific low-level details or
+    architectural insights.
 
-PEDAGOGY:
-  objective: |
-    Specific goal the learner should master at the end
-  example: |
-    Concrete illustration to demystify a notion
-  exercise: |
-    Direct practice, task, or application for training
-  case_study: |
-    In-depth analysis of a real-world scenario
-  analogy: |
-    Comparison with a simpler concept for better grasp
-  quiz: |
-    Rapid assessment to verify knowledge retention
-  key_takeaway: |
-    Essential summary or point to remember
-  common_pitfall: |
-    Classic mistake that beginners should avoid
+  note: |
+    A note provides neutral additional information or context to
+    the reader.
 
+  tip: |
+    A tip offers advice, recommendations, or best practices for
+    the user.
+
+  important: |
+    Important content emphasizes crucial information that must
+    not be ignored.
+
+  warning: |
+    A warning highlights points of vigilance to avoid potential
+    errors.
+
+  caution: |
+    A caution advises the user to proceed with care to avoid
+    undesirable consequences.
+
+  danger: |
+    A danger alert signals critical risks or potential data loss.
+
+  critical: |
+    A critical block identifies severe failures demanding immediate
+    interruption.
+
+
+# Size = 6
 CONTENT:
   abstract: |
-    Short synthetic overview of the entire content
-  glossary: |
-    Brief definitions of specialized technical terms
-  code_snippet: |
-    Programming block or configuration file excerpt
+    An abstract gives a short synthetic overview of the entire
+    content.
+
+  summary: |
+    A summary provides a brief recap of the main points discussed.
+
   quote: |
-    Cited words from an external authority or source
-  methodology: |
-    Description of the specific approach followed
-  result: |
-    Direct outcome of an experiment, calculation, or process
+    A quote cites specific words from an external authority or
+    source.
+
   reference: |
-    Bibliographic source, citation, or external link
-  history: |
-    Temporal evolution or background of a concept
+    A reference indicates a bibliographic source, citation, or
+    external link.
+
+  appendix: |
+    An appendix includes supplementary material at the end of the
+    document.
+
+  glossary: |
+    A glossary offers brief definitions of specialized technical
+    terms.
+
+
+#  + ACADEMIC CONTENT
+
+# Size = 4
+PEDAGOGY:
+  prerequisite: |
+    A prerequisite lists the knowledge required before starting
+    the section.
+
+  objective: |
+    An objective defines a specific goal the learner should master
+    at the end.
+
+  skill: |
+    A skill describes the ability to mobilize knowledge to solve
+    a specific problem.
+
+  key_takeaway: |
+    A key takeaway summarizes the essential points to remember.
+
+
+# Size = 3
+LESSON:
+  notation: |
+    A notation block defines specific symbols or mathematical
+    conventions.
+
+  vocabulary: |
+    A vocabulary block defines key terms essential for
+    understanding the subject.
+
+  example: |
+    An example provides a concrete illustration to demystify a
+    notion.
+
+
+# Size = 3
+SCIENCE:
+  data: |
+    A data block presents raw measurements or datasets derived
+    from experimentation.
+
+  algorithm: |
+    An algorithm defines a structured sequence of logical steps
+    to solve a problem.
+
+  code: |
+    A code provides a functional implementation of an algorithm
+    using a specific language.
+
+
+# Size = 8
+LOGIC:
+  hypothesis: |
+    An hypothesis proposes a predictive statement to be tested
+    through reasoning.
+
+  axiom: |
+    An axiom defines a fundamental truth accepted without
+    demonstration.
+
+  lemma: |
+    A lemma establishes an intermediate result used to prove
+    a larger property.
+
+  property: |
+    A property describes an inherent technical characteristic of
+    an object.
+
+  theorem: |
+    A theorem presents a mathematically proven statement or
+    proposition.
+
+  corollary: |
+    A corollary derives a direct and immediate consequence from
+    a theorem.
+
+  proof: |
+    A proof details the logical sequence of steps justifying
+    a result.
+
+  conjecture: |
+    A conjecture proposes a mathematical proposition that is not
+    yet proven.
+
+
+# Size = 9
+TRAINING:
+  methodology: |
+    A methodology describes the specific steps or tools used to
+    conduct a task.
+
+  common_pitfall: |
+    A common pitfall warns against classic mistakes beginners
+    should avoid.
+
+  case_study: |
+    A case study conducts an in-depth analysis of a real-world
+    scenario.
+
+  exercise: |
+    An exercise proposes a direct practice or task for training.
+
+  quiz: |
+    A quiz performs a rapid assessment to verify knowledge
+    retention.
+
+  practical_work: |
+    A practical work involves hands-on experimentation in a
+    real-world context.
+
+  problem: |
+    A problem presents a complex challenge requiring a detailed
+    resolution.
+
+  part: |
+    A part defines a distinct section or logical step within a
+    larger module.
+
+  solution: |
+    A solution provides the expected answer or result for a given
+    exercise.
+
+
+#  + DEV
+
+# Size = 10
+WORKFLOW:
+  new: |
+    A new block introduces a fresh feature newly added to the
+    system.
+
+  update: |
+    An update describes enhancements or optimizations made to
+    existing features.
+
+  break: |
+    A break identifies a major change that disrupts backward
+    compatibility.
+
+  problem: |
+    A problem documents an identified issue or bug within the
+    current version.
+
+  security: |
+    A security block highlights vulnerabilities or critical
+    safety updates.
+
+  fix: |
+    A fix details the resolution of a previously identified
+    issue or bug.
+
+  todo: |
+    A todo marks a pending task or an action item for future
+    completion.
+
+  success: |
+    A success block confirms the positive outcome of a completed
+    action.
+
+  experimental: |
+    An experimental block flags features subject to change and not
+    production-ready.
+
+  roadmap: |
+    A roadmap outlines the future steps or planned progression of
+    a project.

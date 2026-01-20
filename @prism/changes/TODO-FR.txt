@@ -16,13 +16,26 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+formats proposés et pourquoi
+
+    + version on modifié
+      besoin pour haute impression
+
+    + version de taille AUTO_QUAL_CATEGO_SIZE
+      taille limité sans empiéter sur les palettes sémantiques
+
+    + fichers tout-en un mais aussi dssier fichiers individuels
+      si capacité limité de calcul c'est utile pour charger les plattes à la demande
+      ou juste avoir une palette employée sans toutes ses copiens
+
+
+// ---------- //
+
 besoin de garder les version utilisé pour la doc
 
 // ---------- //
 
 ajouter les palettes manquantes par rapport au dernier main
-
-    aggregate --> Qualitative
 
 puis entuite avoir un outil de compraison visuel lorsqu'uen déf change sur la haute résolution
 
@@ -128,7 +141,6 @@ se passer des pdf de démo et tout miser sur le html car au final c'est ben plus
 Standardizing the retrieval of external palettes done for the following \projs.
 
     + \carbonplan     ??????????
-    + \cartocolor     ????????
     + \cmasher        ??????
     + \colormaps      ????   comparer  light et dark et ignorer si c'est égal, sinon on créer deux version !
     + \nclcolortable  ??
@@ -169,6 +181,7 @@ intégrer en externe directement si possible
 # https://arxiv.org/abs/2107.02270
 
 https://github.com/mwaskom/seaborn/blob/master/seaborn/palettes.py
+
 
 // ---------- //
 
