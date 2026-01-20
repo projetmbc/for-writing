@@ -178,6 +178,9 @@ def humanize_yaml(
 logging.info(f"Human friendly YAML files")
 
 for p in sorted(AUDIT_DIR.glob('*.yaml')):
+    if p.stem.startswith('LOCMAIN-'):
+        continue
+
     logging.info(f"Pretty '{p.relative_to(PROJ_DIR)}'")
 
     humanize_yaml(p)

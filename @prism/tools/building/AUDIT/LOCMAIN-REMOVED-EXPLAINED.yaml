@@ -1,0 +1,23 @@
+# Complete with one of the following regarding new palettes, where
+# ''<new_alias>'' is the palette name in the current version.
+#
+#    1) <new_alias>: ignored
+#
+#    (the palette exists but is intentionally excluded from the
+#    processing pipeline)
+#
+#    2) <new_alias>: renamed
+#
+#    (the palette identifier has changed, requiring a mapping from
+#    the old name to the new one)
+#
+#    3) <new_alias>: superseded
+#
+#    (the palette no longer exists but has a direct equivalent).
+
+GrayTab:
+  MidGray: renamed
+Grays:
+  Greys: superseded
+Tableau:
+  Tableau: ignored

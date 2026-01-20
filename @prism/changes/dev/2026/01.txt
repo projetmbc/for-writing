@@ -1,15 +1,15 @@
 // ---------- //
 
 ==
-20  (2.0.0-beta.10)   ??????
+20  (2.0.0-beta.10)
 ==
 
 --------
 :fordev:
 --------
 
-[[:tech:]]     ????
-Added comparison between current and last main version.
+[[:tech:]]
+Added comparison between current and last main version that can be used for the final \doc.
 
 
 // ---------- //

@@ -21,8 +21,61 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-import matplotlib.colors as mcolors
-import numpy             as np
+from yaml import (
+    safe_load,
+    dump as yaml_dump
+)
+
+
+# ----------------- #
+# -- SQL QUERIES -- #
+# ----------------- #
+
+SQL_GET_ORIGINAL_INFO = '''
+SELECT
+    COALESCE(a.alias, h.name),
+    h.name,
+    h.source
+FROM hash h
+LEFT JOIN alias a ON h.pal_id = a.pal_id
+WHERE h.is_kept = 1
+  AND (h.name = ? OR a.alias = ?);
+'''
+
+
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
+
+
+THIS_DIR = Path(__file__).parent
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != '@prism'):
+    PROJ_DIR = PROJ_DIR.parent
+
+PRODS_DIR = PROJ_DIR / "products"
+
+
+REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
+
+REPORT_NAME_NEW_JSON     = REPORT_DIR / f"AUDIT-LOCMAIN-NAMES-NEW.json"
+REPORT_NAME_REMOVED_JSON = REPORT_DIR / f"AUDIT-LOCMAIN-NAMES-REMOVED.json"
+
+
+AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
+
+SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
+
+WHY_REMOVED_YAML = AUDIT_DIR / f"LOCMAIN-REMOVED-EXPLAINED.yaml"
+WHY_REMOVED_YAML.touch()
+
+with WHY_REMOVED_YAML.open("r") as f:
+    WHY_REMOVED = safe_load(f)
+
+if WHY_REMOVED is None:
+    WHY_REMOVED = dict()
+
 
 
 # ----------- #
@@ -47,8 +100,20 @@ def lower_names_kept(
     )
 
 
+def compare_rgb_palettes(
+    pal_1    : PaletteCols,
+    pal_2    : PaletteCols,
+    tolerance: float      = 0.01,
+    size     : None | int = None,
+):
+# Manadatory size.
+    if not size is None:
+        ...
 
-def compare_rgb_palettes(small_pal, large_pal, tolerance=0.01):
+
+    exit(1)
+
+
     n = len(small_pal)
     M = len(large_pal)
 
@@ -78,19 +143,9 @@ def compare_rgb_palettes(small_pal, large_pal, tolerance=0.01):
 
 logging.info("MAIN vs LOCAL - Get 'last local' version")
 
-THIS_DIR = Path(__file__).parent
-PROJ_DIR = THIS_DIR
+JSON_PROD_FILE = PROJ_DIR / "products" / "json" / "palettes.json"
 
-while (PROJ_DIR.name != '@prism'):
-    PROJ_DIR = PROJ_DIR.parent
-
-PRODS_DIR   = PROJ_DIR / "products"
-PROD_JSON_DIR = PRODS_DIR / "json"
-
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
-
-
-with PAL_JSON_FILE.open(mode = "r") as f:
+with JSON_PROD_FILE.open(mode = "r") as f:
     LOCAL_PALS = json_load(f)
 
 
@@ -112,53 +167,114 @@ response.raise_for_status()
 MAIN_PALS = response.json()
 
 
-# --------------------- #
-# -- KEY COMPARISONS -- #
-# --------------------- #
-
-logging.info("XXXXX")
-
-
-exit(1)
-
-
-ITEM = '  + '
-
-print("""
---------
-NEW NAME  (case ignored)
---------
-""".lstrip())
-
-for n in lower_names_kept(LOCAL_PALS, MAIN_PALS):
-    print(f"{ITEM}{n}")
-
-
-print("""
-------------
-REMOVED NAME  (case ignored)
-------------
-""")
-
-for n in lower_names_kept(MAIN_PALS, LOCAL_PALS):
-    print(f"{ITEM}{n}")
-
-
 # ----------------------- #
-# -- COLOR COMPARISONS -- #
+# -- NEW/REMOVED NAMES -- #
 # ----------------------- #
 
+NEW_NAMES     = lower_names_kept(LOCAL_PALS, MAIN_PALS)
+REMOVED_NAMES = lower_names_kept(MAIN_PALS, LOCAL_PALS)
 
-print("""
--------
-COMPARE
--------
-""")
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
 
-TODO
+    for names, what, xtra in [
+        (NEW_NAMES    , 'new'    , '(cf. doc)'   ),
+        (REMOVED_NAMES, 'removed', '(explanations needed)'),
+    ]:
+        if not names:
+            logging.info(f"Names: 'no {what}'")
+
+        else:
+            nb   = len(names)
+            xtra = f' {xtra}'
+
+            logging.info(f"Names: '{nb} {what}'{xtra}")
 
 
 
+# ------------------------- #
+# -- NEW NAMES JSONIFIED -- #
+# ------------------------- #
+
+logging.info(
+    f"Update '{REPORT_NAME_NEW_JSON.relative_to(PROJ_DIR)}'"
+)
+
+report = dict()
+
+for n in NEW_NAMES:
+    cursor.execute(
+        SQL_GET_ORIGINAL_INFO,
+        (n, n)
+    )
+
+    results = cursor.fetchall()
+
+    if len(results) != 1:
+        BUG_BUG
+
+    alias, *ons = results[0]
+
+    report[alias] = list(ons)
+
+REPORT_NAME_NEW_JSON.write_text(json_dumps(report))
 
 
-exit(1)
+# ----------------------------- #
+# -- REMOVED NAMES YAMLIFIED -- #
+# ----------------------------- #
+
+logging.info(
+    f"Update '{WHY_REMOVED_YAML.relative_to(PROJ_DIR)}'"
+)
+
+for n in REMOVED_NAMES:
+    if n in WHY_REMOVED:
+        continue
+
+    WHY_REMOVED[n] = None
+
+yaml_code = yaml_dump(WHY_REMOVED)
+yaml_code = f'''
+# Complete with one of the following regarding new palettes, where
+# ''<new_alias>'' is the palette name in the current version.
+#
+#    1) <new_alias>: ignored
+#
+#    (the palette exists but is intentionally excluded from the
+#    processing pipeline)
+#
+#    2) <new_alias>: renamed
+#
+#    (the palette identifier has changed, requiring a mapping from
+#    the old name to the new one)
+#
+#    3) <new_alias>: superseded
+#
+#    (the palette no longer exists but has a direct equivalent).
+
+{yaml_code}
+'''.lstrip()
+
+WHY_REMOVED_YAML.write_text(yaml_code)
+
+
+# ------------------------- #
+# -- MISSING KINDS FOUND -- #
+# ------------------------- #
+
+if None in WHY_REMOVED.values():
+    nb = len([
+        x
+        for x in WHY_REMOVED.values()
+        if x is None
+    ])
+
+    plurial = '' if nb == 1 else 's'
+
+    log_raise_error(
+        context   = f"{nb} missing explanation{plurial} about removed names need NOAI resolution",
+        desc      = "Removed names must be documented with a specific reason.",
+        exception = ValueError,
+        xtra      = f"Open '{WHY_REMOVED_YAML}'"
+    )
