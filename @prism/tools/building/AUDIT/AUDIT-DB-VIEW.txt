@@ -9,7 +9,7 @@ CREATE TABLE hash (
     source VARCHAR(30) NOT NULL,
 --
     is_kept  INTEGER DEFAULT 1,
-    equal_to INTEGER,
+    equal_to INTEGER REFERENCES hash(pal_id),
     kind     TEXT DEFAULT '',
 --
     hash_normal  TEXT NOT NULL,

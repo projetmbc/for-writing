@@ -293,3 +293,33 @@ BlackbodyTransformed = getPal(
     }
 )
 ~~~
+
+
+
+
+```mermaid
+erDiagram
+    HASH {
+        int pal_id PK
+        string name
+        string source
+        int equal_to FK
+    }
+    MIRROR {
+        int cand_pal_id_1 PK, FK
+        int cand_pal_id_2 PK, FK
+    }
+    ALIAS {
+        int pal_id PK, FK
+        string alias
+    }
+    PRIORITY {
+        string source PK
+        int priority
+    }
+
+    HASH ||--o{ HASH : "equal_to"
+    MIRROR }o--|| HASH : "references"
+    ALIAS |o--|| HASH : "1:1"
+    HASH }o--|| PRIORITY : "links by source"
+```
