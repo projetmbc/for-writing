@@ -15,6 +15,7 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
+
 -----
 :new:
 -----
@@ -29,6 +30,21 @@ Multiple \distrib formats are now available to meet various technical requiremen
     1) Modular (one file per palette).
 
     1) Monolithic (all palettes in one file).
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+Added comparison between current and last main version that can be used for the final \doc.
+
+
+// ---------- //
+
+real camelcase based on colornames : Pinkgrey  -->  PinkGrey
+
+    + penser à stocker
 
 
 // ---------- //

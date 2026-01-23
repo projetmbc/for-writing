@@ -47,7 +47,6 @@ WHERE h.is_kept = 1
 # -- CONSTANTS -- #
 # --------------- #
 
-
 THIS_DIR = Path(__file__).parent
 PROJ_DIR = THIS_DIR
 
@@ -61,7 +60,7 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 REPORT_NAME_NEW_JSON     = REPORT_DIR / f"AUDIT-LOCMAIN-NAMES-NEW.json"
 REPORT_NAME_REMOVED_JSON = REPORT_DIR / f"AUDIT-LOCMAIN-NAMES-REMOVED.json"
-
+REPORT_LAST_MAIN_JSON    = REPORT_DIR / f"AUDIT-LAST-MAIN.json"
 
 AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
@@ -75,7 +74,6 @@ with WHY_REMOVED_YAML.open("r") as f:
 
 if WHY_REMOVED is None:
     WHY_REMOVED = dict()
-
 
 
 # ----------- #
@@ -100,48 +98,11 @@ def lower_names_kept(
     )
 
 
-def compare_rgb_palettes(
-    pal_1    : PaletteCols,
-    pal_2    : PaletteCols,
-    tolerance: float      = 0.01,
-    size     : None | int = None,
-):
-# Manadatory size.
-    if not size is None:
-        ...
-
-
-    exit(1)
-
-
-    n = len(small_pal)
-    M = len(large_pal)
-
-    # Calcul des indices cibles dans la grande palette
-    # On échantillonne de façon régulière du premier au dernier index
-    indices = np.linspace(0, M - 1, n).round().astype(int)
-
-    print(f"Comparaison de la structure ({n} vs {M} couleurs)")
-    print("-" * 50)
-
-    for i, idx in enumerate(indices):
-        rgb_small = np.array(small_pal[i])
-        rgb_sampled = np.array(large_pal[idx])
-
-        # Calcul de la distance Euclidienne entre les deux vecteurs RGB
-        distance = np.linalg.norm(rgb_small - rgb_sampled)
-
-        status = "✅ MATCH" if distance < tolerance else f"❌ DIFF (dist: {distance:.3f})"
-
-        print(f"Small[{i}] vs Large[{idx}]: {status}")
-        print(f"   S: {rgb_small} | L: {rgb_sampled}")
-
-
 # ------------------- #
 # -- LOCAL VERSION -- #
 # ------------------- #
 
-logging.info("MAIN vs LOCAL - Get 'last local' version")
+logging.info("MAIN/LOCAL - Get 'last local' version")
 
 JSON_PROD_FILE = PROJ_DIR / "products" / "json" / "palettes.json"
 
@@ -153,7 +114,7 @@ with JSON_PROD_FILE.open(mode = "r") as f:
 # -- MAIN ONLINE VERSION -- #
 # ------------------------- #
 
-logging.info("MAIN vs LOCAL - Get 'main online' version")
+logging.info("MAIN/LOCAL - Get 'main online' version")
 
 url = (
     "https://raw.githubusercontent.com/"
@@ -165,6 +126,19 @@ response = requests.get(url)
 response.raise_for_status()
 
 MAIN_PALS = response.json()
+
+
+# ------------------------- #
+# -- NEW NAMES JSONIFIED -- #
+# ------------------------- #
+
+logging.info(
+    f"Update '{REPORT_LAST_MAIN_JSON.relative_to(PROJ_DIR)}'"
+)
+
+REPORT_LAST_MAIN_JSON.write_text(
+    json_dumps(MAIN_PALS)
+)
 
 
 # ----------------------- #
@@ -182,18 +156,18 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         (REMOVED_NAMES, 'removed', '(explanations needed)'),
     ]:
         if not names:
-            logging.info(f"Names: 'no {what}'")
+            logging.info(f"NAMES - 'No {what}'")
 
         else:
             nb   = len(names)
             xtra = f' {xtra}'
 
-            logging.info(f"Names: '{nb} {what}'{xtra}")
+            logging.info(f"NAMES - '{nb} {what}'{xtra}")
 
 # -- DEBUG - ON -- #
-print(NEW_NAMES)
-print(REMOVED_NAMES)
-exit()
+# print(NEW_NAMES)
+# print(REMOVED_NAMES)
+# exit()
 # -- DEBUG - OFF -- #
 
 
@@ -213,17 +187,12 @@ for n in NEW_NAMES:
         (n, n)
     )
 
-    results = cursor.fetchall()
+    for alias, *ons in cursor.fetchall():
+        report[alias] = list(ons)
 
-    if len(results) != 1:
-        print(results)
-        BUG_BUG
-
-    alias, *ons = results[0]
-
-    report[alias] = list(ons)
-
-REPORT_NAME_NEW_JSON.write_text(json_dumps(report))
+REPORT_NAME_NEW_JSON.write_text(
+    json_dumps(report)
+)
 
 
 # ----------------------------- #
@@ -242,20 +211,18 @@ for n in REMOVED_NAMES:
 
 yaml_code = yaml_dump(WHY_REMOVED)
 yaml_code = f'''
-# Complete with one of the following regarding new palettes, where
-# ''<new_alias>'' is the @prism palette name in the current version.
+# Complete with one of the following regarding new palettes.
 #
-#    1) ''<new_alias>: ignored''
+#    1) ''<alias>: renamed''
 #
-#    (the palette exists but is intentionally excluded from the
-#    processing pipeline)
+#    (the palette identifier has changed, requiring a mapping
+#    from the old name to the new one)
 #
-#    2) ''<new_alias>: renamed''
+#    2) ''<alias>: ignored''
 #
-#    (the palette identifier has changed, requiring a mapping from
-#    the old name to the new one)
+#    (the palette exists but is intentionally excluded)
 #
-#    3) ''<new_alias>: superseded''
+#    3) ''<alias>: superseded''
 #
 #    (the palette no longer exists but has a direct equivalent).
 
@@ -265,9 +232,9 @@ yaml_code = f'''
 WHY_REMOVED_YAML.write_text(yaml_code)
 
 
-# ------------------------- #
-# -- MISSING KINDS FOUND -- #
-# ------------------------- #
+# -------------------------------------- #
+# -- MISSING WHY-REMOVED EXPLANATIONS -- #
+# -------------------------------------- #
 
 if None in WHY_REMOVED.values():
     nb = len([
@@ -279,8 +246,14 @@ if None in WHY_REMOVED.values():
     plurial = '' if nb == 1 else 's'
 
     log_raise_error(
-        context   = f"{nb} missing explanation{plurial} about removed names need NOAI resolution",
-        desc      = "Removed names must be documented with a specific reason.",
+        context = (
+            f"{nb} missing explanation{plurial} about "
+             "removed names need NOAI resolution"
+        ),
+        desc = (
+            "Removed names must be documented with a "
+            "specific reason."
+        ),
         exception = ValueError,
         xtra      = f"Open '{WHY_REMOVED_YAML}'"
     )
