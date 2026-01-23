@@ -148,21 +148,18 @@ REPORT_LAST_MAIN_JSON.write_text(
 NEW_NAMES     = lower_names_kept(LOCAL_PALS, MAIN_PALS)
 REMOVED_NAMES = lower_names_kept(MAIN_PALS, LOCAL_PALS)
 
-with sqlite3.connect(SQLITE_DB_FILE) as conn:
-    cursor = conn.cursor()
+for names, what, xtra in [
+    (NEW_NAMES    , 'new'    , '(cf. doc)'   ),
+    (REMOVED_NAMES, 'removed', '(explanations needed)'),
+]:
+    if not names:
+        logging.info(f"NAMES - 'No {what}'")
 
-    for names, what, xtra in [
-        (NEW_NAMES    , 'new'    , '(cf. doc)'   ),
-        (REMOVED_NAMES, 'removed', '(explanations needed)'),
-    ]:
-        if not names:
-            logging.info(f"NAMES - 'No {what}'")
+    else:
+        nb   = len(names)
+        xtra = f' {xtra}'
 
-        else:
-            nb   = len(names)
-            xtra = f' {xtra}'
-
-            logging.info(f"NAMES - '{nb} {what}'{xtra}")
+        logging.info(f"NAMES - '{nb} {what}'{xtra}")
 
 # -- DEBUG - ON -- #
 # print(NEW_NAMES)
@@ -181,14 +178,17 @@ logging.info(
 
 report = dict()
 
-for n in NEW_NAMES:
-    cursor.execute(
-        SQL_GET_ORIGINAL_INFO,
-        (n, n)
-    )
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
 
-    for alias, *ons in cursor.fetchall():
-        report[alias] = list(ons)
+    for n in NEW_NAMES:
+        cursor.execute(
+            SQL_GET_ORIGINAL_INFO,
+            (n, n)
+        )
+
+        for alias, *ons in cursor.fetchall():
+            report[alias] = list(ons)
 
 REPORT_NAME_NEW_JSON.write_text(
     json_dumps(report)
