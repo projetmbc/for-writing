@@ -53,6 +53,9 @@ CREDITS = CREDITS.strip()
 CREDITS = CREDITS.format(VERSION = VERSION)
 
 
+AUTO_QUAL_CATEGO_SIZE = YAML_CONFIGS['SEMANTIC']['AUTO_QUAL_CATEGO_SIZE']
+
+
 # ------------------ #
 # -- CONSTANTS #2 -- #
 # ------------------ #
@@ -72,10 +75,16 @@ PROD_JSON_DIR.mkdir(
     exist_ok = True,
 )
 
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
-PAL_JSON_FILE.touch()
+
+HIGH_PALS_DIR = PROD_JSON_DIR / "palettes-hf"
+NORM_PALS_DIR = PROD_JSON_DIR / f"palettes-s{AUTO_QUAL_CATEGO_SIZE}"
+
+HIGH_PAL_JSON_FILE = PROD_JSON_DIR / f"{HIGH_PALS_DIR.name}.json"
+NORM_PAL_JSON_FILE = PROD_JSON_DIR / f"{NORM_PALS_DIR.name}.json"
+
 
 PAL_JSON_CREDITS_MD = PROD_JSON_DIR / "CREDITS.md"
+PAL_JSON_CREDITS_MD.touch()
 
 
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
@@ -138,24 +147,22 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         palettes[alias] = uid_2_pal[uid]
 
 
-# -------------------------- #
-# -- ALL PALS JSON UPDATE -- #
-# -------------------------- #
-
-logging.info(f"Update '{PAL_JSON_FILE.relative_to(PROJ_DIR)}'")
-
-PAL_JSON_FILE.write_text(
-    clean_pal_json(
-        json_dumps(palettes)
+norm_palettes = {
+    n: norm_palette(
+        palette = p,
+        maxsize = AUTO_QUAL_CATEGO_SIZE,
     )
+    for n, p in palettes.items()
+}
+
+
+# --------------------------------------- #
+# -- MD CREDITS FOR ALL THE JSON FILES -- #
+# --------------------------------------- #
+
+logging.info(
+    f"Credits - Update '{PAL_JSON_CREDITS_MD.relative_to(PROJ_DIR)}'"
 )
-
-
-# ---------------------------------- #
-# -- MD CREDITS FOR THE JSON FILE -- #
-# ---------------------------------- #
-
-logging.info(f"Update '{PAL_JSON_CREDITS_MD.relative_to(PROJ_DIR)}'")
 
 # warning::
 #     Credits in the JSON files via an extra key just complicates
@@ -173,10 +180,50 @@ PAL_JSON_CREDITS_MD.touch()
 PAL_JSON_CREDITS_MD.write_text(md_credtits)
 
 
+# ------------------------- #
+# -- MONOLITHIC VERSIONS -- #
+# ------------------------- #
+
+for what, pals, onefile in [
+    ('High-fidelity', palettes     , HIGH_PAL_JSON_FILE),
+    ('Normalized'   , norm_palettes, NORM_PAL_JSON_FILE),
+]:
+    logging.info(
+        f"Monolithic - {what} - "
+        f"Update file '{onefile.relative_to(PROJ_DIR)}'"
+    )
+
+    onefile.touch()
+    onefile.write_text(
+        clean_pal_json(
+            json_dumps(pals)
+        )
+    )
 
 
+# ---------------------- #
+# -- MODULAR VERSIONS -- #
+# ---------------------- #
 
+for what, pals, onefolder in [
+    ('High-fidelity', palettes     , HIGH_PALS_DIR),
+    ('Normalized'   , norm_palettes, NORM_PALS_DIR),
+]:
+    logging.info(
+        f"Modular - {what} - "
+        f"Update folder '{onefolder.relative_to(PROJ_DIR)}/'"
+    )
 
+    onefolder.mkdir(
+        parents  = True,
+        exist_ok = True
+    )
 
-
-exit(1)
+    for name, onepal in pals.items():
+        onefile = onefolder / f"{name}.json"
+        onefile.touch()
+        onefile.write_text(
+            clean_pal_json(
+                json_dumps(onepal)
+            )
+        )

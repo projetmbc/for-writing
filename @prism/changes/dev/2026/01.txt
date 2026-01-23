@@ -2,6 +2,37 @@
 
 
 ==
+23  (2.0.0-beta.11)
+==
+
+-----
+:new:
+-----
+
+[[:api:]]
+Multiple \distrib formats are now available to meet various technical requirements.
+
+    1) High-fidelity (unmodified).
+
+    1) Normalized (''size <= AUTO_QUAL_CATEGO_SIZE'').
+
+    1) Monolithic (all palettes in one file).
+
+    1) Modular (one file per palette).
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+Added comparison between current and last main version that can be used for the final \doc.
+
+
+// ---------- //
+
+
+==
 21  (2.0.0-beta.10)
 ==
 

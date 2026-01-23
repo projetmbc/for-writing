@@ -88,17 +88,17 @@ def resrc_std_palette(
     }
 
 
-def minimize_palette(p: PaletteCols) -> PaletteCols:
-    if len(set(tuple(c) for c in p)) == len(p):
-        return p
+# def minimize_palette(p: PaletteCols) -> PaletteCols:
+#     if len(set(tuple(c) for c in p)) == len(p):
+#         return p
 
-    new_p = []
+#     new_p = []
 
-    for c in p:
-        if (not new_p or c != new_p[-1]):
-            new_p.append(c)
+#     for c in p:
+#         if (not new_p or c != new_p[-1]):
+#             new_p.append(c)
 
-    return new_p
+#     return new_p
 
 
 def equalfloat_palettes(
@@ -227,13 +227,19 @@ def extract_namectxt(name_n_ctxt: str) -> (str, str):
 #     return name, palettes, ignored
 
 
-def norm_palette(palette: PaletteCols) -> PaletteCols:
+def norm_palette(
+    palette: PaletteCols,
+    maxsize: int,
+) -> PaletteCols:
     size = len(palette)
+
+    if size <= maxsize:
+        return palette
 
     pal_array = np.array(palette)
 
     linspace_pal    = np.linspace(0, 1, size)
-    linspace_target = np.linspace(0, 1, PALSIZE)
+    linspace_target = np.linspace(0, 1, maxsize)
 
     r_vals = pal_array[:, 0]
     g_vals = pal_array[:, 1]
@@ -244,7 +250,7 @@ def norm_palette(palette: PaletteCols) -> PaletteCols:
     b_interpo = np.interp(linspace_target, linspace_pal, b_vals)
 
     # Reconstruction des vecteurs RGB
-    result = [
+    norm_palette = [
         list(
             map(
                 lambda x: stdfloat(x, PRECISION),
@@ -258,7 +264,7 @@ def norm_palette(palette: PaletteCols) -> PaletteCols:
         )
     ]
 
-    return result
+    return norm_palette
 
 
 # def resume_nbpals_build(
