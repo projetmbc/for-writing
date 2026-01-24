@@ -129,9 +129,9 @@ for p in sorted(REPORT_DIR.glob('*.json')):
         uid_2_pal[uid] = data[TAG_RGB_COLS]
 
 
-# ------------------- #
-# -- ALL PALS DICT -- #
-# ------------------- #
+# -------------------- #
+# -- BUILD PAL DICT -- #
+# -------------------- #
 
 logging.info(f"Build 'all palette formats'")
 

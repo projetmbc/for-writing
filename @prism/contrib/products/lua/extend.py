@@ -99,8 +99,6 @@ def parse(code: str) -> PaletteData:
 # -- BUILD FINAL CODE -- #
 # ---------------------- #
 
-PALETTES_FILE_NAME = "palettes.lua"
-
 ###
 # prototype::
 #     credits  : the credits to the ''@prism'' project that should

@@ -1,6 +1,3 @@
-exit(1)
-
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -25,7 +22,7 @@ from json import (
     load  as json_load,
 )
 
-from shutil import copytree
+from shutil import copytree, rmtree
 
 
 # ------------------ #
@@ -39,6 +36,9 @@ CREDITS = CREDITS.strip()
 CREDITS = CREDITS.format(VERSION = VERSION)
 
 
+AUTO_QUAL_CATEGO_SIZE = YAML_CONFIGS['SEMANTIC']['AUTO_QUAL_CATEGO_SIZE']
+
+
 # ------------------ #
 # -- CONSTANTS #2 -- #
 # ------------------ #
@@ -48,21 +48,117 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-PRODS_DIR        = PROJ_DIR / "products"
 CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
+
+PRODS_DIR     = PROJ_DIR / "products"
+PROD_JSON_DIR = PRODS_DIR / "json"
 
 
 # ------------------ #
-# -- EXTRACT DATA -- #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+CONTRIBS_ACCEPTED = get_accepted_paths(PROJ_DIR)
+
+IMPL_ACCEPTED = CONTRIBS_ACCEPTED.get(
+    CONTRIB_PROD_DIR,
+    []
+)
+
+
+# ------------------ #
+# -- GET PAL DICT -- #
 # ------------------ #
 
 logging.info(f"Get 'JSON palette defs'")
 
-PROD_JSON_DIR = PRODS_DIR / "json"
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
 
-with PAL_JSON_FILE.open(mode = "r") as f:
-    ALL_PALETTES = json_load(f)
+HIGH_PAL_JSON_FILE = PROD_JSON_DIR / "palettes-hf.json"
+
+with HIGH_PAL_JSON_FILE.open(mode = "r") as f:
+    HIGH_PALETTES = json_load(f)
+
+
+NORM_PAL_JSON_FILE = PROD_JSON_DIR / f"palettes-s{AUTO_QUAL_CATEGO_SIZE}.json"
+
+with NORM_PAL_JSON_FILE.open(mode = "r") as f:
+    NORM_PALETTES = json_load(f)
+
+
+# ----------------------------------- #
+# -- MONOLITHIC & MODULAR VERSIONS -- #
+# ----------------------------------- #
+
+# -- DEBUG - ON -- #
+rmtree(PRODS_DIR / 'css')
+# -- DEBUG - OFF -- #
+
+for ctxt in sorted(
+    IMPL_ACCEPTED,
+    key = lambda x: x.lower()
+):
+    logging.info(f"Implement '{ctxt}'")
+
+    impl_folder = CONTRIB_PROD_DIR / ctxt
+
+# Import extend.py.
+    logging.info(f"({ctxt}) Import 'extend.py'")
+
+    extend = import_from_path(
+        module_name = "extend",
+        file_path   = impl_folder / "extend.py"
+    )
+
+# Fake prod to real prod.
+    logging.info(f"({ctxt}) Copy structure")
+
+    fake_dir  = impl_folder / "fake-prod"
+    final_dir = PRODS_DIR / ctxt
+
+    copytree(
+        src = fake_dir,
+        dst = final_dir,
+    )
+
+# The file of palettes.
+
+
+
+
+# -- DEBUG - ON -- #
+    exit()
+# -- DEBUG - OFF -- #
+
+
+
+
+
+nb_impl = len(IMPL_ACCEPTED)
+
+plurial = "" if nb_impl == 1 else "s"
+
+logging.info(f"'{nb_impl} implementation{plurial} added'")
+
+
+
+
+
+
+
+
+
+
+
+
+
+exit(1)
+
+
+
+
+
+
+
 
 
 # ------------------------------ #
@@ -77,28 +173,6 @@ impl_accepted = contribs_accepted.get(
 )
 
 for ctxt in sorted(impl_accepted, key = lambda x: x.lower()):
-    logging.info(f"'{ctxt}' implementation")
-
-    impl_folder = CONTRIB_PROD_DIR / ctxt
-
-# Import extend.py.
-    logging.info(f"'{ctxt}': import 'extend.py'")
-
-    extend = import_from_path(
-        module_name = "extend",
-        file_path   = impl_folder / "extend.py"
-    )
-
-# Fake prod to real prod.
-    logging.info(f"'{ctxt}': copy structure")
-
-    fake_dir  = impl_folder / "fake-prod"
-    final_dir = PRODS_DIR / ctxt
-
-    copytree(
-        src = fake_dir,
-        dst = final_dir,
-    )
 
 # The file of palettes.
     logging.info(f"'{ctxt}': add file of palettes")
@@ -116,10 +190,3 @@ for ctxt in sorted(impl_accepted, key = lambda x: x.lower()):
     )
 
     final_file.write_text(code)
-
-
-nb_impl = len(impl_accepted)
-
-plurial = "" if nb_impl == 1 else "s"
-
-logging.info(f"{nb_impl} implementation{plurial} added")
