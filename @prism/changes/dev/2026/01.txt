@@ -2,6 +2,31 @@
 
 
 ==
+24  (2.0.0-beta.12)  ??????
+==
+
+-----
+:new:
+-----
+
+[[:api:]]
+\Contribs:
+??      changement des fonctions à coder dans le fichier extend.py
+
+OK      usage d'un fake palettes-hf monolithic file .
+
+
+
+
+
+
+
+
+
+// ---------- //
+
+
+==
 23  (2.0.0-beta.11)
 ==
 

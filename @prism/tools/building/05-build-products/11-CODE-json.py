@@ -156,30 +156,6 @@ norm_palettes = {
 }
 
 
-# --------------------------------------- #
-# -- MD CREDITS FOR ALL THE JSON FILES -- #
-# --------------------------------------- #
-
-logging.info(
-    f"Credits - Update '{PAL_JSON_CREDITS_MD.relative_to(PROJ_DIR)}'"
-)
-
-# warning::
-#     Credits in the JSON files via an extra key just complicates
-#     their future use (this is a bad practice).
-
-md_credtits = CREDITS + '\n'
-md_credtits = md_credtits.replace("''", "`")
-md_credtits = re.sub(
-    r'(https?://[^\s]+)',
-    r'[\1](\1)',
-    md_credtits
-)
-
-PAL_JSON_CREDITS_MD.touch()
-PAL_JSON_CREDITS_MD.write_text(md_credtits)
-
-
 # ------------------------- #
 # -- MONOLITHIC VERSIONS -- #
 # ------------------------- #
@@ -227,3 +203,27 @@ for what, pals, onefolder in [
                 json_dumps(onepal)
             )
         )
+
+
+# --------------------------------------- #
+# -- MD CREDITS FOR ALL THE JSON FILES -- #
+# --------------------------------------- #
+
+logging.info(
+    f"Credits - Update '{PAL_JSON_CREDITS_MD.relative_to(PROJ_DIR)}'"
+)
+
+# warning::
+#     Credits in the JSON files via an extra key just complicates
+#     their future use (this is a bad practice).
+
+md_credtits = CREDITS + '\n'
+md_credtits = md_credtits.replace("''", "`")
+md_credtits = re.sub(
+    r'(https?://[^\s]+)',
+    r'[\1](\1)',
+    md_credtits
+)
+
+PAL_JSON_CREDITS_MD.touch()
+PAL_JSON_CREDITS_MD.write_text(md_credtits)

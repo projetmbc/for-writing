@@ -85,35 +85,19 @@ def parse(code: str) -> PaletteData:
     }
 
 
-# ---------------------- #
-# -- BUILD FINAL CODE -- #
-# ---------------------- #
-
-PALETTES_FILE_NAME = "palettes.css"
+# ------------------- #
+# -- BUILD CREDITS -- #
+# ------------------- #
 
 ###
 # prototype::
-#     credits  : the credits to the ''@prism'' project that should
-#                be added as a comment at the beginning of the final
-#                product code.
-#     palettes : the ''Python'' dictionnary of all the palettes.
+#     credits  : the credits to the ''@prism'' project that
+#                should be added as a comment at the beginning
+#                of the final product codes.
 #
-#     :return: the code of the final product with all the palettes
-#              ready to be used (no API here).
+#     :return: the credits inside a decorated \css comment.
 ###
-def build_code(
-    credits : str,
-    palettes: dict[str, PaletteCols]
-) -> str:
-    def float2percentage(x: float) -> str:
-        x *= 100
-        _x = f"{x:.6f}"
-        _x = _x.rstrip('0')
-        _x = _x.rstrip('.')
-
-        return f"{_x}%"
-
-# Credits.
+def build_credits(credits : str) -> str:
     _credits = credits.split("\n")
 
     maxlen = max(map(len, _credits))
@@ -131,41 +115,100 @@ def build_code(
 {deco}
     """.strip()
 
-# Palettes.
-    _paldefs_code = [
-        """
+    return credits
+
+
+###
+# prototype::
+#     :return: ????
+###
+def build_palette_header() -> str:
+    header = """
 /* -------------------------- */
 /* -- DEFS OF EACH PALETTE -- */
 /* -------------------------- */
-        """.strip(),
-        '',
-        ':root {'
-    ]
 
-# The palettes.
+:root {
+    """.strip()
+
+    return header
+
+
+###
+# prototype::
+#     :return: ????
+###
+def build_palette_footer() -> str:
+# WE must close '':root {''.
+    return '}'
+
+
+###
+# prototype::
+#     name    : name of one single palette.
+#     palette : one single palette.
+#
+#     :return: the \css code of ''palette'' for the final
+#              product codes.
+###
+def build_palette(
+    name   : str,
+    palette: PaletteCols
+) -> str:
+# -- Internal function -- #
+    def float2percentage(x: float) -> str:
+        x *= 100
+        _x = f"{x:.6f}"
+        _x = _x.rstrip('0')
+        _x = _x.rstrip('.')
+
+        return f"{_x}%"
+
+# -- Let's work! -- #
     indent = " "*4
 
-    for name, colors in palettes.items():
-        name = f"--pal{name}"
+    name = f"--pal{name}"
 
-        for i, (r, g, b) in enumerate(colors, start = 1):
-            _r, _g, _b = map(float2percentage, [r, g, b])
+    _paldefs_code = []
 
+    for i, (r, g, b) in enumerate(colors, start = 1):
+        _r, _g, _b = map(float2percentage, [r, g, b])
 
-            _paldefs_code.append(
-                f"{indent}{name}-{i}: rgb({_r} {_g} {_b});"
-            )
-
-# Seperating defs with single empty lines.
-        _paldefs_code.append("")
-
-# We remove the last unuseful empty line.
-    _paldefs_code.pop(-1)
-
-# Close the root block.
-    _paldefs_code.append("}")
+        _paldefs_code.append(
+            f"{indent}{name}-{i}: rgb({_r} {_g} {_b});"
+        )
 
     paldefs_code = '\n'.join(_paldefs_code)
+
+    return paldefs_code
+
+
+
+
+
+
+
+# ---------------------- #
+# -- BUILD FINAL CODE -- #
+# ---------------------- #
+
+###
+# prototype::
+#     credits  : the credits to the ''@prism'' project that should
+#                be added as a comment at the beginning of the final
+#                product code.
+#     palettes : the ''Python'' dictionnary of all the palettes.
+#
+#     :return: the code of the final product with all the palettes
+#              ready to be used (no API here).
+###
+def build_code(
+    credits : str,
+    palettes: dict[str, PaletteCols]
+) -> str:
+
+
+# The palettes.
 
 # Nothing left to do.
     code = f"""
