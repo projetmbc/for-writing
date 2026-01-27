@@ -12,8 +12,63 @@ WIMS : https://beta.framadate.org/polls/a427c29572513d61aec9/a8dcb2b97684271a0d2
 https://beta.framadate.org/polls/a427c29572513d61aec9
 
 
+// ---------- //
+
+40 = 4 x 10 cra pour un contexte sménatique, on peut avoir des états
+
+   --> à faire, fait
+   --> clicable, survolé, cliqué/activé
+   --> à ananlsyer, en cour d'analyse, validé, rejeté
+
+Plage d'index	État Sémantique	Exemple d'usage
+0 - 9	Initial / Repos	État "À faire", "Cliquable" ou "À analyser".
+10 - 19	Actif / Transition	État "En cours", "Survolé" (Hover).
+20 - 29	Succès / Final	État "Fait", "Cliqué" ou "Validé".
+30 - 39	Alerte / Rejet	État "Erreur", "Inactif" ou "Rejeté".
+
+
+1. L'échelle de Luminance (Élévation)
+
+Si ta palette est utilisée pour une interface en relief (Neumorphisme ou Material Design), tu peux diviser tes 40 couleurs par "profondeur" :
+
+    0-9 : Ombres portées (couleurs les plus sombres/profondes).
+
+    10-19 : Surface de base (le "flat").
+
+    20-29 : Éléments soulevés (boutons, cartes).
+
+    30-39 : Points de brillance (Highlighs / reflets).
+
+2. L'échelle de Température (Feedback)
+
+Idéal pour des tableaux de bord de monitoring :
+
+    0-9 : État "Froid" / Inactif (Gris/Bleu).
+
+    10-19 : État "Normal" / Nominal (Vert/Cyan).
+
+    20-29 : État "Chaud" / Attention (Orange).
+
+    30-39 : État "Critique" / Danger (Rouge vif).
+
+3. L'échelle Temporelle (Historique)
+
+Pour représenter l'évolution d'une donnée :
+
+    0-9 : Passé lointain (couleurs désaturées).
+
+    10-19 : Tendance récente.
+
+    20-29 : Valeur actuelle (couleur vive).
+
+    30-39 : Prédictions / Futur (couleurs translucides ou pointillés).
+
+
+
 
 // ---------- //
+
+AVNAT nelle version !!!!!
 
 real camelcase based on colornames : Pinkgrey  -->  PinkGrey
 
@@ -23,6 +78,7 @@ real camelcase based on colornames : Pinkgrey  -->  PinkGrey
 // ---------- //
 
 besoin de garder les version utilisé pour la doc
+
 
 // ---------- //
 

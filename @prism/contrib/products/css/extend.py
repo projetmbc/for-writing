@@ -33,7 +33,7 @@ from contributils import *
 #              the "universal" ''JSON'' version of the palette.
 #
 #
-# A RGB ''CSS'' palette definition looks like this.
+# An RGB ''CSS'' palette named ''PALETTE'' is defined as follows.
 #
 # css::
 #     --palPALETTE-1: rgb(39.22% 58.43% 92.94%);
@@ -41,20 +41,16 @@ from contributils import *
 #     /* ... */
 ###
 def parse(code: str) -> PaletteData:
-# Kind.
-    metadata = dict()
+# Metadata (we delegate).
+    metadata = get_this_data(
+        content  = code,
+        comspecs = {
+            TAG_MULTICOM_START: '/*',
+            TAG_MULTICOM_END  : '*/',
+        },
+    )
 
-    comments = re.findall(r'/\*{3}([\s\S]*?)\*{3}/', code)
-
-    for block in comments:
-        metadata = get_thisdata(block)
-
-        if metadata:
-            break
-
-    std_metadata(metadata)
-
-# Palette.
+# Palette definition (we dirty our hands).
     code = '\n'.join(
         line
         for line in code.split('\n')
@@ -79,10 +75,7 @@ def parse(code: str) -> PaletteData:
     ]
 
 # Nothing left to do.
-    return {
-        'metadata': metadata,
-        'palette' : palette
-    }
+    return final_paldef(metadata, palette)
 
 
 # ------------------- #
@@ -238,10 +231,11 @@ this::
 /* CSS definition. */
 
 --palPALETTE-1: rgb(0% 0% 0%);
---palPALETTE-2: rgb(40% 0% 20%);
---palPALETTE-3: rgb(80% 20% 0%);
---palPALETTE-4: rgb(100% 60% 0%);
---palPALETTE-5: rgb(100% 100% 45.678%);
+--palPALETTE-2: rgb(0% 0% 0%);
+--palPALETTE-3: rgb(40% 0% 20%);
+--palPALETTE-4: rgb(80% 20% 0%);
+--palPALETTE-5: rgb(100% 60% 0%);
+--palPALETTE-6: rgb(100% 100% 45.678%);
     """
 
     from rich import print
@@ -256,6 +250,7 @@ this::
     print_section('STD DATA (JSON)')
     print(std_data)
 
+    exit(1)
     print_section('SPECIFIC CODE')
     print(
         build_code(

@@ -43,23 +43,13 @@ from contributils import *
 #     }
 ###
 def parse(code: str) -> PaletteData:
-# Kind.
-    metadata = dict()
+# Metadata (we delegate).
+    metadata = get_this_data(
+        content      = code,
+        comspecs = {TAG_SINGLECOM: '--'},
+    )
 
-    comments = re.findall(r'-{6}([\s\S]*?)-{6}', code)
-
-    for block in comments:
-        metadata = get_thisdata(
-            content = block,
-            prefix  = "-- "
-        )
-
-        if metadata:
-            break
-
-    std_metadata(metadata)
-
-# Palette.
+# Palette definition (we dirty our hands).
     code = '\n'.join(
         line
         for line in code.split('\n')

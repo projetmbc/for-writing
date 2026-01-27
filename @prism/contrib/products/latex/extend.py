@@ -43,23 +43,13 @@ from contributils import *
 #     }
 ###
 def parse(code: str) -> PaletteData:
-# Kind.
-    metadata = dict()
+# Metadata (we delegate).
+    metadata = get_this_data(
+        content      = code,
+        comspecs = {TAG_SINGLECOM: '%'},
+    )
 
-    comments = re.findall(r'%{3}([\s\S]*?)%{3}', code)
-
-    for block in comments:
-        metadata = get_thisdata(
-            content = block,
-            prefix  = "% "
-        )
-
-        if metadata:
-            break
-
-    std_metadata(metadata)
-
-# Palette.
+# Palette definition (we dirty our hands).
     code = '\n'.join(
         line
         for line in code.split('\n')
@@ -226,6 +216,7 @@ if __name__ == "__main__":
     print_section('STD DATA (JSON)')
     print(std_data)
 
+    TODO
     print_section('SPECIFIC CODE')
     print(
         build_code(
