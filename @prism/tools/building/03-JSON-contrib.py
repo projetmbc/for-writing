@@ -84,12 +84,12 @@ for folder, contribs in sorted(contribs_accepted.items()):
         contrib_file = folder / one_contrib
         contrib_code = contrib_file.read_text()
 
-        PaletteParser = extend.parse(contrib_code)
+        PaletteTransformer = extend.parse(contrib_code)
 
         pals[stdname] = resrc_std_palette(
             palname   = palname,
-            palkind   = PaletteParser[TAG_METADATA.lower()][TAG_KIND],
-            paldef    = PaletteParser[TAG_PALETTE],
+            palkind   = PaletteTransformer[TAG_METADATA.lower()][TAG_KIND],
+            paldef    = PaletteTransformer[TAG_PALETTE],
             precision = PRECISION + 2,
         )
 

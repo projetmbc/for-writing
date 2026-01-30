@@ -17,10 +17,6 @@ from contributils import *
 # ------------------------------- #
 
 
-# -------------------- #
-# -- EXTRACT COLORS -- #
-# -------------------- #
-
 ###
 # The following snippet defines the ''PALETTE'' palette (one
 # variable per color).
@@ -30,7 +26,46 @@ from contributils import *
 #     --palPALETTE-2: rgb(52.94% 80% 98.04%);
 #     /* ... */
 ###
-palparser = PaletteParser(
+
+
+# ---------------------------- #
+# -- SINGLE PALETTE BUILDER -- #
+# ---------------------------- #
+
+###
+# prototype::
+#     name    : name of one single palette.
+#     palette : one single palette.
+#
+#     :return: the \css code of ''palette'' for the final
+#              product codes.
+###
+def _build_palette(
+    name   : str,
+    palette: PaletteCols
+) -> str:
+    indent = " "*4
+    name   = f"--pal{name}"
+
+    _paldef = []
+
+    for i, (r, g, b) in enumerate(palette, start = 1):
+        r, g, b = map(float2percentage, [r, g, b])
+
+        _paldef.append(
+            f"{indent}{name}-{i}: rgb({r} {g} {b});"
+        )
+
+    paldef = '\n'.join(_paldef)
+
+    return paldef
+
+
+# ------------------------- #
+# -- PALETTE TRANSFORMER -- #
+# ------------------------- #
+
+palparser = PaletteTransformer(
     comspecs = {
         TAG_MULTICOM_START: '/*',
         TAG_MULTICOM_END  : '*/',
@@ -41,145 +76,11 @@ palparser = PaletteParser(
         r"([\d.]+)%\s+([\d.]+)%\s+([\d.]+)%\s*"
         r"\);"
     ),
-    remode = TAG_REMETH_FINDALL
+    remode      = TAG_REMETH_FINDALL,
+    header      = ':root {',
+    footer      = '}',
+    pal_builder = _build_palette,
 )
-
-
-# ------------------- #
-# -- BUILD CREDITS -- #
-# ------------------- #
-
-###
-# prototype::
-#     credits  : the credits to the ''@prism'' project that
-#                should be added as a comment at the beginning
-#                of the final product codes.
-#
-#     :return: the credits inside a decorated \css comment.
-###
-def build_credits(credits : str) -> str:
-    _credits = credits.split("\n")
-
-    maxlen = max(map(len, _credits))
-    deco   = '-'*(maxlen + 6)
-    deco   = f"/* {deco} */"
-
-    credits = '\n'.join([
-        f'/* -- {c.ljust(maxlen)} -- */'
-        for c in _credits
-    ])
-
-    credits = f"""
-{deco}
-{credits}
-{deco}
-    """.strip()
-
-    return credits
-
-
-###
-# prototype::
-#     :return: ????
-###
-def build_palette_header() -> str:
-    header = """
-/* -------------------------- */
-/* -- DEFS OF EACH PALETTE -- */
-/* -------------------------- */
-
-:root {
-    """.strip()
-
-    return header
-
-
-###
-# prototype::
-#     :return: ????
-###
-def build_palette_footer() -> str:
-# WE must close '':root {''.
-    return '}'
-
-
-###
-# prototype::
-#     name    : name of one single palette.
-#     palette : one single palette.
-#
-#     :return: the \css code of ''palette'' for the final
-#              product codes.
-###
-def build_palette(
-    name   : str,
-    palette: PaletteCols
-) -> str:
-# -- Internal function -- #
-    def float2percentage(x: float) -> str:
-        x *= 100
-        _x = f"{x:.6f}"
-        _x = _x.rstrip('0')
-        _x = _x.rstrip('.')
-
-        return f"{_x}%"
-
-# -- Let's work! -- #
-    indent = " "*4
-
-    name = f"--pal{name}"
-
-    _paldefs_code = []
-
-    for i, (r, g, b) in enumerate(colors, start = 1):
-        _r, _g, _b = map(float2percentage, [r, g, b])
-
-        _paldefs_code.append(
-            f"{indent}{name}-{i}: rgb({_r} {_g} {_b});"
-        )
-
-    paldefs_code = '\n'.join(_paldefs_code)
-
-    return paldefs_code
-
-
-
-
-
-
-
-# ---------------------- #
-# -- BUILD FINAL CODE -- #
-# ---------------------- #
-
-###
-# prototype::
-#     credits  : the credits to the ''@prism'' project that should
-#                be added as a comment at the beginning of the final
-#                product code.
-#     palettes : the ''Python'' dictionnary of all the palettes.
-#
-#     :return: the code of the final product with all the palettes
-#              ready to be used (no API here).
-###
-def build_code(
-    credits : str,
-    palettes: dict[str, PaletteCols]
-) -> str:
-
-
-# The palettes.
-
-# Nothing left to do.
-    code = f"""
-{credits}
-
-/* CSS does not provide a color transformation API. */
-
-{paldefs_code}
-    """.strip() + '\n'
-
-    return code
 
 
 # ---------------- #
@@ -207,21 +108,27 @@ this::
 
     from rich import print
 
-    print_section = lambda t: print(f'\n--- {t} --\n')
+    print_section = lambda t: print(
+        '\n\n' + '~'*(len(t) +6) + '\n' +
+        f'~~ {t} ~~' +
+        '\n' + '~'*(len(t) +6) + '\n'
+    )
 
     print_section('INITIAL CODE')
     print(code.strip())
 
+    print_section('EXTRACTED DATA')
     std_data = palparser.get_pydef(code)
-
-    print_section('STD DATA (JSON)')
     print(std_data)
 
-    exit(1)
-    print_section('SPECIFIC CODE')
-    print(
-        build_code(
-            credits  = 'Credits...',
-            palettes = {"CHECKER": std_data['palette']}
-        )
+    print_section('PYTHON 2 CODE')
+    css_data = palparser.get_palcode(
+        name    = 'PalName',
+        palette = std_data[TAG_PALETTE]
     )
+    print(palparser.header)
+    print(css_data)
+    print(palparser.footer)
+
+    print_section('CREDITS IN CODE')
+    print(palparser.get_credits('Credits. OK? KO?'))

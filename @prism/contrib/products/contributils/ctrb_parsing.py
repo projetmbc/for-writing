@@ -47,17 +47,35 @@ def std_strdict(
     for k in stdkeys:
         onedict[k] = onedict.get(k, '')
 
-# ------------------ #
-# -- PARSING DATA -- #
-# ------------------ #
 
-class PaletteParser:
+def float2percentage(x: float) -> str:
+    x *= 100
+    _x = f"{x:.6f}"
+    _x = _x.rstrip('0')
+    _x = _x.rstrip('.')
+
+    return f"{_x}%"
+
+
+# ------------------------- #
+# -- PALETTE TRANSFORMER -- #
+# ------------------------- #
+
+class PaletteTransformer:
     def __init__(
         self,
         comspecs,
         palpattern,
-        remode = TAG_REMETH_SEARCH
+        remode      = TAG_REMETH_SEARCH,
+        titledeco   = '-',
+        header      = '',
+        footer      = '',
+        pal_builder = None,
+        api_builder = None, # No API!
     ):
+        self.get_palcode = pal_builder
+        self.get_apicode = api_builder
+
         self.comspecs = comspecs
 
         self.remode     = remode
@@ -65,6 +83,11 @@ class PaletteParser:
 
         self.metadata = dict()
         self.palette  = []
+
+        self.titledeco = titledeco
+
+        self.header = header
+        self.footer = footer
 
 # Defining and validating comment specifications.
     @property
@@ -112,12 +135,26 @@ class PaletteParser:
             self._preline = f'{val[TAG_SINGLECOM]} '
             self._gobble  = len(self._preline)
 
+# Building codes.
+        if val[TAG_MULTICOM_START]:
+            self._leftcom  = val[TAG_MULTICOM_START]
+            self._rightcom = val[TAG_MULTICOM_END]
+
+        else:
+            self._leftcom  = val[TAG_SINGLECOM]
+            self._rightcom = val[TAG_SINGLECOM]
+
+        self._leftcom  = self._leftcom + ' '
+        self._rightcom = ' ' + self._rightcom
+
 # Escaping all values.
         for k, v in val.items():
             val[k] = re.escape(v)
 
 # Nothing left to do.
         self._comspecs = val
+
+# -- PÄRSING -- #
 
     def get_pydef(
         self,
@@ -159,7 +196,6 @@ class PaletteParser:
 
         std_strdict(self.metadata, METADA_NAMES)
 
-
 #
     def _this_from_one_block(
         self,
@@ -191,7 +227,6 @@ class PaletteParser:
 
                     self.metadata[what] = val
 
-
 #
     def build_palette(self):
         cleaned_code = self._code
@@ -210,7 +245,7 @@ class PaletteParser:
             )
 
 # Clean single line comments.
-        if self.comspecs[TAG_SINGLECOM]:
+        elif self.comspecs[TAG_SINGLECOM]:
             TODO
 
 # "find all" method.
@@ -236,21 +271,36 @@ class PaletteParser:
             raise ValueError(f"unknown regex method '{self.remode}'")
 
 
-# ------------------- #
-# -- BUILDING CODE -- #
-# ------------------- #
-
-class PaletteParser:
-    def __init__(
+# -- BUILDING -- #
+    def get_credits(
         self,
-        comspecs,
-        palpattern,
-        remode = TAG_REMETH_SEARCH
-    ):
-        self.comspecs = comspecs
+        credits : str
+    ) -> str:
+# Let's work.
+        _credits = credits.split("\n")
 
-        self.remode     = remode
-        self.palpattern = re.compile(palpattern)
+        maxlen = max(map(len, _credits))
+        deco   = (
+            self._leftcom +
+            self.titledeco*(maxlen + 6) +
+            self._rightcom
+        )
 
-        self.metadata = dict()
-        self.palette  = []
+        dble_deco_char = self.titledeco*2
+
+        credits = '\n'.join([
+            self._leftcom +
+            f'{dble_deco_char} {c.ljust(maxlen)} {dble_deco_char}' +
+            self._rightcom
+            for c in _credits
+        ])
+
+
+
+        credits = f"""
+{deco}
+{credits}
+{deco}
+        """.strip()
+
+        return credits

@@ -10,25 +10,13 @@
 -----
 
 [[:api:]]
-\Contribs: coding path::''extend.py'' is now much simpler.
+\Contribs: data extraction and code generation are performed simply by instantiating the ''PaletteTransformer'' class.
 
-    + Data extraction is performed simply by instantiating the ''PaletteParser'' class.
-
-    + ????
-    La construction
+    + ???? code build!!!
 
 
 
-   --> GetPalData : classe gérant tout
-
-   --> ??? parsing des cmmentaires magiques centralisés dans ctb_paring  (à l'avenir on parsera directement vias tnscode)
-
-       besoin de pouvoir indiquer finement les commentaires multilignes et / ou non, mais aussi magic comment soit de type commentaore multiligne avec juste debéut et fin spécial, ou bien, meme si multiligne autorisée, d'imposer des commentaire single line pour le bloc magique
-
-   --> ??? des outils pour la fabrication
-
-
-OK usage d'un fake palettes-hf monolithic file .
+FAIT! usage d'un fake palettes-hf monolithic file .
 
 
 
