@@ -62,6 +62,10 @@ def float2percentage(x: float) -> str:
     return f"{_x}%"
 
 
+def percentage2float(x: float) -> float:
+    return float(x) / 100
+
+
 # ------------------------- #
 # -- PALETTE TRANSFORMER -- #
 # ------------------------- #
@@ -71,6 +75,7 @@ class PaletteTransformer:
         self,
         comspecs,
         palpattern,
+        floatify    = float,
         titledeco   = '-',
         header      = '',
         footer      = '',
@@ -80,10 +85,7 @@ class PaletteTransformer:
         self.get_palcode = pal_builder
         self.get_apicode = api_builder
 
-        self.build_patterns(
-            comspecs   = comspecs,
-            palpattern = palpattern,
-        )
+        self.floatify = floatify
 
         self.metadata = dict()
         self.palette  = []
@@ -92,6 +94,11 @@ class PaletteTransformer:
 
         self.header = header
         self.footer = footer
+
+        self.build_patterns(
+            comspecs   = comspecs,
+            palpattern = palpattern,
+        )
 
 
     def build_patterns(
@@ -133,8 +140,11 @@ class PaletteTransformer:
             self._leftcom  = comspecs[TAG_SINGLECOM]
             self._rightcom = comspecs[TAG_SINGLECOM]
 
-        self._leftcom  = self._leftcom + ' '
-        self._rightcom = ' ' + self._rightcom
+        if self._leftcom[-1] != self.titledeco:
+            self._leftcom  = self._leftcom + ' '
+
+        if self._rightcom[0] != self.titledeco:
+            self._rightcom = ' ' + self._rightcom
 
 # Magic comment are multiline ones.
         if comspecs[TAG_MULTICOM_START]:
@@ -226,14 +236,18 @@ class PaletteTransformer:
 
                         _line = match.group(1)
 
-                        if _line[0].strip():
-                            raise ValueError(
-                                 'missing initial space in '
-                                 'THIS magic block, '
-                                f'see the line:\n{line}'
-                            )
+                        if not _line.strip():
+                            _line = ''
 
-                        _line = _line[1:]
+                        else:
+                            if _line[0].strip():
+                                raise ValueError(
+                                     'missing initial space in '
+                                     'THIS magic block, '
+                                    f'see the line:\n{line}'
+                                )
+
+                            _line = _line[1:]
 
                     _block.append(_line)
 
@@ -303,7 +317,7 @@ class PaletteTransformer:
             )
 
         self.palette = [
-            list(map(lambda x: float(x) / 100, rgb))
+            list(map(self.floatify, rgb))
             for rgb in matches
         ]
 

@@ -17,23 +17,8 @@ from contributils import *
 # ------------------------------- #
 
 
-# -------------------- #
-# -- EXTRACT COLORS -- #
-# -------------------- #
-
 ###
-# prototype::
-#     code : a RGB ''Lua'' palette definition of a palette (see the fake
-#            example below).
-#
-#     :return: a dictionary ''{'metadata': ..., 'palette': ...}''
-#              giving palette metadata as a ''str-str'' dictionary,
-#              and the palette colors as a list of lists of 3 floats
-#              belonging to `[0, 1]` that will be used to produce
-#              the "universal" ''JSON'' version of the palette.
-#
-#
-# A RGB ''Lua'' palette definition looks like this.
+# # The following snippet defines the ''PALETTE'' palette.
 #
 # lua::
 #     PALETTE = {
@@ -42,133 +27,71 @@ from contributils import *
 #       -- ...
 #     }
 ###
-def parse(code: str) -> PaletteData:
-# Metadata (we delegate).
-    metadata = get_this_data(
-        content      = code,
-        comspecs = {TAG_SINGLECOM: '--'},
-    )
 
-# Palette definition (we dirty our hands).
-    code = '\n'.join(
-        line
-        for line in code.split('\n')
-        if line.strip()[:2] != "--"
-    )
 
-    match = re.search(
-        r'PALETTE\s*=\s*{(.*)}',
-        code,
-        re.S  # The dot operator matches all.
-    )
+# --------------------------------- #
+# -- SINGLE PALETTE CODE BUILDER -- #
+# --------------------------------- #
 
-    if not match:
-        raise ValueError("No Lua PALETTE definition found.")
+###
+# prototype::
+#     name    : name of one single palette.
+#     palette : one single palette.
+#
+#     :return: the \latex code of ''palette'' for the final
+#              product codes.
+###
+def _build_palette(
+    name   : str,
+    palette: PaletteCols
+) -> str:
+    name    = f"pal{name}"
+    indent  = " "*4
+    _paldef = [f"{name} = {{"]
 
-    palette = match.group(1)
+    for r, g, b in palette:
+        _paldef.append(
+            f"{indent}{{{r}, {g}, {b}}},"
+        )
 
-    for old, new in [
-        ('{', '['),
-        ('}', ']'),
-    ]:
-        palette = palette.replace(old, new)
+# We remove the last unuseful coma.
+    _paldef[-1] = _paldef[-1][:-1]
 
-    palette = f'[{palette.strip()}]'
+# Seperating defs with single empty lines.
+    _paldef.append("}")
 
-# Safe evaluation.
-    palette = ast.literal_eval(palette)
+    paldef = '\n'.join(_paldef)
 
-# Nothing left to do.
-    return {
-        'metadata': metadata,
-        'palette' : palette
-    }
+    return paldef
 
 
 # ---------------------- #
-# -- BUILD FINAL CODE -- #
+# -- API CODE BUILDER -- #
 # ---------------------- #
 
 ###
 # prototype::
-#     credits  : the credits to the ''@prism'' project that should
-#                be added as a comment at the beginning of the final
-#                product code.
-#     palettes : the ''Python'' dictionnary of all the palettes.
-#
-#     :return: the code of the final product with all the palettes
-#              ready to be used, with also a function ''getPal'' to
-#              access one palette via its string name, or create new
-#              palettes from an existing one.
+#     :return: the \latex code of the \api the final product codes.
 ###
-def build_code(
-    credits : str,
-    palettes: dict[str, PaletteCols]
-) -> str:
-# Credits.
-    _credits = credits.split("\n")
-
-    maxlen = max(map(len, _credits))
-    deco   = '-'*(maxlen + 6)
-
-    credits = '\n'.join([
-        f'-- {c.ljust(maxlen)} --'
-        for c in _credits
-    ])
-
-    credits = f"""
-{deco}
-{credits}
-{deco}
-    """.strip()
-
-# Palettes.
-    _paldefs_code = [
-        """
---------------------------
--- DEFS OF EACH PALETTE --
---------------------------
-        """.strip(),
-        '',
-    ]
-
-# The palettes.
-    indent = " "*4
-
-    for name, colors in palettes.items():
-        name = f"pal{name}"
-
-        _paldefs_code.append(f"{name} = {{")
-
-        for r, g, b in colors:
-            _paldefs_code.append(
-                f"{indent}{{{r}, {g}, {b}}},"
-            )
-
-# We remove the last unuseful coma.
-        _paldefs_code[-1] = _paldefs_code[-1][:-1]
-
-# Seperating defs with single empty lines.
-        _paldefs_code.append("}\n")
-
-    paldefs_code = '\n'.join(_paldefs_code)
-
-# API code.
+def _build_api() -> str:
     _api_code = Path(__file__).parent / "tests" / "palapi.lua"
     api_code  = _api_code.read_text().strip()
 
-# Nothing left to do.
-    code = f"""
-{credits}
+    return api_code
 
 
-{api_code}
+# ------------------------- #
+# -- PALETTE TRANSFORMER -- #
+# ------------------------- #
 
-
-{paldefs_code}
-    """.strip() + '\n'
-
-    return code
+palparser = PaletteTransformer(
+    comspecs   = {TAG_SINGLECOM: '--'},
+    palpattern = re.compile(
+        r"\{([\d.]+),\s+([\d.]+),\s+([\d.]+)\},\s*"
+    ),
+    pal_builder = _build_palette,
+    api_builder = _build_api,
+)
 
 
 # ---------------- #
@@ -210,20 +133,37 @@ PALETTE = {
 
     from rich import print
 
-    print_section = lambda t: print(f'\n--- {t} --\n')
+    print_section = lambda t: print(
+        '\n\n' + '~'*(len(t) +6) + '\n' +
+        f'~~ {t} ~~' +
+        '\n' + '~'*(len(t) +6) + '\n'
+    )
 
     print_section('INITIAL CODE')
     print(code.strip())
 
-    std_data = parse(code)
-
-    print_section('STD DATA (JSON)')
+    print_section('EXTRACTED DATA')
+    std_data = palparser.get_pydef(code)
     print(std_data)
 
-    print_section('SPECIFIC CODE')
-    print(
-        build_code(
-            credits  = 'Credits...',
-            palettes = {"CHECKER": std_data['palette']}
-        )
+    print_section('PYTHON 2 CODE')
+    coded_data = palparser.get_palcode(
+        name    = 'OnePalName',
+        palette = std_data[TAG_PALETTE]
     )
+    # print(palparser.header)
+    print(coded_data)
+    # print(palparser.footer)
+
+    print_section('CREDITS IN CODE')
+    print(palparser.get_credits('Credits. OK? KO?'))
+
+    print_section('API CODE')
+    coded_api = palparser.get_apicode()
+
+    if coded_api:
+         if input('Print API (y/n)? ') == 'y':
+             print(coded_api)
+
+    else:
+        print('NO API!')

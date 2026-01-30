@@ -75,6 +75,7 @@ palparser = PaletteTransformer(
         r"([\d.]+)%\s+([\d.]+)%\s+([\d.]+)%\s*"
         r"\);"
     ),
+    floatify    = percentage2float,
     header      = ':root {',
     footer      = '}',
     pal_builder = _build_palette,
