@@ -44,9 +44,8 @@ def _build_palette(
     name   : str,
     palette: PaletteCols
 ) -> str:
-    indent = " "*4
-    name   = f"--pal{name}"
-
+    name    = f"--pal{name}"
+    indent  = " "*4
     _paldef = []
 
     for i, (r, g, b) in enumerate(palette, start = 1):
@@ -70,13 +69,12 @@ palparser = PaletteTransformer(
         TAG_MULTICOM_START: '/*',
         TAG_MULTICOM_END  : '*/',
     },
-    palpattern = (
+    palpattern = re.compile(
         r"--palPALETTE-\d+"
         r"\s*:\s*rgb\(\s*"
         r"([\d.]+)%\s+([\d.]+)%\s+([\d.]+)%\s*"
         r"\);"
     ),
-    remode      = TAG_REMETH_FINDALL,
     header      = ':root {',
     footer      = '}',
     pal_builder = _build_palette,
@@ -122,13 +120,23 @@ this::
     print(std_data)
 
     print_section('PYTHON 2 CODE')
-    css_data = palparser.get_palcode(
-        name    = 'PalName',
+    coded_data = palparser.get_palcode(
+        name    = 'OnePalName',
         palette = std_data[TAG_PALETTE]
     )
     print(palparser.header)
-    print(css_data)
+    print(coded_data)
     print(palparser.footer)
 
     print_section('CREDITS IN CODE')
     print(palparser.get_credits('Credits. OK? KO?'))
+
+    print_section('API CODE')
+    coded_api = palparser.get_apicode()
+
+    if coded_api:
+         if input('Print API (y/n)? ') == 'y':
+             print(coded_api)
+
+    else:
+        print('NO API!')

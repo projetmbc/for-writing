@@ -10,20 +10,25 @@ from .ctrb_typing import *
 # -- ''THIS'' CONSTANTS -- #
 # ------------------------ #
 
-TAG_REMETH_SEARCH  = 'search'
-TAG_REMETH_FINDALL = 'find-all'
-
 TAG_METADATA = 'metadata'
 TAG_PALETTE  = 'palette'
 
 
 TAGS_COMMENTS = [
-    TAG_MULTICOM_START      := 'multiline-comments-start',
-    TAG_MULTICOM_END        := 'multiline-comments-end',
-    TAG_SINGLECOM           := 'single-line-comments',
-    TAG_MAGIC_MULTICOM_START:= f'magic-{TAG_MULTICOM_START}',
-    TAG_MAGIC_MULTICOM_END  := f'magic-{TAG_MULTICOM_END}',
-    TAG_MAGIC_SINGLECOM     := f'magic-{TAG_SINGLECOM}'
+    TAG_MULTICOM_START:= 'multiline-comments-start',
+    TAG_MULTICOM_END  := 'multiline-comments-end',
+    TAG_SINGLECOM     := 'single-line-comments',
+]
+
+_TAG_MAGICCOM_START = 'magic-comments-start'
+_TAG_MAGICCOM_END   = 'magic-comments-end'
+
+TAG_MAGICCOM_BLOCK = 'magic-comments'
+TAG_MULTICOM_BLOCK = 'multiline-comments'
+
+_REMOVED_TAGS = [
+    TAG_MULTICOM_START,
+    TAG_MULTICOM_END
 ]
 
 METADA_NAMES = [
@@ -66,20 +71,19 @@ class PaletteTransformer:
         self,
         comspecs,
         palpattern,
-        remode      = TAG_REMETH_SEARCH,
         titledeco   = '-',
         header      = '',
         footer      = '',
         pal_builder = None,
-        api_builder = None, # No API!
+        api_builder = lambda: '', # No API!
     ):
         self.get_palcode = pal_builder
         self.get_apicode = api_builder
 
-        self.comspecs = comspecs
-
-        self.remode     = remode
-        self.palpattern = re.compile(palpattern)
+        self.build_patterns(
+            comspecs   = comspecs,
+            palpattern = palpattern,
+        )
 
         self.metadata = dict()
         self.palette  = []
@@ -89,70 +93,94 @@ class PaletteTransformer:
         self.header = header
         self.footer = footer
 
-# Defining and validating comment specifications.
-    @property
-    def comspecs(self):
-        return self._comspecs
 
-    @comspecs.setter
-    def comspecs(self, val):
-# Get all the keys.
-        std_strdict(val, TAGS_COMMENTS)
+    def build_patterns(
+        self,
+        comspecs,
+        palpattern,
+    ):
+# Nothing to do for the palette pattern.
+        self.patterns = {
+            TAG_PALETTE: palpattern,
+        }
+
+# Let's work on comments.
+        std_strdict(comspecs, TAGS_COMMENTS)
 
 # Do we have legal comments specs?
-        if len(set(val.values())) == 1:
+        if len(set(comspecs.values())) == 1:
             raise ValueError("no comment specs found!")
 
         if (
-            val[TAG_MULTICOM_START]
+            comspecs[TAG_MULTICOM_START]
             and
-            not val[TAG_MULTICOM_END]
+            not comspecs[TAG_MULTICOM_END]
         ) or (
-            not val[TAG_MULTICOM_START]
+            not comspecs[TAG_MULTICOM_START]
             and
-            val[TAG_MULTICOM_END]
+            comspecs[TAG_MULTICOM_END]
         ):
             raise ValueError(
                 "multiline comments must use non-empty start and end tags."
             )
 
-# Magic comment are multiline ones.
-        if val[TAG_MULTICOM_START]:
-            val[TAG_MAGIC_MULTICOM_START]  = val[TAG_MULTICOM_START]
-            val[TAG_MAGIC_MULTICOM_START] += val[TAG_MULTICOM_START][-1]*2
-
-            val[TAG_MAGIC_MULTICOM_END]  = val[TAG_MULTICOM_END][0]*2
-            val[TAG_MAGIC_MULTICOM_END] += val[TAG_MULTICOM_END]
-
-            self._preline = ''
-            self._gobble  = 0
-
-# Magic comment are single linge ones.
-        else:
-            val[TAG_MAGIC_SINGLECOM]  = val[TAG_SINGLECOM]
-            val[TAG_MAGIC_SINGLECOM] += val[TAG_SINGLECOM][-1]*2
-
-            self._preline = f'{val[TAG_SINGLECOM]} '
-            self._gobble  = len(self._preline)
-
 # Building codes.
-        if val[TAG_MULTICOM_START]:
-            self._leftcom  = val[TAG_MULTICOM_START]
-            self._rightcom = val[TAG_MULTICOM_END]
+        if comspecs[TAG_MULTICOM_START]:
+            self._leftcom  = comspecs[TAG_MULTICOM_START]
+            self._rightcom = comspecs[TAG_MULTICOM_END]
 
         else:
-            self._leftcom  = val[TAG_SINGLECOM]
-            self._rightcom = val[TAG_SINGLECOM]
+            self._leftcom  = comspecs[TAG_SINGLECOM]
+            self._rightcom = comspecs[TAG_SINGLECOM]
 
         self._leftcom  = self._leftcom + ' '
         self._rightcom = ' ' + self._rightcom
 
-# Escaping all values.
-        for k, v in val.items():
-            val[k] = re.escape(v)
+# Magic comment are multiline ones.
+        if comspecs[TAG_MULTICOM_START]:
+            comspecs[_TAG_MAGICCOM_START]  = comspecs[TAG_MULTICOM_START]
+            comspecs[_TAG_MAGICCOM_START] += comspecs[TAG_MULTICOM_START][-1]*2
 
-# Nothing left to do.
-        self._comspecs = val
+            comspecs[_TAG_MAGICCOM_END]  = comspecs[TAG_MULTICOM_END][0]*2
+            comspecs[_TAG_MAGICCOM_END] += comspecs[TAG_MULTICOM_END]
+
+# Magic comment are single linge ones.
+        else:
+            comspecs[_TAG_MAGICCOM_START]  = comspecs[TAG_SINGLECOM]
+            comspecs[_TAG_MAGICCOM_START] += comspecs[TAG_SINGLECOM][-1]*2
+            comspecs[_TAG_MAGICCOM_END]    = comspecs[_TAG_MAGICCOM_START]
+
+# Regex escaping all values.
+        for k, v in comspecs.items():
+            comspecs[k] = re.escape(v)
+
+# Multiline comment regex.
+        if comspecs[TAG_MULTICOM_START]:
+            self.patterns[TAG_MULTICOM_BLOCK] = re.compile(
+                comspecs[_TAG_MAGICCOM_START] +
+                r'([\s\S]*?)' +
+                comspecs[_TAG_MAGICCOM_END]
+            )
+
+        else:
+            self.patterns[TAG_MULTICOM_BLOCK] = None
+
+# Single line comment regex.
+        if comspecs[TAG_SINGLECOM]:
+            self.patterns[TAG_SINGLECOM] = re.compile(
+                comspecs[TAG_SINGLECOM] + r'(.*)'
+            )
+
+        else:
+            self.patterns[TAG_SINGLECOM] = None
+
+# Magic comment regex.
+        self.patterns[TAG_MAGICCOM_BLOCK] = re.compile(
+            comspecs[_TAG_MAGICCOM_START] +
+            r'([\s\S]*?)' +
+            comspecs[_TAG_MAGICCOM_END]
+        )
+
 
 # -- PÄRSING -- #
 
@@ -172,18 +200,44 @@ class PaletteTransformer:
 
 
     def build_metadata(self):
-# Extract comments blocks - Multiline comments.
-        if self.comspecs[TAG_MAGIC_MULTICOM_START]:
-            comments = re.findall(
-                self.comspecs[TAG_MAGIC_MULTICOM_START] +
-                r'([\s\S]*?)' +
-                self.comspecs[TAG_MAGIC_MULTICOM_END],
-                self._code
-            )
+# Get magic comments.
+        comments = self.patterns[TAG_MAGICCOM_BLOCK].findall(self._code)
 
-# Extract comments blocks - Single line comments.
-        else:
-            TODO
+# Only single line comments need some cleaning!
+        if not self.patterns[TAG_MULTICOM_BLOCK]:
+            for i, block in enumerate(comments):
+                _block = []
+
+                for line in block.split('\n'):
+                    if (
+                        line.strip()
+                        and
+                        not self.patterns[TAG_SINGLECOM].fullmatch(line)
+                    ):
+                        raise ValueError(
+                           f'illegal line in THIS magic block, see the line:\n{line}'
+                        )
+
+                    if not line.strip():
+                        _line = ''
+
+                    else:
+                        match = self.patterns[TAG_SINGLECOM].match(line)
+
+                        _line = match.group(1)
+
+                        if _line[0].strip():
+                            raise ValueError(
+                                 'missing initial space in '
+                                 'THIS magic block, '
+                                f'see the line:\n{line}'
+                            )
+
+                        _line = _line[1:]
+
+                    _block.append(_line)
+
+                comments[i] = '\n'.join(_block)
 
 # Analyze comments blocks.
         self.metadata = dict()
@@ -207,14 +261,6 @@ class PaletteTransformer:
             if not line.strip():
                 continue
 
-            if self._preline:
-                if not line.startswith(preline):
-                    raise ValueError(
-                        "Illegal 'this' magic comment."
-                    )
-
-                line = line[self._gobble:]
-
             if line.rstrip() == 'this::':
                 in_this_block = True
 
@@ -223,52 +269,43 @@ class PaletteTransformer:
 
                 if match:
                     what = match.group(1)
-                    val  = match.group(2).strip()
+                    comspecs  = match.group(2).strip()
 
-                    self.metadata[what] = val
+                    self.metadata[what] = comspecs
 
 #
     def build_palette(self):
         cleaned_code = self._code
 
 # Clean multiline comments.
-        if self.comspecs[TAG_MULTICOM_START]:
-            compattern = re.compile(
-                self.comspecs[TAG_MULTICOM_START] +
-                r'([\s\S]*?)' +
-                self.comspecs[TAG_MULTICOM_END]
-            )
-
-            cleaned_code = compattern.sub(
+        if self.patterns[TAG_MULTICOM_BLOCK]:
+            cleaned_code = self.patterns[TAG_MULTICOM_BLOCK].sub(
                 "",
                 cleaned_code
             )
 
 # Clean single line comments.
-        elif self.comspecs[TAG_SINGLECOM]:
-            TODO
+        if self.patterns[TAG_SINGLECOM]:
+            cleaned_code = '\n'.join([
+                self.patterns[TAG_SINGLECOM].sub(
+                    "",
+                    l
+                )
+                for l in cleaned_code.split('\n')
+            ])
 
 # "find all" method.
-        if self.remode == TAG_REMETH_FINDALL:
-            matches = self.palpattern.findall(cleaned_code)
+        matches = self.patterns[TAG_PALETTE].findall(cleaned_code)
 
-            if not matches:
-                raise ValueError(
-                    "No CSS PALETTE definition found."
-                )
+        if not matches:
+            raise ValueError(
+                "No PALETTE definition found."
+            )
 
-            self.palette = [
-                list(map(lambda x: float(x) / 100, rgb))
-                for rgb in matches
-            ]
-
-# "search" method.
-        elif self.remode == TAG_REMETH_SEARCH:
-            TODO
-
-# Unknown method.
-        else:
-            raise ValueError(f"unknown regex method '{self.remode}'")
+        self.palette = [
+            list(map(lambda x: float(x) / 100, rgb))
+            for rgb in matches
+        ]
 
 
 # -- BUILDING -- #
