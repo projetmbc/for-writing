@@ -10,10 +10,16 @@
 -----
 
 [[:api:]]
-\Contribs:
-??      changement des fonctions à coder dans le fichier extend.py
+\Contribs: coding path::''extend.py'' is now much simpler.
 
-?? contributils :
+    + Data extraction is performed simply by instantiating the ''PaletteParser'' class.
+
+    + ????
+    La construction
+
+
+
+   --> GetPalData : classe gérant tout
 
    --> ??? parsing des cmmentaires magiques centralisés dans ctb_paring  (à l'avenir on parsera directement vias tnscode)
 

@@ -120,9 +120,9 @@ for p in sorted(REPORT_DIR.glob('*.json')):
     logging.info(f"Get '{src}' palettes")
 
     with p.open('r') as f:
-        paldata = json_load(f)
+        PaletteParser = json_load(f)
 
-    for name, data in paldata.items():
+    for name, data in PaletteParser.items():
         uid = get_uid(name, src)
         uid = uid.lower()
 

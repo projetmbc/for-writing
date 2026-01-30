@@ -45,9 +45,12 @@ from contributils import *
 def parse(code: str) -> PaletteData:
 # Metadata (we delegate).
     metadata = get_this_data(
-        content      = code,
+        content  = code,
         comspecs = {TAG_SINGLECOM: '%'},
     )
+
+    print(metadata)
+    exit()
 
 # Palette definition (we dirty our hands).
     code = '\n'.join(

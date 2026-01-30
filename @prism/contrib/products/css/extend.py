@@ -22,60 +22,27 @@ from contributils import *
 # -------------------- #
 
 ###
-# prototype::
-#     code : a RGB ''CSS'' palette definition of a palette (see the
-#            fake example below).
-#
-#     :return: a dictionary ''{'metadata': ..., 'palette': ...}''
-#              giving palette metadata as a ''str-str'' dictionary,
-#              and the palette colors as a list of lists of 3 floats
-#              belonging to `[0, 1]` that will be used to produce
-#              the "universal" ''JSON'' version of the palette.
-#
-#
-# An RGB ''CSS'' palette named ''PALETTE'' is defined as follows.
+# The following snippet defines the ''PALETTE'' palette (one
+# variable per color).
 #
 # css::
-#     --palPALETTE-1: rgb(39.22% 58.43% 92.94%);
-#     --palPALETTE-2: rgb(52.94% 80.78% 98.04%);
+#     --palPALETTE-1: rgb(39.22% 58.43% 93%);
+#     --palPALETTE-2: rgb(52.94% 80% 98.04%);
 #     /* ... */
 ###
-def parse(code: str) -> PaletteData:
-# Metadata (we delegate).
-    metadata = get_this_data(
-        content  = code,
-        comspecs = {
-            TAG_MULTICOM_START: '/*',
-            TAG_MULTICOM_END  : '*/',
-        },
-    )
-
-# Palette definition (we dirty our hands).
-    code = '\n'.join(
-        line
-        for line in code.split('\n')
-        if line.strip()[:2] != "/*"
-    )
-
-    pattern = re.compile(
+palparser = PaletteParser(
+    comspecs = {
+        TAG_MULTICOM_START: '/*',
+        TAG_MULTICOM_END  : '*/',
+    },
+    palpattern = (
         r"--palPALETTE-\d+"
         r"\s*:\s*rgb\(\s*"
         r"([\d.]+)%\s+([\d.]+)%\s+([\d.]+)%\s*"
         r"\);"
-    )
-
-    matches = pattern.findall(code)
-
-    if not matches:
-        raise ValueError("No CSS PALETTE definition found.")
-
-    palette = [
-        list(map(lambda x: float(x) / 100, rgb))
-        for rgb in matches
-    ]
-
-# Nothing left to do.
-    return final_paldef(metadata, palette)
+    ),
+    remode = TAG_REMETH_FINDALL
+)
 
 
 # ------------------- #
@@ -245,7 +212,7 @@ this::
     print_section('INITIAL CODE')
     print(code.strip())
 
-    std_data = parse(code)
+    std_data = palparser.get_pydef(code)
 
     print_section('STD DATA (JSON)')
     print(std_data)

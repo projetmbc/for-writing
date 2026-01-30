@@ -82,6 +82,11 @@ besoin de garder les version utilisé pour la doc
 
 // ---------- //
 
+css : support aussi de l'hexadécimal car std en CSS
+
+
+// ---------- //
+
 ajouter les palettes manquantes par rapport au dernier main
 
 puis entuite avoir un outil de compraison visuel lorsqu'uen déf change sur la haute résolution
