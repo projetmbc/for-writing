@@ -82,6 +82,7 @@ def percentage2float(x: float) -> float:
 class PaletteTransformer:
     def __init__(
         self,
+        extension,
         comspecs,
         palpattern,
         floatify    = float,
@@ -91,6 +92,8 @@ class PaletteTransformer:
         pal_builder = None, # We need a palette builder!
         api_builder = lambda: '', # No API!
     ):
+        self. extension = extension
+
         self.get_palcode = pal_builder
         self.get_apicode = api_builder
 

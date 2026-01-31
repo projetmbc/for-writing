@@ -1,0 +1,79 @@
+\pgfmathsetmacro{\nbcol}{\palSize{\PALETTE}}
+
+{\Huge \PALETTE}
+
+\bigskip
+\bigskip
+
+\textcolor{\palUse{\PALETTE}{3}}{\Large\bfseries Some colored text...}
+
+\bigskip
+\bigskip
+
+\begin{tikzpicture}
+  \foreach \i in {1,...,\nbcol} {
+    \draw[COL1, thick, fill = \palUse{\PALETTE}{\i}]
+      (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
+  }
+\end{tikzpicture}
+
+\bigskip
+
+\begin{tikzpicture}
+  \pgfmathsetmacro{\largeur}{12}
+  \pgfmathsetmacro{\hauteur}{1.5}
+
+  % Création du spectre continu
+  \foreach \i in {1,...,\inteval{\nbcol-1}} {
+    \pgfmathsetmacro{\xstart}{\largeur*(\i-1)/(\nbcol-1)}
+    \pgfmathsetmacro{\xend}{\largeur*\i/(\nbcol-1)}
+    \shade[left color=\palUse{\PALETTE}{\i}, right color=\palUse{\PALETTE}{\inteval{\i+1}}]
+      (\xstart, 0) rectangle (\xend, \hauteur);
+  }
+
+  % Bordure
+  \draw[COL1, thick] (0, 0) rectangle (\largeur, \hauteur);
+\end{tikzpicture}
+
+\bigskip
+\bigskip
+\bigskip
+
+\begin{tikzpicture}
+    % Fond dessiné en premier
+    \draw[COL1, thick, fill = COL2] (0, -2.5) rectangle (16, 1.5);
+    % Puis les ondes par-dessus
+    \foreach \i in {1,...,\nbcol} {
+      \draw[\palUse{\PALETTE}{\i}, line width=2pt, domain=0:16, samples=100, smooth]
+        plot (\x, {.3 + sin(\x*60 + \i*360/\nbcol)*0.8 - \i*0.15});
+    }
+\end{tikzpicture}
+
+\bigskip
+\bigskip
+\bigskip
+
+\begin{tikzpicture}
+    \foreach \i in {1,...,\nbcol} {
+      \pgfmathsetmacro{\rayon}{2.5 - 2.5*(\i-1)/\nbcol}
+      \fill[\palUse{\PALETTE}{\i}] (0, 0) circle (\rayon);
+    }
+    % Bordure extérieure
+    \draw[COL1, thick] (0, 0) circle (2.5);
+\end{tikzpicture}
+
+\bigskip
+\bigskip
+\bigskip
+
+\begin{tikzpicture}
+    \foreach \j in {1,...,\nbcol} {
+      \pgfmathsetmacro{\ypos}{-1.5 + 0.3*\j}
+      \foreach \i in {0,...,50} {
+        \pgfmathsetmacro{\xpos}{.5+0.3*\i}
+        \pgfmathsetmacro{\zval}{0.3*sin(\i*36)*cos(\j*36) - .6}
+        \pgfmathtruncatemacro{\colidx}{1+int(mod(\i + \j, \nbcol))}
+        \fill[\palUse{\PALETTE}{\colidx}, opacity=0.8]
+          (\xpos, \ypos + \zval) circle (0.18);
+      }}
+\end{tikzpicture}

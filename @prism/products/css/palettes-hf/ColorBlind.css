@@ -1,0 +1,18 @@
+/* ----------------------------------------------------------------- */
+/* -- File created by the ''@prism'' project, version 1.3.0,      -- */
+/* -- which is developed at                                       -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism . -- */
+/* ----------------------------------------------------------------- */
+
+:root {
+    --palColorBlind-1: rgb(0% 41.960784% 64.313725%);
+    --palColorBlind-2: rgb(100% 50.196078% 5.490196%);
+    --palColorBlind-3: rgb(67.058824% 67.058824% 67.058824%);
+    --palColorBlind-4: rgb(34.901961% 34.901961% 34.901961%);
+    --palColorBlind-5: rgb(37.254902% 61.960784% 81.960784%);
+    --palColorBlind-6: rgb(78.431373% 32.156863% 0%);
+    --palColorBlind-7: rgb(53.72549% 53.72549% 53.72549%);
+    --palColorBlind-8: rgb(63.529412% 78.431373% 92.54902%);
+    --palColorBlind-9: rgb(100% 73.72549% 47.45098%);
+    --palColorBlind-10: rgb(81.176471% 81.176471% 81.176471%);
+}

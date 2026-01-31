@@ -1,0 +1,48 @@
+/* ----------------------------------------------------------------- */
+/* -- File created by the ''@prism'' project, version 1.3.0,      -- */
+/* -- which is developed at                                       -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism . -- */
+/* ----------------------------------------------------------------- */
+
+:root {
+    --palGistEarth-1: rgb(0% 0% 0%);
+    --palGistEarth-2: rgb(1.71% 0% 41.2923%);
+    --palGistEarth-3: rgb(3.42% 5.4692% 45.8461%);
+    --palGistEarth-4: rgb(5.13% 11.3638% 46.313%);
+    --palGistEarth-5: rgb(6.8315% 17.2684% 46.7807%);
+    --palGistEarth-6: rgb(8.54% 22.7576% 47.2484%);
+    --palGistEarth-7: rgb(10.25% 28.0892% 47.7061%);
+    --palGistEarth-8: rgb(11.96% 33.1115% 48.1738%);
+    --palGistEarth-9: rgb(13.67% 37.9076% 48.6415%);
+    --palGistEarth-10: rgb(15.38% 42.0446% 49.1076%);
+    --palGistEarth-11: rgb(17.09% 46.0884% 49.5669%);
+    --palGistEarth-12: rgb(18.8% 50.1423% 50.0346%);
+    --palGistEarth-13: rgb(20.013% 51.6561% 46.9484%);
+    --palGistEarth-14: rgb(21.22% 53.13% 43.81%);
+    --palGistEarth-15: rgb(22.4323% 54.6084% 40.6715%);
+    --palGistEarth-16: rgb(23.6438% 56.0869% 37.523%);
+    --palGistEarth-17: rgb(24.8507% 57.5615% 34.3846%);
+    --palGistEarth-18: rgb(26.0592% 59.0353% 31.2461%);
+    --palGistEarth-19: rgb(27.7523% 60.5123% 28.1076%);
+    --palGistEarth-20: rgb(33.4507% 61.9907% 28.673%);
+    --palGistEarth-21: rgb(39.1492% 63.4669% 30.1669%);
+    --palGistEarth-22: rgb(44.8476% 64.7123% 31.6607%);
+    --palGistEarth-23: rgb(49.68% 65.8338% 32.6515%);
+    --palGistEarth-24: rgb(53.91% 66.9592% 33.46%);
+    --palGistEarth-25: rgb(58.14% 68.0869% 34.2707%);
+    --palGistEarth-26: rgb(62.3653% 69.2084% 35.08%);
+    --palGistEarth-27: rgb(66.59% 70.34% 35.89%);
+    --palGistEarth-28: rgb(70.82% 71.4615% 36.7046%);
+    --palGistEarth-29: rgb(72.593% 69.9838% 37.51%);
+    --palGistEarth-30: rgb(73.6646% 67.7707% 38.3238%);
+    --palGistEarth-31: rgb(74.7361% 65.5576% 39.13%);
+    --palGistEarth-32: rgb(76.2746% 64.2476% 42.2015%);
+    --palGistEarth-33: rgb(79.1415% 65.9084% 48.4815%);
+    --palGistEarth-34: rgb(82.0084% 68.1315% 54.7661%);
+    --palGistEarth-35: rgb(84.8823% 70.6423% 61.0453%);
+    --palGistEarth-36: rgb(87.7523% 74.2269% 67.5184%);
+    --palGistEarth-37: rgb(90.6192% 79.2061% 75.2438%);
+    --palGistEarth-38: rgb(93.4861% 84.4707% 82.9692%);
+    --palGistEarth-39: rgb(96.353% 90.9807% 90.7046%);
+    --palGistEarth-40: rgb(99.22% 98.43% 98.43%);
+}

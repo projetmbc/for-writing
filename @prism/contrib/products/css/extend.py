@@ -65,7 +65,8 @@ def _build_palette(
 # ------------------------- #
 
 paltransfo = PaletteTransformer(
-    comspecs = {
+    extension = 'css',
+    comspecs  = {
         TAG_MULTICOM_START: '/*',
         TAG_MULTICOM_END  : '*/',
     },

@@ -87,6 +87,7 @@ def _build_api() -> str:
 # ------------------------- #
 
 paltransfo = PaletteTransformer(
+    extension  = 'sty',
     comspecs   = {TAG_SINGLECOM: '%'},
     palpattern = re.compile(
         r"\{([\d.]+),\s*([\d.]+),\s*([\d.]+)\},?\s*"

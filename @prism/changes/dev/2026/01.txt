@@ -17,6 +17,8 @@
 
 
 
+lua getPal prend une palette, plus un nom !!!
+--> nouveau nom   palCreateFromPal
 
 
 FAIT! usage d'un fake palettes-hf monolithic file .

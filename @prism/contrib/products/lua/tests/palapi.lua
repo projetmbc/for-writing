@@ -4,21 +4,20 @@
 
 ------
 -- prototype::
---     name    : a palette name with, or without, the prefix
---               ''pal''.
+--     palette : a palette (an array of arrays of float RGB
+--               colors).
 --     options : a dictionary like array (see a full example
 --               of use after).
 --
---     :return: the expected palette.
+--     :return: the expected palette (an array of arrays of
+--              float RGB colors).
 --
 --
--- Let's consider the following use case where we could also
--- have used ''"palGeoRainbow"''.
---
+-- Let's consider the following use case.
 --
 -- lua::
---     mypal = getPal(
---       "GeoRainbow",
+--     mypal = palCreateFromPal(
+--       palGistHeat,
 --       {
 --         extract = {2, 5, 8, 9},
 --         shift   = 3,
@@ -27,9 +26,8 @@
 --     )
 --
 -- To simplify the explanations, we will refer to the colors
--- in the standard palette ''GistHeat'' as ''coul_1'',
--- ''coul_2'', etc. The options are then processed in the
--- following order.
+-- in the ''palGistHeat'' palette as ''coul_1'', ''coul_2'',
+-- etc. The options are then processed in the following order.
 --
 --     1) First,the extraction is done: ''mypal = {coul_2,
 --     coul_5, coul_8, coul_9}''.
@@ -38,30 +36,24 @@
 --     colors moving to the right if ''shift'' is positive:
 --     ''mypal = {coul_5, coul_8, coul_9, coul_2}''.
 --
+--     3) Lastly, inversion is applied.
 --
--- Finally, inversion is applied.
+-- Finally, we obtain the following palette.
 --
 -- lua::
 --     mypal = {coul_2, coul_9, coul_8, coul_5}
 ------
-function getPal(name, options)
--- Standard palette.
-    if string.sub(name, 1, 3) ~= "pal" then
-        name = "pal" .. name
-    end
-
-    local palette = _G[name]
-
--- No option used.
-    if options == nil then
-        return palette
-    end
-
--- Some options used.
+function palCreateFromPal(palette, options)
+-- Let's build a copy.
     local result = {}
 
     for i, color in ipairs(palette) do
         result[i] = {color[1], color[2], color[3]}
+    end
+
+-- No option used.
+    if options == nil then
+        return result
     end
 
 -- Extraction.

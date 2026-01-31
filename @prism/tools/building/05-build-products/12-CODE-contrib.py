@@ -1,7 +1,3 @@
-exit(1)
-
-
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -59,7 +55,7 @@ PROD_JSON_DIR = PRODS_DIR / "json"
 
 
 # ------------------ #
-# -- CONSTANTS #2 -- #
+# -- CONSTANTS #3 -- #
 # ------------------ #
 
 CONTRIBS_ACCEPTED = get_accepted_paths(PROJ_DIR)
@@ -76,17 +72,13 @@ IMPL_ACCEPTED = CONTRIBS_ACCEPTED.get(
 
 logging.info(f"Get 'JSON palette defs'")
 
+monopaldefs = dict()
 
-HIGH_PAL_JSON_FILE = PROD_JSON_DIR / "palettes-hf.json"
+for jsonfile in PROD_JSON_DIR.glob('*.json'):
+    logging.info(f"Found '{jsonfile.stem}'")
 
-with HIGH_PAL_JSON_FILE.open(mode = "r") as f:
-    HIGH_PALETTES = json_load(f)
-
-
-NORM_PAL_JSON_FILE = PROD_JSON_DIR / f"palettes-s{AUTO_QUAL_CATEGO_SIZE}.json"
-
-with NORM_PAL_JSON_FILE.open(mode = "r") as f:
-    NORM_PALETTES = json_load(f)
+    with jsonfile.open(mode = "r") as f:
+        monopaldefs[jsonfile.stem] = json_load(f)
 
 
 # ----------------------------------- #
@@ -94,7 +86,10 @@ with NORM_PAL_JSON_FILE.open(mode = "r") as f:
 # ----------------------------------- #
 
 # -- DEBUG - ON -- #
-rmtree(PRODS_DIR / 'css')
+# if (PRODS_DIR / 'css').is_dir():
+#     rmtree(PRODS_DIR / 'css')
+#     rmtree(PRODS_DIR / 'latex')
+#     rmtree(PRODS_DIR / 'lua')
 # -- DEBUG - OFF -- #
 
 for ctxt in sorted(
@@ -103,94 +98,130 @@ for ctxt in sorted(
 ):
     logging.info(f"Implement '{ctxt}'")
 
-    impl_folder = CONTRIB_PROD_DIR / ctxt
-
 # Import extend.py.
     logging.info(f"({ctxt}) Import 'extend.py'")
 
     extend = import_from_path(
         module_name = "extend",
-        file_path   = impl_folder / "extend.py"
+        file_path   = CONTRIB_PROD_DIR / ctxt / "extend.py"
     )
 
-# Fake prod to real prod.
-    logging.info(f"({ctxt}) Copy structure")
+    paltransfo = extend.paltransfo
 
-    fake_dir  = impl_folder / "fake-prod"
-    final_dir = PRODS_DIR / ctxt
+# Let's work...
+    this_prod_folder = PRODS_DIR / ctxt
+    this_prod_folder.mkdir()
+
+    credits = paltransfo.get_credits(CREDITS)
+
+    for palversion, paldefs in monopaldefs.items():
+# Monolithic versions.
+        logging.info(
+            f"({ctxt}) '{palversion}' - Monolithic"
+        )
+
+        codefile = this_prod_folder / (
+            f"{palversion}.{paltransfo.extension}"
+        )
+
+        codefile.touch()
+
+        _code = [credits, '']
+
+        if paltransfo.header:
+            _code.append(paltransfo.header)
+
+        for palname, palette in paldefs.items():
+            _code.append(
+                paltransfo.get_palcode(
+                    name    = palname,
+                    palette = palette
+                )
+            )
+
+            _code.append('')
+
+        _code.pop(-1)
+
+        if paltransfo.footer:
+            _code.append(paltransfo.footer)
+
+        _code.append('')
+
+        code = '\n'.join(_code)
+
+        codefile.write_text(code)
+
+# Modular versions.
+        logging.info(
+            f"({ctxt}) '{palversion}' - Modular"
+        )
+
+        subdir = this_prod_folder / palversion
+        subdir.mkdir()
+
+        for palname, palette in paldefs.items():
+            codefile = subdir / f"{palname}.{paltransfo.extension}"
+            codefile.touch()
+
+            _code = [credits, '']
+
+            if paltransfo.header:
+                _code.append(paltransfo.header)
+
+            _code.append(
+                paltransfo.get_palcode(
+                    name    = palname,
+                    palette = palette
+                )
+            )
+
+            if paltransfo.footer:
+                _code.append(paltransfo.footer)
+
+            _code.append('')
+
+            code = '\n'.join(_code)
+
+            codefile.write_text(code)
+
+# API.
+    code = paltransfo.get_apicode()
+
+    if not code:
+        logging.info(f"({ctxt}) No 'API'")
+
+    else:
+        logging.info(f"({ctxt}) Add 'API'")
+
+        codefile = this_prod_folder / (
+            f"palapi.{paltransfo.extension}"
+        )
+
+        codefile.touch()
+
+        codefile.write_text(code)
+
+# Showcase.
+    logging.info(f"({ctxt}) Add 'showcase'")
 
     copytree(
-        src = fake_dir,
-        dst = final_dir,
+        src = CONTRIB_PROD_DIR / ctxt / "fake-prod" / "showcase",
+        dst = this_prod_folder / "showcase",
     )
 
-# The file of palettes.
 
-
-
-
-# -- DEBUG - ON -- #
-    exit()
-# -- DEBUG - OFF -- #
-
-
-
-
+# ---------------------- #
+# -- JUST COMMUNICATE -- #
+# ---------------------- #
 
 nb_impl = len(IMPL_ACCEPTED)
 
 plurial = "" if nb_impl == 1 else "s"
 
-logging.info(f"'{nb_impl} implementation{plurial} added'")
-
-
-
-
-
-
-
-
-
+logging.info(f"Report - '{nb_impl} techno{plurial} added'")
 
 
 
 
 exit(1)
-
-
-
-
-
-
-
-
-
-# ------------------------------ #
-# -- CONTRIB. IMPLEMENTATIONS -- #
-# ------------------------------ #
-
-contribs_accepted = get_accepted_paths(PROJ_DIR)
-
-impl_accepted = contribs_accepted.get(
-    CONTRIB_PROD_DIR,
-    []
-)
-
-for ctxt in sorted(impl_accepted, key = lambda x: x.lower()):
-
-# The file of palettes.
-    logging.info(f"'{ctxt}': add file of palettes")
-
-    code = extend.build_code(
-        credits  = CREDITS,
-        palettes = ALL_PALETTES
-    )
-
-    final_file = final_dir / extend.PALETTES_FILE_NAME
-
-    final_file.parent.mkdir(
-        parents  = True,
-        exist_ok = True
-    )
-
-    final_file.write_text(code)
