@@ -12,7 +12,10 @@
 [[:api:]]
 \Contribs: data extraction and code generation are performed simply by instantiating the ''PaletteTransformer'' class.
 
-    + ???? prod build
+    + prod build
+          showcase CSS : hf et s40 est une FBI, donc showcase tjrs en mod hf avec ttes les paleettes
+          showcase LaTeX    ???
+          showcase Lua      ???
     + ???? doc updated
 
 

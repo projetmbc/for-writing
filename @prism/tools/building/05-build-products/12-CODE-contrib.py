@@ -220,8 +220,3 @@ nb_impl = len(IMPL_ACCEPTED)
 plurial = "" if nb_impl == 1 else "s"
 
 logging.info(f"Report - '{nb_impl} techno{plurial} added'")
-
-
-
-
-exit(1)

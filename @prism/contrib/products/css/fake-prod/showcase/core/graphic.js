@@ -95,11 +95,20 @@ function draw(name, size) {
 
   for (let i = 1; i <= size; i++) colors.push(`var(--pal${name}-${i})`);
 
-  document.getElementById('palettePreview').innerHTML = colors.map(
-    c => `<div class="swatch" style="background:${c}"></div>`
-  ).join('');
+  if (size > 40) {
+    document.getElementById('palette-label').style.display = "none";
+    document.getElementById('palette-preview').style.display = "none";
 
-  document.getElementById('continuousSpectrum').style.background = `linear-gradient(90deg, ${colors.join(', ')})`;
+  } else {
+    document.getElementById('palette-label').style.display = "flex";
+    document.getElementById('palette-preview').style.display = "flex";
+
+    document.getElementById('palette-preview').innerHTML = colors.map(
+      c => `<div class="swatch" style="background:${c}"></div>`
+    ).join('');
+  }
+
+  document.getElementById('spectrum-preview').style.background = `linear-gradient(90deg, ${colors.join(', ')})`;
 
   const svg = document.getElementById('canvas');
 
@@ -110,8 +119,8 @@ function draw(name, size) {
   const waveStartX = 280;
   const maxR = 100;
 
-  colors.forEach((c, i) => {
 // Cercles
+  colors.forEach((c, i) => {
     const circ = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "circle"
@@ -123,27 +132,52 @@ function draw(name, size) {
     circ.setAttribute("fill", c);
 
     svg.appendChild(circ);
+  })
 
 // Ondes
-    const path = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "path"
-    );
+  if (size <= 40) {
+    colors.forEach((c, i) => {
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      const yBase = centerY + (i * 7) - (size * 3.5);
 
-    const yBase = centerY + (i * 7) - (size * 3.5);
+      let d = `M ${waveStartX} ${yBase + Math.sin(i) * 40}`;
 
-    let d = `M ${waveStartX} ${yBase + Math.sin(i) * 40}`;
+      for (let x = 1; x <= 440; x += 2) {
+        d += ` L ${waveStartX + x} ${yBase + Math.sin(x * 0.04 + i) * 40}`;
+      }
 
-    for (let x = 1; x <= 440; x += 2) d += ` L ${waveStartX + x} ${yBase + Math.sin(x * 0.04 + i) * 40}`;
+      path.setAttribute("d", d);
+      path.setAttribute("stroke", c);
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke-width", "4");
+      path.setAttribute("stroke-linecap", "round");
 
-    path.setAttribute("d", d);
-    path.setAttribute("stroke", c);
-    path.setAttribute("fill", "none");
-    path.setAttribute("stroke-width", "4");
-    path.setAttribute("stroke-linecap", "round");
+      svg.appendChild(path);
+    });
 
-    svg.appendChild(path);
-  });
+// Diagonales
+  } else {
+    colors.forEach((c, i) => {
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+      const offset = (i * 5) - (size * 2.5);
+      const xStart = waveStartX;
+      const xEnd = waveStartX + 440;
+
+      const yStart = centerY + 80 + offset;
+      const yEnd = centerY - 80 + offset;
+
+      const d = `M ${xStart} ${yStart} L ${xEnd} ${yEnd}`;
+
+      path.setAttribute("d", d);
+      path.setAttribute("stroke", c);
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke-width", "2.5");
+      path.setAttribute("stroke-linecap", "round");
+
+      svg.appendChild(path);
+    });
+  }
 }
 
 window.onload = initInterface;

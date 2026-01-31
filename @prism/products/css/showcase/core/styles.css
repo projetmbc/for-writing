@@ -133,7 +133,7 @@ body {
 }
 
 /* --- RENDU --- */
-#resultArea {
+#result-area {
   margin-top: 5px;
   animation: fadeIn 0.3s ease;
 }

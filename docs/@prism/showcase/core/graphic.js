@@ -1,5 +1,5 @@
 function initInterface() {
-  const alphaBar = document.getElementById('alphabetBar');
+  const alphaBar = document.getElementById('alphabet-bar');
 
   if (typeof palsize === 'undefined') return;
 
@@ -40,9 +40,9 @@ function filterByLetter(letter, btn, targetPalette = null) {
 
   btn.classList.add('active');
 
-  const scrollZone = document.getElementById('scrollZone');
+  const scroll-zone = document.getElementById('scroll-zone');
 
-  scrollZone.innerHTML = '';
+  scroll-zone.innerHTML = '';
 
   const matches = Object
     .keys(palsize)
@@ -57,7 +57,7 @@ function filterByLetter(letter, btn, targetPalette = null) {
       pBtn.innerHTML = `<strong>${name}</strong><small>${palsize[name]} tons</small>`;
       pBtn.onclick   = () => selectPalette(name, palsize[name], pBtn);
 
-      scrollZone.appendChild(pBtn);
+      scroll-zone.appendChild(pBtn);
 
       if(targetPalette === name) setTimeout(() => pBtn.scrollIntoView({ block: 'nearest' }), 50);
     }
@@ -83,9 +83,9 @@ function selectPalette(nom, taille, btnElement = null) {
 
   if(btnElement) btnElement.classList.add('selected');
 
-  document.getElementById('currentTitle').textContent = nom;
-  document.getElementById('colorCount').textContent   = `${taille} colors`;
-  document.getElementById('resultArea').style.display = 'block';
+  document.getElementById('current-title').textContent = nom;
+  document.getElementById('color-count').textContent   = `${taille} colors`;
+  document.getElementById('result-area').style.display = 'block';
 
   draw(nom, taille);
 }
@@ -95,11 +95,11 @@ function draw(name, size) {
 
   for (let i = 1; i <= size; i++) colors.push(`var(--pal${name}-${i})`);
 
-  document.getElementById('palettePreview').innerHTML = colors.map(
+  document.getElementById('palette-preview').innerHTML = colors.map(
     c => `<div class="swatch" style="background:${c}"></div>`
   ).join('');
 
-  document.getElementById('continuousSpectrum').style.background = `linear-gradient(90deg, ${colors.join(', ')})`;
+  document.getElementById('spectrum-preview').style.background = `linear-gradient(90deg, ${colors.join(', ')})`;
 
   const svg = document.getElementById('canvas');
 

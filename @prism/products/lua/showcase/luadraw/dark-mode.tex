@@ -2,7 +2,12 @@
 
 \documentclass[theme = dark]{tutodoc}
 
-\newcommand{\PALETTE}{Binary}
+\directlua{dofile('../../palettes-hf.lua')}
+
+\newcommand{\PALETTE}{Fake One}
+\directlua{
+  PALETTE = palFakeOne
+}
 
 \geometry{
   top    = 1cm,
@@ -32,12 +37,7 @@
 % -- COMMON LUA CODE USED -- %
 % -------------------------- %
 
-\directlua{dofile('../../palettes-hf.lua')}
-
 \directlua{
-  PALNAME = "\PALETTE"
-  PALETTE = getPal(PALNAME)
-
   COL_1 = "lightgray!95"
   COL_2 = "lightgray!20!black"
 }

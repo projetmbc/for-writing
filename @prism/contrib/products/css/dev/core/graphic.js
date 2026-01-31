@@ -37,7 +37,7 @@ function updateAll() {
     .filter(c => c !== "")
     .slice(0, size);
 
-  const preview = document.getElementById('palettePreview');
+  const preview = document.getElementById('palette-preview');
 
   if (preview.children.length !== colorsArr.length) {
     preview.innerHTML = colorsArr.map((c, i) => `

@@ -8,13 +8,15 @@ warning::
 
 const palsize = {
 //  + A - D
-  "Accent": 10,   // Look at the fake ''palettes.css''.
+  "Acton": 256,   // Look at the fake ''palettes-hf.css''.
   "Alizari": 12,
   "Amber": 9,
   "Azure": 8,
+  "Bold": 12,
   "Bordeaux": 11,
   "Bronze": 10,
   "Berry": 14,
+  "Coolwarm": 40,   // Look at the fake ''palettes-s40.css''.
   "Cyan": 10,
   "Cobalt": 12,
   "Crimson": 8,
