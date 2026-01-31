@@ -62,6 +62,15 @@ def float2percentage(x: float) -> str:
     return f"{_x}%"
 
 
+def float2str(x: float) -> str:
+    _x = str(x)
+
+    if _x[-2:] == '.0':
+        _x = _x[:-2]
+
+    return _x
+
+
 def percentage2float(x: float) -> float:
     return float(x) / 100
 
@@ -79,7 +88,7 @@ class PaletteTransformer:
         titledeco   = '-',
         header      = '',
         footer      = '',
-        pal_builder = None,
+        pal_builder = None, # We need a palette builder!
         api_builder = lambda: '', # No API!
     ):
         self.get_palcode = pal_builder

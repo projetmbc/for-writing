@@ -64,7 +64,7 @@ def _build_palette(
 # -- PALETTE TRANSFORMER -- #
 # ------------------------- #
 
-palparser = PaletteTransformer(
+paltransfo = PaletteTransformer(
     comspecs = {
         TAG_MULTICOM_START: '/*',
         TAG_MULTICOM_END  : '*/',
@@ -97,7 +97,7 @@ this::
 
 /* CSS definition. */
 
---palPALETTE-1: rgb(0% 0% 0%);
+--palPALETTE-1: rgb(0.0% 0.0% 0.0%);
 --palPALETTE-2: rgb(0% 0% 0%);
 --palPALETTE-3: rgb(40% 0% 20%);
 --palPALETTE-4: rgb(80% 20% 0%);
@@ -117,23 +117,23 @@ this::
     print(code.strip())
 
     print_section('EXTRACTED DATA')
-    std_data = palparser.get_pydef(code)
+    std_data = paltransfo.get_pydef(code)
     print(std_data)
 
     print_section('PYTHON 2 CODE')
-    coded_data = palparser.get_palcode(
+    coded_data = paltransfo.get_palcode(
         name    = 'OnePalName',
         palette = std_data[TAG_PALETTE]
     )
-    print(palparser.header)
+    print(paltransfo.header)
     print(coded_data)
-    print(palparser.footer)
+    print(paltransfo.footer)
 
     print_section('CREDITS IN CODE')
-    print(palparser.get_credits('Credits. OK? KO?'))
+    print(paltransfo.get_credits('Credits. OK? KO?'))
 
     print_section('API CODE')
-    coded_api = palparser.get_apicode()
+    coded_api = paltransfo.get_apicode()
 
     if coded_api:
          if input('Print API (y/n)? ') == 'y':

@@ -49,7 +49,9 @@ def _build_palette(
     indent  = " "*2
     _paldef = [f"{name}{{"]
 
-    for r, g, b in palette:
+    for rgb in palette:
+        r, g, b = map(float2str, rgb)
+
         _paldef.append(
             f"{indent}{{{r}, {g}, {b}}},"
         )
@@ -84,10 +86,10 @@ def _build_api() -> str:
 # -- PALETTE TRANSFORMER -- #
 # ------------------------- #
 
-palparser = PaletteTransformer(
+paltransfo = PaletteTransformer(
     comspecs   = {TAG_SINGLECOM: '%'},
     palpattern = re.compile(
-        r"\{([\d.]+),\s+([\d.]+),\s+([\d.]+)\},\s*"
+        r"\{([\d.]+),\s*([\d.]+),\s*([\d.]+)\},?\s*"
     ),
     pal_builder = _build_palette,
     api_builder = _build_api,
@@ -120,11 +122,12 @@ if __name__ == "__main__":
 % }
 
 \palCreateFromRGB{PALETTE}{
+  {0.0,0.0,0.0},
   {0.0, 0.0, 0.0},
   {0.4, 0.0, 0.2},
   {0.8, 0.2, 0.0},
   {1.0, 0.6, 0.0},
-  {1.0, 1.0, 0.45678},
+  {1.0, 1.0, 0.45678}
 }
     """
 
@@ -140,23 +143,23 @@ if __name__ == "__main__":
     print(code.strip())
 
     print_section('EXTRACTED DATA')
-    std_data = palparser.get_pydef(code)
+    std_data = paltransfo.get_pydef(code)
     print(std_data)
 
     print_section('PYTHON 2 CODE')
-    coded_data = palparser.get_palcode(
+    coded_data = paltransfo.get_palcode(
         name    = 'OnePalName',
         palette = std_data[TAG_PALETTE]
     )
-    # print(palparser.header)
+    # print(paltransfo.header)
     print(coded_data)
-    # print(palparser.footer)
+    # print(paltransfo.footer)
 
     print_section('CREDITS IN CODE')
-    print(palparser.get_credits('Credits. OK? KO?'))
+    print(paltransfo.get_credits('Credits. OK? KO?'))
 
     print_section('API CODE')
-    coded_api = palparser.get_apicode()
+    coded_api = paltransfo.get_apicode()
 
     if coded_api:
          if input('Print API (y/n)? ') == 'y':

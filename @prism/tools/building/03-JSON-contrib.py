@@ -75,6 +75,8 @@ for folder, contribs in sorted(contribs_accepted.items()):
         file_path   = folder.parent / "extend.py"
     )
 
+    paltransfo = extend.paltransfo
+
     for one_contrib in sorted(contribs):
         logging.info(f"Add '{one_contrib}'")
 
@@ -84,12 +86,12 @@ for folder, contribs in sorted(contribs_accepted.items()):
         contrib_file = folder / one_contrib
         contrib_code = contrib_file.read_text()
 
-        PaletteTransformer = extend.parse(contrib_code)
+        paldata = paltransfo.get_pydef(contrib_code)
 
         pals[stdname] = resrc_std_palette(
             palname   = palname,
-            palkind   = PaletteTransformer[TAG_METADATA.lower()][TAG_KIND],
-            paldef    = PaletteTransformer[TAG_PALETTE],
+            palkind   = paldata[TAG_METADATA.lower()][TAG_KIND],
+            paldef    = paldata[TAG_PALETTE],
             precision = PRECISION + 2,
         )
 
