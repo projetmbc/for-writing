@@ -7,11 +7,13 @@
 #
 #    2) ''<alias>: ignored''
 #
-#    (the palette exists but is intentionally excluded)
+#    (the palette exists but is intentionally excluded, using
+#    a fictive mapping from the name to itself)
 #
 #    3) ''<alias>: superseded''
 #
-#    (the palette no longer exists but has a direct equivalent).
+#    (the palette no longer exists but has a direct equivalent,
+#    requiring a mapping from the old name to the new one).
 
 GrayTab:
   MidGray: renamed

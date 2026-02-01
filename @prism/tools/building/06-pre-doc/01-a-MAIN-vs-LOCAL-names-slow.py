@@ -1,6 +1,3 @@
-exit(1)
-
-
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
@@ -107,7 +104,7 @@ def lower_names_kept(
 
 logging.info("MAIN/LOCAL - Get 'last local' version")
 
-JSON_PROD_FILE = PROJ_DIR / "products" / "json" / "palettes.json"
+JSON_PROD_FILE = PROJ_DIR / "products" / "json" / "palettes-hf.json"
 
 with JSON_PROD_FILE.open(mode = "r") as f:
     LOCAL_PALS = json_load(f)
@@ -223,11 +220,13 @@ yaml_code = f'''
 #
 #    2) ''<alias>: ignored''
 #
-#    (the palette exists but is intentionally excluded)
+#    (the palette exists but is intentionally excluded, using
+#    a fictive mapping from the name to itself)
 #
 #    3) ''<alias>: superseded''
 #
-#    (the palette no longer exists but has a direct equivalent).
+#    (the palette no longer exists but has a direct equivalent,
+#    requiring a mapping from the old name to the new one).
 
 {yaml_code}
 '''.lstrip()

@@ -129,7 +129,7 @@ def get_palette_compatibility(palette_a, palette_b):
 
 logging.info("MAIN/LOCAL - Get 'last local' version")
 
-JSON_PROD_FILE = PROJ_DIR / "products" / "json" / "palettes.json"
+JSON_PROD_FILE = PROJ_DIR / "products" / "json" / "palettes-hf.json"
 
 with JSON_PROD_FILE.open(mode = "r") as f:
     LOCAL_PALS = json_load(f)
