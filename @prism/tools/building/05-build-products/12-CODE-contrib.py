@@ -98,12 +98,18 @@ for ctxt in sorted(
 ):
     logging.info(f"Implement '{ctxt}'")
 
+    this_contrib_folder = CONTRIB_PROD_DIR / ctxt
+
+# Get version wanted.
+    with (this_contrib_folder / 'about.yaml').open(mode = 'r') as f:
+        this_about = yaml.safe_load(f)
+
 # Import extend.py.
     logging.info(f"({ctxt}) Import 'extend.py'")
 
     extend = import_from_path(
         module_name = "extend",
-        file_path   = CONTRIB_PROD_DIR / ctxt / "extend.py"
+        file_path   = this_contrib_folder / "extend.py"
     )
 
     paltransfo = extend.paltransfo
@@ -116,52 +122,15 @@ for ctxt in sorted(
 
     for palversion, paldefs in monopaldefs.items():
 # Monolithic versions.
-        logging.info(
-            f"({ctxt}) '{palversion}' - Monolithic"
-        )
-
-        codefile = this_prod_folder / (
-            f"{palversion}.{paltransfo.extension}"
-        )
-
-        codefile.touch()
-
-        _code = [credits, '']
-
-        if paltransfo.header:
-            _code.append(paltransfo.header)
-
-        for palname, palette in paldefs.items():
-            _code.append(
-                paltransfo.get_palcode(
-                    name    = palname,
-                    palette = palette
-                )
+        if this_about.get('monolithic', True):
+            logging.info(
+                f"({ctxt}) '{palversion}' - Monolithic"
             )
 
-            _code.append('')
+            codefile = this_prod_folder / (
+                f"{palversion}.{paltransfo.extension}"
+            )
 
-        _code.pop(-1)
-
-        if paltransfo.footer:
-            _code.append(paltransfo.footer)
-
-        _code.append('')
-
-        code = '\n'.join(_code)
-
-        codefile.write_text(code)
-
-# Modular versions.
-        logging.info(
-            f"({ctxt}) '{palversion}' - Modular"
-        )
-
-        subdir = this_prod_folder / palversion
-        subdir.mkdir()
-
-        for palname, palette in paldefs.items():
-            codefile = subdir / f"{palname}.{paltransfo.extension}"
             codefile.touch()
 
             _code = [credits, '']
@@ -169,12 +138,17 @@ for ctxt in sorted(
             if paltransfo.header:
                 _code.append(paltransfo.header)
 
-            _code.append(
-                paltransfo.get_palcode(
-                    name    = palname,
-                    palette = palette
+            for palname, palette in paldefs.items():
+                _code.append(
+                    paltransfo.get_palcode(
+                        name    = palname,
+                        palette = palette
+                    )
                 )
-            )
+
+                _code.append('')
+
+            _code.pop(-1)
 
             if paltransfo.footer:
                 _code.append(paltransfo.footer)
@@ -184,6 +158,40 @@ for ctxt in sorted(
             code = '\n'.join(_code)
 
             codefile.write_text(code)
+
+# Modular versions.
+        if this_about.get('modular', True):
+            logging.info(
+                f"({ctxt}) '{palversion}' - Modular"
+            )
+
+            subdir = this_prod_folder / palversion
+            subdir.mkdir()
+
+            for palname, palette in paldefs.items():
+                codefile = subdir / f"{palname}.{paltransfo.extension}"
+                codefile.touch()
+
+                _code = [credits, '']
+
+                if paltransfo.header:
+                    _code.append(paltransfo.header)
+
+                _code.append(
+                    paltransfo.get_palcode(
+                        name    = palname,
+                        palette = palette
+                    )
+                )
+
+                if paltransfo.footer:
+                    _code.append(paltransfo.footer)
+
+                _code.append('')
+
+                code = '\n'.join(_code)
+
+                codefile.write_text(code)
 
 # API.
     code = paltransfo.get_apicode()
@@ -206,7 +214,7 @@ for ctxt in sorted(
     logging.info(f"({ctxt}) Add 'showcase'")
 
     copytree(
-        src = CONTRIB_PROD_DIR / ctxt / "fake-prod" / "showcase",
+        src = this_contrib_folder / "fake-prod" / "showcase",
         dst = this_prod_folder / "showcase",
     )
 

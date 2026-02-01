@@ -1,3 +1,5 @@
+monolithic: no
+
 clean:
   data:
     latex_temp_ext:

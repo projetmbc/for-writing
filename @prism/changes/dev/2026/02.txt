@@ -14,13 +14,13 @@
 
     1) Data extraction and code generation are now performed by simply instantiating the 'PaletteTransformer' class.
 
+    1) Monolithic or modular version can be omitted (\tex can't build all the high-fidelity palettes).
+
     1) Standardization of showcases with simplified graphics: waves for small palettes and random triangles for large ones.
 
                CSS      OK
-               LaTeX    OK, but temporary removed before allowing finer product format (here hf is not a good choice)
+               LaTeX    OK
                Lua      ???
-
-    + ???? doc updated
 
 
 -------
@@ -28,4 +28,4 @@
 -------
 
 [[:api:]]
-\lua \prod: the lua::''getPal'' \func is now lua::''palCreateFromPal'', and it accpets a lua::''palette'' \var (no more name allowed).
+\lua \prod: the lua::''getPal'' \func is now lua::''palCreateFromPal'' which wants a lua::''palette'' \var (no more name allowed).

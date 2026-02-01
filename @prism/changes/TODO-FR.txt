@@ -12,6 +12,20 @@ WIMS : https://beta.framadate.org/polls/a427c29572513d61aec9/a8dcb2b97684271a0d2
 https://beta.framadate.org/polls/a427c29572513d61aec9
 
 
+
+
+
+// ---------- //
+
+
+---------
+:updated:
+---------
+
+???? doc contrib et formats
+
+
+
 // ---------- //
 
 40 = 4 x 10 cra pour un contexte sménatique, on peut avoir des états
