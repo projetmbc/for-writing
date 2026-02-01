@@ -46,7 +46,6 @@ palFlag = {
   {0, 0, 0}
 }
 
-
 -- Big size palette.
 palActon = {
   {0.1494, 0.049588, 0.2492},

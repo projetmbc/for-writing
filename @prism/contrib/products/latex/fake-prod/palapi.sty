@@ -1,140 +1,27 @@
-% ----------------------------- %
-% -- USE AND CREATE PALETTES -- %
-% ----------------------------- %
+% --------------------------------------- %
+% -- FAKE VERSION OF THE FINAL PRODUCT -- %
+% --------------------------------------- %
 
 \usepackage{xcolor}
 
 \ExplSyntaxOn
 
-% -- LaTeX API -- %
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : \csv list of \rgb triplets (e.g., ''{1, 0, 0},
-%          {0.5, 1, 0.7}, ...'')
-%
-%     :action: creates all the \vars needed to use a new
-%              palette from \rgb \vals
-%%%
 \NewDocumentCommand{ \palCreateFromRGB }{ m m }{
   \palette_create_from_rgb:nn { #1 }{ #2 }
 }
 
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : \csv list of colors defined using names (e.g.,
-%          ''red, blue!80, orange!70!black, ...'')
-%
-%     :action: creates all the \vars needed to use a new
-%              palette from named colors
-%%%
-\NewDocumentCommand{ \palCreateFromNames }{ m m }{
-  \palette_create_from_name:nn { #1 }{ #2 }
-}
-
-
-%%%
-% prototype::
-%     #1 : new palette name
-%     #2 : options (optional) - can include:
-%            * ''extract={1,2,7}'' : extract specific indices
-%            * ''shift=<n>'' : circular shift by n positions
-%            * ''reverse'' : reverse color order
-%     #3 : source palette name
-%
-%     :action: creates a new palette from an existing one,
-%              optionally extracting, shifting, or reversing
-%              colors
-%%%
-\NewDocumentCommand{ \palCreateFromPal }{ m O{} m }{
-  \palette_create_from_pal:nnn { #1 }{ #2 }{ #3 }
-}
-
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : color index (from 1 to palette size)
-%
-%     :return: the internal \xcolor name for the specified
-%              color
-%%%
 \NewExpandableDocumentCommand{ \palUse }{ m m }{
   \palette_get_color_name:nn { #1 }{ #2 }
 }
 
-
-%%%
-% prototype::
-%     #1 : palette name
-%
-%     :return: the number of colors in the palette
-%%%
 \NewExpandableDocumentCommand{ \palSize }{ m }{
   \palette_size:n { #1 }
 }
 
-
-%%%
-% prototype::
-%     #1 : palette name
-%
-%     :action: creates a new empty palette
-%%%
-\NewExpandableDocumentCommand{ \palNew }{ m }{
-  \palette_new:n { #1 }
-}
-
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : \rgb triplet (e.g., ''0.5, 0.2, 0.8'')
-%
-%     :action: appends a \xcolor color to the palette
-%%%
-\NewExpandableDocumentCommand{ \palAddRGB }{ m m }{
-  \palette_add_rgb_color:nn { #1 }{ #2 }
-}
-
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : color definine using names (e.g., "red",
-%          "blue!50", ...)
-%
-%     :action: appends a \xcolor color to the palette
-%%%
-\NewExpandableDocumentCommand{ \palAddNames }{ m m }{
-  \palette_add_name_color:nn { #1 }{ #2 }
-}
-
-
-% -- Tools -- %
-
-%%%
-% prototype::
-%     #1 : palette name
-%
-%     :action: initializes an empty palette (as a LaTeX3 sequence).
-%%%
 \cs_new_protected:Nn \palette_new:n {
   \seq_new:c { g_palette_#1_seq }
 }
 
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : \rgb triplet (\csv floats from 0 to 1)
-%
-%     :action: appends an \rgb color to the palette and definies
-%              an internal \xcolor color.
-%%%
 \cs_new_protected:Nn \palette_add_rgb_color:nn {
   \seq_gput_right:cx { g_palette_#1_seq }{ #2 }
 
@@ -147,197 +34,18 @@
     {rgb}{#2}
 }
 
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : color defined using names (any valid \xcolor color)
-%
-%     :action: converts a color defined using names to \rgb and
-%              adds it to the palette
-%
-%
-% note::
-%     We uses \xcolor's extraction/conversion functionnalities.
-%
-%         * ''\extractcolorspecs{color}{model-cmd}{color-cmd}''
-%           extracts the color specification and stores the model
-%           and the color \spec in dedicated macros.
-%
-%         * ''\convertcolorspec{model}{spec}{target model}{cmd}''
-%           converts a color specification to the target model (we
-%           use \rgb here).
-%%%
-\cs_new_protected:Nn \palette_add_name_color:nn {
-  \group_begin:
-% Extract color model and specification from the named color
-    \extractcolorspecs
-      { #2 }
-      { \@pal@model@ }
-      { \@pal@col@spec@}
-
-% Convert to RGB format
-    \convertcolorspec
-      { \@pal@model@ }
-      { \@pal@col@spec@ }
-      { rgb }
-      { \@rgb@xcolor@ }
-
-% Store RGB values globally
-    \tl_gset:Nx \g_tmpa_tl { \@rgb@xcolor@ }
-  \group_end:
-
-% Add the converted RGB color to the palette
-  \exp_args:NnV \palette_add_rgb_color:nn { #1 } { \g_tmpa_tl }
-}
-
-
-%%%
-% prototype::
-%     #1 : palette name
-%
-%     :return: the number of colors in the palette
-%%%
 \cs_new:Nn \palette_size:n {
   \seq_count:c { g_palette_#1_seq }
 }
 
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : color index (integer from 1 to palette size)
-%
-%     :return: the internal xcolor name ''palette@<name>@<index>''
-%%%
 \cs_new:Nn \palette_get_color_name:nn {
   palette@#1@#2
 }
 
-
-% -- Creation -- %
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : \csv list of \rgb triplets
-%
-%     :action: creates a new palette and populates it with
-%              \xcolor colors
-%%%
 \cs_new_protected:Nn \palette_create_from_rgb:nn {
   \palette_new:n { #1 }
   \clist_map_inline:nn { #2 }{
     \palette_add_rgb_color:nn { #1 } { ##1 }
-  }
-}
-
-
-%%%
-% prototype::
-%     #1 : palette name
-%     #2 : \csv list of colors using names
-%
-%     :action: creates a new palette and populates it with
-%              \xcolor colors
-%%%
-\cs_new_protected:Nn \palette_create_from_name:nn {
-  \palette_new:n { #1 }
-  \clist_map_inline:nn { #2 }{
-    \palette_add_name_color:nn { #1 } { ##1 }
-  }
-}
-
-
-% -- Transformation -- %
-
-%%%
-% prototype::
-%     #1 : new palette name
-%     #2 : options (key-value list)
-%     #3 : source palette name
-%
-%     :action: creates a new palette from an existing palette
-%              with optional transformations
-%%%
-\keys_define:nn { palette / pal-2-pal } {
-  extract .clist_set:N = \l__palette_extract_clist,
-  extract .initial:n   = {},
-  shift   .int_set:N   = \l__palette_shift_int,
-  shift   .initial:n   = 0,
-  reverse .bool_set:N  = \l__palette_reverse_bool,
-  reverse .initial:n   = false,
-}
-
-
-% Helper function to rotate a sequence
-\cs_new_protected:Nn \__palette_seq_rotate:Nn {
-  \int_compare:nNnF { #2 } = { 0 } {
-    \int_compare:nNnTF { #2 } > { 0 } {
-      % Positive shift: move items from left to right
-      \int_step_inline:nn { #2 } {
-        \seq_pop_right:NN #1 \l_tmpa_tl
-        \seq_put_left:NV #1 \l_tmpa_tl
-      }
-    }{
-      % Negative shift: move items from right to left
-      \int_step_inline:nn { -#2 } {
-        \seq_pop_left:NN #1 \l_tmpa_tl
-        \seq_put_right:NV #1 \l_tmpa_tl
-      }
-    }
-  }
-}
-
-
-\int_new:N \l__palette_size_int
-
-\cs_new_protected:Nn \palette_create_from_pal:nnn {
-  % Reset all options to default values
-  \clist_clear:N \l__palette_extract_clist
-  \int_set:Nn \l__palette_shift_int { 0 }
-  \bool_set_false:N \l__palette_reverse_bool
-
-  % Parse options
-  \keys_set:nn { palette / pal-2-pal } { #2 }
-
-  \int_set:Nn \l__palette_size_int { \palette_size:n { #3 } }
-
-  % Create new empty palette
-  \palette_new:n { #1 }
-
-  % Create temporary sequence to store indices
-  \seq_clear:N \l_tmpa_seq
-
-  % Determine which indices to process
-  \clist_if_empty:NTF \l__palette_extract_clist {
-    % No extraction: use all indices
-    \int_step_inline:nn { \seq_count:c { g_palette_#3_seq } } {
-      \seq_put_right:Nn \l_tmpa_seq { ##1 }
-    }
-  }{
-    % Extract specific indices
-    \clist_map_inline:Nn \l__palette_extract_clist {
-      \seq_put_right:Nn \l_tmpa_seq { ##1 }
-    }
-  }
-
-  % Apply shift if needed
-  \int_compare:nNnF { \l__palette_shift_int } = { 0 } {
-    \__palette_seq_rotate:Nn \l_tmpa_seq { \l__palette_shift_int }
-  }
-
-  % Apply reverse if needed
-  \bool_if:NT \l__palette_reverse_bool {
-    \seq_reverse:N \l_tmpa_seq
-  }
-
-  % Copy colors to new palette
-  \seq_map_inline:Nn \l_tmpa_seq {
-    \tl_set:Nx \l_tmpa_tl {
-      \seq_item:cn { g_palette_#3_seq } { ##1 }
-    }
-    \palette_add_rgb_color:nn { #1 } { \l_tmpa_tl }
   }
 }
 

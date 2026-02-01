@@ -1,6 +1,6 @@
 \documentclass{tutodoc}
 
-\newcommand{\PALETTE}{Accent}
+\newcommand{\PALETTE}{Acton}
 
 \geometry{
   top    = 1cm,
@@ -16,15 +16,19 @@
 %  landscape
 %]
 
+\usepackage{../palapi}
 \usepackage{../palettes-hf}
 
 \usepackage[svgnames]{xcolor}
 \usepackage{tikz}
 
+\usepackage{ifthen}
+\usetikzlibrary{calc}
 
-% -------------------- %
-% -- COMMON SETTING -- %
-% -------------------- %
+
+% ------------------- %
+% -- COLOR SETTING -- %
+% ------------------- %
 
 \colorlet{COL1}{black!80}
 \colorlet{COL2}{LightGray!25!white}

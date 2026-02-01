@@ -13,9 +13,9 @@
 \Contribs: data extraction and code generation are performed simply by instantiating the ''PaletteTransformer'' class.
 
     + prod build
-          showcase hf uiquement !!!
-               CSS
-               LaTeX    ???
+          showcase hf uiquement + amlioration avec un rendu différent si grande taille ou petite (wave vs traingle aléatoire)
+               CSS      OK
+               LaTeX    OK, but temporary removed before allowing finer product format (here hf is not a good choice)
                Lua      ???
 
     + ???? doc updated

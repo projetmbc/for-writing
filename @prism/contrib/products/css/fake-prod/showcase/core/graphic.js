@@ -171,7 +171,7 @@ function draw(name, size) {
       svg.appendChild(path);
     });
 
-    // Random triangles (big size).
+// Random triangles (big size).
   } else {
     const width = 800;
     const height = 400;

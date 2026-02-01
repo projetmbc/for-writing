@@ -5,7 +5,7 @@ author: Christophe, BAL
 #    + ko
 #    + ok
 #    + update
-status: ok
+status: on hold
 
 # Classical comments.
 #    + [on hold]  New API not yet analysed.
@@ -13,4 +13,4 @@ status: ok
 #    + [ko]       API rejected because ...
 #    + [ok]       API accepted.
 #    + [update]   Working on...
-comment: WiP by the project maintainer. ;-)
+comment: TeX capacity needs better poroduct format settings!
