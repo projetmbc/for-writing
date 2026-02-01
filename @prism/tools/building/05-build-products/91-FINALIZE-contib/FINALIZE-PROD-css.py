@@ -1,7 +1,3 @@
-exit(1)
-
-
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -44,7 +40,7 @@ PAL_SPECS_JS_FILE = PRODS_DIR / "css" / "showcase" / "core" / "palettes.js"
 # ------------------ #
 
 PROD_JSON_DIR = PRODS_DIR / "json"
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes-hf.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
@@ -70,5 +66,22 @@ for old, new in [
     ("};", '\n};\n'),
 ]:
     js_code = js_code.replace(old, new)
+
+# Alphabet comments
+_js_code    = []
+last_letter = ''
+
+for line in js_code.splitlines():
+    if line.startswith('  "'):
+        letter = line[3]
+
+        if letter != last_letter:
+            _js_code.append(f'//  + {letter}')
+
+            last_letter = letter
+
+    _js_code.append(line)
+
+js_code = '\n'.join(_js_code)
 
 PAL_SPECS_JS_FILE.write_text(js_code)

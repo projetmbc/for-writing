@@ -4,66 +4,73 @@
 
 <head>
   <meta charset="UTF-8">
+  <title>🎨 @prism palette studio (Viewer)</title>
 
-  <title>🎨 @prism palette studio (Viewer))</title>
+  <link rel  = "stylesheet"
+        href = "../palettes-hf.css">
 
   <link rel  = "stylesheet"
         href = "./core/styles.css">
 </head>
+
 <body>
 
-<div class="container">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+<div class = "container">
+  <div style = "display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
     <h1>🎨 @prism</h1>
 
-    <div class="nav-buttons">
-      <button onclick="pickRandom()"
-              class="btn-tool">
+    <div class = "nav-buttons">
+      <button onclick = "pickRandom()"
+              class   = "btn-tool">
         🎲 RANDOM
       </button>
 
-      <button onclick="document.body.classList.toggle('dark-mode')"
-              class="btn-tool">
+      <button class   = "btn-tool"
+              onclick = "document.body.classList.toggle('dark-mode')">
         🌓 THEME
       </button>
     </div>
   </div>
 
-  <div class="selector-engine">
-    <div id="alphabet-bar"
-         class="alphabet-bar">
+  <div class = "selector-engine">
+    <div id    = "alphabetBar"
+         class = "alphabet-bar">
     </div>
 
-    <div id="scroll-zone"
-         class="palette-scroll-zone">
+    <div id    = "scrollZone"
+         class = "palette-scroll-zone">
     </div>
   </div>
 
-  <div id="result-area" style="display:none">
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
-      <h2 id="current-title"
-          style="font-size: 1rem;">
+  <div id    = "resultArea"
+       style = "display:none">
+    <div style = "display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+      <h2 id    = "currentTitle"
+          style = "font-size: 1rem;">
       </h2>
 
-      <label id="color-count"
-             style="margin-bottom:0;">
+      <label id    = "colorCount"
+             style = "margin-bottom:0;">
       </label>
     </div>
 
-    <label>Spectrum</label>
-    <div class="spectrum-bar"
-         id="spectrum-preview">
-    </div>
-
-    <label>Palette</label>
-    <div class="palette-preview"
-         id="palette-preview">
-    </div>
-
-    <div class="viz-box">
-      <svg id="canvas"
-           viewBox="0 0 750 250">
+    <div class = "viz-box">
+      <svg id      = "canvas"
+           viewBox = "0 0 750 250">
       </svg>
+    </div>
+
+    <label>Spectrum</label>
+    <div id    = "spectrum-preview"
+         class = "spectrum-bar">
+    </div>
+
+    <label id = "palette-label">
+      Palette
+    </label>
+
+    <div id    = "palette-preview"
+         class = "palette-preview">
     </div>
   </div>
 </div>

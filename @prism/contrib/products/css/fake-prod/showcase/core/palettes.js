@@ -1,5 +1,5 @@
 /***
-Just a fictive list just for tests...
+Just a fake list just for tests...
 
 warning::
     A script must build the real list of all palette names
@@ -9,14 +9,14 @@ warning::
 const palsize = {
 //  + A - D
   "Acton": 256,   // Look at the fake ''palettes-hf.css''.
-  "Alizari": 12,
+  "AFlag": 40,    // Look at the fake ''palettes-s40.css''.
   "Amber": 9,
   "Azure": 8,
   "Bold": 12,
   "Bordeaux": 11,
   "Bronze": 10,
   "Berry": 14,
-  "Coolwarm": 40,   // Look at the fake ''palettes-s40.css''.
+  "Coolwarm": 40,
   "Cyan": 10,
   "Cobalt": 12,
   "Crimson": 8,

@@ -1,0 +1,29 @@
+// ---------- //
+
+
+==
+01  (2.0.0-beta.12)  ??????
+==
+
+-----
+:new:
+-----
+
+[[:api:]]
+\Contribs: data extraction and code generation are performed simply by instantiating the ''PaletteTransformer'' class.
+
+    + prod build
+          showcase hf uiquement !!!
+               CSS
+               LaTeX    ???
+               Lua      ???
+
+    + ???? doc updated
+
+
+
+lua getPal prend une palette, plus un nom !!!
+--> nouveau nom   palCreateFromPal
+
+
+FAIT! usage d'un fake palettes-hf monolithic file .
