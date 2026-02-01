@@ -140,11 +140,6 @@ for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
 
     content = mdpath.read_text()
 
-    if palkind == 'other':
-        logging.warning(f"Unmanaged '{fname}' (maybe later)")
-
-        continue
-
     logging.info(f"Parse '{fname}' content")
 
     if not palkind in KIND_ALIAS:

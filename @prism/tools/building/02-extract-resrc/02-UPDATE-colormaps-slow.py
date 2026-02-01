@@ -96,10 +96,13 @@ clean_src_dirs(
     globs_kept    = [
         f"colormaps/colormaps/{n}/*.rgb"
         for n in [
-            "sciviz",
+# Ignoring palettes also in Palettable.
             "colorcet",
+            "sciviz",
         ]
     ] + [
         "docs/docs/*.md"
     ],
 )
+
+(THIS_RESRC_DIR / 'docs' / 'other.md').unlink()

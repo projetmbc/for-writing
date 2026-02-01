@@ -65,6 +65,13 @@ Pour représenter l'évolution d'une donnée :
 
 
 
+// ---------- //
+
+voir si on peut s'en passer pour les palettes mais pas pour les lkinds car ttes les palettes sont 256
+
+
+colrmpas supported !!!
+
 
 // ---------- //
 

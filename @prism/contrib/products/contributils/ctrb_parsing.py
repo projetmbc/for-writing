@@ -82,16 +82,16 @@ def percentage2float(x: float) -> float:
 class PaletteTransformer:
     def __init__(
         self,
-        extension,
-        comspecs,
-        palpattern,
-        floatify    = float,
-        titledeco   = '-',
-        header      = '',
-        footer      = '',
-        pal_builder = None, # We need a palette builder!
-        api_builder = lambda: '', # No API!
-    ):
+        extension  : str,
+        comspecs   : dict[str, str],
+        palpattern : re.Pattern[str],
+        pal_builder: Callable[[str, PaletteCols], str],
+        api_builder: Callable[[], str]        = lambda: '',
+        floatify   : Callable[[float], float] = float,
+        titledeco  : str                      = '-',
+        header     : str                      = '',
+        footer     : str                      = '',
+    ) -> None:
         self. extension = extension
 
         self.get_palcode = pal_builder
@@ -115,9 +115,9 @@ class PaletteTransformer:
 
     def build_patterns(
         self,
-        comspecs,
-        palpattern,
-    ):
+        comspecs  : dict[str, str],
+        palpattern: re.Pattern[str],
+    ) -> None:
 # Nothing to do for the palette pattern.
         self.patterns = {
             TAG_PALETTE: palpattern,
@@ -208,8 +208,8 @@ class PaletteTransformer:
 
     def get_pydef(
         self,
-        code,
-    ):
+        code: str,
+    ) -> dict:
         self._code = code
 
         self.build_metadata()
@@ -221,7 +221,7 @@ class PaletteTransformer:
         }
 
 
-    def build_metadata(self):
+    def build_metadata(self) -> None:
 # Get magic comments.
         comments = self.patterns[TAG_MAGICCOM_BLOCK].findall(self._code)
 
@@ -280,7 +280,7 @@ class PaletteTransformer:
     def _this_from_one_block(
         self,
         block: str,
-    ) -> dict[str, str]:
+    ) -> None:
         in_this_block = False
 
         for line in block.split('\n'):
@@ -300,7 +300,7 @@ class PaletteTransformer:
                     self.metadata[what] = comspecs
 
 #
-    def build_palette(self):
+    def build_palette(self) -> None:
         cleaned_code = self._code
 
 # Clean multiline comments.
@@ -337,7 +337,7 @@ class PaletteTransformer:
 # -- BUILDING -- #
     def get_credits(
         self,
-        credits : str
+        credits: str
     ) -> str:
 # Let's work.
         _credits = credits.split("\n")

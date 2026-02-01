@@ -2,6 +2,7 @@
 
 from typing import (
     Annotated,
+    Callable,
     Optional,
     TypeAlias, TypedDict,
 )
