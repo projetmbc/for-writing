@@ -6,10 +6,9 @@
 
 
 \begin{luacode*}
-  function generate_pattern(palname)
-
-  local size = tonumber(token.get_macro("nbcol"))
-  local palname = token.get_macro("PALETTE")
+function generate_pattern(palname)
+    local size = tonumber(token.get_macro("nbcol"))
+    local palname = token.get_macro("PALETTE")
 
     local width = 16.0
     local height = 8.0
@@ -17,40 +16,50 @@
     local jitter = 0.5
     local seed = 42
 
-    -- Générateur aléatoire LCG
     local function getNextRandom()
         seed = (seed * 1664525 + 1013904223) % 4294967296
+        
         return seed / 4294967296
     end
 
-    -- Mélange des index (Fisher-Yates)
     local indices = {}
-    for i = 1, size do indices[i] = i end
+
+    for i = 1, size do 
+        indices[i] = i
+    end
+    
     for i = size, 2, -1 do
         local j = math.floor(getNextRandom() * i) + 1
+
         indices[i], indices[j] = indices[j], indices[i]
     end
 
-    -- Configuration de la grille
     local cols = math.ceil(math.sqrt(size / 2))
     local rows = math.ceil(size / (cols * 2))
     local cellW = (width - splitX) / cols
     local cellH = height / rows
 
-    -- Génération des points avec jitter
     local points = {}
+    
     for r = 0, rows do
         points[r] = {}
+    
         for c = 0, cols do
             local x = splitX + (c * cellW)
             local y = r * cellH
-            if c > 0 and c < cols then x = x + (getNextRandom() - 0.5) * cellW * jitter end
-            if r > 0 and r < rows then y = y + (getNextRandom() - 0.5) * cellH * jitter end
+    
+            if c > 0 and c < cols then 
+                x = x + (getNextRandom() - 0.5) * cellW * jitter
+            end
+            
+            if r > 0 and r < rows then 
+                y = y + (getNextRandom() - 0.5) * cellH * jitter 
+            end
+
             points[r][c] = {x = x, y = y}
         end
     end
 
-    -- Dessin des triangles
     local colorCounter = 1
     for r = 0, rows - 1 do
         for c = 0, cols - 1 do
@@ -60,18 +69,22 @@
             local triangles = {{p1, p2, p3}, {p2, p4, p3}}
 
             for _, t in ipairs(triangles) do
-    -- On utilise le modulo pour boucler sur les index de 1 à size
-    local pIdx = indices[((colorCounter - 1) % size) + 1]
-
-    local drawCmd = string.format(
-        "\\fill[\\palUse{%s}{%d}, draw=\\palUse{%s}{%d}] (%.3f,%.3f) -- (%.3f,%.3f) -- (%.3f,%.3f) -- cycle;",
-        palname, pIdx, palname, pIdx, t[1].x, t[1].y, t[2].x, t[2].y, t[3].x, t[3].y
-    )
-    tex.sprint(drawCmd)
-    colorCounter = colorCounter + 1
-end
-
-
+                local pIdx = indices[((colorCounter - 1) % size) + 1]
+                local drawCmd = string.format(
+                    "\\fill[\\palUse{%s}{%d}, draw=\\palUse{%s}{%d}] (%.3f,%.3f) -- (%.3f,%.3f) -- (%.3f,%.3f) -- cycle;",
+                    palname,
+                    pIdx,
+                    palname,
+                    pIdx, 
+                    t[1].x, t[1].y, 
+                    t[2].x, t[2].y,
+                    t[3].x, t[3].y
+                )
+                
+                tex.sprint(drawCmd)
+                
+                colorCounter = colorCounter + 1
+            end
         end
     end
 end
@@ -121,13 +134,22 @@ end
 
 \bigskip\bigskip
 
+\def\maxray{5}
+
 \begin{tikzpicture}
   \foreach \i in {1,...,\nbcol} {
-    \pgfmathsetmacro{\rayon}{2.5 - 2.5*(\i-1)/\nbcol}
-    \fill[\palUse{\PALETTE}{\i}] (0, 0) circle (\rayon);
+    \pgfmathsetmacro{\rayon}
+                    {\maxray - \maxray*(\i-1)/\nbcol}
+ 
+    \fill[\palUse{\PALETTE}{\i}]
+    (0, 0) circle (\rayon);
   }
-  % Bordure extérieure
-  \draw[COL1, thick] (0, 0) circle (2.5);
+  
+  \draw[
+    COL1,
+    thick
+  ]
+  (0, 0) circle (\maxray);
 \end{tikzpicture}
 
 
@@ -140,7 +162,7 @@ end
   % -- WAVES (small size) -- %
   % ------------------------ %
 
-  \def\waveWidth{16}
+  \def\waveWidth{18}
   \def\amplitude{.75}
 
   \begin{tikzpicture}
@@ -168,9 +190,8 @@ end
   % -- RANDOM TRIANGLES (big size) -- %
   % --------------------------------- %
   \begin{tikzpicture}
-    % On appelle la fonction Lua
     \directlua{generate_pattern()}
-\end{tikzpicture}
+  \end{tikzpicture}
 }
 
 
@@ -184,16 +205,25 @@ end
 \pgfmathsetmacro{\palspectheight}{1}
 
 \begin{tikzpicture}
-  \foreach \i in {1,...,\inteval{\nbcol-1}} {
-    \pgfmathsetmacro{\xstart}{\palspectwidth*(\i-1)/(\nbcol-1)}
-    \pgfmathsetmacro{\xend}{\palspectwidth*\i/(\nbcol-1)}
-    \shade[left color  = \palUse{\PALETTE}{\i},
-           right color = \palUse{\PALETTE}{\inteval{\i+1}}]
-      (\xstart, 0) rectangle (\xend, \palspectheight);
+  \foreach \i in {1,...,\inteval{\nbcol-1}} {%
+    \pgfmathsetmacro{\xstart}
+                    {\palspectwidth*(\i-1)/(\nbcol-1)}
+
+    \pgfmathsetmacro{\xend}
+                    {\palspectwidth*\i/(\nbcol-1)}
+
+    \shade[
+      left color  = \palUse{\PALETTE}{\i},
+      right color = \palUse{\PALETTE}{\inteval{\i+1}}
+    ]
+    (\xstart, 0) rectangle (\xend, \palspectheight);
   }
 
-  \draw[COL1, thick]
-    (0, 0) rectangle (\palspectwidth, \palspectheight);
+  \draw[
+    COL1,
+    thick
+  ]
+  (0, 0) rectangle (\palspectwidth, \palspectheight);
 \end{tikzpicture}
 
 
@@ -205,13 +235,18 @@ end
   \bigskip
 
   \begin{tikzpicture}
-    \pgfmathsetmacro{\w}{\palspectwidth / \nbcol}
-
+    \pgfmathsetmacro{\w}
+                    {\palspectwidth / \nbcol}
     \foreach \i in {1,...,\nbcol} {
-        \pgfmathsetmacro{\xpos}{(\i-1) * \w}
+        \pgfmathsetmacro{\xpos}
+                        {(\i - 1) * \w}
 
-        \draw[COL1, thick, fill = \palUse{\PALETTE}{\i}]
-          (\xpos, 0) rectangle (\xpos + \w, \palspectheight);
+        \draw[
+          COL1,
+          thick,
+          fill = \palUse{\PALETTE}{\i}
+        ]
+        (\xpos, 0) rectangle (\xpos + \w, \palspectheight);
     }
-  \end{tikzpicture}
+  \end{tikzpicture}%
 }{}

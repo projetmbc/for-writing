@@ -13,19 +13,6 @@ sympa
 }
 
 {
-   LightCyan,
-   LightSkyBlue,
-   Plum,
-   LightCoral,
-   LightSalmon,
-   Khaki,
-   PaleGreen
-}
-
-
-new?
-
-{
    Purple,
    Indigo,
    Blue,
