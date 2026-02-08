@@ -1,7 +1,7 @@
 ### The palettes folder
 
 This folder is used to store palettes provided as files using the specific implementation chosen. Each file name gives the name of the palette.
-For example, on December 20, 2025, the `Lua` `palettes` folder contained the following items defining three palettes named `BlindFish`, `GasFlame`, and `GroovyRainbow`.
+For example, on December 20, 2025, the `Lua` `palettes` folder contained the following items defining palettes named `BlindFish`, `BurningGrass`, `GasFlame`...
 
 ~~~
 - palettes
@@ -49,6 +49,3 @@ PALETTE = {
   {0.7735, 0.25685, 0.219575}
 }
 ~~~
-
-
-> ***NOTE.*** *The size of palettes provided by `@prism` is fixed, but nothing prevents you from using any number of colors you wish when creating your own.*

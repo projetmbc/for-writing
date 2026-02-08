@@ -2,21 +2,21 @@
 
 \documentclass{tutodoc}
 
-\newcommand{\PALETTE}{Binary}
+\newcommand{\PALETTE}{palActon}
+
+\directlua{
+  dofile('../../palettes-hf.lua')
+  dofile('../../palapi.lua')
+
+  PALETTE = \PALETTE
+}
 
 \geometry{
   top    = 1cm,
   bottom = 1cm,
   left   = 1cm,
   right  = 1cm,
-%  showframe
 }
-
-\usepackage{pgfpages}
-\pgfpagesuselayout{2 on 1}[
-  a4paper,
-  landscape
-]
 
 \usepackage[svgnames]{xcolor}
 \usepackage[3d]{luadraw}
@@ -32,12 +32,7 @@
 % -- COMMON LUA CODE USED -- %
 % -------------------------- %
 
-\directlua{dofile('../../palettes-hf.lua')}
-
 \directlua{
-  PALNAME = "\PALETTE"
-  PALETTE = getPal(PALNAME)
-
   COL_1 = "black!80"
   COL_2 = "lightgray!25!white"
 }

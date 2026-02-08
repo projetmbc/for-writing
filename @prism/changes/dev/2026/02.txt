@@ -2,8 +2,33 @@
 
 
 ==
-03     ????  (2.0.0-beta.12)
+09  (2.0.0-beta.13)  ????
 ==
+
+--------
+:update:
+--------
+
+\Docs explain the new \api.
+
+    1) \Contrib \readme. ????
+
+
+
+// ---------- //
+
+
+==
+08  (2.0.0-beta.12)
+==
+
+-------
+:break:
+-------
+
+[[:api:]]
+\lua \prod: \func lua::''getPal'' is now lua::''palCreateFromPal''. It expects a palette \var instead of a name alongside options.
+
 
 -----
 :new:
@@ -12,19 +37,8 @@
 [[:api:]]
 \Contribs workflow simplified significantly.
 
-    1) Data extraction and code generation are now performed by simply instantiating the python::''PaletteTransformer'' class.
+    1) Data extraction and code generation are now streamlined by instantiating the python::''PaletteTransformer'' class, alongside palette and \api builder functions.
 
     1) Monolithic or modular version can be omitted (\tex can't build all the high-fidelity palettes).
 
-    1) Standardization of showcases with simplified graphics: waves for small palettes and random triangles for large ones.
-
-               CSS / LaTeX    OK
-               Lua            ???
-
-
--------
-:break:
--------
-
-[[:api:]]
-\lua \prod: \func lua::''getPal'' is now lua::''palCreateFromPal''. It expects a palette \var instead of a name.
+    1) Standardized showcases now feature simplified graphics: waves for small palettes and random triangles for large ones.

@@ -17,17 +17,6 @@ https://beta.framadate.org/polls/a427c29572513d61aec9
 
 // ---------- //
 
-
----------
-:updated:
----------
-
-???? doc contrib et formats
-
-
-
-// ---------- //
-
 40 = 4 x 10 cra pour un contexte sménatique, on peut avoir des états
 
    --> à faire, fait
@@ -81,19 +70,47 @@ Pour représenter l'évolution d'une donnée :
 
 // ---------- //
 
-voir si on peut s'en passer pour les palettes mais pas pour les lkinds car ttes les palettes sont 256
+enrichier API pour insertion d'une couleur pour éviter une horruer comme la suivante où l'on définit tout par des noms et insert en position 0 la couleur RGB
+
+en lua c'est clé en main via insert, pour latex, on ajoute palAddRGBAt et palAddNamesAt : on doit augmenter taille de la palette, puis ensuite changer la valeur existente
 
 
-colrmpas supported !!!
+%%%
+% Here is the LaTeX code used.
+%
+% latex::
+%     \palNew{PALETTE}
+%     %  1: Link
+%     \palAddRGB{PALETTE}{0.584, 0.569, 0.651}
+%     %  2: Note
+%     \palAddNames{PALETTE}{cyan}
+%     %  3: Tip
+%     \palAddNames{PALETTE}{ForestGreen}
+%     %  4: Important
+%     \palAddNames{PALETTE}{orange}
+%     %  5: Caution
+%     \palAddNames{PALETTE}{violet}
+%     %  6: Warning
+%     \palAddNames{PALETTE}{red}
+%     %  7: Last change
+%     \palAddNames{PALETTE}{cyan!60}
+%     %  8: Outdated change
+%     \palAddNames{PALETTE}{gray}
+%     %  9: Page color
+%     \palAddNames{PALETTE}{black}
+%     % 10: Text color
+%     \palAddNames{PALETTE}{white!80!black}
+%%%
+
 
 
 // ---------- //
 
-AVNAT nelle version !!!!!
+AVANT nelle version !!!!!
 
 real camelcase based on colornames : Pinkgrey  -->  PinkGrey
 
-    + penser à stocker
+    + penser à stocker dans la bdd  via alias !
 
 
 // ---------- //
@@ -103,7 +120,7 @@ besoin de garder les version utilisé pour la doc
 
 // ---------- //
 
-css : support aussi de l'hexadécimal car std en CSS
+css - html de dev : support aussi de l'hexadécimal car std en CSS
 
 
 // ---------- //

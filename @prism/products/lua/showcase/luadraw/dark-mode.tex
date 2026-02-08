@@ -2,11 +2,13 @@
 
 \documentclass[theme = dark]{tutodoc}
 
-\directlua{dofile('../../palettes-hf.lua')}
+\newcommand{\PALETTE}{palActon}
 
-\newcommand{\PALETTE}{palFlag}
 \directlua{
-  PALETTE = palFakeOne
+  dofile('../../palettes-hf.lua')
+  dofile('../../palapi.lua')
+
+  PALETTE = \PALETTE
 }
 
 \geometry{
@@ -14,14 +16,7 @@
   bottom = 1cm,
   left   = 1cm,
   right  = 1cm,
-%  showframe
 }
-
-\usepackage{pgfpages}
-\pgfpagesuselayout{2 on 1}[
-  a4paper,
-  landscape
-]
 
 \usepackage[svgnames]{xcolor}
 \usepackage[3d]{luadraw}

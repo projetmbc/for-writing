@@ -1,3 +1,3 @@
 ### The tests folder
 
-his directory should provide a way to test palette transformations.
+This directory shoulds provide a way to test palette transformations.

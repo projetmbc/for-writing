@@ -53,15 +53,6 @@ def std_strdict(
         onedict[k] = onedict.get(k, '')
 
 
-def float2percentage(x: float) -> str:
-    x *= 100
-    _x = f"{x:.6f}"
-    _x = _x.rstrip('0')
-    _x = _x.rstrip('.')
-
-    return f"{_x}%"
-
-
 def float2str(x: float) -> str:
     _x = str(x)
 
@@ -69,6 +60,15 @@ def float2str(x: float) -> str:
         _x = _x[:-2]
 
     return _x
+
+
+def float2percentage(x: float) -> str:
+    x *= 100
+    _x = f"{x:.6f}"
+    _x = _x.rstrip('0')
+    _x = _x.rstrip('.')
+
+    return f"{_x}%"
 
 
 def percentage2float(x: float) -> float:
@@ -88,9 +88,9 @@ class PaletteTransformer:
         pal_builder: Callable[[str, PaletteCols], str],
         api_builder: Callable[[], str]        = lambda: '',
         floatify   : Callable[[float], float] = float,
-        titledeco  : str                      = '-',
         header     : str                      = '',
         footer     : str                      = '',
+        titledeco  : str                      = '-',
     ) -> None:
         self. extension = extension
 
@@ -204,7 +204,7 @@ class PaletteTransformer:
         )
 
 
-# -- PÄRSING -- #
+# -- PARSING -- #
 
     def get_pydef(
         self,

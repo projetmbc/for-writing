@@ -18,7 +18,7 @@ from contributils import *
 
 
 ###
-# # The following snippet defines the ''PALETTE'' palette.
+# The following snippet defines the ''PALETTE'' palette.
 #
 # lua::
 #     PALETTE = {

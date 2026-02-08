@@ -48,7 +48,7 @@ TAG_STRUCT_END   = TMPL_TAG_STRUCT.format("END")
 subcontent = FAKE_EXTEND_PYFILE.read_text()
 subcontent = f"""
 ~~~python
-{subcontent}
+{subcontent.strip()}
 ~~~
 """.strip()
 

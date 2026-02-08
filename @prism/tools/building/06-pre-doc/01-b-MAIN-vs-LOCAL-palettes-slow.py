@@ -106,9 +106,12 @@ def get_palette_compatibility(palette_a, palette_b):
 
         old_indices = np.linspace(0, 1, len(large_p))
         new_indices = np.linspace(0, 1, len(small_p))
+
         interp_func = interp1d(old_indices, large_p, axis=0, kind='linear')
-        p_ref = small_p
+
+        p_ref  = small_p
         p_test = interp_func(new_indices)
+
     else:
         p_ref, p_test = p1, p2
 
@@ -145,8 +148,6 @@ REPORT_LAST_MAIN_JSON = REPORT_DIR / f"AUDIT-LAST-MAIN.json"
 
 with REPORT_LAST_MAIN_JSON.open(mode = "r") as f:
     MAIN_PALS = json_load(f)
-
-
 
 
 # -------------------- #

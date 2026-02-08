@@ -18,16 +18,16 @@ function generate_pattern(palname)
 
     local function getNextRandom()
         seed = (seed * 1664525 + 1013904223) % 4294967296
-        
+
         return seed / 4294967296
     end
 
     local indices = {}
 
-    for i = 1, size do 
+    for i = 1, size do
         indices[i] = i
     end
-    
+
     for i = size, 2, -1 do
         local j = math.floor(getNextRandom() * i) + 1
 
@@ -40,20 +40,20 @@ function generate_pattern(palname)
     local cellH = height / rows
 
     local points = {}
-    
+
     for r = 0, rows do
         points[r] = {}
-    
+
         for c = 0, cols do
             local x = splitX + (c * cellW)
             local y = r * cellH
-    
-            if c > 0 and c < cols then 
+
+            if c > 0 and c < cols then
                 x = x + (getNextRandom() - 0.5) * cellW * jitter
             end
-            
-            if r > 0 and r < rows then 
-                y = y + (getNextRandom() - 0.5) * cellH * jitter 
+
+            if r > 0 and r < rows then
+                y = y + (getNextRandom() - 0.5) * cellH * jitter
             end
 
             points[r][c] = {x = x, y = y}
@@ -75,14 +75,14 @@ function generate_pattern(palname)
                     palname,
                     pIdx,
                     palname,
-                    pIdx, 
-                    t[1].x, t[1].y, 
+                    pIdx,
+                    t[1].x, t[1].y,
                     t[2].x, t[2].y,
                     t[3].x, t[3].y
                 )
-                
+
                 tex.sprint(drawCmd)
-                
+
                 colorCounter = colorCounter + 1
             end
         end
@@ -95,7 +95,7 @@ end
 % -- PALETTE TITLE -- %
 % ------------------- %
 
-{\Huge \PALETTE}
+{\Huge\bfseries \PALETTE}
 
 
 % ------------------ %
@@ -107,7 +107,7 @@ end
 \ExplSyntaxOn
 
 \tl_new:N  \l_colored_text_tl
-\tl_set:Nn \l_colored_text_tl {Some Colored Text...}
+\tl_set:Nn \l_colored_text_tl {Some Colored LaTeX}
 
 \tl_replace_all:Nnn \l_colored_text_tl { ~ } { \space }
 
@@ -140,11 +140,11 @@ end
   \foreach \i in {1,...,\nbcol} {
     \pgfmathsetmacro{\rayon}
                     {\maxray - \maxray*(\i-1)/\nbcol}
- 
+
     \fill[\palUse{\PALETTE}{\i}]
     (0, 0) circle (\rayon);
   }
-  
+
   \draw[
     COL1,
     thick
@@ -153,15 +153,15 @@ end
 \end{tikzpicture}
 
 
+% ------------------------------- %
+% -- WAVES vs RANDOM TRIANGLES -- %
+% ------------------------------- %
 
 \bigskip\bigskip
 
+% -- WAVES (small size) -- %
+
 \ifthenelse{\nbcol < 41}{
-
-  % ------------------------ %
-  % -- WAVES (small size) -- %
-  % ------------------------ %
-
   \def\waveWidth{18}
   \def\amplitude{.75}
 
@@ -185,10 +185,8 @@ end
   \end{tikzpicture}
 }{
 
+% -- RANDOM TRIANGLES (big size) -- %
 
-  % --------------------------------- %
-  % -- RANDOM TRIANGLES (big size) -- %
-  % --------------------------------- %
   \begin{tikzpicture}
     \directlua{generate_pattern()}
   \end{tikzpicture}
