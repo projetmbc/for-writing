@@ -1,21 +1,39 @@
-% --------------------------------- %
-% -- NO TRANSLATION NEEDED HERE! -- %
-% --------------------------------- %
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+
+        \item The following palettes have been renamed: \boxed{{\Rightarrow}\vphantom{pM}} indicates a name modification, with the \thisproj\ name displayed on the right.
 
     \begin{center}
-    \begin{tblr}{
-      colspec     = {@{}l | r Q[c,$] l},
-      baseline    = T,
-      column{2,4} = {cmd=\tdoccodein{text}},
-    }
-        CartoColors
-          & Prism & \Rightarrow & PrismCC \\
-        \hline
-        Plotly
-          & Bluered & \Rightarrow & BlueRedPly \\
-          & Rainbow & \Rightarrow & RainbowPly \\
-        \hline
-        Tableau
-          & Gray & \Rightarrow & GrayTab \\
-    \end{tblr}
-\end{center}
+        \begin{tblr}{
+          colspec     = {@{}l | r Q[c,$] l},
+          baseline    = T,
+          column{2,4} = {cmd=\tdoccodein{text}},
+        }
+                CARTOColors
+                  & Prism & \Rightarrow & PrismCC \\
+                \hline
+                CarbonPlan
+                  & Blues & \Rightarrow & BluesCP \\
+                  & Cool & \Rightarrow & CoolCP \\
+                  & Earth & \Rightarrow & EarthCP \\
+                  & Greens & \Rightarrow & GreensCP \\
+                  & Greys & \Rightarrow & GreysCP \\
+                  & Oranges & \Rightarrow & OrangesCP \\
+                  & Purples & \Rightarrow & PurplesCP \\
+                  & Rainbow & \Rightarrow & RainbowCP \\
+                  & Reds & \Rightarrow & RedsCP \\
+                \hline
+                Colorbrewer
+                  & YlOrRd & \Rightarrow & YlOrRdCBW \\
+                \hline
+                Plotly
+                  & Bluered & \Rightarrow & BlueRedPLY \\
+                  & Hot & \Rightarrow & HotPLY \\
+                  & Jet & \Rightarrow & JetPLY \\
+                  & Rainbow & \Rightarrow & RainbowPLY \\
+                \hline
+                Tableau
+                  & Gray & \Rightarrow & MidGray \\
+        \end{tblr}
+    \end{center}
