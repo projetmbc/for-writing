@@ -25,7 +25,7 @@ Despite the availability of palette generation tools such as \coolors, the choic
 
 
 \begin{center}
-    \subimport{../../../common/}{surface.luadraw}
+    \subimport{../../../common/graphics/}{surface.luadraw}
 \end{center}
 
 
@@ -35,13 +35,13 @@ Despite the availability of palette generation tools such as \coolors, the choic
 Technically, to generate the graphics in this section, \LUADRAW\ is provided with a finite list of colors and uses linear interpolations to calculate the intermediate color values. In the example above, the finite color palette used is defined as follows.
 %
 \begin{center}
-    \subimport{../../../common/}{palette.luadraw}
+    \subimport{../../../common/graphics/}{palette.luadraw}
 \end{center}
 
 Using this palette, \LUADRAW\ can produce the following spectrum, allowing us to create the graphic above.
 %
 \begin{center}
-    \subimport{../../../common/}{spectrum.luadraw}
+    \subimport{../../../common/graphics/}{spectrum.luadraw}
 \end{center}
 
 
@@ -52,31 +52,31 @@ Using this palette, \LUADRAW\ can produce the following spectrum, allowing us to
     Using the \lua\ implementation of \thisproj, see the section \ref{products-lua}, via \LUADRAW, we can create the palettes below made from the previous one named \tdoccodein{lua}+'GeoRainbow'+. Each instruction used is given below each palette.
     %
     \begin{center}
-        \subimport{../../../common/}{palette-reversed.luadraw}
+        \subimport{../../../common/graphics/}{palette-reversed.luadraw}
 
         \tdoccodein{lua}+getPal('GeoRainbow', {reverse = true})+
 
         \smallskip
-        \subimport{../../../common/}{palette-shift.luadraw}
+        \subimport{../../../common/graphics/}{palette-shift.luadraw}
 
         \tdoccodein{lua}+getPal('GeoRainbow', {shift = 3})+
 
         \smallskip
-        \subimport{../../../common/}{palette-extract.luadraw}
+        \subimport{../../../common/graphics/}{palette-extract.luadraw}
 
-        \tdoccodein{lua}+getPal('GeoRainbow', {extract = {7, 10, 4}})+
+        \tdoccodein{lua}+getPal('GeoRainbow', {extract = {7, 1, 4}})+
     \end{center}
 
     \smallskip
 
     This features provide remarkable creative flexibility: with the same surface as before, using the setting
-    \tdoccodein{lua}+getPal('GeoRainbow', {extract = {2, 3, 7, 8, 5, 6}, reverse = true})+
+    \tdoccodein{lua}+getPal('GeoRainbow', {extract = {6, 5, 4, 3, 1, 2}})+
     instead of
     \tdoccodein{lua}+getPal('GeoRainbow')+,
     we change the visual tone, shifting from a seaside feel to a snow-covered world.
     %
     \begin{center}
-        \subimport{../../../common/}{surface-options.luadraw}
+        \subimport{../../../common/graphics/}{surface-options.luadraw}
     \end{center}
 \end{tdocnote}
 

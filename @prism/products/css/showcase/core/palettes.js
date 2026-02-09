@@ -128,6 +128,7 @@ const palsize = {
   "GrandBudapest3": 6,
   "GrandBudapest4": 5,
   "GrandBudapest5": 5,
+  "Gray": 256,
   "GrayC": 256,
   "GreenMagenta": 16,
   "GreenOrange": 12,

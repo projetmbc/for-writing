@@ -92,8 +92,8 @@ with IGNORED_YAML.open(mode = 'r') as f:
 IGNORED = set()
 
 if not _IGNORED is None:
-    for src, names in _IGNORED.items():
-        for n in names:
+    for src, metadata in _IGNORED.items():
+        for n in metadata:
             IGNORED.add((n, src))
 
 
@@ -247,7 +247,10 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
             if (name, src) in IGNORED:
                 is_kept = 0
 
-                logging.warning(f"Ignore {name} [{src}] (metadata retained for future reporting)")
+                logging.warning(
+                    f"Ignore {name} [{src}] "
+                     "(metadata retained for future reporting)"
+                )
 
             else:
                 is_kept = 1

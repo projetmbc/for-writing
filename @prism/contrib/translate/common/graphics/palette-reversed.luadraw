@@ -2,12 +2,10 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{luadraw}{name = palette-shift}
-require 'luadraw_palettes'
-
-local PAL = getPal(
-  'GeoRainbow',
-  {shift = 3}
+\begin{luadraw}{name = palette-reversed}
+local PAL = palCreateFromPal(
+  palGeoRainbow,
+  {reverse = true}
 )
 
 local PALSIZE  = #PAL

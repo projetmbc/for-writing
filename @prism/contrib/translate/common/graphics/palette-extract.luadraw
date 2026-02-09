@@ -2,12 +2,10 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{luadraw}{name = palette-reversed}
-require 'luadraw_palettes'
-
-local PAL = getPal(
-  'GeoRainbow',
-  {reverse = true}
+\begin{luadraw}{name = palette-extract}
+local PAL = palCreateFromPal(
+  palGeoRainbow,
+  {extract = {7, 1, 4}}
 )
 
 local PALSIZE  = #PAL

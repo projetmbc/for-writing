@@ -2,10 +2,11 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{luadraw}{name = surface}
-require 'luadraw_palettes'
-
-local pal = getPal('GeoRainbow')
+\begin{luadraw}{name = surface-options}
+local PAL = palCreateFromPal(
+  palGeoRainbow,
+  {extract = {6, 5, 4, 3, 1, 2}}
+)
 
 local cos, sin = math.cos, math.sin, math.pi
 
@@ -30,7 +31,7 @@ local S = surface(
 
 local n = 10
 
-local colors = getpalette(pal, n, true)
+local colors = getpalette(PAL, n, true)
 
 local niv, S1 = {}
 

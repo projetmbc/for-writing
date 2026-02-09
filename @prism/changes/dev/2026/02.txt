@@ -2,16 +2,23 @@
 
 
 ==
-09  (2.0.0-beta.13)
+09  (2.0.0-beta.13)   ??
 ==
 
 --------
 :update:
 --------
 
-\Docs explain the new \api.
+\Docs explain the new \api. Here are the changes made.
 
     1) \Contrib \readme.
+
+    1) ????
+    Manual.
+
+        + Added \ref to \carbonplan.
+
+        + All graphics use single palette files such as as to avoid unuseful updates made byt \latexmk.
 
 
 --------

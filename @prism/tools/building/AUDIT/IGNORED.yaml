@@ -1,11 +1,7 @@
-#  + C
-CMOCEAN:
-  - Gray
-
 #  + P
 PLOTLY:
-  - D3
+  D3: Tab10
 
 #  + T
 TABLEAU:
-  - Tableau
+  Tableau: Tab20

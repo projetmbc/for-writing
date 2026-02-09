@@ -2,13 +2,8 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{luadraw}{name = palette-extract}
-require 'luadraw_palettes'
-
-local PAL = getPal(
-  'GeoRainbow',
-  {extract = {7, 10, 4}}
-)
+\begin{luadraw}{name = palette}
+local PAL = palGeoRainbow
 
 local PALSIZE  = #PAL
 local PALDIM   = .75

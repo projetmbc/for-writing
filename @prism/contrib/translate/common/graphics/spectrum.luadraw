@@ -3,9 +3,7 @@
 % --------------------------------- %
 
 \begin{luadraw}{name = spectrum}
-require 'luadraw_palettes'
-
-local PAL = getPal('GeoRainbow')
+local PAL = palGeoRainbow
 
 local PALSIZE  = #PAL
 local PALDIM   = .75

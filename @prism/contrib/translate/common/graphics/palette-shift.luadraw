@@ -2,10 +2,11 @@
 % -- NO TRANSLATION NEEDED HERE! -- %
 % --------------------------------- %
 
-\begin{luadraw}{name = palette}
-require 'luadraw_palettes'
-
-local PAL = getPal('GeoRainbow')
+\begin{luadraw}{name = palette-shift}
+local PAL = palCreateFromPal(
+  palGeoRainbow,
+  {shift = 3}
+)
 
 local PALSIZE  = #PAL
 local PALDIM   = .75
