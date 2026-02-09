@@ -1,0 +1,63 @@
+% !TEX TS-program = lualatex
+
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+
+\begin{document}
+
+% -- AUTOMATICALLY GENERATED UGLY CODE - START -- %
+
+\section{Supported implementations}
+\label{products-all}
+
+All implementations are located in the \tdoccodein{text}+products+ folder. Each implementation provides palette definitions and supports the use of a single color. When available, the following actions can be performed to create new palettes:
+
+\begin{itemize}
+\item
+Select specific colors from an existing palette using their indices.
+
+\item
+Shift the palette left (negative value) or right (positive value) by any number of steps.
+
+\item
+Reverse the order of the colors.
+\end{itemize}
+
+\begin{tdocimp}
+To explain how new palettes can be built, we will refer to the colors in the standard palette as \tdoccodein{text}+coul_1+, \tdoccodein{text}+coul_2+, etc., and suppose that the extracted indices are \tdoccodein{text}+{1, 3, 6, 9}+, the shift used is \tdoccodein{text}++1+, and the \tdoccodein{text}+reverse+ option is enabled. The new palette will then be built sequentially as follows: first \tdoccodein{text}+{coul_1, coul_3, coul_6, coul_9}+ (extraction), second \tdoccodein{text}+{coul_9, coul_1, coul_3, coul_6}+ (shift to the right), and finally \tdoccodein{text}+{coul_6, coul_3, coul_1, coul_9}+ (reverse).
+\end{tdocimp}
+
+\begin{tdocnote}
+Extra features are limited to discrete palette operations. For example, color interpolation is not provided, as this is usually handled out of the box by visualization and formatting tools.
+\end{tdocnote}
+
+\subsection{JSON, the versatile default format}
+\label{products-json}
+
+A \tdoccodein{text}+palettes.json+ file containing only palette definitions is provided by default, allowing unsupported programming languages to integrate {\thisproj} palettes. Below are the first lines of the file.
+
+\begin{tdoccode}{json}
+{
+  "Accent": [
+    [0.49803922, 0.78823529, 0.49803922],
+    [0.74509804, 0.68235294, 0.83137255],
+    [0.99215686, 0.75294118, 0.5254902],
+    [1, 1, 0.6],
+    [0.21960784, 0.42352941, 0.69019608],
+    [0.94117647, 0.00784314, 0.49803922],
+    [0.74901961, 0.35686275, 0.09019608],
+    [0.4, 0.4, 0.4]
+  ],
+  ...
+}
+\end{tdoccode}
+
+% -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
+
+\end{document}

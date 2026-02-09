@@ -14,9 +14,9 @@ inlinecode:
     - <nb>
 -->
 
-The `CSS` implementation provides one variable per palette colors, named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging.
+Each palette color is defined as an individual variable named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging.
 Each palette color variable is defined as an `RGB` value using percentage notation.
-For example, the file `palettes-hf/palettes-hf.css` looks like the following partial code.
+For example, the file `palettes-hf/GistHeat.css` looks like the following partial code.
 
 ~~~css
 :root {

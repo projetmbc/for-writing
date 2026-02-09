@@ -16,11 +16,11 @@
 <!--YAML
 inlinecode:
   latex:
-    - \palUse{<name>}{<indice>}
-    - \palUse{GistHeat}{3}
+    - \palUse{<name>}{<index>}
+    - \palUse{GistHeat}{8}
 -->
 
-To access a color from a palette, use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
+Accessing a single palette color is straightforward: use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
 For example, `\palUse{GistHeat}{8}` is the eighth color of the `GistHeat` palette, an `xcolor` format color that can be easily used as shown in the following compilable example.
 
 ~~~latex
@@ -66,14 +66,16 @@ inlinecode:
 
 For creating new palettes manually, the following high-level commands are available.
 
-  1. `\palCreateFromRGB` creates a palette by entering it as an array-like variable, while `\palCreateFromNames` works with named colors.
+  1. `\palCreateFromNames` works with a comma separated list of named colors, while `\palCreateFromRGB` creates a palette by entering it as an array-like variable.
 
   1. `\palSize{<name>}` returns the palette size (useful for loops, for example).
 
 
-The following example demonstrates the `\palCreateFromRGB` and `\palCreateFromNames` commands (we don't have put `\usepackage{palettes}`).
+The following example demonstrates the `\palCreateFromRGB` and `\palCreateFromNames` commands.
 
 ~~~latex
+\usepackage{palapi}
+
 \usepackage[svgnames]{xcolor}
 
 \palCreateFromRGB{MyRGBPal}{
