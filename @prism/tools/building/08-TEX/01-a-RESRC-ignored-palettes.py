@@ -22,7 +22,27 @@ from yaml        import safe_load
 
 
 # ------------------ #
-# -- CONSTANTS #1 -- #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != TAG_APRISM):
+    PROJ_DIR = PROJ_DIR.parent
+
+AUDIT_DIR     = BUILD_TOOLS_DIR / TAG_AUDIT
+TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
+USED_BY_TOOLS_DIR = TRANSLATE_DIR.parent / "en" / TAG_USED_BY_TOOLS
+
+
+PALS_IGNORED_BY_TECHNO = defaultdict(dict)
+
+
+TEX_FILE = TRANSLATE_DIR / "report" /  "ignored-palettes.latex"
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
 # ------------------ #
 
 TAB = " "*8
@@ -41,8 +61,26 @@ TEX_NO_EDIT = f"""
 """.strip()
 
 
-TEX_ITEM_HEADER = r"""
-\item The following palettes are excluded because they duplicate \thisproj\ palettes either directly or in reversed order, except that exact duplicates (same name and colors) are omitted: we use \boxed{{=}\vphantom{pM}} for equality, and \boxed{{\rightleftharpoons}\vphantom{pM}} for reversal, and the rightmost palettes are the ones retained in \thisproj.
+TAG_START = "% -- LIST OF IGNORED PALETTES - AUTO - START -- %"
+TAG_END   = "% -- LIST OF IGNORED PALETTES - AUTO - END -- %"
+
+
+LIST_DESC = (
+    USED_BY_TOOLS_DIR / "ignored-palettes.tex"
+).read_text()
+
+for (s, e) in [
+    (TAG_START, TAG_END),
+    (r'\begin{enumerate}', r'\end{enumerate}'),
+]:
+    _ , _ , LIST_DESC = LIST_DESC.partition(f"\n{s}")
+
+    LIST_DESC , _ , _ = LIST_DESC.partition(f"{e}\n")
+
+LIST_DESC = LIST_DESC.strip()
+
+TEX_ITEM_HEADER = TAB + LIST_DESC + r"""
+    %
 
     \begin{center}
         \begin{tblr}{
@@ -62,25 +100,6 @@ TEX_TMPL_TABLE_FOOTER = TAB + r"""
 TEX_TMPL_KIND  = TAB*2 + r"{ctxt}"
 TEX_TMPL_ROW   = TAB*2 + r"  & {row} \\"
 TEX_TMPL_HRULE = TAB*2 + r"\hline"
-
-
-# ------------------ #
-# -- CONSTANTS #2 -- #
-# ------------------ #
-
-PROJ_DIR = THIS_DIR
-
-while (PROJ_DIR.name != TAG_APRISM):
-    PROJ_DIR = PROJ_DIR.parent
-
-AUDIT_DIR     = BUILD_TOOLS_DIR / TAG_AUDIT
-TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
-
-
-PALS_IGNORED_BY_TECHNO = defaultdict(dict)
-
-
-TEX_FILE = TRANSLATE_DIR / "report" /  "ignored-palettes.latex"
 
 
 # ------------------------------ #

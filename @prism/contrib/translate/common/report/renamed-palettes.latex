@@ -2,8 +2,7 @@
 % -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
 % ------------------------------------------- %
 
-        \item The following palettes have been renamed: \boxed{{\Rightarrow}\vphantom{pM}} indicates a name modification, with the \thisproj\ name displayed on the right.
-
+        \item The following palettes have been renamed: \boxed{{\Rightarrow}\vphantom{pM}} indicates a name modification, with the \thisproj\ name displayed on the right.%
     \begin{center}
         \begin{tblr}{
           colspec     = {@{}l | r Q[c,$] l},

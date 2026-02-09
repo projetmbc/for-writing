@@ -36,6 +36,13 @@ def get_tag_varname(name: str) -> str:
     return varname
 
 
+# -------------- #
+# -- FOR DOCS -- #
+# -------------- #
+
+TAG_USED_BY_TOOLS = "used-by-tools"
+
+
 # ------------------ #
 # -- YAML CONFIGS -- #
 # ------------------ #
@@ -110,6 +117,7 @@ for kind, about in YAML_CONFIGS[TAG_METADATA]['CATEGORY'].items():
 TAG_AUDIT     = "AUDIT"
 TAG_REPORT    = "REPORT"
 TAG_RESOURCES = "RESOURCES"
+TAG_SEMANTIC  = "SEMANTIC"
 
 
 # --------------- #

@@ -1,0 +1,64 @@
+% !TEX TS-program = lualatex
+
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+
+\documentclass{standalone}
+
+\usepackage[svgnames]{xcolor}
+\usepackage[3d]{luadraw}
+
+\directlua{
+  dofile('../../../..//products/lua/palapi.lua')
+
+  dofile('../../../../products/lua/palettes-hf/Summer.lua')
+}
+
+\begin{document}
+\begin{luadraw}{name = Summer-spectrum}
+PAL      = palSummer
+NB_CELLS = 200
+
+WIDTH = 16
+
+local A = Z(-WIDTH / 2, 4)
+local HEIGHT = Z(0, -1)
+
+local g = graph:new{
+  window = {
+    -WIDTH / 2,
+    WIDTH / 2,
+    -5, 5
+  },
+  bbox = false
+}
+
+local dl = WIDTH / NB_CELLS
+
+for k = 1, NB_CELLS do
+  local color = palette(
+    PAL,
+    (k - 1) / (NB_CELLS - 1)
+  )
+
+  g:Drectangle(
+    A,
+    A + HEIGHT,
+    A + HEIGHT + dl,
+    "color=" .. color .. ", fill=" .. color
+  )
+
+  A = A + dl
+end
+
+g:Drectangle(
+  A,
+  A + HEIGHT,
+  A + HEIGHT - WIDTH,
+  "color=black"
+)
+
+g:Show()
+\end{luadraw}
+\end{document}

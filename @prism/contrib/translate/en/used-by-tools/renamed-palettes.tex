@@ -1,0 +1,32 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{amsmath}
+
+\makeatletter
+
+\newcommand\@prism{\raisebox{-.20ex}{@}prism}
+
+\NewDocumentCommand{\thisproj}{s}{%
+  \IfBooleanTF{#1}{%
+    \@prism%
+  }{%
+    \texttt{\@prism}%
+  }%
+}
+
+\makeatother
+
+
+\begin{document}
+
+% -- LIST OF RENAMED PALETTES - AUTO - START -- %
+
+\begin{enumerate}
+    \item The following palettes have been renamed: \boxed{{\Rightarrow}\vphantom{pM}} indicates a name modification, with the \thisproj\ name displayed on the right.
+\end{enumerate}
+
+% -- LIST OF RENAMED PALETTES - AUTO - END -- %
+
+\end{document}

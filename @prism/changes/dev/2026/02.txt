@@ -2,7 +2,7 @@
 
 
 ==
-09  (2.0.0-beta.13)   ??
+09  (2.0.0-beta.13)  ????
 ==
 
 --------
@@ -13,12 +13,16 @@
 
     1) \Contrib \readme.
 
-    1) ????
-    Manual.
+    1) Manual.
 
         + Added \ref to \carbonplan.
 
         + Single palette files should avoid unuseful updates made by \latexmk.
+
+        + Standalone \pdfs for all the graphics.
+
+        + ????
+        Added new category sections.
 
 
 --------

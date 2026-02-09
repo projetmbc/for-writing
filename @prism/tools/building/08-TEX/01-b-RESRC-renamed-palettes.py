@@ -24,6 +24,26 @@ from collections import defaultdict
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != TAG_APRISM):
+    PROJ_DIR = PROJ_DIR.parent
+
+AUDIT_DIR         = BUILD_TOOLS_DIR / TAG_AUDIT
+TRANSLATE_DIR     = PROJ_DIR / "contrib" / "translate" / "common"
+USED_BY_TOOLS_DIR = TRANSLATE_DIR.parent / "en" / TAG_USED_BY_TOOLS
+
+
+PALS_RENAMED_BY_TECHNO = defaultdict(dict)
+
+
+TEX_FILE = TRANSLATE_DIR / "report" / "renamed-palettes.latex"
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
 TAB = " "*8
 
 
@@ -34,9 +54,26 @@ TEX_NO_EDIT = f"""
 """.strip()
 
 
-TEX_ITEM_HEADER = TAB + r"""
-\item The following palettes have been renamed: \boxed{{\Rightarrow}\vphantom{pM}} indicates a name modification, with the \thisproj\ name displayed on the right.
+TAG_START = "% -- LIST OF RENAMED PALETTES - AUTO - START -- %"
+TAG_END   = "% -- LIST OF RENAMED PALETTES - AUTO - END -- %"
 
+
+LIST_DESC = (
+    USED_BY_TOOLS_DIR / "renamed-palettes.tex"
+).read_text()
+
+for (s, e) in [
+    (TAG_START, TAG_END),
+    (r'\begin{enumerate}', r'\end{enumerate}'),
+]:
+    _ , _ , LIST_DESC = LIST_DESC.partition(f"\n{s}")
+
+    LIST_DESC , _ , _ = LIST_DESC.partition(f"{e}\n")
+
+LIST_DESC = LIST_DESC.strip()
+
+TEX_ITEM_HEADER = TAB + LIST_DESC + r"""
+    %
     \begin{center}
         \begin{tblr}{
           colspec     = {@{}l | r Q[c,$] l},
@@ -58,25 +95,6 @@ TEX_TMPL_HRULE = TAB*2 + r"\hline"
 
 
 TEX_EQUIV_CMD = r"\Rightarrow"
-
-
-# ------------------ #
-# -- CONSTANTS #2 -- #
-# ------------------ #
-
-PROJ_DIR = THIS_DIR
-
-while (PROJ_DIR.name != TAG_APRISM):
-    PROJ_DIR = PROJ_DIR.parent
-
-AUDIT_DIR     = BUILD_TOOLS_DIR / TAG_AUDIT
-TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
-
-
-PALS_RENAMED_BY_TECHNO = defaultdict(dict)
-
-
-TEX_FILE = TRANSLATE_DIR / "report" / "renamed-palettes.latex"
 
 
 # -------------------------- #

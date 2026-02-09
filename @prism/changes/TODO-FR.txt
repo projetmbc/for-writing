@@ -6,12 +6,34 @@
 mypy . --html-report typing_report
 
 
+// ---------- //
 
-WIMS : https://beta.framadate.org/polls/a427c29572513d61aec9/a8dcb2b97684271a0d27/admin
+catégorie avec description
 
-https://beta.framadate.org/polls/a427c29572513d61aec9
+    --> expliquer les différents types de palettes
+
+    --> catégorie simplifier : color blind pas relis ailleurs + utilisation de tikz seul pour accélére la compilation !
 
 
+// ---------- //
+
+AVANT nelle version !!!!!
+
+real camelcase based on colornames : Pinkgrey  -->  PinkGrey
+
+    + penser à stocker dans la bdd  via alias !
+
+
+
+// ---------- //
+
+se passer des pdf de démo et tout miser sur le html car au final c'est ben plus pratique
+
+    --> on peut garder des PDFs autonomés car c'est joli !
+
+    --> gestion des cartes géograhpiques
+
+    ---> mettre aussi les transfos quand l'API le propose
 
 
 
@@ -67,12 +89,9 @@ Pour représenter l'évolution d'une donnée :
     30-39 : Prédictions / Futur (couleurs translucides ou pointillés).
 
 
-
 // ---------- //
 
-enrichier API pour insertion d'une couleur pour éviter une horruer comme la suivante où l'on définit tout par des noms et insert en position 0 la couleur RGB
-
-en lua c'est clé en main via insert, pour latex, on ajoute palAddRGBAt et palAddNamesAt : on doit augmenter taille de la palette, puis ensuite changer la valeur existente
+revoir latex API
 
 
 %%%
@@ -103,21 +122,6 @@ en lua c'est clé en main via insert, pour latex, on ajoute palAddRGBAt et palAd
 %%%
 
 
-
-// ---------- //
-
-AVANT nelle version !!!!!
-
-real camelcase based on colornames : Pinkgrey  -->  PinkGrey
-
-    + penser à stocker dans la bdd  via alias !
-
-
-// ---------- //
-
-besoin de garder les version utilisé pour la doc
-
-
 // ---------- //
 
 css - html de dev : support aussi de l'hexadécimal car std en CSS
@@ -128,52 +132,6 @@ css - html de dev : support aussi de l'hexadécimal car std en CSS
 ajouter les palettes manquantes par rapport au dernier main
 
 puis entuite avoir un outil de compraison visuel lorsqu'uen déf change sur la haute résolution
-
-
-// ---------- //
-
-version palette-s40 à 40 est la ataill maxi (cf auto qualtitif) !
-ceci devraits ervir partout et on gr-arde haute résilution si esoin ponctuel !!!
-
-
-def normalize_rgb_palette(palette, target_size=40):
-    """
-    palette: list of (r, g, b) tuples
-    """
-    n = len(palette)
-    if n <= target_size:
-        return palette
-
-    new_palette = []
-
-    for i in range(target_size):
-        # Positionnement sur l'échelle 0.0 -> 1.0
-        relative_pos = i / (target_size - 1)
-        float_index = relative_pos * (n - 1)
-
-        # Identification des deux couleurs pivots
-        idx1 = int(float_index)
-        idx2 = min(idx1 + 1, n - 1)
-
-        # Ratio de mélange entre les deux couleurs
-        mix = float_index - idx1
-
-        # Interpolation linéaire sur les 3 canaux
-        # Formula: C = C1 * (1 - mix) + C2 * mix
-        interpolated_rgb = tuple(
-            int(round(palette[idx1][j] * (1 - mix) + palette[idx2][j] * mix))
-            for j in range(3)
-        )
-
-        new_palette.append(interpolated_rgb)
-
-    return new_palette
-
-
-// ---------- //
-
-penser à ordonné de façon naturel vi natsort !!!!
-
 
 
 // ---------- //
@@ -227,19 +185,6 @@ Certaines palettes Qualitative (couleurs distinctes) peuvent être perçues comm
 
 // ---------- //
 
-se passer des pdf de démo et tout miser sur le html car au final c'est ben plus pratique
-
-    --> on peut garder des PDFs autonomés car c'est joli !
-
-    --> gestion des cartes géograhpiques
-
-    ---> mettre aussi les transfos quand l'API le propose
-
-
-
-
-// ---------- //
-
 Palette	Catégorie
   > Origine / Particularité
 
@@ -286,15 +231,6 @@ dans la démo en ligne !!!
 
 // ---------- //
 
-doc
-
-    --> expliquer les différents types de palettes
-
-    --> catégorie simplifier : color blind pas relis ailleurs + utilisation de tikz seul pour accélére la compilation !
-
-
-// ---------- //
-
 semantic à reprendre maintenant que plus de taille fixé !!!
 
 
@@ -335,18 +271,6 @@ implementation
 // ---------- //
 
 ??? ajouter via latex la palette sympa Blackbody en extrayant de 6 à 10 trouver par hasard
-
-
-// ---------- //
-
-Compilation no longer restarts \luadraw. ?????
-
-
-// ---------- //
-
-on propose haute résolution
-
-    -> besoin d'un outil avec des points de contrôle
 
 
 // ---------- //

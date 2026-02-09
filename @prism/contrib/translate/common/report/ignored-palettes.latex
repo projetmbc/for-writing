@@ -2,7 +2,7 @@
 % -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
 % ------------------------------------------- %
 
-\item The following palettes are excluded because they duplicate \thisproj\ palettes either directly or in reversed order, except that exact duplicates (same name and colors) are omitted: we use \boxed{{=}\vphantom{pM}} for equality, and \boxed{{\rightleftharpoons}\vphantom{pM}} for reversal, and the rightmost palettes are the ones retained in \thisproj.
+        \item The following palettes are excluded because they duplicate \thisproj\ palettes either directly or in reversed order, except that exact duplicates (same name and colors) are omitted: we use \boxed{{=}\vphantom{pM}} for equality, and \boxed{{\rightleftharpoons}\vphantom{pM}} for reversal, and the rightmost palettes are the ones retained in \thisproj.%
 
     \begin{center}
         \begin{tblr}{
