@@ -1,7 +1,11 @@
 Supported implementations
 -------------------------
 
-All implementations are located in the `products` folder. Each implementation provides palette definitions and supports the use of a single color. When available, the following actions can be performed to create new palettes:
+All implementations are located in the `products` folder. Each implementation provides the following features:
+
+  * Palette formats in both modular (one file per palette) and monolithic (all palettes in a single file) versions.
+
+  * Palette definitions in both high-fidelity (original size) and small (currently 40 colors) size.
 
   * Select specific colors from an existing palette using their indices.
 
@@ -18,7 +22,7 @@ All implementations are located in the `products` folder. Each implementation pr
 
 ### JSON, the versatile default format
 
-A `palettes.json` file containing only palette definitions is provided by default, allowing unsupported programming languages to integrate `@prism` palettes. Below are the first lines of the file.
+The `JSON` product allows unsupported programming languages to integrate `@prism` palettes easily. Below are the first lines of the `palettes-hf.json` file.
 
 <!-- JSON PALETTE FIRST LINES. AUTO - START -->
 ~~~json

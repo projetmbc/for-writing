@@ -18,7 +18,7 @@
 
         + Added \ref to \carbonplan.
 
-        + All graphics use single palette files such as as to avoid unuseful updates made byt \latexmk.
+        + Single palette files should avoid unuseful updates made by \latexmk.
 
 
 --------

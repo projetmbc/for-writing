@@ -16,9 +16,15 @@
 \section{Supported implementations}
 \label{products-all}
 
-All implementations are located in the \tdoccodein{text}+products+ folder. Each implementation provides palette definitions and supports the use of a single color. When available, the following actions can be performed to create new palettes:
+All implementations are located in the \tdoccodein{text}+products+ folder. Each implementation provides the following features:
 
 \begin{itemize}
+\item
+Palette formats in both modular (one file per palette) and monolithic (all palettes in a single file) versions.
+
+\item
+Palette definitions in both high-fidelity (original size) and small (currently 40 colors) size.
+
 \item
 Select specific colors from an existing palette using their indices.
 
@@ -40,7 +46,7 @@ Extra features are limited to discrete palette operations. For example, color in
 \subsection{JSON, the versatile default format}
 \label{products-json}
 
-A \tdoccodein{text}+palettes.json+ file containing only palette definitions is provided by default, allowing unsupported programming languages to integrate {\thisproj} palettes. Below are the first lines of the file.
+The \tdoccodein{text}+JSON+ product allows unsupported programming languages to integrate {\thisproj} palettes easily. Below are the first lines of the \tdoccodein{text}+palettes-hf.json+ file.
 
 \begin{tdoccode}{json}
 {
