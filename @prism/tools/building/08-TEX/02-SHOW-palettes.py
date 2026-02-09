@@ -100,6 +100,10 @@ for k = 1, PALSIZE do
   )
 
   A = A + PALDIM + PALDELTA
+
+  if k % 10 == 0 then
+    A = A + Z(-10*(PALDIM + PALDELTA), -2*PALDIM)
+  end
 end
 
 g:Show()

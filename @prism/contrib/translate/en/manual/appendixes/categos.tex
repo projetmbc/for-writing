@@ -1,0 +1,49 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+% DEBUG - START
+%\geometry{showframe=true}
+% DEBUG - END
+
+\begin{document}
+
+\phantomsection
+\section*{\hfill Appendix 1 -- Palettes by category \hfill\null} \label{palette-categos}
+\addcontentsline{toc}{section}{Appendix 1 -- Palettes by category}
+
+
+\begin{tdocnote}
+    The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
+\end{tdocnote}
+
+
+% ----------------------------------------- %
+% -- JUST TRANSLATE TITLES INSIDE BRACES -- %
+% ----------------------------------------- %
+
+\foreach \nb/\kind/\title in {%
+% -- CATEGOS - AUTO - START -- %
+  1/colorblind/{Colorblind palettes},%
+  2/cyclic/{Cyclic palettes},%
+  3/dark/{Dark palettes},%
+  4/divergent/{Divergent palettes},%
+  5/qualitative/{Qualitative palettes},%
+  6/semantic/{Semantic palettes},%
+  7/sequential/{Sequential palettes}%
+% -- CATEGOS - AUTO - END -- %
+}{
+  \ifthenelse{\nb = 1}{}{\newpage}
+
+  \phantomsection
+  \subsection*{\hfill\title\hfill\null}
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
+  %
+  \begin{center}
+    \subimport{../../../common/categos/}{\kind.latex}
+  \end{center}
+}
+
+\end{document}

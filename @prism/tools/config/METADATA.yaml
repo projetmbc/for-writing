@@ -14,22 +14,17 @@ PRECISION: 4
 # We associate each category with allowed alias.
 
 CATEGORY:
-#  + A
-  aggregation:
-    desc: |
-      Aggregation palettes optimize contrast for high-density data,
-      such as heatmaps, using progressive luminance ramps.
-    alias:   # No alias.
-
 #  + C
   colorblind:
-    desc: |
+    title: Colorblind palettes
+    desc: >
       Colorblind palettes provide high-contrast hues specifically
       optimized for users with color vision deficiency.
     alias:   # No alias.
 
   cyclic:
-    desc: |
+    title: Cyclic palettes
+    desc: >
       Cyclic palettes create seamless loops for periodic data, such
       as angles, seasons, or 24-hour cycles.
     alias:
@@ -38,13 +33,15 @@ CATEGORY:
 
 #  + D
   dark:
-    desc: |
+    title: Dark palettes
+    desc: >
       Dark palettes offer high-contrast schemes specifically
       optimized for terminal interfaces and dark-mode backgrounds.
     alias:   # No alias.
 
   divergent:
-    desc: |
+    title: Divergent palettes
+    desc: >
       Divergent palettes highlight deviations from one or more
       midpoints toward contrasting extremes.
     alias:
@@ -53,16 +50,19 @@ CATEGORY:
 
 #  + Q
   qualitative:
-    desc: |
+    title: Qualitative palettes
+    desc: >
       Qualitative palettes use distinct hues to separate categorical
       data without implying any order or hierarchy.
     alias:
       - qual
       - discrete
+      - aggregation
 
 #  + S
   semantic:
-    desc: |
+    title: Semantic palettes
+    desc: >
       Semantic palettes assign colors to categories — such as UI
       states, system status, or pedagogical elements — to convey
       immediate meaning.
@@ -70,7 +70,8 @@ CATEGORY:
       - sem
 
   sequential:
-    desc: |
+    title: Sequential palettes
+    desc: >
       Sequential palettes represent ordered data using a single or
       multi-hue gradient with increasing lightness.
     alias:
