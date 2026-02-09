@@ -1,6 +1,11 @@
 Use a CSS palette
 -----------------
 
+<!-- FORMAT SUPPORTED - AUTO - START -->
+> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
+<!-- FORMAT SUPPORTED - AUTO - END -->
+
+
 <!--YAML
 inlinecode:
   css:
@@ -24,7 +29,7 @@ For example, the file `palettes-hf/palettes-hf.css` looks like the following par
 ~~~
 
 
-Here are two possible use cases.
+Here is one first possible use case.
 
 ~~~css
 .warning-text {

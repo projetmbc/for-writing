@@ -24,6 +24,13 @@ from shutil import rmtree
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
+PREAMBULE = r"""
+<!-------------------------------------------
+  -- AUTOMATICALLY GENERATED - DO NOT EDIT --
+  ------------------------------------------->
+""".strip()
+
+
 DOC_KEPT = [
     "title",
     "how-to-use",
@@ -89,11 +96,16 @@ for prod_dir in PRODS_DIR.glob("*"):
     if name == "json":
         continue
 
-    logging.info(f"Add '{name}' in main README.")
+    logging.info(f"Add '{name}' in main README")
 
 
     readme_dir = CONTRIB_DIR / name / "readme"
-    content    = []
+
+    content = [
+        PREAMBULE,
+        '',
+        ''
+    ]
 
     for part in DOC_KEPT:
         part = readme_dir / f"{part}.md"

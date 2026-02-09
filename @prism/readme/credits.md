@@ -5,6 +5,8 @@ Credits
 
   * [`Asymptote`](https:asymptote.sourceforge.io) is used, but currently offers nothing beyond [`Matplotlib`][2] (despite different implementa- tions).
 
+  * [`CarbonPlan`](https://github.com/carbonplan/colormaps) provides palettes designed for data visualization.
+
   * [`CartoColor`](https://github.com/CartoDB/cartocolor) is extracted from [`Palettable`][1] project.
 
   * [`cmocean`](https://matplotlib.org/cmocean) is extracted from [`Palettable`][1] project.

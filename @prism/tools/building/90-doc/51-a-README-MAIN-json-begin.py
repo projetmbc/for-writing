@@ -56,7 +56,7 @@ MD_PROD_FILE = PROJ_DIR / "readme" / "products.md"
 # ------------------ #
 
 PROD_JSON_DIR = PRODS_DIR / "json"
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes.json"
+PAL_JSON_FILE = PROD_JSON_DIR / "palettes-hf.json"
 
 with PAL_JSON_FILE.open(mode = "r") as f:
     ALL_PALETTES = json_load(f)
