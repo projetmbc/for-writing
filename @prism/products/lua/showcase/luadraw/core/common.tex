@@ -82,7 +82,7 @@
 
 \bigskip\bigskip
 
-\begin{luadraw}{name = showcase-circular-\PALETTE}
+\begin{luadraw}{name = showcase-\STYLE-circular-\PALETTE}
 local g = graph:new{
   window = {
     -RMAX, RMAX,
@@ -129,7 +129,7 @@ g:Show()
 
 % -- WAVES (small size) -- %
 
-\begin{luadraw}{name = showcase-waves-\PALETTE}
+\begin{luadraw}{name = showcase-\STYLE-waves-\PALETTE}
 if PALSIZE < 41 then
   yshift    = 0.25
   amplitude = 0.75
@@ -178,7 +178,7 @@ end
 
 % -- RANDOM TRIANGLES (big size) -- %
 
-\begin{luadraw}{name = showcase-random-triangles-\PALETTE}
+\begin{luadraw}{name = showcase-\STYLE-random-triangles-\PALETTE}
 if PALSIZE > 40 then
   xmax = 8
   xmin = -xmax
@@ -276,7 +276,7 @@ end
 
 \bigskip\bigskip
 
-\begin{luadraw}{name = showcase-spectrum-\PALETTE}
+\begin{luadraw}{name = showcase-\STYLE-spectrum-\PALETTE}
 local g = graph:new{
   window = {
     -WIDTH / 2,
@@ -308,7 +308,7 @@ g:Show()
 % -- PALETTE (small size only) -- %
 % ------------------------------- %
 
-\begin{luadraw}{name = showcase-palette-\PALETTE}
+\begin{luadraw}{name = showcase-\STYLE-palette-\PALETTE}
 if PALSIZE < 41 then
   local g = graph:new{
     window = {

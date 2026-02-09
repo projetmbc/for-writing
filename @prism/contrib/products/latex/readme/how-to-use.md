@@ -23,7 +23,7 @@ For example, `\palUse{GistHeat}{8}` is the eighth color of the `GistHeat` palett
 
 \textcolor{\palUse{GistHeat}{8}}{\bfseries Colored text.}
 
-Representation of the color palette.
+Representation of the first ten color palettes.
 
 \begin{tikzpicture}
   \foreach \i in {1,...,10} {

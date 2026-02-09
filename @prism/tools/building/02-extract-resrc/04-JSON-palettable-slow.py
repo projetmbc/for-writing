@@ -347,6 +347,8 @@ for subdir in sorted(RESRC_DIR.glob("*")):
 
     logging.info(f"Update '{resrc_pals_json.relative_to(PROJ_DIR)}'")
 
+    pals = get_sorted_dict(pals)
+
     resrc_pals_json.write_text(
         json_dumps(pals)
     )

@@ -99,6 +99,8 @@ for palname, body in PATTERN_ASY_COLORMAP.findall(ASY_CODE):
 
 logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
 
+pals = get_sorted_dict(pals)
+
 RESRC_PALS_JSON.write_text(
     json_dumps(pals)
 )

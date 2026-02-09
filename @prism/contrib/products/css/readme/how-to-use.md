@@ -9,20 +9,17 @@ inlinecode:
     - <nb>
 -->
 
-The very basic `CSS` implementation provides only ten variables per palette, named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging from 1 to 10.
+The `CSS` implementation provides one variable per palette colors, named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging.
 Each palette color variable is defined as an `RGB` value using percentage notation.
-For example, the `GistHeat` palette color definitions look like the following partial code.
+For example, the file `palettes-hf/palettes-hf.css` looks like the following partial code.
 
 ~~~css
 :root {
-  /* Previous palettes. */
-
-  --palGistHeat-1 = rgb(0% 0% 0.0%)
-  --palGistHeat-2 = rgb(10.5882% 0% 0%)
-  --palGistHeat-3 = rgb(21.1764% 0% 0%)
-  /* ... With 7 more RBG colors.*/
-
-  /* Additional palettes. */
+  --palGistHeat-1: rgb(0% 0% 0%);
+  --palGistHeat-2: rgb(0.59% 0% 0%);
+  /* Other RBG colors.*/
+  --palGistHeat-255: rgb(100% 99.22% 98.43%);
+  --palGistHeat-256: rgb(100% 100% 100%);
 }
 ~~~
 
@@ -38,15 +35,9 @@ Here are two possible use cases.
   background: linear-gradient(
     90deg,
     var(--palGistHeat-1),
-    var(--palGistHeat-2),
-    var(--palGistHeat-3),
-    var(--palGistHeat-4),
-    var(--palGistHeat-5),
-    var(--palGistHeat-6),
-    var(--palGistHeat-7),
-    var(--palGistHeat-8),
-    var(--palGistHeat-9),
-    var(--palGistHeat-10)
+    var(--palGistHeat-64),
+    var(--palGistHeat-128),
+    var(--palGistHeat-256)
   );
 }
 ~~~

@@ -2,7 +2,7 @@
 
 
 ==
-09  (2.0.0-beta.13)  ????
+09  (2.0.0-beta.13)
 ==
 
 --------
@@ -11,7 +11,15 @@
 
 \Docs explain the new \api.
 
-    1) \Contrib \readme. ????
+    1) \Contrib \readme.
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+\Resrc: in the report folder, \json palette files are sorted by their keys.
 
 
 
