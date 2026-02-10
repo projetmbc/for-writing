@@ -111,20 +111,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Blues10\vphantom{g}}
+        {\bfseries Blues7\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Blues10-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Blues7-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Blues7\vphantom{g}}
+        {\bfseries Blues10\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Blues7-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Blues10-spectrum.pdf}
     \end{center}
 \end{minipage}
 

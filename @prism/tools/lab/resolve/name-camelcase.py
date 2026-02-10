@@ -1,65 +1,99 @@
-#!/usr/bin/env python3
-
-# CMD: streamlit run ...
-
 import streamlit as st
-import re
 import json
+import yaml
+import os
+import signal
+from pathlib import Path
+from wordsegment import load, segment
 
-# Dictionnaire de référence
-TECH_DICT = {"orange", "blue", "grey", "gist", "dark", "light", "red", "green", "slate", "gold", "silver"}
 
-def suggest_camel_case(word, dictionary):
-    low_word = word.lower()
-    for i in range(2, len(low_word)):
-        part1 = low_word[:i]
-        part2 = low_word[i:]
-        if part1 in dictionary and part2 in dictionary:
-            return f"{part1.capitalize()}{part2.capitalize()}"
-    return word
+load()
 
-st.title("JSON Name Mapper")
 
-# 1. Entrée des données
-input_text = st.text_area("Entrez vos variables (ex: --palPALETTE-Orangeblue) :",
-                         value="--palPALETTE-Orangeblue\n--palPALETTE-Gistgrey\n--palPALETTE-Darkred",
-                         height=150)
+AUDIT_DIR = Path("building/audit")
+NAMING_JSON = AUDIT_DIR / "NAMING-PROGRESS.json"  # Pour le suivi temporaire
+NAMING_YAML = AUDIT_DIR / "HUMAN-NAMING.yaml"    # Le fichier final pour ton projet
+AUDIT_DIR.mkdir(parents=True, exist_ok=True)
 
-raw_names = re.findall(r"--palPALETTE-([A-Za-z0-9]+)", input_text)
+def load_data():
+    """Charge le mapping existant depuis le JSON de progression."""
+    if NAMING_JSON.exists():
+        with open(NAMING_JSON, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
 
-if raw_names:
-    st.subheader("Validation des correspondances")
+def save_to_yaml(mapping):
+    """Sauvegarde le dictionnaire final au format YAML."""
+    # On trie par clé pour que le YAML soit propre
+    sorted_mapping = dict(sorted(mapping.items()))
+    with open(NAMING_YAML, 'w', encoding='utf-8') as f:
+        yaml.dump(sorted_mapping, f, allow_unicode=True, sort_keys=False)
+    # On garde aussi une trace en JSON pour la session Streamlit
+    with open(NAMING_JSON, 'w', encoding='utf-8') as f:
+        json.dump(mapping, f, indent=4)
 
-    # Bouton de sélection globale
-    master_checkbox = st.checkbox("Tout valider par défaut", value=True)
+# --- INTERFACE ---
+st.set_page_config(page_title="Audit Naming", layout="wide")
 
-    mapping_suggestions = {}
+# 1. État de la session
+if 'mapping' not in st.session_state:
+    st.session_state.mapping = load_data()
 
-    # Affichage ligne par ligne avec case à cocher
-    for name in sorted(set(raw_names)): # On évite les doublons
-        proposal = suggest_camel_case(name, TECH_DICT)
+# Simulation de ta liste source (à adapter avec tes vrais noms)
+all_palettes = ["Orangegrey", "Bwr", "Viridis", "RdYlGn", "Magma", "Bluesky", "Cividis"]
+to_process = [p for p in all_palettes if p not in st.session_state.mapping]
 
-        col1, col2 = st.columns([3, 1])
-        with col1:
-            is_valid = st.checkbox(f"`{name}` ➔ `{proposal}`", value=master_checkbox, key=name)
+# --- SIDEBAR ---
+with st.sidebar:
+    st.header("⚙️ Contrôles")
 
-        # Si coché, on prend la proposition, sinon on garde l'original (ou on ignore)
-        if is_valid:
-            mapping_suggestions[name] = proposal
+    # Bouton SAUVER
+    if st.button("💾 SAUVER (YAML)", type="primary", use_container_width=True):
+        save_to_yaml(st.session_state.mapping)
+        st.success(f"Enregistré dans {NAMING_YAML.name}")
+        st.toast("Fichier YAML mis à jour !")
 
     st.divider()
 
-    # 2. Production du JSON
-    if mapping_suggestions:
-        st.subheader("Résultat JSON")
-        json_output = json.dumps(mapping_suggestions, indent=4)
-        st.code(json_output, language="json")
+    # Bouton STOP
+    if st.button("🛑 STOP L'APPLI", type="secondary", use_container_width=True):
+        st.warning("Arrêt du serveur en cours...")
+        os.kill(os.getpid(), signal.SIGINT)
 
-        st.download_button(
-            label="Télécharger le mapping.json",
-            data=json_output,
-            file_name="palette_mapping.json",
-            mime="application/json"
-        )
+    st.divider()
+    st.metric("Traités", f"{len(st.session_state.mapping)} / {len(all_palettes)}")
+    st.progress(len(st.session_state.mapping) / len(all_palettes))
+
+# --- MAIN CONTENT ---
+st.title("🏷️ Audit des noms de palettes")
+
+if not to_process:
+    st.balloons()
+    st.success("✨ Toutes les palettes ont été renommées ! N'oubliez pas de SAUVER avant de quitter.")
 else:
-    st.info("Aucun nom détecté avec le pattern '--palPALETTE-'.")
+    for original in to_process:
+        # Logique de suggestion auto
+        if len(original) <= 4 and not original.isupper():
+            suggestion = original.upper()
+        else:
+            parts = segment(original)
+            suggestion = "-".join(p.capitalize() for p in parts) if len(parts) > 1 else original
+
+        with st.container(border=True):
+            col1, col2, col3 = st.columns([2, 3, 1])
+            with col1:
+                st.write(f"**Original :** `{original}`")
+            with col2:
+                new_name = st.text_input("Renommer :", value=suggestion, key=f"in_{original}", label_visibility="collapsed")
+            with col3:
+                if st.button("OK ✅", key=f"btn_{original}", use_container_width=True):
+                    st.session_state.mapping[original] = new_name
+                    # On sauve le progrès JSON à chaque étape pour ne rien perdre
+                    with open(NAMING_JSON, 'w', encoding='utf-8') as f:
+                        json.dump(st.session_state.mapping, f, indent=4)
+                    st.rerun()
+
+# Aperçu du dictionnaire en cours
+if st.session_state.mapping:
+    with st.expander("👀 Voir le mapping actuel"):
+        st.write(st.session_state.mapping)

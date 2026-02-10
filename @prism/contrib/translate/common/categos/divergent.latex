@@ -91,6 +91,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries BlueOrange8\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueOrange8-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries BlueOrange10\vphantom{g}}
 
         \smallskip
@@ -105,16 +115,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/BlueOrange12-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries BlueOrange8\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/BlueOrange8-spectrum.pdf}
     \end{center}
 \end{minipage}
 

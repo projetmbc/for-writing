@@ -66,21 +66,21 @@ WHERE pal_id = ?;
 
 SQL_MIRROR_HASH = '''
 SELECT
-    p1.pal_id,
-    prio1.priority,
-    COALESCE(a1.alias, p1.name),
-    p2.pal_id,
-    prio2.priority,
-    COALESCE(a2.alias, p2.name)
-FROM hash p1
-LEFT JOIN alias a1 ON p1.pal_id = a1.pal_id
-JOIN priority prio1 ON p1.source = prio1.source
-JOIN hash p2 ON p1.hash_normal = p2.hash_reverse
-LEFT JOIN alias a2 ON p2.pal_id = a2.pal_id
-JOIN priority prio2 ON p2.source = prio2.source
-WHERE p1.is_kept = 1
-  AND p2.is_kept = 1
-  AND p1.pal_id < p2.pal_id;
+    h1.pal_id,
+    p1.priority,
+    COALESCE(a1.alias, h1.name),
+    h2.pal_id,
+    p2.priority,
+    COALESCE(a2.alias, h2.name)
+FROM hash h1
+LEFT JOIN alias a1 ON h1.pal_id = a1.pal_id
+JOIN priority p1 ON h1.source = p1.source
+JOIN hash h2 ON h1.hash_normal = h2.hash_reverse
+LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
+JOIN priority p2 ON h2.source = p2.source
+WHERE h1.is_kept = 1
+  AND h2.is_kept = 1
+  AND h1.pal_id < h2.pal_id;
 '''
 
 SQL_TABLE_INSERT_MIRROR = '''

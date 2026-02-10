@@ -8,16 +8,40 @@ mypy . --html-report typing_report
 
 // ---------- //
 
-normaliser par exemple Orangegrey --> OrangeGrey ou Bwr --> BWR (Blue White Red)
+audit de tout en prenant garde de ne mettre à jour human kind uniquement si des chgts faits !!!!
+
+
+// ---------- //
+
+revoi la gestonaudit/report qui ne vas pas logique !!! heritage du tout-en un !
+
+
+// ---------- //
+
+employer COALESCE(a.alias, h.name) et rordonnancement depuis SQL
 
 
 // ---------- //
 
 AVANT nelle version !!!!!
 
-real camelcase based on colornames : Pinkgrey  -->  PinkGrey
+real camelcase based on colornames :
 
-    + penser à stocker dans la bdd  via alias !
+    + Pinkgrey  -->  PinkGrey
+    + Orangegrey --> OrangeGrey
+    + Bwr --> BWR (Blue White Red)
+    + mais  Rdbu -- RdBu (RedBlue)
+
+
+Avoir un outil auto via command line, pas besoin de stermiline ici
+
+
+
+
+
+
+
+
 
 
 // ---------- //
@@ -29,7 +53,6 @@ se passer des pdf de démo et tout miser sur le html car au final c'est ben plus
     --> gestion des cartes géograhpiques
 
     ---> mettre aussi les transfos quand l'API le propose
-
 
 
 // ---------- //

@@ -6,11 +6,19 @@
 ==
 
 --------
+:update:
+--------
+
+[[:doc:]]
+Manual: an appendix gives all the palette names.
+
+
+--------
 :fordev:
 --------
 
 [[:tech:]]   ???
-Audit: a \pdf \docu provides a comprehensive overview of all palettes, including their spectrum and category.
+Audit: a \pdf \docu provides a comprehensive overview of the last new palettes.
 
 
 // ---------- //

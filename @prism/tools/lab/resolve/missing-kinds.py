@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# CMD: streamlit run ...
+
 import os
 import sys
 import signal

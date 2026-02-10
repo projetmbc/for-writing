@@ -341,16 +341,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Petroff10\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Petroff10-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Petroff6\vphantom{g}}
 
         \smallskip
@@ -365,6 +355,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Petroff8-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Petroff10\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Petroff10-spectrum.pdf}
     \end{center}
 \end{minipage}
 

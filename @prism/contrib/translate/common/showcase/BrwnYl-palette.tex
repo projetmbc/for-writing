@@ -45,8 +45,11 @@ for k = 1, PALSIZE do
 
   g:Dlabel(
     "\\footnotesize$" .. k .. "$",
-    A + Z(PALDIM, 1.25*PALDIM) / 2,
-    {pos = "S"}
+    A + Z(PALDIM, .85*PALDIM) / 2,
+    {
+      pos          = "S",
+      node_options = "inner sep = 0pt, outer ysep = 0.5pt"
+    }
   )
 
   A = A + PALDIM + PALDELTA
