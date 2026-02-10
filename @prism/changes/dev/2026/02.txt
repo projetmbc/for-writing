@@ -2,6 +2,29 @@
 
 
 ==
+10  (2.0.0-beta.15)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual: added explanations regarding semantic and qualitative palettes, including the maximum size defined for \thisproj.
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+Manual: update dynamic variables (now renamed).
+
+
+// ---------- //
+
+
+==
 10  (2.0.0-beta.14)
 ==
 

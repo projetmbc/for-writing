@@ -32,7 +32,7 @@ Here are the new features.
 
         + High-fidelity (unmodified).
 
-        + Normalized (''size <= AUTO_QUAL_CATEGO_SIZE'').
+        + Normalized (''size <= MAX_SEMANTIC_SIZE'').
 
         + Modular (one file per palette).
 

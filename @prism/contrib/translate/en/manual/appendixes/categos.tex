@@ -15,16 +15,33 @@
 \addcontentsline{toc}{section}{Appendix 2 -- Palettes by category}
 
 
-\begin{tdocnote}
+\begin{tdocwarn}
     The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
-\end{tdocnote}
+\end{tdocwarn}
+
 
 \smallskip
+
+
+\begin{tdocnote}[Qualitative and semantic palettes]
+    The threshold of \palSemMaxSize\ colors has been established for qualitative and semantic palettes. The following lines outline the rationale for this limit.
+    %
+    \begin{itemize}
+        \item In qualitative color palettes, each color represents a single data point or a group of data. Experience shows that about ten colors are more than enough.
+     
+        \item Semantic palettes associate a color with a specific context, such as warning levels (see the three frames in this document). Choosing \palSemMaxSize\ colors allows for 10 different contexts, each with 4 sub-categories, for instance, a website where each context has specific states for 'visited', 'unvisited', or 'hovered' content.
+    \end{itemize}
+\end{tdocnote}
+
+
+\smallskip
+
 
 \begin{tdocimp}
     Categories were generated semi-automatically, followed by manual selection to obta
     in relevant choices.
 \end{tdocimp}
+
 
 % ------------------------------------------------ %
 % -- BELOW, JUST TRANSLATE TITLES INSIDE BRACES -- %

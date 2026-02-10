@@ -22,7 +22,7 @@ from yaml        import safe_load
 
 
 # ------------------ #
-# -- CONSTANTS #2 -- #
+# -- CONSTANTS #1 -- #
 # ------------------ #
 
 PROJ_DIR = THIS_DIR

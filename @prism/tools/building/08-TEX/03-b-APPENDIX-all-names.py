@@ -24,6 +24,10 @@ from natsort import natsorted
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
+LETTERS_COL_BREAK = ''
+LETTERS_COL_BREAK = 'DT'
+
+
 TAB_1 = ' '*4
 TAB_2 = TAB_1*2
 
@@ -44,6 +48,12 @@ TEX_HEADER_TMPL = r"""
 \phantomsection
 \section*{\hfill Appendix 1 -- All palette names \hfill\null} \label{palette-all-names}
 \addcontentsline{toc}{section}{Appendix 1 -- All palette names}
+
+
+\begin{tdocwarn}
+    The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
+\end{tdocwarn}
+
 
 \begin{multicols*}{3}
 %    \setlength{\columnseprule}{0.5pt}
@@ -115,11 +125,14 @@ WHERE h.is_kept = 1
     rows = cursor.fetchall()
 
     for name, in natsorted(rows):
-        letter = name[0].lower()
+        letter = name[0].upper()
 
         if letter != last_letter:
+            if letter in LETTERS_COL_BREAK:
+                _texcode.append(r"\columnbreak")
+
             _texcode.append(
-                TEX_LETTER_TMPL.format(letter = letter.upper())
+                TEX_LETTER_TMPL.format(letter = letter)
             )
 
             last_letter = letter

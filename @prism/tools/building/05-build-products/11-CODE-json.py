@@ -53,7 +53,7 @@ CREDITS = CREDITS.strip()
 CREDITS = CREDITS.format(VERSION = VERSION)
 
 
-AUTO_QUAL_CATEGO_SIZE = YAML_CONFIGS['SEMANTIC']['AUTO_QUAL_CATEGO_SIZE']
+MAX_SEM_SIZE = YAML_CONFIGS['SEMANTIC']['MAX_SEM_SIZE']
 
 
 # ------------------ #
@@ -77,7 +77,7 @@ PROD_JSON_DIR.mkdir(
 
 
 HIGH_PALS_DIR = PROD_JSON_DIR / "palettes-hf"
-NORM_PALS_DIR = PROD_JSON_DIR / f"palettes-s{AUTO_QUAL_CATEGO_SIZE}"
+NORM_PALS_DIR = PROD_JSON_DIR / f"palettes-s{MAX_SEM_SIZE}"
 
 HIGH_PAL_JSON_FILE = PROD_JSON_DIR / f"{HIGH_PALS_DIR.name}.json"
 NORM_PAL_JSON_FILE = PROD_JSON_DIR / f"{NORM_PALS_DIR.name}.json"
@@ -150,7 +150,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 norm_palettes = {
     n: norm_palette(
         palette = p,
-        maxsize = AUTO_QUAL_CATEGO_SIZE,
+        maxsize = MAX_SEM_SIZE,
     )
     for n, p in palettes.items()
 }

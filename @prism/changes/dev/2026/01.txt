@@ -14,7 +14,7 @@ Multiple \distrib formats are now available to meet various technical requiremen
 
     1) High-fidelity (unmodified).
 
-    1) Normalized (''size <= AUTO_QUAL_CATEGO_SIZE'').
+    1) Normalized (''size <= MAX_SEM_SIZE'').
 
     1) Monolithic (all palettes in one file).
 

@@ -15,7 +15,7 @@ THIS_DIR = Path(__file__).parent
 LAB_DIR  = THIS_DIR.parent
 sys.path.append(str(LAB_DIR))
 from labutils import * # --- CONFIG & PATHS ---
-AUTO_QUAL_CATEGO_SIZE = 40
+MAX_SEM_SIZE = 40
 CONFIG_DIR = LAB_DIR.parent / 'config'
 AUDIT_DIR  = LAB_DIR.parent / "building" / "audit"
 REPORT_DIR = AUDIT_DIR.parent / "REPORT"
@@ -103,11 +103,11 @@ for k, val in st.session_state.items():
 with st.sidebar:
     st.header("⚡ Actions")
 
-    if st.button(f"🪄 Auto-Assign (≤{AUTO_QUAL_CATEGO_SIZE})", use_container_width=True):
+    if st.button(f"🪄 Auto-Assign (≤{MAX_SEM_SIZE})", use_container_width=True):
         for src, palettes in by_source.items():
             for name, colors in palettes.items():
                 uid = build_name_n_srcname(name, src)
-                st.session_state[f"k_{uid}"] = ["qualitative"] if len(colors) <= AUTO_QUAL_CATEGO_SIZE else ["sequential"]
+                st.session_state[f"k_{uid}"] = ["qualitative"] if len(colors) <= MAX_SEM_SIZE else ["sequential"]
         st.rerun()
 
     st.divider()

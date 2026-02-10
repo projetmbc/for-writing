@@ -32,7 +32,7 @@ HF_PALS_DIR  = PROJ_DIR / "products" / "json" / "palettes-hf"
 SHOWCASE_DIR = PROJ_DIR / "contrib" / "translate" / "common" / "showcase"
 
 
-SEM_PAL_SIZE = YAML_CONFIGS[TAG_SEMANTIC]['AUTO_QUAL_CATEGO_SIZE']
+SEM_PAL_SIZE = YAML_CONFIGS[TAG_SEMANTIC]['MAX_SEM_SIZE']
 
 
 # ------------------ #

@@ -5,7 +5,7 @@
 # The choice of `40` allows for the inclusion of additional
 # useful semantic states (for example: initial, hovered,
 # visited, and inactive links).
-AUTO_QUAL_CATEGO_SIZE: 40
+MAX_SEM_SIZE: 40
 
 # ----------------------------------- #
 # -- SORTED SEMANTIC CONTENT TYPES -- #
