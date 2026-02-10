@@ -68,7 +68,7 @@ TEX_FOOTER = r"\end{document}"
 
 
 TEX_TMPL_PALETTES = r"""
-\begin{luadraw}{name = <PAL-NAME>-spectrum}
+\begin{luadraw}{name = <PAL-NAME>-palette}
 local PAL = pal<PAL-NAME>
 
 local WIDTH = 10

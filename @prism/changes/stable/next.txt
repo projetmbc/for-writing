@@ -10,7 +10,15 @@
 -------
 
 [[:api:]]
-\Categos: the size category is no longer needed since the new \api provides full \def of palette kinds. For example, a 3-color smooth palette is now simply a sequential palette fully defined with 3 colors.
+Here are the breaking \chges.
+
+    1) \lua \prod: \func lua::''getPal'' is now lua::''palCreateFromPal''. It expects a palette \var instead of a name alongside options.
+
+    1) \Contribs workflow has been fully changed (see below).
+
+    1) No more same size for all the palettes (see below).
+
+    1) The categories have been fully changed (see below).
 
 
 -----
@@ -18,27 +26,47 @@
 -----
 
 [[:api:]]
-Multiple \distrib formats are now available to meet various technical requirements.
+Here are the new features.
 
-    1) High-fidelity (unmodified).
+    1) Multiple \distrib formats are now available to meet various technical requirements.
 
-    1) Normalized (''size <= AUTO_QUAL_CATEGO_SIZE'').
+        + High-fidelity (unmodified).
 
-    1) Modular (one file per palette).
+        + Normalized (''size <= AUTO_QUAL_CATEGO_SIZE'').
 
-    1) Monolithic (all palettes in one file).
+        + Modular (one file per palette).
+
+        + Monolithic (all palettes in one file).
+
+    1) \Categos: the size palette is no longer used since the new \api provides named \catgeos. For example, a 3-color smooth palette can be now sequential, qualtitaive and/or semantic.
+
+    1) \Contribs workflow simplified significantly.
+
+        + Data extraction and code generation are now streamlined by instantiating the python::''PaletteTransformer'' class, alongside palette and \api builder functions.
+
+        + Monolithic or modular version can be omitted (\tex can't build all the high-fidelity palettes).
+
+        + Standardized showcases now feature simplified graphics: waves for small palettes and random triangles for large ones.
 
 
 --------
 :update:
 --------
 
-[[:api:]]
-Palettes
+[[:doc:]]
+\Docs explain the new \api. Here are the changes made.
 
-    1) Kinds: integrating \colormaps doc \specs. Current setup is still a \wip, reducing manual \lab management to 46 \pals.
+    1) \Contrib \readme.
 
-    1) XXXX
+    1) Manual.
+
+        + Added \ref to \carbonplan.
+
+        + Single palette files should avoid unuseful updates made by \latexmk.
+
+        + Standalone \pdfs for all the graphics.
+
+        + Added new category sections with a small description of their meaning.
 
 
 [[:tech:]]

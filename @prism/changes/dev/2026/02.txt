@@ -2,6 +2,21 @@
 
 
 ==
+10  (2.0.0-beta.14)   ???
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]]   ???
+Audit: a \pdf \docu provides a comprehensive overview of all palettes, including their spectrum and category.
+
+
+// ---------- //
+
+
+==
 10  (2.0.0-beta.13)
 ==
 
@@ -9,6 +24,7 @@
 :update:
 --------
 
+[[:doc:]]
 \Docs explain the new \api. Here are the changes made.
 
     1) \Contrib \readme.
