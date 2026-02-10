@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# ---------------------------- #
+# ---------------------------- #     NETTOYER CE QUI EST EN TROP !!!
 # -- IMPORT CBUTILS - START -- #
 
 from pathlib import Path
@@ -165,14 +165,18 @@ g:Show()
 """.strip()
 
 
-# ------------------- #
-# -- DB - PALETTES -- #
-# ------------------- #
+# ---------------------- #
+# -- PALETTE GRAPHICS -- #
+# ---------------------- #
 
-logging.info("Build 'palette and spectrum graphics'.")
+logging.info("Build 'palette and spectrum graphics' files")
+
+ALL_NAMES = set()
 
 for hfpal in sorted(HF_PALS_DIR.glob('*.json')):
     name = hfpal.stem
+
+    ALL_NAMES.add(name)
 
     with hfpal.open('r') as f:
         palsize = len(json_load(f))
@@ -220,3 +224,32 @@ for hfpal in sorted(HF_PALS_DIR.glob('*.json')):
     (
         SHOWCASE_DIR / f"{name}-spectrum.tex"
     ).write_text(texcode)
+
+
+# ---------------------- #
+# -- CLEANING -- #
+# ---------------------- #
+
+logging.info("Clean 'palette and spectrum graphics' folder")
+
+for f in sorted(SHOWCASE_DIR.glob('*')):
+    parts = f.stem.split('-')
+
+    if (
+      f.is_dir()
+      or
+      f.name[0] == '.'
+      or
+      (
+          len(parts) == 2
+          and
+          parts[0] in ALL_NAMES
+          and
+          parts[1] in ['palette', 'spectrum']
+      )
+    ):
+        continue
+
+    logging.warning(f"Remove '{f.name}'")
+
+    f.unlink()
