@@ -21,37 +21,67 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+from natsort import natsorted
+
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-TEX_ONE_PAL_TMP = r"""
-\documentclass{article}
+TAB_1 = ' '*4
+TAB_2 = TAB_1*2
 
-\usepackage{nicematrix}
+
+NB_MAX_COL_PER_CATEGO = 4
+
+
+TEX_HEADER_TMPL = r"""
+\documentclass{tutodoc}
+
 \usepackage{amssymb}
-
+\usepackage{array}
 
 \begin{document}
 
-\textbf{\texttt{A}}
+\section*{\hfill AUDIT -- Last new palettes \hfill\null}
 
-\smallskip
-\hspace{2pt}\begin{NiceTabular}{*{5}{w{l}{2cm}}}[baseline=1]
-    Orangegrey
-        & $\square$ colorblind &  $\boxtimes$ cyclic & $\square$ dark & $\square$ divergent \\
-        & $\boxtimes$ qualitative & $\square$ semantic &  $\boxtimes$ sequential \\
-\end{NiceTabular}
+\renewcommand{\arraystretch}{1.5}
+""".strip()+ '\n'
 
-\hspace{2pt}\begin{NiceTabular}{*{5}{w{l}{1.8cm}}}[baseline=1]
-    Orangegrey
-        & $\square$ colorblind &  $\boxtimes$ cyclic & $\square$ dark & $\square$ divergent \\
-        & $\boxtimes$ qualitative & $\square$ semantic &  $\boxtimes$ sequential \\
-\end{NiceTabular}
 
-\end{document}
+TEX_FOOTER_TMPL = r"\end{document}"
+
+
+TEX_TABLE_HEADER_TMPL = (
+     r"\begin{tabular}{p{3.25cm}*"
+    rf"{{{NB_MAX_COL_PER_CATEGO}}}"
+     r"{p{2.25cm}}}"
+)
+TEX_TABLE_FOOTER_TMPL = r"\end{tabular}"
+
+
+TEX_CMD_CHECK_OR_NOT = {
+    False: r"$\square$",
+    True : r"$\boxtimes$",
+}
+
+
+TEX_CENTER_HEADER_TMPL = r"\begin{center}"
+TEX_CENTER_FOOTER_TMPL = r"""
+\end{center}
+
+\noindent\hrulefill
 """
+
+
+TEX_INCLUDEGRAPH_TMPL = (
+    TAB_1
+    +
+    r"\includegraphics[scale=1.25]{{../../../contrib/translate/common/showcase/{name}-{format}.pdf}}"
+)
+
+TEX_GRAPHSEP_TMPL = TAB_1 + r'\smallskip'
+
 
 
 # ------------------ #
@@ -70,10 +100,11 @@ SQLITE_DB_FILE    = AUDIT_DIR / "palettes.db"
 TEX_NEW_PALS_FILE = AUDIT_DIR / "NEW-PALS.tex"
 
 
-ALL_CATEGOS = list(
-    sorted(
-        YAML_CONFIGS['METADATA']['CATEGORY']
-    )
+CONTRIB_SHOWCASE_DIR = PROJ_DIR / "contrib" / "translate" / "common" / "showcase"
+
+
+ALL_CATEGOS = sorted(
+    YAML_CONFIGS['METADATA']['CATEGORY']
 )
 
 
@@ -99,12 +130,85 @@ LEFT JOIN alias a ON h.pal_id = a.pal_id
 WHERE h.is_kept = 1
 '''
 
+_texcode = [TEX_HEADER_TMPL]
+
+nbpals = 0
+
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(query)
 
-    for name, kinds in cursor.fetchall():
+    for name, kinds in natsorted(cursor.fetchall()):
+        nbpals += 1
+
         _kinds = set(
             k.strip()
             for k in kinds.split(',')
         )
+
+# We have to build the folowing LaTeX code.
+#
+#     \textbf{name}
+#        & $\square$ colorblind & $\square$ cyclic & $\square$ dark & $\square$ divergent \\
+#        & $\boxtimes$ qualitative & $\square$ semantic & $\square$ sequential
+        _tablecode = [
+            TAB_1 + rf"\textbf{{{name}}}",
+            TAB_2
+        ]
+
+        cursor = 1
+
+        for i, k in enumerate(ALL_CATEGOS):
+            texcmd = TEX_CMD_CHECK_OR_NOT[k in _kinds]
+
+            if i == NB_MAX_COL_PER_CATEGO:
+                _tablecode[cursor] += r'\\'
+
+                _tablecode.append(TAB_2)
+                cursor += 1
+
+            _tablecode[cursor] += f"& {texcmd} {k} "
+
+        _tablecode[cursor] = _tablecode[cursor].rstrip()
+
+        tablecode = '\n'.join(_tablecode)
+
+        _texcode += [
+            TEX_TABLE_HEADER_TMPL,
+            tablecode,
+            TEX_TABLE_FOOTER_TMPL,
+        ]
+
+# We have graphics.
+        _texcode += [
+            '',
+            TEX_CENTER_HEADER_TMPL,
+            TEX_INCLUDEGRAPH_TMPL.format(
+                name  = name,
+                format = 'spectrum'
+            )
+        ]
+
+        if (
+            CONTRIB_SHOWCASE_DIR / f"{name}-palette.pdf"
+        ).is_file():
+            _texcode += [
+                '',
+                TEX_GRAPHSEP_TMPL,
+                TEX_INCLUDEGRAPH_TMPL.format(
+                    name   = name,
+                    format = 'palette'
+                )
+            ]
+
+        _texcode.append(TEX_CENTER_FOOTER_TMPL)
+
+_texcode.append(
+    rf"\centering\bfseries\Large {nbpals} palettes found."
+)
+_texcode.append(TEX_FOOTER_TMPL)
+
+texcode = '\n'.join(_texcode)
+
+TEX_NEW_PALS_FILE.touch()
+TEX_NEW_PALS_FILE.write_text(texcode)

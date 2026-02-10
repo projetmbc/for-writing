@@ -8,6 +8,25 @@ mypy . --html-report typing_report
 
 // ---------- //
 
+AVANT nelle version !!!!!
+
+imprimer auit pour les catgeos car des choses à revori !!!
+
++
+
+real camelcase based on colornames :
+
+    + Pinkgrey  -->  PinkGrey
+    + Orangegrey --> OrangeGrey
+    + Bwr --> BWR (Blue White Red)
+    + mais  Rdbu -- RdBu (RedBlue)
+
+
+Avoir un outil auto via command line, pas besoin de stermiline ici
+
+
+// ---------- //
+
 audit de tout en prenant garde de ne mettre à jour human kind uniquement si des chgts faits !!!!
 
 
@@ -19,21 +38,6 @@ revoi la gestonaudit/report qui ne vas pas logique !!! heritage du tout-en un !
 // ---------- //
 
 employer COALESCE(a.alias, h.name) et rordonnancement depuis SQL
-
-
-// ---------- //
-
-AVANT nelle version !!!!!
-
-real camelcase based on colornames :
-
-    + Pinkgrey  -->  PinkGrey
-    + Orangegrey --> OrangeGrey
-    + Bwr --> BWR (Blue White Red)
-    + mais  Rdbu -- RdBu (RedBlue)
-
-
-Avoir un outil auto via command line, pas besoin de stermiline ici
 
 
 

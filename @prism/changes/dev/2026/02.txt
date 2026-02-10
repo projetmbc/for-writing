@@ -2,7 +2,7 @@
 
 
 ==
-10  (2.0.0-beta.14)   ???
+10  (2.0.0-beta.14)
 ==
 
 --------
@@ -17,8 +17,8 @@ Manual: an appendix gives all the palette names.
 :fordev:
 --------
 
-[[:tech:]]   ???
-Audit: a \pdf \docu provides a comprehensive overview of the last new palettes.
+[[:tech:]]
+Audit: a \pdf provides a comprehensive overview of the last new palettes.
 
 
 // ---------- //
