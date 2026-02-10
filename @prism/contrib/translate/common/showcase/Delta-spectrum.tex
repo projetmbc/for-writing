@@ -17,13 +17,13 @@
 
 \begin{document}
 \begin{luadraw}{name = Delta-spectrum}
-PAL      = palDelta
-NB_CELLS = 512
+local PAL      = palDelta
+local NB_CELLS = 512
 
-WIDTH = 16
+local WIDTH = 8
 
 local A = Z(-WIDTH / 2, 4)
-local HEIGHT = Z(0, -1)
+local HEIGHT = Z(0, -.7)
 
 local g = graph:new{
   window = {

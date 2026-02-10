@@ -20,6 +20,7 @@ REPORT_DIR = AUDIT_DIR.parent / "REPORT"
 HUMAN_KIND_YAML   = AUDIT_DIR / "HUMAN-KIND.yaml"
 MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING-KIND.json"
 
+# --- LOAD METADATA ---
 with (CONFIG_DIR / 'METADATA.yaml').open(mode='r') as f:
     METADATA = yaml.safe_load(f)
 KIND_OPTIONS = sorted(list(METADATA['CATEGORY']))
@@ -30,67 +31,79 @@ def update_data(new_entries):
 
     if HUMAN_KIND_YAML.exists():
         with HUMAN_KIND_YAML.open('r', encoding='utf-8') as f:
-
-            existing = yaml.safe_load(f)
-
-            if existing:
-                data = existing
+            data = yaml.safe_load(f) or {}
 
     for uid, kinds in new_entries.items():
-        name, _ = extract_name_n_srcname(uid)
+        if not kinds:
+            continue
 
-        data[name] = '|'.join(sorted(kinds))
+        name, src = extract_name_n_srcname(uid)
 
-    data = get_sorted_dict(data)
+        if src not in data:
+            data[src] = {}
+
+        data[src][name] = ', '.join(sorted(kinds))
+
+    # Tri final pour que le YAML reste lisible (Sources A-Z, puis Palettes A-Z)
+    sorted_data = {s: dict(sorted(p.items())) for s, p in sorted(data.items())}
 
     with HUMAN_KIND_YAML.open('w', encoding='utf-8') as f:
-        yaml.dump(data, f)
+        yaml.dump(sorted_data, f, allow_unicode=True, sort_keys=False)
+
 
 @st.cache_data
 def load_all_data():
+    """Charge les conflits et groupe les données par source pour l'UI."""
+    if not MISSING_KIND_JSON.exists():
+        return {}
+
     with MISSING_KIND_JSON.open("r") as f:
-        conflicts = json_load(f)
+        conflicts = json.load(f)
 
-    palgrps, json_cache = {}, {}
+    # Structure : { source_name: { palette_name: colors_list } }
+    by_source = {}
+    json_cache = {}
 
-    for alias, name, src in conflicts:
+    for name, src in conflicts:
         if src not in json_cache:
-            with (REPORT_DIR / f"{src}.json").open('r') as f:
-                json_cache[src] = json_load(f)
+            src_file = REPORT_DIR / f"{src}.json"
+            if src_file.exists():
+                with src_file.open('r') as f:
+                    json_cache[src] = json.load(f)
+            else:
+                continue
 
+        # Extraction des couleurs si le nom correspond
         for n in json_cache[src]:
             if n.lower() == name.lower():
-                palgrps[alias] = {
-                    src: json_cache[src][n][TAG_RGB_COLS]
-                }
+                if src not in by_source:
+                    by_source[src] = {}
+                by_source[src][name] = json_cache[src][n][TAG_RGB_COLS]
 
-    return palgrps
+    return by_source
 
 # --- INITIALIZATION ---
 st.set_page_config(page_title="Audit @prism - Types", layout="wide")
-palgrps = load_all_data()
+by_source = load_all_data()
 
-# --- 1. PRE-CALCULATION (Crucial pour le bouton Save) ---
-# On calcule l'état des changements AVANT de dessiner la sidebar
+# --- 1. PRE-CALCULATION ---
 final_report = {}
 nbchges_made = 0
 
-for name, sources in palgrps.items():
-    for src, colors in sources.items():
-        uid = build_name_n_srcname(name, src)
-        # On regarde si une valeur existe déjà en session pour cette clé
-        current_val = st.session_state.get(f"k_{uid}", [])
-        if current_val:
-            final_report[uid] = current_val
-            nbchges_made += 1
+# On parcourt le session_state pour détecter les changements
+for k, val in st.session_state.items():
+    if k.startswith("k_") and val:
+        uid = k.replace("k_", "")
+        final_report[uid] = val
+        nbchges_made += 1
 
 # --- 2. SIDEBAR ---
 with st.sidebar:
     st.header("⚡ Actions")
 
-    if st.button(f"🪄 Auto-Assign ({AUTO_QUAL_CATEGO_SIZE})", use_container_width=True):
-        for name, sources in palgrps.items():
-            for src, colors in sources.items():
+    if st.button(f"🪄 Auto-Assign (≤{AUTO_QUAL_CATEGO_SIZE})", use_container_width=True):
+        for src, palettes in by_source.items():
+            for name, colors in palettes.items():
                 uid = build_name_n_srcname(name, src)
                 st.session_state[f"k_{uid}"] = ["qualitative"] if len(colors) <= AUTO_QUAL_CATEGO_SIZE else ["sequential"]
         st.rerun()
@@ -99,7 +112,6 @@ with st.sidebar:
 
     col_btn, col_stat = st.columns([1, 1])
     with col_btn:
-        # Le bouton est maintenant correctement activé car nbchges_made est calculé plus haut
         save_trigger = st.button(
             "💾 SAUVER",
             type="primary",
@@ -121,38 +133,55 @@ with st.sidebar:
         os.kill(os.getpid(), signal.SIGINT)
 
 # --- THEME CSS ---
-bg, txt, border = (("#1e1e1e", "#eee", "#444") if mode == GUI_TAG_DARK else ("#fff", "#000", "#ccc"))
-st.markdown(f"<style>.stApp {{ background-color: {bg}; color: {txt}; }}</style>", unsafe_allow_html=True)
+bg, txt, border_col = (("#1e1e1e", "#eee", "#444") if mode == GUI_TAG_DARK else ("#fff", "#000", "#ccc"))
+st.markdown(f"""
+    <style>
+    .stApp {{ background-color: {bg}; color: {txt}; }}
+    [data-testid="stExpander"] {{ border: 1px solid {border_col}; }}
+    </style>
+    """, unsafe_allow_html=True)
 
 # --- 3. MAIN CONTENT ---
 st.title("🎯 Classification des Palettes")
 
-if not palgrps:
+if not by_source:
     st.success("Toutes les palettes sont classées ! 🎉")
 else:
-    for name, sources in palgrps.items():
-        with st.expander(f"Palette : {name}", expanded=True):
-            for src, colors in sources.items():
+    # Navigation rapide par source
+    sources_list = list(by_source.keys())
+    selected_src = st.multiselect("Filtrer par sources :", sources_list, default=sources_list)
+
+    for src in selected_src:
+        with st.expander(f"📂 SOURCE : {src} ({len(by_source[src])} palettes)", expanded=True):
+            for name, colors in by_source[src].items():
                 uid = build_name_n_srcname(name, src)
-                st.markdown(f"📂 **Source : {src}** — `{len(colors)}` couleurs")
 
-                if len(colors) <= 30:
-                    st.markdown(generate_discrete_grid(colors, border), unsafe_allow_html=True)
+                # Container pour grouper visuellement le bloc (comme une minipage LaTeX)
+                with st.container():
+                    c1, c2 = st.columns([3, 1])
 
-                st.markdown(
-                    f'<div style="background:{generate_gradient_css(colors)}; height:45px; border-radius:6px; margin-bottom:15px;"></div>',
-                    unsafe_allow_html=True
-                )
+                    with c1:
+                        st.markdown(f"**{name}** — `{len(colors)}` couleurs")
+                        # Grille discrète si petite taille
+                        if len(colors) <= 30:
+                            st.markdown(generate_discrete_grid(colors, border_col), unsafe_allow_html=True)
+                        # Gradient permanent
+                        st.markdown(
+                            f'<div style="background:{generate_gradient_css(colors)}; height:35px; border-radius:4px; margin-bottom:10px; border: 1px solid {border_col};"></div>',
+                            unsafe_allow_html=True
+                        )
 
-                # Le multiselect utilise la clé stockée en session state
-                st.multiselect("Types :", options=KIND_OPTIONS, key=f"k_{uid}")
+                    with c2:
+                        st.multiselect("Types :", options=KIND_OPTIONS, key=f"k_{uid}", label_visibility="collapsed")
+
+                    st.divider()
 
 # --- 4. SAVE LOGIC ---
 if save_trigger:
     update_data(final_report)
-    # Nettoyage de la session après sauvegarde
+    # Nettoyage
     for k in list(st.session_state.keys()):
         if k.startswith("k_"):
             del st.session_state[k]
-    st.toast("Données sauvegardées avec succès !")
+    st.toast("Données sauvegardées !")
     st.rerun()

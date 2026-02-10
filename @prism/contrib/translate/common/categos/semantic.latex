@@ -1,16 +1,35 @@
-TdocBW
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries TdocBW\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/TdocBW-palette.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/TdocBW-palette.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-TdocCol
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries TdocCol\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/TdocCol-palette.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/TdocCol-palette.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-TdocDark
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries TdocDark\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/TdocDark-palette.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/TdocDark-palette.pdf}
+    \end{center}
+\end{minipage}

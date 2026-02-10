@@ -40,7 +40,7 @@ SET kind = CASE WHEN kind = ''
     THEN '{kind}'
     ELSE kind || ', ' || '{kind}'
 END
-WHERE name = '{name}'
+WHERE name = '{name}' AND source = '{source}'
 '''
 
 SQL_RESOLVE_EMPTY_KIND = '''
@@ -67,11 +67,9 @@ WHERE p1.kind = ''
 
 SQL_GET_NO_KIND = '''
 SELECT
-    COALESCE(a.alias, h.name),
     h.name,
     h.source
 FROM hash h
-LEFT JOIN alias a ON h.pal_id = a.pal_id
 WHERE h.kind = ''
   AND h.is_kept = 1;
 '''
@@ -148,13 +146,15 @@ logging.info("Kinding ;-) 'Add human kinds' :-)")
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
 
-    for name, kind in HUMAN_KIND.items():
-        query = SQL_UPDATE_KIND.format(
-            name = name,
-            kind = get_std_kind(kind),
-        )
+    for src, namekinds in HUMAN_KIND.items():
+        for name, kind in namekinds.items():
+            query = SQL_UPDATE_KIND.format(
+                name = name,
+                kind = get_std_kind(kind),
+                source = src
+            )
 
-        cursor.execute(query)
+            cursor.execute(query)
 
 
 # -------------- #

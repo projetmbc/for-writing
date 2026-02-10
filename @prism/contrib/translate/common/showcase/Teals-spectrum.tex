@@ -17,13 +17,13 @@
 
 \begin{document}
 \begin{luadraw}{name = Teals-spectrum}
-PAL      = palTeals
-NB_CELLS = 255
+local PAL      = palTeals
+local NB_CELLS = 255
 
-WIDTH = 16
+local WIDTH = 8
 
 local A = Z(-WIDTH / 2, 4)
-local HEIGHT = Z(0, -1)
+local HEIGHT = Z(0, -.7)
 
 local g = graph:new{
   window = {

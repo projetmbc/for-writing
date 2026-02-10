@@ -1,40 +1,209 @@
-Afmhot
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Autumn\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/Afmhot-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/Autumn-spectrum.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-Binary
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Bwr\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/Binary-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/Bwr-spectrum.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-Bwr
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Cool\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/Bwr-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/Cool-spectrum.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-Lemon
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GistRainbow\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/Lemon-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/GistRainbow-spectrum.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-Pink
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Hsv\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/Pink-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/Hsv-spectrum.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-Seismic
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Jet\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/Seismic-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/Jet-spectrum.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-TdocDark
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Lemon\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/TdocDark-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/Lemon-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Prism\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Prism-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Rainbow\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Rainbow-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Seismic\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Seismic-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Spring\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Spring-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Summer\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Summer-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tab10\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tab10-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tab20\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tab20-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tab20b\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tab20b-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tab20c\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tab20c-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries TdocDark\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/TdocDark-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Terrain\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Terrain-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Viridis\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Viridis-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Winter\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Winter-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries YlOrRd\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/YlOrRd-spectrum.pdf}
+    \end{center}
+\end{minipage}

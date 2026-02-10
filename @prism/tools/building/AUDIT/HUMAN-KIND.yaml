@@ -1,81 +1,50 @@
 #  + A
-Afmhot: dark, sequential
-Autumn: qualitative, sequential
-
-#  + B
-Binary: dark, qualitative, sequential
-Bone: sequential
-Brg: qualitative, sequential
-Bwr: dark, divergent, qualitative, sequential
-
-#  + C
-CMRmap: qualitative, sequential
-Cividis: sequential
-Cool: qualitative, sequential
-Copper: sequential
-Cubehelix: colorblind, sequential
-
-#  + F
-Flag: cyclic, divergent
-
-#  + G
-GistEarth: sequential
-GistGray: sequential
-GistHeat: sequential
-GistNcar: divergent, sequential
-GistRainbow: divergent, sequential
-GistStern: divergent, sequential
-Gnuplot: sequential
-Gnuplot2: sequential
-
-#  + H
-Hot: sequential
-Hsv: divergent, sequential
-
-#  + I
-Inferno: sequential
-
-#  + J
-Jet: divergent, sequential
+ASYMPTOTE:
+  Brg: qualitative, sequential
+  Bwr: dark, divergent, qualitative, sequential
+  Cividis: sequential
+  Inferno: sequential
+  Magma: sequential
+  Plasma: sequential
+  Seismic: dark, divergent, qualitative, sequential
+  Tab10: dark, divergent, qualitative
+  Tab20: dark, divergent, qualitative
+  Tab20b: dark, divergent, qualitative
+  Tab20c: dark, divergent, qualitative
+  Twilight: divergent, sequential
+  TwilightShifted: divergent, sequential
+  Viridis: dark, sequential
+  YlOrRd: dark, qualitative, sequential
 
 #  + M
-Magma: sequential
-
-#  + N
-NipySpectral: divergent, qualitative, sequential
-
-#  + O
-Ocean: divergent, sequential
-
-#  + P
-Pink: dark, sequential
-Plasma: sequential
-Prism: divergent
-
-#  + R
-Rainbow: sequential
-
-#  + S
-Seismic: dark, divergent, qualitative, sequential
-Spring: qualitative, sequential
-Summer: qualitative, sequential
-
-#  + T
-Tab10: divergent, qualitative
-Tab20: divergent, qualitative
-Tab20b: divergent, qualitative, sequential
-Tab20c: divergent, qualitative, sequential
-Terrain: divergent, sequential
-Turbo: sequential
-Twilight: divergent, sequential
-TwilightShifted: divergent, sequential
-
-#  + V
-Viridis: sequential
-
-#  + W
-Winter: qualitative, sequential
-
-#  + Y
-YlOrRd: qualitative, sequential
-YlOrRdCBW: qualitative, sequential
+MATPLOTLIB:
+  Afmhot: sequential
+  Autumn: dark, qualitative, sequential
+  Binary: qualitative, sequential
+  Bone: sequential
+  CMRmap: qualitative, sequential
+  Cool: dark, qualitative, sequential
+  Copper: sequential
+  Cubehelix: colorblind, sequential
+  Flag: cyclic, divergent
+  GistEarth: sequential
+  GistGray: sequential
+  GistHeat: sequential
+  GistNcar: divergent, sequential
+  GistRainbow: dark, divergent, sequential
+  GistStern: divergent, sequential
+  Gnuplot: sequential
+  Gnuplot2: sequential
+  Hot: sequential
+  Hsv: dark, divergent, sequential
+  Jet: dark, divergent, sequential
+  NipySpectral: divergent, qualitative, sequential
+  Ocean: divergent, sequential
+  Pink: sequential
+  Prism: dark, divergent
+  Rainbow: dark, sequential
+  Spring: dark, qualitative, sequential
+  Summer: dark, qualitative, sequential
+  Terrain: dark, divergent, sequential
+  Turbo: sequential
+  Winter: dark, qualitative

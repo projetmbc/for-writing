@@ -8,11 +8,7 @@ mypy . --html-report typing_report
 
 // ---------- //
 
-catégorie avec description
-
-    --> expliquer les différents types de palettes
-
-    --> catégorie simplifier : color blind pas relis ailleurs + utilisation de tikz seul pour accélére la compilation !
+normaliser par exemple Orangegrey --> OrangeGrey ou Bwr --> BWR (Blue White Red)
 
 
 // ---------- //
@@ -22,7 +18,6 @@ AVANT nelle version !!!!!
 real camelcase based on colornames : Pinkgrey  -->  PinkGrey
 
     + penser à stocker dans la bdd  via alias !
-
 
 
 // ---------- //

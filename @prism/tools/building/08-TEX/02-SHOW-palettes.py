@@ -68,21 +68,23 @@ TEX_FOOTER = r"\end{document}"
 
 
 TEX_TMPL_PALETTES = r"""
-\begin{luadraw}{name = <PAL-NAME>-palette}
+\begin{luadraw}{name = <PAL-NAME>-spectrum}
 local PAL = pal<PAL-NAME>
 
+local WIDTH = 10
+
 local PALSIZE  = #PAL
-local PALDIM   = .75
-local PALDELTA = .3
+local PALDIM   = .6
+local PALDELTA = .1
 
 local g = graph:new{
-  window = {-100, 100, -5, 5},
+  window = {-WIDTH - 5, WIDTH + 5, -5, 4.4},
   bbox   = false
 }
 
 g:Linewidth(2)
 
-local A = Z(-20, 4)
+local A = Z(-WIDTH, 4)
 local v = Z(0, -PALDIM)
 
 for k = 1, PALSIZE do
@@ -94,9 +96,9 @@ for k = 1, PALSIZE do
   )
 
   g:Dlabel(
-    "$" .. k .. "$",
-    A + Z(PALDIM, 1.2*PALDIM) / 2,
-    {pos="S"}
+    "\\footnotesize$" .. k .. "$",
+    A + Z(PALDIM, 1.25*PALDIM) / 2,
+    {pos = "S"}
   )
 
   A = A + PALDIM + PALDELTA
@@ -113,13 +115,13 @@ g:Show()
 
 TEX_TMPL_SPECTRUM = r"""
 \begin{luadraw}{name = <PAL-NAME>-spectrum}
-PAL      = pal<PAL-NAME>
-NB_CELLS = <NB-CELLS>
+local PAL      = pal<PAL-NAME>
+local NB_CELLS = <NB-CELLS>
 
-WIDTH = 16
+local WIDTH = 8
 
 local A = Z(-WIDTH / 2, 4)
-local HEIGHT = Z(0, -1)
+local HEIGHT = Z(0, -.7)
 
 local g = graph:new{
   window = {

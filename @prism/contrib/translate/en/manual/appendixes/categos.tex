@@ -19,13 +19,19 @@
     The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
 \end{tdocnote}
 
+\smallskip
 
-% ----------------------------------------- %
-% -- JUST TRANSLATE TITLES INSIDE BRACES -- %
-% ----------------------------------------- %
+\begin{tdocimp}
+    Categories were generated semi-automatically, followed by manual selection to obta
+    in relevant choices.
+\end{tdocimp}
+
+% ------------------------------------------------ %
+% -- BELOW, JUST TRANSLATE TITLES INSIDE BRACES -- %
+% ------------------------------------------------ %
 
 \foreach \nb/\kind/\title in {%
-% -- CATEGOS - AUTO - START -- %
+% -- FOREACH CATEGOS - AUTO - START -- %
   1/colorblind/{Colorblind palettes},%
   2/cyclic/{Cyclic palettes},%
   3/dark/{Dark palettes},%
@@ -33,17 +39,19 @@
   5/qualitative/{Qualitative palettes},%
   6/semantic/{Semantic palettes},%
   7/sequential/{Sequential palettes}%
-% -- CATEGOS - AUTO - END -- %
+% -- FOREACH CATEGOS - AUTO - END -- %
 }{
   \ifthenelse{\nb = 1}{}{\newpage}
 
   \phantomsection
-  \subsection*{\hfill\title\hfill\null}
+  \subsection*{\hfill\title\hfill\null}%
   \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
   %
-  \begin{center}
+  \subimport{../../used-by-tools/}{catego-desc-\kind.latex}
+  
+  \begin{multicols*}{2}
     \subimport{../../../common/categos/}{\kind.latex}
-  \end{center}
+  \end{multicols*}
 }
 
 \end{document}

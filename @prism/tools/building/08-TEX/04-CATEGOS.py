@@ -24,11 +24,12 @@ from collections import defaultdict
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-TAG_START = "% -- CATEGOS - AUTO - START -- %"
-TAG_END   = "% -- CATEGOS - AUTO - END -- %"
+TAG_FOREACH_START = r"% -- FOREACH CATEGOS - AUTO - START -- %"
+TAG_FOREACH_END   = r"% -- FOREACH CATEGOS - AUTO - END -- %"
 
 
-TAB = ' '*6
+TAB_1 = ' '*4
+TAB_2 = TAB_1*2
 
 
 # ------------------ #
@@ -40,8 +41,13 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-AUDIT_DIR    = BUILD_TOOLS_DIR / TAG_AUDIT
-SHOWCASE_DIR = PROJ_DIR / "contrib" / "translate" / "common" / "showcase"
+
+AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
+
+TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate"
+
+
+SHOWCASE_DIR = TRANSLATE_DIR / "common" / "showcase"
 
 CATEGO_DIR = SHOWCASE_DIR.parent / "categos"
 CATEGO_DIR.mkdir(
@@ -50,7 +56,11 @@ CATEGO_DIR.mkdir(
 )
 
 
-APPENDIX_TEX_FILE = PROJ_DIR / "contrib" / "translate" / "en" / "manual" / "appendixes" / "categos.tex"
+MANUAL_DIR        = TRANSLATE_DIR / "en" / "manual"
+USED_BY_TOOLS_DIR = TRANSLATE_DIR / "en" / "used-by-tools"
+
+
+APPENDIX_TEX_FILE = MANUAL_DIR / "appendixes" / "categos.tex"
 
 
 METADATA_CATEGOS = YAML_CONFIGS['METADATA']['CATEGORY']
@@ -67,33 +77,39 @@ with sqlite3.connect(AUDIT_DIR / 'palettes.db') as conn:
 
     query = """
 SELECT
-    p.name, p.kind
-FROM hash p
-WHERE p.is_kept = 1
-ORDER BY p.name ASC
+    h.name, a.alias, h.kind
+FROM hash h
+LEFT JOIN alias a ON h.pal_id = a.pal_id
+WHERE h.is_kept = 1
     """
 
     cursor.execute(query)
 
     rows = cursor.fetchall()
 
-    for name, kinds in rows:
+    for name, alias, kinds in rows:
+        if not alias is None:
+            name = alias
+
         for k in kinds.split(','):
             k = k.strip()
 
             CATEGOS[k].append(name)
 
+for k in CATEGOS:
+    CATEGOS[k].sort(key = lambda k: k.lower())
 
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
 
-logging.info("Build 'category' TeX files")
+# --------------------------- #
+# -- SHOWCASE SINGLE FILES -- #
+# --------------------------- #
+
+logging.info("Build 'category showcase' TeX files")
 
 _foreach_data = []
 
 for i, kind in enumerate(sorted(CATEGOS), 1):
-    logging.info(f"Add '{kind}'")
+    logging.info(f"(showcase) '{kind}'")
 
     texfile = CATEGO_DIR / f"{kind}.latex"
     texfile.touch()
@@ -106,34 +122,68 @@ for i, kind in enumerate(sorted(CATEGOS), 1):
 
     _graphics = []
 
-
-    for n in CATEGOS[kind]:
-        _graphics.append(n)
-
+    for n in sorted(set(CATEGOS[kind])):
         if kind in [
             'qualitative',
             'semantic',
         ]:
-            format = 'palette'
+            graph_format = 'palette'
 
         else:
-            format = 'spectrum'
+            graph_format = 'spectrum'
 
-        pdffile = SHOWCASE_DIR / f"{n}-{format}.pdf"
+        if graph_format == 'palette':
+            _graphics += [
+                r"\setlength{\columnseprule}{0.5pt}",
+                r"\renewcommand{\columnseprulecolor}{\color{LightGrey}}",
+            ]
 
-        if not pdffile.is_file():
-            continue
+        _graphics += [
+             r"\begin{minipage}{\linewidth}",
+            rf"{TAB_1}\begin{{center}}",
+            rf"{TAB_2}\smallskip",
+            rf"{TAB_2}{{\bfseries {n}\vphantom{{g}}}}",
+              "",
+            rf"{TAB_2}\smallskip",
+        ]
 
+        pdffile = SHOWCASE_DIR / f"{n}-{graph_format}.pdf"
 
         _graphics.append(
-            rf'{TAB}\includegraphics{{../../../common/showcase/{pdffile.name}}}'
+            rf'{TAB_2}\includegraphics{{../../../common/showcase/{pdffile.name}}}'
         )
 
-    graphics = '\n\n\\smallskip\n'.join(_graphics)
+        _graphics += [
+            rf"{TAB_1}\end{{center}}",
+            r"\end{minipage}",
+            "",
+        ]
+
+    graphics = '\n'.join(_graphics)
 
     texfile.write_text(graphics)
 
 
+# ----------------------- #
+# -- DESC SINGLE FILES -- #
+# ----------------------- #
+
+logging.info("Build 'category desc' TeX files")
+
+for kind in sorted(CATEGOS):
+    logging.info(f"(desc) '{kind}'")
+
+    desc = METADATA_CATEGOS[kind]['desc']
+
+    texfile = USED_BY_TOOLS_DIR / f"catego-desc-{kind}.latex"
+    texfile.touch()
+
+    texfile.write_text(desc)
+
+
+# ----------------------- #
+# -- DESC SINGLE FILES -- #
+# ----------------------- #
 
 logging.info("Build 'appendix' TeX file")
 
@@ -142,15 +192,15 @@ foreach_data += '%'
 
 content = APPENDIX_TEX_FILE.read_text()
 
-before, _ , after = content.partition(f"\n{TAG_START}")
+before, _ , after = content.partition(f"\n{TAG_FOREACH_START}")
 
-_ , _ , after = after.partition(f"{TAG_END}\n")
+_ , _ , after = after.partition(f"{TAG_FOREACH_END}\n")
 
 content = f"""
 {before}
-{TAG_START}
+{TAG_FOREACH_START}
 {foreach_data}
-{TAG_END}
+{TAG_FOREACH_END}
 {after}
 """.strip() + '\n'
 

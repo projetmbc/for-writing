@@ -17,13 +17,13 @@
 
 \begin{document}
 \begin{luadraw}{name = Deep-spectrum}
-PAL      = palDeep
-NB_CELLS = 256
+local PAL      = palDeep
+local NB_CELLS = 256
 
-WIDTH = 16
+local WIDTH = 8
 
 local A = Z(-WIDTH / 2, 4)
-local HEIGHT = Z(0, -1)
+local HEIGHT = Z(0, -.7)
 
 local g = graph:new{
   window = {

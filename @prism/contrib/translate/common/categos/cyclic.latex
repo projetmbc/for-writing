@@ -1,16 +1,29 @@
-Flag
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Flag\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/Flag-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/Flag-spectrum.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-Rainbow
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries RainbowCP\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/Rainbow-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/RainbowCP-spectrum.pdf}
+    \end{center}
+\end{minipage}
 
-\smallskip
-Sinebow
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Sinebow\vphantom{g}}
 
-\smallskip
-      \includegraphics{../../../common/showcase/Sinebow-spectrum.pdf}
+        \smallskip
+        \includegraphics{../../../common/showcase/Sinebow-spectrum.pdf}
+    \end{center}
+\end{minipage}

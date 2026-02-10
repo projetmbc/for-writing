@@ -16,21 +16,23 @@
 }
 
 \begin{document}
-\begin{luadraw}{name = T10-palette}
+\begin{luadraw}{name = T10-spectrum}
 local PAL = palT10
 
+local WIDTH = 10
+
 local PALSIZE  = #PAL
-local PALDIM   = .75
-local PALDELTA = .3
+local PALDIM   = .6
+local PALDELTA = .1
 
 local g = graph:new{
-  window = {-100, 100, -5, 5},
+  window = {-WIDTH - 5, WIDTH + 5, -5, 4.4},
   bbox   = false
 }
 
 g:Linewidth(2)
 
-local A = Z(-20, 4)
+local A = Z(-WIDTH, 4)
 local v = Z(0, -PALDIM)
 
 for k = 1, PALSIZE do
@@ -42,9 +44,9 @@ for k = 1, PALSIZE do
   )
 
   g:Dlabel(
-    "$" .. k .. "$",
-    A + Z(PALDIM, 1.2*PALDIM) / 2,
-    {pos="S"}
+    "\\footnotesize$" .. k .. "$",
+    A + Z(PALDIM, 1.25*PALDIM) / 2,
+    {pos = "S"}
   )
 
   A = A + PALDIM + PALDELTA

@@ -17,13 +17,13 @@
 
 \begin{document}
 \begin{luadraw}{name = PiYG-spectrum}
-PAL      = palPiYG
-NB_CELLS = 200
+local PAL      = palPiYG
+local NB_CELLS = 200
 
-WIDTH = 16
+local WIDTH = 8
 
 local A = Z(-WIDTH / 2, 4)
-local HEIGHT = Z(0, -1)
+local HEIGHT = Z(0, -.7)
 
 local g = graph:new{
   window = {
