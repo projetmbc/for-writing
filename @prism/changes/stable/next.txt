@@ -21,6 +21,10 @@ Here are the breaking \chges.
     1) The categories have been fully changed (see below).
 
 
+[[:doc:]]
+Manual: remove the cluster appendix.
+
+
 -----
 :new:
 -----

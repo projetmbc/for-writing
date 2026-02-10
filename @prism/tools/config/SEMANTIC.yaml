@@ -6,6 +6,8 @@
 # useful semantic states (for example: initial, hovered,
 # visited, and inactive links).
 MAX_SEM_SIZE: 40
+SUB_SEM_SIZE: 10
+NB_SEM_GRPS : 4
 
 # ----------------------------------- #
 # -- SORTED SEMANTIC CONTENT TYPES -- #

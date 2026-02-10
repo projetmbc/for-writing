@@ -24,8 +24,20 @@ from json import load as json_load
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
+MAX_SEM_SIZE = YAML_CONFIGS['SEMANTIC']['MAX_SEM_SIZE']
+SUB_SEM_SIZE = YAML_CONFIGS['SEMANTIC']['SUB_SEM_SIZE']
+NB_SEM_GRPS  = YAML_CONFIGS['SEMANTIC']['NB_SEM_GRPS']
+
 PATTERN_MAX_SEM_SIZE = re.compile(
     r'(\\newcommand\\palSemMaxSize\{)\d+(\})'
+)
+
+PATTERN_SUB_SEM_SIZE = re.compile(
+    r'(\\newcommand\\palSubSemSize\{)\d+(\})'
+)
+
+PATTERN_NB_SEM_GRPS = re.compile(
+    r'(\\newcommand\\palNbSemGrps\{)\d+(\})'
 )
 
 PATTERN_NB_OF_PALS = re.compile(
@@ -55,26 +67,33 @@ with HF_PALS_JSON.open() as f:
     NB_OF_PALS = len(json_load(f))
 
 
-MAX_SEM_SIZE = YAML_CONFIGS['SEMANTIC']['MAX_SEM_SIZE']
-
-
 # --------------------------------- #
 # -- NB OF PALS / MAX. SEM. SIZE -- #
 # --------------------------------- #
 
 for ctxt, pat, val in [
     (
+        'nb of palettes',
+        PATTERN_NB_OF_PALS,
+        NB_OF_PALS
+    ),
+    (
         'max semantic size',
         PATTERN_MAX_SEM_SIZE,
         MAX_SEM_SIZE
     ),
     (
-        'nb of palettes',
-        PATTERN_NB_OF_PALS,
-        NB_OF_PALS
-    )
+        'sub semantic group size',
+        PATTERN_SUB_SEM_SIZE,
+        SUB_SEM_SIZE
+    ),
+    (
+        'nb of sub semantic groups',
+        PATTERN_NB_SEM_GRPS,
+        NB_SEM_GRPS
+    ),
 ]:
-    logging.info(f"DYNA VAR UPDATE - 'ctxt'")
+    logging.info(f"Dyna Var Update - '{ctxt.capitalize()}'")
 
     PREAMBLE_CODE = pat.sub(
         r"\g<1>" + str(val) + r"\g<2>",

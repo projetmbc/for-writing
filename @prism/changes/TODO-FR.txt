@@ -32,6 +32,11 @@ audit de tout en prenant garde de ne mettre à jour human kind uniquement si des
 
 // ---------- //
 
+cluster via HTML !!!
+
+
+// ---------- //
+
 revoi la gestonaudit/report qui ne vas pas logique !!! heritage du tout-en un !
 
 

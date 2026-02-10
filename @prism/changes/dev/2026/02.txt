@@ -6,6 +6,14 @@
 ==
 
 --------
+:break:
+--------
+
+[[:doc:]]
+Manual: remove the cluster appendix.
+
+
+--------
 :update:
 --------
 

@@ -115,11 +115,11 @@ ALL_CATEGOS = sorted(
 logging.warning("LAST NEW PALS NOT YET IMPLEMENTED!")
 
 
-# --------------------------- #
-# -- DB - EXTRACT METADATA -- #
-# --------------------------- #
+# --------------- #
+# -- AUDIT PDF -- #
+# --------------- #
 
-logging.info("DB - Extract 'metadata'")
+logging.info("Last new pals - Build 'audit PDF'")
 
 query = '''
 SELECT
