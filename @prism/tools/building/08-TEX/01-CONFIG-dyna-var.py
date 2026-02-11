@@ -20,34 +20,9 @@ from cbutils      import *
 from json import load as json_load
 
 
-# ------------------ #
-# -- CONSTANTS #1 -- #
-# ------------------ #
-
-MAX_SEM_SIZE = YAML_CONFIGS['SEMANTIC']['MAX_SEM_SIZE']
-SUB_SEM_SIZE = YAML_CONFIGS['SEMANTIC']['SUB_SEM_SIZE']
-NB_SEM_GRPS  = YAML_CONFIGS['SEMANTIC']['NB_SEM_GRPS']
-
-PATTERN_MAX_SEM_SIZE = re.compile(
-    r'(\\newcommand\\palSemMaxSize\{)\d+(\})'
-)
-
-PATTERN_SUB_SEM_SIZE = re.compile(
-    r'(\\newcommand\\palSubSemSize\{)\d+(\})'
-)
-
-PATTERN_NB_SEM_GRPS = re.compile(
-    r'(\\newcommand\\palNbSemGrps\{)\d+(\})'
-)
-
-PATTERN_NB_OF_PALS = re.compile(
-    r'(\\newcommand\\nbOfPals\{)\d+(\})'
-)
-
-
-# ------------------ #
-# -- CONSTANTS #2 -- #
-# ------------------ #
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
 
 PROJ_DIR = THIS_DIR
 
@@ -60,44 +35,82 @@ PREAMBLE_TEX = MANUAL_DIR / "preamble.cfg.sty"
 PREAMBLE_CODE = PREAMBLE_TEX.read_text()
 
 
+DATA = dict()
+
+
 JSON_PROD_DIR = PROJ_DIR / "products" / "json"
 HF_PALS_JSON  = JSON_PROD_DIR / "palettes-hf.json"
 
 with HF_PALS_JSON.open() as f:
-    NB_OF_PALS = len(json_load(f))
+    DATA['NB_OF_PALS'] = len(json_load(f))
 
 
-# --------------------------------- #
-# -- NB OF PALS / MAX. SEM. SIZE -- #
-# --------------------------------- #
+REPORT_DIR      = PROJ_DIR / "tools" / "building" / TAG_REPORT
 
-for ctxt, pat, val in [
+DATA['NB_NEW_PALS'] = (
+    REPORT_DIR / "AUDIT-LOCMAIN-NAMES-NEW-NB.txt"
+).read_text().strip()
+
+
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
+DATA.update(YAML_CONFIGS['SEMANTIC'])
+
+
+# -------------------- #
+# -- DYNA TEXT VALS -- #
+# -------------------- #
+
+for ctxt, uppername, prefix in [
     (
         'nb of palettes',
-        PATTERN_NB_OF_PALS,
-        NB_OF_PALS
+        'NB_OF_PALS',
+        '',
+    ),
+    (
+        'nb of new palettes',
+        'NB_NEW_PALS',
+        '',
     ),
     (
         'max semantic size',
-        PATTERN_MAX_SEM_SIZE,
-        MAX_SEM_SIZE
+        'MAX_SEM_SIZE',
+        'pal',
     ),
     (
         'sub semantic group size',
-        PATTERN_SUB_SEM_SIZE,
-        SUB_SEM_SIZE
+        'SUB_SEM_SIZE',
+        'pal',
     ),
     (
         'nb of sub semantic groups',
-        PATTERN_NB_SEM_GRPS,
-        NB_SEM_GRPS
+        'NB_SEM_GRPS',
+        'pal',
     ),
 ]:
     logging.info(f"Dyna Var Update - '{ctxt.capitalize()}'")
 
-    PREAMBLE_CODE = pat.sub(
+    camelname = uppername.title()
+    camelname = camelname.replace('_', '')
+    camelname = (
+        prefix + camelname
+        if prefix else
+        camelname[0].lower() + camelname[1:]
+    )
+
+    val = DATA[uppername]
+
+    PREAMBLE_CODE = (
+        re.compile(
+              r'(\\newcommand\\'
+            + camelname
+            + r'\{)\d+(\})'
+        )
+    ).sub(
         r"\g<1>" + str(val) + r"\g<2>",
         PREAMBLE_CODE
     )
 
-    PREAMBLE_TEX.write_text(PREAMBLE_CODE)
+PREAMBLE_TEX.write_text(PREAMBLE_CODE)

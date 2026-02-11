@@ -22,25 +22,25 @@
 
 
 \begin{tdocnote}[Qualitative and semantic palettes]
-    The threshold of \palSemMaxSize\ colors has been established for qualitative and semantic palettes. The following lines outline the rationale for this limit.
+    The threshold of \palMaxSemSize\ colors has been established for qualitative and semantic palettes. The following lines outline the rationale for this limit.
     %
     \begin{itemize}
         \item In qualitative color palettes, each color represents a single data point or a group of data. Experience shows that about ten colors are more than enough.
-     
-        \item Semantic palettes associate a color with a specific context, such as warning levels (see the three frames in this document). Choosing \palSemMaxSize\ colors allows for \palSubSemSize\ different contexts, each with \palNbSemGrps\ sub-categories.
+
+        \item Semantic palettes associate a color with a specific context, such as warning levels (see the three frames in this document). Choosing \palMaxSemSize\ colors allows for \palSubSemSize\ different contexts, each with \palNbSemGrps\ sub-categories.
         Here are some examples of  sub-categories.
         %
         \begin{enumerate}[label=\textbf{\small \arabic*0-\arabic*9}, widest=30-39, leftmargin=4.5em, nosep]
-        
-        \item \textbf{Initial\,/\,Idle:} 
+
+        \item \textbf{Initial\,/\,Idle:}
         default states such as ``To Do'', ``Clickable'', or ``To be analyzed''.
-        
-        \item \textbf{Active\,/\,Transition:} 
+
+        \item \textbf{Active\,/\,Transition:}
         states in flux, including ``In Progress'' or UI ``Hover'' effects.
-        
-        \item \textbf{Success\,/\,Final:} 
+
+        \item \textbf{Success\,/\,Final:}
         terminal positive states like ``Done'', ``Clicked'', or ``Validated''.
-        
+
         \item \textbf{Alert\,/\,Rejection:}
         error handling and negative outcomes, e.g., ``Error'', ``Inactive'', or ``Rejected''.
 \end{enumerate}
@@ -79,7 +79,7 @@
   \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
   %
   \subimport{../../used-by-tools/}{catego-desc-\kind.latex}
-  
+
   \begin{multicols*}{2}
     \subimport{../../../common/categos/}{\kind.latex}
   \end{multicols*}
