@@ -1,0 +1,115 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{manual/preamble.cfg}
+
+
+\begin{document}
+
+\small
+
+
+% -------------------- %
+
+
+\begin{tdocbreak}
+    \item Here are the breaking changes in the API.
+    %
+    \begin{itemize}
+        \item Palette names use 'semantic' camelcase. For example, we use \tdoccodein{text}+PinkGrey+ and \tdoccodein{text}+BWR+ (Blue White Red) instead of \tdoccodein{text}+Pinkgrey+ and \tdoccodein{text}+Bwr+, but we keep \tdoccodein{text}+RdBu+ (RedBlue).
+
+
+        \item \lua\ product: function \tdoccodein{lua}+getPal+ is now \tdoccodein{lua}+palCreateFromPal+. It expects a palette variable instead of a name alongside options.
+
+
+        \item Contribution workflow has been fully changed (see below).
+
+
+        \item No more same size for all the palettes (see below).
+
+
+        \item  The categories have been fully changed (see below).
+    \end{itemize}
+
+
+    \item Manual: remove the cluster appendix.
+\end{tdocbreak}
+
+
+% -------------------- %
+
+
+\begin{tdocnew}
+    \item Here are the new API features.
+    %
+    \begin{itemize}
+        \item 43 new palettes added.
+
+
+        \item Multiple distribution formats are now available to meet various technical requirements.
+        %
+        \begin{itemize}
+            \item High-fidelity (unmodified).
+
+            \item Normalized (size $\leq$ \palSemMaxSize).
+
+            \item Modular (one file per palette).
+
+            \item Monolithic (all palettes in one file).
+        \end{itemize}
+
+
+        \item Categories: the size palette is no longer used since the new API provides named categories. For example, a 3-color smooth palette can be now sequential, qualtitaive and/or semantic.
+
+
+        \item Contribution workflow simplified significantly.
+        %
+        \begin{itemize}
+            \item Data extraction and code generation are now streamlined by instantiating the \tdoccodein{python}+PaletteTransformer+ class, alongside palette and API builder functions.
+
+            \item Monolithic or modular version can be omitted (\TeX\ can't build all the high-fidelity palettes at once).
+
+            \item Standardized showcases now feature simplified graphics.
+        \end{itemize}
+    \end{itemize}
+\end{tdocnew}
+
+
+% -------------------- %
+
+
+\begin{tdocupdate}
+    \item Documentations explain the new API. Here are the changes made.
+    %
+    \begin{itemize}
+        \item Contribution \tdoccodein{text}{README.md} files updated.
+
+
+        \item Manual.
+        %
+        \begin{itemize}
+            \item Added reference to \carbonplan.
+
+            \item Added new category sections with a small description of their meaning.
+        \end{itemize}
+    \end{itemize}
+
+
+    \item The projects listed below serves as a foundation.
+    %
+    \begin{itemize}
+        \item \asymptote
+        \item \carbonplan\ (new)
+        \item \cartocolors
+        \item \cmasher\ (new with temporary partial support)
+        \item \colorbrewer
+        \item \colormaps\ (new with temporary partial support)
+        \item \matplotlib
+        \item \nclcolortables\ (new with temporary partial support)
+        \item \palettable
+        \item \scicolmap
+    \end{itemize}
+\end{tdocupdate}
+
+\end{document}

@@ -13,6 +13,7 @@ AVANT nelle version !!!!!
 imprimer audit pour les catgeos car des choses à revori !!!
 
 
+
 // ---------- //
 
 lab
@@ -24,20 +25,11 @@ lab
 
 audit
 
-    ---> revoir les audtis dans report, car c'est illogique!!! heritage du tout-en un !
-
     --> PDF des derniers nouveautés à réeelement implémenter
 
     --> HTML: audit de tout en prenant garde de ne mettre à jour human kind uniquement si des chgts faits !!!!
 
     --> avoir un outil de compraison visuel lorsqu'uen déf change et aussi pour ce qui a disparu
-
-
-
-
-    --> ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
-
-    --> https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
 
 
 // ---------- //
@@ -58,6 +50,11 @@ HMT viewer
 // ---------- //
 
 cluster via HTML !!!
+
+
+// ---------- //
+
+faore jes mdofics uniquemnt si reel nécessaire : via une vraiable qui peut indiquer que rien à changer pour les palettes par exemple, puis ensuite pas de nouveau code tex...
 
 
 // ---------- //

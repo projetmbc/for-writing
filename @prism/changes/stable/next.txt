@@ -54,7 +54,7 @@ Here are the new features.
 
         + Monolithic or modular version can be omitted (\tex can't build all the high-fidelity palettes at once).
 
-        + Standardized showcases now feature simplified graphics: waves for small palettes and random triangles for large ones.
+        + Standardized showcases now feature simplified graphics.
 
 
 --------
@@ -64,29 +64,25 @@ Here are the new features.
 [[:doc:]]
 \Docs explain the new \api. Here are the changes made.
 
-    1) \Contrib \readme.
+    1) \Contrib \readme files updated.
 
     1) Manual.
 
         + Added \ref to \carbonplan.
 
-        + Single palette files avoid unuseful updates made by \latexmk.
-
-        + Standalone \pdfs for all the graphics.
-
         + Added new category sections with a small description of their meaning.
 
 
 [[:tech:]]
-Refactoring the generation code based on existing \projs. The \projs listed below will serve as a foundation. Licenses are automatically retrieved, and for \projs providing their own classifications, these are imported directly to minimize manual processing.
+The \projs listed below serves as a foundation.
 
     + \asymptote
-    + \carbonplan (new)
-    + \cartocolor
-    + \cmasher (new)
+    + \carbonplan (new with full support)
+    + \cartocolors
+    + \cmasher (new with temporary partial support)
     + \colorbrewer
-    + \colormaps (new)
+    + \colormaps (new with temporary partial support)
     + \matplotlib
-    + \nclcolortable (new)
+    + \nclcolortables (new with temporary partial support)
     + \palettable
     + \scicolmap
