@@ -27,52 +27,61 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-CONTRIB_PRODS_DIR        = PROJ_DIR / "contrib" / "products"
-CONTRIB_PRODS_README_DIR = CONTRIB_PRODS_DIR / "readme"
+
+CONTRIB_PRODS_DIR   = PROJ_DIR / "contrib" / "products"
+LUA_PROD_DIR        = CONTRIB_PRODS_DIR / "lua"
+LUA_PROD_README_DIR = CONTRIB_PRODS_DIR / "readme" / "how-to"
 
 
-TMPL_TAG_STRUCT = "<!-- FOLDER STRUCT. AUTO - {} -->"
+TMPL_TAG_STRUCT = "<!-- LUA PROD DIR. AUTO - {} -->"
 
 TAG_STRUCT_START = TMPL_TAG_STRUCT.format("START")
 TAG_STRUCT_END   = TMPL_TAG_STRUCT.format("END")
 
 
-TAB_DIR = '\n  + '
+TAB_DIR  = '\n  + '
+TAB_FILE = '\n  * '
 
 
 # ----------------- #
 # -- LET'S WORK! -- #
 # ----------------- #
 
+_files = [
+    f.name
+    for f in LUA_PROD_DIR.glob('*')
+    if (
+        f.is_file()
+        and
+        not f.name.startswith('.')
+        and
+        f.name != 'README.md'
+    )
+]
+
+_files.sort()
+
+files = TAB_FILE.join(_files)
+files = f"{TAB_FILE}{files}"
+
+
 _folders = [
     p.name
-    for p in CONTRIB_PRODS_DIR.glob('*')
+    for p in LUA_PROD_DIR.glob('*')
     if (
         p.is_dir()
         and
-        not p.name.startswith('x-')
-        and
-        (
-            p.name.startswith('template-')
-            or
-            not (p / "extend.py").is_file()
-        )
+        not p.name.startswith('_')
     )
 ]
 
 _folders.sort()
 
-if _folders:
-    _folders.append('[...]')
-
-    folders = TAB_DIR.join(_folders)
-    folders = f"{TAB_DIR}{folders}"
-
-else:
-    folders = ""
+folders = TAB_DIR.join(_folders)
+folders = f"{TAB_DIR}{folders}"
 
 
-subcontent = f"+ {CONTRIB_PRODS_DIR.name}{folders}"
+subcontent = f"+ {LUA_PROD_DIR.name}{files}{folders}"
 subcontent = f"""
 ~~~
 {subcontent}
@@ -80,7 +89,7 @@ subcontent = f"""
 """.strip()
 
 
-for mdfile in CONTRIB_PRODS_README_DIR.rglob("*.md"):
+for mdfile in LUA_PROD_README_DIR.rglob("*.md"):
     tag_update(
         logger          = logging,
         log_raise_error = log_raise_error,

@@ -8,7 +8,7 @@ It must contain fake, or real, palette and API files using the following standar
   * `palapi.<ext>` represents the implementation of the API.
 
 
-> ***NOTE.*** *A good practice is to provide a `showcase` folder for local testing without requiring installation.*
+> ***NOTE.*** *A good practice is to provide a `showcase` folder for local testing without requiring installation. Try to propose simplified graphics like in the `Lua` product.*
 
 
 > ***CAUTION.*** *The `fake-prod` folder can't be used for palette creation.*

@@ -1,6 +1,6 @@
 ### The extend.py file
 
-This file must follow the following template. The comments help you get started with coding.
+This file must follow the following template. The comments help you get started with coding. Take also a look at the existing products.
 
 <!-- EXTEND.PY AUTO - START -->
 ~~~python

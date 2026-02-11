@@ -15,7 +15,7 @@ For example, on December 20, 2025, the `Lua` `palettes` folder contained the fol
 ~~~
 
 
-In this folder, for example, we had the following `BlindFish.lua` file generated mainly by the `extend.py` file, which we will discuss soon.
+In this folder, for example, we have the following `BlindFish.lua` file generated mainly by the `extend.py` file, which we will discuss soon.
 
 ~~~lua
 ------

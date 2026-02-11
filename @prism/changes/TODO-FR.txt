@@ -10,8 +10,6 @@ mypy . --html-report typing_report
 
 AVANT nelle version !!!!!
 
-nm de palette avec post alais et non nom !!!
-
 imprimer audit pour les catgeos car des choses à revori !!!
 
 

@@ -19,9 +19,10 @@ Add new products to @prism
     - [The tests folder](#MULTIMD-TOC-ANCHOR-4)
     - [The palettes folder](#MULTIMD-TOC-ANCHOR-5)
     - [The status folder](#MULTIMD-TOC-ANCHOR-6)
-    - [The extend.py file](#MULTIMD-TOC-ANCHOR-7)
-    - [The fake-prod folder](#MULTIMD-TOC-ANCHOR-8)
-    - [The readme folder](#MULTIMD-TOC-ANCHOR-9)
+    - [The about.yaml file](#MULTIMD-TOC-ANCHOR-7)
+    - [The extend.py file](#MULTIMD-TOC-ANCHOR-8)
+    - [The fake-prod folder](#MULTIMD-TOC-ANCHOR-9)
+    - [The readme folder](#MULTIMD-TOC-ANCHOR-10)
 
 <a id="MULTIMD-TOC-ANCHOR-0"></a>
 Structure of the contrib/products folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -63,13 +64,14 @@ The following structure for the `lua` folder is mandatory. Only the name `lua` c
 
 ~~~
 + lua
-    + dev
-    + fake-prod
-    + palettes
-    + readme
-    + status
-    + tests
-    * extend.py
+  * about.yaml
+  * extend.py
+  + dev
+  + fake-prod
+  + palettes
+  + readme
+  + status
+  + tests
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-3"></a>
 ### The dev folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -80,6 +82,8 @@ This folder is the sole responsibility of the contributor. Its purpose is to pro
 ### The tests folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This directory shoulds provide a way to test palette transformations.
+
+> ***NOTE.*** This is a good place to retrieve the API. You can then copy the content of the API file when building the final product (this trick is used by the `Lua` product).
 
 <a id="MULTIMD-TOC-ANCHOR-5"></a>
 ### The palettes folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -98,7 +102,7 @@ For example, on December 20, 2025, the `Lua` `palettes` folder contained the fol
     * ShiftRainbow.lua
 ~~~
 
-In this folder, for example, we had the following `BlindFish.lua` file generated mainly by the `extend.py` file, which we will discuss soon.
+In this folder, for example, we have the following `BlindFish.lua` file generated mainly by the `extend.py` file, which we will discuss soon.
 
 ~~~lua
 ------
@@ -138,9 +142,38 @@ PALETTE = {
 This folder allows you to know the status of your proposal. Its structure mimics the folder of contributions: `YAML` files correspond to contribution files. They indicate whether a contribution has been accepted or not, along with the reason for this status. ***No coding skill is needed to read these `YAML` files.***
 
 <a id="MULTIMD-TOC-ANCHOR-7"></a>
+### The about.yaml file <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
+
+This file defines the cleanup tasks for production deployment and the output formats to be generated. All available keys are listed below, followed by their detailed usage.
+
+~~~yaml
+modular   : ...
+monolithic: ...
+clean     :
+  data  : ...
+  gobble: ...
+~~~
+
+By default, all formats are generated. If a technology cannot produce a specific format, use `monolithic: no` to omit all-in-one files, and `modular: no` to skip individualized files.
+
+To clean up the contribution folder, the `gobble` sub-key allows to provide a list of gobble patterns using paths relative to the contribution root.
+To simplify maintenance, the `data` sub-key adds the possibility to define virtual variables as lists of sub-patterns.
+For instance, in the following dummy example, using `dev/luadraw/*.latex_temp_ext` is equivalent to specifying `dev/luadraw/*.aux` and `dev/luadraw/*.log`.
+
+~~~yaml
+clean:
+  data:
+    latex_temp_ext:
+      - aux
+      - log
+
+  gobble:
+    - dev/luadraw/*.\latex_temp_ext
+~~~
+<a id="MULTIMD-TOC-ANCHOR-8"></a>
 ### The extend.py file <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-This file must follow the following template. The comments help you get started with coding.
+This file must follow the following template. The comments help you get started with coding. Take also a look at the existing products.
 
 ~~~python
 #!/usr/bin/env python3
@@ -267,7 +300,7 @@ paltransfo = PaletteTransformer(
 if __name__ == "__main__":
     ...
 ~~~
-<a id="MULTIMD-TOC-ANCHOR-8"></a>
+<a id="MULTIMD-TOC-ANCHOR-9"></a>
 ### The fake-prod folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This folder is a template used to create the final version of the implementation.
@@ -276,13 +309,13 @@ It must contain fake, or real, palette and API files using the following standar
 - Palette files can be name `palettes-hf.<ext>`, `palettes-hf/<palName>.<ext>`, `palettes-s40.<ext>` and `palettes-s40/<palName>.<ext>`.
 - `palapi.<ext>` represents the implementation of the API.
 
-> ***NOTE.*** *A good practice is to provide a `showcase` folder for local testing without requiring installation.*
+> ***NOTE.*** *A good practice is to provide a `showcase` folder for local testing without requiring installation. Try to propose simplified graphics like in the `Lua` product.*
 
 > ***CAUTION.*** *The `fake-prod` folder can't be used for palette creation.*
 
 > ***WARNING.*** *Make sure to leave nothing unnecessary, as the structure will be copied entirely.*
 
-<a id="MULTIMD-TOC-ANCHOR-9"></a>
+<a id="MULTIMD-TOC-ANCHOR-10"></a>
 ### The readme folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 The `README.md` file of the contribution folder is written in small sections in the `readme` folder which has the following mandatory structure. These sections will also be used to produce documentations for the final product.
@@ -302,16 +335,14 @@ Here is the purpose of each of these files.
 3. `how-to-create.md` gives the process to follow to create new palettes as a developer.
 4. `how-to-use.md` explains how to use one of the `@prism` palettes available as a user.
 
-> ***WARNING.*** *`how-to-use.md` is used for building the `PDF` documentation with `LaTeX` in the background. Although this introduces some writing limitations, the validation process will guide you past them. For example, to achieve inline colored code, which `Markdown` doesn't support, do like in the following example. You can use as many magic comments `<!--YAML ... -->` as necessary, inserting them wherever you like.*
+> ***WARNING.*** *`how-to-use.md` is used for building the `PDF` documentation with `LaTeX` in the background. Although this introduces some writing limitations, the validation process will guide you past them. For example, to achieve inline colored code, which `Markdown` doesn't support, do like in the following example. You can use as many magic comments `<!--YAML ... -->` as necessary, inserting them wherever you want.*
 
 ~~~markdown
 <!--YAML
 inlinecode:
-  css:
-    - --pal<name>-<nb>
-    - <name>
-    - <nb>
+  lua:
+    - palGistHeat
 -->
 
-... the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is ...
+... the definition of `palGistHeat` looks like ...
 ~~~
