@@ -10,6 +10,15 @@ mypy . --html-report typing_report
 
 AVANT nelle version !!!!!
 
+
+maj auto de macro \nbNewPals
+
++
+
+revori les textes fixes mis en pyhon pour les metters dans used-by-tools
+
++
+
 imprimer audit pour les catgeos car des choses à revori !!!
 
 

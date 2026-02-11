@@ -48,7 +48,11 @@ TEX_HEADER_TMPL = r"""
 
 
 \begin{tdocimp}
-    The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix, and the very last new palettes are marked by~{\footnotesize\bfseries\faStar}.
+    The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix%
+    \ifthenelse{\nbNewPals = 0}{}{%
+        , and the very last new palettes are marked by~{\footnotesize\bfseries\faStar}
+    }%
+    .
 \end{tdocimp}
 
 
