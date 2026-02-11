@@ -17,7 +17,10 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from natsort import natsorted
+from natsort import (
+    natsorted,
+    ns
+)
 
 
 # ------------------ #
@@ -44,9 +47,9 @@ TEX_HEADER_TMPL = r"""
 \addcontentsline{toc}{section}{Appendix 1 -- All palette names}
 
 
-\begin{tdocwarn}
+\begin{tdocimp}
     The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix, and the very last new palettes are marked by~{\footnotesize\bfseries\faStar}.
-\end{tdocwarn}
+\end{tdocimp}
 
 
 % ------------------------------------------- %
@@ -139,7 +142,11 @@ WHERE h.is_kept = 1
 
     rows = cursor.fetchall()
 
-    for name, in natsorted(rows):
+# Funny comma... :-)
+    for name, in natsorted(
+        rows,
+        alg = ns.IGNORECASE
+    ):
         letter = name[0].upper()
 
         if letter != last_letter:

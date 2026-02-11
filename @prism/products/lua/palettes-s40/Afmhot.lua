@@ -4,7 +4,7 @@
 ---- https://github.com/projetmbc/for-writing/tree/main/@prism . ----
 ---------------------------------------------------------------------
 
-palAfmhot = {
+palAfmHot = {
     {0, 0, 0},
     {0.0513, 0, 0},
     {0.1026, 0, 0},

@@ -1,0 +1,43 @@
+function drawpal(PAL)
+  local WIDTH = 10
+
+  local PALSIZE  = #PAL
+  local PALDIM   = .6
+  local PALDELTA = .1
+
+  local g = graph:new{
+    window = {-WIDTH - 5, WIDTH + 5, -5, 4.4},
+    bbox   = false
+  }
+
+  g:Linewidth(2)
+
+  local A = Z(-WIDTH, 4)
+  local v = Z(0, -PALDIM)
+
+  for k = 1, PALSIZE do
+    local color = rgb(PAL[k])
+
+    g:Drectangle(
+      A, A + PALDIM, A + PALDIM + v,
+      "color = black, fill = " .. color
+    )
+
+    g:Dlabel(
+      "\\footnotesize$" .. k .. "$",
+      A + Z(PALDIM, .85*PALDIM) / 2,
+      {
+        pos          = "S",
+        node_options = "inner sep = 0pt, outer ysep = 0.5pt"
+      }
+    )
+
+    A = A + PALDIM + PALDELTA
+
+    if k % 10 == 0 then
+      A = A + Z(-10*(PALDIM + PALDELTA), -2*PALDIM)
+    end
+  end
+
+  g:Show()
+end

@@ -11,10 +11,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Bwr\vphantom{g}}
+        {\bfseries BWR\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Bwr-spectrum.pdf}
+        \includegraphics{../../../common/showcase/BWR-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -41,10 +41,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Hsv\vphantom{g}}
+        {\bfseries HSV\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Hsv-spectrum.pdf}
+        \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
     \end{center}
 \end{minipage}
 

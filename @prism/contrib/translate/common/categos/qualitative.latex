@@ -111,6 +111,30 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries BRG\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BRG-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BWR\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BWR-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Binary\vphantom{g}}
 
         \smallskip
@@ -159,34 +183,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Brg\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Brg-palette.pdf}
-    \end{center}
-\end{minipage}
-
-\setlength{\columnseprule}{0.5pt}
-\renewcommand{\columnseprulecolor}{\color{LightGrey}}
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries BurningGrass\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/BurningGrass-palette.pdf}
-    \end{center}
-\end{minipage}
-
-\setlength{\columnseprule}{0.5pt}
-\renewcommand{\columnseprulecolor}{\color{LightGrey}}
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Bwr\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Bwr-palette.pdf}
     \end{center}
 \end{minipage}
 

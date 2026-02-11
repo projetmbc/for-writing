@@ -1,22 +1,36 @@
+#  + A
+Afmhot: AfmHot
+
+#  + B
 Bluegrey: BlueGrey
 Brg: BRG
 Bwr: BWR
 
+#  + C
 Coolwarm: CoolWarm
 
+#  + H
 Hsv: HSV
 
+#  + O
 Orangeblue: OrangeBlue
 Orangegrey: OrangeGrey
 
-Pinkgreen: PinkGreen
-Pinkgrey: PinkGrrey
+#  + P
 PRGn: PrGn
+Pinkgreen: PinkGreen
+Pinkgrey: PinkGrey
 Purplegrey: PurpleGrey
 
+#  + R
 Redgrey: RedGrey
 
+#  + S
+Sinebow: SineBow
+
+#  + T
 Tealgrey: TealGrey
 
+#  + Y
 Yellowgrey: YellowGrey
 Yellowpurple: YellowPurple

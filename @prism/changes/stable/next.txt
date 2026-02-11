@@ -9,10 +9,29 @@
 :break:
 -------
 
-[[:api:]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[[:api:]]   Afmhot: AfmHot
 Here are the breaking \chges.
 
     1) \lua \prod: \func lua::''getPal'' is now lua::''palCreateFromPal''. It expects a palette \var instead of a name alongside options.
+
+    1) Palette names use "semantic" camelcase. For example, we use ''PinkGrey'' and ''BWR'' (Blue White Red) instead of ''Pinkgrey'' and ''Bwr'', but we keep ''RdBu'' (RedBlue).
 
     1) \Contribs workflow has been fully changed (see below).
 

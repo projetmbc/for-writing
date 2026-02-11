@@ -10,38 +10,49 @@ mypy . --html-report typing_report
 
 AVANT nelle version !!!!!
 
-maqruqre par car les derniers nouvelles paelltes dans la liste des noms !!!
-
-+
-
-imprimer auit pour les catgeos car des choses à revori !!!
-
-+
-
-real camelcase based on colornames :
-
-    + Pinkgrey  -->  PinkGrey
-    + Orangegrey --> OrangeGrey
-    + Bwr --> BWR (Blue White Red)
-    + mais  Rdbu -- RdBu (RedBlue)
-
-
-Avoir un outil auto via command line, pas besoin de stermiline ici
+imprimer audit pour les catgeos car des choses à revori !!!
 
 
 // ---------- //
 
-lab : rep^rnde les codes AI du lab de façon intelligente
+lab
+
+    --> reprende les codes AI du lab de façon intelligente
 
 
 // ---------- //
 
-audi des derniers nouveautés à réeelement implémenter
+audit
+
+    ---> revoir les audtis dans report, car c'est illogique!!! heritage du tout-en un !
+
+    --> PDF des derniers nouveautés à réeelement implémenter
+
+    --> HTML: audit de tout en prenant garde de ne mettre à jour human kind uniquement si des chgts faits !!!!
+
+    --> avoir un outil de compraison visuel lorsqu'uen déf change et aussi pour ce qui a disparu
+
+
+
+
+    --> ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
+
+    --> https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
 
 
 // ---------- //
 
-audit de tout en prenant garde de ne mettre à jour human kind uniquement si des chgts faits !!!!
+HMT viewer
+
+    --> garder des PDFs autonomes anciens car c'est joli !
+
+    --> gestion des cartes géograhpiques
+
+    --> mettre aussi les transfos quand l'API le propose
+
+    --> ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
+
+    --> https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
 
 
 // ---------- //
@@ -51,88 +62,14 @@ cluster via HTML !!!
 
 // ---------- //
 
-revoi la gestonaudit/report qui ne vas pas logique !!! heritage du tout-en un !
+SQL
+
+    --> employer COALESCE(a.alias, h.name) et rordonnancement depuis SQL
 
 
 // ---------- //
 
-employer COALESCE(a.alias, h.name) et rordonnancement depuis SQL
-
-
-
-
-
-
-
-
-
-
-// ---------- //
-
-se passer des pdf de démo et tout miser sur le html car au final c'est ben plus pratique
-
-    --> on peut garder des PDFs autonomés car c'est joli !
-
-    --> gestion des cartes géograhpiques
-
-    ---> mettre aussi les transfos quand l'API le propose
-
-
-// ---------- //
-
-40 = 4 x 10 cra pour un contexte sménatique, on peut avoir des états
-
-   --> à faire, fait
-   --> clicable, survolé, cliqué/activé
-   --> à ananlsyer, en cour d'analyse, validé, rejeté
-
-Plage d'index	État Sémantique	Exemple d'usage
-0 - 9	Initial / Repos	État "À faire", "Cliquable" ou "À analyser".
-10 - 19	Actif / Transition	État "En cours", "Survolé" (Hover).
-20 - 29	Succès / Final	État "Fait", "Cliqué" ou "Validé".
-30 - 39	Alerte / Rejet	État "Erreur", "Inactif" ou "Rejeté".
-
-
-1. L'échelle de Luminance (Élévation)
-
-Si ta palette est utilisée pour une interface en relief (Neumorphisme ou Material Design), tu peux diviser tes 40 couleurs par "profondeur" :
-
-    0-9 : Ombres portées (couleurs les plus sombres/profondes).
-
-    10-19 : Surface de base (le "flat").
-
-    20-29 : Éléments soulevés (boutons, cartes).
-
-    30-39 : Points de brillance (Highlighs / reflets).
-
-2. L'échelle de Température (Feedback)
-
-Idéal pour des tableaux de bord de monitoring :
-
-    0-9 : État "Froid" / Inactif (Gris/Bleu).
-
-    10-19 : État "Normal" / Nominal (Vert/Cyan).
-
-    20-29 : État "Chaud" / Attention (Orange).
-
-    30-39 : État "Critique" / Danger (Rouge vif).
-
-3. L'échelle Temporelle (Historique)
-
-Pour représenter l'évolution d'une donnée :
-
-    0-9 : Passé lointain (couleurs désaturées).
-
-    10-19 : Tendance récente.
-
-    20-29 : Valeur actuelle (couleur vive).
-
-    30-39 : Prédictions / Futur (couleurs translucides ou pointillés).
-
-
-// ---------- //
-
-revoir latex API
+revoir latex API car ce qui suit est pénible!!!
 
 
 %%%
@@ -170,13 +107,6 @@ css - html de dev : support aussi de l'hexadécimal car std en CSS
 
 // ---------- //
 
-ajouter les palettes manquantes par rapport au dernier main
-
-puis entuite avoir un outil de compraison visuel lorsqu'uen déf change sur la haute résolution
-
-
-// ---------- //
-
 --------
 :fordev:
 --------
@@ -187,62 +117,6 @@ Standardizing the retrieval of external palettes done for the following \projs.
     + \cmasher        ??????
     + \colormaps      ????
     + \nclcolortable  ??
-
-
-// ---------- //
-
-metadat des palettes à enrichir
-
-    --> qualitatif, on peut indiquer meaning : liste orodonné (cf admonitions par exemple de tdoc)
-
-
-// ---------- //
-
-viridis:
-    - sequential    # Primary: smooth gradient
-    - colorblind    # Feature: CVD safe
-    - dark_mode     # Usage: high contrast on black
-
-+
-
-dans la doc expliquer les categos utilisées et les cas possibles de chevauchment et garder idée de l'appendice par catégo mais via un systeme d'importaion de pdf autonomes compilé une seule fois et utilisé autant de fois que nécéessaire
-
-1. Le cas "Colorblind" (Accessibilité)
-
-C'est l'exemple le plus courant. Une palette peut être à la fois Sequential (pour un dégradé) et Colorblind (parce que les contrastes de luminosité permettent aux personnes daltoniennes de distinguer les étapes).
-
-    Exemple : La célèbre palette Viridis est techniquement Sequential, mais elle est presque toujours étiquetée Colorblind car elle est conçue pour être lisible par tous.
-
-2. Le cas "Divergent" vs "Sequential"
-
-Une palette Divergent est techniquement l'assemblage de deux palettes Sequential qui se rejoignent sur un point neutre (souvent le blanc ou le gris).
-
-    Si vous n'utilisez qu'une moitié de la palette (du neutre vers un extrême), elle devient Sequential.
-
-3. Le cas "Qualitative" vs "Sequential"
-
-Certaines palettes Qualitative (couleurs distinctes) peuvent être perçues comme Sequential si les couleurs suivent une logique de luminosité (du plus clair au plus foncé), même si les teintes changent.
-
-
-// ---------- //
-
-Palette	Catégorie
-  > Origine / Particularité
-
-Viridis, Magma, Inferno, Plasma
-  > Perceptuellement Uniforme	Créées en 2015 pour être le standard (lisibles en noir et blanc).
-
-Cividis
-  > Accessibilité	Optimisée pour les daltoniens (vision jaune/bleu).
-
-Twilight / Shifted
-  > Cyclique	Pour les données circulaires (angles, phases de la lune).
-
-Turbo
-  > Arc-en-ciel amélioré	Créée par Google pour remplacer Jet sans ses défauts.
-
-Berlin, Managua, Vanimo
-  > Scientifique (S-CM)	Par Fabio Crameri ; respectent les données physiques (relief, courants).
 
 
 // ---------- //
@@ -260,14 +134,6 @@ intégrer en externe directement si possible
 
 https://github.com/mwaskom/seaborn/blob/master/seaborn/palettes.py
 
-
-// ---------- //
-
-dans la démo en ligne !!!
-
-    --> ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
-
-    --> https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
 
 
 // ---------- //
@@ -355,6 +221,33 @@ def log_completion(message: str):
     file_handler.setLevel(logging.ERROR)
 
 log_completion("Building finished.")
+
+
+// ---------- //
+
+2. L'échelle de Température (Feedback)
+
+Idéal pour des tableaux de bord de monitoring :
+
+    0-9 : État "Froid" / Inactif (Gris/Bleu).
+
+    10-19 : État "Normal" / Nominal (Vert/Cyan).
+
+    20-29 : État "Chaud" / Attention (Orange).
+
+    30-39 : État "Critique" / Danger (Rouge vif).
+
+3. L'échelle Temporelle (Historique)
+
+Pour représenter l'évolution d'une donnée :
+
+    0-9 : Passé lointain (couleurs désaturées).
+
+    10-19 : Tendance récente.
+
+    20-29 : Valeur actuelle (couleur vive).
+
+    30-39 : Prédictions / Futur (couleurs translucides ou pointillés).
 
 
 // ---------- //

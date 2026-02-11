@@ -4,27 +4,48 @@
 
         \item The following palettes have been renamed: \boxed{{\Rightarrow}\vphantom{pM}} indicates a name modification, with the \thisproj\ name displayed on the right.%
     \begin{center}
-        \begin{tblr}{
+        \begin{longtblr}[caption = {Renamed palettes}]{
           colspec     = {@{}l | r Q[c,$] l},
           baseline    = T,
           column{2,4} = {cmd=\tdoccodein{text}},
         }
+                Asymptote
+                  & Brg & \Rightarrow & BRG \\
+                  & Bwr & \Rightarrow & BWR \\
+                \hline
                 CARTOColors
                   & Prism & \Rightarrow & PrismCC \\
                 \hline
                 CarbonPlan
+                  & Bluegrey & \Rightarrow & BlueGrey \\
                   & Blues & \Rightarrow & BluesCP \\
                   & Cool & \Rightarrow & CoolCP \\
                   & Earth & \Rightarrow & EarthCP \\
                   & Greens & \Rightarrow & GreensCP \\
                   & Greys & \Rightarrow & GreysCP \\
+                  & Orangeblue & \Rightarrow & OrangeBlue \\
+                  & Orangegrey & \Rightarrow & OrangeGrey \\
                   & Oranges & \Rightarrow & OrangesCP \\
+                  & Pinkgreen & \Rightarrow & PinkGreen \\
+                  & Pinkgrey & \Rightarrow & PinkGrey \\
+                  & Purplegrey & \Rightarrow & PurpleGrey \\
                   & Purples & \Rightarrow & PurplesCP \\
                   & Rainbow & \Rightarrow & RainbowCP \\
+                  & Redgrey & \Rightarrow & RedGrey \\
                   & Reds & \Rightarrow & RedsCP \\
+                  & Sinebow & \Rightarrow & SineBow \\
+                  & Tealgrey & \Rightarrow & TealGrey \\
+                  & Yellowgrey & \Rightarrow & YellowGrey \\
+                  & Yellowpurple & \Rightarrow & YellowPurple \\
                 \hline
                 Colorbrewer
+                  & PRGn & \Rightarrow & PrGn \\
                   & YlOrRd & \Rightarrow & YlOrRdCBW \\
+                \hline
+                Matplotlib
+                  & Afmhot & \Rightarrow & AfmHot \\
+                  & Coolwarm & \Rightarrow & CoolWarm \\
+                  & Hsv & \Rightarrow & HSV \\
                 \hline
                 Plotly
                   & Bluered & \Rightarrow & BlueRedPLY \\
@@ -34,5 +55,5 @@
                 \hline
                 Tableau
                   & Gray & \Rightarrow & MidGray \\
-        \end{tblr}
+        \end{longtblr}
     \end{center}

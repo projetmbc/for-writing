@@ -1,10 +1,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Afmhot\vphantom{g}}
+        {\bfseries AfmHot\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Afmhot-spectrum.pdf}
+        \includegraphics{../../../common/showcase/AfmHot-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -35,6 +35,26 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Autumn-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BRG\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BRG-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BWR\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BWR-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -151,16 +171,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Brg\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Brg-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries BrwnYl\vphantom{g}}
 
         \smallskip
@@ -215,16 +225,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/BurningGrass-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Bwr\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Bwr-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -581,6 +581,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries HSV\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Haline\vphantom{g}}
 
         \smallskip
@@ -615,16 +625,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/HotPLY-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Hsv\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Hsv-spectrum.pdf}
     \end{center}
 \end{minipage}
 

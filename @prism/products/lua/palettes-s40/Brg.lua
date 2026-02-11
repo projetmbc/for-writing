@@ -4,7 +4,7 @@
 ---- https://github.com/projetmbc/for-writing/tree/main/@prism . ----
 ---------------------------------------------------------------------
 
-palBrg = {
+palBRG = {
     {0, 0, 1},
     {1, 0, 0},
     {0, 1, 0}

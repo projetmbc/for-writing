@@ -75,7 +75,7 @@ LIST_DESC = LIST_DESC.strip()
 TEX_ITEM_HEADER = TAB + LIST_DESC + r"""
     %
     \begin{center}
-        \begin{tblr}{
+        \begin{longtblr}[caption = {Renamed palettes}]{
           colspec     = {@{}l | r Q[c,$] l},
           baseline    = T,
           column{2,4} = {cmd=\tdoccodein{text}},
@@ -84,7 +84,7 @@ TEX_ITEM_HEADER = TAB + LIST_DESC + r"""
 
 
 TEX_TMPL_TABLE_FOOTER = TAB + r"""
-\end{tblr}
+\end{longtblr}
     \end{center}
 """.strip()
 

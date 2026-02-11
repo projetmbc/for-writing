@@ -11,6 +11,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries BWR\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BWR-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Balance\vphantom{g}}
 
         \smallskip
@@ -91,6 +101,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries BlueGrey\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueGrey-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries BlueOrange8\vphantom{g}}
 
         \smallskip
@@ -125,16 +145,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/BlueOrangeRed-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Bluegrey\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Bluegrey-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -181,20 +191,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Bwr\vphantom{g}}
+        {\bfseries CoolWarm\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Bwr-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Coolwarm\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Coolwarm-spectrum.pdf}
+        \includegraphics{../../../common/showcase/CoolWarm-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -311,10 +311,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Hsv\vphantom{g}}
+        {\bfseries HSV\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Hsv-spectrum.pdf}
+        \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -351,30 +351,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Orangeblue\vphantom{g}}
+        {\bfseries OrangeBlue\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Orangeblue-spectrum.pdf}
+        \includegraphics{../../../common/showcase/OrangeBlue-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Orangegrey\vphantom{g}}
+        {\bfseries OrangeGrey\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Orangegrey-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries PRGn\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/PRGn-spectrum.pdf}
+        \includegraphics{../../../common/showcase/OrangeGrey-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -401,20 +391,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Pinkgreen\vphantom{g}}
+        {\bfseries PinkGreen\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Pinkgreen-spectrum.pdf}
+        \includegraphics{../../../common/showcase/PinkGreen-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Pinkgrey\vphantom{g}}
+        {\bfseries PinkGrey\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Pinkgrey-spectrum.pdf}
+        \includegraphics{../../../common/showcase/PinkGrey-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -425,6 +415,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Portland-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries PrGn\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/PrGn-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -451,10 +451,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Purplegrey\vphantom{g}}
+        {\bfseries PurpleGrey\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Purplegrey-spectrum.pdf}
+        \includegraphics{../../../common/showcase/PurpleGrey-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -501,20 +501,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries RedYellowBlue\vphantom{g}}
+        {\bfseries RedGrey\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/RedYellowBlue-spectrum.pdf}
+        \includegraphics{../../../common/showcase/RedGrey-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Redgrey\vphantom{g}}
+        {\bfseries RedYellowBlue\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Redgrey-spectrum.pdf}
+        \includegraphics{../../../common/showcase/RedYellowBlue-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -591,20 +591,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries TealRose\vphantom{g}}
+        {\bfseries TealGrey\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/TealRose-spectrum.pdf}
+        \includegraphics{../../../common/showcase/TealGrey-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Tealgrey\vphantom{g}}
+        {\bfseries TealRose\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Tealgrey-spectrum.pdf}
+        \includegraphics{../../../common/showcase/TealRose-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -661,19 +661,19 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Yellowgrey\vphantom{g}}
+        {\bfseries YellowGrey\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Yellowgrey-spectrum.pdf}
+        \includegraphics{../../../common/showcase/YellowGrey-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Yellowpurple\vphantom{g}}
+        {\bfseries YellowPurple\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Yellowpurple-spectrum.pdf}
+        \includegraphics{../../../common/showcase/YellowPurple-spectrum.pdf}
     \end{center}
 \end{minipage}

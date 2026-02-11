@@ -113,7 +113,6 @@ For example, the file `palettes-hf/GistHeat.css` looks like the following partia
   --palGistHeat-1: rgb(0% 0% 0%);
   --palGistHeat-2: rgb(0.59% 0% 0%);
   /* Other RBG colors.*/
-  --palGistHeat-255: rgb(100% 99.22% 98.43%);
   --palGistHeat-256: rgb(100% 100% 100%);
 }
 ~~~

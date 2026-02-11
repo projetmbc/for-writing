@@ -61,7 +61,7 @@ echo "Using pure bash with $MAX_JOBS parallel jobs"
 tex_files=()
 while IFS= read -r -d '' file; do
   tex_files+=("$file")
-done < <(find "$TRANSLATE_FOLDER" -name '*.tex' -print0)
+done < <(find "$TRANSLATE_FOLDER" -path "$TRANSLATE_FOLDER/common" -prune -o -name '*.tex' -print0)
 
 # Check if any files were found
 if [[ ${#tex_files[@]} -eq 0 ]]; then

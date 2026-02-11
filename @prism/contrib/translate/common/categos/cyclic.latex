@@ -21,9 +21,9 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Sinebow\vphantom{g}}
+        {\bfseries SineBow\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Sinebow-spectrum.pdf}
+        \includegraphics{../../../common/showcase/SineBow-spectrum.pdf}
     \end{center}
 \end{minipage}
