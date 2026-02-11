@@ -118,7 +118,7 @@ if xtra_categos:
 # -- NEW PALETTES -- #
 # ------------------ #
 
-print("+ Looking for new palettes.")
+print("+ Looking for new palettes")
 
 newpals = set()
 
@@ -129,7 +129,7 @@ for n in ALL_PALETTES:
         newpals.add(n)
 
 if not newpals:
-    print("+ No new palette.")
+    print("+ No new palette")
 
     exit()
 
@@ -137,14 +137,14 @@ if not newpals:
 nb_pals = len(newpals)
 plurial = "" if nb_pals == 1 else "s"
 
-print(f"+ {nb_pals} palette{plurial} to analyze.")
+print(f"+ {nb_pals} palette{plurial} to analyze")
 
 
 # ------------------- #
 # -- PRECLUSTERING -- #
 # ------------------- #
 
-print("+ Pre-clustering the palettes.")
+print("+ Pre-clustering the palettes")
 
 newpals = sorted(
     newpals,
@@ -167,7 +167,7 @@ for catego, names in categos.items():
     nb_pals = len(names)
     plurial = "" if nb_pals == 1 else "s"
 
-    print(f"    - '{catego}' with {nb_pals} palette{plurial}.")
+    print(f"    - '{catego}' with {nb_pals} palette{plurial}")
 
     categodir = AUTOBUILD_DIR / catego
 
@@ -183,7 +183,7 @@ for catego, names in categos.items():
 # -- FINAL CLUSTERING -- #
 # ---------------------- #
 
-print("+ Human selection needed.")
+print("+ Human selection needed")
 
 whatsnext = f"""
 Move PNG images from '{AUTOBUILD_DIR.name}' folders outside into

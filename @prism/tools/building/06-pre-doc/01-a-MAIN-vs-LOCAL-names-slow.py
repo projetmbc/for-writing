@@ -59,6 +59,7 @@ PRODS_DIR = PROJ_DIR / "products"
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 REPORT_NAME_NEW_JSON     = REPORT_DIR / f"AUDIT-LOCMAIN-NAMES-NEW.json"
+REPORT_NB_NEW_TXT        = REPORT_DIR / f"AUDIT-LOCMAIN-NAMES-NEW-NB.txt"
 REPORT_NAME_REMOVED_JSON = REPORT_DIR / f"AUDIT-LOCMAIN-NAMES-REMOVED.json"
 REPORT_LAST_MAIN_JSON    = REPORT_DIR / f"AUDIT-LAST-MAIN.json"
 
@@ -192,6 +193,15 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
 REPORT_NAME_NEW_JSON.write_text(
     json_dumps(report)
+)
+
+
+# -------------------------- #
+# -- SAVE NB OF NEW NAMES -- #
+# -------------------------- #
+
+REPORT_NB_NEW_TXT.write_text(
+    f'{len(report)}\n'
 )
 
 

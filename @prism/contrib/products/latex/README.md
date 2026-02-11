@@ -14,20 +14,29 @@ Use a LaTeX palette
 
 #### Basic use
 
-To use a color from a palette, use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
+> ***NOTE.*** *Just one kind of format is provided: modular (each palette is in a dedicated file).*
+
+
+
+Accessing a single palette color is straightforward: use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
 For example, `\palUse{GistHeat}{8}` is the eighth color of the `GistHeat` palette, an `xcolor` format color that can be easily used as shown in the following compilable example.
 
 ~~~latex
 \documentclass{article}
 
-\usepackage{palettes}
+% Load the palette (LaTeX can't work with all the palettes).
+\usepackage{palettes-hf/GistHeat}
+
+% Load the palette API.
+\usepackage{palapi}
+
 \usepackage{tikz}
 
 \begin{document}
 
 \textcolor{\palUse{GistHeat}{8}}{\bfseries Colored text.}
 
-Representation of the color palette.
+Representation of the first ten palette colors.
 
 \begin{tikzpicture}
   \foreach \i in {1,...,10} {
@@ -42,12 +51,14 @@ Representation of the color palette.
 
 For creating new palettes manually, the following high-level commands are available.
 
-1. `\palCreateFromRGB` creates a palette by entering it as an array-like variable, while `\palCreateFromNames` works with named colors.
+1. `\palCreateFromNames` works with a comma separated list of named colors, while `\palCreateFromRGB` creates a palette by entering it as an array-like variable.
 2. `\palSize{<name>}` returns the palette size (useful for loops, for example).
 
-The following example demonstrates the `\palCreateFromRGB` and `\palCreateFromNames` commands (we don't have put `\usepackage{palettes}`).
+The following example demonstrates the `\palCreateFromRGB` and `\palCreateFromNames` commands.
 
 ~~~latex
+\usepackage{palapi}
+
 \usepackage[svgnames]{xcolor}
 
 \palCreateFromRGB{MyRGBPal}{
@@ -73,6 +84,8 @@ A lower-level approach is also available through the following commands.
 The following example demonstrates the flexibility offered by these low-level commands.
 
 ~~~latex
+\usepackage{palapi}
+
 \usepackage[svgnames]{xcolor}
 
 \palNew{LowLevelPal}
@@ -87,13 +100,16 @@ Building new palettes by transforming existing ones can be achieved using the `\
 The following example shows how to do this (all options are used).
 
 ~~~latex
+\usepackage{palettes-hf/Blackbody}
+\usepackage{palapi}
+
 \palCreateFromPal{BlackbodyTransformed}[
   extract = {1, 3, 6, 9},
   shift   = 1,
   reverse
 ]{Blackbody}
 ~~~
-> ***TIP.*** *`\palCreateFromPal{<new-name>}{<existing-name>}` build a copy of an existing palette.*
+> ***TIP.*** *`\palCreateFromPal{<new-name>}{<existing-name>}` builds a copy of an existing palette.*
 
 #### Retrieving the internal definition of a palette
 

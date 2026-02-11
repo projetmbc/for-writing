@@ -44,7 +44,7 @@ function compile_tex {
 
 export -f compile_tex nocompile
 
-readonly TRANSLATE_FOLDER="contrib/translate"
+readonly AUDIT_FOLDER="tools/building/AUDIT"
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly PROJECT_ROOT="$SCRIPT_DIR/../.."
 readonly MAX_JOBS=8
@@ -61,11 +61,11 @@ echo "Using pure bash with $MAX_JOBS parallel jobs"
 tex_files=()
 while IFS= read -r -d '' file; do
   tex_files+=("$file")
-done < <(find "$TRANSLATE_FOLDER" -name '*.tex' -print0)
+done < <(find "$AUDIT_FOLDER" -name '*.tex' -print0)
 
 # Check if any files were found
 if [[ ${#tex_files[@]} -eq 0 ]]; then
-  echo "No .tex files found in $TRANSLATE_FOLDER"
+  echo "No .tex files found in $AUDIT_FOLDER"
   exit 0
 fi
 
@@ -100,5 +100,3 @@ if [[ $failed_count -gt 0 ]]; then
   echo "ERROR - $failed_count compilation(s) failed!" >&2
   exit 1
 fi
-
-echo "All $total_files compilations completed successfully!"

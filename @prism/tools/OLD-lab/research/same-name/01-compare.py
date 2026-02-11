@@ -71,7 +71,7 @@ TAB_2 = TAB_1*2
 # -- IMAGES FOR COMPARISON -- #
 # --------------------------- #
 
-print("+ Looking for images to build.")
+print("+ Looking for images to build")
 
 for name, ctxts_pals in PAL_REPORT[TAG_SAME_NAME].items():
     for (ctxt, pal) in ctxts_pals:
@@ -88,5 +88,5 @@ for name, ctxts_pals in PAL_REPORT[TAG_SAME_NAME].items():
         )
 
         if imgadded:
-            print(f"{TAB_1}> Building '{name}' image.")
+            print(f"{TAB_1}> Building '{name}' image")
             print(f"{TAB_2}[{ctxt}]")

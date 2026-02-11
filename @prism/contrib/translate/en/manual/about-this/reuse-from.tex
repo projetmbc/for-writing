@@ -1,8 +1,7 @@
-% !TEX TS-program = lualatex
-
 \documentclass{tutodoc}
 
 \usepackage{../preamble.cfg}
+
 
 
 \begin{document}
@@ -12,11 +11,11 @@
 Here are the key points to remember when using palettes similar to those offered by projects listed in the section \ref{projects-used}.
 %
 \begin{enumerate}
-	\item 
+	\item
 	\thisproj\ uses strict alphanumeric \verb+CamelCase+ naming. Therefore, palette names such as \tdoccodein{py}{berlin} and \tdoccodein{py}{gist_heat} become \tdoccodein{text}{Berlin} and \tdoccodein{text}{GistHeat} respectively.
-	This implies that palette names from different projects are compared internally using lowercase.
-	Appendix 1 (page \pageref{palette-all-names}) lists all palette names to help you find the correct \verb+CamelCase+ spelling.
-    
+	% This implies that palette names from different projects are compared internally using lowercase.
+	% Appendix 1 (page \pageref{palette-all-names}) lists all palette names to help you find the correct \verb+CamelCase+ spelling.
+
     \item \matplotlib\ palettes with a name ending with \verb+_r+ (reversed color order) are not included in \thisproj.
 
     \subimport{../../../common/report/}{renamed-palettes.latex}

@@ -33,12 +33,6 @@ TAB_2 = TAB_1*2
 
 
 TEX_HEADER_TMPL = r"""
-% !TEX TS-program = lualatex
-
-% ------------------------------------------- %
-% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
-% ------------------------------------------- %
-
 \documentclass{tutodoc}
 
 \usepackage{../preamble.cfg}
@@ -51,9 +45,13 @@ TEX_HEADER_TMPL = r"""
 
 
 \begin{tdocwarn}
-    The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
+    The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix, and the very last new palettes are marked by~{\footnotesize\bfseries\faStar}.
 \end{tdocwarn}
 
+
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
 
 \begin{multicols*}{3}
 %    \setlength{\columnseprule}{0.5pt}
@@ -81,6 +79,13 @@ TEX_PALETTE_TMPL = TAB_1 + r"""
 """.strip() + '\n'
 
 
+TEX_NEW_PALETTE_TMPL =(
+      TEX_PALETTE_TMPL.strip()
+    + r' ${{}}^{{\text{{{{\tiny\bfseries\faStar}}}}}}$'
+    + '\n'
+)
+
+
 # ------------------ #
 # -- CONSTANTS #2 -- #
 # ------------------ #
@@ -97,6 +102,16 @@ MANUAL_DIR    = TRANSLATE_DIR / "en" / "manual"
 
 
 APPENDIX_TEX_FILE = MANUAL_DIR / "appendixes" / "all-names.tex"
+
+
+# ---------------------- #
+# -- JSON - NEW NAMES -- #
+# ---------------------- #
+
+NEW_NAMES_JSON = BUILD_TOOLS_DIR / TAG_REPORT / "AUDIT-LOCMAIN-NAMES-NEW.json"
+
+with NEW_NAMES_JSON.open(mode = "r") as f:
+    NEW_NAMES = set(json_load(f))
 
 
 # -------------------- #
@@ -137,8 +152,14 @@ WHERE h.is_kept = 1
 
             last_letter = letter
 
+        tmpl = (
+            TEX_NEW_PALETTE_TMPL
+            if name in NEW_NAMES else
+            TEX_PALETTE_TMPL
+        )
+
         _texcode.append(
-            TEX_PALETTE_TMPL.format(name = name)
+            tmpl.format(name = name)
         )
 
 _texcode[-1] = _texcode[-1].rstrip()

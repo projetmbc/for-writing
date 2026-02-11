@@ -10,6 +10,10 @@ mypy . --html-report typing_report
 
 AVANT nelle version !!!!!
 
+maqruqre par car les derniers nouvelles paelltes dans la liste des noms !!!
+
++
+
 imprimer auit pour les catgeos car des choses à revori !!!
 
 +
@@ -23,6 +27,16 @@ real camelcase based on colornames :
 
 
 Avoir un outil auto via command line, pas besoin de stermiline ici
+
+
+// ---------- //
+
+lab : rep^rnde les codes AI du lab de façon intelligente
+
+
+// ---------- //
+
+audi des derniers nouveautés à réeelement implémenter
 
 
 // ---------- //

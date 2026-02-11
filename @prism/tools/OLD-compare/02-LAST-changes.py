@@ -88,7 +88,7 @@ else:
     )
 
 
-logging.info("Build JSON report file.")
+logging.info("Build JSON report file")
 
 LAST_UPDATES_JSON.write_text(
     json_dumps(report)

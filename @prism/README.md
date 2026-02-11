@@ -44,6 +44,7 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 `@prism` includes some original creations, but most color palettes are derived from the project below by segmenting their color maps into 10-value palettes.
 
 - [`Asymptote`](https:asymptote.sourceforge.io) is used, but currently offers nothing beyond [`Matplotlib`](https://matplotlib.org) (despite different implementa- tions).
+- [`CarbonPlan`](https://github.com/carbonplan/colormaps) provides palettes designed for data visualization.
 - [`CartoColor`](https://github.com/CartoDB/cartocolor) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`cmocean`](https://matplotlib.org/cmocean) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`Colorbrewer`](https://colorbrewer2.org).
@@ -62,8 +63,10 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 Supported implementations <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 -------------------------
 
-All implementations are located in the `products` folder. Each implementation provides palette definitions and supports the use of a single color. When available, the following actions can be performed to create new palettes:
+All implementations are located in the `products` folder. Each implementation provides the following features:
 
+- Palette formats in both modular (one file per palette) and monolithic (all palettes in a single file) versions.
+- Palette definitions in both high-fidelity (original size) and small (currently 40 colors) size.
 - Select specific colors from an existing palette using their indices.
 - Shift the palette left (negative value) or right (positive value) by any number of steps.
 - Reverse the order of the colors.
@@ -75,20 +78,18 @@ All implementations are located in the `products` folder. Each implementation pr
 <a id="MULTIMD-TOC-ANCHOR-3"></a>
 ### JSON, the versatile default format <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-A `palettes.json` file containing only palette definitions is provided by default, allowing unsupported programming languages to integrate `@prism` palettes. Below are the first lines of the file.
+The `JSON` product allows unsupported programming languages to integrate `@prism` palettes easily. Below are the first lines of the `palettes-hf.json` file.
 
 ~~~json
 {
   "Accent": [
-    [0.498039, 0.788235, 0.498039],
-    [0.690196, 0.705881, 0.757298],
-    [0.882352, 0.721568, 0.661437],
-    [0.99477, 0.835294, 0.550326],
-    [0.913289, 0.935947, 0.610021],
-    [0.306317, 0.487581, 0.680174],
-    [0.700653, 0.146404, 0.562091],
-    [0.855772, 0.162962, 0.316775],
-    [0.671459, 0.366448, 0.159041],
+    [0.49803922, 0.78823529, 0.49803922],
+    [0.74509804, 0.68235294, 0.83137255],
+    [0.99215686, 0.75294118, 0.5254902],
+    [1, 1, 0.6],
+    [0.21960784, 0.42352941, 0.69019608],
+    [0.94117647, 0.00784314, 0.49803922],
+    [0.74901961, 0.35686275, 0.09019608],
     [0.4, 0.4, 0.4]
   ],
   ...
@@ -99,24 +100,25 @@ A `palettes.json` file containing only palette definitions is provided by defaul
 
 > ***NOTE.*** *The `HTML`, `CSS`, and `JavaScript` files for product development and demonstration were created using `Claude` and `Gemini` AI assistants.*
 
-The very basic `CSS` implementation provides only ten variables per palette, named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging from 1 to 10.
+> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
+
+
+
+Each palette color is defined as an individual variable named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging.
 Each palette color variable is defined as an `RGB` value using percentage notation.
-For example, the `GistHeat` palette color definitions look like the following partial code.
+For example, the file `palettes-hf/GistHeat.css` looks like the following partial code.
 
 ~~~css
 :root {
-  /* Previous palettes. */
-
-  --palGistHeat-1 = rgb(0% 0% 0.0%)
-  --palGistHeat-2 = rgb(10.5882% 0% 0%)
-  --palGistHeat-3 = rgb(21.1764% 0% 0%)
-  /* ... With 7 more RBG colors.*/
-
-  /* Additional palettes. */
+  --palGistHeat-1: rgb(0% 0% 0%);
+  --palGistHeat-2: rgb(0.59% 0% 0%);
+  /* Other RBG colors.*/
+  --palGistHeat-255: rgb(100% 99.22% 98.43%);
+  --palGistHeat-256: rgb(100% 100% 100%);
 }
 ~~~
 
-Here are two possible use cases.
+Here is one first possible use case.
 
 ~~~css
 .warning-text {
@@ -127,15 +129,9 @@ Here are two possible use cases.
   background: linear-gradient(
     90deg,
     var(--palGistHeat-1),
-    var(--palGistHeat-2),
-    var(--palGistHeat-3),
-    var(--palGistHeat-4),
-    var(--palGistHeat-5),
-    var(--palGistHeat-6),
-    var(--palGistHeat-7),
-    var(--palGistHeat-8),
-    var(--palGistHeat-9),
-    var(--palGistHeat-10)
+    var(--palGistHeat-64),
+    var(--palGistHeat-128),
+    var(--palGistHeat-256)
   );
 }
 ~~~
@@ -163,20 +159,29 @@ The example below demonstrates creating gradient variables through selective col
 <a id="MULTIMD-TOC-ANCHOR-6"></a>
 #### Basic use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-To use a color from a palette, use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
+> ***NOTE.*** *Just one kind of format is provided: modular (each palette is in a dedicated file).*
+
+
+
+Accessing a single palette color is straightforward: use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
 For example, `\palUse{GistHeat}{8}` is the eighth color of the `GistHeat` palette, an `xcolor` format color that can be easily used as shown in the following compilable example.
 
 ~~~latex
 \documentclass{article}
 
-\usepackage{palettes}
+% Load the palette (LaTeX can't work with all the palettes).
+\usepackage{palettes-hf/GistHeat}
+
+% Load the palette API.
+\usepackage{palapi}
+
 \usepackage{tikz}
 
 \begin{document}
 
 \textcolor{\palUse{GistHeat}{8}}{\bfseries Colored text.}
 
-Representation of the color palette.
+Representation of the first ten palette colors.
 
 \begin{tikzpicture}
   \foreach \i in {1,...,10} {
@@ -192,12 +197,14 @@ Representation of the color palette.
 
 For creating new palettes manually, the following high-level commands are available.
 
-1. `\palCreateFromRGB` creates a palette by entering it as an array-like variable, while `\palCreateFromNames` works with named colors.
+1. `\palCreateFromNames` works with a comma separated list of named colors, while `\palCreateFromRGB` creates a palette by entering it as an array-like variable.
 2. `\palSize{<name>}` returns the palette size (useful for loops, for example).
 
-The following example demonstrates the `\palCreateFromRGB` and `\palCreateFromNames` commands (we don't have put `\usepackage{palettes}`).
+The following example demonstrates the `\palCreateFromRGB` and `\palCreateFromNames` commands.
 
 ~~~latex
+\usepackage{palapi}
+
 \usepackage[svgnames]{xcolor}
 
 \palCreateFromRGB{MyRGBPal}{
@@ -223,6 +230,8 @@ A lower-level approach is also available through the following commands.
 The following example demonstrates the flexibility offered by these low-level commands.
 
 ~~~latex
+\usepackage{palapi}
+
 \usepackage[svgnames]{xcolor}
 
 \palNew{LowLevelPal}
@@ -238,13 +247,16 @@ Building new palettes by transforming existing ones can be achieved using the `\
 The following example shows how to do this (all options are used).
 
 ~~~latex
+\usepackage{palettes-hf/Blackbody}
+\usepackage{palapi}
+
 \palCreateFromPal{BlackbodyTransformed}[
   extract = {1, 3, 6, 9},
   shift   = 1,
   reverse
 ]{Blackbody}
 ~~~
-> ***TIP.*** *`\palCreateFromPal{<new-name>}{<existing-name>}` build a copy of an existing palette.*
+> ***TIP.*** *`\palCreateFromPal{<new-name>}{<existing-name>}` builds a copy of an existing palette.*
 
 <a id="MULTIMD-TOC-ANCHOR-9"></a>
 #### Retrieving the internal definition of a palette <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -256,17 +268,17 @@ The internally stored definition of a palette named `MyPal`, for example, is `\g
 <a id="MULTIMD-TOC-ANCHOR-10"></a>
 ### Lua <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-> ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use color palettes for [`luadraw`](https://github.com/pfradin/luadraw), a package that greatly facilitates the creation of high-quality 2D and 3D plots using `LuaLaTeX` and `TikZ`. The `Lua` implementation is now integrated into [`luadraw`](https://github.com/pfradin/luadraw).*
+> ***NOTE.*** *Initially, the `@prism` project was created to provide ready-to-use color palettes for [`luadraw`](https://github.com/pfradin/luadraw), a package that greatly facilitates the creation of high-quality 2D and 3D plots using `LuaLaTeX` and `TikZ`.*
 
 <a id="MULTIMD-TOC-ANCHOR-11"></a>
 #### Basic use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-The `Lua` palette names all use the prefix `pal` followed by the name available in the file `palettes.json`. You can access a palette by two ways.
+> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
 
-- `palGistHeat` is a `Lua` variable.
-- `getPal('GistHeat')` and `getPal('palGistHeat')` are equal to `palGistHeat`.
 
-The `Lua` palette variables are arrays of ten arrays of three floats (making it straightforward to use a color from a palette).
+
+The `Lua` palette variables are named using the prefix `pal`.
+They are arrays of arrays of three floats (making it straightforward to use a color from a palette).
 For example, the definition of `palGistHeat` looks like the following partial code.
 
 ~~~lua
@@ -274,18 +286,18 @@ palGistHeat = {
     {0.0, 0.0, 0.0},
     {0.105882, 0.0, 0.0},
     {0.211764, 0.0, 0.0},
-    -- ... With 7 more RBG colors.
+    -- Other RBG colors.
 }
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-12"></a>
 #### Creating palettes from existing ones <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-The `getPal` function provides options to build new palettes by transforming existing ones.
+The `palCreateFromPal` function provides options to build new palettes by transforming existing ones.
 The following example shows how to do this (all options are used).
 
 ~~~lua
-BlackbodyTransformed = getPal(
-    'Blackbody',
+palBlackbodyTransformed = palCreateFromPal(
+    palBlackbody,
     {
         extract = {2, 5, 8, 9},
         shift   = 1,

@@ -1,17 +1,11 @@
-% !TEX TS-program = lualatex
-
 \documentclass{tutodoc}
 
 \usepackage{../../contrib/translate/en/manual/preamble.cfg}
 
 \makeatletter
   \renewcommand{\minted@cachedir}{_minted-xtra-cache}
-  \luaDraw@DefaultExecfalse
 \makeatother
 
-\begin{luacode*}
-BUILD_TIKZ = false
-\end{luacode*}
 
 \usepackage[subpreambles = true]{standalone}
 
@@ -40,7 +34,7 @@ BUILD_TIKZ = false
             \item "@" read as "at" indicates where the light meets the prism to be broken down into an informative spectrum.
         \end{enumerate*}
     }
-    provides small size color palettes that can be used to create expressive color maps for graphics in different contexts.
+    provides color palettes that can be used to create content based on expressive colors.
 
 %    \smallskip
 %
@@ -280,8 +274,8 @@ BUILD_TIKZ = false
 \normalsize
 
 \newpage
-\subimport{../../contrib/translate/en/manual/appendixes/}{all-palettes.tex}
+\subimport{../../contrib/translate/en/manual/appendixes/}{all-names.tex}
 \newpage
-\subimport{../../contrib/translate/en/manual/appendixes/}{similar-palettes.tex}
+\subimport{../../contrib/translate/en/manual/appendixes/}{categos.tex}
 
 \end{document}

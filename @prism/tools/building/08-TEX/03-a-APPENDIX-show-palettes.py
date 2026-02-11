@@ -31,6 +31,11 @@ while (PROJ_DIR.name != TAG_APRISM):
 HF_PALS_DIR  = PROJ_DIR / "products" / "json" / "palettes-hf"
 SHOWCASE_DIR = PROJ_DIR / "contrib" / "translate" / "common" / "showcase"
 
+SHOWCASE_DIR.mkdir(
+    parents  = True,
+    exist_ok = True
+)
+
 
 SEM_PAL_SIZE = YAML_CONFIGS[TAG_SEMANTIC]['MAX_SEM_SIZE']
 
@@ -55,8 +60,6 @@ TEX_HEADER = r"""
 \usepackage[3d]{luadraw}
 
 \directlua{
-  dofile('../../../..//products/lua/palapi.lua')
-
   dofile('../../../../products/lua/palettes-hf/<PAL-NAME>.lua')
 }
 

@@ -81,7 +81,7 @@ def get_accepted_paths(project_dir: Path) -> dict[Path, str]:
                 xtra.append('One folder.')
 
             for p in files:
-                xtra.append(f"File: '{p.name}'.")
+                xtra.append(f"File: '{p.name}'")
 
             xtra = f'\n{TAB_ITEM_1}' + TAB_ITEM_1.join(xtra)
 

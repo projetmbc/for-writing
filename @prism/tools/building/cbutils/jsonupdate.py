@@ -64,7 +64,7 @@ def update_jsons(
     )
 
     if nb_new_pals != 0:
-        logcom.info("Update palette JSON file.")
+        logcom.info("Update palette JSON file")
 
         jspalettes.write_text(
             json_dumps(palettes)

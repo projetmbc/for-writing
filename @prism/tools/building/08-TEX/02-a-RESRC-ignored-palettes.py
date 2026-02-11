@@ -167,7 +167,7 @@ LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
 # -- LET'S WORK! -- #
 # ----------------- #
 
-logging.info("Build 'ignored palette list' in TeX file.")
+logging.info("Build 'ignored palette list' in TeX file")
 
 texcode = []
 

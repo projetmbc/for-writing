@@ -19,13 +19,6 @@ from cbutils      import *
 
 from datetime import datetime
 
-
-
-
-
-
-exit(1)
-
 from yaml import safe_load
 
 
@@ -33,26 +26,15 @@ from yaml import safe_load
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-PATTERN_TNS_VERSION = re.compile(
-    r'==+\s*\n\s*(\d+)\s+\((\d+\.\d+\.\d+)\)\s*\n\s*==+'
-)
-
-
-TMPL_TEX_MANUAL = r"""
-% !TEX TS-program = lualatex
-
+TEX_MANUAL_TMPL = r"""
 \documentclass{{tutodoc}}
 
 \usepackage{{../../contrib/translate/{lang}/manual/preamble.cfg}}
 
 \makeatletter
   \renewcommand{{\minted@cachedir}}{{_minted-xtra-cache}}
-  \luaDraw@DefaultExecfalse
 \makeatother
 
-\begin{{luacode*}}
-BUILD_TIKZ = false
-\end{{luacode*}}
 
 \usepackage[subpreambles = true]{{standalone}}
 
@@ -100,7 +82,7 @@ BUILD_TIKZ = false
 \end{{document}}
 """.strip() + "\n"
 
-TMPL_IMPORT = r"\subimport{{{rel_folder}/}}{{{file}}}"
+TEX_IMPORT_TMPL = r"\subimport{{{rel_folder}/}}{{{file}}}"
 
 
 # ------------------ #
@@ -130,9 +112,9 @@ REL_PREDOC_MANUALS_TAG = ['..' for _ in REL_PREDOC_MANUALS_TAG.parents]
 REL_PREDOC_MANUALS_TAG = '/'.join(REL_PREDOC_MANUALS_TAG)
 
 
-# ------------------ #
-# -- EXTRACT DATA -- #
-# ------------------ #
+# ------------------- #
+# -- EXTRACT LANGS -- #
+# ------------------- #
 
 LANGS = []
 
@@ -140,11 +122,24 @@ for f in TRANSLATE_DIR.glob("*/"):
     fname = f.name
 
     if (
-        fname not in ['changes', 'status']
+        fname not in [
+            'changes',
+            'common',
+            'status',
+        ]
         and
         TRANSLATE_DIR / fname / TAG_MANUAL
     ):
         LANGS.append(fname)
+
+
+# ------------- #
+# -- TNSDOCS -- #
+# ------------- #
+
+PATTERN_TNS_VERSION = re.compile(
+    r'==+\s*\n\s*(\d+)\s+\((\d+\.\d+\.\d+)\)\s*\n\s*==+'
+)
 
 
 # ----------- #
@@ -169,7 +164,7 @@ def build_imports(lang: str) -> (Path, [str]):
         file       = p.name
 
         tex_imports.append(
-            TMPL_IMPORT.format(
+            TEX_IMPORT_TMPL.format(
                 rel_folder = rel_folder,
                 file       = file
             )
@@ -198,7 +193,12 @@ def _rec_build_imports(folder: Path) -> [Path]:
             imports += _rec_build_imports(p)
 
         else:
-            NOT_EXIST
+            raise IOError(
+                 '[ABOUT TOC] path pointed nowhere:\n'
+                f'{p}\n'
+                 '\nFound managing folder:\n'
+                f'{folder}\n'
+            )
 
     return imports
 
@@ -304,7 +304,7 @@ def build_appendixes(lang: str) -> str:
     for file in toc:
         tex_code += [
             r'\newpage',
-            TMPL_IMPORT.format(
+            TEX_IMPORT_TMPL.format(
                 rel_folder = rel_folder,
                 file       = file
             )
@@ -315,35 +315,38 @@ def build_appendixes(lang: str) -> str:
     return tex_code
 
 
-# ------------- #
-# -- MANUALS -- #
-# ------------- #
+# ---------------- #
+# -- LET'S WORK -- #
+# ---------------- #
 
 plurial = '' if len(LANGS) == 1 else 's'
 
-logging.info(f"Building manual{plurial}.")
+logging.info(f"Building 'manual{plurial}'")
+
 
 for lang in LANGS:
     if lang == 'common':
         continue
 
-    logging.info(f"'{lang}' version.")
+    logging.info(f"'{lang}' version")
 
+# Parse content.
     asbtract_path, tex_imports     = build_imports(lang)
     lastdate, lastversion, changes = build_changes(lang)
     tex_appendixes                 = build_appendixes(lang)
 
     if VERSION != lastversion:
         raise ValueError(
-            "about.yaml & Manual change log - Different last version numbers."
+            "about.yaml & manual change log - Different last version numbers."
         )
 
+# Build new content.
     abstract = extract_tex_content(asbtract_path.read_text())
 
     last_change = changes[0]
     changes     = '\n\n\\tdocsep\n\n'.join(changes)
 
-    tex_code = TMPL_TEX_MANUAL.format(
+    tex_code = TEX_MANUAL_TMPL.format(
         lang           = lang,
         abstract       = abstract,
         tex_imports    = '\n'.join(tex_imports),

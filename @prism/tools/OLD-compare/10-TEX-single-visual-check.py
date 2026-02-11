@@ -97,7 +97,7 @@ with LAST_UPDATES_JSON.open() as f:
     LAST_UPDATES = json_load(f)
 
 if not LAST_UPDATES:
-    logging.info("Nothing to do.")
+    logging.info("Nothing to do")
 
     exit(0)
 
@@ -152,11 +152,11 @@ def fill_tex_tmpl(
 # -- LET'S WORK! -- #
 # ----------------- #
 
-logging.info("Build TeX files for human checking.")
+logging.info("Build TeX files for human checking")
 
 for kind, tmpl in SINGLE_TMPLS.items():
     for palname in LAST_UPDATES:
-        logging.info(f"TeX files for '{palname}'.")
+        logging.info(f"TeX files for '{palname}'")
 
         assert LAST_PALETTES[palname] != DEV_PALETTES[palname]
 

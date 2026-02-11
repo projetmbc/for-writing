@@ -32,6 +32,8 @@ Manual: remove the cluster appendix.
 [[:api:]]
 Here are the new features.
 
+    1) 43 new palettes added.
+
     1) Multiple \distrib formats are now available to meet various technical requirements.
 
         + High-fidelity (unmodified).

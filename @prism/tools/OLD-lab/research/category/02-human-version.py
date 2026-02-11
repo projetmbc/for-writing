@@ -73,7 +73,7 @@ for catego in CLUSTERS_DIR.glob("*"):
 
     names = '\n'.join(names)
 
-    print(f"+ Recording '{catego.name}' folder selection.")
+    print(f"+ Recording '{catego.name}' folder selection")
 
     if not newfile.parent.is_dir():
         newfile.parent.mkdir()

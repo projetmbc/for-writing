@@ -47,7 +47,7 @@ with DEV_PALETTES_JSON.open() as f:
 # -- UPDATE LAST PALETTES JSON FILE -- #
 # ------------------------------------ #
 
-logging.info("Build new 'last palettes'.")
+logging.info("Build new 'last palettes'")
 
 LAST_PALETTES_JSON.write_text(
     json_dumps(DEV_PALETTES)

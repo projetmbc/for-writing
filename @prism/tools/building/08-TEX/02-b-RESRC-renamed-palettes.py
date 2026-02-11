@@ -132,7 +132,7 @@ JOIN alias a ON h.pal_id = a.pal_id
 # -- LET'S WORK! -- #
 # ----------------- #
 
-logging.info("Build 'renamed palette list' in TeX file.")
+logging.info("Build 'renamed palette list' in TeX file")
 
 texcode = []
 

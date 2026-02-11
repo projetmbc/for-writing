@@ -80,10 +80,10 @@ for meth in CLUSTER_METHODS:
 # -- UNCLUSTERIZED PALETTES -- #
 # ---------------------------- #
 
-print("+ Looking for unclusterized palettes.")
+print("+ Looking for unclusterized palettes")
 
 if FORCING_ALL:
-    print("+ Forcing all palettes.")
+    print("+ Forcing all palettes")
     newpals = list(ALL_PALETTES)
 
 else:

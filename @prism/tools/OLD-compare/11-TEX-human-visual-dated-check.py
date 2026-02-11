@@ -39,7 +39,7 @@ with LAST_UPDATES_JSON.open() as f:
     LAST_UPDATES = json_load(f)
 
 if not LAST_UPDATES:
-    logging.info("Nothing to do.")
+    logging.info("Nothing to do")
 
     exit()
 
@@ -132,12 +132,12 @@ for kind in ['dark', 'std']:
     )
 
 if not all_singles['dark']:
-    logging.info(f"'No TeX files' build.")
+    logging.info(f"'No TeX files' build")
 
     exit()
 
 
-logging.info(f"Building '{now} TeX files'.")
+logging.info(f"Building '{now} TeX files'")
 
 for kind in ['dark', 'std']:
     showfile = HUMAN_CHECK_BCKUP_DIR / f"{now}" / f"{kind}.tex"

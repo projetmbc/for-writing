@@ -55,10 +55,10 @@ LAST_PALETTES_JSON = DATA_DIR / f"LAST_PALETTES.json"
 # --------------------- #
 
 if LAST_PALETTES_JSON.is_file():
-    logging.info("Nothing to do.")
+    logging.info("Nothing to do")
 
 else:
-    logging.info("Try to get last 'LAST MAIN' palettes.")
+    logging.info("Try to get last 'LAST MAIN' palette")
 
     try:
         resp               = requests.get(JSON_PALETTE_URL)
@@ -71,7 +71,7 @@ else:
 
         exit(1)
 
-    logging.info("Initialize data folder with 'LAST MAIN' palettes.")
+    logging.info("Initialize data folder with 'LAST MAIN' palettes")
 
     LAST_PALETTES_JSON.write_text(
         json_dumps(last_main_palettes)

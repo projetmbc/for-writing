@@ -175,7 +175,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # At least one match found.
         kind = get_std_kind(kind)
 
-        logging.info(f"'{name}' is '{kind}'.")
+        logging.info(f"'{name}' is '{kind}'")
 
         query = SQL_UPDATE_KIND.format(
             name = name,

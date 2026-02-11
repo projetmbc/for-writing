@@ -30,23 +30,23 @@ Structure of the contrib/products folder <a href="#MULTIMD-GO-BACK-TO-TOC" style
 We will briefly explain the following structure of the `contrib/products` folder.
 
 ~~~
-+ contrib
++ products
   + changes
-  + css
-  + latex
-  + lua
+  + contributils
   + readme
   + status
   + template-stucture
+  + [...]
 ~~~
 
 Here is how the different folders are used.
 
 1. `changes` is used to communicate changes related to contributions.
-2. `readme`, managed by the `@prism` developer, is used to generate the `contrib/products/README.md` file.
-3. `status`, managed by the `@prism` developer, contains `YAML` files indicating whether an implementation has been accepted or not, along with the reason for this status. ***No coding skill is needed to read these `YAML` files.***
-4. `template-structure` provides a starting structure for adding new implementations.
-5. The other folders are the contributions themselves, the development process for which is explained in the following section.
+2. `contributils` is a small module for easily implementing the `extend.py` `Python` file for contributions.
+3. `readme`, managed by the `@prism` developer, is used to generate the `contrib/products/README.md` file.
+4. `status`, managed by the `@prism` developer, contains `YAML` files indicating whether an implementation has been accepted or not, along with the reason for this status. ***No coding skill is needed to read these `YAML` files.***
+5. `template-structure` provides a starting structure for adding new implementations.
+6. The other folders are the contributions themselves, the development process for which is explained in the following section.
 
 <a id="MULTIMD-TOC-ANCHOR-1"></a>
 How to propose new palettes? <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -79,13 +79,13 @@ This folder is the sole responsibility of the contributor. Its purpose is to pro
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
 ### The tests folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-his directory should provide a way to test palette transformations.
+This directory shoulds provide a way to test palette transformations.
 
 <a id="MULTIMD-TOC-ANCHOR-5"></a>
 ### The palettes folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This folder is used to store palettes provided as files using the specific implementation chosen. Each file name gives the name of the palette.
-For example, on December 20, 2025, the `Lua` `palettes` folder contained the following items defining three palettes named `BlindFish`, `GasFlame`, and `GroovyRainbow`.
+For example, on December 20, 2025, the `Lua` `palettes` folder contained the following items defining palettes named `BlindFish`, `BurningGrass`, `GasFlame`...
 
 ~~~
 - palettes
@@ -132,8 +132,6 @@ PALETTE = {
   {0.7735, 0.25685, 0.219575}
 }
 ~~~
-> ***NOTE.*** *The size of palettes provided by `@prism` is fixed, but nothing prevents you from using any number of colors you wish when creating your own.*
-
 <a id="MULTIMD-TOC-ANCHOR-6"></a>
 ### The status folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
@@ -142,73 +140,124 @@ This folder allows you to know the status of your proposal. Its structure mimics
 <a id="MULTIMD-TOC-ANCHOR-7"></a>
 ### The extend.py file <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-This file must follow the following commented template.
+This file must follow the following template. The comments help you get started with coding.
 
 ~~~python
 #!/usr/bin/env python3
 
-# -------------------- #
-# -- IMPORT ALLOWED -- #
-# -------------------- #
+###
+# To simplify coding, the small ''contributils'' module
+# imported below provides the ''PaletteTransformer'' class,
+# which streamlines feature engineering.
+###
 
-from typing import TypeAlias
+# --------------------------------- #
+# -- IMPORT CONTRIBUTILS - START -- #
 
-import ast
-import re
+from pathlib import Path
+import              sys
+
+THIS_DIR          = Path(__file__).parent
+CONTRIB_PRODS_DIR = THIS_DIR.parent
+
+sys.path.append(str(CONTRIB_PRODS_DIR))
+
+from contributils import *
+
+# -- IMPORT CONTRIBUTILS - END -- #
+# ------------------------------- #
 
 
-# ------------ #
-# -- TYPING -- #
-# ------------ #
-
-RGBCols    :TypeAlias = [float, float, float]
-PaletteCols:TypeAlias = list[RGBCols]
-
-
-# -------------------- #
-# -- EXTRACT COLORS -- #
-# -------------------- #
+# --------------------------------- #
+# -- SINGLE PALETTE CODE BUILDER -- #
+# --------------------------------- #
 
 ###
 # prototype::
-#     code : a definition of a palette with the technology chosen.
+#     name    : name of one single palette.
+#     palette : one single palette.
 #
-#     :return: a list of lists of 3 floats belonging to `[0, 1]` that
-#              will be used to produce the "universal" \json version
-#              of the palette.
-###
-def parse(code: str) -> PaletteCols:
-    ...
-
-
-# ---------------------- #
-# -- BUILD FINAL CODE -- #
-# ---------------------- #
-
-PALETTES_FILE_NAME = "..."
-
-###
-# prototype::
-#     credits  : the credits to the ''@prism'' project that should
-#                be added as a comment at the beginning of the final
-#                product code.
-#     palettes : the dictionnary of all the palettes.
-#
-#     :return: the code of the final product with all the palettes
-#              ready to be used.
+#     :return: the code of ''palette'' for the final product
+#              versions.
 #
 #
 # warning::
-#     Except if it is totally impossible, the code build must offer
-#     the ability to access a palette via the string name of the
-#     variable associated with it, and also to propose ways to
-#     transform palettes (extraction, shift and reverse order).
+#     All tecnhologies must implement a ''_build_palette''
+#     function.
 ###
-def build_code(
-    credits : str,
-    palettes: dict[str, PaletteCols]
+def _build_palette(
+    name   : str,
+    palette: PaletteCols
 ) -> str:
     ...
+
+
+# ---------------------- #
+# -- API CODE BUILDER -- #
+# ---------------------- #
+
+###
+# prototype::
+#     :return: the code of the \api of the final product.
+#
+#
+# warning::
+#     Except if it is totally impossible, the code build must
+#     offer the ability to access a palette via the string name
+#     of the variable associated with it, and also to propose
+#     ways totransform palettes (extraction, shift and reverse
+#     order). Therefore, the lines below should be removed if
+#     the technology does not provide an API.
+###
+def _build_api() -> str:
+    ...
+
+
+# ------------------------- #
+# -- PALETTE TRANSFORMER -- #
+# ------------------------- #
+
+###
+# The ''PaletteTransformer'' class requires four mandatory
+# arguments and offers five optional parameters.
+#
+#     1) ''extension'' is the extension of the files to build.
+#
+#     1) ''comspecs'' is a dictionnary to specify multiline
+#     and/or single comments.
+#
+#     1) ''palpattern'' is a regex to extract colors from a
+#     palette defined in a specific technology.
+#
+#     1) ''pal_builder'' is a function that builds the code of
+#     a single palette.
+#
+#     1) ''api_builder'' is a function that builds the API code
+#     (if there is one).
+#
+#     1) ''floatify'' is used to make a flot from one string color
+#     extracted.
+#
+#     1) ''header'' can be used to add some specific lines before
+#     the palette codes.
+#
+#     1) ''footer'' can be used to add some specific lines after
+#     the palette codes.
+#
+#     1) ''titledeco'' is the single character used to frame the
+#     titles in special comments.
+###
+paltransfo = PaletteTransformer(
+    extension   = ...,
+    comspecs    = ...,
+    palpattern  = ...,
+    pal_builder = ...,
+    api_builder = ...,  # OPTIONAL.
+    floatify    = ...,  # OPTIONAL.
+    titledeco   = ...,  # OPTIONAL.
+    header      = ...,  # OPTIONAL.
+    footer      = ...,  # OPTIONAL.
+)
 
 
 # ---------------- #
@@ -222,7 +271,10 @@ if __name__ == "__main__":
 ### The fake-prod folder <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 This folder is a template used to create the final version of the implementation.
-It must contain a palette file named as indicated in `extend.py` (the content of this mandatory file can be fake).
+It must contain fake, or real, palette and API files using the following standard names where `<ext>` is the extension of the technology implemented.
+
+- Palette files can be name `palettes-hf.<ext>`, `palettes-hf/<palName>.<ext>`, `palettes-s40.<ext>` and `palettes-s40/<palName>.<ext>`.
+- `palapi.<ext>` represents the implementation of the API.
 
 > ***NOTE.*** *A good practice is to provide a `showcase` folder for local testing without requiring installation.*
 
@@ -255,15 +307,11 @@ Here is the purpose of each of these files.
 ~~~markdown
 <!--YAML
 inlinecode:
-  lua:
-    - palGistHeat
-    - getPal('GistHeat')
-    - getPal('palGistHeat')
+  css:
+    - --pal<name>-<nb>
+    - <name>
+    - <nb>
 -->
 
-The `Lua` palette names...
-
-  * `palGistHeat` is a `Lua` variable.
-
-  * `getPal('GistHeat')` and `getPal('palGistHeat')`...
+... the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is ...
 ~~~
