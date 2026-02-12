@@ -11,12 +11,26 @@ mypy . --html-report typing_report
 AVANT nelle version !!!!!
 
 
-revori les textes fixes mis en pyhon pour les metters dans used-by-tools
-
-+
-
 imprimer audit pour les catgeos car des choses à revori !!!
 
+
+
+// ---------- //
+
+-----
+:new:
+-----
+
+[[:api:]]  ?
+Standardizing the retrieval of external palettes done for the following \projs.
+
+    + \colormaps      ????
+    + \nclcolortables  ??
+
+
+// ---------- //
+
+POST-ALIAS.yaml a vire si fasiable : un probleme de xlogique lie au alais de emttre ettre mais de casse differente
 
 
 // ---------- //
@@ -107,18 +121,7 @@ revoir latex API car ce qui suit est pénible!!!
 css - html de dev : support aussi de l'hexadécimal car std en CSS
 
 
-// ---------- //
 
---------
-:fordev:
---------
-
-[[:tech:]]  ?
-Standardizing the retrieval of external palettes done for the following \projs.
-
-    + \cmasher        ??????
-    + \colormaps      ????
-    + \nclcolortable  ??
 
 
 // ---------- //

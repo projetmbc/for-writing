@@ -16,6 +16,15 @@
                 CARTOColors
                   & Prism & \Rightarrow & PrismCC \\
                 \hline
+                CMasher
+                  & Copper & \Rightarrow & CopperCM \\
+                  & Fall & \Rightarrow & FallCM \\
+                  & Ghostlight & \Rightarrow & GhostLight \\
+                  & Iceburn & \Rightarrow & IceBurn \\
+                  & Ocean & \Rightarrow & OceanCM \\
+                  & Redshift & \Rightarrow & RedShift \\
+                  & Sunburst & \Rightarrow & SunBurst \\
+                \hline
                 CarbonPlan
                   & Bluegrey & \Rightarrow & BlueGrey \\
                   & Blues & \Rightarrow & BluesCP \\
@@ -33,6 +42,7 @@
                   & Rainbow & \Rightarrow & RainbowCP \\
                   & Redgrey & \Rightarrow & RedGrey \\
                   & Reds & \Rightarrow & RedsCP \\
+                  & Redteal & \Rightarrow & RedTeal \\
                   & Sinebow & \Rightarrow & SineBow \\
                   & Tealgrey & \Rightarrow & TealGrey \\
                   & Yellowgrey & \Rightarrow & YellowGrey \\

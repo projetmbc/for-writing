@@ -26,8 +26,10 @@ from natsort import natsorted
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-TAG_FOREACH_START = r"% -- FOREACH CATEGOS - AUTO - START -- %"
-TAG_FOREACH_END   = r"% -- FOREACH CATEGOS - AUTO - END -- %"
+TAG_FOREACH = r"FOREACH CATEGOS"
+
+TAG_FOREACH_START = rf"% -- {TAG_FOREACH} - AUTO - START -- %"
+TAG_FOREACH_END   = rf"% -- {TAG_FOREACH} - AUTO - END -- %"
 
 
 TAB_1 = ' '*4

@@ -2,6 +2,7 @@ _SUFFIXES_:
   ASYMPTOTE: ASY
   CARBONPLAN: CP
   CARTOCOLORS: CC
+  CMASHER: CM
   COLORBREWER: CBW
   MATPLOTLIB: MPL
   PLOTLY: PLY
@@ -23,6 +24,10 @@ CARBONPLAN:
   Reds: .
 CARTOCOLORS:
   Prism: .
+CMASHER:
+  Copper: Copper*
+  Fall: Fall*
+  Ocean: Ocean*
 COLORBREWER:
   YlOrRd: .
 

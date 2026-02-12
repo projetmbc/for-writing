@@ -27,45 +27,20 @@ from natsort import (
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-LETTERS_COL_BREAK = ''
-LETTERS_COL_BREAK = 'DT'
+LETTERS_COL_BREAK = 'J'
 
 
 TAB_1 = ' '*4
 TAB_2 = TAB_1*2
 
 
-TEX_HEADER_TMPL = r"""
-\documentclass{tutodoc}
+TAG_LIST_OF_NAMES = r"LIST OF NAMES"
 
-\usepackage{../preamble.cfg}
-
-\begin{document}
-
-\phantomsection
-\section*{\hfill Appendix 1 -- All palette names \hfill\null} \label{palette-all-names}
-\addcontentsline{toc}{section}{Appendix 1 -- All palette names}
+TAG_LIST_OF_NAMES_START = rf"% -- {TAG_LIST_OF_NAMES} - AUTO - START -- %"
+TAG_LIST_OF_NAMES_END   = rf"% -- {TAG_LIST_OF_NAMES} - AUTO - END -- %"
 
 
-\begin{tdocimp}
-    The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix%
-    \ifthenelse{\nbNewPals = 0}{}{%
-        , and the very last new palettes are marked by~{\footnotesize\bfseries\faStar}
-    }%
-    .
-\end{tdocimp}
-
-
-% ------------------------------------------- %
-% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
-% ------------------------------------------- %
-
-\begin{multicols*}{3}
-%    \setlength{\columnseprule}{0.5pt}
-%    \renewcommand{\columnseprulecolor}{\color{LightGrey}}
-""".strip()+ '\n'
-
-
+TEX_HEADER_TMPL = r"\begin{multicols*}{3}"
 TEX_FOOTER_TMPL = r"""
 \end{multicols*}
 
@@ -80,16 +55,12 @@ TEX_LETTER_TMPL = TAB_1 + r"""
 """.strip() + '\n'
 
 
-TEX_PALETTE_TMPL = TAB_1 + r"""
-    \smallskip
-    \hspace{{1em}}{name}
-""".strip() + '\n'
+TEX_PALETTE_TMPL = TAB_1 + r"\smallskip\hspace{{1em}}{name}"
 
 
 TEX_NEW_PALETTE_TMPL =(
-      TEX_PALETTE_TMPL.strip()
+      TEX_PALETTE_TMPL
     + r' ${{}}^{{\text{{{{\tiny\bfseries\faStar}}}}}}$'
-    + '\n'
 )
 
 
@@ -127,7 +98,7 @@ with NEW_NAMES_JSON.open(mode = "r") as f:
 
 logging.info("Build 'all names' TeX file")
 
-_texcode = [TEX_HEADER_TMPL]
+_namescode = [TEX_HEADER_TMPL]
 
 last_letter = ''
 
@@ -155,9 +126,12 @@ WHERE h.is_kept = 1
 
         if letter != last_letter:
             if letter in LETTERS_COL_BREAK:
-                _texcode.append(r"\columnbreak")
+                _namescode += [
+                    r"\columnbreak",
+                    ''
+                ]
 
-            _texcode.append(
+            _namescode.append(
                 TEX_LETTER_TMPL.format(letter = letter)
             )
 
@@ -169,15 +143,32 @@ WHERE h.is_kept = 1
             TEX_PALETTE_TMPL
         )
 
-        _texcode.append(
-            tmpl.format(name = name)
-        )
+        _namescode += [
+            tmpl.format(name = name),
+            '',
+        ]
 
-_texcode[-1] = _texcode[-1].rstrip()
 
-_texcode.append(TEX_FOOTER_TMPL)
+_namescode[-1] = _namescode[-1].rstrip()
 
-texcode = '\n'.join(_texcode)
+_namescode.append(TEX_FOOTER_TMPL)
+
+namescode = '\n'.join(_namescode)
+
+
+content = APPENDIX_TEX_FILE.read_text()
+
+before, _ , after = content.partition(f"\n{TAG_LIST_OF_NAMES_START}")
+
+_ , _ , after = after.partition(f"{TAG_LIST_OF_NAMES_END}\n")
+
+content = f"""
+{before}
+{TAG_LIST_OF_NAMES_START}
+{namescode}
+{TAG_LIST_OF_NAMES_END}
+{after}
+""".strip() + '\n'
 
 APPENDIX_TEX_FILE.touch()
-APPENDIX_TEX_FILE.write_text(texcode)
+APPENDIX_TEX_FILE.write_text(content)

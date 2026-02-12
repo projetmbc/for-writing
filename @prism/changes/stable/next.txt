@@ -34,7 +34,7 @@ Manual: remove the cluster appendix.
 [[:api:]]
 Here are the new features.
 
-    1) 43 new palettes added.
+    1) 96 new palettes added.
 
     1) Multiple \distrib formats are now available to meet various technical requirements.
 
@@ -79,7 +79,7 @@ The \projs listed below serves as a foundation.
     + \asymptote
     + \carbonplan (new with full support)
     + \cartocolors
-    + \cmasher (new with temporary partial support)
+    + \cmasher (new with full support)
     + \colorbrewer
     + \colormaps (new with temporary partial support)
     + \matplotlib

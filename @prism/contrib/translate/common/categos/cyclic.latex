@@ -1,6 +1,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries CopperCM\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/CopperCM-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Emergency\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Emergency-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Flag\vphantom{g}}
 
         \smallskip
@@ -11,10 +31,30 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Infinity\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Infinity-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries RainbowCP\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/RainbowCP-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Seasons\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Seasons-spectrum.pdf}
     \end{center}
 \end{minipage}
 

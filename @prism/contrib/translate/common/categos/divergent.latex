@@ -251,6 +251,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Fusion\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Fusion-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Geyser\vphantom{g}}
 
         \smallskip
@@ -311,10 +321,40 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Guppy\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Guppy-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries HSV\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Holly\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Holly-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries IceBurn\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/IceBurn-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -431,6 +471,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Pride\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Pride-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Prinsenvlag\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Prinsenvlag-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Prism\vphantom{g}}
 
         \smallskip
@@ -511,6 +571,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries RedShift\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/RedShift-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries RedTeal\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/RedTeal-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries RedYellowBlue\vphantom{g}}
 
         \smallskip
@@ -521,10 +601,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Redteal\vphantom{g}}
+        {\bfseries Seaweed\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Redteal-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Seaweed-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -655,6 +735,46 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/TwilightShifted-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Viola\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Viola-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Waterlily\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Waterlily-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Watermelon\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Watermelon-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Wildfire\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Wildfire-spectrum.pdf}
     \end{center}
 \end{minipage}
 

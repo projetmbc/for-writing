@@ -2,6 +2,21 @@
 
 
 ==
+12  (2.0.0-beta.17)
+==
+
+-----
+:new:
+-----
+
+[[:api:]]
+Add new palettes from \cmasher.
+
+
+// ---------- //
+
+
+==
 11  (2.0.0-beta.16)
 ==
 
@@ -14,7 +29,7 @@ Palette names use "semantic" camelcase. For example, we use ''PinkGrey'' and ''B
 
 
 [[:doc:]]
-Manual: new version finlaized (cluster appendix removed, but it will be integrated later in the \html viewer).
+Manual: new version finalized (cluster appendix removed, but it will be integrated later in the \html viewer).
 
 
 --------
@@ -23,7 +38,7 @@ Manual: new version finlaized (cluster appendix removed, but it will be integrat
 
 [[:flow:]]
 Adding new palettes will be faster in the future because the simplified graphics are now linked only to the palette \def and the \api when strictly necessary.
-For example, the full building with 301 palettes now takes approximately 30 min, thanks to this new graphics and the removal of the pretty showcases (which will return later in the \html version).
+For example, the full building with 301 palettes now takes approximately 30 min, and just about 7 min for 53 new palettes added, thanks to this new graphics and the removal of the pretty showcases (which will return later in the \html version).
 
 
 // ---------- //

@@ -1,0 +1,48 @@
+/* ----------------------------------------------------------------- */
+/* -- File created by the ''@prism'' project, version 1.3.0,      -- */
+/* -- which is developed at                                       -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism . -- */
+/* ----------------------------------------------------------------- */
+
+:root {
+    --palLavender-1: rgb(0% 0% 0%);
+    --palLavender-2: rgb(0.7839% 0.3212% 0.5952%);
+    --palLavender-3: rgb(3.1056% 0.9591% 2.3517%);
+    --palLavender-4: rgb(6.6067% 1.7054% 5.4194%);
+    --palLavender-5: rgb(10.0853% 2.4081% 8.8907%);
+    --palLavender-6: rgb(13.5118% 2.9266% 12.6564%);
+    --palLavender-7: rgb(16.8805% 3.1279% 16.8335%);
+    --palLavender-8: rgb(20.1535% 2.9016% 21.5323%);
+    --palLavender-9: rgb(23.2499% 2.224% 26.8232%);
+    --palLavender-10: rgb(26.0299% 1.3074% 32.6535%);
+    --palLavender-11: rgb(28.2906% 0.8402% 38.7266%);
+    --palLavender-12: rgb(29.8306% 2.0738% 44.4745%);
+    --palLavender-13: rgb(30.5393% 6.0711% 49.2885%);
+    --palLavender-14: rgb(30.475% 10.8375% 52.8605%);
+    --palLavender-15: rgb(29.7956% 15.4998% 55.2102%);
+    --palLavender-16: rgb(28.7099% 19.871% 56.5835%);
+    --palLavender-17: rgb(27.4055% 23.8973% 57.2527%);
+    --palLavender-18: rgb(26.0407% 27.595% 57.469%);
+    --palLavender-19: rgb(24.7345% 31.0038% 57.4197%);
+    --palLavender-20: rgb(23.5676% 34.1747% 57.2405%);
+    --palLavender-21: rgb(22.5821% 37.1574% 57.0205%);
+    --palLavender-22: rgb(21.7794% 39.9988% 56.8143%);
+    --palLavender-23: rgb(21.122% 42.7413% 56.6477%);
+    --palLavender-24: rgb(20.5395% 45.4219% 56.5231%);
+    --palLavender-25: rgb(19.9396% 48.0729% 56.4222%);
+    --palLavender-26: rgb(19.2211% 50.7201% 56.3092%);
+    --palLavender-27: rgb(18.2912% 53.3823% 56.1355%);
+    --palLavender-28: rgb(17.0707% 56.0707% 55.8427%);
+    --palLavender-29: rgb(15.5154% 58.7888% 55.373%);
+    --palLavender-30: rgb(13.6197% 61.5334% 54.6675%);
+    --palLavender-31: rgb(11.4679% 64.2955% 53.6768%);
+    --palLavender-32: rgb(9.3351% 67.0617% 52.3544%);
+    --palLavender-33: rgb(7.9256% 69.8151% 50.6627%);
+    --palLavender-34: rgb(8.4068% 72.5353% 48.5663%);
+    --palLavender-35: rgb(11.3413% 75.1977% 46.0329%);
+    --palLavender-36: rgb(16.1524% 77.7717% 43.0335%);
+    --palLavender-37: rgb(22.2277% 80.2154% 39.5455%);
+    --palLavender-38: rgb(29.3224% 82.47% 35.5892%);
+    --palLavender-39: rgb(37.448% 84.441% 31.3444%);
+    --palLavender-40: rgb(46.6027% 86.0043% 27.6166%);
+}

@@ -9,8 +9,14 @@ Bwr: BWR
 #  + C
 Coolwarm: CoolWarm
 
+#  + G
+Ghostlight: GhostLight
+
 #  + H
 Hsv: HSV
+
+#  + I
+Iceburn: IceBurn
 
 #  + O
 Orangeblue: OrangeBlue
@@ -24,9 +30,12 @@ Purplegrey: PurpleGrey
 
 #  + R
 Redgrey: RedGrey
+Redshift: RedShift
+Redteal: RedTeal
 
 #  + S
 Sinebow: SineBow
+Sunburst: SunBurst
 
 #  + T
 Tealgrey: TealGrey
@@ -34,3 +43,4 @@ Tealgrey: TealGrey
 #  + Y
 Yellowgrey: YellowGrey
 Yellowpurple: YellowPurple
+greengrey: GreenGrey
