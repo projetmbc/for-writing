@@ -23,6 +23,9 @@ git cm "..."
 
 AVANT nelle version !!!!!
 
+appendix dedie a rename et ignore car c'est sans limite de taille
+
++
 
 imprimer audit pour les catgeos car des choses à revori !!!
 
