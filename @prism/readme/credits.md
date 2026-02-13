@@ -13,6 +13,8 @@ Credits
 
   * [`Colorbrewer`](https://colorbrewer2.org).
 
+  * [`Colormaps`](https://github.com/pratiman-91/colormaps).
+
   * [`Cubehelix`](https://jiffyclub.github.io/palettable/cubehelix) is extracted from [`Palettable`][1] project.
 
   * [`Light and Bartlein`](https://jiffyclub.github.io/palettable/lightbartlein) is extracted from [`Palettable`][1] project.

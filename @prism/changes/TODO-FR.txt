@@ -18,20 +18,53 @@ git cm "..."
 
 
 
+// ---------- //
+
+Toutes les palettes de cmasher sont testées pour être lisibles par les personnes atteintes de daltonisme (deutéranopie, protanopie, etc.).
+
+
+// ---------- //
+
+plus de monolithic, c'est un érérsis avec beauoup de palletts
+
+doc OK
+code ?????
+
+
+// ---------- //
+
+voir si float est mieux que entier, si c'est pas le cas, on noromalise tout en RGB entier
+
+
+// ---------- //
+
+CSS showcase cassé dans products - Pourquoi ???
+
+
+
+// ---------- //
+
+cluster de retour
+
+   --> on approxime en RGB entier pour commenecer
+
+   --> on teste en hf et en s40 la similarité
+
+   --> besoin d'avoir un doc montrant ces similarités
+
+   --> float calc implique des égalités visuelles
+
 
 // ---------- //
 
 AVANT nelle version !!!!!
 
-appendix dedie a rename et ignore car c'est sans limite de taille
-
-+
 
 imprimer audit pour les catgeos car des choses à revori !!!
 
 +
 
-cluster de retour
+appendix dedie a rename et ignore car c'est sans limite de taille
 
 
 // ---------- //

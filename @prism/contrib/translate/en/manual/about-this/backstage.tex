@@ -14,6 +14,7 @@
 % -- JUST TRANSLATE THE ''XTRA'' TEXTS. -- %
 % ---------------------------------------- %
 %
+\def\fromcolormaps{palettes are extracted from \colormaps\ project}
 \def\frompalettable{palettes are extracted from \palettable\ project}
 %
 \begin{multicols}{2}
@@ -24,8 +25,10 @@
     % -- C -- %
     \carbonplan  / {provides palettes designed for data visualization.},
     \cartocolors / \frompalettable,%
+    \cmasher     / {provides palettes designed for data visualization.},
     \cmocean     / \frompalettable,%
     \colorbrewer / {provides professional color palettes for mapping and data visualization},%
+    \colorcet    / \fromcolormaps, %
     % -- L -- %
     \lightbartlein / \frompalettable,%
     % -- M -- %
@@ -35,7 +38,8 @@
     \plotly / \frompalettable,%
     % -- S -- %
     \scicolmap / {provides palettes designed for colorblind accessibility}, %
-    % -- W -- %
+    \sciviz    / \fromcolormaps, %
+    % -- T -- %
     \tableau / \frompalettable, %
     % -- W -- %
     \wesanderson / \frompalettable %
@@ -65,6 +69,13 @@ We retain only palettes that comply with the following rules.
     	Most \matplotlib\ color maps have a reversed version named with the \tdoccodein{py}{_r} suffix, possibly for performance reasons.
     }
     \thisproj\ never includes reversed palettes as fixed data.
+
+    \item \textbf{No shifted versions.}
+    Unlike \colormaps,%
+    \footnote{
+    	These palettes use an integer suffix directly following the original palette name.
+    }
+    \thisproj\ never includes shifted palettes as fixed data (most implementations offer an API that enables this and other transformations through configurable parameters).
 \end{itemize}
 
 

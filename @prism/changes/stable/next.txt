@@ -1,3 +1,6 @@
+précision = 6 finalement
+
+
 // ---------- //
 
 

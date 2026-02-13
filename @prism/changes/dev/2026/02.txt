@@ -13,6 +13,12 @@
 External palettes: add \colormaps support.
 
 
++
+
+précision = 6 finalement
+
+
+
 // ---------- //
 
 
