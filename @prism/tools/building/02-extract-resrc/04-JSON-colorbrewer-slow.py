@@ -22,7 +22,10 @@ from cbutils      import *
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_RESRC = TAG_COLORBREWER
+THIS_RESRC = Path(__file__).stem
+THIS_RESRC = THIS_RESRC.split('-')[2]
+THIS_RESRC = THIS_RESRC.upper()
+THIS_RESRC = globals()[f"TAG_{THIS_RESRC}"]
 
 PROJ_DIR = THIS_DIR
 

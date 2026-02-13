@@ -191,6 +191,46 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries CetCTritanopicCwrk4\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/CetCTritanopicCwrk4-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries CetCTritanopicWrwc7\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/CetCTritanopicWrwc7-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries CetDCwm8\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/CetDCwm8-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries CetGCategory10\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/CetGCategory10-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries CoolWarm\vphantom{g}}
 
         \smallskip

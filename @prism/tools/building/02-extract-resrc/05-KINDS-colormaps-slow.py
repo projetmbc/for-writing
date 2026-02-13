@@ -110,6 +110,7 @@ def extract_md_pals(content):
                 continue
 
             name = split_data_row(line)[0]
+
             name = get_stdname(name)
 
             if name in NAMES_IGNORED:

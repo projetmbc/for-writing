@@ -106,3 +106,4 @@ clean_src_dirs(
 )
 
 (THIS_RESRC_DIR / 'docs' / 'other.md').unlink()
+(THIS_RESRC_DIR / 'sciviz' / 'test.rgb').unlink()

@@ -16,6 +16,13 @@ ASYMPTOTE:
   Viridis: dark, sequential
   YlOrRd: dark, qualitative, sequential
 
+#  + C
+COLORCET:
+  CetCTritanopicCwrk4: dark, divergent, sequential
+  CetCTritanopicWrwc7: dark, divergent, sequential
+  CetDCwm8: dark, divergent, sequential
+  CetGCategory10: divergent
+
 #  + M
 MATPLOTLIB:
   Afmhot: sequential
@@ -48,3 +55,114 @@ MATPLOTLIB:
   Terrain: dark, divergent, sequential
   Turbo: sequential
   Winter: dark, qualitative
+
+#  + S
+SCIVIZ:
+  B231: sequential
+  Bl11: sequential
+  Blue85g2: sequential
+  BlueBl111: sequential
+  BlueBlgra2: sequential
+  BlueBlue3: sequential
+  BlueBlueb1: sequential
+  BlueC16adjw: sequential
+  BlueGblue: sequential
+  BlueLbluec1: sequential
+  BlueMedb717b: sequential
+  Br4div: sequential
+  BrownBr119a: sequential
+  BrownBrowns: sequential
+  BrownBrye1b: sequential
+  BrownGrawarm1: sequential
+  BrownOrange1: sequential
+  BrownOrtanish1: sequential
+  BrownPeachy: sequential
+  BrownRed3b: sequential
+  BrownSable: sequential
+  BrownVbrown1: sequential
+  Browngray: sequential
+  Bruce2: sequential
+  C716: sequential
+  CBlgr1: sequential
+  CPch1: sequential
+  CViolet1: sequential
+  CYelpch1: sequential
+  Colormap66: sequential
+  DBlgr3: sequential
+  DSeteq2: sequential
+  DasyGrbr1: sequential
+  DiscreteAutumn: qualitative
+  DiscreteBg: qualitative
+  DiscreteBo: qualitative
+  DiscreteDark: qualitative
+  DiscreteLightAut: qualitative
+  DiscreteMuted: qualitative
+  DiscreteVaneyck: qualitative
+  Div1BlueOrange: sequential
+  Div2GrayGold: sequential
+  Div3GreenBrown: sequential
+  Div5AsymOb: sequential
+  FushiaRedPink1: sequential
+  Green917e: sequential
+  GreenCGry1: sequential
+  GreenGr1214b: sequential
+  GreenGreen1: sequential
+  GreenGreen6: sequential
+  GreenMistyteal: sequential
+  GreenMustard: sequential
+  GreenRox: sequential
+  Hier1p: sequential
+  Hier2p: sequential
+  Hier4w: sequential
+  Hier5: sequential
+  High2ml: sequential
+  High3: sequential
+  High4: sequential
+  High5: sequential
+  HsOrange2: sequential
+  LOragnemed1: sequential
+  LOrangemute1: sequential
+  LOrangesat1: sequential
+  LPurplowsat3: sequential
+  LPurpmedsat3: sequential
+  LPurpwarm2: sequential
+  LRedWarm1: sequential
+  LRedmuted4: sequential
+  LRedsat1: sequential
+  LTurqmed2: sequential
+  LTurqsat1: sequential
+  LYellowmed2: sequential
+  Mauve1: sequential
+  Oryell2: sequential
+  OtherOutl1: sequential
+  OtherOutl2: sequential
+  OtherOutl3: sequential
+  OtherOutl4: sequential
+  OtherOutl5: sequential
+  OtherOutl6: sequential
+  OtherOutl7: sequential
+  OtherOutl8: sequential
+  PrMist: sequential
+  Purp2: sequential
+  PurpPink: sequential
+  Red1lt: sequential
+  Red2b: sequential
+  Redp1: sequential
+  Redsun1: sequential
+  Redy3: sequential
+  Rpinky: sequential
+  SpeedYel: sequential
+  Tempm1: sequential
+  Turq1lt: sequential
+  Turqw1: sequential
+  VvltTurq3: sequential
+  W5m4: sequential
+  WYmiddle1: sequential
+  Wlteqcool: sequential
+  Wmutedset: sequential
+  Yel15: sequential
+  Yel3: sequential
+  Yellowsun: sequential
+  Yelsat100: sequential
+  Yg1: sequential
+  Yg3: sequential

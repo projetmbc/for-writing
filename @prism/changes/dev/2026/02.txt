@@ -2,6 +2,21 @@
 
 
 ==
+13  (2.0.0-beta.18)
+==
+
+--------
+:update:
+--------
+
+[[:api:]]
+External palettes: add \colormaps support.
+
+
+// ---------- //
+
+
+==
 12  (2.0.0-beta.17)
 ==
 
