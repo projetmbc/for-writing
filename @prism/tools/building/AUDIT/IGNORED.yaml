@@ -1,16 +1,6 @@
-#  + C
-COLORCET:
-  CetLKbc: CetLBlue
-  CetLKgy: CetLGreen
-
 #  + P
 PLOTLY:
   D3: Tab10
-
-#  + S
-SCIVIZ:
-  Tr4: Div2GrayGold
-  YelPeachBr: Colormap66
 
 #  + T
 TABLEAU:

@@ -1,0 +1,48 @@
+/* ----------------------------------------------------------------- */
+/* -- File created by the ''@prism'' project, version 1.3.0,      -- */
+/* -- which is developed at                                       -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism . -- */
+/* ----------------------------------------------------------------- */
+
+:root {
+    --palGnuplot-1: rgb(0% 0% 0%);
+    --palGnuplot-2: rgb(16.001% 0.0017% 16.0399%);
+    --palGnuplot-3: rgb(22.6443% 0.0134% 31.6661%);
+    --palGnuplot-4: rgb(27.7328% 0.0455% 46.469%);
+    --palGnuplot-5: rgb(32.0248% 0.1079% 60.0717%);
+    --palGnuplot-6: rgb(35.8048% 0.2108% 72.1156%);
+    --palGnuplot-7: rgb(39.2226% 0.3642% 82.2938%);
+    --palGnuplot-8: rgb(42.3654% 0.5783% 90.3401%);
+    --palGnuplot-9: rgb(45.2906% 0.8633% 96.0455%);
+    --palGnuplot-10: rgb(48.0382% 1.229% 99.2669%);
+    --palGnuplot-11: rgb(50.6366% 1.686% 99.9117%);
+    --palGnuplot-12: rgb(53.1084% 2.2438% 97.9769%);
+    --palGnuplot-13: rgb(55.4697% 2.9134% 93.4945%);
+    --palGnuplot-14: rgb(57.735% 3.7037% 86.6025%);
+    --palGnuplot-15: rgb(59.9142% 4.6262% 77.4546%);
+    --palGnuplot-16: rgb(62.0172% 5.6896% 66.3108%);
+    --palGnuplot-17: rgb(64.051% 6.9055% 53.4427%);
+    --palGnuplot-18: rgb(66.0224% 8.2826% 39.1951%);
+    --palGnuplot-19: rgb(67.9365% 9.832% 23.93%);
+    --palGnuplot-20: rgb(69.7981% 11.5633% 8.0462%);
+    --palGnuplot-21: rgb(71.6113% 13.4868% 0%);
+    --palGnuplot-22: rgb(73.3798% 15.6127% 0%);
+    --palGnuplot-23: rgb(75.1066% 17.9507% 0%);
+    --palGnuplot-24: rgb(76.7946% 20.5118% 0%);
+    --palGnuplot-25: rgb(78.4464% 23.3047% 0%);
+    --palGnuplot-26: rgb(80.0639% 26.3413% 0%);
+    --palGnuplot-27: rgb(81.6497% 29.6296% 0%);
+    --palGnuplot-28: rgb(83.2049% 33.1823% 0%);
+    --palGnuplot-29: rgb(84.7318% 37.0069% 0%);
+    --palGnuplot-30: rgb(86.2316% 41.1158% 0%);
+    --palGnuplot-31: rgb(87.7057% 45.517% 0%);
+    --palGnuplot-32: rgb(89.1555% 50.2224% 0%);
+    --palGnuplot-33: rgb(90.5821% 55.2409% 0%);
+    --palGnuplot-34: rgb(91.9865% 60.5833% 0%);
+    --palGnuplot-35: rgb(93.3698% 66.2596% 0%);
+    --palGnuplot-36: rgb(94.733% 72.2792% 0%);
+    --palGnuplot-37: rgb(96.0768% 78.6537% 0%);
+    --palGnuplot-38: rgb(97.4021% 85.3911% 0%);
+    --palGnuplot-39: rgb(98.7095% 92.5043% 0%);
+    --palGnuplot-40: rgb(100% 100% 0%);
+}

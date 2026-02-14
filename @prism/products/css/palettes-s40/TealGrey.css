@@ -1,0 +1,48 @@
+/* ----------------------------------------------------------------- */
+/* -- File created by the ''@prism'' project, version 1.3.0,      -- */
+/* -- which is developed at                                       -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism . -- */
+/* ----------------------------------------------------------------- */
+
+:root {
+    --palTealGrey-1: rgb(39.2157% 72.549% 76.8627%);
+    --palTealGrey-2: rgb(37.8381% 69.0095% 73.3232%);
+    --palTealGrey-3: rgb(36.4605% 65.4801% 69.7837%);
+    --palTealGrey-4: rgb(34.902% 62.1417% 66.0633%);
+    --palTealGrey-5: rgb(33.3333% 58.8033% 62.7048%);
+    --palTealGrey-6: rgb(31.9356% 55.465% 59.1653%);
+    --palTealGrey-7: rgb(30.558% 52.1267% 55.6561%);
+    --palTealGrey-8: rgb(29.0196% 48.7883% 52.3177%);
+    --palTealGrey-9: rgb(27.451% 45.8019% 48.9793%);
+    --palTealGrey-10: rgb(26.0332% 42.5037% 45.641%);
+    --palTealGrey-11: rgb(24.6556% 39.1654% 42.3026%);
+    --palTealGrey-12: rgb(23.1373% 36.2191% 38.9642%);
+    --palTealGrey-13: rgb(21.5686% 33.2126% 35.9577%);
+    --palTealGrey-14: rgb(20.1307% 29.9346% 32.6797%);
+    --palTealGrey-15: rgb(18.7531% 26.9884% 29.7335%);
+    --palTealGrey-16: rgb(17.2549% 24.0422% 26.7873%);
+    --palTealGrey-17: rgb(15.6863% 21.4077% 23.7607%);
+    --palTealGrey-18: rgb(14.2282% 18.5419% 20.8949%);
+    --palTealGrey-19: rgb(12.8506% 15.5957% 17.9487%);
+    --palTealGrey-20: rgb(11.3725% 13.0417% 15.0025%);
+    --palTealGrey-21: rgb(11.7647% 12.9412% 14.6103%);
+    --palTealGrey-22: rgb(14.0271% 15.2036% 16.8627%);
+    --palTealGrey-23: rgb(16.189% 17.3655% 19.2157%);
+    --palTealGrey-24: rgb(18.743% 19.5273% 21.4881%);
+    --palTealGrey-25: rgb(20.9049% 22.0814% 23.65%);
+    --palTealGrey-26: rgb(23.459% 24.2433% 25.812%);
+    --palTealGrey-27: rgb(26.013% 26.7973% 28.366%);
+    --palTealGrey-28: rgb(28.5671% 29.3514% 30.5278%);
+    --palTealGrey-29: rgb(31.1211% 31.9054% 33.0819%);
+    --palTealGrey-30: rgb(33.6752% 34.0673% 35.636%);
+    --palTealGrey-31: rgb(36.2292% 37.0135% 37.7979%);
+    --palTealGrey-32: rgb(38.7832% 39.5675% 40.3519%);
+    --palTealGrey-33: rgb(41.7295% 42.1216% 42.906%);
+    --palTealGrey-34: rgb(44.2835% 44.6757% 45.46%);
+    --palTealGrey-35: rgb(47.2297% 47.2297% 48.014%);
+    --palTealGrey-36: rgb(49.7837% 50.1759% 50.568%);
+    --palTealGrey-37: rgb(52.73% 52.73% 53.1221%);
+    --palTealGrey-38: rgb(55.284% 55.6762% 55.6762%);
+    --palTealGrey-39: rgb(58.2302% 58.2302% 58.6224%);
+    --palTealGrey-40: rgb(61.1765% 61.1765% 61.1765%);
+}

@@ -48,6 +48,7 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 - [`CartoColor`](https://github.com/CartoDB/cartocolor) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`cmocean`](https://matplotlib.org/cmocean) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`Colorbrewer`](https://colorbrewer2.org).
+- [`Colormaps`](https://github.com/pratiman-91/colormaps).
 - [`Cubehelix`](https://jiffyclub.github.io/palettable/cubehelix) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`Light and Bartlein`](https://jiffyclub.github.io/palettable/lightbartlein) is extracted from [`Palettable`](https://github.com/jiffyclub/palettable) project.
 - [`Matplotlib`](https://matplotlib.org).

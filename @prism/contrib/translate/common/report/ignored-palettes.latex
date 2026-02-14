@@ -9,20 +9,12 @@
           baseline    = T,
           column{2,4} = {cmd=\tdoccodein{text}},
         }
-                ColorCET
-                  & CetLKbc & = & CetLBlue \\
-                  & CetLKgy & = & CetLGreen \\
-                \hline
                 Matplotlib
                   & Gray & \rightleftharpoons & Binary \\
                   & GistYarg & \rightleftharpoons & GistGray \\
                 \hline
                 Plotly
                   & D3 & = & Tab10 \\
-                \hline
-                SciViz
-                  & Tr4 & = & Div2GrayGold \\
-                  & YelPeachBr & = & Colormap66 \\
                 \hline
                 Tableau
                   & Tableau & = & Tab20 \\

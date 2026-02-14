@@ -1,0 +1,46 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\newcommand{\PALETTE}{Acton}
+
+\geometry{
+  top    = 1cm,
+  bottom = 1cm,
+  left   = 1cm,
+  right  = 1cm,
+}
+
+\usepackage{../palapi}
+\usepackage{../palettes-hf/\PALETTE}
+
+\usepackage[svgnames]{xcolor}
+\usepackage{tikz}
+
+\usepackage{ifthen}
+\usetikzlibrary{calc}
+
+\usepackage{luacode}
+
+
+% ------------------- %
+% -- COLOR SETTING -- %
+% ------------------- %
+
+\colorlet{COL1}{black!80}
+\colorlet{COL2}{LightGray!25!white}
+
+
+\begin{document}
+
+\pagestyle{empty}
+\centering
+
+
+% ---------------- %
+% -- LET'S DRAW -- %
+% ---------------- %
+
+\input{./core/common.tex}
+
+\end{document}
