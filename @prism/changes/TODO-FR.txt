@@ -28,37 +28,36 @@ code ?????
 
 // ---------- //
 
-CSS showcase cassé dans products - Pourquoi ??? monolithic trop gros ?
+CSS showcase cassé dans products - Pourquoi ??? monolithic trop gros a pirio...
 
-
-// ---------- //
-
-https://github.com/holoviz/colorcet directement !
-
-pour le typage on verra si prfoce cet_ utile
-
-
-SciVisColor directement aussi : page de garde donne les types
-https://sciviscolor.org/colormaps/
-
-
-colormpas gardé juste pour els kinds car cote palette les noms et les shift sont catastrophique
 
 
 // ---------- //
 
-utlier palettes highlight extreme values using high-contrast colors against a neutral background for the main data distribution. Most implementations offer a configurable API that enables this and other transformations through custom parameters.
+colormpas juste pour catgeos (les noms et les shift sont catastrophique)
+
+    --> https://github.com/holoviz/colorcet directement ! Nlles categos ?
+
+    --> SciVisColor directement aussi : page de garde donne les types
+https://sciviscolor.org/colormaps/ Nlles categos ?
 
 
 // ---------- //
 
-palettes de cmasher--> pour les personnes atteintes de daltonisme (deutéranopie, protanopie, etc.).
+outlier palettes: highlight extreme values using high-contrast colors against a neutral background for the main data distribution. Most implementations offer a configurable API that enables this and other transformations through custom parameters.
 
-Besoin d'un outil de mise à jour du type
 
-    --> rangé par ordre alphabétique
-    --> rangé par resrc
-    --> rangé par type
+// ---------- //
+
+categos
+
+    --> palettes de cmasher: pour les personnes atteintes de daltonisme (deutéranopie, protanopie, etc.).
+
+    --> Besoin d'un outil de mise à jour du type
+
+        + rangé par ordre alphabétique
+        + rangé par resrc
+        + rangé par type
 
 
 // ---------- //
@@ -67,9 +66,7 @@ cluster (mais pas dans la doc PDF)
 
    --> on approxime en RGB entier pour commenecer
 
-   --> on teste en hf et en s40 la similarité
-
-   --> float calc implique des égalités visuelles
+   --> on teste en hf et en s40 la similarité et meêm s10
 
    --> dans la doc, un HTML montre ces clusters
 
