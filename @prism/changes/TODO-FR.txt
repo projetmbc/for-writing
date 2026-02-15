@@ -17,15 +17,6 @@ git a
 git cm "..."
 
 
-
-// ---------- //
-
-plus de monolithic, c'est un érérsis avec beauoup de palletts
-
-doc OK
-code ?????
-
-
 // ---------- //
 
 CSS showcase cassé dans products - Pourquoi ??? monolithic trop gros a pirio...

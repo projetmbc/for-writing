@@ -79,9 +79,6 @@ PROD_JSON_DIR.mkdir(
 HIGH_PALS_DIR = PROD_JSON_DIR / "palettes-hf"
 NORM_PALS_DIR = PROD_JSON_DIR / f"palettes-s{MAX_SEM_SIZE}"
 
-HIGH_PAL_JSON_FILE = PROD_JSON_DIR / f"{HIGH_PALS_DIR.name}.json"
-NORM_PAL_JSON_FILE = PROD_JSON_DIR / f"{NORM_PALS_DIR.name}.json"
-
 
 PAL_JSON_CREDITS_MD = PROD_JSON_DIR / "CREDITS.md"
 PAL_JSON_CREDITS_MD.touch()
@@ -154,27 +151,6 @@ norm_palettes = {
     )
     for n, p in palettes.items()
 }
-
-
-# ------------------------- #
-# -- MONOLITHIC VERSIONS -- #
-# ------------------------- #
-
-for what, pals, onefile in [
-    ('High-fidelity', palettes     , HIGH_PAL_JSON_FILE),
-    ('Normalized'   , norm_palettes, NORM_PAL_JSON_FILE),
-]:
-    logging.info(
-        f"Monolithic - {what} - "
-        f"Update file '{onefile.relative_to(PROJ_DIR)}'"
-    )
-
-    onefile.touch()
-    onefile.write_text(
-        clean_pal_json(
-            json_dumps(pals)
-        )
-    )
 
 
 # ---------------------- #

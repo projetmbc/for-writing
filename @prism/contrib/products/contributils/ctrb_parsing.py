@@ -92,7 +92,7 @@ class PaletteTransformer:
         footer     : str                      = '',
         titledeco  : str                      = '-',
     ) -> None:
-        self. extension = extension
+        self.extension = extension
 
         self.get_palcode = pal_builder
         self.get_apicode = api_builder

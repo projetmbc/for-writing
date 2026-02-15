@@ -2,6 +2,29 @@
 
 
 ==
+15  (2.0.0-beta.19)
+==
+
+-------
+:break:
+-------
+
+[[:api:]]   ????
+Only modular palettes supported.
+
+
+--------
+:update:
+--------
+\Contrib: js du css ???
+
+\Doc. ????
+
+
+// ---------- //
+
+
+==
 14  (2.0.0-beta.18)
 ==
 

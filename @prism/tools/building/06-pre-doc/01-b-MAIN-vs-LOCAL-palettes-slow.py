@@ -1,3 +1,5 @@
+exit(1)
+
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #

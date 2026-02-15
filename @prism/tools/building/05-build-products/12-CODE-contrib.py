@@ -17,10 +17,7 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from json import (
-    dumps as json_dumps,
-    load  as json_load,
-)
+from json import load  as json_load
 
 from shutil import copytree, rmtree
 
@@ -53,6 +50,14 @@ CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
 PRODS_DIR     = PROJ_DIR / "products"
 PROD_JSON_DIR = PRODS_DIR / "json"
 
+JSON_PAL_FORMAT_DIRS = [
+    PROD_JSON_DIR / f'palettes-{f}'
+    for f in [
+         'hf',
+        f's{MAX_SEM_SIZE}'
+    ]
+]
+
 
 # ------------------ #
 # -- CONSTANTS #3 -- #
@@ -66,30 +71,15 @@ IMPL_ACCEPTED = CONTRIBS_ACCEPTED.get(
 )
 
 
-# ------------------ #
-# -- GET PAL DICT -- #
-# ------------------ #
-
-logging.info(f"Get 'JSON palette defs'")
-
-monopaldefs = dict()
-
-for jsonfile in PROD_JSON_DIR.glob('*.json'):
-    logging.info(f"Found '{jsonfile.stem}'")
-
-    with jsonfile.open(mode = "r") as f:
-        monopaldefs[jsonfile.stem] = json_load(f)
-
-
-# ----------------------------------- #
-# -- MONOLITHIC & MODULAR VERSIONS -- #
-# ----------------------------------- #
+# ---------------------- #
+# -- MODULAR VERSIONS -- #
+# ---------------------- #
 
 # -- DEBUG - ON -- #
-# if (PRODS_DIR / 'css').is_dir():
-#     rmtree(PRODS_DIR / 'css')
-#     rmtree(PRODS_DIR / 'latex')
-#     rmtree(PRODS_DIR / 'lua')
+if (PRODS_DIR / 'css').is_dir():
+    rmtree(PRODS_DIR / 'css')
+    # rmtree(PRODS_DIR / 'latex')
+    # rmtree(PRODS_DIR / 'lua')
 # -- DEBUG - OFF -- #
 
 for ctxt in sorted(
@@ -98,124 +88,82 @@ for ctxt in sorted(
 ):
     logging.info(f"Implement '{ctxt}'")
 
-    this_contrib_folder = CONTRIB_PROD_DIR / ctxt
-
-# Get version wanted.
-    with (this_contrib_folder / 'about.yaml').open(mode = 'r') as f:
-        this_about = yaml.safe_load(f)
+    contribfolder = CONTRIB_PROD_DIR / ctxt
 
 # Import extend.py.
     logging.info(f"({ctxt}) Import 'extend.py'")
 
     extend = import_from_path(
         module_name = "extend",
-        file_path   = this_contrib_folder / "extend.py"
+        file_path   = contribfolder / "extend.py"
     )
 
     paltransfo = extend.paltransfo
 
-# Let's work...
-    this_prod_folder = PRODS_DIR / ctxt
-    this_prod_folder.mkdir()
-
     credits = paltransfo.get_credits(CREDITS)
 
-    for palversion, paldefs in monopaldefs.items():
-# Monolithic versions.
-        if this_about.get('monolithic', True):
-            logging.info(
-                f"({ctxt}) '{palversion}' - Monolithic"
-            )
+# Palette files.
+    prodfolder = PRODS_DIR / ctxt
 
-            codefile = this_prod_folder / (
-                f"{palversion}.{paltransfo.extension}"
-            )
+    for jsonpaldir in JSON_PAL_FORMAT_DIRS:
+        logging.info(f"({ctxt}) Build '{jsonpaldir.name}' folder")
 
-            codefile.touch()
+        paldir = prodfolder / jsonpaldir.name
+        paldir.mkdir(parents = True)
 
-            _code = [credits, '']
+        for jsonfile in jsonpaldir.glob('*.json'):
+            with jsonfile.open(mode = "r") as f:
+                paldef = json_load(f)
+
+            palname = jsonfile.stem
+
+            palfile = paldir / f"{palname}.{paltransfo.extension}"
+
+            palfile.touch()
+
+            _palcode = [credits, '']
 
             if paltransfo.header:
-                _code.append(paltransfo.header)
+                _palcode.append(paltransfo.header)
 
-            for palname, palette in paldefs.items():
-                _code.append(
-                    paltransfo.get_palcode(
-                        name    = palname,
-                        palette = palette
-                    )
+            _palcode.append(
+                paltransfo.get_palcode(
+                    name    = palname,
+                    palette = paldef
                 )
-
-                _code.append('')
-
-            _code.pop(-1)
-
-            if paltransfo.footer:
-                _code.append(paltransfo.footer)
-
-            _code.append('')
-
-            code = '\n'.join(_code)
-
-            codefile.write_text(code)
-
-# Modular versions.
-        if this_about.get('modular', True):
-            logging.info(
-                f"({ctxt}) '{palversion}' - Modular"
             )
 
-            subdir = this_prod_folder / palversion
-            subdir.mkdir()
+            if paltransfo.footer:
+                _palcode.append(paltransfo.footer)
 
-            for palname, palette in paldefs.items():
-                codefile = subdir / f"{palname}.{paltransfo.extension}"
-                codefile.touch()
+            _palcode.append('')
 
-                _code = [credits, '']
+            palcode = '\n'.join(_palcode)
 
-                if paltransfo.header:
-                    _code.append(paltransfo.header)
-
-                _code.append(
-                    paltransfo.get_palcode(
-                        name    = palname,
-                        palette = palette
-                    )
-                )
-
-                if paltransfo.footer:
-                    _code.append(paltransfo.footer)
-
-                _code.append('')
-
-                code = '\n'.join(_code)
-
-                codefile.write_text(code)
+            palfile.write_text(palcode)
 
 # API.
-    code = paltransfo.get_apicode()
+    apicode = paltransfo.get_apicode()
 
-    if not code:
+    if not apicode:
         logging.info(f"({ctxt}) No 'API'")
 
     else:
         logging.info(f"({ctxt}) Add 'API'")
 
-        codefile = this_prod_folder / (
+        apifile = prodfolder / (
             f"palapi.{paltransfo.extension}"
         )
 
-        codefile.touch()
-
-        codefile.write_text(code)
+        apifile.touch()
+        apifile.write_text(apicode)
 
 # Showcase.
     logging.info(f"({ctxt}) Add 'showcase'")
 
     copytree(
-        src = this_contrib_folder / "fake-prod" / "showcase",
-        dst = this_prod_folder / "showcase",
+        src = contribfolder / "fake-prod" / "showcase",
+        dst = prodfolder / "showcase",
     )
 
 
