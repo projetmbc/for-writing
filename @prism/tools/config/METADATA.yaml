@@ -14,7 +14,7 @@ PRECISION: 6
 # We associate each category with allowed alias.
 
 CATEGORY:
-#  + C
+# -- C -- #
   colorblind:
     title: Colorblind palettes
     desc: >
@@ -25,18 +25,26 @@ CATEGORY:
   cyclic:
     title: Cyclic palettes
     desc: >
-      Cyclic palettes create seamless loops for periodic data, such
-      as angles, seasons, or 24-hour cycles.
+      Cyclic palettes create seamless loops for periodic data,
+      such as angles, seasons, or 24-hour cycles.
     alias:
       - circular
       - cyclical
 
-#  + D
+# -- D -- #
   dark:
     title: Dark palettes
     desc: >
       Dark palettes offer high-contrast schemes specifically
       optimized for terminal interfaces and dark-mode backgrounds.
+    alias:   # No alias.
+
+  outlier:
+    title: Outlier palettes
+    desc: >
+      Outlier or discontinuous palettes are used to highlight deviation
+      rather than progression. These palettes use contrasting colors that
+      meet at neutral points.
     alias:   # No alias.
 
   divergent:
@@ -48,7 +56,7 @@ CATEGORY:
       - div
       - diverging
 
-#  + Q
+# -- Q -- #
   qualitative:
     title: Qualitative palettes
     desc: >
@@ -59,7 +67,7 @@ CATEGORY:
       - discrete
       - aggregation
 
-#  + S
+# -- S -- #
   semantic:
     title: Semantic palettes
     desc: >
@@ -72,8 +80,8 @@ CATEGORY:
   sequential:
     title: Sequential palettes
     desc: >
-      Sequential palettes represent ordered data using a single or
-      multi-hue gradient with increasing lightness.
+      Sequential palettes represent ordered data using a single
+      or multi-hue gradient with increasing lightness.
     alias:
       - seq
       - scientific colormaps

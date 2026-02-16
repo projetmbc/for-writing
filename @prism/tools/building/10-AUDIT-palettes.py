@@ -21,7 +21,10 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from natsort import natsorted, ns
+from natsort import (
+    natsorted,
+    ns
+)
 
 
 # ------------------ #

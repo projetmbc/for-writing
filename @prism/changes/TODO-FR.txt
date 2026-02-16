@@ -17,15 +17,14 @@ git a
 git cm "..."
 
 
-// ---------- //
-
-vireer toutes mes hsifthed (cf Twilight et TwilightSifhted) tout en indiquant les paramètre de celels virées car on final si esllse sont choiss, c'est pas pour rien, par exemple TwilightSifhted, au final, mieux que Twilight
-
 
 // ---------- //
 
-CSS showcase cassé dans products - Pourquoi ??? monolithic trop gros a pirio...
+REMOVED.yaml : pour des palettes non prises en compte (sifht / subpal), avec ajout de cecci dans la doc vi a un tableau
 
+
+
+vireer toutes les hsifthed (cf Twilight et TwilightSifhted) tout en indiquant les paramètre de celels virées car on final si esllse sont choiss, c'est pas pour rien, par exemple TwilightSifhted, au final, mieux que Twilight
 
 
 // ---------- //
@@ -36,11 +35,6 @@ colormpas juste pour catgeos (les noms et les shift sont catastrophique)
 
     --> SciVisColor directement aussi : page de garde donne les types
 https://sciviscolor.org/colormaps/ Nlles categos ?
-
-
-// ---------- //
-
-outlier palettes: highlight extreme values using high-contrast colors against a neutral background for the main data distribution. Most implementations offer a configurable API that enables this and other transformations through custom parameters.
 
 
 // ---------- //

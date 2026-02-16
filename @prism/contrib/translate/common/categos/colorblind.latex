@@ -21,20 +21,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries BamO\vphantom{g}}
+        {\bfseries Bamako\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/BamO-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Bamako-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Bamako\vphantom{g}}
+        {\bfseries BamO\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Bamako-spectrum.pdf}
+        \includegraphics{../../../common/showcase/BamO-spectrum.pdf}
     \end{center}
 \end{minipage}
 

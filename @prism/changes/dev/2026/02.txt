@@ -2,23 +2,25 @@
 
 
 ==
-15  (2.0.0-beta.19)
+17  (2.0.0-beta.19)
 ==
 
 -------
 :break:
 -------
 
-[[:api:]]   ????
-Only modular palettes supported.
+[[:api:]]
+Two important \chges.
+
+    1) Only modular formats are supported.
+
+    1) Palettes with more than 512 colors are ignored (note that CMasher's 'neutral' palette uses 2560 colors).
 
 
 --------
-:update:     ???
+:update:
 --------
-\Contrib                OK
-and \doc: ????
-update regarding the only single support.
+Updated \contrib codes and \doc to support the modular format only.
 
 
 // ---------- //

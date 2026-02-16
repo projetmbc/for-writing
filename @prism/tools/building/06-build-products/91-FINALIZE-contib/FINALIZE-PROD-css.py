@@ -19,7 +19,10 @@ from cbutils      import *
 
 from json import load  as json_load
 
-from natsort import natsorted, ns
+from natsort import (
+    natsorted,
+    ns
+)
 
 
 # --------------- #

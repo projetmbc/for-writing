@@ -14,7 +14,7 @@ Use a LaTeX palette
 
 #### Basic use
 
-> ***NOTE.*** *Just one kind of format is provided: modular (each palette is in a dedicated file).*
+> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
 
 
 

@@ -76,6 +76,9 @@ if SQLITE_DB_FILE.is_file():
     SQLITE_DB_FILE.unlink()
 
 
+MAX_SIZE = YAML_CONFIGS['SEMANTIC']['MAX_SIZE']
+
+
 # ------------------ #
 # -- EXTRACT DATA -- #
 # ------------------ #
@@ -248,18 +251,24 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                 is_kept = 0
 
                 logging.warning(
-                    f"Ignore {name} [{src}] "
+                    f"Ignore '{name}' [{src}] "
                      "(metadata retained for future reporting)"
                 )
 
             else:
                 is_kept = 1
 
-
-            kind   = infos[TAG_KIND]
             paldef = infos[TAG_RGB_COLS]
 
-            std_kind = get_std_kind(kind)
+            if len(paldef) > MAX_SIZE:
+                is_kept = 0
+
+                logging.warning(
+                    f"Remove '{name}' [{src}] - size > {MAX_SIZE} "
+                     "(metadata retained for future reporting)"
+                )
+
+            std_kind = get_std_kind(infos[TAG_KIND])
 
             hash_normal  = get_hash_pal(paldef)
             hash_reverse = get_hash_pal(paldef[::-1])

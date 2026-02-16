@@ -31,6 +31,15 @@ from yaml import (
 # -- SQL QUERIES -- #
 # ----------------- #
 
+SQL_GET_NAMES = '''
+SELECT
+    COALESCE(a.alias, h.name)
+FROM hash h
+LEFT JOIN alias a ON h.pal_id = a.pal_id
+WHERE h.is_kept = 1;
+'''
+
+
 SQL_GET_METADATA = '''
 SELECT
     COALESCE(a.alias, h.name),
@@ -50,10 +59,11 @@ WHERE h.is_kept = 1
 THIS_DIR = Path(__file__).parent
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != '@prism'):
+while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR = PROJ_DIR / "products"
+RESRC_DIR = PROJ_DIR / "RESOURCES" / TAG_APRISM_LAST_MAIN
 
 
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
@@ -75,21 +85,6 @@ with WHY_REMOVED_YAML.open("r") as f:
 
 if WHY_REMOVED is None:
     WHY_REMOVED = dict()
-
-
-# ----------------------- #
-# -- NEW/REMOVED NAMES -- #
-# ----------------------- #
-
-
-
-
-
-
-
-
-
-exit(1)
 
 
 # ----------- #
@@ -114,58 +109,57 @@ def lower_names_kept(
     )
 
 
+# --------------------- #
+# -- LAST MAIN NAMES -- #
+# --------------------- #
+
+logging.info("Get 'Last Main Names'")
+
+with (RESRC_DIR / 'palettes.json').open(mode = "r") as f:
+    LAST_MAIN_NAMES = set(json_load(f))
 
 
+# --------------------------- #
+# -- CURRENT VERSION NAMES -- #
+# --------------------------- #
 
-# ------------------- #
-# -- LOCAL VERSION -- #
-# ------------------- #
+logging.info("Get 'Current Version Names'")
 
-logging.info("MAIN/LOCAL - Get 'last local' version")
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+    cursor.execute(SQL_GET_NAMES)
 
-JSON_PROD_FILE = PROJ_DIR / "products" / "json" / "palettes-hf.json"
-
-with JSON_PROD_FILE.open(mode = "r") as f:
-    LOCAL_PALS = json_load(f)
-
-
-
-
-
+    CURRENT_NAMES = set(
+        a
+        for a, in cursor.fetchall()
+    )
 
 
-# ------------------------- #
-# -- NEW NAMES JSONIFIED -- #
-# ------------------------- #
+# ---------------------------- #
+# -- FIND NEW/REMOVED NAMES -- #
+# ---------------------------- #
+
+logging.info("Get 'Current Version Names'")
+
+NEW_NAMES     = lower_names_kept(CURRENT_NAMES, LAST_MAIN_NAMES)
+REMOVED_NAMES = lower_names_kept(LAST_MAIN_NAMES, CURRENT_NAMES)
 
 
+# ---------------------------- #
+# -- FIND NEW/REMOVED NAMES -- #
+# ---------------------------- #
 
-
-# ----------------------- #
-# -- NEW/REMOVED NAMES -- #
-# ----------------------- #
-
-NEW_NAMES     = lower_names_kept(LOCAL_PALS, MAIN_PALS)
-REMOVED_NAMES = lower_names_kept(MAIN_PALS, LOCAL_PALS)
-
-for names, what, xtra in [
-    (NEW_NAMES    , 'new'    , '(cf. doc)'   ),
-    (REMOVED_NAMES, 'removed', '(explanations needed)'),
+for names, what in [
+    (NEW_NAMES    , 'new' ),
+    (REMOVED_NAMES, 'removed'),
 ]:
     if not names:
         logging.info(f"NAMES - 'No {what}'")
 
     else:
-        nb   = len(names)
-        xtra = f' {xtra}'
+        nb = len(names)
 
-        logging.info(f"NAMES - '{nb} {what}'{xtra}")
-
-# -- DEBUG - ON -- #
-# print(NEW_NAMES)
-# print(REMOVED_NAMES)
-# exit()
-# -- DEBUG - OFF -- #
+        logging.info(f"NAMES - '{nb} {what}'")
 
 
 # ------------------------- #

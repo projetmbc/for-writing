@@ -24,7 +24,10 @@ from cbutils      import *
 
 from datetime import datetime
 
-from natsort import natsorted, ns
+from natsort import (
+    natsorted,
+    ns
+)
 
 
 # ------------------ #

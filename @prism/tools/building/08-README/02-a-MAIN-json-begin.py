@@ -1,5 +1,3 @@
-exit(1)
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -22,6 +20,11 @@ from cbutils      import *
 from json import (
     dumps as json_dumps,
     load  as json_load,
+)
+
+from natsort import (
+    natsorted,
+    ns
 )
 
 
@@ -47,21 +50,11 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-PRODS_DIR = PROJ_DIR / "products"
+
+JSON_PALS_HF_DIR = PROJ_DIR / "products" / 'json' / 'palettes-hf'
 
 
 MD_PROD_FILE = PROJ_DIR / "readme" / "products.md"
-
-
-# ------------------ #
-# -- EXTRACT DATA -- #
-# ------------------ #
-
-PROD_JSON_DIR = PRODS_DIR / "json"
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes-hf.json"
-
-with PAL_JSON_FILE.open(mode = "r") as f:
-    ALL_PALETTES = json_load(f)
 
 
 # ----------- #
@@ -78,9 +71,25 @@ def compact_nblists(json_code: str) -> str:
     return PATTERN_JSON_LIST.sub(myreplace, json_code)
 
 
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
+# --------------------- #
+# -- GET 1ST PALETTE -- #
+# --------------------- #
+
+logging.info("Get '1st palette'")
+
+for jsonfile in natsorted(
+    JSON_PALS_HF_DIR.glob('*.json'),
+    alg = ns.IGNORECASE
+):
+    with jsonfile.open() as f:
+        firstpal = json_load(f)
+
+    break
+
+
+# --------------- #
+# -- MD UPDATE -- #
+# --------------- #
 
 logging.info(
     msg_creation_update(
@@ -91,17 +100,10 @@ logging.info(
 
 # -- JSON CODE BEGIN -- #
 
-extract_pal = {}
-
-for n, p in ALL_PALETTES.items():
-    extract_pal[n] = p
-
-    break
-
 indent = 2
 
 json_code = json_dumps(
-    obj       = extract_pal,
+    obj       = firstpal,
     indent    = indent,
     sort_keys = True,
 )

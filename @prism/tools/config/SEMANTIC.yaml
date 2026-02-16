@@ -9,6 +9,9 @@ MAX_SEM_SIZE: 40
 SUB_SEM_SIZE: 10
 NB_SEM_GRPS : 4
 
+# CMasher's 'neutral' palette consists of 2560 colors
+MAX_SIZE: 512
+
 # ----------------------------------- #
 # -- SORTED SEMANTIC CONTENT TYPES -- #
 # ----------------------------------- #

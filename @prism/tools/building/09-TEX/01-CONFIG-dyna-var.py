@@ -1,5 +1,3 @@
-exit(1)
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -37,14 +35,18 @@ PREAMBLE_TEX = MANUAL_DIR / "preamble.cfg.sty"
 PREAMBLE_CODE = PREAMBLE_TEX.read_text()
 
 
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
 DATA = dict()
 
 
-JSON_PROD_DIR = PROJ_DIR / "products" / "json"
-HF_PALS_JSON  = JSON_PROD_DIR / "palettes-hf.json"
+JSON_PALS_HF_DIR = PROJ_DIR / "products" / 'json' / 'palettes-hf'
 
-with HF_PALS_JSON.open() as f:
-    DATA['NB_OF_PALS'] = len(json_load(f))
+DATA['NB_OF_PALS'] = len(
+    list(JSON_PALS_HF_DIR.glob('*.json'))
+)
 
 
 REPORT_DIR      = PROJ_DIR / "tools" / "building" / TAG_REPORT
@@ -53,10 +55,6 @@ DATA['NB_NEW_PALS'] = (
     REPORT_DIR / "AUDIT-LOCMAIN-NAMES-NEW-NB.txt"
 ).read_text().strip()
 
-
-# ------------------ #
-# -- EXTRACT DATA -- #
-# ------------------ #
 
 DATA.update(YAML_CONFIGS['SEMANTIC'])
 

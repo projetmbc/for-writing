@@ -82,19 +82,16 @@ All implementations are located in the `products` folder. Each implementation pr
 The `JSON` product allows unsupported programming languages to integrate `@prism` palettes easily. Below are the first lines of the `palettes-hf.json` file.
 
 ~~~json
-{
-  "Accent": [
-    [0.4980392157, 0.7882352941, 0.4980392157],
-    [0.7450980392, 0.6823529412, 0.831372549],
-    [0.9921568627, 0.7529411765, 0.5254901961],
-    [1, 1, 0.6],
-    [0.2196078431, 0.4235294118, 0.6901960784],
-    [0.9411764706, 0.0078431373, 0.4980392157],
-    [0.7490196078, 0.3568627451, 0.0901960784],
-    [0.4, 0.4, 0.4]
-  ],
-  ...
-}
+[
+  [0.4980392157, 0.7882352941, 0.4980392157],
+  [0.7450980392, 0.6823529412, 0.831372549],
+  [0.9921568627, 0.7529411765, 0.5254901961],
+  [1, 1, 0.6],
+  [0.2196078431, 0.4235294118, 0.6901960784],
+  [0.9411764706, 0.0078431373, 0.4980392157],
+  [0.7490196078, 0.3568627451, 0.0901960784],
+  [0.4, 0.4, 0.4]
+]
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
 ### CSS <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
@@ -159,7 +156,7 @@ The example below demonstrates creating gradient variables through selective col
 <a id="MULTIMD-TOC-ANCHOR-6"></a>
 #### Basic use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-> ***NOTE.*** *Just one kind of format is provided: modular (each palette is in a dedicated file).*
+> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
 
 
 

@@ -1,5 +1,3 @@
-exit(1)
-
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
@@ -22,9 +20,6 @@ from cbutils      import *
 
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
-
-# import numpy as np
-# from scipy.interpolate import interp1d
 
 
 # ----------------- #
@@ -74,10 +69,14 @@ TOLERANCE = 10**(-2)
 THIS_DIR = Path(__file__).parent
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != '@prism'):
+while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR = PROJ_DIR / "products"
+RESRC_DIR = PROJ_DIR / "RESOURCES" / TAG_APRISM_LAST_MAIN
+
+
+JSON_PALS_HF_DIR = PRODS_DIR / 'json' / 'palettes-hf'
 
 
 AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
@@ -128,28 +127,14 @@ def get_palette_compatibility(palette_a, palette_b):
     return match, round(score, 2)
 
 
-# ------------------- #
-# -- LOCAL VERSION -- #
-# ------------------- #
-
-logging.info("MAIN/LOCAL - Get 'last local' version")
-
-JSON_PROD_FILE = PROJ_DIR / "products" / "json" / "palettes-hf.json"
-
-with JSON_PROD_FILE.open(mode = "r") as f:
-    LOCAL_PALS = json_load(f)
-
-
 # ------------------------ #
-# -- MAIN LOCAL VERSION -- #
+# -- LAST MAIN PALETTES -- #
 # ------------------------ #
 
-logging.info("MAIN/LOCAL - Get 'main local' version")
+logging.info("Get 'Last Main Palettes'")
 
-REPORT_LAST_MAIN_JSON = REPORT_DIR / f"AUDIT-LAST-MAIN.json"
-
-with REPORT_LAST_MAIN_JSON.open(mode = "r") as f:
-    MAIN_PALS = json_load(f)
+with (RESRC_DIR / 'palettes.json').open(mode = "r") as f:
+    LAST_LAST_MAIN_PALS =json_load(f)
 
 
 # -------------------- #
@@ -164,7 +149,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor.execute(SQL_GET_NAMES_TO_TEST)
 
     for alias in cursor.fetchall():
-        if alias in MAIN_PALS:
+        if alias in LAST_LAST_MAIN_PALS:
             same_names.add(alias)
 
 if not same_names:
@@ -181,11 +166,14 @@ logging.info("Analyze - 'Vals of same named palettes'")
 
 same_named_pals_results = dict()
 
-for name, pal_1 in LOCAL_PALS.items():
-    if not name in MAIN_PALS:
+for jsonfile in JSON_PALS_HF_DIR.glob('*.json'):
+    if not jsonfile.stem in LAST_MAIN_PALS:
         continue
 
-    pal_2 = MAIN_PALS[name]
+    with jsonfile.open() as f:
+        pal_1 = json_load(f)
+
+    pal_2 = LAST_MAIN_PALS[name]
 
     same_named_pals_results[name] = get_palette_compatibility(
         pal_1,

@@ -11,16 +11,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries BWR\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/BWR-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Balance\vphantom{g}}
 
         \smallskip
@@ -191,6 +181,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries BWR\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BWR-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries CoolWarm\vphantom{g}}
 
         \smallskip
@@ -331,20 +331,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries HSV\vphantom{g}}
+        {\bfseries Holly\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Holly-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Holly\vphantom{g}}
+        {\bfseries HSV\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Holly-spectrum.pdf}
+        \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -411,16 +411,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries PiYG\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/PiYG-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Picnic\vphantom{g}}
 
         \smallskip
@@ -445,6 +435,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/PinkGrey-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries PiYG\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/PiYG-spectrum.pdf}
     \end{center}
 \end{minipage}
 

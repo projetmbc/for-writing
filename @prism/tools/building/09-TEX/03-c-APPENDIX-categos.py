@@ -19,7 +19,10 @@ from cbutils      import *
 
 from collections import defaultdict
 
-from natsort import natsorted, ns
+from natsort import (
+    natsorted,
+    ns
+)
 
 
 # ------------------ #

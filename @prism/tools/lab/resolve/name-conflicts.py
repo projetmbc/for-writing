@@ -15,9 +15,6 @@ THIS_DIR = Path(__file__).parent
 LAB_DIR  = THIS_DIR.parent
 sys.path.append(str(LAB_DIR))
 
-# On suppose que labutils contient les constantes :
-# NAME_CONFLICT_JSON, REPORT_DIR, TAG_RGB_COLS, GUI_TAG_DARK,
-# GUI_TAG_LIGHT, GUI_TAG_NONE, TAG_IS_IGNORED, TAG_REF, TAG_ALIAS
 from labutils import *
 
 # -- IMPORT LABUTILS - END -- #

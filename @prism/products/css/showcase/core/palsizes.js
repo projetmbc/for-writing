@@ -213,7 +213,6 @@ const palsize = {
   "Navia": 256,
   "NaviaW": 256,
   "Neon": 256,
-  "Neutral": 2560,
   "NipySpectral": 21,
   "Nuclear": 256,
   "Nuuk": 256,

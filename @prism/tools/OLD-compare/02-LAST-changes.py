@@ -24,7 +24,10 @@ from cbutils      import *
 
 import requests
 
-from natsort import natsorted, ns
+from natsort import (
+    natsorted,
+    ns
+)
 
 
 # --------------- #

@@ -63,6 +63,7 @@ We retain only palettes that comply with the following rules.
     }
     \thisproj\ use a one-to-one map from names to palettes.
 
+
     \item \textbf{No reversed versions.}
     Unlike \matplotlib,%
     \footnote{
@@ -70,12 +71,16 @@ We retain only palettes that comply with the following rules.
     }
     \thisproj\ never includes reversed palettes as fixed data.
 
+
     \item \textbf{No shifted versions.}
     Unlike \colormaps,%
     \footnote{
     	These palettes use an integer suffix directly following the original palette name.
     }
     \thisproj\ never includes shifted palettes as fixed data (most implementations offer an API that enables this and other transformations through configurable parameters).
+
+
+    \item \textbf{Reasonable palette sizes.} Palettes with more than 512 colors are ignored (e.g., \cmasher\ proposes 'neutral' palette, which consists of 2560 colors).
 \end{itemize}
 
 

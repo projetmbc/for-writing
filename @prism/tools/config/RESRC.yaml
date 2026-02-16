@@ -6,9 +6,9 @@ APRISM:
   name  : '@prism'
   github: projetmbc/for-writing
   desc  : |
-    ?
+    Just use to compare last main version to the current one.
   context:
-    - '?'
+    - technical drawing
 
 ASYMPTOTE:
   name  : Asymptote
