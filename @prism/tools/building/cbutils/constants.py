@@ -15,7 +15,9 @@ from .normval import get_nospace_lower
 # -- THIS PROJECT -- #
 # ------------------ #
 
-TAG_APRISM = "@prism"
+TAG_APRISM           = "@prism"
+TAG_APRISM_LAST_MAIN = f'{TAG_APRISM.upper()}-LAST-MAIN'
+
 
 THIS_DIR = Path(__file__).parent
 

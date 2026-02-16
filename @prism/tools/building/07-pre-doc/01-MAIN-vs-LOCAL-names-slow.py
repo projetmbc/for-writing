@@ -31,7 +31,7 @@ from yaml import (
 # -- SQL QUERIES -- #
 # ----------------- #
 
-SQL_GET_ORIGINAL_INFO = '''
+SQL_GET_METADATA = '''
 SELECT
     COALESCE(a.alias, h.name),
     h.name,
@@ -77,6 +77,21 @@ if WHY_REMOVED is None:
     WHY_REMOVED = dict()
 
 
+# ----------------------- #
+# -- NEW/REMOVED NAMES -- #
+# ----------------------- #
+
+
+
+
+
+
+
+
+
+exit(1)
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
@@ -102,16 +117,6 @@ def lower_names_kept(
 
 
 
-
-
-exit(1)
-
-
-
-
-
-
-
 # ------------------- #
 # -- LOCAL VERSION -- #
 # ------------------- #
@@ -124,35 +129,16 @@ with JSON_PROD_FILE.open(mode = "r") as f:
     LOCAL_PALS = json_load(f)
 
 
-# ------------------------- #
-# -- MAIN ONLINE VERSION -- #
-# ------------------------- #
 
-logging.info("MAIN/LOCAL - Get 'main online' version")
 
-url = (
-    "https://raw.githubusercontent.com/"
-    "projetmbc/for-writing/main/"
-    "%40prism/products/json/palettes.json"
-)
 
-response = requests.get(url)
-response.raise_for_status()
-
-MAIN_PALS = response.json()
 
 
 # ------------------------- #
 # -- NEW NAMES JSONIFIED -- #
 # ------------------------- #
 
-logging.info(
-    f"Update '{REPORT_LAST_MAIN_JSON.relative_to(PROJ_DIR)}'"
-)
 
-REPORT_LAST_MAIN_JSON.write_text(
-    json_dumps(MAIN_PALS)
-)
 
 
 # ----------------------- #
@@ -197,7 +183,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
     for n in NEW_NAMES:
         cursor.execute(
-            SQL_GET_ORIGINAL_INFO,
+            SQL_GET_METADATA,
             (n, n)
         )
 

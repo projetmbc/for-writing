@@ -2,13 +2,13 @@
 
 \documentclass[theme = dark]{tutodoc}
 
-\newcommand{\PALETTE}{palActon}
+\newcommand{\PALETTE}{Acton}
 
 \directlua{
-  dofile('../../palettes-hf.lua')
+  dofile('../../palettes-hf/\PALETTE.lua')
   dofile('../../palapi.lua')
 
-  PALETTE = \PALETTE
+  PALETTE = pal\PALETTE
 }
 
 \geometry{

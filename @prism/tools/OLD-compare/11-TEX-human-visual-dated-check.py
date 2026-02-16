@@ -24,7 +24,7 @@ from cbutils      import *
 
 from datetime import datetime
 
-from natsort import natsorted
+from natsort import natsorted, ns
 
 
 # ------------------ #
@@ -128,7 +128,8 @@ all_singles = dict()
 
 for kind in ['dark', 'std']:
     all_singles[kind] = natsorted(
-        HUMAN_CHECK_SINGLE_DIR.glob(f"{kind}-*.tex")
+        HUMAN_CHECK_SINGLE_DIR.glob(f"{kind}-*.tex"),
+        alg = ns.IGNORECASE
     )
 
 if not all_singles['dark']:

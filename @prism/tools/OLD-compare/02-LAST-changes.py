@@ -24,7 +24,7 @@ from cbutils      import *
 
 import requests
 
-from natsort import natsorted
+from natsort import natsorted, ns
 
 
 # --------------- #
@@ -73,7 +73,11 @@ for palname, paldef in LAST_PALETTES.items():
         report.append(palname)
 
 if report:
-    report     = natsorted(report)
+    report = natsorted(
+        report,
+        alg = ns.IGNORECASE
+    )
+
     nb_updates = len(report)
 
     plurial = "" if nb_updates == 1 else "s"

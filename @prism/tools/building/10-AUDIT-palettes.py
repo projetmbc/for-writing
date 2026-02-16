@@ -21,7 +21,7 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from natsort import natsorted
+from natsort import natsorted, ns
 
 
 # ------------------ #
@@ -138,7 +138,10 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(query)
 
-    for name, kinds in natsorted(cursor.fetchall()):
+    for name, kinds in natsorted(
+        cursor.fetchall(),
+        alg = ns.IGNORECASE
+    ):
         nbpals += 1
 
         _kinds = set(

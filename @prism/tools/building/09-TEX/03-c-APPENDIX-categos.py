@@ -19,7 +19,7 @@ from cbutils      import *
 
 from collections import defaultdict
 
-from natsort import natsorted
+from natsort import natsorted, ns
 
 
 # ------------------ #
@@ -112,7 +112,13 @@ logging.info("Build 'category showcase' TeX files")
 
 _foreach_data = []
 
-for i, kind in enumerate(natsorted(CATEGOS), 1):
+for i, kind in enumerate(
+    natsorted(
+        CATEGOS,
+        alg = ns.IGNORECASE
+    ),
+    1
+):
     logging.info(f"(showcase) '{kind}'")
 
     texfile = CATEGO_DIR / f"{kind}.latex"
@@ -126,7 +132,10 @@ for i, kind in enumerate(natsorted(CATEGOS), 1):
 
     _graphics = []
 
-    for n in natsorted(set(CATEGOS[kind])):
+    for n in natsorted(
+        set(CATEGOS[kind]),
+        alg = ns.IGNORECASE
+    ):
         if kind in [
             'qualitative',
             'semantic',

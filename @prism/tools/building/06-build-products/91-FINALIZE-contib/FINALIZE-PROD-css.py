@@ -1,6 +1,3 @@
-exit(0)
-
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -22,6 +19,8 @@ from cbutils      import *
 
 from json import load  as json_load
 
+from natsort import natsorted, ns
+
 
 # --------------- #
 # -- CONSTANTS -- #
@@ -32,21 +31,11 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-PRODS_DIR = PROJ_DIR / "products"
+PRODS_DIR    = PROJ_DIR / "products"
+PAL_JSON_DIR = PRODS_DIR / "json" / "palettes-hf"
 
 
-PAL_SPECS_JS_FILE = PRODS_DIR / "css" / "showcase" / "core" / "palettes.js"
-
-
-# ------------------ #
-# -- EXTRACT DATA -- #
-# ------------------ #
-
-PROD_JSON_DIR = PRODS_DIR / "json"
-PAL_JSON_FILE = PROD_JSON_DIR / "palettes-hf.json"
-
-with PAL_JSON_FILE.open(mode = "r") as f:
-    ALL_PALETTES = json_load(f)
+JS_PAL_SIZES_FILE = PRODS_DIR / "css" / "showcase" / "core" / "palsizes.js"
 
 
 # ------------------- #
@@ -55,12 +44,19 @@ with PAL_JSON_FILE.open(mode = "r") as f:
 
 logging.info(f"Finalize 'css' product")
 
-pal_specs = {
-    n: len(c)
-    for n, c in ALL_PALETTES.items()
-}
+palsizes = dict()
 
-js_code = f"const palsize = {repr(pal_specs)};"
+for paljson in natsorted(
+    PAL_JSON_DIR.glob('*.json'),
+    alg = ns.IGNORECASE
+):
+    with paljson.open(mode = "r") as f:
+        palsize = len(json_load(f))
+
+    palsizes[paljson.stem] = palsize
+
+
+js_code = f"const palsize = {repr(palsizes)};"
 
 for old, new in [
     ("'", '"'),
@@ -79,7 +75,7 @@ for line in js_code.splitlines():
         letter = line[3]
 
         if letter != last_letter:
-            _js_code.append(f'//  + {letter}')
+            _js_code.append(f'// -- {letter} -- //')
 
             last_letter = letter
 
@@ -87,4 +83,4 @@ for line in js_code.splitlines():
 
 js_code = '\n'.join(_js_code)
 
-PAL_SPECS_JS_FILE.write_text(js_code)
+JS_PAL_SIZES_FILE.write_text(js_code)

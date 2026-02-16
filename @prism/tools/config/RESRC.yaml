@@ -2,6 +2,14 @@
 # -- A -- #
 # ------- #
 
+APRISM:
+  name  : '@prism'
+  github: projetmbc/for-writing
+  desc  : |
+    ?
+  context:
+    - '?'
+
 ASYMPTOTE:
   name  : Asymptote
   github: vectorgraphics/asymptote

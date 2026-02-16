@@ -32,6 +32,13 @@ function initInterface() {
 }
 
 function filterByLetter(letter, btn, targetPalette = null) {
+  document.querySelectorAll('.letter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const scrollZone = document.getElementById('scrollZone');
+  scrollZone.innerHTML = '';
+
+
   document
     .querySelectorAll('.letter-btn')
     .forEach(
@@ -40,7 +47,6 @@ function filterByLetter(letter, btn, targetPalette = null) {
 
   btn.classList.add('active');
 
-  const scrollZone = document.getElementById('scrollZone');
 
   scrollZone.innerHTML = '';
 
@@ -77,6 +83,15 @@ function pickRandom() {
 }
 
 function selectPalette(nom, taille, btnElement = null) {
+  const cssPath = `../palettes-hf/${nom}.css`;
+  const linkTag = document.getElementById('dynamic-palette-css');
+
+  // On ne recharge le CSS que si c'est une nouvelle lettre
+  if (linkTag.getAttribute('href') !== cssPath) {
+    linkTag.href = cssPath;
+  }
+
+
   document
     .querySelectorAll('.palette-choice')
     .forEach(b => b.classList.remove('selected'));

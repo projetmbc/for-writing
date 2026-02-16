@@ -14,11 +14,11 @@ Only modular palettes supported.
 
 
 --------
-:update:
+:update:     ???
 --------
-\Contrib: js du css ???
-
-\Doc. ????
+\Contrib                OK
+and \doc: ????
+update regarding the only single support.
 
 
 // ---------- //

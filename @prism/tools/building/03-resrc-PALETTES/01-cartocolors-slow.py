@@ -17,18 +17,16 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+from matplotlib import colors
+
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-PATTERN_CMASHER_KIND = re.compile(
-    r'cm_type\s*=\s*["\']([^"\']+)["\']'
-)
-
-
-PATTERN_CMASHER_DATA = re.compile(
-    r'cm_data\s*=\s*(\[[\s\S]*?\])\s*(?=\n\n)'
+PATTERN_CARTO_BLOCK = re.compile(
+    r"const\s+(\w+)\s*=\s*(\{.*?\});",
+    re.DOTALL
 )
 
 
@@ -37,7 +35,7 @@ PATTERN_CMASHER_DATA = re.compile(
 # ------------------ #
 
 THIS_RESRC = Path(__file__).stem
-THIS_RESRC = THIS_RESRC.split('-')[2]
+THIS_RESRC = THIS_RESRC.split('-')[1]
 THIS_RESRC = THIS_RESRC.upper()
 THIS_RESRC = globals()[f"TAG_{THIS_RESRC}"]
 
@@ -54,25 +52,66 @@ RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 
 
-# ------------------ #
-# -- FROM CMASHER -- #
-# ------------------ #
+_CARTO_CODE = RESRC_DIR / "carto.ts"
+CARTO_CODE  = _CARTO_CODE.read_text()
+
+
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
+
+def extract_palette(pal_data: dict) -> [str, PaletteCols]:
+    kind = ', '.join(
+        sorted(pal_data['tags'])
+    )
+
+    del pal_data['tags']
+
+    _bigger_size = sorted(
+        pal_data,
+        key = lambda k: int(k)
+    )
+
+    bigger_size = _bigger_size[-1]
+
+    paldef = [
+        colors.to_rgb(c)
+        for c in pal_data[bigger_size]
+    ]
+
+    return kind, paldef
+
+
+# ---------------------- #
+# -- FROM CARTOCOLORS -- #
+# ---------------------- #
 
 logging.info(f"Analyze '{THIS_RESRC}' source code")
 
 pals = dict()
 
-for palfile in RESRC_DIR.glob('*.py'):
-    content = palfile.read_text()
-
-    palname = palfile.stem
-    palkind = PATTERN_CMASHER_KIND.search(content).group(1)
-    paldef  = ast.literal_eval(
-        PATTERN_CMASHER_DATA.search(content).group(1)
-    )
+for match in PATTERN_CARTO_BLOCK.finditer(CARTO_CODE):
+    palname = match.group(1)
 
     stdname = get_stdname(palname)
 
+    tsdict = match.group(2)
+
+    pycode = re.sub(
+        r"(\s+)(\w+):",
+        r'\1"\2":',
+        tsdict
+    )
+
+    pycode = re.sub(
+        r",\s*([\]\}])",
+        r"\1",
+        pycode
+    )
+
+    pal_data = ast.literal_eval(pycode)
+
+    palkind, paldef = extract_palette(pal_data)
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
@@ -87,7 +126,6 @@ for palfile in RESRC_DIR.glob('*.py'):
 # ----------------- #
 
 logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
-
 
 pals = get_sorted_dict(pals)
 

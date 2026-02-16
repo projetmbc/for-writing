@@ -18,40 +18,12 @@ from cbutils      import *
 # -------------------------- #
 
 
-# ------------------ #
-# -- CONSTANTS #1 -- #
-# ------------------ #
-
-PATTERN_ASY_COLORMAP = re.compile(
-    r"list_data\s+([A-Za-z0-9_]+)\s*=.*\{([^}]+)\}",
-    re.MULTILINE
-)
-
-PATTERN_ASY_RGB = re.compile(
-    r"rgb\s*\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)"
-)
-
-PATTERN_ASY_SEGPAL = re.compile(
-    r"seg_data\s+(\w+)\s*=\s*seg_data\s*\((.*?)\);",
-    re.S
-)
-
-PATTERN_ASY_TRIPLE = re.compile(
-    r"new triple\[\]\s*{(.*?)}",
-    re.S
-)
-
-PATTERN_ASY_CHANNEL = re.compile(
-    r"\(([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\)"
-)
-
-
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
 
 THIS_RESRC = Path(__file__).stem
-THIS_RESRC = THIS_RESRC.split('-')[2]
+THIS_RESRC = THIS_RESRC.split('-')[1]
 THIS_RESRC = THIS_RESRC.upper()
 THIS_RESRC = globals()[f"TAG_{THIS_RESRC}"]
 
@@ -68,29 +40,56 @@ RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 
 
-_ASY_CODE = RESRC_DIR / "colormap.asy"
-ASY_CODE  = _ASY_CODE.read_text()
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
+
+ORIGINAL_RESRC_PALS_JSON = RESRC_DIR / f"{THIS_RESRC.lower()}.json"
+
+with ORIGINAL_RESRC_PALS_JSON.open(mode = "r") as f:
+    ORIGINAL_RESRC_PALS = json_load(f)
 
 
-# ------------------------------- #
-# -- FROM ASYMPTOTE COLOR MAPS -- #
-# ------------------------------- #
+# ----------- #
+# -- TOOLS -- #
+# ----------- #
+
+def extract_palette(pal_data: dict) -> [str, PaletteCols]:
+    kind = pal_data["type"]
+
+    max_size = max(
+        int(k)
+        for k in pal_data
+        if k != "type"
+    )
+
+    max_size = str(max_size)
+
+    paldef = pal_data[str(max_size)]
+    paldef = pal255_to_pal01([
+        eval(c.replace("rgb", ""))
+        for c in paldef
+    ])
+
+    return kind, paldef
+
+
+# ---------------------- #
+# -- FROM COLORBREWER -- #
+# ---------------------- #
 
 logging.info(f"Analyze '{THIS_RESRC}' source code")
 
 pals = dict()
 
-for palname, body in PATTERN_ASY_COLORMAP.findall(ASY_CODE):
+for palname, pal_data in ORIGINAL_RESRC_PALS.items():
     stdname = get_stdname(palname)
 
-    paldef = [
-        list(map(float, rgb))
-        for rgb in PATTERN_ASY_RGB.findall(body)
-    ]
+    palkind, paldef = extract_palette(pal_data)
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind  = '',
+        palkind   = palkind,
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )
