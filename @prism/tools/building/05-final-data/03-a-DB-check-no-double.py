@@ -35,7 +35,8 @@ SELECT
         h.pal_id   || ',' ||
         p.priority || ',' ||
         h.name     || ',' ||
-        h.source,
+        h.source   || ',' ||
+        h.is_kept,
         ';'
     )
 FROM hash h
@@ -218,6 +219,8 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor.execute(SQL_SAME_HASH)
 
     for _equal_pals in cursor.fetchall():
+        print(_equal_pals)
+        continue
 # Pythonic data.
         id_2_meta = dict()
 
@@ -242,7 +245,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
 # -- Different names / Same palette -- #
 
-report_or_not_difname_samepal(same_pal_diff_names)
+# report_or_not_difname_samepal(same_pal_diff_names)
 
 
 
