@@ -42,7 +42,8 @@ SELECT
         ';'
     )
 FROM hash h
-JOIN priority p ON h.source = p.source
+JOIN priority p
+  ON h.source = p.source
 GROUP BY h.hash_normal
 HAVING COUNT(*) > 1;
 '''
@@ -66,6 +67,34 @@ WHERE pal_id = ?;
 # -------------------- #
 # -- SQL QUERIES #2 -- #
 # -------------------- #
+
+SQL_MIRROR_HASH = '''
+SELECT
+    h1.pal_id, p1.priority, h1.name,
+    h2.pal_id, p2.priority, h2.name
+FROM hash h1
+---
+JOIN priority p1
+  ON h1.source = p1.source
+---
+JOIN hash h2
+  ON h1.hash_normal = h2.hash_reverse
+---
+JOIN priority p2
+  ON h2.source = p2.source
+---
+WHERE h1.is_kept = 1
+  AND h2.is_kept = 1
+  AND h1.pal_id < h2.pal_id;
+'''
+
+
+SQL_TABLE_INSERT_MIRROR = '''
+INSERT INTO mirror (
+    cand_pal_id_1,
+    cand_pal_id_2
+) VALUES (?, ?)
+'''
 
 
 # --------------- #
@@ -169,47 +198,6 @@ def report_or_not_difname_samepal(same_pal_diff_names):
     )
 
 
-# -------------- #
-# -- TOOLS #3 -- #
-# -------------- #
-
-def dp_update_mirror_pals(conn):
-    cursor = conn.cursor()
-    cursor.execute(SQL_MIRROR_HASH)
-
-    for data in cursor.fetchall():
-        pal_ids = data[::3]
-        scores  = [
-            (- prio, alias)
-            for prio, alias in zip(
-                data[1::3],
-                data[2::3]
-            )
-        ]
-
-# Same score for two palettes implies a name conflict (same name
-# in two different projects of same priority).
-# Another script will handle this immediately afterwards.
-        if scores[0] == scores[1]:
-            return None
-
-# Palette #2 takes precedence.
-        if scores[1] < scores[0]:
-            pal_ids = pal_ids[::-1]
-
-# Palette #1 has strict greater score, so we ignore palette #2.
-        cursor.execute(
-            SQL_UPDATE_IGNORED,
-            (pal_ids[1],)
-        )
-
-# We keep the info about the mirror relation.
-        cursor.execute(
-            SQL_TABLE_INSERT_MIRROR,
-            tuple(pal_ids)
-        )
-
-
 # ----------------------------- #
 # -- STRICTLY EQUAL PALETTES -- #
 # ----------------------------- #
@@ -253,13 +241,20 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # =>
 # All full equal palettes removed
             if nb_unkept == 1:
+                subpals_ignored = []
+
                 for _ , is_kept, _ , palid in data:
                     if is_kept == '0':
-                        continue
+                        mainpal_ignored = palid
 
+                    else:
+                        subpals_ignored.append(palid)
+
+
+                for palid in subpals_ignored:
                     cursor.execute(
-                        SQL_UPDATE_IGNORED,
-                        (palid, )
+                        SQL_UPDATE_EQUAL_TO,
+                        (mainpal_ignored, palid)
                     )
 
                 continue
@@ -280,21 +275,19 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # Auto removed palettes.
             unkept_ids = get_unkept_ids(data)
 
+            for src , _ , prio, palid in data:
+                if not palid in unkept_ids:
+                    palkept = palid
+
+                    namesrc_kept.append([prio, name, src])
+
+                    break
+
             for palid in unkept_ids:
                 cursor.execute(
-                    SQL_UPDATE_IGNORED,
-                    (palid, )
+                    SQL_UPDATE_EQUAL_TO,
+                    (palkept, palid)
                 )
-
-            for d in data:
-                if d[-1] in unkept_ids:
-                    continue
-
-                namesrc_kept.append([
-                    d[-2],
-                    name,
-                    d[0]
-                ])
 
 # Identical palettes but different names.
 #
@@ -315,65 +308,37 @@ report_or_not_difname_samepal(same_pal_diff_names)
 logging.info("DB - Analyze - 'Mirror palettes'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
-    dp_update_mirror_pals(conn)
+    cursor = conn.cursor()
+    cursor.execute(SQL_MIRROR_HASH)
 
-
-
-
-
-
-
-
-
-
-
-exit(1)
-
-
-
-
-
-
-
-
-
-
-
-
-# -------------------- #
-# -- SQL QUERIES #2 -- #
-# -------------------- #
-
-SQL_MIRROR_HASH = '''
-SELECT
-    h1.pal_id,
-    p1.priority,
-    COALESCE(a1.alias, h1.name),
-    h2.pal_id,
-    p2.priority,
-    COALESCE(a2.alias, h2.name)
-FROM hash h1
-LEFT JOIN alias a1 ON h1.pal_id = a1.pal_id
-JOIN priority p1 ON h1.source = p1.source
-JOIN hash h2 ON h1.hash_normal = h2.hash_reverse
-LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
-JOIN priority p2 ON h2.source = p2.source
-WHERE h1.is_kept = 1
-  AND h2.is_kept = 1
-  AND h1.pal_id < h2.pal_id;
-'''
-
-
-SQL_TABLE_INSERT_MIRROR = '''
-INSERT INTO mirror (
-    cand_pal_id_1,
-    cand_pal_id_2
-) VALUES (?, ?)
-'''
-
-
-
-cursor.execute(
-                SQL_UPDATE_EQUAL_TO,
-                (kept_id, one_id)
+    for data in cursor.fetchall():
+        pal_ids = data[::3]
+        scores  = [
+            (- prio, alias)
+            for prio, alias in zip(
+                data[1::3],
+                data[2::3]
             )
+        ]
+
+# Same score for two palettes implies a name conflict (same name
+# in two different projects of same priority).
+# Another script will handle this immediately afterwards.
+        if scores[0] == scores[1]:
+            continue
+
+# Palette #2 takes precedence.
+        if scores[1] < scores[0]:
+            pal_ids = pal_ids[::-1]
+
+# Palette #1 has strict greater score, so we ignore palette #2.
+        cursor.execute(
+            SQL_UPDATE_IGNORED,
+            (pal_ids[1],)
+        )
+
+# We keep the info about the mirror relation.
+        cursor.execute(
+            SQL_TABLE_INSERT_MIRROR,
+            tuple(pal_ids)
+        )

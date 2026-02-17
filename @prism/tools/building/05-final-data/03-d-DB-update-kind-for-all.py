@@ -55,8 +55,15 @@ SELECT
               OR
               EXISTS (
                   SELECT 1 FROM mirror m
-                  WHERE (m.cand_pal_id_1 = p1.pal_id AND m.cand_pal_id_2 = p2.pal_id)
-                     OR (m.cand_pal_id_1 = p2.pal_id AND m.cand_pal_id_2 = p1.pal_id)
+                  WHERE (
+                      m.cand_pal_id_1 = p1.pal_id
+                      AND
+                      m.cand_pal_id_2 = p2.pal_id
+                  ) OR (
+                      m.cand_pal_id_1 = p2.pal_id
+                      AND
+                      m.cand_pal_id_2 = p1.pal_id
+                  )
               )
           )
     ) AS all_kinds
@@ -149,8 +156,8 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     for src, namekinds in HUMAN_KIND.items():
         for name, kind in namekinds.items():
             query = SQL_UPDATE_KIND.format(
-                name = name,
-                kind = get_std_kind(kind),
+                name   = name,
+                kind   = get_std_kind(kind),
                 source = src
             )
 
@@ -160,6 +167,8 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -------------- #
 # -- DB KINDS -- #
 # -------------- #
+
+exit(1)
 
 logging.info("DB - Kinding ;-) 'DB missing kind resolution'")
 
