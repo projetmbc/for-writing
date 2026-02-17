@@ -8,11 +8,6 @@
 > ***NOTE.*** *The `HTML`, `CSS`, and `JavaScript` files for product development and demonstration were created using `Claude` and `Gemini` AI assistants.*
 
 
-<!-- FORMAT SUPPORTED - AUTO - START -->
-> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
-<!-- FORMAT SUPPORTED - AUTO - END -->
-
-
 <!--YAML
 inlinecode:
   css:

@@ -3,11 +3,6 @@ Use a Lua palette
 
 #### Basic use
 
-<!-- FORMAT SUPPORTED - AUTO - START -->
-> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
-<!-- FORMAT SUPPORTED - AUTO - END -->
-
-
 <!--YAML
 inlinecode:
   lua:

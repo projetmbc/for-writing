@@ -32,6 +32,8 @@ from natsort import (
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
+MAX_LINES_SHOWN = 4
+
 TMPL_TAG_JSON_BEGIN = "<!-- JSON PALETTE FIRST LINES. AUTO - {} -->"
 
 TAG_JSON_BEGIN_START = TMPL_TAG_JSON_BEGIN.format("START")
@@ -82,7 +84,8 @@ for jsonfile in natsorted(
     alg = ns.IGNORECASE
 ):
     with jsonfile.open() as f:
-        firstpal = json_load(f)
+        first_jsonfile = jsonfile.stem
+        first_pal      = json_load(f)
 
     break
 
@@ -100,10 +103,15 @@ logging.info(
 
 # -- JSON CODE BEGIN -- #
 
+if len(first_pal) > MAX_LINES_SHOWN:
+    first_pal = first_pal[:MAX_LINES_SHOWN-1]
+    first_pal.append('...')
+
+
 indent = 2
 
 json_code = json_dumps(
-    obj       = firstpal,
+    obj       = first_pal,
     indent    = indent,
     sort_keys = True,
 )
@@ -111,10 +119,13 @@ json_code = json_dumps(
 json_tab = ' '*indent
 
 json_code = compact_nblists(json_code)
+
 json_code = json_code.replace(
     json_tab + "]\n}",
     json_tab + json_tab.join(["],\n", "...\n}"]),
 )
+
+json_code = json_code.replace('"..."', '...')
 
 # -- FINAL CONTENT -- #
 

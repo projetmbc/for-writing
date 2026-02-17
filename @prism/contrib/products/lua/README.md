@@ -16,10 +16,6 @@ Use a Lua palette
 
 #### Basic use
 
-> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
-
-
-
 The `Lua` palette variables are named using the prefix `pal`.
 They are arrays of arrays of three floats (making it straightforward to use a color from a palette).
 For example, the definition of `palGistHeat` looks like the following partial code.

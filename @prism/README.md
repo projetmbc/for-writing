@@ -64,10 +64,13 @@ Credits <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span s
 Supported implementations <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 -------------------------
 
-All implementations are located in the `products` folder. Each implementation provides the following features:
+All implementations are located in the `products` folder. Each implementation provides the following features.
 
-- Palette formats in both modular (one file per palette) and monolithic (all palettes in a single file) versions.
+- Modular palette formats (one file per palette).
 - Palette definitions in both high-fidelity (original size) and small (currently 40 colors) size.
+
+Most implementations also feature the API explained below.
+
 - Select specific colors from an existing palette using their indices.
 - Shift the palette left (negative value) or right (positive value) by any number of steps.
 - Reverse the order of the colors.
@@ -79,28 +82,20 @@ All implementations are located in the `products` folder. Each implementation pr
 <a id="MULTIMD-TOC-ANCHOR-3"></a>
 ### JSON, the versatile default format <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
-The `JSON` product allows unsupported programming languages to integrate `@prism` palettes easily. Below are the first lines of the `palettes-hf.json` file.
+The `JSON` product allows unsupported programming languages to integrate `@prism` palettes easily. Palettes are defined as shown in the following example.
 
 ~~~json
 [
   [0.4980392157, 0.7882352941, 0.4980392157],
   [0.7450980392, 0.6823529412, 0.831372549],
   [0.9921568627, 0.7529411765, 0.5254901961],
-  [1, 1, 0.6],
-  [0.2196078431, 0.4235294118, 0.6901960784],
-  [0.9411764706, 0.0078431373, 0.4980392157],
-  [0.7490196078, 0.3568627451, 0.0901960784],
-  [0.4, 0.4, 0.4]
+  ...
 ]
 ~~~
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
 ### CSS <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 > ***NOTE.*** *The `HTML`, `CSS`, and `JavaScript` files for product development and demonstration were created using `Claude` and `Gemini` AI assistants.*
-
-> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
-
-
 
 Each palette color is defined as an individual variable named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging.
 Each palette color variable is defined as an `RGB` value using percentage notation.
@@ -155,10 +150,6 @@ The example below demonstrates creating gradient variables through selective col
 
 <a id="MULTIMD-TOC-ANCHOR-6"></a>
 #### Basic use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
-
-> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
-
-
 
 Accessing a single palette color is straightforward: use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
 For example, `\palUse{GistHeat}{8}` is the eighth color of the `GistHeat` palette, an `xcolor` format color that can be easily used as shown in the following compilable example.
@@ -269,10 +260,6 @@ The internally stored definition of a palette named `MyPal`, for example, is `\g
 
 <a id="MULTIMD-TOC-ANCHOR-11"></a>
 #### Basic use <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
-
-> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
-
-
 
 The `Lua` palette variables are named using the prefix `pal`.
 They are arrays of arrays of three floats (making it straightforward to use a color from a palette).

@@ -14,10 +14,6 @@ CSS
 Use a CSS palette
 -----------------
 
-> ***NOTE.*** *All formats are provided: modular (each palette is in a dedicated file) and monolithic (files provide all the palettes).*
-
-
-
 Each palette color is defined as an individual variable named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging.
 Each palette color variable is defined as an `RGB` value using percentage notation.
 For example, the file `palettes-hf/GistHeat.css` looks like the following partial code.

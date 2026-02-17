@@ -24,6 +24,8 @@ PaletteCols:TypeAlias = list[RGBCols]
 
 
 def clean_pal_json(content):
+    content = content.strip()
+
     for old, new in [
         ('.0,' , ','),
         ('.0]' , ']'),
@@ -31,6 +33,8 @@ def clean_pal_json(content):
         ('[-0', '[0'),
     ]:
         content = content.replace(old, new)
+
+    content += '\n'
 
     return content
 
