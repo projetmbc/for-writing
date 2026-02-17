@@ -24,6 +24,8 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+from collections import defaultdict
+
 
 # -------------------- #
 # -- SQL QUERIES #1 -- #
@@ -32,11 +34,11 @@ from cbutils      import *
 SQL_SAME_HASH = '''
 SELECT
     GROUP_CONCAT(
-        h.pal_id   || ',' ||
-        p.priority || ',' ||
         h.name     || ',' ||
         h.source   || ',' ||
-        h.is_kept,
+        h.is_kept  || ',' ||
+        p.priority || ',' ||
+        h.pal_id,
         ';'
     )
 FROM hash h
@@ -59,6 +61,11 @@ UPDATE hash
 SET is_kept = 0
 WHERE pal_id = ?;
 '''
+
+
+# -------------------- #
+# -- SQL QUERIES #2 -- #
+# -------------------- #
 
 
 # --------------- #
@@ -84,49 +91,41 @@ def iter_semi_colon_coma(text: str) -> Iterator[str]:
 # -- TOOLS #2 -- #
 # -------------- #
 
-def dp_update_full_equal_pals(
-    conn,
-    id_2_meta
-):
-# Looking for the "higher" palette.
-    higher_srcs = set()
-    higher_val  = float('-inf')
-    kept_id     = None
+def get_unkept_ids(data: list[str]) -> list[str]:
+    maxprio = str(
+        max(int(d[2]) for d in data)
+    )
 
-    for pal_id, (priority, _ , src) in id_2_meta.items():
-        if (
-            not higher_srcs
-            or
-            higher_val < priority
-        ):
-            higher_srcs = set([src])
-            higher_val = priority
-            kept_id    = pal_id
-
-        elif higher_val == priority:
-            higher_srcs.add(src)
-
-# Do we have a same priority conflicts?
-    if len(higher_srcs) != 1:
-        tab = "\n  + "
-
-        higher_srcs = list(higher_srcs)
-        higher_srcs.sort()
+# We can't have several sources with maximal priority.
+    if 1 != len([
+        None
+        for d in data
+        if d[2] == maxprio
+    ]):
+        data = [
+            d
+            for d in data
+            if d[2] == maxprio
+        ]
 
         log_raise_error(
-            context   = "Conflicts need NOAI resolution",
-            desc      = "Equal project priorities found.",
+            context = "Unkept palettes",
+            desc    = (
+                 "Max priority for several sources, "
+                f"see palette '{name}' for sources "
+                f"{', '.join(f"'{n}'" for n, *_ in data)}"
+            ),
             exception = Exception,
-            xtra      = f"See:{tab}{tab.join(higher_srcs)}"
+            xtra      = f"Update:\n{IGNORED_YAML}"
         )
 
-# Let's store the infos.
-    for one_id in id_2_meta:
-        if one_id != kept_id:
-            cursor.execute(
-                SQL_UPDATE_EQUAL_TO,
-                (kept_id, one_id)
-            )
+# Let's gives the IDs to ignore.
+
+    return set(
+        d[-1]
+        for d in data
+        if d[2] != maxprio
+    )
 
 
 def report_or_not_difname_samepal(same_pal_diff_names):
@@ -226,35 +225,103 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor.execute(SQL_SAME_HASH)
 
     for _equal_pals, in cursor.fetchall():
-        print(list(iter_semi_colon_coma(_equal_pals)))
+        name2data = defaultdict(list)
 
-        continue
+# Data to analyze.
+        for name, *data in iter_semi_colon_coma(_equal_pals):
+            name2data[name].append(data)
 
-# Pythonic data.
-        id_2_meta = dict()
+        namesrc_kept = []
 
-        for pal_id, *oppoprio_name in iter_semi_colon_coma(_equal_pals):
-            id_2_meta[pal_id] = oppoprio_name
+# Get nb. of unkept by design palettes.
+        for name, data in name2data.items():
+            nb_pals_managed = len(data)
+
+            nb_unkept = len(
+                set(
+                    s
+                    for s, k, *_ in data
+                    if k == '0'
+                )
+            )
+
+# All palettes removed.
+            if nb_unkept == nb_pals_managed:
+                continue
+
+# One removed palette by human
+# =>
+# All full equal palettes removed
+            if nb_unkept == 1:
+                for _ , is_kept, _ , palid in data:
+                    if is_kept == '0':
+                        continue
+
+                    cursor.execute(
+                        SQL_UPDATE_IGNORED,
+                        (palid, )
+                    )
+
+                continue
+
+# Too much removed palettes by human
+            if nb_unkept != 0:
+                log_raise_error(
+                    context = "Unkept palettes",
+                    desc    = (
+                         "Too much removed palettes by human, "
+                        f"palette '{name}' for sources "
+                        f"{', '.join(f"'{n}'" for n, *_ in data)}"
+                    ),
+                    exception = Exception,
+                    xtra      = f"Update:\n{IGNORED_YAML}"
+                )
+
+# Auto removed palettes.
+            unkept_ids = get_unkept_ids(data)
+
+            for palid in unkept_ids:
+                cursor.execute(
+                    SQL_UPDATE_IGNORED,
+                    (palid, )
+                )
+
+            for d in data:
+                if d[-1] in unkept_ids:
+                    continue
+
+                namesrc_kept.append([
+                    d[-2],
+                    name,
+                    d[0]
+                ])
 
 # Identical palettes but different names.
 #
 # We store the values to indicate ALL conflicts to resolve.
-        if 1 != len(
-            set(d[1] for d in id_2_meta.values())
-        ):
-            same_pal_diff_names.append(
-                list(id_2_meta.values())
-            )
+        if len(namesrc_kept) > 1:
+            same_pal_diff_names.append(namesrc_kept)
 
-            continue
-
-# Identical palettes and same name.
-        else:
-            dp_update_full_equal_pals(conn, id_2_meta)
 
 # -- Different names / Same palette -- #
 
-# report_or_not_difname_samepal(same_pal_diff_names)
+report_or_not_difname_samepal(same_pal_diff_names)
+
+
+# --------------------- #
+# -- MIRROR PALETTES -- #
+# --------------------- #
+
+logging.info("DB - Analyze - 'Mirror palettes'")
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    dp_update_mirror_pals(conn)
+
+
+
+
+
+
 
 
 
@@ -274,7 +341,7 @@ exit(1)
 
 
 # -------------------- #
-# -- SQL QUERIES #1 -- #
+# -- SQL QUERIES #2 -- #
 # -------------------- #
 
 SQL_MIRROR_HASH = '''
@@ -296,6 +363,7 @@ WHERE h1.is_kept = 1
   AND h1.pal_id < h2.pal_id;
 '''
 
+
 SQL_TABLE_INSERT_MIRROR = '''
 INSERT INTO mirror (
     cand_pal_id_1,
@@ -305,14 +373,7 @@ INSERT INTO mirror (
 
 
 
-
-
-
-# --------------------- #
-# -- MIRROR PALETTES -- #
-# --------------------- #
-
-logging.info("DB - Analyze data - 'Look for mirror palettes'")
-
-with sqlite3.connect(SQLITE_DB_FILE) as conn:
-    dp_update_mirror_pals(conn)
+cursor.execute(
+                SQL_UPDATE_EQUAL_TO,
+                (kept_id, one_id)
+            )

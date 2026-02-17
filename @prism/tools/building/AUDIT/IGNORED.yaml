@@ -12,7 +12,7 @@ LIGHTBARTLEIN:
     palette: BlueOrange12
 
 
-ASYMPTOTE:
+MATPLOTLIB:
   Tab10:
     relation: '<'
     palette: Tab20
@@ -22,8 +22,6 @@ CMASHER:
   Savanna:
     why: |
       Visually, this palette looks completely black.
-
-
 
 
 COLORBREWER:

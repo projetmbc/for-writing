@@ -102,7 +102,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         ):
             continue
 
-        logging.info(f"Add '{resrc_json.relative_to(REPORT_DIR).stem}'")
+        logging.info(f"(prio) Add '{resrc_json.relative_to(REPORT_DIR).stem}'")
 
         dbadd_hashpals(
             conn     = conn,
