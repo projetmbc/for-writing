@@ -114,7 +114,7 @@ CUBEHELIX:
 # -- L -- #
 # ------- #
 
-LIGHT_BARTLEIN:
+LIGHTBARTLEIN:
   name  : Light Bartlein
   inside: PALETTABLE
   desc  : |

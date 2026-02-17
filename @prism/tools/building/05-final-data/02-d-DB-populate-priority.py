@@ -26,17 +26,6 @@ from cbutils      import *
 # -- SQL QUERIES -- #
 # ----------------- #
 
-SQL_TABLE_CREATE = '''
-DROP TABLE IF EXISTS priority;
-CREATE TABLE priority (
---
-    source   VARCHAR(30) NOT NULL PRIMARY KEY,
-    priority INTEGER NOT NULL,
---
-    FOREIGN KEY (source) REFERENCES hash (source)
-);
-'''
-
 SQL_TABLE_INSERT = '''
 INSERT INTO priority (
     source,
@@ -96,22 +85,11 @@ def dbadd_hashpals(
         )
 
 
-# ----------------------- #
-# -- DB INITIALIZATION -- #
-# ----------------------- #
-
-logging.info("Priority DB - 'Init table'")
-
-with sqlite3.connect(SQLITE_DB_FILE) as conn:
-    cursor = conn.cursor()
-    cursor.executescript(SQL_TABLE_CREATE)
-
-
 # --------------------- #
 # -- PRIORITY SOURCE -- #
 # --------------------- #
 
-logging.info("Priority DB - 'Populate'")
+logging.info("DB - Priority - 'Populate'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     for resrc_json in sorted(REPORT_DIR.glob("*.json")):

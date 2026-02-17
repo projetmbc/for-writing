@@ -27,6 +27,50 @@ from cbutils      import *
 # ----------------- #
 
 SQL_TABLE_CREATE = '''
+----------------
+-- MAIN TABLE --
+----------------
+
+DROP TABLE IF EXISTS hash;
+CREATE TABLE hash (
+--
+    pal_id INTEGER PRIMARY KEY,
+    name   VARCHAR(30) NOT NULL,
+    source VARCHAR(30) NOT NULL,
+--
+    is_kept  INTEGER DEFAULT 1,
+    equal_to INTEGER REFERENCES hash(pal_id),
+    kind     TEXT DEFAULT '',
+--
+    hash_normal  TEXT NOT NULL,
+    hash_reverse TEXT NOT NULL
+);
+
+
+----------------
+-- SUB TABLES --
+----------------
+
+DROP TABLE IF EXISTS alias;
+CREATE TABLE alias (
+--
+    pal_id INTEGER NOT NULL PRIMARY KEY,
+    alias  VARCHAR(30) NOT NULL,
+--
+    FOREIGN KEY (pal_id) REFERENCES hash (pal_id)
+);
+
+
+DROP TABLE IF EXISTS priority;
+CREATE TABLE priority (
+--
+    source   VARCHAR(30) NOT NULL PRIMARY KEY,
+    priority INTEGER NOT NULL,
+--
+    FOREIGN KEY (source) REFERENCES hash (source)
+);
+
+
 DROP TABLE IF EXISTS mirror;
 CREATE TABLE mirror (
 --
@@ -41,7 +85,6 @@ CREATE TABLE mirror (
 );
 '''
 
-
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
@@ -50,12 +93,15 @@ AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
+if SQLITE_DB_FILE.is_file():
+    SQLITE_DB_FILE.unlink()
+
 
 # ----------------------- #
 # -- DB INITIALIZATION -- #
 # ----------------------- #
 
-logging.info("Mirror DB - 'Init table' (nothing else done here)")
+logging.info("DB - 'Init all tables'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()

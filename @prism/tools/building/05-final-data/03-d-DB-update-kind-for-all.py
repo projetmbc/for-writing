@@ -141,7 +141,7 @@ def get_std_kind(kind):
 # -- HUMAN KINDS :-) -- #
 # --------------------- #
 
-logging.info("Kinding ;-) 'Add human kinds' :-)")
+logging.info("DB - Kinding ;-) 'Add human kinds' :-)")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -161,7 +161,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -- DB KINDS -- #
 # -------------- #
 
-logging.info("Kinding ;-) 'DB missing kind resolution'")
+logging.info("DB - Kinding ;-) 'DB missing kind resolution'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -189,7 +189,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # -- MISSING KINDS -- #
 # ------------------- #
 
-logging.info("Kinding ;-) 'Unresolved missing kinds'?")
+logging.info("DB - Kinding ;-) 'Unresolved missing kinds'?")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -205,7 +205,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # ------------------ #
 
 logging.info(
-    f"Kinding ;-) Update '{MISSING_KIND_JSON.relative_to(PROJ_DIR)}'"
+    f"DB - Kinding ;-) Update '{MISSING_KIND_JSON.relative_to(PROJ_DIR)}'"
 )
 
 MISSING_KIND_JSON.write_text(

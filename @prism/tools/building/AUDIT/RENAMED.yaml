@@ -8,12 +8,12 @@ _SUFFIXES_:
   MATPLOTLIB: MPL
   PLOTLY: PLY
   TABLEAU: TAB
-  LIGHT_BARTLEIN: LB
+  LIGHTBARTLEIN: LB
 
 # '.' asks to add the suffix to the existing name.
 # '*' is an alias for the suffix.
 
-LIGHT_BARTLEIN:
+LIGHTBARTLEIN:
   BlueDarkOrange18: BlueDarkOrange
   BlueOrange12: BlueOrange
 

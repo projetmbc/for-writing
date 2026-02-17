@@ -1,26 +1,27 @@
-LIGHT_BARTLEIN:
+LIGHTBARTLEIN:
   BlueDarkOrange12:
     relation: '<'
-    name : BlueDarkOrange18
+    palette: BlueDarkOrange18
 
   BlueOrange10:
     relation: '<'
-    name : BlueOrange12
+    palette: BlueOrange12
 
   BlueOrange8:
     relation: '<'
-    name : BlueOrange12
+    palette: BlueOrange12
 
 
 ASYMPTOTE:
   Tab10:
     relation: '<'
-    name : Tab20
+    palette: Tab20
+
 
 CMASHER:
   Savanna:
     why: |
-      Visually, this palette is completely black.
+      Visually, this palette looks completely black.
 
 
 
@@ -28,18 +29,19 @@ CMASHER:
 COLORBREWER:
   YlOrRd:
     relation: '<'
-    resrc: ASYMPTOTE
-    name : YlOrRd
+    palette: YlOrRd
+    src: ASYMPTOTE
 
 
 PLOTLY:
   D3:
     relation: '='
-    resrc: ASYMPTOTE
-    name : Tab10
+    palette: Tab10
+    src: ASYMPTOTE
+
 
 TABLEAU:
   Tableau:
     relation: '='
-    resrc: ASYMPTOTE
-    name : Tab20
+    palette: Tab20
+    src: ASYMPTOTE

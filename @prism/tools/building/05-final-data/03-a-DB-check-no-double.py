@@ -32,62 +32,24 @@ from cbutils      import *
 SQL_SAME_HASH = '''
 SELECT
     GROUP_CONCAT(
-        h.pal_id                  || ',' ||
-        p.priority                || ',' ||
-        COALESCE(a.alias, h.name) || ',' ||
+        h.pal_id   || ',' ||
+        p.priority || ',' ||
+        h.name     || ',' ||
         h.source,
         ';'
     )
 FROM hash h
 JOIN priority p ON h.source = p.source
-LEFT JOIN alias a ON h.pal_id = a.pal_id
-WHERE h.is_kept = 1
 GROUP BY h.hash_normal
 HAVING COUNT(*) > 1;
 '''
+
 
 SQL_UPDATE_EQUAL_TO = '''
 UPDATE hash
 SET equal_to = ?,
     is_kept  = 0
 WHERE pal_id = ?;
-'''
-
-SQL_UPDATE_IGNORED = '''
-UPDATE hash
-SET is_kept = 0
-WHERE pal_id = ?;
-'''
-
-
-# -------------------- #
-# -- SQL QUERIES #1 -- #
-# -------------------- #
-
-SQL_MIRROR_HASH = '''
-SELECT
-    h1.pal_id,
-    p1.priority,
-    COALESCE(a1.alias, h1.name),
-    h2.pal_id,
-    p2.priority,
-    COALESCE(a2.alias, h2.name)
-FROM hash h1
-LEFT JOIN alias a1 ON h1.pal_id = a1.pal_id
-JOIN priority p1 ON h1.source = p1.source
-JOIN hash h2 ON h1.hash_normal = h2.hash_reverse
-LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
-JOIN priority p2 ON h2.source = p2.source
-WHERE h1.is_kept = 1
-  AND h2.is_kept = 1
-  AND h1.pal_id < h2.pal_id;
-'''
-
-SQL_TABLE_INSERT_MIRROR = '''
-INSERT INTO mirror (
-    cand_pal_id_1,
-    cand_pal_id_2
-) VALUES (?, ?)
 '''
 
 
@@ -98,8 +60,7 @@ INSERT INTO mirror (
 AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
-
-IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
+IGNORED_YAML   = AUDIT_DIR / 'IGNORED.yaml'
 
 
 # -------------- #
@@ -246,7 +207,7 @@ def dp_update_mirror_pals(conn):
 # -- STRICTLY EQUAL PALETTES -- #
 # ----------------------------- #
 
-logging.info("Analyze data - 'Look for equal hash'")
+logging.info("DB - Analyze - 'Equal hash'")
 
 # -- Same name / Same palette -- #
 
@@ -279,17 +240,72 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         else:
             dp_update_full_equal_pals(conn, id_2_meta)
 
-
 # -- Different names / Same palette -- #
 
 report_or_not_difname_samepal(same_pal_diff_names)
+
+
+
+
+
+exit(1)
+
+
+
+
+
+
+
+
+
+
+SQL_UPDATE_IGNORED = '''
+UPDATE hash
+SET is_kept = 0
+WHERE pal_id = ?;
+'''
+
+
+# -------------------- #
+# -- SQL QUERIES #1 -- #
+# -------------------- #
+
+SQL_MIRROR_HASH = '''
+SELECT
+    h1.pal_id,
+    p1.priority,
+    COALESCE(a1.alias, h1.name),
+    h2.pal_id,
+    p2.priority,
+    COALESCE(a2.alias, h2.name)
+FROM hash h1
+LEFT JOIN alias a1 ON h1.pal_id = a1.pal_id
+JOIN priority p1 ON h1.source = p1.source
+JOIN hash h2 ON h1.hash_normal = h2.hash_reverse
+LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
+JOIN priority p2 ON h2.source = p2.source
+WHERE h1.is_kept = 1
+  AND h2.is_kept = 1
+  AND h1.pal_id < h2.pal_id;
+'''
+
+SQL_TABLE_INSERT_MIRROR = '''
+INSERT INTO mirror (
+    cand_pal_id_1,
+    cand_pal_id_2
+) VALUES (?, ?)
+'''
+
+
+
+
 
 
 # --------------------- #
 # -- MIRROR PALETTES -- #
 # --------------------- #
 
-logging.info("Analyze data - 'Look for mirror palettes'")
+logging.info("DB - Analyze data - 'Look for mirror palettes'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     dp_update_mirror_pals(conn)

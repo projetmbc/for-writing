@@ -14,6 +14,9 @@ A more precise method for specifying ignored files.
 
 ??? besoin de tenir comptede ingnierer impliquer aussi les palettes égales avec : cf tab10 pour asy = celle pour matplotlib
 
+??? virer post aais au passage
+
+
 // ---------- //
 
 

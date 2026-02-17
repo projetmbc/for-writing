@@ -87,7 +87,7 @@ AUDIT_NAME_CONFLICT = defaultdict(set)
 # -- NAME CONFLICTS? -- #
 # --------------------- #
 
-logging.info("Analyze data - 'Look for lower case name conflicts'")
+logging.info("DB - Analyze data - 'Look for lower case name conflicts'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()

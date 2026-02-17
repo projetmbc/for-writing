@@ -26,23 +26,6 @@ from cbutils      import *
 # -- SQL QUERIES -- #
 # ----------------- #
 
-SQL_TABLE_CREATE = '''
-DROP TABLE IF EXISTS hash;
-CREATE TABLE hash (
---
-    pal_id INTEGER PRIMARY KEY,
-    name   VARCHAR(30) NOT NULL,
-    source VARCHAR(30) NOT NULL,
---
-    is_kept  INTEGER DEFAULT 1,
-    equal_to INTEGER REFERENCES hash(pal_id),
-    kind     TEXT DEFAULT '',
---
-    hash_normal  TEXT NOT NULL,
-    hash_reverse TEXT NOT NULL
-);
-'''
-
 SQL_TABLE_INSERT = '''
 INSERT INTO hash (
 --
@@ -57,9 +40,18 @@ INSERT INTO hash (
 ) VALUES ({placeholders})
 '''
 
+
 SQL_SET_DEFAULT_EQUAL_TO = '''
 UPDATE hash
 SET equal_to = pal_id
+'''
+
+
+SQL_UPDATE_UNKEPT = '''
+UPDATE hash
+SET is_kept = 0
+WHERE name = ?
+  AND source = ?;
 '''
 
 
@@ -71,9 +63,6 @@ AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
-
-if SQLITE_DB_FILE.is_file():
-    SQLITE_DB_FILE.unlink()
 
 
 MAX_SIZE = YAML_CONFIGS['SEMANTIC']['MAX_SIZE']
@@ -94,10 +83,28 @@ with IGNORED_YAML.open(mode = 'r') as f:
 
 IGNORED = set()
 
-if not _IGNORED is None:
-    for src, metadata in _IGNORED.items():
-        for n in metadata:
-            IGNORED.add((n, src))
+# Validatae and normalize the ''IGNORED'' dict.
+for resrc, namedata in _IGNORED.items():
+    for name, data in namedata.items():
+        IGNORED.add((name, resrc))
+
+        keys_used = list(data.keys())
+
+        if keys_used == [TAG_WHY]:
+            data[TAG_WHY] = data[TAG_WHY].strip()
+            continue
+
+        for needed_tag in [
+            TAG_PAL,
+            TAG_REL,
+        ]:
+            if not needed_tag in keys_used:
+                log_raise_error(
+                    context   = "'IGNORED.yaml' file",
+                    desc      = f"Missing '{needed_tag}' key",
+                    exception = ValueError,
+                    xtra      = f"\nSee '{name}' [{resrc}]"
+                )
 
 
 # -------------- #
@@ -214,22 +221,14 @@ def dbadd_hashpals(
         )
 
 
-# ----------------------- #
-# -- DB INITIALIZATION -- #
-# ----------------------- #
-
-logging.info("hash DB - 'Init table'")
-
-with sqlite3.connect(SQLITE_DB_FILE) as conn:
-    cursor = conn.cursor()
-    cursor.executescript(SQL_TABLE_CREATE)
-
-
 # ------------------ #
-# -- PALETTE hash -- #
+# -- PALETTE HASH -- #
 # ------------------ #
 
-logging.info("hash DB - 'Populate' (ignored palette handling)")
+logging.info("DB - Hash - 'Just populate' (auto removeing big palettes)")
+
+conn = sqlite3.connect(SQLITE_DB_FILE)
+
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     for resrc_json in sorted(REPORT_DIR.glob("*.json")):
@@ -242,29 +241,19 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         ):
             continue
 
-        logging.info(f"Add '{resrc_json.relative_to(REPORT_DIR).stem}'")
+        logging.info(f"(hash) Add '{resrc_json.relative_to(REPORT_DIR).stem}'")
 
         data = json_load(resrc_json.open())
 
         for name, infos in data.items():
-            if (name, src) in IGNORED:
-                is_kept = 0
-
-                logging.warning(
-                    f"Ignore '{name}' [{src}] "
-                     "(metadata retained for future reporting)"
-                )
-
-            else:
-                is_kept = 1
-
             paldef = infos[TAG_RGB_COLS]
 
             if len(paldef) > MAX_SIZE:
                 is_kept = 0
 
                 logging.warning(
-                    f"Remove '{name}' [{src}] - 'size > {MAX_SIZE}' "
+                     "(hash) Remove "
+                    f"'{name}' [{src}] - 'size > {MAX_SIZE}' "
                      "(metadata retained for future reporting)"
                 )
 
@@ -277,7 +266,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                 conn         = conn,
                 name         = name,
                 source       = src,
-                is_kept      = is_kept,
+                is_kept      = 1,
                 kind         = std_kind,
                 hash_normal  = hash_normal,
                 hash_reverse = hash_reverse
@@ -286,3 +275,23 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # Default value of ''equal_to'' attributes.
     cursor = conn.cursor()
     cursor.execute(SQL_SET_DEFAULT_EQUAL_TO)
+
+
+# --------------------- #
+# -- REMOVE PALETTES -- #
+# --------------------- #
+
+if not IGNORED:
+    exit(0)
+
+logging.info("DB - Hash - 'Remove palettes' (human choice)")
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+
+    for name, source in IGNORED:
+
+        cursor.execute(
+            SQL_UPDATE_UNKEPT,
+            (name, source)
+        )

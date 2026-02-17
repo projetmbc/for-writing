@@ -26,16 +26,13 @@ from cbutils      import *
 # -- SQL QUERIES -- #
 # ----------------- #
 
-SQL_TABLE_CREATE = '''
-DROP TABLE IF EXISTS alias;
-CREATE TABLE alias (
---
-    pal_id INTEGER NOT NULL PRIMARY KEY,
-    alias  VARCHAR(30) NOT NULL,
---
-    FOREIGN KEY (pal_id) REFERENCES hash (pal_id)
-);
-'''
+SQL_GET_PAL_KEPT = """
+SELECT
+    h.pal_id, h.name, a.alias
+FROM hash h
+LEFT JOIN alias a ON h.pal_id = a.pal_id
+WHERE h.is_kept = 1
+"""
 
 SQL_TABLE_INSERT = '''
 INSERT INTO alias (
@@ -43,14 +40,6 @@ INSERT INTO alias (
     alias
 ) VALUES ({placeholders})
 '''
-
-SQL_GET_PAL_ID = """
-SELECT
-    pal_id
-FROM hash
-WHERE name = ?
-  AND source = ?
-"""
 
 
 # --------------- #
@@ -60,17 +49,6 @@ WHERE name = ?
 AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
-
-
-# ------------------ #
-# -- EXTRACT DATA -- #
-# ------------------ #
-
-RENAMED_YAML = AUDIT_DIR / 'RENAMED.yaml'
-RENAMED_YAML.touch()
-
-with RENAMED_YAML.open(mode = 'r') as f:
-    RENAMED = yaml.safe_load(f)
 
 
 # ----------- #
@@ -110,42 +88,40 @@ def dbadd_aliaspals(
         )
 
 
-# ----------------------- #
-# -- DB INITIALIZATION -- #
-# ----------------------- #
+# ------------------ #
+# -- EXTRACT DATA -- #
+# ------------------ #
 
-logging.info("Alias DB - 'Init table'")
+POST_ALIAS_YAML = AUDIT_DIR / 'POST-ALIAS.yaml'
+POST_ALIAS_YAML.touch()
 
-with sqlite3.connect(SQLITE_DB_FILE) as conn:
-    cursor = conn.cursor()
-    cursor.executescript(SQL_TABLE_CREATE)
-
-
-if not RENAMED:
-    logging.info("Alias DB - No alias")
-
-    exit(0)
+with POST_ALIAS_YAML.open(mode = 'r') as f:
+    POST_ALIAS = yaml.safe_load(f)
 
 
-# ----------- #
-# -- ALIAS -- #
-# ----------- #
+# ---------------- #
+# -- POST ALIAS -- #
+# ---------------- #
 
-logging.info("Alias DB - 'Populate'")
+logging.info("DB - Post Alias 'Populate'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
+    cursor.execute(SQL_GET_PAL_KEPT)
 
-    for nsn, alias in get_pal_alias(RENAMED).items():
-        cursor.execute(
-            SQL_GET_PAL_ID,
-            (*nsn,)
-        )
+    for pal_id, name, alias in cursor.fetchall():
+        if alias in POST_ALIAS:
+            log_raise_error(
+                context   = 'Post Alias',
+                desc      = f"'{name}' already has an alias",
+                exception = ValueError,
+            )
 
-        pal_id = cursor.fetchall()[0][0]
+        if not name in POST_ALIAS:
+            continue
 
         dbadd_aliaspals(
             conn   = conn,
             pal_id = pal_id,
-            alias  = alias,
+            alias  = POST_ALIAS[name],
         )
