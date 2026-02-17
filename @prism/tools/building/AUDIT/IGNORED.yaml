@@ -1,7 +1,45 @@
-#  + P
-PLOTLY:
-  D3: Tab10
+LIGHT_BARTLEIN:
+  BlueDarkOrange12:
+    relation: '<'
+    name : BlueDarkOrange18
 
-#  + T
+  BlueOrange10:
+    relation: '<'
+    name : BlueOrange12
+
+  BlueOrange8:
+    relation: '<'
+    name : BlueOrange12
+
+
+ASYMPTOTE:
+  Tab10:
+    relation: '<'
+    name : Tab20
+
+CMASHER:
+  Savanna:
+    why: |
+      Visually, this palette is completely black.
+
+
+
+
+COLORBREWER:
+  YlOrRd:
+    relation: '<'
+    resrc: ASYMPTOTE
+    name : YlOrRd
+
+
+PLOTLY:
+  D3:
+    relation: '='
+    resrc: ASYMPTOTE
+    name : Tab10
+
 TABLEAU:
-  Tableau: Tab20
+  Tableau:
+    relation: '='
+    resrc: ASYMPTOTE
+    name : Tab20

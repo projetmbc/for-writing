@@ -22,9 +22,9 @@ git cm "..."
 
 REMOVED.yaml : pour des palettes non prises en compte (sifht / subpal), avec ajout de cecci dans la doc vi a un tableau
 
+audit visuelle !!!
 
-
-vireer toutes les hsifthed (cf Twilight et TwilightSifhted) tout en indiquant les paramètre de celels virées car on final si esllse sont choiss, c'est pas pour rien, par exemple TwilightSifhted, au final, mieux que Twilight
+subpal et shift pal
 
 
 // ---------- //

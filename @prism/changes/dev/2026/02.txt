@@ -2,6 +2,22 @@
 
 
 ==
+17  (2.0.0-beta.20)
+==
+
+--------
+:fordev:
+--------
+
+[[:flow:]]   ????
+A more precise method for specifying ignored files.
+
+??? besoin de tenir comptede ingnierer impliquer aussi les palettes égales avec : cf tab10 pour asy = celle pour matplotlib
+
+// ---------- //
+
+
+==
 17  (2.0.0-beta.19)
 ==
 
