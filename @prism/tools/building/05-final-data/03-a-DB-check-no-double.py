@@ -54,6 +54,13 @@ WHERE pal_id = ?;
 '''
 
 
+SQL_UPDATE_IGNORED = '''
+UPDATE hash
+SET is_kept = 0
+WHERE pal_id = ?;
+'''
+
+
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
@@ -218,13 +225,15 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(SQL_SAME_HASH)
 
-    for _equal_pals in cursor.fetchall():
-        print(_equal_pals)
+    for _equal_pals, in cursor.fetchall():
+        print(list(iter_semi_colon_coma(_equal_pals)))
+
         continue
+
 # Pythonic data.
         id_2_meta = dict()
 
-        for pal_id, *oppoprio_name in iter_semi_colon_coma(_equal_pals[0]):
+        for pal_id, *oppoprio_name in iter_semi_colon_coma(_equal_pals):
             id_2_meta[pal_id] = oppoprio_name
 
 # Identical palettes but different names.
@@ -262,11 +271,6 @@ exit(1)
 
 
 
-SQL_UPDATE_IGNORED = '''
-UPDATE hash
-SET is_kept = 0
-WHERE pal_id = ?;
-'''
 
 
 # -------------------- #
