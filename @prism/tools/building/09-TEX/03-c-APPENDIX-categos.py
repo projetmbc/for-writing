@@ -1,3 +1,5 @@
+exit(1)
+
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -190,11 +192,20 @@ for kind in sorted(CATEGOS):
     logging.info(f"(desc) '{kind}'")
 
     desc = METADATA_CATEGOS[kind]['desc']
+    title = METADATA_CATEGOS[kind]['title']
 
     texfile = USED_BY_TOOLS_DIR / f"catego-desc-{kind}.latex"
     texfile.touch()
 
-    texfile.write_text(desc)
+    texcode = f"""
+% Translate the title provided in this comment.
+%
+% {title}
+
+{desc}
+    """.strip() + '\n'
+
+    texfile.write_text(texcode)
 
 
 # ----------------------- #

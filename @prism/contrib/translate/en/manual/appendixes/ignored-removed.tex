@@ -1,0 +1,53 @@
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+% DEBUG - START
+%\geometry{showframe=true}
+% DEBUG - END
+
+
+\begin{document}
+
+\phantomsection\refstepcounter{appendixcnt}
+\section*{\hfill Appendix \theappendixcnt\ -- Ignored palettes \hfill\null} \label{palette-categos}
+\addcontentsline{toc}{section}{Appendix \theappendixcnt\ -- Ignored palettes}
+
+
+\begin{tdocimp}
+    The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
+\end{tdocimp}
+
+
+\smallskip
+
+
+The following palettes are excluded by design or due to duplication (direct or reversed). Note that exact duplicates -- sharing both name and colors -- are omitted entirely. We denote equality with
+\boxed{{=}\vphantom{pM}}
+and reversal with
+\boxed{{\rightleftharpoons}\vphantom{pM}}​\;,
+with the rightmost palette being the one retained in \thisproj.
+
+
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+
+\foreach \nb/\kind/\title in {%
+% -- FOREACH IGNORED/REMOVED - AUTO - START -- %
+% -- FOREACH IGNORED/REMOVED - AUTO - END -- %
+}{
+  \ifthenelse{\nb = 1}{}{\newpage}
+
+  \phantomsection
+  \subsection*{\hfill\title\hfill\null}%
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
+  %
+  \subimport{../../used-by-tools/}{catego-desc-\kind.latex}
+
+  \begin{multicols*}{2}
+    \subimport{../../../common/categos/}{\kind.latex}
+  \end{multicols*}
+}
+
+\end{document}

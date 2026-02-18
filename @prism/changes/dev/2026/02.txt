@@ -14,8 +14,9 @@ A more precise method for specifying ignored files.
 
 ??? besoin de tenir comptede ingnierer impliquer aussi les palettes égales avec : cf tab10 pour asy = celle pour matplotlib
 
-??? virer post aais au passage
+???  D3 = tab10 mais tab10 finalement ignoré
 
+??? Ignoré car... et pas juste par égalité
 
 outil de renommage facile en ligne commande pour du cas par acs !!! path::''tools/lab/analyze/rename.py''
 

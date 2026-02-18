@@ -9,14 +9,14 @@
 
 \begin{document}
 
-\phantomsection
-\section*{\hfill Appendix 2 -- Palettes by category \hfill\null} \label{palette-categos}
-\addcontentsline{toc}{section}{Appendix 2 -- Palettes by category}
+\phantomsection\refstepcounter{appendixcnt}
+\section*{\hfill Appendix \theappendixcnt\ -- Palettes by category \hfill\null} \label{palette-categos}
+\addcontentsline{toc}{section}{Appendix \theappendixcnt\ -- Palettes by category}
 
 
-\begin{tdocwarn}
+\begin{tdocimp}
     The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
-\end{tdocwarn}
+\end{tdocimp}
 
 
 \smallskip
@@ -53,14 +53,13 @@
 
 
 \begin{tdocimp}
-    Categories were generated semi-automatically, followed by manual selection to obta
-    in relevant choices.
+    Categories were generated semi-automatically, followed by manual selection to obtain relevant choices.
 \end{tdocimp}
 
 
-% ------------------------------------------------ %
-% -- BELOW, JUST TRANSLATE TITLES INSIDE BRACES -- %
-% ------------------------------------------------ %
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
 
 \foreach \nb/\kind/\title in {%
 % -- FOREACH CATEGOS - AUTO - START -- %
