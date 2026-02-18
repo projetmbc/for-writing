@@ -1,16 +1,14 @@
-#  + C
+# -- C -- #
 CMASHER:
   Savanna:
-    why: 'Visually, this palette looks completely black.
-
-      '
+    why: This palette appears to be completely black.
 COLORBREWER:
   YlOrRd:
     palette: YlOrRd
     relation: <
     src: ASYMPTOTE
 
-#  + L
+# -- L -- #
 LIGHTBARTLEIN:
   BlueDarkOrange12:
     palette: BlueDarkOrange18
@@ -22,20 +20,20 @@ LIGHTBARTLEIN:
     palette: BlueOrange12
     relation: <
 
-#  + M
+# -- M -- #
 MATPLOTLIB:
   Tab10:
     palette: Tab20
     relation: <
 
-#  + P
+# -- P -- #
 PLOTLY:
   D3:
     palette: Tab10
     relation: '='
     src: ASYMPTOTE
 
-#  + T
+# -- T -- #
 TABLEAU:
   Tableau:
     palette: Tab20

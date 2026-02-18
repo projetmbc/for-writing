@@ -97,7 +97,7 @@ def get_initialized_code(code, get_initial):
                 )
 
         if add_initial:
-            _new_code.append(f"\n#  + {this_initial}")
+            _new_code.append(f"\n# -- {this_initial} -- #")
 
             last_initial = this_initial
 

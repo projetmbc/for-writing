@@ -1,4 +1,4 @@
-#  + A
+# -- A -- #
 ASYMPTOTE:
   Brg: qualitative, sequential
   Bwr: dark, divergent, qualitative, sequential
@@ -16,7 +16,7 @@ ASYMPTOTE:
   Viridis: dark, sequential
   YlOrRd: dark, qualitative, sequential
 
-#  + M
+# -- M -- #
 MATPLOTLIB:
   Afmhot: sequential
   Autumn: dark, qualitative, sequential

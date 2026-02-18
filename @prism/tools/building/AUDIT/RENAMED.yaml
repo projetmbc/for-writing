@@ -13,7 +13,7 @@ _SUFFIXES_:
 # '.' asks to add the suffix to the existing name.
 # '*' is an alias for the suffix.
 
-#  + C
+# -- C -- #
 CARBONPLAN:
   Bluegrey: BlueGrey
   Blues: .
@@ -51,12 +51,12 @@ COLORBREWER:
   PRGn: PrGn
   YlOrRd: .
 
-#  + L
+# -- L -- #
 LIGHTBARTLEIN:
   BlueDarkOrange18: BlueDarkOrange
   BlueOrange12: BlueOrange
 
-#  + M
+# -- M -- #
 MATPLOTLIB:
   Afmhot: AfmHot
   Brg: BRG
@@ -64,13 +64,13 @@ MATPLOTLIB:
   Coolwarm: CoolWarm
   Hsv: HSV
 
-#  + P
+# -- P -- #
 PLOTLY:
   Bluered: BlueRed*
   Hot: .
   Jet: .
   Rainbow: .
 
-#  + T
+# -- T -- #
 TABLEAU:
   Gray: MidGray
