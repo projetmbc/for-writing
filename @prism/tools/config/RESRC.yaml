@@ -112,13 +112,13 @@ CUBEHELIX:
 
 # ------- #
 # -- L -- #
-# ------- #
+# ------- #   Z!   name  : Light and Bartlein
 
 LIGHTBARTLEIN:
   name  : Light Bartlein
   inside: PALETTABLE
   desc  : |
-    Light Bartlein delivers specialized divergent palettes for
+    Light and Bartlein delivers specialized divergent palettes for
     climate and meteorological mapping.
   context:
     - meteorology

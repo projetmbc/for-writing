@@ -30,8 +30,8 @@ MATPLOTLIB:
 # -- P -- #
 PLOTLY:
   D3:
-    palette: Tab10
-    relation: '='
+    palette: Tab20
+    relation: <
 
 # -- T -- #
 TABLEAU:

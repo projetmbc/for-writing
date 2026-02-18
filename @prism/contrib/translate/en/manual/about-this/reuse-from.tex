@@ -11,18 +11,22 @@
 Here are the key points to remember when using palettes similar to those offered by projects listed in the section \ref{projects-used}.
 %
 \begin{enumerate}
+    \item \matplotlib\ palettes with a name ending with \verb+_r+ (reversed color order), and shifted palettes%
+    \footnote{
+        By design, \colormaps\ proposes some shifted palettes.
+    }
+    are not included in \thisproj.
+    In rare cases, some palettes must be excluded because they seem superfluous or are too large.
+    All the excluded palettes are listed in Appendix \ref{ignored-palettes} (page \pageref{ignored-palettes}).
+
+
 	\item
 	\thisproj\ uses 'semantic' \verb+CamelCase+ naming. Therefore, palette names such as
 	\tdoccodein{text}{berlin}, \tdoccodein{text}{gist_heat} and \tdoccodein{text}{Pinkgrey}
 	become
 	\tdoccodein{text}{Berlin}, \tdoccodein{text}{GistHeat} and \tdoccodein{text}{PinkGrey}.
-	% This implies that palette names from different projects are compared internally using lowercase.
-	% Appendix 1 (page \pageref{palette-all-names}) lists all palette names to help you find the correct \verb+CamelCase+ spelling.
-
-    \item \matplotlib\ palettes with a name ending with \verb+_r+ (reversed color order), and shifted \colormaps\ palettes (regarding to other \colormaps\ palettes) are not included in \thisproj.
-    
-    \subimport{../../../common/report/}{renamed-palettes.latex}
-    \subimport{../../../common/report/}{ignored-palettes.latex}
+	To avoid naming collisions, certain palettes have been renamed : a full list of these changes is provided in Appendix \ref{renamed-palettes} (page \pageref{renamed-palettes}).
+	You can see the full list of names in Appendix \ref{all-palette-names} (page \pageref{all-palette-names}).
 \end{enumerate}
 
 

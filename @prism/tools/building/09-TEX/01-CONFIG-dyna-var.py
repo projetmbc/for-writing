@@ -75,6 +75,11 @@ for ctxt, uppername, prefix in [
         '',
     ),
     (
+        'max size',
+        'MAX_SIZE',
+        'pal',
+    ),
+    (
         'max semantic size',
         'MAX_SEM_SIZE',
         'pal',

@@ -61,7 +61,10 @@ We retain only palettes that comply with the following rules.
     \footnote{
         Some \matplotlib\ palettes are duplicated, likely for historical reasons.
     }
-    \thisproj\ use a one-to-one map from names to palettes.
+    \thisproj\ use a one-to-one map from names to palettes.%
+    \footnote{
+        This does not preclude the existence of palettes with different names that are visually similar, or even looks identical. This is often justified by the number of colors used; a higher color depth helps prevent artifacts when generating high-resolution graphics.
+    }
 
 
     \item \textbf{No reversed versions.}
@@ -80,7 +83,8 @@ We retain only palettes that comply with the following rules.
     \thisproj\ never includes shifted palettes as fixed data (most implementations offer an API that enables this and other transformations through configurable parameters).
 
 
-    \item \textbf{Reasonable palette sizes.} Palettes with more than 512 colors are ignored (e.g., \cmasher\ proposes 'neutral' palette, which consists of 2560 colors).
+    \item \textbf{Reasonable palette sizes.} Palettes with more than \palMaxSize\ colors are ignored (e.g., \cmasher\ proposes 'neutral' palette, which consists of 2560 colors). 
+    This avoids potential issues with certain technologies, such as \LaTeX, and frankly, offers a level of precision that is far beyond the needs of us mere mortals — or at least, those of us who aren't astronomers.
 \end{itemize}
 
 

@@ -37,8 +37,12 @@ USED_BY_TOOLS_DIR = TRANSLATE_DIR.parent / "en" / TAG_USED_BY_TOOLS
 
 REBUILDABLE_PALS_TEX = TRANSLATE_DIR / "report" /  "rebuildable-palettes.latex"
 
+if REBUILDABLE_PALS_TEX.is_file():
+    REBUILDABLE_PALS_TEX.unlink()
 
-PALS_REBUILDABLE_BY_TECHNO = defaultdict(dict)
+REBUILDABLE_PALS_TEX.touch()
+
+SQLITE_DB_FILE = AUDIT_DIR / 'palettes.db'
 
 
 # ------------------ #
@@ -97,6 +101,30 @@ TEX_TMPL_HRULE = TAB_4 + r"\hline"
 # -- YAML - IGNORED PALETTES -- #
 # ----------------------------- #
 
+logging.info("Get 'all final names'")
+
+ALL_NAMES = set()
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+
+    query = """
+SELECT
+    COALESCE(a.alias, h.name)
+FROM hash h
+LEFT JOIN alias a ON h.pal_id = a.pal_id
+    """
+
+    cursor.execute(query)
+
+    for name, in cursor.fetchall():
+        ALL_NAMES.add(name)
+
+
+# ----------------------------- #
+# -- YAML - IGNORED PALETTES -- #
+# ----------------------------- #
+
 logging.info("Extract 'ignored palettes' by human or design")
 
 IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
@@ -108,6 +136,14 @@ with IGNORED_YAML.open('r') as f:
     for src, pals in safe_load(f).items():
 # Same source for 1st and 2nd palettes.
         for name, data in pals.items():
+# Unkown name.
+            if not name in ALL_NAMES:
+                log_raise_error(
+                    context   = "Looking for ignored palette",
+                    desc      = f"Unknown '{name}' to ignore",
+                    exception = ValueError,
+                )
+
 # Excluded by desing (too big, fully black...).
             if not TAG_REL in data:
                 PALS_EXCLUDED_BY_TECHNO[src].append((
@@ -124,6 +160,14 @@ with IGNORED_YAML.open('r') as f:
                 PAL_STATUS.SUBSET_OF
             )
 
+# Unkown name.
+            if not data[TAG_PAL] in ALL_NAMES:
+                log_raise_error(
+                    context   = "Looking for ignored palette",
+                    desc      = f"Unknown '{name}' kept",
+                    exception = ValueError,
+                )
+
 # Nothing left to do here.
             PALS_REBUILDABLE_BY_TECHNO[src].append((
                 name,
@@ -138,7 +182,7 @@ with IGNORED_YAML.open('r') as f:
 
 logging.info("Extract 'mirror palettes'")
 
-with sqlite3.connect(AUDIT_DIR / 'palettes.db') as conn:
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
 
     query = """
@@ -168,27 +212,33 @@ LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
         ))
 
 
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
+# -------------------------- #
+# -- REBUILDABLE PALETTES -- #
+# -------------------------- #
 
-logging.info("Build 'ignored palette' TeX files")
+if PALS_REBUILDABLE_BY_TECHNO:
+    logging.info("Build 'rebuildable palette' TeX file")
+
+    texcode = [
+        TEX_NO_EDIT,
+        '',
+        TEX_ITEM_HEADER,
+    ]
+
+    for src in sorted(PALS_REBUILDABLE_BY_TECHNO):
+        src_name = YAML_CONFIGS[TAG_RESRC][src]['name']
 
 
-
-print(PALS_REBUILDABLE_BY_TECHNO)
-
+        for onerow in PALS_REBUILDABLE_BY_TECHNO[src]:
+            print(onerow)
 
 exit(1)
 
-
-
-src_name = YAML_CONFIGS[TAG_RESRC][src]['name']
-
-
-
-
-
+texcode += [
+            TEX_TMPL_KIND.format(
+                ctxt = TEX_CMDS.get(ctxt, ctxt),
+            ),
+        ]
 
 
 
@@ -206,18 +256,8 @@ logging.info("Build 'ignored palette list' in TeX file")
 texcode = []
 
 if PALS_REBUILDABLE_BY_TECHNO:
-    texcode = [
-        TEX_NO_EDIT,
-        '',
-        TEX_ITEM_HEADER,
-    ]
 
     for ctxt in sorted(PALS_REBUILDABLE_BY_TECHNO):
-        texcode += [
-            TEX_TMPL_KIND.format(
-                ctxt = TEX_CMDS.get(ctxt, ctxt),
-            ),
-        ]
 
         for row in PALS_REBUILDABLE_BY_TECHNO[ctxt]:
             row = ' & '.join(row)
