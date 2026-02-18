@@ -2,7 +2,7 @@
 
 
 ==
-17  (2.0.0-beta.20)
+18  (2.0.0-beta.20)
 ==
 
 --------
@@ -15,6 +15,9 @@ A more precise method for specifying ignored files.
 ??? besoin de tenir comptede ingnierer impliquer aussi les palettes égales avec : cf tab10 pour asy = celle pour matplotlib
 
 ??? virer post aais au passage
+
+
+outil de renommage facile en ligne commande pour du cas par acs !!! path::''tools/lab/analyze/rename.py''
 
 
 // ---------- //

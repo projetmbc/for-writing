@@ -2,40 +2,67 @@ _SUFFIXES_:
   ASYMPTOTE: ASY
   CARBONPLAN: CP
   CARTOCOLORS: CC
-  COLORCET: CCT
   CMASHER: CM
   COLORBREWER: CBW
+  COLORCET: CCT
+  LIGHTBARTLEIN: LB
   MATPLOTLIB: MPL
   PLOTLY: PLY
   TABLEAU: TAB
-  LIGHTBARTLEIN: LB
 
 # '.' asks to add the suffix to the existing name.
 # '*' is an alias for the suffix.
 
-LIGHTBARTLEIN:
-  BlueDarkOrange18: BlueDarkOrange
-  BlueOrange12: BlueOrange
-
 #  + C
 CARBONPLAN:
+  Bluegrey: BlueGrey
   Blues: .
   Cool: .
   Earth: .
+  Greengrey: GreenGrey
   Greens: .
   Greys: .
+  Orangeblue: OrangeBlue
+  Orangegrey: OrangeGrey
   Oranges: .
+  Pinkgreen: PinkGreen
+  Pinkgrey: PinkGrey
+  Purplegrey: PurpleGrey
   Purples: .
   Rainbow: .
+  Redgrey: RedGrey
   Reds: .
+  Redteal: RedTeal
+  Sinebow: SineBow
+  Tealgrey: TealGrey
+  Yellowgrey: YellowGrey
+  Yellowpurple: YellowPurple
 CARTOCOLORS:
   Prism: .
 CMASHER:
   Copper: .
   Fall: .
+  Ghostlight: GhostLight
+  Iceburn: IceBurn
   Ocean: .
+  Redshift: RedShift
+  Sunburst: SunBurst
 COLORBREWER:
+  PRGn: PrGn
   YlOrRd: .
+
+#  + L
+LIGHTBARTLEIN:
+  BlueDarkOrange18: BlueDarkOrange
+  BlueOrange12: BlueOrange
+
+#  + M
+MATPLOTLIB:
+  Afmhot: AfmHot
+  Brg: BRG
+  Bwr: BWR
+  Coolwarm: CoolWarm
+  Hsv: HSV
 
 #  + P
 PLOTLY:

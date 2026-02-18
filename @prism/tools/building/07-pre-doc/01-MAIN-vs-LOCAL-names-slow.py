@@ -214,6 +214,7 @@ for n in REMOVED_NAMES:
 
 yaml_code = yaml_dump(WHY_REMOVED)
 yaml_code = f'''
+###
 # Complete with one of the following regarding new palettes.
 #
 #    1) ''<alias>: renamed''
@@ -230,6 +231,11 @@ yaml_code = f'''
 #
 #    (the palette no longer exists but has a direct equivalent,
 #    requiring a mapping from the old name to the new one).
+#
+#    4) ''<upset>: subset''
+#
+#    (the palette is a subset of another).
+###
 
 {yaml_code}
 '''.lstrip()

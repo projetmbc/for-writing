@@ -1,3 +1,4 @@
+###
 # Complete with one of the following regarding new palettes.
 #
 #    1) ''<alias>: renamed''
@@ -14,11 +15,28 @@
 #
 #    (the palette no longer exists but has a direct equivalent,
 #    requiring a mapping from the old name to the new one).
+#
+#    4) ''<upset>: subset''
+#
+#    (the palette is a subset of another).
+###
 
+BlueDarkOrange12:
+  BlueDarkOrange: subset
+BlueDarkOrange18:
+  BlueDarkOrange: renamed
+BlueOrange10:
+  BlueOrange: subset
+BlueOrange12:
+  BlueOrange: renamed
+BlueOrange8:
+  BlueOrange: subset
 GrayTab:
   MidGray: renamed
 Grays:
   Greys: superseded
+Tab10:
+  Tab20: subset
 Tableau:
   Tableau: ignored
 

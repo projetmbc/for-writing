@@ -1,45 +1,43 @@
-LIGHTBARTLEIN:
-  BlueDarkOrange12:
-    relation: '<'
-    palette: BlueDarkOrange18
-
-  BlueOrange10:
-    relation: '<'
-    palette: BlueOrange12
-
-  BlueOrange8:
-    relation: '<'
-    palette: BlueOrange12
-
-
-MATPLOTLIB:
-  Tab10:
-    relation: '<'
-    palette: Tab20
-
-
+#  + C
 CMASHER:
   Savanna:
-    why: |
-      Visually, this palette looks completely black.
+    why: 'Visually, this palette looks completely black.
 
-
+      '
 COLORBREWER:
   YlOrRd:
-    relation: '<'
     palette: YlOrRd
+    relation: <
     src: ASYMPTOTE
 
+#  + L
+LIGHTBARTLEIN:
+  BlueDarkOrange12:
+    palette: BlueDarkOrange18
+    relation: <
+  BlueOrange10:
+    palette: BlueOrange12
+    relation: <
+  BlueOrange8:
+    palette: BlueOrange12
+    relation: <
 
+#  + M
+MATPLOTLIB:
+  Tab10:
+    palette: Tab20
+    relation: <
+
+#  + P
 PLOTLY:
   D3:
-    relation: '='
     palette: Tab10
+    relation: '='
     src: ASYMPTOTE
 
-
+#  + T
 TABLEAU:
   Tableau:
-    relation: '='
     palette: Tab20
+    relation: '='
     src: ASYMPTOTE
