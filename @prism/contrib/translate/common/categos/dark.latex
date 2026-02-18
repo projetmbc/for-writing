@@ -121,16 +121,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Tab10\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Tab10-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Tab20\vphantom{g}}
 
         \smallskip

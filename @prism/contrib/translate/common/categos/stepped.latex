@@ -1,0 +1,29 @@
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Bukavu\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Bukavu-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Fes\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Fes-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Oleron\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Oleron-spectrum.pdf}
+    \end{center}
+\end{minipage}

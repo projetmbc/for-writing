@@ -10,7 +10,7 @@
 \begin{document}
 
 \phantomsection\refstepcounter{appendixcnt}
-\section*{\hfill Appendix \theappendixcnt\ -- Ignored palettes \hfill\null} \label{palette-categos}
+\section*{\hfill Appendix \theappendixcnt\ -- Ignored palettes \hfill\null} \label{palette-ignored}
 \addcontentsline{toc}{section}{Appendix \theappendixcnt\ -- Ignored palettes}
 
 
@@ -19,35 +19,48 @@
 \end{tdocimp}
 
 
+% -------------------- %
+
+
 \smallskip
 
 
-The following palettes are excluded by design or due to duplication (direct or reversed). Note that exact duplicates -- sharing both name and colors -- are omitted entirely. We denote equality with
-\boxed{{=}\vphantom{pM}}
-and reversal with
-\boxed{{\rightleftharpoons}\vphantom{pM}}​\;,
-with the rightmost palette being the one retained in \thisproj.
-
-
-% ------------------------------------------- %
-% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
-% ------------------------------------------- %
-
-\foreach \nb/\kind/\title in {%
-% -- FOREACH IGNORED/REMOVED - AUTO - START -- %
-% -- FOREACH IGNORED/REMOVED - AUTO - END -- %
-}{
-  \ifthenelse{\nb = 1}{}{\newpage}
+\bgroup
+  \def\title{Excluded by design} % To be translated.
 
   \phantomsection
   \subsection*{\hfill\title\hfill\null}%
   \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
-  %
-  \subimport{../../used-by-tools/}{catego-desc-\kind.latex}
+\egroup
 
-  \begin{multicols*}{2}
-    \subimport{../../../common/categos/}{\kind.latex}
-  \end{multicols*}
-}
+
+% -------------------- %
+
+
+\newpage
+
+
+\bgroup
+  \def\title{Rebuildable palettes} % To be translated.
+
+  \phantomsection
+  \subsection*{\hfill\title\hfill\null}%
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
+\egroup
+
+The following palettes are excluded as subsets of existing ones, or due to direct or reversed duplication. Note that exact duplicates -- sharing both name and colors -- are omitted entirely. We identify related versions using the following notation.
+%
+\begin{multicols}{3}
+\begin{itemize}[label=\textbullet\,]
+    \item Subset: \boxed{{\prec}\vphantom{pM}}
+
+    \item Equality: \boxed{{=}\vphantom{pM}}
+
+    \item Reversal: \boxed{{\rightleftharpoons}\vphantom{pM}}
+\end{itemize}
+\end{multicols}
+
+In these cases, the rightmost palette is the one retained in \thisproj.
+
 
 \end{document}

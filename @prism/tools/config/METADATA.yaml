@@ -39,14 +39,6 @@ CATEGORY:
       optimized for terminal interfaces and dark-mode backgrounds.
     alias:   # No alias.
 
-  outlier:
-    title: Outlier palettes
-    desc: >
-      Outlier or discontinuous palettes are used to highlight deviation
-      rather than progression. These palettes use contrasting colors that
-      meet at neutral points.
-    alias:   # No alias.
-
   divergent:
     title: Divergent palettes
     desc: >
@@ -88,3 +80,10 @@ CATEGORY:
       - quantitative
       - sequentialMultiHue
       - sequentialSingleHue
+
+  stepped:
+    title: Stepped palettes
+    desc: >
+      Stepped palettes are designed to highlight distinct shifts rather than smooth progression. They use high-contrast colors that meet at sharp boundary points to emphasize deviation.
+    alias:
+      - outlier

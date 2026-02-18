@@ -961,6 +961,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Neutral\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Neutral-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries NipySpectral\vphantom{g}}
 
         \smallskip
@@ -1311,16 +1321,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Savanna\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Savanna-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Seismic\vphantom{g}}
 
         \smallskip
@@ -1665,15 +1665,5 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/YlOrRd-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries YlOrRdCBW\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/YlOrRdCBW-spectrum.pdf}
     \end{center}
 \end{minipage}

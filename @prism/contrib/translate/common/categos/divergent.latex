@@ -31,20 +31,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries BlueDarkOrange12\vphantom{g}}
+        {\bfseries BlueDarkOrange\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/BlueDarkOrange12-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries BlueDarkOrange18\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/BlueDarkOrange18-spectrum.pdf}
+        \includegraphics{../../../common/showcase/BlueDarkOrange-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -101,30 +91,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries BlueOrange8\vphantom{g}}
+        {\bfseries BlueOrange\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/BlueOrange8-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries BlueOrange10\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/BlueOrange10-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries BlueOrange12\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/BlueOrange12-spectrum.pdf}
+        \includegraphics{../../../common/showcase/BlueOrange-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -625,16 +595,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Spectral-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Tab10\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Tab10-spectrum.pdf}
     \end{center}
 \end{minipage}
 

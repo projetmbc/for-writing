@@ -1,5 +1,3 @@
-exit(1)
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -58,16 +56,22 @@ TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate"
 
 SHOWCASE_DIR = TRANSLATE_DIR / "common" / "showcase"
 
-CATEGO_DIR = SHOWCASE_DIR.parent / "categos"
-CATEGO_DIR.mkdir(
+COMMON_CATEGO_DIR = SHOWCASE_DIR.parent / "categos"
+
+COMMON_CATEGO_DIR.mkdir(
     parents  = True,
     exist_ok = True
 )
 
 
-MANUAL_DIR        = TRANSLATE_DIR / "en" / "manual"
-USED_BY_TOOLS_DIR = TRANSLATE_DIR / "en" / "used-by-tools"
+MANUAL_DIR = TRANSLATE_DIR / "en" / "manual"
 
+USED_BY_TOOLS_CATEGO_DIR = TRANSLATE_DIR / "en" / "used-by-tools" / "categos"
+
+USED_BY_TOOLS_CATEGO_DIR.mkdir(
+    parents  = True,
+    exist_ok = True
+)
 
 APPENDIX_TEX_FILE = MANUAL_DIR / "appendixes" / "categos.tex"
 
@@ -109,6 +113,7 @@ for k in CATEGOS:
     CATEGOS[k].sort(key = lambda k: k.lower())
 
 
+
 # --------------------------- #
 # -- SHOWCASE SINGLE FILES -- #
 # --------------------------- #
@@ -126,7 +131,7 @@ for i, kind in enumerate(
 ):
     logging.info(f"(showcase) '{kind}'")
 
-    texfile = CATEGO_DIR / f"{kind}.latex"
+    texfile = COMMON_CATEGO_DIR / f"{kind}.latex"
     texfile.touch()
 
     title = METADATA_CATEGOS[kind]['title']
@@ -194,7 +199,7 @@ for kind in sorted(CATEGOS):
     desc = METADATA_CATEGOS[kind]['desc']
     title = METADATA_CATEGOS[kind]['title']
 
-    texfile = USED_BY_TOOLS_DIR / f"catego-desc-{kind}.latex"
+    texfile = USED_BY_TOOLS_CATEGO_DIR / f"desc-{kind}.latex"
     texfile.touch()
 
     texcode = f"""

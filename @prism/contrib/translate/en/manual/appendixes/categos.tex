@@ -69,7 +69,8 @@
   4/divergent/{Divergent palettes},%
   5/qualitative/{Qualitative palettes},%
   6/semantic/{Semantic palettes},%
-  7/sequential/{Sequential palettes}%
+  7/sequential/{Sequential palettes},%
+  8/stepped/{Stepped palettes}%
 % -- FOREACH CATEGOS - AUTO - END -- %
 }{
   \ifthenelse{\nb = 1}{}{\newpage}
@@ -78,7 +79,7 @@
   \subsection*{\hfill\title\hfill\null}%
   \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
   %
-  \subimport{../../used-by-tools/}{catego-desc-\kind.latex}
+  \subimport{../../used-by-tools/}{categos/desc-\kind.latex}
 
   \begin{multicols*}{2}
     \subimport{../../../common/categos/}{\kind.latex}

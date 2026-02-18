@@ -41,11 +41,7 @@ TAG_LIST_OF_NAMES_END   = rf"% -- {TAG_LIST_OF_NAMES} - AUTO - END -- %"
 
 
 TEX_HEADER_TMPL = r"\begin{multicols*}{3}"
-TEX_FOOTER_TMPL = r"""
-\end{multicols*}
-
-\end{document}""".strip()
-
+TEX_FOOTER_TMPL = r"\end{multicols*}"
 
 TEX_LETTER_TMPL = TAB_1 + r"""
     \medskip

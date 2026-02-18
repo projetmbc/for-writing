@@ -48,3 +48,9 @@ MATPLOTLIB:
   Terrain: dark, divergent, sequential
   Turbo: sequential
   Winter: dark, qualitative
+
+# -- S -- #
+SCIENTIFIC-COLOUR-MAPS:
+  Bukavu: colorblind,stepped
+  Fes: colorblind,stepped
+  Oleron: colorblind,stepped
