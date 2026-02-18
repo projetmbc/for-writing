@@ -35,14 +35,29 @@ TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
 USED_BY_TOOLS_DIR = TRANSLATE_DIR.parent / "en" / TAG_USED_BY_TOOLS
 
 
-REBUILDABLE_PALS_TEX = TRANSLATE_DIR / "report" /  "rebuildable-palettes.latex"
+for p in [
+    REBUILDABLE_PALS_TEX_FILE:= TRANSLATE_DIR / "report" /  "rebuildable-palettes.latex",
+    EXCLUDED_PALS_TEX_FILE   := USED_BY_TOOLS_DIR / "report" /  "excluded-palettes.latex",
+]:
+    p.parent.mkdir(
+        parents = True,
+        exist_ok = True
+    )
 
-if REBUILDABLE_PALS_TEX.is_file():
-    REBUILDABLE_PALS_TEX.unlink()
+    if p.is_file():
+        p.unlink()
 
-REBUILDABLE_PALS_TEX.touch()
+    p.touch()
+
 
 SQLITE_DB_FILE = AUDIT_DIR / 'palettes.db'
+
+
+IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
+
+
+EXCLUDED_PALS_BY_TECHNO    = defaultdict(list)
+PALS_REBUILDABLE_BY_TECHNO = defaultdict(list)
 
 
 # ------------------ #
@@ -51,7 +66,6 @@ SQLITE_DB_FILE = AUDIT_DIR / 'palettes.db'
 
 TAB_1 = " "*4
 TAB_2 = TAB_1*2
-TAB_4 = TAB_2*2
 
 
 TEX_CMDS = {
@@ -75,26 +89,37 @@ TEX_TRANSLATE_LAST_COL = f"""
 """.strip()
 
 
-TEX_ITEM_HEADER = TAB_1 + r"""
-    %
-    \begin{center}
-        \begin{longtblr}[caption = {Ignored palettes}]{
-          colspec     = {@{}l | r Q[c,$] l},
-          baseline    = T,
-          column{2,4} = {cmd=\tdoccodein{text}},
-        }
+TEX_REBUILDABLE_TABLE_HEADER = r"""
+%
+\begin{center}
+    \begin{longtblr}[caption = {Rebuildable palettes}]{
+      colspec     = {@{}l | r Q[c,$] l},
+      baseline    = T,
+      column{2,4} = {cmd = \tdoccodein{text}},
+    }
 """.strip()
 
 
-TEX_TMPL_TABLE_FOOTER = TAB_2 + r"""
-        \end{longtblr}
-    \end{center}
+TEX_EXCLUDED_TABLE_HEADER = r"""
+%
+\begin{center}
+    \begin{longtblr}[caption = {Excluded palettes}]{
+      colspec   = {@{}l | r l},
+      baseline  = T,
+      column{2} = {cmd = \tdoccodein{text}},
+    }
 """.strip()
 
 
-TEX_TMPL_KIND  = TAB_4 + r"{ctxt}"
-TEX_TMPL_ROW   = TAB_4 + r"  & {row} \\"
-TEX_TMPL_HRULE = TAB_4 + r"\hline"
+TEX_TABLE_FOOTER = TAB_1 + r"""
+    \end{longtblr}
+\end{center}
+""".strip()
+
+
+TEX_TMPL_SRC   = TAB_2 + r"{src}"
+TEX_TMPL_ROW   = TAB_2 + r"  & {row} \\"
+TEX_TMPL_HRULE = TAB_2 + r"\hline"
 
 
 # ----------------------------- #
@@ -127,11 +152,6 @@ LEFT JOIN alias a ON h.pal_id = a.pal_id
 
 logging.info("Extract 'ignored palettes' by human or design")
 
-IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
-
-PALS_EXCLUDED_BY_TECHNO    = defaultdict(list)
-PALS_REBUILDABLE_BY_TECHNO = defaultdict(list)
-
 with IGNORED_YAML.open('r') as f:
     for src, pals in safe_load(f).items():
 # Same source for 1st and 2nd palettes.
@@ -146,7 +166,7 @@ with IGNORED_YAML.open('r') as f:
 
 # Excluded by desing (too big, fully black...).
             if not TAG_REL in data:
-                PALS_EXCLUDED_BY_TECHNO[src].append((
+                EXCLUDED_PALS_BY_TECHNO[src].append((
                     name,
                     data[TAG_WHY],
                 ))
@@ -200,7 +220,7 @@ LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
 
     rows = cursor.fetchall()
 
-    for name_1, alias_1, name_2, alias_2, resrc in rows:
+    for name_1, alias_1, name_2, alias_2, src in rows:
         name_1 = alias_1 if alias_1 else name_1
         name_2 = alias_2 if alias_2 else name_2
 
@@ -212,65 +232,54 @@ LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
         ))
 
 
-# -------------------------- #
-# -- REBUILDABLE PALETTES -- #
-# -------------------------- #
+# ------------------------------------------------- #
+# -- REBUILDABLE PALETTES /  EXCLUDED BY DESIGN  -- #
+# ------------------------------------------------- #
 
-if PALS_REBUILDABLE_BY_TECHNO:
-    logging.info("Build 'rebuildable palette' TeX file")
-
-    texcode = [
+for ctxt, data, texfile, comment, tbl_header in [
+    (
+        "rebuildable palettes",
+        PALS_REBUILDABLE_BY_TECHNO,
+        REBUILDABLE_PALS_TEX_FILE,
         TEX_NO_EDIT,
-        '',
-        TEX_ITEM_HEADER,
-    ]
+        TEX_REBUILDABLE_TABLE_HEADER
+    ),
+    (
+        "excluded by design palettes",
+        EXCLUDED_PALS_BY_TECHNO,
+        EXCLUDED_PALS_TEX_FILE,
+        TEX_TRANSLATE_LAST_COL,
+        TEX_EXCLUDED_TABLE_HEADER
+    )
+]:
+    if not data:
+        logging.info(f"No '{ctxt}'")
 
-    for src in sorted(PALS_REBUILDABLE_BY_TECHNO):
+        continue
+
+    logging.info(f"Build '{ctxt}' TeX file")
+
+    _texcode = [comment, tbl_header]
+
+    for src in sorted(data):
         src_name = YAML_CONFIGS[TAG_RESRC][src]['name']
 
+        _texcode.append(
+            TEX_TMPL_SRC.format(src = src_name),
+        )
 
-        for onerow in PALS_REBUILDABLE_BY_TECHNO[src]:
-            print(onerow)
-
-exit(1)
-
-texcode += [
-            TEX_TMPL_KIND.format(
-                ctxt = TEX_CMDS.get(ctxt, ctxt),
-            ),
-        ]
-
-
-
-
-
-
-
-
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
-
-logging.info("Build 'ignored palette list' in TeX file")
-
-texcode = []
-
-if PALS_REBUILDABLE_BY_TECHNO:
-
-    for ctxt in sorted(PALS_REBUILDABLE_BY_TECHNO):
-
-        for row in PALS_REBUILDABLE_BY_TECHNO[ctxt]:
+        for row in data[src]:
             row = ' & '.join(row)
 
-            texcode.append(
+            _texcode.append(
                 TEX_TMPL_ROW.format(row = row)
             )
 
-        texcode.append(TEX_TMPL_HRULE)
+        _texcode.append(TEX_TMPL_HRULE)
 
-    texcode.pop(-1)
-    texcode.append(TEX_TMPL_TABLE_FOOTER)
+    _texcode.pop(-1)
+    _texcode.append(TEX_TABLE_FOOTER)
 
-texcode = '\n'.join(texcode)
+    texcode = '\n'.join(_texcode)
 
-TEX_FILE.write_text(texcode)
+    texfile.write_text(texcode)

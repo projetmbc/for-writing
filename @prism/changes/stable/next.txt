@@ -27,7 +27,11 @@ Here are the breaking \chges.
 
 
 [[:doc:]]
-Manual: remove the cluster appendix.
+Manual.
+
+    1) Ignored and renamed palettes have been placed in dedicated appendices.
+
+    1) Remove the cluster appendix.
 
 
 -----
@@ -37,7 +41,7 @@ Manual: remove the cluster appendix.
 [[:api:]]
 Here are the new features.
 
-    1) 96 new palettes added.
+    1) 95 new palettes added.
 
     1) Multiple \distrib formats are now available to meet various technical requirements.
 

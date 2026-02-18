@@ -1,0 +1,30 @@
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+%
+\begin{center}
+    \begin{longtblr}[caption = {Rebuildable palettes}]{
+      colspec     = {@{}l | r Q[c,$] l},
+      baseline    = T,
+      column{2,4} = {cmd = \tdoccodein{text}},
+    }
+        Colorbrewer
+          & YlOrRd & \prec & YlOrRd \\
+        \hline
+        Light Bartlein
+          & BlueDarkOrange12 & \prec & BlueDarkOrange \\
+          & BlueOrange10 & \prec & BlueOrange \\
+          & BlueOrange8 & \prec & BlueOrange \\
+        \hline
+        Matplotlib
+          & Tab10 & \prec & Tab20 \\
+          & Gray & \rightleftharpoons & Binary \\
+          & GistYarg & \rightleftharpoons & GistGray \\
+        \hline
+        Plotly
+          & D3 & \prec & Tab20 \\
+        \hline
+        Tableau
+          & Tableau & = & Tab20 \\
+    \end{longtblr}
+\end{center}

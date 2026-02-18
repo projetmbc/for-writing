@@ -253,10 +253,9 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
         data = json_load(resrc_json.open())
 
-        is_kept = 1
-
         for name, infos in data.items():
-            paldef = infos[TAG_RGB_COLS]
+            is_kept = 1
+            paldef  = infos[TAG_RGB_COLS]
 
             if len(paldef) > MAX_SIZE:
                 is_kept = 0
@@ -274,7 +273,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                     UPDATE_IGNORED_YAML = True
 
                     FINAL_IGNORED[src][name] = {
-                        TAG_WHY: f'Too big (size > {MAX_SIZE})'
+                        TAG_WHY: f'Too big (size > {MAX_SIZE}).'
                     }
 
             std_kind = get_std_kind(infos[TAG_KIND])

@@ -1,0 +1,71 @@
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+%
+\begin{center}
+    \begin{longtblr}[caption = {Renamed palettes}]{
+      colspec     = {@{}l | r Q[c,$] l},
+      baseline    = T,
+      column{2,4} = {cmd=\tdoccodein{text}},
+    }
+        CarbonPlan
+          & Bluegrey & \Rightarrow & BlueGrey \\
+          & Blues & \Rightarrow & BluesCP \\
+          & Cool & \Rightarrow & CoolCP \\
+          & Earth & \Rightarrow & EarthCP \\
+          & Greengrey & \Rightarrow & GreenGrey \\
+          & Greens & \Rightarrow & GreensCP \\
+          & Greys & \Rightarrow & GreysCP \\
+          & Orangeblue & \Rightarrow & OrangeBlue \\
+          & Orangegrey & \Rightarrow & OrangeGrey \\
+          & Oranges & \Rightarrow & OrangesCP \\
+          & Pinkgreen & \Rightarrow & PinkGreen \\
+          & Pinkgrey & \Rightarrow & PinkGrey \\
+          & Purplegrey & \Rightarrow & PurpleGrey \\
+          & Purples & \Rightarrow & PurplesCP \\
+          & Rainbow & \Rightarrow & RainbowCP \\
+          & Redgrey & \Rightarrow & RedGrey \\
+          & Reds & \Rightarrow & RedsCP \\
+          & Redteal & \Rightarrow & RedTeal \\
+          & Sinebow & \Rightarrow & SineBow \\
+          & Tealgrey & \Rightarrow & TealGrey \\
+          & Yellowgrey & \Rightarrow & YellowGrey \\
+          & Yellowpurple & \Rightarrow & YellowPurple \\
+        \hline
+        CARTOColors
+          & Prism & \Rightarrow & PrismCC \\
+        \hline
+        CMasher
+          & Copper & \Rightarrow & CopperCM \\
+          & Fall & \Rightarrow & FallCM \\
+          & Ghostlight & \Rightarrow & GhostLight \\
+          & Iceburn & \Rightarrow & IceBurn \\
+          & Ocean & \Rightarrow & OceanCM \\
+          & Redshift & \Rightarrow & RedShift \\
+          & Sunburst & \Rightarrow & SunBurst \\
+        \hline
+        Colorbrewer
+          & PRGn & \Rightarrow & PrGn \\
+          & YlOrRd & \Rightarrow & YlOrRdCBW \\
+        \hline
+        Light Bartlein
+          & BlueDarkOrange18 & \Rightarrow & BlueDarkOrange \\
+          & BlueOrange12 & \Rightarrow & BlueOrange \\
+        \hline
+        Matplotlib
+          & Afmhot & \Rightarrow & AfmHot \\
+          & Brg & \Rightarrow & BRG \\
+          & Bwr & \Rightarrow & BWR \\
+          & Coolwarm & \Rightarrow & CoolWarm \\
+          & Hsv & \Rightarrow & HSV \\
+        \hline
+        Plotly
+          & Bluered & \Rightarrow & BlueRedPLY \\
+          & Hot & \Rightarrow & HotPLY \\
+          & Jet & \Rightarrow & JetPLY \\
+          & Rainbow & \Rightarrow & RainbowPLY \\
+        \hline
+        Tableau
+          & Gray & \Rightarrow & MidGray \\
+    \end{longtblr}
+\end{center}

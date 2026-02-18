@@ -1,5 +1,3 @@
-exit(1)
-
 #!/usr/bin/env python3
 
 # ---------------------------- #     NETTOYER CE QUI EST EN TROP !!!

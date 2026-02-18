@@ -1,5 +1,3 @@
-exit(1)
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -31,22 +29,30 @@ PROJ_DIR = THIS_DIR
 while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
-AUDIT_DIR         = BUILD_TOOLS_DIR / TAG_AUDIT
-TRANSLATE_DIR     = PROJ_DIR / "contrib" / "translate" / "common"
-USED_BY_TOOLS_DIR = TRANSLATE_DIR.parent / "en" / TAG_USED_BY_TOOLS
+AUDIT_DIR     = BUILD_TOOLS_DIR / TAG_AUDIT
+TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
 
 
-PALS_RENAMED_BY_TECHNO = defaultdict(dict)
+SQLITE_DB_FILE = AUDIT_DIR / 'palettes.db'
 
 
-TEX_FILE = TRANSLATE_DIR / "report" / "renamed-palettes.latex"
+PALS_RENAMED_BY_TECHNO = defaultdict(list)
+
+
+RENAMED_PALS_TEX_FILE = TRANSLATE_DIR / "report" / "renamed-palettes.latex"
+
+if RENAMED_PALS_TEX_FILE.is_file():
+    RENAMED_PALS_TEX_FILE.unlink()
+
+RENAMED_PALS_TEX_FILE.touch()
 
 
 # ------------------ #
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-TAB = " "*8
+TAB_1 = " "*4
+TAB_2 = TAB_1*2
 
 
 TEX_NO_EDIT = f"""
@@ -56,44 +62,26 @@ TEX_NO_EDIT = f"""
 """.strip()
 
 
-TAG_START = "% -- LIST OF RENAMED PALETTES - AUTO - START -- %"
-TAG_END   = "% -- LIST OF RENAMED PALETTES - AUTO - END -- %"
-
-
-LIST_DESC = (
-    USED_BY_TOOLS_DIR / "renamed-palettes.tex"
-).read_text()
-
-for (s, e) in [
-    (TAG_START, TAG_END),
-    (r'\begin{enumerate}', r'\end{enumerate}'),
-]:
-    _ , _ , LIST_DESC = LIST_DESC.partition(f"\n{s}")
-
-    LIST_DESC , _ , _ = LIST_DESC.partition(f"{e}\n")
-
-LIST_DESC = LIST_DESC.strip()
-
-TEX_ITEM_HEADER = TAB + LIST_DESC + r"""
-    %
-    \begin{center}
-        \begin{longtblr}[caption = {Renamed palettes}]{
-          colspec     = {@{}l | r Q[c,$] l},
-          baseline    = T,
-          column{2,4} = {cmd=\tdoccodein{text}},
-        }
+TEX_TABLE_HEADER = r"""
+%
+\begin{center}
+    \begin{longtblr}[caption = {Renamed palettes}]{
+      colspec     = {@{}l | r Q[c,$] l},
+      baseline    = T,
+      column{2,4} = {cmd=\tdoccodein{text}},
+    }
 """.strip()
 
 
-TEX_TMPL_TABLE_FOOTER = TAB + r"""
-\end{longtblr}
-    \end{center}
+TEX_TABLE_FOOTER = TAB_1 + r"""
+    \end{longtblr}
+\end{center}
 """.strip()
 
 
-TEX_TMPL_KIND  = TAB*2 + r"{ctxt}"
-TEX_TMPL_ROW   = TAB*2 + r"  & {row} \\"
-TEX_TMPL_HRULE = TAB*2 + r"\hline"
+TEX_TMPL_SRC   = TAB_2 + r"{src}"
+TEX_TMPL_ROW   = TAB_2 + r"  & {row} \\"
+TEX_TMPL_HRULE = TAB_2 + r"\hline"
 
 
 TEX_EQUIV_CMD = r"\Rightarrow"
@@ -103,7 +91,9 @@ TEX_EQUIV_CMD = r"\Rightarrow"
 # -- DB - PALETTE ALIASES -- #
 # -------------------------- #
 
-with sqlite3.connect(AUDIT_DIR / 'palettes.db') as conn:
+logging.info("Get 'alias'")
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
 
     query = """
@@ -117,51 +107,50 @@ JOIN alias a ON h.pal_id = a.pal_id
 
     rows = cursor.fetchall()
 
-    for name, alias, resrc in rows:
-        resrc = RESRC_ALIAS[resrc.lower()]
-
-        if not resrc in PALS_RENAMED_BY_TECHNO:
-            PALS_RENAMED_BY_TECHNO[resrc] = []
-
-        PALS_RENAMED_BY_TECHNO[resrc].append((
+    for name, alias, src in rows:
+        PALS_RENAMED_BY_TECHNO[src].append((
             name,
             TEX_EQUIV_CMD,
             alias
         ))
 
 
-# ----------------- #
-# -- LET'S WORK! -- #
-# ----------------- #
+# ---------------------- #
+# -- RENAMED PALETTES -- #
+# ---------------------- #
 
-logging.info("Build 'renamed palette list' in TeX file")
+if not PALS_RENAMED_BY_TECHNO:
+    logging.info("No 'renamed palettes'")
 
-texcode = []
+    exit(0)
 
-if PALS_RENAMED_BY_TECHNO:
-    texcode = [
-        TEX_NO_EDIT,
-        '',
-        TEX_ITEM_HEADER,
-    ]
 
-    for ctxt in sorted(PALS_RENAMED_BY_TECHNO):
-        texcode += [
-            TEX_TMPL_KIND.format(ctxt = ctxt),
-        ]
+logging.info("Build 'renamed palettes' TeX file")
 
-        for row in PALS_RENAMED_BY_TECHNO[ctxt]:
-            row = ' & '.join(row)
+_texcode = [
+    TEX_NO_EDIT,
+    TEX_TABLE_HEADER
+]
 
-            texcode.append(
-                TEX_TMPL_ROW.format(row = row)
-            )
+for src in sorted(PALS_RENAMED_BY_TECHNO):
+    src_name = YAML_CONFIGS[TAG_RESRC][src]['name']
 
-        texcode.append(TEX_TMPL_HRULE)
+    _texcode.append(
+        TEX_TMPL_SRC.format(src = src_name),
+    )
 
-    texcode.pop(-1)
-    texcode.append(TEX_TMPL_TABLE_FOOTER)
+    for row in PALS_RENAMED_BY_TECHNO[src]:
+        row = ' & '.join(row)
 
-texcode = '\n'.join(texcode)
+        _texcode.append(
+            TEX_TMPL_ROW.format(row = row)
+        )
 
-TEX_FILE.write_text(texcode)
+    _texcode.append(TEX_TMPL_HRULE)
+
+_texcode.pop(-1)
+_texcode.append(TEX_TABLE_FOOTER)
+
+texcode = '\n'.join(_texcode)
+
+RENAMED_PALS_TEX_FILE.write_text(texcode)

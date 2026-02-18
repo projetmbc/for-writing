@@ -17,14 +17,26 @@ git a
 git cm "..."
 
 
-
 // ---------- //
 
-REMOVED.yaml : pour des palettes non prises en compte (sifht / subpal), avec ajout de cecci dans la doc vi a un tableau
+AVANT nelle version !!!!!
 
-audit visuelle !!!
 
-subpal et shift pal
+régler BUG dû à   name: Light and Bartlein
+
++
+
+imprimer audit pour les catgeos car des choses à revori !!!
+
++
+
+categos
+
+    --> palettes de cmasher: pour les personnes atteintes de daltonisme (deutéranopie, protanopie, etc.).
+
+
+
+
 
 
 // ---------- //
@@ -35,19 +47,6 @@ colormpas juste pour catgeos (les noms et les shift sont catastrophique)
 
     --> SciVisColor directement aussi : page de garde donne les types
 https://sciviscolor.org/colormaps/ Nlles categos ?
-
-
-// ---------- //
-
-categos
-
-    --> palettes de cmasher: pour les personnes atteintes de daltonisme (deutéranopie, protanopie, etc.).
-
-    --> Besoin d'un outil de mise à jour du type
-
-        + rangé par ordre alphabétique
-        + rangé par resrc
-        + rangé par type
 
 
 // ---------- //
@@ -63,18 +62,6 @@ cluster (mais pas dans la doc PDF)
 
 // ---------- //
 
-AVANT nelle version !!!!!
-
-
-imprimer audit pour les catgeos car des choses à revori !!!
-
-+
-
-appendix dedie a rename et ignore car c'est sans limite de taille
-
-
-// ---------- //
-
 -----
 :new:
 -----
@@ -84,11 +71,6 @@ Standardizing the retrieval of external palettes done for the following \projs.
 
     + \colormaps      ????
     + \nclcolortables  ??
-
-
-// ---------- //
-
-POST-ALIAS.yaml a vire si fasiable : un probleme de xlogique lie au alais de emttre ettre mais de casse differente
 
 
 // ---------- //
@@ -111,7 +93,7 @@ audit
 
 // ---------- //
 
-HMT viewer
+HTML viewer
 
     --> garder des PDFs autonomes anciens car c'est joli !
 
@@ -179,9 +161,6 @@ revoir latex API car ce qui suit est pénible!!!
 css - html de dev : support aussi de l'hexadécimal car std en CSS
 
 
-
-
-
 // ---------- //
 
 intégrer en externe directement si possible
@@ -196,7 +175,6 @@ intégrer en externe directement si possible
 # https://arxiv.org/abs/2107.02270
 
 https://github.com/mwaskom/seaborn/blob/master/seaborn/palettes.py
-
 
 
 // ---------- //

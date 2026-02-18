@@ -33,11 +33,15 @@
   \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
 \egroup
 
-The following palettes are excluded as subsets of existing ones, or due to direct or reversed duplication. Note that exact duplicates -- sharing both name and colors -- are omitted entirely. We identify related versions using the following notation.
+The following palettes are excluded as sublists of existing ones,%
+\footnote{
+A palette is defined as a sublist if it is formed by removing colors while preserving the relative order of the remaining ones.
+}
+or due to direct or reversed duplication. Note that exact duplicates -- sharing both name and colors -- are omitted entirely. We identify relation between palettes using the following notations.
 %
 \begin{multicols}{3}
 \begin{itemize}[label=\textbullet\,]
-    \item Subset: \boxed{{\prec}\vphantom{pM}}
+    \item Sublist: \boxed{{\prec}\vphantom{pM}}
 
     \item Equality: \boxed{{=}\vphantom{pM}}
 
@@ -45,16 +49,16 @@ The following palettes are excluded as subsets of existing ones, or due to direc
 \end{itemize}
 \end{multicols}
 
-In these cases, the rightmost palette is the one retained in \thisproj.
-
-
+In these cases, the rightmost palette is the one retained in \thisproj. For example, this table indicates that \tdoccodein{text}{YlOrRd} from \colorbrewer\ uses a sublist of colors from the \thisproj\ palette \tdoccodein{text}{YlOrRd}.
+%
+%
 \subimport{../../../common/report/}{rebuildable-palettes.latex}
 
 
 % -------------------- %
 
 
-\newpage
+%\newpage
 
 
 \bgroup
@@ -65,33 +69,9 @@ In these cases, the rightmost palette is the one retained in \thisproj.
   \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
 \egroup
 
-% ------------------------------------------- %
-% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
-% ------------------------------------------- %
-
-%\foreach \nb/\kind/\title in {%
-%% -- FOREACH CATEGOS - AUTO - START -- %
-%  1/colorblind/{Colorblind palettes},%
-%  2/cyclic/{Cyclic palettes},%
-%  3/dark/{Dark palettes},%
-%  4/divergent/{Divergent palettes},%
-%  5/qualitative/{Qualitative palettes},%
-%  6/semantic/{Semantic palettes},%
-%  7/sequential/{Sequential palettes},%
-%  8/stepped/{Stepped palettes}%
-%% -- FOREACH CATEGOS - AUTO - END -- %
-%}{
-%  \ifthenelse{\nb = 1}{}{\newpage}
+The following palettes have been intentionally excluded. Please refer to the explanation below.
 %
-%  \phantomsection
-%  \subsection*{\hfill\title\hfill\null}%
-%  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
-%  %
-%  \subimport{../../used-by-tools/categos/}{desc-\kind.latex}
 %
-%  \begin{multicols*}{2}
-%    \subimport{../../../common/categos/}{\kind.latex}
-%  \end{multicols*}
-%}
+\subimport{../../used-by-tools/report/}{excluded-palettes.latex}
 
 \end{document}
