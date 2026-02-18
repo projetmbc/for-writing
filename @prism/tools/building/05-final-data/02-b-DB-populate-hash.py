@@ -21,6 +21,10 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+from yaml import (
+    safe_load,
+    dump as yaml_dump
+)
 
 # ----------------- #
 # -- SQL QUERIES -- #
@@ -79,12 +83,16 @@ IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
 IGNORED_YAML.touch()
 
 with IGNORED_YAML.open(mode = 'r') as f:
-    _IGNORED = yaml.safe_load(f)
+    FINAL_IGNORED = yaml.safe_load(f)
+
+UPDATE_IGNORED_YAML = False
 
 IGNORED = set()
 
+UPDATE_IGNORED_YAML = False
+
 # Validatae and normalize the ''IGNORED'' dict.
-for resrc, namedata in _IGNORED.items():
+for resrc, namedata in FINAL_IGNORED.items():
     for name, data in namedata.items():
         IGNORED.add((name, resrc))
 
@@ -245,6 +253,8 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
         data = json_load(resrc_json.open())
 
+        is_kept = 1
+
         for name, infos in data.items():
             paldef = infos[TAG_RGB_COLS]
 
@@ -257,6 +267,16 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                      "(metadata retained for future reporting)"
                 )
 
+                if not name in FINAL_IGNORED.get(src, []):
+                    if not src in FINAL_IGNORED:
+                        FINAL_IGNORED[src] = dict()
+
+                    UPDATE_IGNORED_YAML = True
+
+                    FINAL_IGNORED[src][name] = {
+                        TAG_WHY: f'Too big (size > {MAX_SIZE})'
+                    }
+
             std_kind = get_std_kind(infos[TAG_KIND])
 
             hash_normal  = get_hash_pal(paldef)
@@ -266,7 +286,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                 conn         = conn,
                 name         = name,
                 source       = src,
-                is_kept      = 1,
+                is_kept      = is_kept,
                 kind         = std_kind,
                 hash_normal  = hash_normal,
                 hash_reverse = hash_reverse
@@ -275,6 +295,20 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # Default value of ''equal_to'' attributes.
     cursor = conn.cursor()
     cursor.execute(SQL_SET_DEFAULT_EQUAL_TO)
+
+
+# --------------------- #
+# -- REMOVE PALETTES -- #
+# --------------------- #
+
+if UPDATE_IGNORED_YAML:
+    logging.info(
+        f"JSON - Update '{IGNORED_YAML.relative_to(PROJ_DIR)}'"
+    )
+
+    IGNORED_YAML.write_text(
+        yaml_dump(FINAL_IGNORED)
+    )
 
 
 # --------------------- #

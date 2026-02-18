@@ -26,21 +26,6 @@
 
 
 \bgroup
-  \def\title{Excluded by design} % To be translated.
-
-  \phantomsection
-  \subsection*{\hfill\title\hfill\null}%
-  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
-\egroup
-
-
-% -------------------- %
-
-
-\newpage
-
-
-\bgroup
   \def\title{Rebuildable palettes} % To be translated.
 
   \phantomsection
@@ -62,5 +47,51 @@ The following palettes are excluded as subsets of existing ones, or due to direc
 
 In these cases, the rightmost palette is the one retained in \thisproj.
 
+
+\subimport{../../../common/report/}{rebuildable-palettes.latex}
+
+
+% -------------------- %
+
+
+\newpage
+
+
+\bgroup
+  \def\title{Excluded by design} % To be translated.
+
+  \phantomsection
+  \subsection*{\hfill\title\hfill\null}%
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
+\egroup
+
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+
+%\foreach \nb/\kind/\title in {%
+%% -- FOREACH CATEGOS - AUTO - START -- %
+%  1/colorblind/{Colorblind palettes},%
+%  2/cyclic/{Cyclic palettes},%
+%  3/dark/{Dark palettes},%
+%  4/divergent/{Divergent palettes},%
+%  5/qualitative/{Qualitative palettes},%
+%  6/semantic/{Semantic palettes},%
+%  7/sequential/{Sequential palettes},%
+%  8/stepped/{Stepped palettes}%
+%% -- FOREACH CATEGOS - AUTO - END -- %
+%}{
+%  \ifthenelse{\nb = 1}{}{\newpage}
+%
+%  \phantomsection
+%  \subsection*{\hfill\title\hfill\null}%
+%  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
+%  %
+%  \subimport{../../used-by-tools/categos/}{desc-\kind.latex}
+%
+%  \begin{multicols*}{2}
+%    \subimport{../../../common/categos/}{\kind.latex}
+%  \end{multicols*}
+%}
 
 \end{document}

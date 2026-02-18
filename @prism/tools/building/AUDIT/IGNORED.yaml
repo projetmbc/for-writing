@@ -1,23 +1,24 @@
 # -- C -- #
 CMASHER:
+  Neutral:
+    why: Too big (size > 512)
   Savanna:
-    why: This palette appears to be completely black.
+    why: Looks completely black.
 COLORBREWER:
   YlOrRd:
     palette: YlOrRd
     relation: <
-    src: ASYMPTOTE
 
 # -- L -- #
 LIGHTBARTLEIN:
   BlueDarkOrange12:
-    palette: BlueDarkOrange18
+    palette: BlueDarkOrange
     relation: <
   BlueOrange10:
-    palette: BlueOrange12
+    palette: BlueOrange
     relation: <
   BlueOrange8:
-    palette: BlueOrange12
+    palette: BlueOrange
     relation: <
 
 # -- M -- #
@@ -31,11 +32,9 @@ PLOTLY:
   D3:
     palette: Tab10
     relation: '='
-    src: ASYMPTOTE
 
 # -- T -- #
 TABLEAU:
   Tableau:
     palette: Tab20
     relation: '='
-    src: ASYMPTOTE

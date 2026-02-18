@@ -51,16 +51,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Seasons\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Seasons-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries SineBow\vphantom{g}}
 
         \smallskip

@@ -961,16 +961,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Neutral\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Neutral-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries NipySpectral\vphantom{g}}
 
         \smallskip
@@ -981,30 +971,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Nuclear\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Nuclear-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Ocean\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/Ocean-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries OceanCM\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/OceanCM-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1075,16 +1045,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Peach-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Pepper\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Pepper-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1251,16 +1211,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Rainforest\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Rainforest-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries RdPu\vphantom{g}}
 
         \smallskip
@@ -1311,30 +1261,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Sapphire\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Sapphire-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Seismic\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/Seismic-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Sepia\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Sepia-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1391,16 +1321,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries SunBurst\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/SunBurst-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Sunset\vphantom{g}}
 
         \smallskip
@@ -1415,16 +1335,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/SunsetDark-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Swamp\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Swamp-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1491,46 +1401,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Torch\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Torch-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Toxic\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Toxic-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Tree\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Tree-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Tropical\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Tropical-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Turbid\vphantom{g}}
 
         \smallskip
@@ -1575,16 +1445,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Viridis-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Voltage\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Voltage-spectrum.pdf}
     \end{center}
 \end{minipage}
 
