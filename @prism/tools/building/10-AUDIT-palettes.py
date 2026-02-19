@@ -1,5 +1,3 @@
-exit(1)
-
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
@@ -34,33 +32,68 @@ from natsort import (
 # ------------------ #
 
 NEWPAGE_ON = [
-    # 'Alphabet',
-    # 'BlueDarkRed12',
-    # 'BrownBlue12',
-    # 'BuPu',
-    # 'Cubehelix3',
-    # 'Deep',
-    # 'Eclipse',
-    # 'Geyser',
-    # 'GistStern',
-    # 'GreenGrey',
-    # 'Greys',
-    # 'Horizon',
-    # 'Inferno',
-    # 'JetPLY',
-    # 'Lemon',
-    # 'Magenta',
-    # 'Matter',
-    # 'OceanCM',
-    # 'Plotly',
-    # 'PrismCC',
-    # 'PurplesCP',
-    # 'RdBu',
-    # 'RdYlGn',
-    # 'RedsCP',
-    # 'Seismic',
-    # 'SunBurst',
-    # 'Torch',
+    'Alphabet',
+    'Apple',
+    'Autumn',
+    'BatlowK',
+    'BlindFish',
+    'BlueGreen',
+    'BlueRedPLY',
+    'BluYl',
+    'Broc',
+    'Bubblegum',
+    'BurgYl',
+    'Cividis',
+    'CoolCP',
+    'CorkO',
+    'Cubehelix2',
+    'Darjeeling2',
+    'DarkMint',
+    'Dusk',
+    'Emerald',
+    'FantasticFox2',
+    'Fusion',
+    'GhostLight',
+    'GistStern',
+    'GrandBudapest1',
+    'GrayC',
+    'GreensCP',
+    'Heart',
+    'Ice',
+    'IsleOfDogs2',
+    'Jungle',
+    'Light24',
+    'Magenta',
+    'Matter',
+    'Moonrise3',
+    'NaviaW',
+    'Ocean',
+    'Oranges',
+    'Paired',
+    'Peach',
+    'Petroff10',
+    'PinkGrey',
+    'Plotly',
+    'Prism',
+    'PuRd',
+    'Purples',
+    'Rainforest',
+    'RdYlGn',
+    'RedsCP',
+    'RomaO',
+    'Sapphire',
+    'Set2',
+    'Spectral',
+    'Sunset',
+    'Tab20b',
+    'TdocCol',
+    'Teals',
+    'Tokyo',
+    'Tropical',
+    'Vik',
+    'Voltage',
+    'Wind',
+    'YlGn',
 ]
 
 
@@ -80,6 +113,9 @@ TEX_HEADER_TMPL = r"""
 
 \usepackage{amssymb}
 \usepackage{array}
+\usepackage{paracol}
+
+\columnratio{0.35}
 
 \begin{document}
 
@@ -117,17 +153,84 @@ TEX_NEWPAGE_TMPL = r"""
 \newpage"""
 
 
+TEX_INCLUDE_ANGULAR_GRAD_TMPL = r"""
+\smallskip
+
+\begin{{paracol}}{{2}}
+    \hspace{{2em}}\includegraphics[scale=.75]{{showcase/{name}-angular-gradient.pdf}}
+
+    \switchcolumn
+""".strip()
+
+
 TEX_INCLUDEGRAPH_TMPL = (
     TAB_1
     +
     r"\includegraphics[scale=1.25]{{../../../contrib/translate/common/showcase/{name}-{format}.pdf}}"
 )
 
+
+TEX_CLOSE_PARACOL_TMPL = r'\end{paracol}'
+
+
 TEX_GRAPHSEP_TMPL = TAB_1 + r'\smallskip'
 
 
 # ------------------ #
 # -- CONSTANTS #3 -- #
+# ------------------ #
+
+TEX_ANGULAR_GRADIENT_TMPL = r"""
+% !TEX TS-program = lualatex
+
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+
+\documentclass{standalone}
+
+\usepackage[svgnames]{xcolor}
+\usepackage[3d]{luadraw}
+
+\directlua{
+  dofile('../../../../products/lua/palettes-hf/<PALNAME>.lua')
+}
+
+\begin{document}
+
+\begin{luadraw}{name = <PALNAME>-angular-gradient}
+require 'luadraw_shadedforms'
+
+local g = graph:new{
+  size   = {10,10},
+  margin = {0,0,0,0},
+  bbox   = false
+}
+
+L = circle(0, 1)
+
+local f = function(x,y)
+  return cpx.arg(Z(x,y))
+end
+
+g:Dshadedpolyline(
+  L,
+  pal<PALNAME>,
+  {
+    values = f,
+    width  = 300
+  }
+)
+
+g:Show()
+\end{luadraw}
+
+\end{document}
+""".strip() + '\n'
+
+
+# ------------------ #
+# -- CONSTANTS #4 -- #
 # ------------------ #
 
 PROJ_DIR = THIS_DIR
@@ -150,9 +253,9 @@ AUDIT_SHOWCASE_DIR.mkdir(
     exist_ok = True
 )
 
-for p in AUDIT_SHOWCASE_DIR.iterdir():
-    if p.is_file():
-        p.unlink()
+# for p in AUDIT_SHOWCASE_DIR.iterdir():
+#     if p.is_file():
+#         p.unlink()
 
 
 ALL_CATEGOS = sorted(
@@ -163,6 +266,8 @@ ALL_CATEGOS = sorted(
 # ------------------ #
 # -- GET LAST NEW -- #
 # ------------------ #
+
+logging.info("New pals - 'Get data'")
 
 logging.warning("NEW PALS NOT YET IMPLEMENTED!")
 
@@ -188,32 +293,29 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     )
 
 
+# -------------------------------------- #
+# -- BUILD ANGULAR GRADIENT TEX FILES -- #
+# -------------------------------------- #
 
+logging.info("New pals - TeX file - Build 'angular gradients'")
 
+for name, *_ in NEW_PALS:
+    texcode = TEX_ANGULAR_GRADIENT_TMPL.replace(
+        '<PALNAME>',
+        name
+    )
 
-print(NEW_PALS)
+    texfile = AUDIT_SHOWCASE_DIR / f'{name}-angular-gradient.tex'
 
-exit(1)
-
-
-
-
-# ------------------------- #
-# -- NEW PALS - TEX FILE -- #
-# ------------------------- #
-
-logging.info("New pals - Build 'TeX file'")
-
-
-exit(1)
-
+    texfile.touch()
+    texfile.write_text(texcode)
 
 
 # ------------------------- #
 # -- NEW PALS - TEX FILE -- #
 # ------------------------- #
 
-logging.info("New pals - Build 'TeX file'")
+logging.info("New pals - TeX file - 'Audit file'")
 
 _texcode = [TEX_HEADER_TMPL]
 
@@ -291,7 +393,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # We have graphics.
         _texcode += [
             '',
-            TEX_CENTER_HEADER_TMPL,
+            TEX_INCLUDE_ANGULAR_GRAD_TMPL.format(name = name),
             TEX_INCLUDEGRAPH_TMPL.format(
                 name  = name,
                 format = 'spectrum'
@@ -310,7 +412,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                 )
             ]
 
-        _texcode.append(TEX_CENTER_FOOTER_TMPL)
+        _texcode.append(TEX_CLOSE_PARACOL_TMPL)
 
 _texcode.append(
     rf"\centering\bfseries\Large {nbpals} palettes found."
