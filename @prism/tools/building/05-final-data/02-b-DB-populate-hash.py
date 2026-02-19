@@ -261,8 +261,8 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                 is_kept = 0
 
                 logging.warning(
-                     "(hash) Remove "
-                    f"'{name}' [{src}] - 'size > {MAX_SIZE}' "
+                    f"(hash) [{src}] Remove "
+                    f"'{name} (size > {MAX_SIZE})' "
                      "(metadata retained for future reporting)"
                 )
 

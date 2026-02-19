@@ -1,7 +1,3 @@
-exit(1)
-
-
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -39,7 +35,7 @@ AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 # ----------------------------- #
 
 logging.info(
-    f"Clean '{AUDIT_DIR.relative_to(PROJ_DIR)}' (only dynamic files)"
+    f"Dynamic files - Clean '{AUDIT_DIR.relative_to(PROJ_DIR)}'"
 )
 
 AUDIT_DIR.mkdir(
