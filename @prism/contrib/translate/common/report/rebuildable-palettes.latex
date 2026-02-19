@@ -11,7 +11,7 @@
         Colorbrewer
           & YlOrRd & \prec & YlOrRd \\
         \hline
-        Light Bartlein
+        Light and Bartlein
           & BlueDarkOrange12 & \prec & BlueDarkOrange \\
           & BlueOrange10 & \prec & BlueOrange \\
           & BlueOrange8 & \prec & BlueOrange \\

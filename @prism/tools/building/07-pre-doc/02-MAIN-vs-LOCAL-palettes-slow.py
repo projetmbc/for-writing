@@ -27,14 +27,11 @@ from cbutils      import *
 # ----------------- #
 
 PROJS_IGNORED = [
-    RESRC_FILE_NAMES[t]
-    for t in [
-        TAG_MATPLOTLIB,
-        TAG_ASYMPTOTE,
-        TAG_SCICOLMAPS,
-        TAG_COLORBREWER,
-        TAG_PALETTABLE,
-    ]
+    TAG_MATPLOTLIB,
+    TAG_ASYMPTOTE,
+    TAG_SCICOLMAPS,
+    TAG_COLORBREWER,
+    TAG_PALETTABLE,
 ]
 
 SQL_GET_NAMES_TO_TEST = '''
