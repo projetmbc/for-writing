@@ -21,8 +21,8 @@ Shifted palettes ignored.
 ''cbutils'' constants: remove ''RESRC_FILE_NAMES'' and use only uppercase resource names for internal coding.
 
 
-[[:workflow:]]
-New palettes: angular gradient have been added into the path::''NEW-PALS.pdf'' file.
+[[:flow:]]
+New palette audit: add angular gradient.
 
 
 // ---------- //
