@@ -35,7 +35,7 @@ SQL_GET_PAL = "SELECT source, name FROM hash WHERE name = ? AND is_kept = 1"
 # --------------- #
 
 PROJ_DIR = THIS_DIR
-while (PROJ_DIR.name != TAG_APRISM):
+while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 AUDIT_DIR      = PROJ_DIR / 'tools' / 'building' / 'AUDIT'

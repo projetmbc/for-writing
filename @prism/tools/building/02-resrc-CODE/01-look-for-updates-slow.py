@@ -21,6 +21,7 @@ if not YAML_CONFIGS[TAG_WORKFLOW]['ASK_GITHUB']:
     logging.warning("'NO SEARCH' for needed updates")
     exit(0)
 
+
 import os
 import re
 import requests
@@ -35,7 +36,7 @@ from bs4 import BeautifulSoup
 
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != TAG_APRISM):
+while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 
@@ -161,7 +162,7 @@ Set GITHUB_TOKEN environment variable for 5000 requests/hour
 logging.info("Looking for needed updates")
 
 for name, ids in GITHUB_IDS.items():
-    logging.info(f"Check '{name}' GitHub project")
+    logging.info(f"Check '{RESRC_ALIAS[name]}' GitHub project")
 
     try:
         last_date = get_github_last_date(ids)
@@ -191,6 +192,8 @@ for name, ids in GITHUB_IDS.items():
 # ----------------------------------------------- #
 # -- NEEDED UPDATES - SCIENTIFIC COLOUR MAPS 8 -- #
 # ----------------------------------------------- #
+
+logging.info(f"Check '{RESRC_ALIAS[TAG_SCICOLMAPS]}' website")
 
 try:
     response = requests.get("https://www.fabiocrameri.ch/colourmaps")

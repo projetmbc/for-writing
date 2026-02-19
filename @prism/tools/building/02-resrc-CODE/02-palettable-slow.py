@@ -24,12 +24,14 @@ from shutil import rmtree
 # -- CONSTANTS -- #
 # --------------- #
 
-THIS_RESRC = TAG_PALETTABLE
+THIS_RESRC = Path(__file__).stem
+THIS_RESRC = THIS_RESRC.split('-')[1]
+THIS_RESRC = THIS_RESRC.upper()
 
 
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != TAG_APRISM):
+while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 
@@ -56,7 +58,7 @@ if not UPDATES_NEEDED[THIS_RESRC]:
 # -- EMPTY SOURCE CODE -- #
 # ----------------------- #
 
-logging.info(f"Empty '{THIS_RESRC}' folder")
+logging.info(f"Folder - Empty '{THIS_RESRC}'")
 
 if THIS_RESRC_DIR.is_dir():
     rmtree(THIS_RESRC_DIR)
@@ -71,7 +73,9 @@ THIS_RESRC_DIR.mkdir(
 # -- DOWNLOAD SOURCE CODE -- #
 # -------------------------- #
 
-logging.info(f"Download '{THIS_RESRC}' source code")
+logging.info(
+    f"Source - Download '{RESRC_ALIAS[THIS_RESRC]}'"
+)
 
 download_and_unzip(
     log_raise_error = log_raise_error,
@@ -84,12 +88,10 @@ download_and_unzip(
 # -- CLEAN SOURCE CODE -- #
 # ----------------------- #
 
-logging.info(f"Clean '{THIS_RESRC}' folder")
-
+logging.info(f"Folder - Clean '{THIS_RESRC}'")
 
 for p in THIS_RESRC_DIR.glob("*/license.txt"):
     p.rename(THIS_RESRC_DIR / p.name)
-
 
 clean_src_dirs(
     local_src_dir = THIS_RESRC_DIR / "palettable-master",

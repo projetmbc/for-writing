@@ -30,7 +30,7 @@ THIS_RESRC = TAG_APRISM
 
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != TAG_APRISM):
+while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"

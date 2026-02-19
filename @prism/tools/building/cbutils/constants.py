@@ -11,19 +11,20 @@ from collections import defaultdict
 
 from .normval import get_nospace_lower
 
+
 # ------------------ #
 # -- THIS PROJECT -- #
 # ------------------ #
 
-TAG_APRISM           = "@prism"
-TAG_APRISM_LAST_MAIN = f'{TAG_APRISM.upper()}-LAST-MAIN'
+__TAG_APRISM         = '@prism'
+TAG_APRISM_LAST_MAIN = f'{__TAG_APRISM.upper()}-LAST-MAIN'
 
 
 THIS_DIR = Path(__file__).parent
 
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != TAG_APRISM):
+while (PROJ_DIR.name != __TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 
@@ -132,46 +133,33 @@ TAG_PAL = 'palette'
 # -- RESOURCES -- #
 # --------------- #
 
-ALL_RESRC_TAGS    = set()
-RESRC_SUBDIR_NAME = dict()
+RESRC_SUBDIR_NAME = defaultdict(list)
 GITHUB_IDS        = dict()
-RESRC_FILE_NAMES  = dict()
 RESRC_ALIAS       = dict()
 
-
-_subdir_name = defaultdict(dict)
 
 for cfgname, data in YAML_CONFIGS[TAG_RESRC].items():
     realname = data['name']
 
-    ALL_RESRC_TAGS.add(realname)
-
     # varname = varname.upper()
     varname = f"TAG_{cfgname}"
 
-    globals()[varname] = realname
-
-    RESRC_FILE_NAMES[globals()[varname]] = cfgname
+    globals()[varname] = cfgname
 
     github_ID = data.get('github', '')
     inside    = data.get('inside', '')
 
     if inside:
-        _subdir_name[inside][get_nospace_lower(realname)] = realname
+        RESRC_SUBDIR_NAME[inside].append(cfgname)
 
     elif github_ID:
-        GITHUB_IDS[globals()[varname]] = github_ID
+        GITHUB_IDS[cfgname] = github_ID
 
-    RESRC_ALIAS[realname.lower()] = realname
+    RESRC_ALIAS[cfgname] = realname
 
     if TAG_ALIAS in data:
         for alias in data[TAG_ALIAS]:
             RESRC_ALIAS[alias.lower()] = realname
-
-RESRC_SUBDIR_NAME = {
-    globals()[f"TAG_{k}"]: v
-    for k, v in _subdir_name.items()
-}
 
 
 # GitHub URLs

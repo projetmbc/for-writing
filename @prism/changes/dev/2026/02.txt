@@ -2,6 +2,24 @@
 
 
 ==
+19  (2.0.0-beta.21)
+==
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+''cbutils'' constants: remove ''RESRC_FILE_NAMES'' and use uppercase resource names for internal coding (previously used project names inconsistently).
+
+???? DB aussi !!!
+
+
+// ---------- //
+
+
+==
 18  (2.0.0-beta.20)
 ==
 

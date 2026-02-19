@@ -59,7 +59,7 @@ WHERE h.is_kept = 1
 THIS_DIR = Path(__file__).parent
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != TAG_APRISM):
+while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 PRODS_DIR = PROJ_DIR / "products"

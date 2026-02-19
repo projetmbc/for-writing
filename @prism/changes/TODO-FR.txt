@@ -22,15 +22,9 @@ git cm "..."
 AVANT nelle version !!!!!
 
 
-régler BUG dû à   name: Light and Bartlein
+audit last new : mettre le nom de la source
 
-+
-
-imprimer audit pour les catgeos car des choses à revori !!!
-
-+
-
-categos
+imprimer audit pour les catgeos car des choses à revoir dont ...
 
     --> palettes de cmasher: pour les personnes atteintes de daltonisme (deutéranopie, protanopie, etc.).
 

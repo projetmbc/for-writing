@@ -31,6 +31,37 @@ from natsort import (
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
+NEWPAGE_ON = [
+    'Alphabet',
+    'BlueDarkRed12',
+    'BrownBlue12',
+    'BuPu',
+    'Cubehelix3',
+    'Deep',
+    'Eclipse',
+    'Geyser',
+    'GistStern',
+    'GreenGrey',
+    'Greys',
+    'Horizon',
+    'Inferno',
+    'JetPLY',
+    'Lemon',
+    'Magenta',
+    'Matter',
+    'OceanCM',
+    'Plotly',
+    'PrismCC',
+    'PurplesCP',
+    'RdBu',
+    'RdYlGn',
+    'RedsCP',
+    'Seismic',
+    'SunBurst',
+    'Torch',
+]
+
+
 TAB_1 = ' '*4
 TAB_2 = TAB_1*2
 
@@ -56,7 +87,7 @@ TEX_FOOTER_TMPL = r"\end{document}"
 
 
 TEX_TABLE_HEADER_TMPL = (
-     r"\begin{tabular}{p{3.25cm}*"
+     r"\begin{tabular}{p{5.25cm}*"
     rf"{{{NB_MAX_COL_PER_CATEGO}}}"
      r"{p{2.25cm}}}"
 )
@@ -70,11 +101,14 @@ TEX_CMD_CHECK_OR_NOT = {
 
 
 TEX_CENTER_HEADER_TMPL = r"\begin{center}"
-TEX_CENTER_FOOTER_TMPL = r"""
-\end{center}
+TEX_CENTER_FOOTER_TMPL = r"\end{center}"
 
+TEX_RULE_TMPL = r"""
 \noindent\hrulefill
 """
+
+TEX_NEWPAGE_TMPL = r"""
+\newpage"""
 
 
 TEX_INCLUDEGRAPH_TMPL = (
@@ -93,7 +127,7 @@ TEX_GRAPHSEP_TMPL = TAB_1 + r'\smallskip'
 
 PROJ_DIR = THIS_DIR
 
-while (PROJ_DIR.name != TAG_APRISM):
+while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 
@@ -122,11 +156,12 @@ logging.warning("LAST NEW PALS NOT YET IMPLEMENTED!")
 # -- AUDIT PDF -- #
 # --------------- #
 
-logging.info("Last new pals - Build 'audit PDF'")
+logging.info("Last new pals - Build 'audit TeX file'")
 
 query = '''
 SELECT
     COALESCE(a.alias, h.name),
+    h.source,
     h.kind
 FROM hash h
 LEFT JOIN alias a ON h.pal_id = a.pal_id
@@ -141,7 +176,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(query)
 
-    for name, kinds in natsorted(
+    for name, src, kinds in natsorted(
         cursor.fetchall(),
         alg = ns.IGNORECASE
     ):
@@ -156,6 +191,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 #
 #     \textbf{name}
 #        & $\square$ colorblind & $\square$ cyclic & $\square$ dark & $\square$ divergent \\
+#     {\small src}
 #        & $\boxtimes$ qualitative & $\square$ semantic & $\square$ sequential
         _tablecode = [
             TAB_1 + rf"\textbf{{{name}}}",
@@ -163,6 +199,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         ]
 
         cursor = 1
+        addsrc = True
 
         for i, k in enumerate(ALL_CATEGOS):
             texcmd = TEX_CMD_CHECK_OR_NOT[k in _kinds]
@@ -170,14 +207,33 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
             if i == NB_MAX_COL_PER_CATEGO:
                 _tablecode[cursor] += r'\\'
 
-                _tablecode.append(TAB_2)
-                cursor += 1
+                if addsrc:
+                    addsrc = False
+
+                    _tablecode += [
+                        # TAB_1 + rf'{{\small {RESRC_ALIAS[src]}}}',
+                        TAB_1 + rf'{{\small {src}}}',
+                        TAB_2
+                    ]
+
+                    cursor += 2
+
+                else:
+                    _tablecode.append(TAB_2)
+
+                    cursor += 1
 
             _tablecode[cursor] += f"& {texcmd} {k} "
 
         _tablecode[cursor] = _tablecode[cursor].rstrip()
 
         tablecode = '\n'.join(_tablecode)
+
+        if name in NEWPAGE_ON:
+            _texcode.append(TEX_NEWPAGE_TMPL)
+
+        if nbpals != 1:
+            _texcode.append(TEX_RULE_TMPL)
 
         _texcode += [
             TEX_TABLE_HEADER_TMPL,

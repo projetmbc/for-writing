@@ -24,7 +24,7 @@ from cbutils      import *
 
 PROJ_DIR = Path(__file__).parent
 
-while (PROJ_DIR.name != TAG_APRISM):
+while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT

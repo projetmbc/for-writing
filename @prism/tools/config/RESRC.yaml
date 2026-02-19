@@ -112,10 +112,10 @@ CUBEHELIX:
 
 # ------- #
 # -- L -- #
-# ------- #   Light and Bartlein
+# ------- #
 
 LIGHTBARTLEIN:
-  name  : Light Bartlein
+  name  : Light and Bartlein
   inside: PALETTABLE
   desc  : |
     Light and Bartlein delivers specialized divergent palettes for
