@@ -58,7 +58,7 @@ RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 # -- FROM CMASHER -- #
 # ------------------ #
 
-logging.info(f"Analyze '{THIS_RESRC}' source code")
+logging.info(f"Source - Analyze '{THIS_RESRC}'")
 
 pals = dict()
 
@@ -86,7 +86,7 @@ for palfile in RESRC_DIR.glob('*.py'):
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
+logging.info(f"JSON - Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
 
 
 pals = get_sorted_dict(pals)

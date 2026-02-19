@@ -57,7 +57,7 @@ RESRC_PALS_JSON  = REPORT_DIR / f"{_RESRC_PALS_JSON}.json"
 # -- FROM COLORBREWER -- #
 # ---------------------- #
 
-logging.info(f"Analyze '{THIS_RESRC}' source code")
+logging.info(f"Source - Analyze '{THIS_RESRC}'")
 
 # -- Original palette defs -- #
 
@@ -127,7 +127,7 @@ for palname in sorted(final_names):
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
+logging.info(f"JSON - Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
 
 pals = get_sorted_dict(pals)
 

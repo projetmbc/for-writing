@@ -329,26 +329,31 @@ def extract(folder: Path) -> dict[str, PaletteCols]:
 # -- FROM PALETTABLE -- #
 # --------------------- #
 
-logging.info(f"Analyze '{THIS_RESRC}' source code")
+logging.info(f"Source - Analyze '{THIS_RESRC}'")
 
 nbtest = 0
 
-_sub_folder_2_name = RESRC_SUBDIR_NAME[TAG_PALETTABLE]
+_sub_folders = RESRC_SUBDIR_NAME[TAG_PALETTABLE]
 
 for subdir in sorted(RESRC_DIR.glob("*")):
     if not subdir.is_dir():
         continue
 
+    sub_name = subdir.name.upper()
+
+    if not sub_name in _sub_folders:
+
+        TODO
+
     logging.info(
-        f"Work on '{_sub_folder_2_name[subdir.name]}' source code"
+        f"Subfolder - Work on '{sub_name}'"
     )
 
     pals = extract(subdir)
 
-    resrc_pals_json = subdir.name.replace(' ', '-').upper()
-    resrc_pals_json = REPORT_DIR / f"{resrc_pals_json}.json"
+    resrc_pals_json = REPORT_DIR / f"{sub_name}.json"
 
-    logging.info(f"Update '{resrc_pals_json.relative_to(PROJ_DIR)}'")
+    logging.info(f"JSON - Update '{resrc_pals_json.relative_to(PROJ_DIR)}'")
 
     pals = get_sorted_dict(pals)
 

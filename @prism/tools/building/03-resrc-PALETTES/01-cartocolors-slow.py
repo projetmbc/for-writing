@@ -86,7 +86,7 @@ def extract_palette(pal_data: dict) -> [str, PaletteCols]:
 # -- FROM CARTOCOLORS -- #
 # ---------------------- #
 
-logging.info(f"Analyze '{THIS_RESRC}' source code")
+logging.info(f"Source - Analyze '{THIS_RESRC}'")
 
 pals = dict()
 
@@ -125,7 +125,7 @@ for match in PATTERN_CARTO_BLOCK.finditer(CARTO_CODE):
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
+logging.info(f"JSON - Update '{RESRC_PALS_JSON.relative_to(PROJ_DIR)}'")
 
 pals = get_sorted_dict(pals)
 
