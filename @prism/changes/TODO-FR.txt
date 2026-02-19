@@ -21,9 +21,6 @@ git cm "..."
 
 AVANT nelle version !!!!!
 
-
-audit last new : mettre le nom de la source
-
 imprimer audit pour les catgeos car des choses à revoir dont ...
 
     --> palettes de cmasher: pour les personnes atteintes de daltonisme (deutéranopie, protanopie, etc.).
@@ -158,6 +155,8 @@ css - html de dev : support aussi de l'hexadécimal car std en CSS
 // ---------- //
 
 intégrer en externe directement si possible
+
+    --> https://coolors.co/palettes/popular/neutral
 
 # the viewer has colorblindness. https://jfly.uni-koeln.de/color/#pallet
 

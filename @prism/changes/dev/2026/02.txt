@@ -5,12 +5,20 @@
 19  (2.0.0-beta.21)
 ==
 
+-------
+:break:
+-------
+
+[[:api:]]
+Shifted palettes ignored.
+
+
 --------
 :fordev:
 --------
 
 [[:tech:]]
-''cbutils'' constants: remove ''RESRC_FILE_NAMES'' and use only uppercase resource names for internal coding (previously used project names inconsistently).
+''cbutils'' constants: remove ''RESRC_FILE_NAMES'' and use only uppercase resource names for internal coding.
 
 
 // ---------- //

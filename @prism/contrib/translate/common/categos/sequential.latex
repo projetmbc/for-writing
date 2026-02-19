@@ -1551,16 +1551,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries TwilightShifted\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/TwilightShifted-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Viridis\vphantom{g}}
 
         \smallskip

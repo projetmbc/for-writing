@@ -29,6 +29,9 @@
         \item No more same size for all the palettes (see below).
 
 
+        \item No sublist or shifted palette.
+
+
         \item The categories have been fully changed (see below).
     \end{itemize}
 
@@ -60,7 +63,7 @@
 
             \item Normalized (size $\leq$ \palMaxSemSize).
 
-            \item One file per palette (nor more all palettes in one file).
+            \item One file per palette (no more all palettes in a single file).
         \end{itemize}
 
 
@@ -71,8 +74,6 @@
         %
         \begin{itemize}
             \item Data extraction and code generation are now streamlined by instantiating the \tdoccodein{python}+PaletteTransformer+ class, alongside palette and API builder functions.
-
-            \item Monolithic or modular version can be omitted (\TeX\ can't build all the high-fidelity palettes at once).
 
             \item Standardized showcases now feature simplified graphics.
         \end{itemize}

@@ -1,3 +1,5 @@
+exit(1)
+
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
@@ -32,35 +34,39 @@ from natsort import (
 # ------------------ #
 
 NEWPAGE_ON = [
-    'Alphabet',
-    'BlueDarkRed12',
-    'BrownBlue12',
-    'BuPu',
-    'Cubehelix3',
-    'Deep',
-    'Eclipse',
-    'Geyser',
-    'GistStern',
-    'GreenGrey',
-    'Greys',
-    'Horizon',
-    'Inferno',
-    'JetPLY',
-    'Lemon',
-    'Magenta',
-    'Matter',
-    'OceanCM',
-    'Plotly',
-    'PrismCC',
-    'PurplesCP',
-    'RdBu',
-    'RdYlGn',
-    'RedsCP',
-    'Seismic',
-    'SunBurst',
-    'Torch',
+    # 'Alphabet',
+    # 'BlueDarkRed12',
+    # 'BrownBlue12',
+    # 'BuPu',
+    # 'Cubehelix3',
+    # 'Deep',
+    # 'Eclipse',
+    # 'Geyser',
+    # 'GistStern',
+    # 'GreenGrey',
+    # 'Greys',
+    # 'Horizon',
+    # 'Inferno',
+    # 'JetPLY',
+    # 'Lemon',
+    # 'Magenta',
+    # 'Matter',
+    # 'OceanCM',
+    # 'Plotly',
+    # 'PrismCC',
+    # 'PurplesCP',
+    # 'RdBu',
+    # 'RdYlGn',
+    # 'RedsCP',
+    # 'Seismic',
+    # 'SunBurst',
+    # 'Torch',
 ]
 
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
 
 TAB_1 = ' '*4
 TAB_2 = TAB_1*2
@@ -120,9 +126,8 @@ TEX_INCLUDEGRAPH_TMPL = (
 TEX_GRAPHSEP_TMPL = TAB_1 + r'\smallskip'
 
 
-
 # ------------------ #
-# -- CONSTANTS #2 -- #
+# -- CONSTANTS #3 -- #
 # ------------------ #
 
 PROJ_DIR = THIS_DIR
@@ -138,6 +143,16 @@ TEX_NEW_PALS_FILE = AUDIT_DIR / "NEW-PALS.tex"
 
 
 CONTRIB_SHOWCASE_DIR = PROJ_DIR / "contrib" / "translate" / "common" / "showcase"
+AUDIT_SHOWCASE_DIR   = AUDIT_DIR / "showcase"
+
+AUDIT_SHOWCASE_DIR.mkdir(
+    parents  = True,
+    exist_ok = True
+)
+
+for p in AUDIT_SHOWCASE_DIR.iterdir():
+    if p.is_file():
+        p.unlink()
 
 
 ALL_CATEGOS = sorted(
@@ -149,14 +164,8 @@ ALL_CATEGOS = sorted(
 # -- GET LAST NEW -- #
 # ------------------ #
 
-logging.warning("LAST NEW PALS NOT YET IMPLEMENTED!")
+logging.warning("NEW PALS NOT YET IMPLEMENTED!")
 
-
-# --------------- #
-# -- AUDIT PDF -- #
-# --------------- #
-
-logging.info("Last new pals - Build 'audit TeX file'")
 
 query = '''
 SELECT
@@ -167,6 +176,44 @@ FROM hash h
 LEFT JOIN alias a ON h.pal_id = a.pal_id
 WHERE h.is_kept = 1
 '''
+
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+    cursor.execute(query)
+
+    NEW_PALS = natsorted(
+        cursor.fetchall(),
+        alg = ns.IGNORECASE
+    )
+
+
+
+
+
+print(NEW_PALS)
+
+exit(1)
+
+
+
+
+# ------------------------- #
+# -- NEW PALS - TEX FILE -- #
+# ------------------------- #
+
+logging.info("New pals - Build 'TeX file'")
+
+
+exit(1)
+
+
+
+# ------------------------- #
+# -- NEW PALS - TEX FILE -- #
+# ------------------------- #
+
+logging.info("New pals - Build 'TeX file'")
 
 _texcode = [TEX_HEADER_TMPL]
 

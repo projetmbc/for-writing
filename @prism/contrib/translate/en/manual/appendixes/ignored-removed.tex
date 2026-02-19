@@ -33,15 +33,17 @@
   \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
 \egroup
 
-The following palettes are excluded as sublists of existing ones,%
+The following palettes are excluded as sublists%
 \footnote{
 A palette is defined as a sublist if it is formed by removing colors while preserving the relative order of the remaining ones.
 }
-or due to direct or reversed duplication. Note that exact duplicates -- sharing both name and colors -- are omitted entirely. We identify relation between palettes using the following notations.
+or shifts of existing ones, or due to direct or reversed duplication. Note that exact duplicates -- sharing both name and colors -- are omitted entirely. We identify relation between palettes using the following notations.
 %
-\begin{multicols}{3}
+\begin{multicols}{4}
 \begin{itemize}[label=\textbullet\,]
     \item Sublist: \boxed{{\prec}\vphantom{pM}}
+    
+    \item Shifted: \boxed{{\ll}\vphantom{pM}}
 
     \item Equality: \boxed{{=}\vphantom{pM}}
 

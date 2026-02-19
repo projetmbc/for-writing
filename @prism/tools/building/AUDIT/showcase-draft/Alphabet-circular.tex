@@ -10,25 +10,19 @@
 \usepackage[3d]{luadraw}
 
 \directlua{
-  dofile('../../../../products/lua/palettes-hf/TwilightShifted.lua')
+  dofile('../../../../products/lua/palettes-hf/AfmHot.lua')
 }
 
 \begin{document}
-\begin{luadraw}{name = TwilightShifted-spectrum}
-local PAL      = palTwilightShifted
-local NB_CELLS = 510
+\begin{luadraw}{name = AfmHot-spectrum}
+local PAL      = palAfmHot
+local NB_CELLS = 256
 
-local WIDTH = 8
-
-local A = Z(-WIDTH / 2, 4)
-local HEIGHT = Z(0, -.7)
+local Rmin = 3
+local Rmax = 4
 
 local g = graph:new{
-  window = {
-    -WIDTH / 2,
-    WIDTH / 2,
-    -5, 5
-  },
+  window = {-Rmax - .5, Rmax + .5, -Rmax - .5, Rmax + 5},
   bbox = false
 }
 

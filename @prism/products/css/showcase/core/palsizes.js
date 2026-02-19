@@ -340,7 +340,6 @@ const palsize = {
   "Turbo": 256,
   "Turku": 256,
   "Twilight": 510,
-  "TwilightShifted": 510,
 // -- V -- //
   "Vanimo": 256,
   "Vik": 256,

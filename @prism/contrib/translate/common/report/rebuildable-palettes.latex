@@ -18,6 +18,7 @@
         \hline
         Matplotlib
           & Tab10 & \prec & Tab20 \\
+          & TwilightShifted & \ll & Twilight \\
           & Gray & \rightleftharpoons & Binary \\
           & GistYarg & \rightleftharpoons & GistGray \\
         \hline

@@ -71,7 +71,15 @@ TAB_2 = TAB_1*2
 TEX_CMDS = {
     PAL_STATUS.EQUAL_TO  : "=",
     PAL_STATUS.REVERSE_OF: r"\rightleftharpoons",
-    PAL_STATUS.SUBSET_OF: r"\prec",
+    PAL_STATUS.SUBSET_OF : r"\prec",
+    PAL_STATUS.SHIFT_OF  : r"\ll",
+}
+
+
+STATUS = {
+    '='  : PAL_STATUS.EQUAL_TO,
+    '<'  : PAL_STATUS.SUBSET_OF,
+    '<<<': PAL_STATUS.SHIFT_OF,
 }
 
 
@@ -174,11 +182,7 @@ with IGNORED_YAML.open('r') as f:
                 continue
 
 # Rebuildable palette.
-            status = (
-                PAL_STATUS.EQUAL_TO
-                if data[TAG_REL] == '=' else
-                PAL_STATUS.SUBSET_OF
-            )
+            status = STATUS[data[TAG_REL]]
 
 # Unkown name.
             if not data[TAG_PAL] in ALL_NAMES:

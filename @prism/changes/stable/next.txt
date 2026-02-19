@@ -23,6 +23,8 @@ Here are the breaking \chges.
 
     1) No more same size for all the palettes (see below).
 
+    1) No sublist or shifted palette.
+
     1) The categories have been fully changed (see below).
 
 
@@ -49,15 +51,13 @@ Here are the new features.
 
         + Normalized (''size <= MAX_SEM_SIZE'').
 
-        + Only one file per palette, no more all palettes in one file.
+        + One file per palette (no more all palettes in a single file).
 
     1) \Categos: the size palette is no longer used since the new \api provides named \categos. For example, a 3-color smooth palette can be now sequential, qualtitaive and/or semantic.
 
     1) \Contrib workflow simplified significantly.
 
         + Data extraction and code generation are now streamlined by instantiating the python::''PaletteTransformer'' class, alongside palette and \api builder functions.
-
-        + Monolithic or modular version can be omitted (\tex can't build all the high-fidelity palettes at once).
 
         + Standardized showcases now feature simplified graphics.
 

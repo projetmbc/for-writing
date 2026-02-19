@@ -26,6 +26,9 @@ MATPLOTLIB:
   Tab10:
     palette: Tab20
     relation: <
+  TwilightShifted:
+    palette: Twilight
+    relation: <<<
 
 # -- P -- #
 PLOTLY:
