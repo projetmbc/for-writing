@@ -159,7 +159,7 @@ for cfgname, data in YAML_CONFIGS[TAG_RESRC].items():
 
     if TAG_ALIAS in data:
         for alias in data[TAG_ALIAS]:
-            RESRC_ALIAS[alias.lower()] = realname
+            RESRC_ALIAS[alias.upper()] = realname
 
 
 # GitHub URLs
