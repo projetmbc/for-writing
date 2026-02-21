@@ -22,7 +22,7 @@ from cbutils      import *
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-PATTERN_CMASHER_KIND = re.compile(
+PATTERN_CMASHER_CATEGO = re.compile(
     r'cm_type\s*=\s*["\']([^"\']+)["\']'
 )
 
@@ -65,9 +65,9 @@ pals = dict()
 for palfile in RESRC_DIR.glob('*.py'):
     content = palfile.read_text()
 
-    palname = palfile.stem
-    palkind = PATTERN_CMASHER_KIND.search(content).group(1)
-    paldef  = ast.literal_eval(
+    palname   = palfile.stem
+    palcatego = PATTERN_CMASHER_CATEGO.search(content).group(1)
+    paldef    = ast.literal_eval(
         PATTERN_CMASHER_DATA.search(content).group(1)
     )
 
@@ -76,7 +76,7 @@ for palfile in RESRC_DIR.glob('*.py'):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind   = palkind,
+        palcatego = palcatego,
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )

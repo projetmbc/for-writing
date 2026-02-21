@@ -37,7 +37,7 @@ INSERT INTO hash (
     source,
 --
     is_kept,
-    kind,
+    catego,
 --
     hash_normal,
     hash_reverse
@@ -133,58 +133,58 @@ def get_hash_pal(palette: PaletteCols) -> str:
     return hashcode
 
 
-def get_std_kind(kind: str) -> str:
-    kind = kind.strip()
+def get_std_catego(catego: str) -> str:
+    catego = catego.strip()
 
-    if not kind:
-        return kind
+    if not catego:
+        return catego
 
-    _stdkind = set()
+    _stdcatego = set()
 
-    _xtra_pb_kinds = []
+    _xtra_pb_CATEGOs = []
 
-    for k in kind.split(','):
+    for k in catego.split(','):
         _k = k
 
         k = k.strip()
-        k = KIND_ALIAS.get(k, '')
+        k = CATEGO_ALIAS.get(k, '')
 
         if (
             not k
             and
-            not _k in _xtra_pb_kinds
+            not _k in _xtra_pb_CATEGOs
         ):
-            _xtra_pb_kinds.append(_k)
+            _xtra_pb_CATEGOs.append(_k)
 
-        _stdkind.add(k)
+        _stdcatego.add(k)
 
-    std_kind = ','.join(sorted(_stdkind))
+    std_catego = ','.join(sorted(_stdcatego))
 
-    if not std_kind and kind or _xtra_pb_kinds:
+    if not std_catego and catego or _xtra_pb_CATEGOs:
         xtra = ''
 
-        if _xtra_pb_kinds:
-            plurial = '' if len(_xtra_pb_kinds) == 1 else 's'
+        if _xtra_pb_CATEGOs:
+            plurial = '' if len(_xtra_pb_CATEGOs) == 1 else 's'
 
             tab = '\n  + '
 
-            xtra_pb_kinds = tab.join([
-                f"'{k}'" for k in _xtra_pb_kinds
+            xtra_pb_CATEGOs = tab.join([
+                f"'{k}'" for k in _xtra_pb_CATEGOs
             ])
 
             xtra = (
-                f' See the folowing kind{plurial}.'
-                f'{tab}{xtra_pb_kinds}'
+                f' See the folowing catego{plurial}.'
+                f'{tab}{xtra_pb_CATEGOs}'
             )
 
         log_raise_error(
             context   = "Palette SQLite DB creation",
-            desc      = f"Unmanaged palette kind '{kind}'.",
+            desc      = f"Unmanaged palette catego '{catego}'.",
             exception = ValueError,
             xtra      = xtra
         )
 
-    return std_kind
+    return std_catego
 
 
 # -------------- #
@@ -196,7 +196,7 @@ def dbadd_hashpals(
     name        : str,
     source      : str,
     is_kept     : bool,
-    kind        : str,
+    catego      : str,
     hash_normal : str,
     hash_reverse: str
 ) -> None:
@@ -212,7 +212,7 @@ def dbadd_hashpals(
             ),
             (
                 name, source,
-                is_kept, kind,
+                is_kept, catego,
                 hash_normal, hash_reverse
             )
         )
@@ -243,7 +243,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         src = resrc_json.stem
 
         if (
-            src.startswith('KIND-')
+            src.startswith('CATEGO-')
             or
             src.startswith('AUDIT-')
         ):
@@ -276,7 +276,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                         TAG_WHY: f'Too big (size > {MAX_SIZE}).'
                     }
 
-            std_kind = get_std_kind(infos[TAG_KIND])
+            std_catego = get_std_catego(infos[TAG_CATEGO])
 
             hash_normal  = get_hash_pal(paldef)
             hash_reverse = get_hash_pal(paldef[::-1])
@@ -286,7 +286,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                 name         = name,
                 source       = src,
                 is_kept      = is_kept,
-                kind         = std_kind,
+                catego       = std_catego,
                 hash_normal  = hash_normal,
                 hash_reverse = hash_reverse
             )

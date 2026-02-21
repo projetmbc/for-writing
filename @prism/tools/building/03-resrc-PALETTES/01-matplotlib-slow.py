@@ -149,7 +149,7 @@ for match in PATTERN_MPL_COLORMAP_BRACES_LISTED.finditer(MPL_CODE_LISTED):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind  = '',
+        palcatego = '',
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )
@@ -166,7 +166,7 @@ paldef.reverse()
 
 pals['TwilightShifted'] = resrc_std_palette(
     palname   = 'twilight_shifted',
-    palkind  = '',
+    palcatego = '',
     paldef    = paldef,
     precision = PAL_PRECISION + 2,
 )
@@ -188,7 +188,7 @@ for match in PATTERN_MPL_COLORMAP_BRACES.finditer(MPL_CODE):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind  = '',
+        palcatego = '',
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )
@@ -264,7 +264,7 @@ for match in PATTERN_MPL_COLORMAP_HOOKS.finditer(MPL_CODE):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind  = '',
+        palcatego = '',
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )
@@ -292,7 +292,7 @@ for match in PATTERN_MPL_COLORMAP_DATA_NAME.finditer(MPL_CODE):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind  = '',
+        palcatego = '',
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )
@@ -310,10 +310,10 @@ for stdname, infos in pals.items():
         or
         stdname == "Wistia"
     ):
-        pals[stdname][TAG_KIND] = TAG_COLORBLIND
+        pals[stdname][TAG_CATEGO] = TAG_COLORBLIND
 
     elif stdname == "Coolwarm":
-        pals[stdname][TAG_KIND] = TAG_DIVERGENT
+        pals[stdname][TAG_CATEGO] = TAG_DIVERGENT
 
 
 # ----------------- #

@@ -57,8 +57,8 @@ PRIORITY  = YAML_CONFIGS['PRIORITY']
 
 def dbadd_hashpals(
     conn,
-    source      : str,
-    priority    : str,
+    source  : str,
+    priority: str,
 ) -> None:
     placeholders = ['?']*(len(locals()) - 1)
     placeholders = ','.join(placeholders)
@@ -96,7 +96,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         src = resrc_json.stem
 
         if (
-            src.startswith('KIND-')
+            src.startswith('CATEGO-')
             or
             src.startswith('AUDIT-')
         ):

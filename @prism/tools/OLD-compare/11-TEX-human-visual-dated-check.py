@@ -105,7 +105,7 @@ TMPL_TEX_INCLUDE_PDF = r"""
     {palname},
     lab-pal-{palname}
   }}%
-]{{../../single/{kind}-{palname}-{src}.pdf}}
+]{{../../single/{catego}-{palname}-{src}.pdf}}
 """.strip()
 
 
@@ -129,9 +129,9 @@ now = datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
 
 all_singles = dict()
 
-for kind in ['dark', 'std']:
-    all_singles[kind] = natsorted(
-        HUMAN_CHECK_SINGLE_DIR.glob(f"{kind}-*.tex"),
+for catego in ['dark', 'std']:
+    all_singles[catego] = natsorted(
+        HUMAN_CHECK_SINGLE_DIR.glob(f"{catego}-*.tex"),
         alg = ns.IGNORECASE
     )
 
@@ -143,8 +143,8 @@ if not all_singles['dark']:
 
 logging.info(f"Building '{now} TeX files'")
 
-for kind in ['dark', 'std']:
-    showfile = HUMAN_CHECK_BCKUP_DIR / f"{now}" / f"{kind}.tex"
+for catego in ['dark', 'std']:
+    showfile = HUMAN_CHECK_BCKUP_DIR / f"{now}" / f"{catego}.tex"
 
     showfile.parent.mkdir(
         parents  = True,
@@ -153,16 +153,16 @@ for kind in ['dark', 'std']:
 
     tex_code = [
         "% !TEX TS-program = lualatex",
-        HEADER_TEX_CODES[kind],
+        HEADER_TEX_CODES[catego],
         START_FINAL_TEX_CODE,
     ]
 
-    for texfile in all_singles[kind]:
+    for texfile in all_singles[catego]:
         _ , palname, src = texfile.stem.split('-')
 
         tex_code.append(
             TMPL_TEX_INCLUDE_PDF.format(
-                kind    = kind,
+                catego    = catego,
                 src     = src,
                 palname = palname,
             )

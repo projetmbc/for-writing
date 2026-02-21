@@ -39,8 +39,8 @@ THIS_RESRC_DIR = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 
-_RESRC_KINDS_JSON = THIS_RESRC.replace(' ', '-').upper()
-RESRC_KINDS_JSON  = REPORT_DIR / f"KIND-{_RESRC_KINDS_JSON}.json"
+_RESRC_CATEGOS_JSON = THIS_RESRC.replace(' ', '-').upper()
+RESRC_CATEGOS_JSON  = REPORT_DIR / f"CATEGO-{_RESRC_CATEGOS_JSON}.json"
 
 
 # ------------------ #
@@ -121,38 +121,38 @@ def extract_md_pals(content):
     return pals
 
 
-# ------------------ #
-# -- MISING KINDS -- #
-# ------------------ #
+# -------------------- #
+# -- MISING CATEGOS -- #
+# -------------------- #
 
-logging.info(f"Kinds - Extract from '{THIS_RESRC}'")
+logging.info(f"Categos - Extract from '{THIS_RESRC}'")
 
-_PALS_KINDS = defaultdict(set)
+_PALS_CATEGOS = defaultdict(set)
 
 for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
-    fname   = mdpath.name
-    palkind = mdpath.stem.lower()
+    fname     = mdpath.name
+    palcatego = mdpath.stem.lower()
 
-    if palkind == 'scientific':
+    if palcatego == 'scientific':
         continue
 
     content = mdpath.read_text()
 
     logging.info(f"MD - Parse '{fname}'")
 
-    if not palkind in KIND_ALIAS:
+    if not palcatego in CATEGO_ALIAS:
         log_raise_error(
-            context   = f"Missing kind",
-            desc      = f"Add '{palkind}' as an alias or a new kind.",
+            context   = f"Missing catego",
+            desc      = f"Add '{palcatego}' as an alias or a new catego.",
             exception = ValueError,
         )
 
-    palkind = KIND_ALIAS[palkind]
+    palcatego = CATEGO_ALIAS[palcatego]
 
     pals = extract_md_pals(content)
 
     for uid in pals:
-        _PALS_KINDS[uid].add(palkind)
+        _PALS_CATEGOS[uid].add(palcatego)
 
 
 # ------------------ #
@@ -160,19 +160,19 @@ for mdpath in sorted(THIS_RESRC_DIR.glob('docs/*.md')):
 # ------------------ #
 
 logging.info(
-    f"JSON - Update '{RESRC_KINDS_JSON.relative_to(PROJ_DIR)}'"
+    f"JSON - Update '{RESRC_CATEGOS_JSON.relative_to(PROJ_DIR)}'"
 )
 
 # We want a deterministic output.
-PALS_KINDS = {
-    uid: ', '.join(sorted(_PALS_KINDS[uid]))
-    for uid in sorted(_PALS_KINDS)
+PALS_CATEGOS = {
+    uid: ', '.join(sorted(_PALS_CATEGOS[uid]))
+    for uid in sorted(_PALS_CATEGOS)
 }
 
 # -- DEBUG - ON -- #
-# print(PALS_KINDS)
+# print(PALS_CATEGOS)
 # -- DEBUG - OFF -- #
 
-RESRC_KINDS_JSON.write_text(
-    json_dumps(PALS_KINDS)
+RESRC_CATEGOS_JSON.write_text(
+    json_dumps(PALS_CATEGOS)
 )

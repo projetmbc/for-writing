@@ -90,7 +90,7 @@ for folder, contribs in sorted(contribs_accepted.items()):
 
         pals[stdname] = resrc_std_palette(
             palname   = palname,
-            palkind   = paldata[TAG_METADATA.lower()][TAG_KIND],
+            palcatego = paldata[TAG_METADATA.lower()][TAG_CATEGO],
             paldef    = paldata[TAG_PALETTE],
             precision = PRECISION + 2,
         )

@@ -111,10 +111,14 @@ NB_MAX_COL_PER_CATEGO = 4
 TEX_HEADER_TMPL = r"""
 \documentclass{tutodoc}
 
-\usepackage{amssymb}
-\usepackage{array}
-\usepackage{paracol}
+\usepackage{pgfpages}
+\pgfpagesuselayout{2 on 1}[a4paper, landscape]
 
+\usepackage{amssymb}
+
+\usepackage{array}
+
+\usepackage{paracol}
 \columnratio{0.35}
 
 \begin{document}
@@ -276,7 +280,7 @@ query = '''
 SELECT
     COALESCE(a.alias, h.name),
     h.source,
-    h.kind
+    h.catego
 FROM hash h
 LEFT JOIN alias a ON h.pal_id = a.pal_id
 WHERE h.is_kept = 1
@@ -325,15 +329,15 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
     cursor.execute(query)
 
-    for name, src, kinds in natsorted(
+    for name, src, categos in natsorted(
         cursor.fetchall(),
         alg = ns.IGNORECASE
     ):
         nbpals += 1
 
-        _kinds = set(
+        _CATEGOs = set(
             k.strip()
-            for k in kinds.split(',')
+            for k in categos.split(',')
         )
 
 # We have to build the folowing LaTeX code.
@@ -351,7 +355,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         addsrc = True
 
         for i, k in enumerate(ALL_CATEGOS):
-            texcmd = TEX_CMD_CHECK_OR_NOT[k in _kinds]
+            texcmd = TEX_CMD_CHECK_OR_NOT[k in _CATEGOs]
 
             if i == NB_MAX_COL_PER_CATEGO:
                 _tablecode[cursor] += r'\\'

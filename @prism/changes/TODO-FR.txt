@@ -19,18 +19,87 @@ git cm "..."
 
 
 
+// ---------- //
+
+AVANT nelle version !!!!!
+
+
+01-b-CONTRIBS-lua-prod-struct.py  --> UTILE???
+
+
++
+
+DB-VIEW.txt est vide !!!!
+
+    --> tout dans la variable  SQL_TABLE_CREATE   de DB-init
+
+
++
+
+
+
+consolider les categos autos !!!
+
+    --> ASYMPTOTE
+
+    --> AUDIT-LOCMAIN-NAMES-NEW
+
+    --> AUDIT-MISSING-KIND
+
+    --> AUDIT-NAME-CONFLICT
+
+    --> AUDIT-SAME-NAMED-PALETTES
+
+    --> CARBONPLAN
+
+    --> CARTOCOLORS
+
+    --> CMASHER
+
+         + kind ici : https://cmasher.readthedocs.io/user/diverging/emergency.html
+
+         + CERTAINES colroblind , dans la doc, usage de CVD-friendly
+
+    --> CMOCEAN
+
+    --> COLORBREWER
+
+    --> CUBEHELIX
+
+    --> KIND-COLORMAPS
+
+    --> LIGHTBARTLEIN
+
+    --> MATPLOTLIB
+
+    --> MYCARTA
+
+    --> PLOTLY
+
+    --> SCICOLMAPS
+
+    --> TABLEAU
+
+    --> WESANDERSON
+
+
++
+
+
+
+imprimer audit pour les catgeos car des choses à revoir dont ...
+
+
 
 
 
 // ---------- //
 
-AVANT nelle version !!!!!
+streamlit (apprendre)
 
-imprimer audit pour les catgeos car des choses à revoir dont ...
+    ---> besoin outil de mise à jour gérant tout et non juste là pour résoudre un problème précis, un outil centralisé
 
-    --> palettes de cmasher: pour les personnes atteintes de daltonisme (deutéranopie, protanopie, etc.).
-
-
+    ---> ajout d'un gradient angulaire au passage
 
 
 // ---------- //
@@ -95,6 +164,8 @@ audit
 // ---------- //
 
 HTML viewer
+
+    ---> ajout d'un gradient angulaire
 
     --> garder des PDFs autonomes anciens car c'est joli !
 

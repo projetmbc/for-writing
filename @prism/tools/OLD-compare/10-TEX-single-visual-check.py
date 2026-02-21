@@ -53,12 +53,12 @@ SINGLE_TMPL_DIR = THIS_DIR / "human" / "template"
 
 SINGLE_TMPLS = dict()
 
-for kind in ["dark", "std"]:
+for catego in ["dark", "std"]:
     content = (
-        SINGLE_TMPL_DIR / f"single-palette-{kind}.tex"
+        SINGLE_TMPL_DIR / f"single-palette-{catego}.tex"
     ).read_text()
 
-    SINGLE_TMPLS[kind] = content
+    SINGLE_TMPLS[catego] = content
 
 
 # ------------------ #
@@ -154,7 +154,7 @@ def fill_tex_tmpl(
 
 logging.info("Build TeX files for human checking")
 
-for kind, tmpl in SINGLE_TMPLS.items():
+for catego, tmpl in SINGLE_TMPLS.items():
     for palname in LAST_UPDATES:
         logging.info(f"TeX files for '{palname}'")
 
@@ -169,5 +169,5 @@ for kind, tmpl in SINGLE_TMPLS.items():
                 paldef   = palettes[palname],
                 context  = ctxt,
                 tmpl     = tmpl,
-                file     = HUMAN_CHECK_SINGLE_DIR / f"{kind}-{palname}-{tag}.tex",
+                file     = HUMAN_CHECK_SINGLE_DIR / f"{catego}-{palname}-{tag}.tex",
             )

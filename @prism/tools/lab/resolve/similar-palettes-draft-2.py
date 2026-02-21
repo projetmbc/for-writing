@@ -53,7 +53,7 @@ if "page_index" not in st.session_state: st.session_state.page_index = 0
 
 palettes = get_mock_data()
 names = list(palettes.keys())
-KIND_OPTIONS = ["sequential", "diverging", "qualitative", "other"]
+catego_OPTIONS = ["sequential", "diverging", "qualitative", "other"]
 
 # --- SIDEBAR ---
 with st.sidebar:
@@ -130,7 +130,7 @@ if st.session_state.results:
                     st.metric("Distance", f"{dist:.1f}")
 
                 # Choix de classe rapide
-                st.selectbox("Classer les deux comme :", ["---"] + KIND_OPTIONS,
+                st.selectbox("Classer les deux comme :", ["---"] + catego_OPTIONS,
                              key=f"cls_{pair_id}", label_visibility="collapsed")
             st.divider()
 

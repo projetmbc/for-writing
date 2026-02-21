@@ -34,34 +34,34 @@ from yaml import (
 # WARNING! Since name conflicts are resolved by the previous script,
 # we can work with palette names and sources directly.
 
-SQL_UPDATE_KIND = '''
+SQL_UPDATE_CATEGO = '''
 UPDATE hash
-SET kind = CASE WHEN kind = ''
-    THEN '{kind}'
-    ELSE kind || ', ' || '{kind}'
+SET catego = CASE WHEN catego = ''
+    THEN '{catego}'
+    ELSE catego || ', ' || '{catego}'
 END
 WHERE name = '{name}' AND source = '{source}'
 '''
 
 
-SQL_GET_NO_KIND = '''
+SQL_GET_NO_CATEGO = '''
 SELECT
     h.name,
     h.source
 FROM hash h
-WHERE h.kind = ''
+WHERE h.catego = ''
   AND h.is_kept = 1;
 '''
 
 
-SQL_RESOLVE_EMPTY_KIND = '''
+SQL_RESOLVE_EMPTY_CATEGO = '''
 SELECT
     p1.name,
     p1.source,
     (
-        SELECT GROUP_CONCAT(p2.kind, ',')
+        SELECT GROUP_CONCAT(p2.catego, ',')
         FROM hash p2
-        WHERE p2.kind != ''
+        WHERE p2.catego != ''
           AND (
               p2.equal_to = p1.pal_id
               OR
@@ -78,9 +78,9 @@ SELECT
                   )
               )
           )
-    ) AS all_kinds
+    ) AS all_CATEGOs
 FROM hash p1
-WHERE p1.kind = ''
+WHERE p1.catego = ''
   AND p1.is_kept = 1;
 '''
 
@@ -103,19 +103,19 @@ SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-HUMAN_KIND_YAML = AUDIT_DIR / 'HUMAN-KIND.yaml'
+HUMAN_CATEGO_YAML = AUDIT_DIR / 'HUMAN-CATEGO.yaml'
 
-if HUMAN_KIND_YAML.is_file():
-    with HUMAN_KIND_YAML.open('r') as f:
-        HUMAN_KIND = safe_load(f)
+if HUMAN_CATEGO_YAML.is_file():
+    with HUMAN_CATEGO_YAML.open('r') as f:
+        HUMAN_CATEGO = safe_load(f)
 
-    if HUMAN_KIND is None:
-        HUMAN_KIND = dict()
+    if HUMAN_CATEGO is None:
+        HUMAN_CATEGO = dict()
 
 else:
-    HUMAN_KIND_YAML.touch()
+    HUMAN_CATEGO_YAML.touch()
 
-    HUMAN_KIND = dict()
+    HUMAN_CATEGO = dict()
 
 
 # ------------------ #
@@ -124,43 +124,43 @@ else:
 
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
-MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING-KIND.json"
+MISSING_CATEGO_JSON = REPORT_DIR / "AUDIT-MISSING-CATEGO.json"
 
-MISSING_KINDS = []
+MISSING_CATEGOS = []
 
 
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
 
-def get_std_kind(kind):
-    _kind = sorted(
+def get_std_catego(catego):
+    _CATEGO = sorted(
         list(
             set(
                 k.strip()
-                for k in kind.split(',')
+                for k in catego.split(',')
                 if k.strip()
             )
         )
     )
 
-    return ','.join(_kind)
+    return ','.join(_CATEGO)
 
 
 # --------------------- #
-# -- HUMAN KINDS :-) -- #
+# -- HUMAN categoS :-) -- #
 # --------------------- #
 
-logging.info("DB - Kinding ;-) 'Add human kinds' :-)")
+logging.info("DB - Catego - 'Add human categos' :-)")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
 
-    for src, namekinds in HUMAN_KIND.items():
-        for name, kind in namekinds.items():
-            query = SQL_UPDATE_KIND.format(
+    for src, namecategos in HUMAN_CATEGO.items():
+        for name, catego in namecategos.items():
+            query = SQL_UPDATE_CATEGO.format(
                 name   = name,
-                kind   = get_std_kind(kind),
+                catego = get_std_catego(catego),
                 source = src
             )
 
@@ -168,28 +168,28 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
 
 # -------------- #
-# -- DB KINDS -- #
+# -- DB categoS -- #
 # -------------- #
 
-logging.info("DB - Kinding ;-) 'DB missing kind resolution'")
+logging.info("DB - Catego - 'DB missing catego resolution'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
-    cursor.execute(SQL_RESOLVE_EMPTY_KIND)
+    cursor.execute(SQL_RESOLVE_EMPTY_CATEGO)
 
-    for name, src, kind in cursor.fetchall():
+    for name, src, catego in cursor.fetchall():
 # No matches found.
-        if kind is None:
+        if catego is None:
             continue
 
 # At least one match found.
-        kind = get_std_kind(kind)
+        catego = get_std_catego(catego)
 
-        logging.info(f"'{name}' [{src}] is '{kind}'")
+        logging.info(f"'{name}' [{src}] is '{catego}'")
 
-        query = SQL_UPDATE_KIND.format(
-            name  = name,
-            kind  = kind,
+        query = SQL_UPDATE_CATEGO.format(
+            name   = name,
+            catego = catego,
             source = src
         )
 
@@ -197,16 +197,16 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
 
 # ------------------- #
-# -- MISSING KINDS -- #
+# -- MISSING categoS -- #
 # ------------------- #
 
-logging.info("DB - Kinding ;-) 'Unresolved missing kinds'?")
+logging.info("DB - Catego - 'Unresolved missing categos'?")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
-    cursor.execute(SQL_GET_NO_KIND)
+    cursor.execute(SQL_GET_NO_CATEGO)
 
-    MISSING_KINDS.extend([
+    MISSING_CATEGOS.extend([
         list(x) for x in cursor.fetchall()
     ])
 
@@ -216,33 +216,33 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # ------------------ #
 
 logging.info(
-    f"DB - Kinding ;-) Update '{MISSING_KIND_JSON.relative_to(PROJ_DIR)}'"
+    "DB - Catego - Update '{MISSING_CATEGO_JSON.relative_to(PROJ_DIR)}'"
 )
 
-MISSING_KIND_JSON.write_text(
-    json_dumps(MISSING_KINDS)
+MISSING_CATEGO_JSON.write_text(
+    json_dumps(MISSING_CATEGOS)
 )
 
 
 # ------------------------- #
-# -- MISSING KINDS FOUND -- #
+# -- MISSING categoS FOUND -- #
 # ------------------------- #
 
-if not MISSING_KINDS:
+if not MISSING_CATEGOS:
     logging.info(
-    f"DB - Kinding ;-) No problem!"
+    f"DB - Catego - No problem!"
 )
 
 else:
-    nb = len(MISSING_KINDS)
+    nb = len(MISSING_CATEGOS)
 
     plurial = '' if nb == 1 else 's'
 
-    reslover = PROJ_DIR / "tools" / "lab" / "resolve" / "missing-kinds.py"
+    reslover = PROJ_DIR / "tools" / "lab" / "resolve" / "missing-categos.py"
 
     log_raise_error(
-        context   = f"{nb} missing kind{plurial} need NOAI resolution",
-        desc      = "Palettes need to have at least one kind.",
+        context   = f"{nb} missing catego{plurial} need NOAI resolution",
+        desc      = "Palettes need to have at least one catego.",
         exception = ValueError,
         xtra      = (
             f'Use:\n---\nstreamlit run "{reslover}"\n---')

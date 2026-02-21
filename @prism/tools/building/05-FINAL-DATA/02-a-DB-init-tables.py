@@ -40,7 +40,7 @@ CREATE TABLE hash (
 --
     is_kept  INTEGER DEFAULT 1,
     equal_to INTEGER REFERENCES hash(pal_id),
-    kind     TEXT DEFAULT '',
+    catego   TEXT DEFAULT '',
 --
     hash_normal  TEXT NOT NULL,
     hash_reverse TEXT NOT NULL

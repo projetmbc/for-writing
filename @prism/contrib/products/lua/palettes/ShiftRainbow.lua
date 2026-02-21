@@ -1,7 +1,7 @@
 ------
 -- this::
 --     author = Christophe, Bal
---     kind   = qualitative, sequential
+--     catego = qualitative, sequential
 ------
 
 ------

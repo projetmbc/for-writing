@@ -94,27 +94,27 @@ TAG_ORIGINAL_NAME = "original-name"
 TAG_RGB_COLS      = "rgb-cols"
 
 TAG_AUTHOR = "author"
-TAG_KIND   = "kind"
+TAG_CATEGO = "catego"
 
 TAG_ALIAS   = "alias"
 TAG_PALETTE = "palette"
 
 
-KIND_ALIAS = dict()
+CATEGO_ALIAS = dict()
 
-for kind, about in YAML_CONFIGS[TAG_METADATA]['CATEGORY'].items():
+for catego, about in YAML_CONFIGS[TAG_METADATA]['CATEGORY'].items():
     alias = about['alias']
 
-    varname = f"tag_{kind}"
+    varname = f"tag_{catego}"
     varname = varname.upper()
 
-    globals()[varname] = kind
+    globals()[varname] = catego
 
-    KIND_ALIAS[kind] = kind
+    CATEGO_ALIAS[catego] = catego
 
     if not alias is None:
         for a in alias:
-            KIND_ALIAS[a] = kind
+            CATEGO_ALIAS[a] = catego
 
 
 TAG_AUDIT     = "AUDIT"

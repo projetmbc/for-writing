@@ -61,7 +61,7 @@ CARTO_CODE  = _CARTO_CODE.read_text()
 # ----------- #
 
 def extract_palette(pal_data: dict) -> [str, PaletteCols]:
-    kind = ', '.join(
+    catego = ', '.join(
         sorted(pal_data['tags'])
     )
 
@@ -79,7 +79,7 @@ def extract_palette(pal_data: dict) -> [str, PaletteCols]:
         for c in pal_data[bigger_size]
     ]
 
-    return kind, paldef
+    return catego, paldef
 
 
 # ---------------------- #
@@ -111,11 +111,11 @@ for match in PATTERN_CARTO_BLOCK.finditer(CARTO_CODE):
 
     pal_data = ast.literal_eval(pycode)
 
-    palkind, paldef = extract_palette(pal_data)
+    palcatego, paldef = extract_palette(pal_data)
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind   = palkind,
+        palcatego = palcatego,
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )

@@ -33,7 +33,7 @@ _REMOVED_TAGS = [
 
 METADA_NAMES = [
     "author",
-    "kind",
+    "catego",
 ]
 
 PATTERN_PAL_METADATA = re.compile(

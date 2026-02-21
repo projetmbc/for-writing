@@ -50,6 +50,8 @@ MATPLOTLIB:
   Winter: dark, qualitative
 
 # -- S -- #
+SCICOLMAPS:
+  Bukavu: colorblind,stepped
 SCIENTIFIC-COLOUR-MAPS:
   Bukavu: colorblind,stepped
   Fes: colorblind,stepped

@@ -1,7 +1,7 @@
 ------
 -- this::
 --     author = Patrick, Fradin
---     kind   = qualitative, sequential
+--     catego = qualitative, sequential
 ------
 
 ------

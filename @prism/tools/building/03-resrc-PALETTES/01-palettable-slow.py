@@ -31,11 +31,11 @@ PATTERN_COMMON_PYDEF = re.compile(
     r'_?([A-Z0-9_]+)\s*=\s*(\[[\s\S]*?\n\])'
 )
 
-PATTERN_KIND = re.compile(
+PATTERN_CATEGO = re.compile(
     r"_PALETTE_TYPE\s*=\s*['\"]([^'\"]+)['\"]"
 )
 
-PATTERN_KIND_UNSTD = re.compile(
+PATTERN_CATEGO_UNSTD = re.compile(
     r"^_?palette_type\s*=\s*(['\"])(.*?)\1",
     re.MULTILINE
 )
@@ -73,19 +73,19 @@ REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 # -- SPECIAL PALETTABLE SPECS -- #
 
-def extract_kind_unstd(code: str) -> str:
-    match = PATTERN_KIND_UNSTD.search(code)
+def extract_catego_unstd(code: str) -> str:
+    match = PATTERN_CATEGO_UNSTD.search(code)
 
-    palkind = match.group(2) if match else ''
+    palcatego = match.group(2) if match else ''
 
-    return palkind
+    return palcatego
 
 
 def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
     _src_code = folder / f"{folder.name}.py"
-    src_code = _src_code.read_text()
+    src_code  = _src_code.read_text()
 
-    palkind = extract_kind_unstd(src_code)
+    palcatego = extract_catego_unstd(src_code)
 
     for d in [
         'palette_rgb',
@@ -109,7 +109,7 @@ def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
 
         pals[stdname] = resrc_std_palette(
             palname   = palname,
-            palkind   = palkind,
+            palcatego = palcatego,
             paldef    = pal255_to_pal01(cols),
             precision = PAL_PRECISION + 2,
         )
@@ -119,9 +119,9 @@ def extract_cubehelix(folder: Path) -> dict[str, PaletteCols]:
 
 def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
     _src_code = folder / f"{folder.name}.py"
-    src_code = _src_code.read_text()
+    src_code  = _src_code.read_text()
 
-    palkind = extract_kind_unstd(src_code)
+    palcatego = extract_catego_unstd(src_code)
 
     _ , _ , src_code = src_code.partition('palette_names =')
 
@@ -152,7 +152,7 @@ def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
 
             pals[stdname] = resrc_std_palette(
                 palname   = palname,
-                palkind   = palkind,
+                palcatego = palcatego,
                 paldef    = pal255_to_pal01(cols),
                 precision = PAL_PRECISION + 2,
             )
@@ -162,9 +162,9 @@ def extract_tableau(folder: Path) -> dict[str, PaletteCols]:
 
 def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
     _src_code = folder / f"{folder.name}.py"
-    src_code = _src_code.read_text()
+    src_code  = _src_code.read_text()
 
-    palkind = extract_kind_unstd(src_code)
+    palcatego = extract_catego_unstd(src_code)
 
     _ , _ , src_code = src_code.partition('_palettes =')
 
@@ -201,7 +201,7 @@ def extract_wesanderson(folder: Path) -> dict[str, PaletteCols]:
 
         pals[stdname] = resrc_std_palette(
             palname   = palname,
-            palkind   = palkind,
+            palcatego = palcatego,
             paldef    = pal255_to_pal01(cols),
             precision = PAL_PRECISION + 2,
         )
@@ -228,7 +228,7 @@ def extract_data(file: Path) -> dict[str, PaletteCols]:
     return pals
 
 
-def extract_kind_and_names(
+def extract_catego_and_names(
     folder   : Path,
     pattern  : re.Pattern,
     xtrafiles: list[str]
@@ -247,9 +247,9 @@ def extract_kind_and_names(
 
         pycode = pyfile.read_text()
 
-        match = PATTERN_KIND.search(pycode)
+        match = PATTERN_CATEGO.search(pycode)
 
-        kind = match.group(1) if match else ""
+        catego = match.group(1) if match else ""
 
         match = PATTERN_NAMES_TO_DATA.search(pycode, re.DOTALL)
 
@@ -262,7 +262,7 @@ def extract_kind_and_names(
             srcname = pair_match.group(1)
             pyname  = pair_match.group(3)
 
-            original_names[pyname] = (kind, srcname)
+            original_names[pyname] = (catego, srcname)
 
     return original_names
 
@@ -274,16 +274,16 @@ def extract_std(
 ) -> dict[str, PaletteCols]:
     oripals = extract_data(folder / f"{pyfile_name}.py")
 
-    kind_and_names = extract_kind_and_names(
+    catego_and_names = extract_catego_and_names(
         folder    = folder,
         pattern   = PATTERN_NAME_PAIR,
         xtrafiles = xtrafiles
     )
 
     pals = {
-        get_stdname(kind_and_names[n][1]): resrc_std_palette(
-            palname   = kind_and_names[n][1],
-            palkind  = kind_and_names[n][0],
+        get_stdname(catego_and_names[n][1]): resrc_std_palette(
+            palname   = catego_and_names[n][1],
+            palcatego = catego_and_names[n][0],
             paldef    = p,
             precision = PAL_PRECISION + 2,
         )

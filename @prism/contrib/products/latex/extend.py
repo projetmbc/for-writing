@@ -107,7 +107,7 @@ if __name__ == "__main__":
 %%%
 % this::
 %     author = First Name, Last Name
-%     kind   = ?
+%     catego   = ?
 %%%
 
 % LaTeX definition used.

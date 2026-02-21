@@ -90,7 +90,7 @@ with sqlite3.connect(AUDIT_DIR / 'palettes.db') as conn:
 
     query = """
 SELECT
-    h.name, a.alias, h.kind
+    h.name, a.alias, h.catego
 FROM hash h
 LEFT JOIN alias a ON h.pal_id = a.pal_id
 WHERE h.is_kept = 1
@@ -100,11 +100,11 @@ WHERE h.is_kept = 1
 
     rows = cursor.fetchall()
 
-    for name, alias, kinds in rows:
+    for name, alias, categos in rows:
         if not alias is None:
             name = alias
 
-        for k in kinds.split(','):
+        for k in categos.split(','):
             k = k.strip()
 
             CATEGOS[k].append(name)
@@ -122,31 +122,31 @@ logging.info("Build 'category showcase' TeX files")
 
 _foreach_data = []
 
-for i, kind in enumerate(
+for i, catego in enumerate(
     natsorted(
         CATEGOS,
         alg = ns.IGNORECASE
     ),
     1
 ):
-    logging.info(f"(showcase) '{kind}'")
+    logging.info(f"(showcase) '{catego}'")
 
-    texfile = COMMON_CATEGO_DIR / f"{kind}.latex"
+    texfile = COMMON_CATEGO_DIR / f"{catego}.latex"
     texfile.touch()
 
-    title = METADATA_CATEGOS[kind]['title']
+    title = METADATA_CATEGOS[catego]['title']
 
     _foreach_data.append(
-        f"  {i}/{kind}/{{{title}}}"
+        f"  {i}/{catego}/{{{title}}}"
     )
 
     _graphics = []
 
     for n in natsorted(
-        set(CATEGOS[kind]),
+        set(CATEGOS[catego]),
         alg = ns.IGNORECASE
     ):
-        if kind in [
+        if catego in [
             'qualitative',
             'semantic',
         ]:
@@ -193,13 +193,13 @@ for i, kind in enumerate(
 
 logging.info("Build 'category desc' TeX files")
 
-for kind in sorted(CATEGOS):
-    logging.info(f"(desc) '{kind}'")
+for catego in sorted(CATEGOS):
+    logging.info(f"(desc) '{catego}'")
 
-    desc = METADATA_CATEGOS[kind]['desc']
-    title = METADATA_CATEGOS[kind]['title']
+    desc = METADATA_CATEGOS[catego]['desc']
+    title = METADATA_CATEGOS[catego]['title']
 
-    texfile = USED_BY_TOOLS_CATEGO_DIR / f"desc-{kind}.latex"
+    texfile = USED_BY_TOOLS_CATEGO_DIR / f"desc-{catego}.latex"
     texfile.touch()
 
     texcode = f"""

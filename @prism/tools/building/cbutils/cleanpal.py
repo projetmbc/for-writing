@@ -81,13 +81,13 @@ def norm_float_pal(
 
 def resrc_std_palette(
     palname  : str,
-    palkind : str,
+    palcatego: str,
     paldef   : PaletteCols,
     precision: int
 ):
     return {
         TAG_ORIGINAL_NAME: palname,
-        TAG_KIND         : palkind,
+        TAG_CATEGO       : palcatego,
         TAG_RGB_COLS     : norm_float_pal(paldef, precision + 2),
     }
 

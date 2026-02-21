@@ -55,7 +55,7 @@ with ORIGINAL_RESRC_PALS_JSON.open(mode = "r") as f:
 # ----------- #
 
 def extract_palette(pal_data: dict) -> [str, PaletteCols]:
-    kind = pal_data["type"]
+    catego = pal_data["type"]
 
     max_size = max(
         int(k)
@@ -71,7 +71,7 @@ def extract_palette(pal_data: dict) -> [str, PaletteCols]:
         for c in paldef
     ])
 
-    return kind, paldef
+    return catego, paldef
 
 
 # ---------------------- #
@@ -85,11 +85,11 @@ pals = dict()
 for palname, pal_data in ORIGINAL_RESRC_PALS.items():
     stdname = get_stdname(palname)
 
-    palkind, paldef = extract_palette(pal_data)
+    palcatego, paldef = extract_palette(pal_data)
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind   = palkind,
+        palcatego = palcatego,
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )

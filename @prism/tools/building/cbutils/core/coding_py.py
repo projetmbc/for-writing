@@ -364,7 +364,7 @@ def finalize_pycode(
 #     :return: :see: ./coding.hd_split_file
 #
 #
-# Here is a fictive content with the singme kind of section available.
+# Here is a fictive content with the single kind of section available.
 #
 # python::
 #     ...

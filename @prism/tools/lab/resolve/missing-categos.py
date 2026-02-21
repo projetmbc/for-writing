@@ -19,24 +19,24 @@ MAX_SEM_SIZE = 40
 CONFIG_DIR = LAB_DIR.parent / 'config'
 AUDIT_DIR  = LAB_DIR.parent / "building" / "audit"
 REPORT_DIR = AUDIT_DIR.parent / "REPORT"
-HUMAN_KIND_YAML   = AUDIT_DIR / "HUMAN-KIND.yaml"
-MISSING_KIND_JSON = REPORT_DIR / "AUDIT-MISSING-KIND.json"
+HUMAN_CATEGO_YAML   = AUDIT_DIR / "HUMAN-CATEGO.yaml"
+MISSING_CATEGO_JSON = REPORT_DIR / "AUDIT-MISSING-CATEGO.json"
 
 # --- LOAD METADATA ---
 with (CONFIG_DIR / 'METADATA.yaml').open(mode='r') as f:
     METADATA = yaml.safe_load(f)
-KIND_OPTIONS = sorted(list(METADATA['CATEGORY']))
+catego_OPTIONS = sorted(list(METADATA['CATEGORY']))
 
 # --- FUNCTIONS ---
 def update_data(new_entries):
     data = {}
 
-    if HUMAN_KIND_YAML.exists():
-        with HUMAN_KIND_YAML.open('r', encoding='utf-8') as f:
+    if HUMAN_CATEGO_YAML.exists():
+        with HUMAN_CATEGO_YAML.open('r', encoding='utf-8') as f:
             data = yaml.safe_load(f) or {}
 
-    for uid, kinds in new_entries.items():
-        if not kinds:
+    for uid, categos in new_entries.items():
+        if not categos:
             continue
 
         name, src = extract_name_n_srcname(uid)
@@ -44,22 +44,22 @@ def update_data(new_entries):
         if src not in data:
             data[src] = {}
 
-        data[src][name] = ', '.join(sorted(kinds))
+        data[src][name] = ', '.join(sorted(categos))
 
     # Tri final pour que le YAML reste lisible (Sources A-Z, puis Palettes A-Z)
     sorted_data = {s: dict(sorted(p.items())) for s, p in sorted(data.items())}
 
-    with HUMAN_KIND_YAML.open('w', encoding='utf-8') as f:
+    with HUMAN_CATEGO_YAML.open('w', encoding='utf-8') as f:
         yaml.dump(sorted_data, f, allow_unicode=True, sort_keys=False)
 
 
 @st.cache_data
 def load_all_data():
     """Charge les conflits et groupe les données par source pour l'UI."""
-    if not MISSING_KIND_JSON.exists():
+    if not MISSING_CATEGO_JSON.exists():
         return {}
 
-    with MISSING_KIND_JSON.open("r") as f:
+    with MISSING_CATEGO_JSON.open("r") as f:
         conflicts = json.load(f)
 
     # Structure : { source_name: { palette_name: colors_list } }
@@ -174,7 +174,7 @@ else:
                         )
 
                     with c2:
-                        st.multiselect("Types :", options=KIND_OPTIONS, key=f"k_{uid}", label_visibility="collapsed")
+                        st.multiselect("Types :", options=catego_OPTIONS, key=f"k_{uid}", label_visibility="collapsed")
 
                     st.divider()
 

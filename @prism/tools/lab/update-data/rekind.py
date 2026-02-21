@@ -27,7 +27,7 @@ from yaml import (
 # -- SQL QUERIES -- #
 # ----------------- #
 
-SQL_GET_PAL = "SELECT source, name, kind FROM hash WHERE name = ? AND is_kept = 1"
+SQL_GET_PAL = "SELECT source, name, catego FROM hash WHERE name = ? AND is_kept = 1"
 
 
 # --------------- #
@@ -35,14 +35,14 @@ SQL_GET_PAL = "SELECT source, name, kind FROM hash WHERE name = ? AND is_kept = 
 # --------------- #
 
 PROJ_DIR = THIS_DIR
-while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
+while (PROJ_DIR.name != TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
 
 AUDIT_DIR      = PROJ_DIR / 'tools' / 'building' / 'AUDIT'
-HUMAN_KIND_YAML = AUDIT_DIR / "HUMAN-KIND.yaml"
+HUMAN_CATEGO_YAML = AUDIT_DIR / "HUMAN-CATEGO.yaml"
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
-PENDING_REKINDS = dict()
+PENDING_REcategoS = dict()
 
 # ----------------- #
 # -- FUNCTIONS   -- #
@@ -55,25 +55,25 @@ def fetch_palette(name):
         return cursor.fetchone()
 
 def apply_rename():
-    global PENDING_REKINDS
+    global PENDING_REcategoS
 
-    with HUMAN_KIND_YAML.open('r') as f:
-        last_kinds = safe_load(f)
+    with HUMAN_CATEGO_YAML.open('r') as f:
+        last_CATEGOs = safe_load(f)
 
-    for name, (source, kinds) in PENDING_REKINDS.items():
-        if not source in last_kinds:
-            last_kinds[source] = dict()
+    for name, (source, categos) in PENDING_REcategoS.items():
+        if not source in last_CATEGOs:
+            last_CATEGOs[source] = dict()
 
-        last_kinds[source][name] = kinds
+        last_CATEGOs[source][name] = categos
 
-    HUMAN_KIND_YAML.write_text(
-        yaml_dump(last_kinds)
+    HUMAN_CATEGO_YAML.write_text(
+        yaml_dump(last_CATEGOs)
     )
 
 def show_pending():
-    global PENDING_REKINDS
+    global PENDING_REcategoS
 
-    if not PENDING_REKINDS:
+    if not PENDING_REcategoS:
         print("[yellow]Aucun renommage en attente.[/yellow]")
         return
 
@@ -81,10 +81,10 @@ def show_pending():
     table.add_column("Ancien Nom", style="red")
     table.add_column("Alias Proposé", style="green")
 
-    for name, (source, kinds) in PENDING_REKINDS.items():
+    for name, (source, categos) in PENDING_REcategoS.items():
         table.add_row(
             f"{name} [{source}]",
-            kinds
+            categos
         )
 
     print(table)
@@ -92,7 +92,7 @@ def show_pending():
     if Confirm.ask("Voulez-vous valider TOUS ces changements en base de données ?"):
         apply_rename()
 
-        PENDING_REKINDS = dict()
+        PENDING_REcategoS = dict()
 
         print("[bold green]Données persistantes mises à jour ![/bold green]")
 
@@ -119,19 +119,19 @@ def run_app():
         res = fetch_palette(query)
 
         if res:
-            source, name, kind = res
+            source, name, catego = res
 
             print(f"[bold]Source found:[/bold] [italic]{source}[/italic]")
 
-            print(f"[bold]Type found:[/bold] [italic]{kind}[/italic]")
+            print(f"[bold]Type found:[/bold] [italic]{catego}[/italic]")
 
             # Option de renommage
-            kind = Prompt.ask(f"Entrez le type pour '{name}' (laisser vide pour ignorer)", default="")
+            catego = Prompt.ask(f"Entrez le type pour '{name}' (laisser vide pour ignorer)", default="")
 
-            if kind and kind != name:
-                PENDING_REKINDS[name] = (source, kind)
+            if catego and catego != name:
+                PENDING_REcategoS[name] = (source, catego)
 
-                print(f"[yellow]✔ Type '{kind}' sauvegardé en mémoire.[/yellow]")
+                print(f"[yellow]✔ Type '{catego}' sauvegardé en mémoire.[/yellow]")
         else:
             print(f"[red]Palette '{query}' introuvable.[/red]")
 

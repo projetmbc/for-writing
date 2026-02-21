@@ -75,7 +75,7 @@ def extract_palette(file: Path) -> tuple[str, PaletteCols]:
         if not match:
             log_raise_error(
                 context   = "Extra resource",
-                desc      = f"'{THIS_RESRC}' - Matching palette {k}fails",
+                desc      = f"'{THIS_RESRC}' - Matching palette '{k}' fails",
                 exception = ValueError,
             )
 
@@ -100,7 +100,7 @@ for pyfile in sorted(RESRC_DIR.glob("*.py"), key = lambda x: str(x).lower()):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind  = TAG_COLORBLIND,
+        palcatego = TAG_COLORBLIND,
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )

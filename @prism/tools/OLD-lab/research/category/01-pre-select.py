@@ -89,24 +89,24 @@ else:
 # -- CATEGORY NAME CHECKING -- #
 # ---------------------------- #
 
-project_categos = set(ALL_CATEGOS)
-current_categos = set(
+project_CATEGOs = set(ALL_CATEGOS)
+current_CATEGOs = set(
     n
     for n in ALL_CATEGO_TAGS
     if n != TAG_CATEGO_NO_CATEGO_FOUND
 )
 
-xtra_categos = project_categos - current_categos
+xtra_CATEGOs = project_CATEGOs - current_CATEGOs
 
-if xtra_categos:
-    xtra_categos    = sorted(xtra_categos)
-    nb_xtra_categos = len(xtra_categos)
+if xtra_CATEGOs:
+    xtra_CATEGOs    = sorted(xtra_CATEGOs)
+    nb_xtra_CATEGOs = len(xtra_CATEGOs)
 
-    plurials = "" if xtra_categos == 1 else "s"
+    plurials = "" if xtra_CATEGOs == 1 else "s"
 
     raise ValueError(
-        f"{nb_xtra_categos} extra catego{plurials} found in the project:"
-        f"{'\n  + '.join([''] + xtra_categos)}"
+        f"{nb_xtra_CATEGOs} extra catego{plurials} found in the project:"
+        f"{'\n  + '.join([''] + xtra_CATEGOs)}"
            "\n"
            "\n    ----------------------------------------"
            "\n    | Use 'REBUILD = True' in this script. |"

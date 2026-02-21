@@ -28,7 +28,7 @@ TAG_DARK  = 'dark'
 TAG_LIGHT = 'light'
 
 
-PATTERN_GET_KINDS = re.compile(r"\[.*\]", re.DOTALL)
+PATTERN_GET_CATEGOS = re.compile(r"\[.*\]", re.DOTALL)
 
 
 # ------------------ #
@@ -85,20 +85,20 @@ for name in original_pals:
         final_names.add(main_name)
 
 
-# -- Get palette kinds -- #
+# -- Get palette categos -- #
 
 pycode = (RESRC_DIR / "colormaps.mjs").read_text()
 
-match = PATTERN_GET_KINDS.search(pycode)
+match = PATTERN_GET_CATEGOS.search(pycode)
 
 pycode = match.group(0)
 pycode = re.sub(r'(\w+):', r'"\1":', pycode)
 
-pal_kinds = ast.literal_eval(pycode)
+pal_CATEGOs = ast.literal_eval(pycode)
 
-name_2_kind = {
+name_2_CATEGO = {
     data['name']: data['type']
-    for data in pal_kinds
+    for data in pal_CATEGOs
 }
 
 # -- @prism palette defs -- #
@@ -106,7 +106,7 @@ name_2_kind = {
 pals = dict()
 
 for palname in sorted(final_names):
-    palkind = name_2_kind[palname]
+    palcatego = name_2_CATEGO[palname]
 
     stdname = get_stdname(palname)
 
@@ -117,7 +117,7 @@ for palname in sorted(final_names):
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palkind   = palkind,
+        palcatego = palcatego,
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )

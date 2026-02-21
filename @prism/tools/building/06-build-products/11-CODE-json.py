@@ -102,7 +102,7 @@ for p in sorted(REPORT_DIR.glob('*.json')):
 
     for prefix in [
         'AUDIT',
-        'KIND',
+        'CATEGO',
     ]:
         if p.name.startswith(f'{prefix}-'):
             tokeep = False
