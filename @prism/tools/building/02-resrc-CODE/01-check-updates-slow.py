@@ -18,7 +18,7 @@ from cbutils      import *
 # -------------------------- #
 
 if not YAML_CONFIGS[TAG_WORKFLOW]['ASK_GITHUB']:
-    logging.warning("'NO SEARCH' for needed updates")
+    logging.warning("'Uncheck updates'")
     exit(0)
 
 
