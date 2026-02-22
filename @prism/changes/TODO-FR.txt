@@ -26,21 +26,10 @@ AVANT nelle version !!!!!
 
 consolider les categos autos !!!
 
-    --> CMASHER
+    --> CMASHER : OK mais pas pris en compte il smeble CTAGEO-*.json
 
-         + kind ici : https://cmasher.readthedocs.io/user/diverging/emergency.html
-
-         + CERTAINES colroblind , dans la doc, usage de CVD-friendly
 
     --> ASYMPTOTE
-
-    --> AUDIT-LOCMAIN-NAMES-NEW
-
-    --> AUDIT-MISSING-KIND
-
-    --> AUDIT-NAME-CONFLICT
-
-    --> AUDIT-SAME-NAMED-PALETTES
 
     --> CARBONPLAN
 

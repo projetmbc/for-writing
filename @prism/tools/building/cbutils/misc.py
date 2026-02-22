@@ -119,7 +119,7 @@ def build_name_n_srcname(
     name   : str,
     srcname: str,
 ) -> str:
-    return '::'.join([name, srcname])
+    return '::'.join([name.lower(), srcname.lower()])
 
 
 def get_uid(

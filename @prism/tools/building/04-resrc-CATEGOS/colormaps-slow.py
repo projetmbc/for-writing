@@ -26,27 +26,6 @@ from cbutils      import *
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-THIS_RESRC = TAG_COLORMAPS
-
-
-PROJ_DIR = THIS_DIR
-
-while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
-    PROJ_DIR = PROJ_DIR.parent
-
-THIS_RESRC_DIR = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
-
-REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
-
-
-_RESRC_CATEGOS_JSON = THIS_RESRC.replace(' ', '-').upper()
-RESRC_CATEGOS_JSON  = REPORT_DIR / f"CATEGO-{_RESRC_CATEGOS_JSON}.json"
-
-
-# ------------------ #
-# -- CONSTANTS #2 -- #
-# ------------------ #
-
 PATTERN_MD_SECTION_1 = re.compile(
     r'^#\s+(.+)',
     re.MULTILINE
@@ -65,6 +44,29 @@ TITLES_IGNORED = [
 NAMES_IGNORED = [
     'Name'
 ]
+
+
+# ------------------ #
+# -- CONSTANTS #2 -- #
+# ------------------ #
+
+THIS_RESRC = Path(__file__).stem
+THIS_RESRC = THIS_RESRC.split('-')[0]
+THIS_RESRC = THIS_RESRC.upper()
+
+
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
+    PROJ_DIR = PROJ_DIR.parent
+
+THIS_RESRC_DIR = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
+
+REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
+
+
+_RESRC_CATEGOS_JSON = THIS_RESRC.replace(' ', '-').upper()
+RESRC_CATEGOS_JSON  = REPORT_DIR / f"CATEGO-{_RESRC_CATEGOS_JSON}.json"
 
 
 # ----------- #
@@ -99,8 +101,6 @@ def extract_md_pals(content):
                 f"Unknown colormaps subproject '{src}'"
             )
 
-        src = RESRC_ALIAS[src]
-
 # Which palettes?
         for line in lines:
             if not is_data_row(line):
@@ -122,7 +122,7 @@ def extract_md_pals(content):
 
 
 # -------------------- #
-# -- MISING CATEGOS -- #
+# -- ADDING CATEGOS -- #
 # -------------------- #
 
 logging.info(f"Categos - Extract from '{THIS_RESRC}'")

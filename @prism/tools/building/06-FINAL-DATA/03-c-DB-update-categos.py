@@ -147,9 +147,9 @@ def get_std_catego(catego):
     return ','.join(_CATEGO)
 
 
-# --------------------- #
-# -- HUMAN categoS :-) -- #
-# --------------------- #
+# ------------------- #
+# -- HUMAN CATEGOS -- #
+# ------------------- #
 
 logging.info("DB - Catego - 'Add human categos' :-)")
 
@@ -167,9 +167,9 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
             cursor.execute(query)
 
 
-# -------------- #
-# -- DB categoS -- #
-# -------------- #
+# -------------------------- #
+# -- DB CATEGO RESOLUTION -- #
+# -------------------------- #
 
 logging.info("DB - Catego - 'DB missing catego resolution'")
 
@@ -196,11 +196,11 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         cursor.execute(query)
 
 
-# ------------------- #
-# -- MISSING categoS -- #
-# ------------------- #
+# --------------------- #
+# -- MISSING CATEGOS -- #
+# --------------------- #
 
-logging.info("DB - Catego - 'Unresolved missing categos'?")
+logging.info("DB - Catego - 'Unresolved missing categos?'")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -216,7 +216,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 # ------------------ #
 
 logging.info(
-    "DB - Catego - Update '{MISSING_CATEGO_JSON.relative_to(PROJ_DIR)}'"
+    f"DB - Catego - Update '{MISSING_CATEGO_JSON.relative_to(PROJ_DIR)}'"
 )
 
 MISSING_CATEGO_JSON.write_text(
@@ -230,7 +230,7 @@ MISSING_CATEGO_JSON.write_text(
 
 if not MISSING_CATEGOS:
     logging.info(
-    f"DB - Catego - No problem!"
+    f"DB - Catego - 'No problem!'"
 )
 
 else:

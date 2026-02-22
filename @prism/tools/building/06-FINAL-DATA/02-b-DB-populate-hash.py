@@ -233,7 +233,9 @@ def dbadd_hashpals(
 # -- PALETTE HASH -- #
 # ------------------ #
 
-logging.info("DB - Hash - 'Just populate' (auto removeing big palettes)")
+logging.info(
+    "DB - Hash - 'Just populate' (auto removing big palettes)"
+)
 
 conn = sqlite3.connect(SQLITE_DB_FILE)
 
@@ -296,9 +298,9 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor.execute(SQL_SET_DEFAULT_EQUAL_TO)
 
 
-# --------------------- #
-# -- REMOVE PALETTES -- #
-# --------------------- #
+# ----------------------------------- #
+# -- REMOVE PALETTES - JSON UPDATE -- #
+# ----------------------------------- #
 
 if UPDATE_IGNORED_YAML:
     logging.info(
@@ -310,9 +312,9 @@ if UPDATE_IGNORED_YAML:
     )
 
 
-# --------------------- #
-# -- REMOVE PALETTES -- #
-# --------------------- #
+# --------------------------------- #
+# -- REMOVE PALETTES - DB UPDATE -- #
+# --------------------------------- #
 
 if not IGNORED:
     exit(0)

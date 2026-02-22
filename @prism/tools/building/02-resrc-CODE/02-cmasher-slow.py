@@ -94,6 +94,8 @@ clean_src_files(
     local_src_dir = THIS_RESRC_DIR / "CMasher-master",
     globs_kept    = [
         "LICENSE",
+        "docs/*/*/diverging/*.rst",
+        "docs/*/*/sequential/*.rst",
         "src/cmasher/colormaps/*/*.py",
     ],
 )
