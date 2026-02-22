@@ -24,14 +24,12 @@ from cbutils      import *
 from eralchemy2 import render_er
 
 
+
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-PATTERN_SQL_CREATE_TABLE = re.compile(
-    r"CREATE TABLE.*?\);",
-    re.DOTALL | re.IGNORECASE
-)
+DB_INIT_PY_FILE = THIS_DIR / '02-a-DB-init-tables.py'
 
 
 # ------------------ #
@@ -45,9 +43,9 @@ while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
 
 AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
-SQLITE_DB_FILE    = AUDIT_DIR / "palettes.db"
+SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
+
 AUDIT_DB_VIEW_TXT = AUDIT_DIR / "DB-VIEW.txt"
-AUDIT_DB_VIEW_DOT = AUDIT_DIR / "DB-VIEW.dot"
 AUDIT_DB_VIEW_PNG = AUDIT_DIR / "DB-VIEW.png"
 
 
@@ -55,29 +53,14 @@ AUDIT_DB_VIEW_PNG = AUDIT_DIR / "DB-VIEW.png"
 # -- GATHER SQL TABLE CREATIONS -- #
 # -------------------------------- #
 
-logging.info("DB diagram - 'Gather table creation codes'")
+logging.info("DB diagram - 'Get creation code'")
 
-_sql_full_code = []
+code = DB_INIT_PY_FILE.read_text()
 
-for pyfile in BUILD_TOOLS_DIR.glob("*-final-data/*DB-init*.py"):
-    logging.info(
-        f"Analyze '{pyfile.relative_to(PROJ_DIR)}'"
-    )
+_ , _ , code = code.partition("SQL_TABLE_CREATE = '''")
+code, _ , _  = code.partition("'''")
 
-    pycode = pyfile.read_text()
-
-    _sql_full_code += PATTERN_SQL_CREATE_TABLE.findall(pycode)
-
-
-sql_full_code = ''
-
-for i, block in enumerate(_sql_full_code, start = 1):
-    title = f"TABLE #{i}"
-    deco  = '-'*(len(title) + 6)
-
-    sql_full_code += f"\n\n\n{deco}\n-- {title} --\n{deco}\n\n{block}"
-
-sql_full_code = sql_full_code.strip() + '\n'
+code = code.strip() + '\n'
 
 
 # -------------- #
@@ -86,7 +69,7 @@ sql_full_code = sql_full_code.strip() + '\n'
 
 logging.info(f"Update '{AUDIT_DB_VIEW_TXT.relative_to(PROJ_DIR)}'")
 
-AUDIT_DB_VIEW_TXT.write_text(sql_full_code)
+AUDIT_DB_VIEW_TXT.write_text(code)
 
 
 # ---------------- #

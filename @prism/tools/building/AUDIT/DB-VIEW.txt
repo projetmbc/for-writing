@@ -1,1 +1,56 @@
+----------------
+-- MAIN TABLE --
+----------------
 
+DROP TABLE IF EXISTS hash;
+CREATE TABLE hash (
+--
+    pal_id INTEGER PRIMARY KEY,
+    name   VARCHAR(30) NOT NULL,
+    source VARCHAR(30) NOT NULL,
+--
+    is_kept  INTEGER DEFAULT 1,
+    equal_to INTEGER REFERENCES hash(pal_id),
+    catego   TEXT DEFAULT '',
+--
+    hash_normal  TEXT NOT NULL,
+    hash_reverse TEXT NOT NULL
+);
+
+
+----------------
+-- SUB TABLES --
+----------------
+
+DROP TABLE IF EXISTS alias;
+CREATE TABLE alias (
+--
+    pal_id INTEGER NOT NULL PRIMARY KEY,
+    alias  VARCHAR(30) NOT NULL,
+--
+    FOREIGN KEY (pal_id) REFERENCES hash (pal_id)
+);
+
+
+DROP TABLE IF EXISTS priority;
+CREATE TABLE priority (
+--
+    source   VARCHAR(30) NOT NULL PRIMARY KEY,
+    priority INTEGER NOT NULL,
+--
+    FOREIGN KEY (source) REFERENCES hash (source)
+);
+
+
+DROP TABLE IF EXISTS mirror;
+CREATE TABLE mirror (
+--
+    cand_pal_id_1 INTEGER NOT NULL,
+    cand_pal_id_2 INTEGER NOT NULL,
+--
+    PRIMARY KEY (cand_pal_id_1, cand_pal_id_2),
+    CHECK (cand_pal_id_1 < cand_pal_id_2),
+--
+    FOREIGN KEY (cand_pal_id_1) REFERENCES hash (pal_id),
+    FOREIGN KEY (cand_pal_id_2) REFERENCES hash (pal_id)
+);

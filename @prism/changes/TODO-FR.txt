@@ -24,21 +24,13 @@ git cm "..."
 AVANT nelle version !!!!!
 
 
-01-b-CONTRIBS-lua-prod-struct.py  --> UTILE???
-
-
-+
-
-DB-VIEW.txt est vide !!!!
-
-    --> tout dans la variable  SQL_TABLE_CREATE   de DB-init
-
-
-+
-
-
-
 consolider les categos autos !!!
+
+    --> CMASHER
+
+         + kind ici : https://cmasher.readthedocs.io/user/diverging/emergency.html
+
+         + CERTAINES colroblind , dans la doc, usage de CVD-friendly
 
     --> ASYMPTOTE
 
@@ -53,12 +45,6 @@ consolider les categos autos !!!
     --> CARBONPLAN
 
     --> CARTOCOLORS
-
-    --> CMASHER
-
-         + kind ici : https://cmasher.readthedocs.io/user/diverging/emergency.html
-
-         + CERTAINES colroblind , dans la doc, usage de CVD-friendly
 
     --> CMOCEAN
 

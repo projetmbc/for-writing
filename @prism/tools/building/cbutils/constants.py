@@ -20,9 +20,7 @@ __TAG_APRISM         = '@prism'
 TAG_APRISM_LAST_MAIN = f'{__TAG_APRISM.upper()}-LAST-MAIN'
 
 
-THIS_DIR = Path(__file__).parent
-
-PROJ_DIR = THIS_DIR
+PROJ_DIR = Path(__file__).parent
 
 while (PROJ_DIR.name != __TAG_APRISM):
     PROJ_DIR = PROJ_DIR.parent
