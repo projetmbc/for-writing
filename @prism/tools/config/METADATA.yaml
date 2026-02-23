@@ -42,8 +42,8 @@ CATEGORY:
   divergent:
     title: Divergent palettes
     desc: >
-      Divergent palettes highlight deviations from one or more
-      midpoints toward contrasting extremes.
+      Divergent palettes highlight deviations from one
+      midpoint toward contrasting extremes.
     alias:
       - div
       - diverging
@@ -73,7 +73,7 @@ CATEGORY:
     title: Sequential palettes
     desc: >
       Sequential palettes represent ordered data using a single
-      or multi-hue gradient with increasing lightness.
+      or multi-hue gradient with monotonic lightness.
     alias:
       - seq
       - scientific colormaps
@@ -84,6 +84,8 @@ CATEGORY:
   stepped:
     title: Stepped palettes
     desc: >
-      Stepped palettes are designed to highlight distinct shifts rather than smooth progression. They use high-contrast colors that meet at sharp boundary points to emphasize deviation.
+      Stepped palettes are designed to highlight distinct shifts
+      rather than smooth progression. They use high-contrast colors
+      that meet at sharp boundary points to emphasize deviation.
     alias:
       - outlier

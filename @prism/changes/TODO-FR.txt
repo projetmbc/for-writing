@@ -23,13 +23,17 @@ git cm "..."
 
 AVANT nelle version !!!!!
 
-
-consolider les categos autos !!!
-
-    --> CMASHER : OK mais pas pris en compte il smeble CTAGEO-*.json
+imprimer audit pour les catgeos car des choses à revoir!!!
 
 
-    --> ASYMPTOTE
+// ---------- //
+
+consolider les categos autos si possible
+
+    --> COLORMAPS (juste pour catego) : OK mais pas pris en compte en attendnat d'intégrer les palettes liées à colrmpas historiquement.
+
+
+    --> ASYMPTOTE / MATPLOTLIB : rien
 
     --> CARBONPLAN
 
@@ -45,8 +49,6 @@ consolider les categos autos !!!
 
     --> LIGHTBARTLEIN
 
-    --> MATPLOTLIB
-
     --> MYCARTA
 
     --> PLOTLY
@@ -56,16 +58,6 @@ consolider les categos autos !!!
     --> TABLEAU
 
     --> WESANDERSON
-
-
-+
-
-
-
-imprimer audit pour les catgeos car des choses à revoir dont ...
-
-
-
 
 
 // ---------- //
