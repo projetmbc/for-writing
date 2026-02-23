@@ -230,20 +230,22 @@ MISSING_CATEGO_JSON.write_text(
 
 if not MISSING_CATEGOS:
     logging.info(
-    f"DB - Catego - 'No problem!'"
-)
-
-else:
-    nb = len(MISSING_CATEGOS)
-
-    plurial = '' if nb == 1 else 's'
-
-    reslover = PROJ_DIR / "tools" / "lab" / "resolve" / "missing-categos.py"
-
-    log_raise_error(
-        context   = f"{nb} missing catego{plurial} need NOAI resolution",
-        desc      = "Palettes need to have at least one catego.",
-        exception = ValueError,
-        xtra      = (
-            f'Use:\n---\nstreamlit run "{reslover}"\n---')
+        f"DB - Catego - 'No problem!'"
     )
+
+    exit(0)
+
+
+nb = len(MISSING_CATEGOS)
+
+plurial = '' if nb == 1 else 's'
+
+reslover = PROJ_DIR / "tools" / "lab" / "resolve" / "missing-categos.py"
+
+log_raise_error(
+    context   = f"{nb} missing catego{plurial} need NOAI resolution",
+    desc      = "Palettes need to have at least one catego.",
+    exception = ValueError,
+    xtra      = (
+        f'Use:\n---\nstreamlit run "{reslover}"\n---')
+)

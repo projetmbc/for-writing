@@ -1,3 +1,7 @@
+exit(0)
+
+# TODO: utile?
+
 #!/usr/bin/env python3
 
 # -- DEBUG - ON -- #
