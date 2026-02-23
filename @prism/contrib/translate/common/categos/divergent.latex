@@ -41,6 +41,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Berlin\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Berlin-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Blackbody\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Blackbody-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries BlindFish\vphantom{g}}
 
         \smallskip

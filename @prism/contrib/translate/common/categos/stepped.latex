@@ -61,6 +61,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries BlueRed\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueRed-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Bukavu\vphantom{g}}
 
         \smallskip

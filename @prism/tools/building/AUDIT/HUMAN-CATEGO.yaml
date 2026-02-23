@@ -17,6 +17,9 @@ ASYMPTOTE:
   YlOrRd: dark, qualitative, sequential
 
 # -- C -- #
+CARBONPLAN:
+  BlueGrey: divergent, sequential
+
 CARTOCOLORS:
   AgGrnYl: qualitative, sequential
   AgSunset: qualitative, sequential
@@ -28,6 +31,16 @@ CMOCEAN:
 
 COLORBREWER:
   Accent: qualitative, stepped
+
+# -- L -- #
+LIGHTBARTLEIN:
+  BlueDarkOrange: divergent, sequential
+  BlueDarkRed12: divergent, sequential
+  BlueDarkRed18: divergent, sequential
+  BlueGray: divergent, sequential
+  BlueGreen: divergent, sequential
+  BlueOrange: stepped
+  BlueOrangeRed: divergent, sequential
 
 # -- M -- #
 MATPLOTLIB:
@@ -62,6 +75,11 @@ MATPLOTLIB:
   Turbo: sequential
   Winter: dark, qualitative
 
+# -- P -- #
+PLOTLY:
+  Blackbody: divergent, qualitative, sequential
+  BlueRedPLY: qualitative, sequential
+
 # -- S -- #
 SCICOLMAPS:
   Acton: colorblind, sequential
@@ -69,12 +87,20 @@ SCICOLMAPS:
   BamO: colorblind, cyclic, divergent, sequential
   Bamako: colorblind, sequential
   Batlow: colorblind, stepped
+  BatlowK: colorblind, sequential
+  BatlowW: colorblind, sequential
+  Berlin: colorblind, divergent, sequential
+  Bilbao: colorblind, sequential
   Bukavu: colorblind, stepped
 
 SCIENTIFIC-COLOUR-MAPS:
   Bukavu: colorblind, stepped
   Fes: colorblind, stepped
   Oleron: colorblind, stepped
+
+# -- T -- #
+TABLEAU:
+  BlueRed: qualitative, stepped
 
 # -- W -- #
 WESANDERSON:

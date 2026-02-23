@@ -37,10 +37,13 @@ ALL_CATEGOS = ', '.join(sorted(_ALL_CATEGOS))
 
 SQL_GET_PAL = """
 SELECT
-    source, name, catego
-FROM hash
-WHERE name = ?
-  AND is_kept = 1
+    h.source,
+    COALESCE(a.alias, h.name) AS effective_name,
+    h.catego
+FROM hash h
+LEFT JOIN alias a ON h.pal_id = a.pal_id
+WHERE effective_name = ?
+  AND h.is_kept = 1;
 """
 
 

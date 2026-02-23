@@ -161,6 +161,46 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries BatlowK\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BatlowK-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BatlowW\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BatlowW-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Berlin\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Berlin-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Bilbao\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Bilbao-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Binary\vphantom{g}}
 
         \smallskip
@@ -185,6 +225,56 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/BlindFish-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BlueDarkRed12\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueDarkRed12-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BlueDarkRed18\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueDarkRed18-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BlueGray\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueGray-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BlueGreen\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueGreen-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BlueOrangeRed\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueOrangeRed-spectrum.pdf}
     \end{center}
 \end{minipage}
 

@@ -123,6 +123,18 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Blackbody\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Blackbody-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries BlindFish\vphantom{g}}
 
         \smallskip
