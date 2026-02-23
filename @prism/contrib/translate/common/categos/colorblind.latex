@@ -11,6 +11,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Apple\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Apple-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Bam\vphantom{g}}
 
         \smallskip
@@ -131,6 +141,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Chroma\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Chroma-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries CopperCM\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/CopperCM-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Cork\vphantom{g}}
 
         \smallskip
@@ -181,6 +211,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Emergency\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Emergency-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Fes\vphantom{g}}
 
         \smallskip
@@ -215,6 +255,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Hawaii-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Holly\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Holly-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -371,6 +421,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Pride\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Pride-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Rainforest\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Rainforest-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Roma\vphantom{g}}
 
         \smallskip
@@ -395,6 +465,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Safe-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Seasons\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Seasons-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -455,6 +535,26 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/VikO-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Watermelon\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Watermelon-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Wildfire\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Wildfire-spectrum.pdf}
     \end{center}
 \end{minipage}
 

@@ -2,28 +2,15 @@
 
 
 ==
-????  (2.0.0-beta.22)
+23  (2.0.0-beta.22)
 ==
 
 --------
 :update:
 --------
 
-[[:api:]] ?????
-Add \resrc additional \categos: some hidden \categos in \docs are now managed (\cmasher is the \1st project used in this \ctxt).
-
-     --> création des categos (ok)
-
-     --> lecture des categos mais besoin de chercher nom et source en lower case pour maj de la DB
-
-UPDATE hash
-SET catego = CASE
-    WHEN catego = '' THEN '{catego}'
-    ELSE catego || ', ' || '{catego}'
-END
-WHERE name = '{name}' COLLATE NOCASE
-  AND source = '{source}' COLLATE NOCASE
-
+[[:api:]]
+Expanded \resrc \categos: use of \web content (this version only uses \cmasher \doc content to find color blind palette).
 
 
 // ---------- //
