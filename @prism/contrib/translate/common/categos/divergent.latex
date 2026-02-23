@@ -21,6 +21,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Bam\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Bam-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BamO\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BamO-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries BlindFish\vphantom{g}}
 
         \smallskip

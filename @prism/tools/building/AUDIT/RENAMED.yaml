@@ -37,8 +37,10 @@ CARBONPLAN:
   Tealgrey: TealGrey
   Yellowgrey: YellowGrey
   Yellowpurple: YellowPurple
+
 CARTOCOLORS:
   Prism: .
+
 CMASHER:
   Copper: .
   Fall: .
@@ -47,6 +49,7 @@ CMASHER:
   Ocean: .
   Redshift: RedShift
   Sunburst: SunBurst
+
 COLORBREWER:
   PRGn: PrGn
   YlOrRd: .

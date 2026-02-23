@@ -1,6 +1,66 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Accent\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Accent-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Antique\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Antique-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Aquatic1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Aquatic1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Aquatic2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Aquatic2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Aquatic3\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Aquatic3-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Batlow\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Batlow-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Bukavu\vphantom{g}}
 
         \smallskip

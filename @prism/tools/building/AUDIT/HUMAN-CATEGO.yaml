@@ -16,6 +16,19 @@ ASYMPTOTE:
   Viridis: dark, sequential
   YlOrRd: dark, qualitative, sequential
 
+# -- C -- #
+CARTOCOLORS:
+  AgGrnYl: qualitative, sequential
+  AgSunset: qualitative, sequential
+  Antique: qualitative, stepped
+  ArmyRose: divergent, sequential
+
+CMOCEAN:
+  Balance: cyclic, divergent, sequential
+
+COLORBREWER:
+  Accent: qualitative, stepped
+
 # -- M -- #
 MATPLOTLIB:
   Afmhot: sequential
@@ -51,8 +64,20 @@ MATPLOTLIB:
 
 # -- S -- #
 SCICOLMAPS:
-  Bukavu: colorblind,stepped
+  Acton: colorblind, sequential
+  Bam: colorblind, divergent, sequential
+  BamO: colorblind, cyclic, divergent, sequential
+  Bamako: colorblind, sequential
+  Batlow: colorblind, stepped
+  Bukavu: colorblind, stepped
+
 SCIENTIFIC-COLOUR-MAPS:
-  Bukavu: colorblind,stepped
-  Fes: colorblind,stepped
-  Oleron: colorblind,stepped
+  Bukavu: colorblind, stepped
+  Fes: colorblind, stepped
+  Oleron: colorblind, stepped
+
+# -- W -- #
+WESANDERSON:
+  Aquatic1: qualitative, stepped
+  Aquatic2: qualitative, stepped
+  Aquatic3: qualitative, stepped

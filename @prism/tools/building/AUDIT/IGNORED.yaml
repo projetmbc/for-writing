@@ -4,6 +4,7 @@ CMASHER:
     why: Too big (size > 512).
   Savanna:
     why: Looks completely black.
+
 COLORBREWER:
   YlOrRd:
     palette: YlOrRd

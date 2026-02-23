@@ -26,38 +26,42 @@ AVANT nelle version !!!!!
 imprimer audit pour les catgeos car des choses à revoir!!!
 
 
+
+
+
 // ---------- //
 
 consolider les categos autos si possible
 
-    --> COLORMAPS (juste pour catego) : OK mais pas pris en compte en attendnat d'intégrer les palettes liées à colrmpas historiquement.
+    --> COLORMAPS : OK
 
 
-    --> ASYMPTOTE / MATPLOTLIB : rien
 
-    --> CARBONPLAN
+    --> ASYMPTOTE / MATPLOTLIB : ?
 
-    --> CARTOCOLORS
+    --> CARBONPLAN : ?
 
-    --> CMOCEAN
+    --> CARTOCOLORS : ?
 
-    --> COLORBREWER
+    --> CMOCEAN : ?
 
-    --> CUBEHELIX
+    --> COLORBREWER : ?
 
-    --> KIND-COLORMAPS
+    --> CUBEHELIX : ?
 
-    --> LIGHTBARTLEIN
+    --> KIND-COLORMAPS : ?
 
-    --> MYCARTA
+    --> LIGHTBARTLEIN : ?
 
-    --> PLOTLY
+    --> MYCARTA : ?
 
-    --> SCICOLMAPS
+    --> PLOTLY : ?
 
-    --> TABLEAU
+    --> SCICOLMAPS : ?
 
-    --> WESANDERSON
+    --> TABLEAU : ?
+
+    --> WESANDERSON : ?
 
 
 // ---------- //
@@ -72,8 +76,6 @@ streamlit (apprendre)
 // ---------- //
 
 AUDIT_SHOWCASE_DIR : nettotyage intelligent!!!
-
-
 
 
 // ---------- //

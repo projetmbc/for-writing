@@ -21,24 +21,35 @@
 #    (the palette is a subset of another).
 ###
 
+# -- B -- #
 BlueDarkOrange12:
   BlueDarkOrange: subset
+
 BlueDarkOrange18:
   BlueDarkOrange: renamed
+
 BlueOrange10:
   BlueOrange: subset
+
 BlueOrange12:
   BlueOrange: renamed
+
 BlueOrange8:
   BlueOrange: subset
+
+# -- G -- #
 GrayTab:
   MidGray: renamed
+
 Grays:
   Greys: superseded
+
+# -- T -- #
 Tab10:
   Tab20: subset
+
 Tableau:
   Tableau: ignored
+
 TwilightShifted:
   Twilight: shift
-

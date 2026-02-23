@@ -65,20 +65,22 @@ def get_initial_indict(
 def get_comment_initial(
     line: str
 ) -> str:
-    if not line.startswith('#  + '):
+    if not line.startswith('# -- '):
         return ''
 
-    return line[5:].strip()
+    return line[6]
 
 
 def get_initialized_code(code, get_initial):
-    _new_code    = []
-    last_initial = ''
+    _new_code      = []
+    last_initial   = ''
+    add_empty_line = False
 
     for line in code.split('\n'):
-        add_initial = False
+        not_empty_line = bool(line.strip())
+        add_initial    = False
 
-        if line.strip():
+        if not_empty_line:
             if line[0] == '#':
                 add_initial = False
 
@@ -99,7 +101,20 @@ def get_initialized_code(code, get_initial):
         if add_initial:
             _new_code.append(f"\n# -- {this_initial} -- #")
 
-            last_initial = this_initial
+            last_initial   = this_initial
+            add_empty_line = False
+
+        if (
+            not_empty_line
+            and
+            add_empty_line
+            and
+            line[0] != ' '
+        ):
+            _new_code.append('')
+
+        if not_empty_line and line[0] != ' ':
+            add_empty_line = True
 
         _new_code.append(line)
 
@@ -128,6 +143,18 @@ def humanize_yaml(
     with path.open(mode = "r") as f:
         data = safe_load(f)
 
+    if path.stem == 'HUMAN-CATEGO':
+        for src, palcatego in data.items():
+            for name, catego in palcatego.items():
+                _catego = sorted([
+                    c.strip()
+                    for c in catego.split(',')
+                ])
+
+                catego = ', '.join(_catego)
+
+                palcatego[name] = catego
+
     if TAG_SUFFIXES in data:
         header = yaml.dump(
             {TAG_SUFFIXES: data[TAG_SUFFIXES]},
@@ -135,8 +162,27 @@ def humanize_yaml(
         )
 
         header = header.strip()
+        header = f"""{header}
+
+# '.' asks to add the suffix to the existing name.
+# '*' is an alias for the suffix.
+            """.strip()
 
         del data[TAG_SUFFIXES]
+
+    elif path.stem == 'LOCMAIN-REMOVED':
+        _header = []
+
+        content = path.read_text().strip()
+
+        for line in content.splitlines():
+            if line and line[0] == '#':
+                _header.append(line)
+
+            else:
+                break
+
+        header = '\n'.join(_header)
 
     else:
         header = ''
@@ -152,15 +198,7 @@ def humanize_yaml(
     )
 
     if header:
-        _new_code += [
-            header,
-            '',
-            f"""
-# '.' asks to add the suffix to the existing name.
-# '*' is an alias for the suffix.
-            """.strip(),
-            ''
-        ]
+        _new_code += [header, '']
 
     _new_code.append(mini_code)
     _new_code.append('')
@@ -178,8 +216,8 @@ def humanize_yaml(
 logging.info(f"Human friendly YAML files")
 
 for p in sorted(AUDIT_DIR.glob('*.yaml')):
-    if p.stem.startswith('LOCMAIN-'):
-        continue
+    # if p.stem.startswith('LOCMAIN-'):
+    #     continue
 
     logging.info(f"Pretty '{p.relative_to(PROJ_DIR)}'")
 

@@ -152,6 +152,10 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 if not same_names:
     logging.info("Nothing to do")
 
+    REPORT_SAME_NAMED_PALS_JSON.write_text(
+        json_dumps(dict())
+    )
+
     exit(0)
 
 

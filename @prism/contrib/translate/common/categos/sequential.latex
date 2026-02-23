@@ -1,10 +1,40 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Acton\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Acton-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries AfmHot\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/AfmHot-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries AgGrnYl\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/AgGrnYl-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries AgSunset\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/AgSunset-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -71,10 +101,60 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries ArmyRose\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/ArmyRose-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Autumn\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/Autumn-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Balance\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Balance-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Bam\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Bam-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Bamako\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Bamako-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BamO\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BamO-spectrum.pdf}
     \end{center}
 \end{minipage}
 
