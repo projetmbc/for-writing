@@ -7,12 +7,10 @@ ASYMPTOTE:
   Magma: sequential
   Plasma: sequential
   Seismic: dark, divergent, qualitative, sequential
-  Tab10: dark, divergent, qualitative
-  Tab20: dark, divergent, qualitative
-  Tab20b: dark, divergent, qualitative
-  Tab20c: dark, divergent, qualitative
+  Tab20: dark, qualitative, stepped
+  Tab20b: dark, qualitative, stepped
+  Tab20c: dark, qualitative, stepped
   Twilight: divergent, sequential
-  TwilightShifted: divergent, sequential
   Viridis: dark, sequential
   YlOrRd: dark, qualitative, sequential
 
@@ -39,7 +37,7 @@ LIGHTBARTLEIN:
   BlueDarkRed18: divergent, sequential
   BlueGray: divergent, sequential
   BlueGreen: divergent, sequential
-  BlueOrange12: stepped    # PB: divergent????
+  BlueOrange12: stepped
   BlueOrangeRed: divergent, sequential
 
 # -- M -- #
@@ -52,28 +50,28 @@ MATPLOTLIB:
   Cool: dark, qualitative, sequential
   Copper: sequential
   Cubehelix: colorblind, sequential
-  Flag: cyclic, divergent
+  Flag: stepped
   GistEarth: sequential
   GistGray: sequential
   GistHeat: sequential
-  GistNcar: divergent, sequential
-  GistRainbow: dark, divergent, sequential
-  GistStern: divergent, sequential
+  GistNcar: stepped
+  GistRainbow: dark, stepped
+  GistStern: stepped
   Gnuplot: sequential
   Gnuplot2: sequential
   Hot: sequential
-  Hsv: dark, divergent, sequential
-  Jet: dark, divergent, sequential
-  NipySpectral: divergent, qualitative, sequential
+  Hsv: dark, stepped
+  Jet: dark, stepped
+  NipySpectral: qualitative, stepped
   Ocean: divergent, sequential
   Pink: sequential
-  Prism: dark, divergent
-  Rainbow: dark, sequential
+  Prism: dark, stepped
+  Rainbow: dark, divergent, sequential
   Spring: dark, qualitative, sequential
   Summer: dark, qualitative, sequential
-  Terrain: dark, divergent, sequential
-  Turbo: sequential
-  Winter: dark, qualitative
+  Terrain: dark, stepped
+  Turbo: stepped
+  Winter: dark, qualitative, sequential
 
 # -- P -- #
 PLOTLY:
@@ -86,9 +84,9 @@ SCICOLMAPS:
   Bam: colorblind, divergent, sequential
   BamO: colorblind, cyclic, divergent, sequential
   Bamako: colorblind, sequential
-  Batlow: colorblind, stepped
-  BatlowK: colorblind, sequential
-  BatlowW: colorblind, sequential
+  Batlow: colorblind, divergent, sequential
+  BatlowK: colorblind, divergent, sequential
+  BatlowW: colorblind, divergent, sequential
   Berlin: colorblind, divergent, sequential
   Bilbao: colorblind, sequential
   Bukavu: colorblind, stepped

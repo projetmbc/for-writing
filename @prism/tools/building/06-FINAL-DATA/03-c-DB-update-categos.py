@@ -36,11 +36,9 @@ from yaml import (
 
 SQL_UPDATE_CATEGO = '''
 UPDATE hash
-SET catego = CASE WHEN catego = ''
-    THEN '{catego}'
-    ELSE catego || ', ' || '{catego}'
-END
-WHERE name = '{name}' AND source = '{source}'
+SET catego = '{catego}'
+WHERE name = '{name}'
+  AND source = '{source}'
 '''
 
 

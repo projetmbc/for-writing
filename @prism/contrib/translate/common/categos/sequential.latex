@@ -81,16 +81,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Apple\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Apple-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Arctic\vphantom{g}}
 
         \smallskip
@@ -155,6 +145,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/BamO-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Batlow\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Batlow-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -465,16 +465,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/BWR-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Chroma\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Chroma-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -821,36 +811,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries GistNcar\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/GistNcar-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries GistRainbow\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/GistRainbow-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries GistStern\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/GistStern-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries GnBu\vphantom{g}}
 
         \smallskip
@@ -991,16 +951,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries HSV\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Ice\vphantom{g}}
 
         \smallskip
@@ -1015,16 +965,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Inferno-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Jet\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Jet-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1145,16 +1085,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Neon-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries NipySpectral\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/NipySpectral-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1431,16 +1361,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Rainforest\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Rainforest-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries RdPu\vphantom{g}}
 
         \smallskip
@@ -1651,16 +1571,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Terrain\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Terrain-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Thermal\vphantom{g}}
 
         \smallskip
@@ -1721,16 +1631,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Turbo\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Turbo-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Twilight\vphantom{g}}
 
         \smallskip
@@ -1785,6 +1685,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Wind-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Winter\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Winter-spectrum.pdf}
     \end{center}
 \end{minipage}
 

@@ -51,16 +51,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Batlow\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Batlow-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries BlueOrange\vphantom{g}}
 
         \smallskip
@@ -85,5 +75,135 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Bukavu-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Flag\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Flag-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GistNcar\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GistNcar-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GistRainbow\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GistRainbow-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GistStern\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GistStern-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries HSV\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Jet\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Jet-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries NipySpectral\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/NipySpectral-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Prism\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Prism-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tab20\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tab20-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tab20b\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tab20b-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tab20c\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tab20c-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Terrain\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Terrain-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Turbo\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Turbo-spectrum.pdf}
     \end{center}
 \end{minipage}
