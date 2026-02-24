@@ -81,10 +81,190 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Cavalcanti\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Cavalcanti-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Chevalier\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Chevalier-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Classic\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Classic-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Cube1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Cube1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Cubehelix\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Cubehelix-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Cubehelix1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Cubehelix1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Cubehelix2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Cubehelix2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Cubehelix3\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Cubehelix3-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Darjeeling2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Darjeeling2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Darjeeling3\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Darjeeling3-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Darjeeling4\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Darjeeling4-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Dusk\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Dusk-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Eclipse\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Eclipse-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries FantasticFox2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/FantasticFox2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Fes\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Fes-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Flag\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/Flag-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GeoRainbow\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GeoRainbow-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GhostLight\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GhostLight-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GistEarth\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GistEarth-spectrum.pdf}
     \end{center}
 \end{minipage}
 

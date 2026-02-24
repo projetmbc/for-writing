@@ -25,8 +25,16 @@ AVANT nelle version !!!!!
 
 imprimer audit pour les catgeos car des choses à revoir!!!
 
++
+
+catego cyclic: on utilise l'anneau et non la palette rectangyulaire !!!!
 
 
+
+
+// ---------- //
+
+on doit garder uen trace des categos trouvées avant modif humaines qui écrasent tout, pour ensuite éventuellement reveneir sur un choix, mais aussi prendre en compte d'éventuelles nelles categos trouvées de façon auto
 
 
 // ---------- //

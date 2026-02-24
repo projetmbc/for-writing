@@ -1,4 +1,8 @@
 # -- A -- #
+APRISM:
+  GasFlame: qualitative, sequential
+  GeoRainbow: qualitative, stepped
+
 ASYMPTOTE:
   Brg: qualitative, sequential
   Bwr: dark, divergent, qualitative, sequential
@@ -23,12 +27,33 @@ CARTOCOLORS:
   AgSunset: qualitative, sequential
   Antique: qualitative, stepped
   ArmyRose: divergent, sequential
+  Earth: divergent, sequential
+  Fall: divergent, sequential
+  Geyser: divergent, sequential
+
+CMASHER:
+  Chroma: colorblind, stepped
+  Copper: colorblind, cyclic, divergent, sequential
+  Dusk: stepped
+  Eclipse: stepped
+  Emergency: colorblind, cyclic, divergent, sequential
+  Fusion: cyclic, divergent, sequential
+  Ghostlight: stepped
 
 CMOCEAN:
   Balance: cyclic, divergent, sequential
+  Curl: divergent, sequential
+  Delta: cyclic, divergent, sequential
 
 COLORBREWER:
   Accent: qualitative, stepped
+  BrBG: divergent, sequential
+
+CUBEHELIX:
+  Classic: stepped
+  Cubehelix1: stepped
+  Cubehelix2: stepped
+  Cubehelix3: stepped
 
 # -- L -- #
 LIGHTBARTLEIN:
@@ -39,6 +64,8 @@ LIGHTBARTLEIN:
   BlueGreen: divergent, sequential
   BlueOrange12: stepped
   BlueOrangeRed: divergent, sequential
+  BrownBlue10: divergent, sequential
+  BrownBlue12: divergent, sequential
 
 # -- M -- #
 MATPLOTLIB:
@@ -48,14 +75,15 @@ MATPLOTLIB:
   Bone: sequential
   CMRmap: qualitative, sequential
   Cool: dark, qualitative, sequential
+  Coolwarm: divergent, sequential
   Copper: sequential
-  Cubehelix: colorblind, sequential
+  Cubehelix: stepped
   Flag: stepped
-  GistEarth: sequential
+  GistEarth: stepped
   GistGray: sequential
   GistHeat: sequential
   GistNcar: stepped
-  GistRainbow: dark, stepped
+  GistRainbow: cyclic, dark, stepped
   GistStern: stepped
   Gnuplot: sequential
   Gnuplot2: sequential
@@ -73,10 +101,15 @@ MATPLOTLIB:
   Turbo: stepped
   Winter: dark, qualitative, sequential
 
+MYCARTA:
+  Cube1: stepped
+
 # -- P -- #
 PLOTLY:
   Blackbody: divergent, qualitative, sequential
   Bluered: qualitative, sequential
+  Electric: divergent, sequential
+  G10: cyclic, qualitative
 
 # -- S -- #
 SCICOLMAPS:
@@ -89,7 +122,16 @@ SCICOLMAPS:
   BatlowW: colorblind, divergent, sequential
   Berlin: colorblind, divergent, sequential
   Bilbao: colorblind, sequential
+  Broc: colorblind, cyclic, divergent, sequential
+  BrocO: colorblind, cyclic, divergent, sequential
+  Buda: colorblind, sequential
   Bukavu: colorblind, stepped
+  Cork: colorblind, divergent, sequential
+  CorkO: colorblind, cyclic, divergent, sequential
+  Davos: colorblind, sequential
+  Devon: colorblind, sequential
+  Fes: colorblind, stepped
+  Glasgow: colorblind, sequential
 
 SCIENTIFIC-COLOUR-MAPS:
   Bukavu: colorblind, stepped
@@ -105,3 +147,10 @@ WESANDERSON:
   Aquatic1: qualitative, stepped
   Aquatic2: qualitative, stepped
   Aquatic3: qualitative, stepped
+  Cavalcanti: qualitative, stepped
+  Chevalier: qualitative, stepped
+  Darjeeling2: qualitative, stepped
+  Darjeeling3: qualitative, stepped
+  Darjeeling4: qualitative, stepped
+  FantasticFox1: divergent, qualitative, sequential
+  FantasticFox2: qualitative, stepped

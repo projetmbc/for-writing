@@ -181,6 +181,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Broc\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Broc-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BrocO\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BrocO-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries BrownBlue10\vphantom{g}}
 
         \smallskip
@@ -231,6 +251,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Cork\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Cork-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries CorkO\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/CorkO-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Curl\vphantom{g}}
 
         \smallskip
@@ -261,10 +301,30 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Electric\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Electric-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Fall\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/Fall-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries FantasticFox1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/FantasticFox1-spectrum.pdf}
     \end{center}
 \end{minipage}
 

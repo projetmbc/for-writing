@@ -21,6 +21,76 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Broc\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Broc-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BrocO\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BrocO-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries CorkO\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/CorkO-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Delta\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Delta-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Fusion\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Fusion-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries G10\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/G10-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GistRainbow\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GistRainbow-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Infinity\vphantom{g}}
 
         \smallskip
