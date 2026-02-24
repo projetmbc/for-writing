@@ -38,11 +38,12 @@ ALL_CATEGOS = ', '.join(sorted(_ALL_CATEGOS))
 SQL_GET_PAL = """
 SELECT
     h.source,
-    COALESCE(a.alias, h.name) AS effective_name,
-    h.catego
+    h.name,
+    h.catego,
+    COALESCE(a.alias, h.name) AS aprism_name
 FROM hash h
 LEFT JOIN alias a ON h.pal_id = a.pal_id
-WHERE effective_name = ?
+WHERE aprism_name = ?
   AND h.is_kept = 1;
 """
 
@@ -146,7 +147,7 @@ def run_app():
         res = fetch_palette(query)
 
         if res:
-            source, name, catego = res
+            source, name, catego, _ = res
 
             print(
                  "[bold]Source:[/bold] "

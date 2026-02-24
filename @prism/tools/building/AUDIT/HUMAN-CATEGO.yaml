@@ -78,7 +78,7 @@ MATPLOTLIB:
 # -- P -- #
 PLOTLY:
   Blackbody: divergent, qualitative, sequential
-  BlueRedPLY: qualitative, sequential
+  Bluered: qualitative, sequential
 
 # -- S -- #
 SCICOLMAPS:
