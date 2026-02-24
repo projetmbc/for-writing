@@ -1,0 +1,45 @@
+% !TEX TS-program = lualatex
+
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+
+\documentclass{standalone}
+
+\usepackage[svgnames]{xcolor}
+\usepackage[3d]{luadraw}
+
+\directlua{
+  dofile('../../../../products/lua/palettes-hf/RdPu.lua')
+}
+
+\begin{document}
+
+\begin{luadraw}{name = RdPu-angular}
+require 'luadraw_shadedforms'
+
+local g = graph:new{
+  size   = {10,10},
+  margin = {0,0,0,0},
+  bbox   = false
+}
+
+L = circle(0, 1)
+
+local f = function(x,y)
+  return cpx.arg(Z(x,y))
+end
+
+g:Dshadedpolyline(
+  L,
+  palRdPu,
+  {
+    values = f,
+    width  = 300
+  }
+)
+
+g:Show()
+\end{luadraw}
+
+\end{document}

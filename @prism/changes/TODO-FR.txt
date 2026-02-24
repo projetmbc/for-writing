@@ -27,6 +27,10 @@ imprimer audit pour les catgeos car des choses à revoir!!!
 
 +
 
+besoin de virere ce qui se ressemble (cf cubhelix par exemple en mode qualtitatif et dans matplotlib donne le ùe$eù spectre)
+
++
+
 catego cyclic: on utilise l'anneau et non la palette rectangyulaire !!!!
 
 

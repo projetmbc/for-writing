@@ -70,7 +70,7 @@ TEX_HEADER = r"""
 TEX_FOOTER = r"\end{document}"
 
 
-TEX_TMPL_PALETTES = r"""
+TEX_TMPL_PALETTE = r"""
 \begin{luadraw}{name = <PAL-NAME>-palette}
 local PAL = pal<PAL-NAME>
 
@@ -168,11 +168,40 @@ g:Show()
 """.strip()
 
 
+TEX_TMPL_ANGULAR_SPECTRUM = r"""
+\begin{luadraw}{name = <PAL-NAME>-angular}
+require 'luadraw_shadedforms'
+
+local g = graph:new{
+  size   = {10,10},
+  margin = {0,0,0,0},
+  bbox   = false
+}
+
+L = circle(0, 1)
+
+local f = function(x,y)
+  return cpx.arg(Z(x,y))
+end
+
+g:Dshadedpolyline(
+  L,
+  pal<PAL-NAME>,
+  {
+    values = f,
+    width  = 300
+  }
+)
+
+g:Show()
+\end{luadraw}
+"""
+
 # ---------------------- #
 # -- PALETTE GRAPHICS -- #
 # ---------------------- #
 
-logging.info("Build 'palette and spectrum graphics' files")
+logging.info("Build 'palette, spectrum and angular gradient graphics' files")
 
 ALL_NAMES = set()
 
@@ -191,7 +220,7 @@ for hfpal in sorted(HF_PALS_DIR.glob('*.json')):
                 '<PAL-NAME>',
                 name
             ),
-            TEX_TMPL_PALETTES.replace(
+            TEX_TMPL_PALETTE.replace(
                 '<PAL-NAME>',
                 name
             ),
@@ -204,7 +233,7 @@ for hfpal in sorted(HF_PALS_DIR.glob('*.json')):
             SHOWCASE_DIR / f"{name}-palette.tex"
         ).write_text(texcode)
 
-# One spectrum.
+# Spectrum.
     nbcells = max(200, palsize)
 
     _texcode = [
@@ -229,6 +258,26 @@ for hfpal in sorted(HF_PALS_DIR.glob('*.json')):
     ).write_text(texcode)
 
 
+# Angular gradient.
+    _texcode = [
+        TEX_HEADER.replace(
+            '<PAL-NAME>',
+            name
+        ),
+        TEX_TMPL_ANGULAR_SPECTRUM.replace(
+            '<PAL-NAME>',
+            name
+        ),
+        TEX_FOOTER
+    ]
+
+    texcode = '\n'.join(_texcode) + '\n'
+
+    (
+        SHOWCASE_DIR / f"{name}-angular.tex"
+    ).write_text(texcode)
+
+
 # ---------------------- #
 # -- CLEANING -- #
 # ---------------------- #
@@ -248,7 +297,11 @@ for f in sorted(SHOWCASE_DIR.glob('*')):
           and
           parts[0] in ALL_NAMES
           and
-          parts[1] in ['palette', 'spectrum']
+          parts[1] in [
+              'angular',
+              'palette',
+              'spectrum'
+          ]
       )
     ):
         continue

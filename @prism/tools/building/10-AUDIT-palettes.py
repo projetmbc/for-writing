@@ -161,7 +161,7 @@ TEX_INCLUDE_ANGULAR_GRAD_TMPL = r"""
 \smallskip
 
 \begin{{paracol}}{{2}}
-    \hspace{{2em}}\includegraphics[scale=.75]{{showcase/{name}-angular-gradient.pdf}}
+    \hspace{{2em}}\includegraphics[scale=.75]{{../../../contrib/translate/common/showcase/{name}-angular.pdf}}
 
     \switchcolumn
 """.strip()
@@ -184,59 +184,6 @@ TEX_GRAPHSEP_TMPL = TAB_1 + r'\smallskip'
 # -- CONSTANTS #3 -- #
 # ------------------ #
 
-TEX_ANGULAR_GRADIENT_TMPL = r"""
-% !TEX TS-program = lualatex
-
-% ------------------------------------------- %
-% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
-% ------------------------------------------- %
-
-\documentclass{standalone}
-
-\usepackage[svgnames]{xcolor}
-\usepackage[3d]{luadraw}
-
-\directlua{
-  dofile('../../../../products/lua/palettes-hf/<PALNAME>.lua')
-}
-
-\begin{document}
-
-\begin{luadraw}{name = <PALNAME>-angular-gradient}
-require 'luadraw_shadedforms'
-
-local g = graph:new{
-  size   = {10,10},
-  margin = {0,0,0,0},
-  bbox   = false
-}
-
-L = circle(0, 1)
-
-local f = function(x,y)
-  return cpx.arg(Z(x,y))
-end
-
-g:Dshadedpolyline(
-  L,
-  pal<PALNAME>,
-  {
-    values = f,
-    width  = 300
-  }
-)
-
-g:Show()
-\end{luadraw}
-
-\end{document}
-""".strip() + '\n'
-
-
-# ------------------ #
-# -- CONSTANTS #4 -- #
-# ------------------ #
-
 PROJ_DIR = THIS_DIR
 
 while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
@@ -250,16 +197,6 @@ TEX_NEW_PALS_FILE = AUDIT_DIR / "NEW-PALS.tex"
 
 
 CONTRIB_SHOWCASE_DIR = PROJ_DIR / "contrib" / "translate" / "common" / "showcase"
-AUDIT_SHOWCASE_DIR   = AUDIT_DIR / "showcase"
-
-AUDIT_SHOWCASE_DIR.mkdir(
-    parents  = True,
-    exist_ok = True
-)
-
-# for p in AUDIT_SHOWCASE_DIR.iterdir():
-#     if p.is_file():
-#         p.unlink()
 
 
 ALL_CATEGOS = sorted(
@@ -295,24 +232,6 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         cursor.fetchall(),
         alg = ns.IGNORECASE
     )
-
-
-# -------------------------------------- #
-# -- BUILD ANGULAR GRADIENT TEX FILES -- #
-# -------------------------------------- #
-
-logging.info("New pals - TeX file - Build 'angular gradients'")
-
-for name, *_ in NEW_PALS:
-    texcode = TEX_ANGULAR_GRADIENT_TMPL.replace(
-        '<PALNAME>',
-        name
-    )
-
-    texfile = AUDIT_SHOWCASE_DIR / f'{name}-angular-gradient.tex'
-
-    texfile.touch()
-    texfile.write_text(texcode)
 
 
 # ------------------------- #
