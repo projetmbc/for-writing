@@ -231,6 +231,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries BlueDarkOrange\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueDarkOrange-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries BlueDarkRed12\vphantom{g}}
 
         \smallskip
@@ -265,6 +275,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/BlueGreen-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries BlueGrey\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueGrey-spectrum.pdf}
     \end{center}
 \end{minipage}
 

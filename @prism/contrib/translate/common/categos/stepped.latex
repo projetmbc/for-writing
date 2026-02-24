@@ -61,6 +61,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries BlueOrange\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/BlueOrange-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries BlueRed\vphantom{g}}
 
         \smallskip

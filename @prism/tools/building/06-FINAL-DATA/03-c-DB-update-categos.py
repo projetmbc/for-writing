@@ -208,11 +208,10 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
             if not src in XTRA_CATEGOS:
                 XTRA_CATEGOS[src] = dict()
 
-            if not name in XTRA_CATEGOS[src]:
-                XTRA_CATEGOS[src][name] = catego
+            XTRA_CATEGOS[src][name] = catego
 
-            else:
-                XTRA_CATEGOS[src][name] += f',{catego}'
+            # else:
+            #     XTRA_CATEGOS[src][name] += f',{catego}'
 
 
 # ------------------- #

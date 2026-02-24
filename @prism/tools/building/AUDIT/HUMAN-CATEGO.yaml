@@ -18,7 +18,7 @@ ASYMPTOTE:
 
 # -- C -- #
 CARBONPLAN:
-  BlueGrey: divergent, sequential
+  Bluegrey: divergent, sequential
 
 CARTOCOLORS:
   AgGrnYl: qualitative, sequential
@@ -34,12 +34,12 @@ COLORBREWER:
 
 # -- L -- #
 LIGHTBARTLEIN:
-  BlueDarkOrange: divergent, sequential
+  BlueDarkOrange18: divergent, sequential
   BlueDarkRed12: divergent, sequential
   BlueDarkRed18: divergent, sequential
   BlueGray: divergent, sequential
   BlueGreen: divergent, sequential
-  BlueOrange: stepped
+  BlueOrange12: stepped    # PB: divergent????
   BlueOrangeRed: divergent, sequential
 
 # -- M -- #
