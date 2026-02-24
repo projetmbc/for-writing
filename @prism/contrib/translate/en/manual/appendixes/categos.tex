@@ -74,6 +74,7 @@
 % -- FOREACH CATEGOS - AUTO - END -- %
 }{
   \ifthenelse{\nb = 1}{}{\newpage}
+  \ifthenelse{\nb = 2}{\def\nbcols{3}}{\def\nbcols{2}}
 
   \phantomsection
   \subsection*{\hfill\title\hfill\null}%
@@ -81,7 +82,7 @@
   %
   \subimport{../../used-by-tools/categos/}{desc-\kind.latex}
 
-  \begin{multicols*}{2}
+  \begin{multicols*}{\nbcols}
     \subimport{../../../common/categos/}{\kind.latex}
   \end{multicols*}
 }

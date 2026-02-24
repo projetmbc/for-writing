@@ -4,7 +4,7 @@
         {\bfseries Balance\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Balance-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/Balance-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -14,7 +14,7 @@
         {\bfseries BamO\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/BamO-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/BamO-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -24,7 +24,7 @@
         {\bfseries Broc\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Broc-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/Broc-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -34,7 +34,7 @@
         {\bfseries BrocO\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/BrocO-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/BrocO-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -44,7 +44,7 @@
         {\bfseries CorkO\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/CorkO-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/CorkO-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -54,7 +54,7 @@
         {\bfseries Delta\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Delta-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/Delta-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -64,7 +64,7 @@
         {\bfseries Fusion\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Fusion-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/Fusion-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -74,7 +74,7 @@
         {\bfseries G10\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/G10-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/G10-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -84,7 +84,7 @@
         {\bfseries GistRainbow\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/GistRainbow-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/GistRainbow-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -94,7 +94,7 @@
         {\bfseries Infinity\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Infinity-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/Infinity-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -104,7 +104,7 @@
         {\bfseries RainbowCP\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/RainbowCP-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/RainbowCP-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -114,6 +114,6 @@
         {\bfseries SineBow\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/SineBow-spectrum.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/SineBow-angular.pdf}
     \end{center}
 \end{minipage}

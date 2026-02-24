@@ -150,10 +150,19 @@ for i, catego in enumerate(
             'qualitative',
             'semantic',
         ]:
+            scale        = ''
             graph_format = 'palette'
 
+        elif catego == 'cyclic':
+            scale        = '.8'
+            graph_format = 'angular'
+
         else:
+            scale        = ''
             graph_format = 'spectrum'
+
+        if scale:
+            scale = f'[scale={scale}]'
 
         if graph_format == 'palette':
             _graphics += [
@@ -173,7 +182,7 @@ for i, catego in enumerate(
         pdffile = SHOWCASE_DIR / f"{n}-{graph_format}.pdf"
 
         _graphics.append(
-            rf'{TAB_2}\includegraphics{{../../../common/showcase/{pdffile.name}}}'
+            rf'{TAB_2}\includegraphics{scale}{{../../../common/showcase/{pdffile.name}}}'
         )
 
         _graphics += [
