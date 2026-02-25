@@ -181,6 +181,46 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Tofino\vphantom{g}}
+
+        \smallskip
+        \includegraphics[scale=.8]{../../../common/showcase/Tofino-angular.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Twilight\vphantom{g}}
+
+        \smallskip
+        \includegraphics[scale=.8]{../../../common/showcase/Twilight-angular.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries VikO\vphantom{g}}
+
+        \smallskip
+        \includegraphics[scale=.8]{../../../common/showcase/VikO-angular.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Viola\vphantom{g}}
+
+        \smallskip
+        \includegraphics[scale=.8]{../../../common/showcase/Viola-angular.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Waterlily\vphantom{g}}
 
         \smallskip

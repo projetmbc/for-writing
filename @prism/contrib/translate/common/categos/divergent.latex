@@ -751,6 +751,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Tofino\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tofino-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Tropic\vphantom{g}}
 
         \smallskip
@@ -765,6 +775,36 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Twilight-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Vanimo\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Vanimo-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Vik\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Vik-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries VikO\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/VikO-spectrum.pdf}
     \end{center}
 \end{minipage}
 

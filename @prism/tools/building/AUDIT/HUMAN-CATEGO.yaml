@@ -33,6 +33,7 @@ CARBONPLAN:
   Redgrey: divergent, sequential
   Redteal: divergent, sequential
   Sinebow: stepped
+  Tealgrey: divergent, sequential
   Yellowgrey: divergent, sequential
   Yellowpurple: divergent, sequential
 
@@ -47,6 +48,10 @@ CARTOCOLORS:
   Pastel: qualitative, stepped
   Prism: qualitative, stepped
   Safe: colorblind, qualitative, stepped
+  TealRose: divergent, sequential
+  Temps: divergent, sequential
+  Tropic: divergent, sequential
+  Vivid: qualitative, stepped
 
 CMASHER:
   Chroma: colorblind, stepped
@@ -68,6 +73,7 @@ CMASHER:
   Redshift: divergent, sequential
   Seasons: colorblind, cyclic, divergent, sequential
   Seaweed: divergent, sequential
+  Viola: cyclic, divergent, sequential
   Waterlily: cyclic, divergent, sequential
   Watermelon: colorblind, divergent, sequential
   Wildfire: colorblind, divergent, sequential
@@ -95,6 +101,7 @@ COLORBREWER:
   Set1: qualitative, stepped
   Set2: qualitative, stepped
   Set3: qualitative, stepped
+  Spectral: divergent, sequential
   YlOrBr: dark, sequential
 
 CUBEHELIX:
@@ -152,8 +159,10 @@ MATPLOTLIB:
   Rainbow: dark, stepped
   Spring: dark, qualitative, sequential
   Summer: dark, qualitative, sequential
+  Tab20: dark, qualitative, stepped
   Terrain: dark, stepped
   Turbo: stepped
+  Twilight: cyclic, divergent, sequential
   Winter: dark, qualitative, sequential
   Wistia: colorblind, sequential
   YlOrRd: dark, sequential
@@ -173,6 +182,7 @@ PLOTLY:
   Picnic: divergent, sequential
   Portland: divergent, sequential
   Rainbow: qualitative, stepped
+  T10: qualitative, stepped
 
 # -- S -- #
 SCICOLMAPS:
@@ -209,12 +219,21 @@ SCICOLMAPS:
   Oslo: colorblind, sequential
   Roma: colorblind, divergent, sequential
   RomaO: colorblind, cyclic, stepped
+  Tofino: colorblind, cyclic, divergent, sequential
+  Tokyo: colorblind, sequential
+  Turku: colorblind, sequential
+  Vanimo: colorblind, divergent, sequential
+  Vik: colorblind, divergent, sequential
+  VikO: colorblind, cyclic, divergent, sequential
 
 # -- T -- #
 TABLEAU:
   BlueRed: qualitative, stepped
   Gray: qualitative, stepped
   PurpleGray: qualitative, stepped
+  TableauLight: qualitative, stepped
+  TableauMedium: qualitative, stepped
+  TrafficLight: qualitative, stepped
 
 # -- W -- #
 WESANDERSON:

@@ -1851,6 +1851,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Spectral\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Spectral-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Speed\vphantom{g}}
 
         \smallskip
@@ -1931,10 +1941,30 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries TealGrey\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/TealGrey-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries TealGrn\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/TealGrn-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries TealRose\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/TealRose-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1961,10 +1991,40 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Temps\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Temps-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Thermal\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/Thermal-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tofino\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tofino-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tokyo\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tokyo-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -2001,6 +2061,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Tropic\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tropic-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Tropical\vphantom{g}}
 
         \smallskip
@@ -2021,10 +2091,60 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Turku\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Turku-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Twilight\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/Twilight-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Vanimo\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Vanimo-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Vik\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Vik-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries VikO\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/VikO-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Viola\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Viola-spectrum.pdf}
     \end{center}
 \end{minipage}
 
