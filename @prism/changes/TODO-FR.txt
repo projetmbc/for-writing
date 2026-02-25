@@ -23,15 +23,11 @@ git cm "..."
 
 AVANT nelle version !!!!!
 
-imprimer audit pour les catgeos car des choses à revoir!!!
+besoin de virere ce qui se ressemble
 
-+
+   --> Cubehelix MPL = Classic CUBEHELIX
 
-besoin de virere ce qui se ressemble (cf cubhelix par exemple en mode qualtitatif et dans matplotlib donne le ùe$eù spectre)
 
-+
-
-catego cyclic: on utilise l'anneau et non la palette rectangyulaire !!!!
 
 
 
@@ -146,7 +142,9 @@ audit
 
 HTML viewer
 
-    ---> ajout d'un gradient angulaire
+    --> vu que c'est un démo en ligne , rendre aussi possible  le teléchargement d'une palette dans un fprmat disponible
+
+    --> ajout d'un gradient angulaire
 
     --> garder des PDFs autonomes anciens car c'est joli !
 
