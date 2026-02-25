@@ -178,9 +178,9 @@ MISSING_CATEGO_JSON.write_text(
 )
 
 
-# ------------------------- #
-# -- MISSING categoS FOUND -- #
-# ------------------------- #
+# --------------------------- #
+# -- MISSING CATEGOS FOUND -- #
+# --------------------------- #
 
 if not MISSING_CATEGOS:
     logging.info(

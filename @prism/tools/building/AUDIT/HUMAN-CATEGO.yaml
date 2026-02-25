@@ -64,7 +64,7 @@ CMASHER:
   Neon: stepped
   Pride: colorblind, cyclic, divergent, sequential
   Prinsenvlag: divergent, sequential
-  Rainforest: stepped
+  Rainforest: colorblind, stepped
   Redshift: divergent, sequential
   Seasons: colorblind, cyclic, divergent, sequential
   Seaweed: divergent, sequential
