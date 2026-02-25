@@ -67,12 +67,9 @@ for restpath in sorted(THIS_RESRC_DIR.glob('*.rst')):
     if not CVD_TXT in content:
         continue
 
-    uid = build_name_n_srcname(
-        restpath.stem,
-        THIS_RESRC
-    )
+    name = restpath.stem
 
-    _CVD_PALS[uid].add(CVD_CATEGO)
+    _CVD_PALS[name].add(CVD_CATEGO)
 
 
 # ------------------ #

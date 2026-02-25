@@ -11,16 +11,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Apple\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Apple-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Bam\vphantom{g}}
 
         \smallskip
@@ -415,16 +405,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Pride-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Rainforest\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Rainforest-spectrum.pdf}
     \end{center}
 \end{minipage}
 

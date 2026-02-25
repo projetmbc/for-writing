@@ -3,6 +3,7 @@ APRISM:
   GasFlame: qualitative, sequential
   GeoRainbow: qualitative, stepped
   PastelRainbow: qualitative, stepped
+  ShiftRainbow: qualitative, stepped
 
 ASYMPTOTE:
   Brg: qualitative, sequential
@@ -25,6 +26,15 @@ CARBONPLAN:
   Greengrey: divergent, sequential
   Orangeblue: divergent, sequential
   Orangegrey: divergent, sequential
+  Pinkgreen: divergent, sequential
+  Pinkgrey: divergent, sequential
+  Purplegrey: divergent, sequential
+  Rainbow: stepped
+  Redgrey: divergent, sequential
+  Redteal: divergent, sequential
+  Sinebow: stepped
+  Yellowgrey: divergent, sequential
+  Yellowpurple: divergent, sequential
 
 CARTOCOLORS:
   AgGrnYl: qualitative, sequential
@@ -35,6 +45,8 @@ CARTOCOLORS:
   Fall: divergent, sequential
   Geyser: divergent, sequential
   Pastel: qualitative, stepped
+  Prism: qualitative, stepped
+  Safe: colorblind, qualitative, stepped
 
 CMASHER:
   Chroma: colorblind, stepped
@@ -50,19 +62,40 @@ CMASHER:
   Infinity: cyclic, stepped
   Lilac: stepped
   Neon: stepped
+  Pride: colorblind, cyclic, divergent, sequential
+  Prinsenvlag: divergent, sequential
+  Rainforest: stepped
+  Redshift: divergent, sequential
+  Seasons: colorblind, cyclic, divergent, sequential
+  Seaweed: divergent, sequential
+  Waterlily: cyclic, divergent, sequential
+  Watermelon: colorblind, divergent, sequential
+  Wildfire: colorblind, divergent, sequential
 
 CMOCEAN:
   Balance: cyclic, divergent, sequential
   Curl: divergent, sequential
   Delta: cyclic, divergent, sequential
   Oxy: stepped
+  Phase: cyclic, stepped
 
 COLORBREWER:
   Accent: qualitative, stepped
   BrBG: divergent, sequential
+  PRGn: divergent, sequential
   Paired: qualitative, stepped
   Pastel1: qualitative, stepped
   Pastel2: qualitative, stepped
+  PiYG: divergent, sequential
+  PuOr: divergent, sequential
+  RdBu: divergent, sequential
+  RdGy: divergent, sequential
+  RdYlBu: divergent, sequential
+  RdYlGn: divergent, sequential
+  Set1: qualitative, stepped
+  Set2: qualitative, stepped
+  Set3: qualitative, stepped
+  YlOrBr: dark, sequential
 
 CUBEHELIX:
   Classic: stepped
@@ -83,6 +116,7 @@ LIGHTBARTLEIN:
   BrownBlue10: divergent, sequential
   BrownBlue12: divergent, sequential
   GreenMagenta: divergent, sequential
+  RedYellowBlue: divergent, sequential
 
 # -- M -- #
 MATPLOTLIB:
@@ -110,16 +144,19 @@ MATPLOTLIB:
   NipySpectral: qualitative, stepped
   Ocean: stepped
   OkabeIto: colorblind, qualitative, stepped
+  Petroff10: colorblind, qualitative, stepped
   Petroff6: colorblind, qualitative, stepped
   Petroff8: colorblind, qualitative, stepped
   Pink: sequential
   Prism: dark, stepped
-  Rainbow: dark, divergent, sequential
+  Rainbow: dark, stepped
   Spring: dark, qualitative, sequential
   Summer: dark, qualitative, sequential
   Terrain: dark, stepped
   Turbo: stepped
   Winter: dark, qualitative, sequential
+  Wistia: colorblind, sequential
+  YlOrRd: dark, sequential
 
 MYCARTA:
   Cube1: stepped
@@ -133,6 +170,9 @@ PLOTLY:
   G10: cyclic, qualitative
   Hot: qualitative, sequential
   Jet: stepped
+  Picnic: divergent, sequential
+  Portland: divergent, sequential
+  Rainbow: qualitative, stepped
 
 # -- S -- #
 SCICOLMAPS:
@@ -167,16 +207,14 @@ SCICOLMAPS:
   Nuuk: colorblind, stepped
   Oleron: colorblind, stepped
   Oslo: colorblind, sequential
-
-SCIENTIFIC-COLOUR-MAPS:
-  Bukavu: colorblind, stepped
-  Fes: colorblind, stepped
-  Oleron: colorblind, stepped
+  Roma: colorblind, divergent, sequential
+  RomaO: colorblind, cyclic, stepped
 
 # -- T -- #
 TABLEAU:
   BlueRed: qualitative, stepped
   Gray: qualitative, stepped
+  PurpleGray: qualitative, stepped
 
 # -- W -- #
 WESANDERSON:
@@ -209,3 +247,7 @@ WESANDERSON:
   Moonrise5: qualitative, stepped
   Moonrise6: qualitative, stepped
   Moonrise7: qualitative, stepped
+  Royal1: divergent, qualitative, sequential
+  Royal2: qualitative, stepped
+  Royal3: qualitative, stepped
+  Zissou: qualitative, stepped

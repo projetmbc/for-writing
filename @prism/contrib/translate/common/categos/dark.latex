@@ -181,6 +181,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries YlOrBr\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/YlOrBr-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries YlOrRd\vphantom{g}}
 
         \smallskip

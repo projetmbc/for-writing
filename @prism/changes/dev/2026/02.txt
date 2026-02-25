@@ -2,21 +2,6 @@
 
 
 ==
-23  (2.0.0-beta.22)
-==
-
---------
-:update:
---------
-
-[[:api:]]
-Expanded \resrc \categos: use of \web content (this version only uses \cmasher \doc content to find color blind palette).
-
-
-// ---------- //
-
-
-==
 22
 ==
 

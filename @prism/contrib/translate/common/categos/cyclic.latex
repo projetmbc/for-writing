@@ -41,6 +41,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries CopperCM\vphantom{g}}
+
+        \smallskip
+        \includegraphics[scale=.8]{../../../common/showcase/CopperCM-angular.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries CorkO\vphantom{g}}
 
         \smallskip
@@ -55,6 +65,16 @@
 
         \smallskip
         \includegraphics[scale=.8]{../../../common/showcase/Delta-angular.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Emergency\vphantom{g}}
+
+        \smallskip
+        \includegraphics[scale=.8]{../../../common/showcase/Emergency-angular.pdf}
     \end{center}
 \end{minipage}
 
@@ -121,19 +141,49 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries RainbowCP\vphantom{g}}
+        {\bfseries Phase\vphantom{g}}
 
         \smallskip
-        \includegraphics[scale=.8]{../../../common/showcase/RainbowCP-angular.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/Phase-angular.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries SineBow\vphantom{g}}
+        {\bfseries Pride\vphantom{g}}
 
         \smallskip
-        \includegraphics[scale=.8]{../../../common/showcase/SineBow-angular.pdf}
+        \includegraphics[scale=.8]{../../../common/showcase/Pride-angular.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries RomaO\vphantom{g}}
+
+        \smallskip
+        \includegraphics[scale=.8]{../../../common/showcase/RomaO-angular.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Seasons\vphantom{g}}
+
+        \smallskip
+        \includegraphics[scale=.8]{../../../common/showcase/Seasons-angular.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Waterlily\vphantom{g}}
+
+        \smallskip
+        \includegraphics[scale=.8]{../../../common/showcase/Waterlily-angular.pdf}
     \end{center}
 \end{minipage}

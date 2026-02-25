@@ -251,6 +251,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries CopperCM\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/CopperCM-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Cork\vphantom{g}}
 
         \smallskip
@@ -305,6 +315,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Electric-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Emergency\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Emergency-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -395,6 +415,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Guppy-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Holly\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Holly-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -511,6 +541,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Pride\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Pride-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Prinsenvlag\vphantom{g}}
 
         \smallskip
@@ -535,16 +575,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/PurpleGrey-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Rainbow\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/Rainbow-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -625,6 +655,36 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/RedYellowBlue-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Roma\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Roma-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Royal1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Royal1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Seasons\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Seasons-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -725,6 +785,26 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Waterlily-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Watermelon\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Watermelon-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Wildfire\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Wildfire-spectrum.pdf}
     \end{center}
 \end{minipage}
 

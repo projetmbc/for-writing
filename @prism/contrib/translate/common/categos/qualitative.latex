@@ -807,6 +807,18 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Petroff10\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Petroff10-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Plotly\vphantom{g}}
 
         \smallskip
@@ -835,6 +847,18 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/PurpleGray-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries RainbowPLY\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/RainbowPLY-palette.pdf}
     \end{center}
 \end{minipage}
 
@@ -1075,18 +1099,6 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/Winter-palette.pdf}
-    \end{center}
-\end{minipage}
-
-\setlength{\columnseprule}{0.5pt}
-\renewcommand{\columnseprulecolor}{\color{LightGrey}}
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries YlOrRd\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/YlOrRd-palette.pdf}
     \end{center}
 \end{minipage}
 
