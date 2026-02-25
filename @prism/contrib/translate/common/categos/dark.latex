@@ -41,16 +41,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries HSV\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Jet\vphantom{g}}
 
         \smallskip

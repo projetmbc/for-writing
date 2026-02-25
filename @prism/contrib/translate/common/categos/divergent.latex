@@ -351,6 +351,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries GrandBudapest1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GrandBudapest1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GrandBudapest2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GrandBudapest2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries GreenGrey\vphantom{g}}
 
         \smallskip
@@ -391,10 +411,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Ocean\vphantom{g}}
+        {\bfseries Lisbon\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Ocean-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Lisbon-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Managua\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Managua-spectrum.pdf}
     \end{center}
 \end{minipage}
 

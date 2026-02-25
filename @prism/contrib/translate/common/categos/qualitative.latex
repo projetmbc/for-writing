@@ -483,6 +483,18 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries HotPLY\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/HotPLY-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries IsleOfDogs1\vphantom{g}}
 
         \smallskip
@@ -699,6 +711,18 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries OkabeIto\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/OkabeIto-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Paired\vphantom{g}}
 
         \smallskip
@@ -751,6 +775,30 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/PastelRainbow-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Petroff6\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Petroff6-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Petroff8\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Petroff8-palette.pdf}
     \end{center}
 \end{minipage}
 

@@ -931,10 +931,50 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries GrandBudapest1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GrandBudapest1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GrandBudapest2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GrandBudapest2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Gray\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/Gray-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GreenGrey\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GreenGrey-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GreenMagenta\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GreenMagenta-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -975,6 +1015,16 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/GreysCP-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Guppy\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Guppy-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1041,20 +1091,30 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Inferno\vphantom{g}}
+        {\bfseries IceBurn\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Inferno-spectrum.pdf}
+        \includegraphics{../../../common/showcase/IceBurn-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries JetPLY\vphantom{g}}
+        {\bfseries Imola\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/JetPLY-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Imola-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Inferno\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Inferno-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1081,6 +1141,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Lajolla\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Lajolla-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Lavender\vphantom{g}}
 
         \smallskip
@@ -1101,20 +1171,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Lilac\vphantom{g}}
+        {\bfseries Lipari\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Lilac-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Lipari-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries LinearL\vphantom{g}}
+        {\bfseries Lisbon\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/LinearL-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Lisbon-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1141,6 +1211,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Managua\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Managua-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Matter\vphantom{g}}
 
         \smallskip
@@ -1161,10 +1241,20 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Neon\vphantom{g}}
+        {\bfseries Navia\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Neon-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Navia-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries NaviaW\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/NaviaW-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1181,20 +1271,30 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Ocean\vphantom{g}}
+        {\bfseries OceanCM\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Ocean-spectrum.pdf}
+        \includegraphics{../../../common/showcase/OceanCM-spectrum.pdf}
     \end{center}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries OceanCM\vphantom{g}}
+        {\bfseries OrangeBlue\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/OceanCM-spectrum.pdf}
+        \includegraphics{../../../common/showcase/OrangeBlue-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries OrangeGrey\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/OrangeGrey-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -1241,20 +1341,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Oxy\vphantom{g}}
+        {\bfseries Oslo\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/Oxy-spectrum.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries PastelRainbow\vphantom{g}}
-
-        \smallskip
-        \includegraphics{../../../common/showcase/PastelRainbow-spectrum.pdf}
+        \includegraphics{../../../common/showcase/Oslo-spectrum.pdf}
     \end{center}
 \end{minipage}
 

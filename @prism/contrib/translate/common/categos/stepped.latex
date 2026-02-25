@@ -301,10 +301,90 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries GrandBudapest3\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GrandBudapest3-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GrandBudapest4\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GrandBudapest4-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries GrandBudapest5\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/GrandBudapest5-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Hawaii\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Hawaii-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries HSV\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/HSV-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Infinity\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Infinity-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries IsleOfDogs1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/IsleOfDogs1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries IsleOfDogs2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/IsleOfDogs2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries IsleOfDogs3\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/IsleOfDogs3-spectrum.pdf}
     \end{center}
 \end{minipage}
 
@@ -321,10 +401,300 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries JetPLY\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/JetPLY-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Lapaz\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Lapaz-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Lilac\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Lilac-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries LinearL\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/LinearL-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Margot1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Margot1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Margot2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Margot2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Margot3\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Margot3-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Mendl\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Mendl-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries MidGray\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/MidGray-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Moonrise1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Moonrise1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Moonrise2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Moonrise2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Moonrise3\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Moonrise3-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Moonrise4\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Moonrise4-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Moonrise5\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Moonrise5-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Moonrise6\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Moonrise6-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Moonrise7\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Moonrise7-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Neon\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Neon-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries NipySpectral\vphantom{g}}
 
         \smallskip
         \includegraphics{../../../common/showcase/NipySpectral-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Nuuk\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Nuuk-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Ocean\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Ocean-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries OkabeIto\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/OkabeIto-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Oleron\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Oleron-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Oxy\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Oxy-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Paired\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Paired-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Pastel\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Pastel-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Pastel1\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Pastel1-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Pastel2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Pastel2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries PastelRainbow\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/PastelRainbow-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Petroff6\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Petroff6-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Petroff8\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Petroff8-spectrum.pdf}
     \end{center}
 \end{minipage}
 
