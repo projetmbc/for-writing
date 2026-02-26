@@ -53,11 +53,11 @@ _RESRC_CATEGOS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_CATEGOS_JSON  = REPORT_DIR / f"CATEGO-{_RESRC_CATEGOS_JSON}.json"
 
 
-# -------------------- #
-# -- ADDING CATEGOS -- #
-# -------------------- #
+# --------------------- #
+# -- EXTRACT CATEGOS -- #
+# --------------------- #
 
-logging.info(f"Categos - Extract '{CVD_TXT}' from '{THIS_RESRC}'")
+logging.info(f"Categos - Extract - '{CVD_TXT} from {THIS_RESRC}'")
 
 _CVD_PALS = defaultdict(set)
 
@@ -82,8 +82,8 @@ logging.info(
 
 # We want a deterministic output.
 CVD_PALS = {
-    uid: ', '.join(sorted(_CVD_PALS[uid]))
-    for uid in sorted(_CVD_PALS)
+    n: ', '.join(sorted(_CVD_PALS[n]))
+    for n in sorted(_CVD_PALS)
 }
 
 # -- DEBUG - ON -- #

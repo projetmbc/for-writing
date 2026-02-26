@@ -35,7 +35,7 @@ while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 
-THIS_RESRC_DIR = PROJ_DIR / TAG_RESOURCES / get_stdname(THIS_RESRC)
+RESRC_DIR = PROJ_DIR / TAG_RESOURCES / THIS_RESRC
 
 
 UPDATES_NEEDED_JSON =  THIS_DIR.parent /  "UPDATES" / "NEEDED.json"
@@ -60,10 +60,10 @@ if not UPDATES_NEEDED[THIS_RESRC]:
 
 logging.info(f"Folder - Empty '{THIS_RESRC}'")
 
-if THIS_RESRC_DIR.is_dir():
-    rmtree(THIS_RESRC_DIR)
+if RESRC_DIR.is_dir():
+    rmtree(RESRC_DIR)
 
-THIS_RESRC_DIR.mkdir(
+RESRC_DIR.mkdir(
     parents  = True,
     exist_ok = True
 )
@@ -80,7 +80,7 @@ logging.info(
 download_and_unzip(
     log_raise_error = log_raise_error,
     url             = SRC_URLS[THIS_RESRC],
-    extract_to      = THIS_RESRC_DIR,
+    extract_to      = RESRC_DIR,
 )
 
 
@@ -90,11 +90,11 @@ download_and_unzip(
 
 logging.info(f"Folder - Clean '{THIS_RESRC}'")
 
-for p in THIS_RESRC_DIR.glob("*/LICENSE"):
-    p.rename(THIS_RESRC_DIR / p.name)
+for p in RESRC_DIR.glob("*/LICENSE"):
+    p.rename(RESRC_DIR / p.name)
 
 clean_src_dirs(
-    local_src_dir = THIS_RESRC_DIR / "colormaps-main",
+    local_src_dir = RESRC_DIR / "colormaps-main",
     globs_kept    = [
         f"colormaps/colormaps/{n}/*.rgb"
         for n in [
@@ -107,5 +107,5 @@ clean_src_dirs(
     ],
 )
 
-(THIS_RESRC_DIR / 'docs' / 'other.md').unlink()
-(THIS_RESRC_DIR / 'sciviz' / 'test.rgb').unlink()
+(RESRC_DIR / 'docs' / 'other.md').unlink()
+(RESRC_DIR / 'sciviz' / 'test.rgb').unlink()

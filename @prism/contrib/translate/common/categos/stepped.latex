@@ -201,6 +201,26 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Dark2\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Dark2-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Dark24\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Dark24-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Dusk\vphantom{g}}
 
         \smallskip

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
+DIRECT_DEBUG = False
+
 # -- DEBUG - ON -- #
-from rich import print
+# from rich import print
+# DIRECT_DEBUG = True
 # -- DEBUG - OFF -- #
 
 # ---------------------------- #
@@ -82,7 +85,6 @@ def join_categos(catego_1, catego_2):
     return get_std_catego(f'{catego_1}, {catego_2}')
 
 
-
 # ----------------- #
 # -- WEB CATEGOS -- #
 # ----------------- #
@@ -108,7 +110,15 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
             )
 
             for name, src, dbcatego, in cursor.fetchall():
-                catego = join_categos(catego,dbcatego)
+                if DIRECT_DEBUG:
+                    print(f'--- {name} [{src}]')
+                    print(f"{catego   = }")
+                    print(f"{dbcatego = }")
+
+                catego = join_categos(catego, dbcatego)
+
+                if DIRECT_DEBUG:
+                    input(f"{catego   = }")
 
             query = SQL_UPDATE_CATEGO.format(
                 name   = name,

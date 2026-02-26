@@ -88,6 +88,7 @@ CMOCEAN:
 COLORBREWER:
   Accent: qualitative, stepped
   BrBG: divergent, sequential
+  Dark2: qualitative, stepped
   PRGn: divergent, sequential
   Paired: qualitative, stepped
   Pastel1: qualitative, stepped
@@ -131,6 +132,7 @@ MATPLOTLIB:
   Autumn: dark, qualitative, sequential
   Binary: qualitative, sequential
   Bone: sequential
+  Bwr: dark, divergent, qualitative, sequential
   CMRmap: qualitative, sequential
   Cool: dark, qualitative, sequential
   Coolwarm: divergent, sequential
@@ -157,12 +159,16 @@ MATPLOTLIB:
   Pink: sequential
   Prism: dark, stepped
   Rainbow: dark, stepped
+  Seismic: dark, divergent, qualitative, sequential
   Spring: dark, qualitative, sequential
   Summer: dark, qualitative, sequential
   Tab20: dark, qualitative, stepped
+  Tab20b: dark, qualitative, stepped
+  Tab20c: dark, qualitative, stepped
   Terrain: dark, stepped
   Turbo: stepped
   Twilight: cyclic, divergent, sequential
+  Viridis: dark, sequential
   Winter: dark, qualitative, sequential
   Wistia: colorblind, sequential
   YlOrRd: dark, sequential
@@ -175,6 +181,7 @@ MYCARTA:
 PLOTLY:
   Blackbody: divergent, qualitative, sequential
   Bluered: qualitative, sequential
+  Dark24: qualitative, stepped
   Electric: divergent, sequential
   G10: cyclic, qualitative
   Hot: qualitative, sequential

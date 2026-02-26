@@ -36,8 +36,6 @@ besoin de virere ce qui se ressemble
 
 consolider les categos autos si possible
 
-    --> MATPLOTLIB : ?
-
     --> COLORMAPS : data read OK, mais comment l'intégrer????
 
 
