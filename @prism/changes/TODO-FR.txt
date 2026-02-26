@@ -34,16 +34,15 @@ besoin de virere ce qui se ressemble
 
 // ---------- //
 
-on doit garder uen trace des categos trouvées avant modif humaines qui écrasent tout, pour ensuite éventuellement reveneir sur un choix, mais aussi prendre en compte d'éventuelles nelles categos trouvées de façon auto
-
-
 consolider les categos autos si possible
+
+    --> MATPLOTLIB : ?
 
     --> COLORMAPS : data read OK, mais comment l'intégrer????
 
 
 
-    --> ASYMPTOTE / MATPLOTLIB : ?
+    --> ASYMPTOTE : ?
 
     --> CARBONPLAN : ?
 

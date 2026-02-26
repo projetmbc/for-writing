@@ -25,7 +25,7 @@ Most implementations also feature the API explained below.
 
 ### JSON, the versatile default format
 
-The `JSON` product allows unsupported programming languages to integrate `@prism` palettes easily. Palettes are defined as shown in the following example.
+The `JSON` product enables seamless `@prism` palette integration for unsupported programming languages. As shown below, palettes are defined using nested arrays of three-component floats.
 
 <!-- JSON PALETTE FIRST LINES. AUTO - START -->
 ~~~json

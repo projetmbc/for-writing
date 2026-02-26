@@ -7,17 +7,17 @@ Use a LaTeX palette
 inlinecode:
   latex:
     - \palUse{<name>}{<index>}
-    - \palUse{GistHeat}{8}
+    - \palUse{Accent}{8}
 -->
 
-Accessing a single palette color is straightforward: use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number (ranging from 1 to 10).
-For example, `\palUse{GistHeat}{8}` is the eighth color of the `GistHeat` palette, an `xcolor` format color that can be easily used as shown in the following compilable example.
+Accessing a single palette color is straightforward: use `\palUse{<name>}{<index>}` where `<name>` is the standard palette name (without prefix), and `<index>` is the color number.
+For example, `\palUse{Accent}{8}` is the eighth color of the `Accent` palette, an `xcolor` format color that can be easily used as shown in the following compilable example.
 
 ~~~latex
 \documentclass{article}
 
-% Load the palette (LaTeX can't work with all the palettes).
-\usepackage{palettes-hf/GistHeat}
+% Load the wanted palette.
+\usepackage{palettes-hf/Accent}
 
 % Load the palette API.
 \usepackage{palapi}
@@ -26,13 +26,13 @@ For example, `\palUse{GistHeat}{8}` is the eighth color of the `GistHeat` palett
 
 \begin{document}
 
-\textcolor{\palUse{GistHeat}{8}}{\bfseries Colored text.}
+\textcolor{\palUse{Accent}{8}}{\bfseries Colored text.}
 
 Representation of the first ten palette colors.
 
 \begin{tikzpicture}
   \foreach \i in {1,...,10} {
-    \fill[\palUse{GistHeat}{\i}]
+    \fill[\palUse{Accent}{\i}]
       (1.25*\i - 1, 0) rectangle (1.25*\i, 1);
   }
 \end{tikzpicture}
@@ -49,14 +49,14 @@ Representation of the first ten palette colors.
 <!--YAML
 inlinecode:
   latex:
-    - \palSize{<name>}
-    - \palCreateFromRGB
     - \palCreateFromNames
+    - \palCreateFromRGB
+    - \palSize{<name>}
 -->
 
 For creating new palettes manually, the following high-level commands are available.
 
-  1. `\palCreateFromNames` works with a comma separated list of named colors, while `\palCreateFromRGB` creates a palette by entering it as an array-like variable.
+  1. `\palCreateFromNames` works with a comma separated list of named colors, while `\palCreateFromRGB` creates a palette by entering it as an array-like variable of arrays of three floats.
 
   1. `\palSize{<name>}` returns the palette size (useful for loops, for example).
 
@@ -134,14 +134,14 @@ Building new palettes by transforming existing ones can be achieved using the `\
 The following example shows how to do this (all options are used).
 
 ~~~latex
-\usepackage{palettes-hf/Blackbody}
+\usepackage{palettes-hf/Accent}
 \usepackage{palapi}
 
-\palCreateFromPal{BlackbodyTransformed}[
+\palCreateFromPal{AccentTransformed}[
   extract = {1, 3, 6, 9},
   shift   = 1,
   reverse
-]{Blackbody}
+]{Accent}
 ~~~
 
 

@@ -6,18 +6,18 @@ Use a Lua palette
 <!--YAML
 inlinecode:
   lua:
-    - palGistHeat
+    - pal
 -->
 
 The `Lua` palette variables are named using the prefix `pal`.
 They are arrays of arrays of three floats (making it straightforward to use a color from a palette).
-For example, the definition of `palGistHeat` looks like the following partial code.
+For example, the file `palettes-hf/Accent.lua` looks like the following partial code.
 
 ~~~lua
-palGistHeat = {
-    {0.0, 0.0, 0.0},
-    {0.105882, 0.0, 0.0},
-    {0.211764, 0.0, 0.0},
+palAccent = {
+    {0.4980392157, 0.7882352941, 0.4980392157},
+    {0.7450980392, 0.6823529412, 0.831372549},
+    {0.9921568627, 0.7529411765, 0.5254901961},
     -- Other RBG colors.
 }
 ~~~
@@ -38,8 +38,8 @@ The `palCreateFromPal` function provides options to build new palettes by transf
 The following example shows how to do this (all options are used).
 
 ~~~lua
-palBlackbodyTransformed = palCreateFromPal(
-    palBlackbody,
+palAccentTransformed = palCreateFromPal(
+    palAccent,
     {
         extract = {2, 5, 8, 9},
         shift   = 1,

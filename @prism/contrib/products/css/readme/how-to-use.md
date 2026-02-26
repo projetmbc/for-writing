@@ -11,51 +11,36 @@ inlinecode:
 
 Each palette color is defined as an individual variable named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging.
 Each palette color variable is defined as an `RGB` value using percentage notation.
-For example, the file `palettes-hf/GistHeat.css` looks like the following partial code.
+For example, the file `palettes-hf/Accent.css` looks like the following partial code.
 
 ~~~css
 :root {
-  --palGistHeat-1: rgb(0% 0% 0%);
-  --palGistHeat-2: rgb(0.59% 0% 0%);
+  --palAccent-1: rgb(49.803922% 78.823529% 49.803922%);
+  --palAccent-2: rgb(74.509804% 68.235294% 83.137255%);
+  --palAccent-3: rgb(99.215686% 75.294118% 52.54902%);
   /* Other RBG colors.*/
-  --palGistHeat-256: rgb(100% 100% 100%);
 }
 ~~~
 
 
-Here is one first possible use case.
-
-~~~css
-.warning-text {
-  color: var(--palGistHeat-3);
-}
-
-.gist-heat-gradient {
-  background: linear-gradient(
-    90deg,
-    var(--palGistHeat-1),
-    var(--palGistHeat-64),
-    var(--palGistHeat-128),
-    var(--palGistHeat-256)
-  );
-}
-~~~
-
-
-The example below demonstrates creating gradient variables through selective color extraction and custom reordering.
+The following example illustrates how to generate gradient variables via selective color extraction and custom reordering, while using a standalone color for warning text.
 
 ~~~css
 :root {
-  --transformed-gist-heat-gradient: linear-gradient(
+  --transformed-accent-gradient: linear-gradient(
     90deg,
-    var(--palGistHeat-6),
-    var(--palGistHeat-3),
-    var(--palGistHeat-9),
-    var(--palGistHeat-1)
+    var(--palAccent-6),
+    var(--palAccent-3),
+    var(--palAccent-8),
+    var(--palAccent-1)
   );
 }
 
-.transformed-gist-heat-gradient {
-  background: var(--transformed-gist-heat-gradient);
+.transformed-accent-gradient {
+  background: var(--transformed-accent-gradient);
+}
+
+.warning-text {
+  color: var(--palAccent-3);
 }
 ~~~
