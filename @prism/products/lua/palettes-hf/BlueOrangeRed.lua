@@ -1,8 +1,7 @@
----------------------------------------------------------------------
----- File created by the ''@prism'' project, version 1.3.0,      ----
----- which is developed at                                       ----
----- https://github.com/projetmbc/for-writing/tree/main/@prism . ----
----------------------------------------------------------------------
+----------------------------------------------------------------------
+---- File created by the ''@prism'' project which is developed at ----
+---- https://github.com/projetmbc/for-writing/tree/main/@prism .  ----
+----------------------------------------------------------------------
 
 palBlueOrangeRed = {
     {0.0274509804, 0.3529411765, 1},

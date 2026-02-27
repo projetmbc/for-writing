@@ -1,5 +1,5 @@
-% Translate the title provided in this comment.
+% Translate the title in this comment too.
 %
-% Sequential palettes
+% title: 'Sequential palettes'
 
 Sequential palettes represent ordered data using a single or multi-hue gradient with monotonic lightness.

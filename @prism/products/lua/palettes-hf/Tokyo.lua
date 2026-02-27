@@ -1,8 +1,7 @@
----------------------------------------------------------------------
----- File created by the ''@prism'' project, version 1.3.0,      ----
----- which is developed at                                       ----
----- https://github.com/projetmbc/for-writing/tree/main/@prism . ----
----------------------------------------------------------------------
+----------------------------------------------------------------------
+---- File created by the ''@prism'' project which is developed at ----
+---- https://github.com/projetmbc/for-writing/tree/main/@prism .  ----
+----------------------------------------------------------------------
 
 palTokyo = {
     {0.10878, 0.055655, 0.20253},

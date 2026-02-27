@@ -33,7 +33,11 @@ while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 
-THIS_RESRC_DIR = PROJ_DIR / TAG_RESOURCES / TAG_APRISM_LAST_MAIN
+RESRC_DIR = PROJ_DIR / TAG_RESOURCES / TAG_APRISM_LAST_MAIN
+RESRC_DIR.mkdir(
+    parents  = True,
+    exist_ok = True,
+)
 
 
 UPDATES_NEEDED_JSON =  THIS_DIR.parent /  "UPDATES" / "NEEDED.json"
@@ -58,10 +62,10 @@ if not UPDATES_NEEDED[THIS_RESRC]:
 
 logging.info(f"Empty '{THIS_RESRC}' folder")
 
-if THIS_RESRC_DIR.is_dir():
-    rmtree(THIS_RESRC_DIR)
+if RESRC_DIR.is_dir():
+    rmtree(RESRC_DIR)
 
-THIS_RESRC_DIR.mkdir(
+RESRC_DIR.mkdir(
     parents  = True,
     exist_ok = True
 )
@@ -76,7 +80,7 @@ logging.info(f"Download '{THIS_RESRC}' source code")
 download_and_unzip(
     log_raise_error = log_raise_error,
     url             = SRC_URLS[THIS_RESRC],
-    extract_to      = THIS_RESRC_DIR / "temp",
+    extract_to      = RESRC_DIR / "temp",
 )
 
 
@@ -87,7 +91,7 @@ download_and_unzip(
 logging.info(f"Clean '{THIS_RESRC}' folder")
 
 clean_src_files(
-    local_src_dir = THIS_RESRC_DIR / "temp",
+    local_src_dir = RESRC_DIR / "temp",
     globs_kept    = [
         "**/products/json/palettes.json",
     ],

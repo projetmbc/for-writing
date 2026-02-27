@@ -1,5 +1,5 @@
-% Translate the title provided in this comment.
+% Translate the title in this comment too.
 %
-% Cyclic palettes
+% title: 'Cyclic palettes'
 
 Cyclic palettes create seamless loops for periodic data, such as angles, seasons, or 24-hour cycles.

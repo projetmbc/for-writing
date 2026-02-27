@@ -41,7 +41,7 @@ version = safe_load(PROJECT_ABOUT_YAML.read_text())
 version = version['project']['version']
 
 
-logging.info(f"'v{version}'")
+logging.info(f"'v.{version}'")
 
 
 logging.info(

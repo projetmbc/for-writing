@@ -1,8 +1,7 @@
----------------------------------------------------------------------
----- File created by the ''@prism'' project, version 1.3.0,      ----
----- which is developed at                                       ----
----- https://github.com/projetmbc/for-writing/tree/main/@prism . ----
----------------------------------------------------------------------
+----------------------------------------------------------------------
+---- File created by the ''@prism'' project which is developed at ----
+---- https://github.com/projetmbc/for-writing/tree/main/@prism .  ----
+----------------------------------------------------------------------
 
 palViola = {
     {0.11138401, 0.02669949, 0.18994576},

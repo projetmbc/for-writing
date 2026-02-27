@@ -1,8 +1,7 @@
----------------------------------------------------------------------
----- File created by the ''@prism'' project, version 1.3.0,      ----
----- which is developed at                                       ----
----- https://github.com/projetmbc/for-writing/tree/main/@prism . ----
----------------------------------------------------------------------
+----------------------------------------------------------------------
+---- File created by the ''@prism'' project which is developed at ----
+---- https://github.com/projetmbc/for-writing/tree/main/@prism .  ----
+----------------------------------------------------------------------
 
 palMagenta = {
     {0.9529411765, 0.7960784314, 0.8274509804},

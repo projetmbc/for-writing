@@ -8,6 +8,7 @@
       baseline  = T,
       column{2} = {cmd = \tdoccodein{text}},
     }
+% Translate the text in the far-right column.
         CMasher
           & Neutral & Too big (size > 512). \\
           & Savanna & Looks completely black. \\

@@ -35,7 +35,6 @@ TEX_MANUAL_TMPL = r"""
   \renewcommand{{\minted@cachedir}}{{_minted-xtra-cache}}
 \makeatother
 
-
 \usepackage[subpreambles = true]{{standalone}}
 
 
@@ -343,8 +342,11 @@ for lang in LANGS:
 # Build new content.
     abstract = extract_tex_content(asbtract_path.read_text())
 
-    last_change = changes[0]
-    changes     = '\n\n\\tdocsep\n\n'.join(changes)
+    _last_change    = changes[0].split('\n')
+    _last_change[0] = _last_change[0].replace('}[', '}%[')
+    last_change     = '\n'.join(_last_change)
+
+    changes = '\n\n\\tdocsep\n\n'.join(changes)
 
     tex_code = TEX_MANUAL_TMPL.format(
         lang           = lang,

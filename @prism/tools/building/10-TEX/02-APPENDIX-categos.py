@@ -140,7 +140,10 @@ for i, catego in enumerate(
         f"  {i}/{catego}/{{{title}}}"
     )
 
-    _graphics = []
+    _graphics = [
+        TEX_NO_EDIT,
+        '',
+    ]
 
     for n in natsorted(
         set(CATEGOS[catego]),
@@ -205,16 +208,16 @@ logging.info("Build 'category desc' TeX files")
 for catego in sorted(CATEGOS):
     logging.info(f"(desc) '{catego}'")
 
-    desc = METADATA_CATEGOS[catego]['desc']
+    desc  = METADATA_CATEGOS[catego]['desc']
     title = METADATA_CATEGOS[catego]['title']
 
     texfile = USED_BY_TOOLS_CATEGO_DIR / f"desc-{catego}.latex"
     texfile.touch()
 
     texcode = f"""
-% Translate the title provided in this comment.
+% Translate the title in this comment too.
 %
-% {title}
+% title: '{title}'
 
 {desc}
     """.strip() + '\n'

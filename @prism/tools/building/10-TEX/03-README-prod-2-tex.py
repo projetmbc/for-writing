@@ -69,12 +69,12 @@ PATTERN_TEX_SUBSECTION = re.compile(
 )
 
 
-TMPL_TEX = r"""
+TMPL_TEX = rf"""
 % !TEX TS-program = lualatex
 
-% ------------------------------------------- %
-% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
-% ------------------------------------------- %
+{TEX_NO_EDIT}
+
+""".lstrip() + r"""
 
 \documentclass{{tutodoc}}
 
@@ -83,11 +83,7 @@ TMPL_TEX = r"""
 
 \begin{{document}}
 
-% -- AUTOMATICALLY GENERATED UGLY CODE - START -- %
-
 {content}
-
-% -- AUTOMATICALLY GENERATED UGLY CODE - END -- %
 
 \end{{document}}
 """.strip() + '\n'

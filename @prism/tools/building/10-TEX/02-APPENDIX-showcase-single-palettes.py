@@ -47,12 +47,12 @@ SEM_PAL_SIZE = YAML_CONFIGS[TAG_SEMANTIC]['MAX_SEM_SIZE']
 TAB = " "*4
 
 
-TEX_HEADER = r"""
+TEX_HEADER = rf"""
 % !TEX TS-program = lualatex
 
-% ------------------------------------------- %
-% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
-% ------------------------------------------- %
+{TEX_NO_EDIT}
+
+""".lstrip() + r"""
 
 \documentclass{standalone}
 
@@ -201,7 +201,9 @@ g:Show()
 # -- PALETTE GRAPHICS -- #
 # ---------------------- #
 
-logging.info("Build 'palette, spectrum and angular gradient graphics' files")
+logging.info(
+  "Build 'palette, spectrum and angular gradient graphics' files"
+)
 
 ALL_NAMES = set()
 

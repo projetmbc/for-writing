@@ -55,13 +55,6 @@ TAB_1 = " "*4
 TAB_2 = TAB_1*2
 
 
-TEX_NO_EDIT = f"""
-% ------------------------------------------- %
-% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
-% ------------------------------------------- %
-""".strip()
-
-
 TEX_TABLE_HEADER = r"""
 %
 \begin{center}

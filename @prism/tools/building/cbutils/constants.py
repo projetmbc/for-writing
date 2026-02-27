@@ -171,3 +171,14 @@ SRC_URLS = {
 
 # Other URLs
 SRC_URLS[TAG_SCICOLMAPS] = "https://zenodo.org/api/records/8409685/files-archive"
+
+
+# --------------- #
+# -- TEX FILES -- #
+# --------------- #
+
+TEX_NO_EDIT = f"""
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+""".strip()

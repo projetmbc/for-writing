@@ -26,11 +26,8 @@ from shutil import copytree, rmtree
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-VERSION = (BUILD_TOOLS_DIR / 'VERSION.txt').read_text()
-
 CREDITS = (BUILD_TOOLS_DIR / 'CREDITS.txt').read_text()
 CREDITS = CREDITS.strip()
-CREDITS = CREDITS.format(VERSION = VERSION)
 
 
 MAX_SEM_SIZE = YAML_CONFIGS['SEMANTIC']['MAX_SEM_SIZE']

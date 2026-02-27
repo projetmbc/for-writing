@@ -83,13 +83,6 @@ STATUS = {
 }
 
 
-TEX_NO_EDIT = f"""
-% ------------------------------------------- %
-% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
-% ------------------------------------------- %
-""".strip()
-
-
 TEX_TRANSLATE_LAST_COL = f"""
 % ------------------------------------------ %
 % -- JUST TRANSLATE THE LAST COLMUN TEXTS -- %
@@ -116,6 +109,7 @@ TEX_EXCLUDED_TABLE_HEADER = r"""
       baseline  = T,
       column{2} = {cmd = \tdoccodein{text}},
     }
+% Translate the text in the far-right column.
 """.strip()
 
 

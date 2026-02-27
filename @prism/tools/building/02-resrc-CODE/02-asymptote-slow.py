@@ -34,6 +34,10 @@ while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
 
 
 RESRC_DIR = PROJ_DIR / TAG_RESOURCES / THIS_RESRC
+RESRC_DIR.mkdir(
+    parents  = True,
+    exist_ok = True,
+)
 
 
 UPDATES_NEEDED_JSON =  THIS_DIR.parent /  "UPDATES" / "NEEDED.json"

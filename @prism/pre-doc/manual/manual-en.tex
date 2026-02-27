@@ -6,7 +6,6 @@
   \renewcommand{\minted@cachedir}{_minted-xtra-cache}
 \makeatother
 
-
 \usepackage[subpreambles = true]{standalone}
 
 
@@ -14,7 +13,7 @@
 
 \title{\thisproj*\ project}
 \author{Christophe BAL}
-\date{1 Jan 2026 -- Version 1.3.0}
+\date{27 Feb 2026 -- Version 2.0.0}
 
 \maketitle
 
@@ -34,7 +33,6 @@
             \item "@" read as "at" indicates where the light meets the prism to be broken down into an informative spectrum.
         \end{enumerate*}
     }
-%    provides \nbOfPals\ color palettes with native support for various formats, including \css, \lua, and \LaTeX, to help you create expressive content
     provides \nbOfPals\ color palettes with native support for \css, \lua, and \LaTeX, to help you create expressive content
 
 %    \smallskip
@@ -53,19 +51,36 @@
     \subsection*{Last changes}
 \egroup
 
-\begin{tdocfix}[version = 1.3.0, date = 2026-01-01]
-    \item \lua\ product: the \tdoccodein{text}+use-std.tex+ and \tdoccodein{text}+use-dark.tex+ codes have been fixed.
-\end{tdocfix}
+\begin{tdocbreak}%[version = 2.0.0, date = 2026-02-27]
+    \item Here are the breaking changes in the API.
+    %
+    \begin{itemize}
+        \item Palette names use 'semantic' camelcase. For example, we use \tdoccodein{text}+PinkGrey+ and \tdoccodein{text}+BWR+ (Blue White Red) instead of \tdoccodein{text}+Pinkgrey+ and \tdoccodein{text}+Bwr+, but we keep \tdoccodein{text}+RdBu+ (RedBlue).
 
 
-% -------------------- %
+        \item \lua\ product: function \tdoccodein{lua}+getPal+ is now \tdoccodein{lua}+palCreateFromPal+. It expects a palette variable alongside options.
 
 
-\begin{tdocbreak}
-    \item \LUADRAW\ product becomes \lua\ product.
+        \item Contribution workflow has been fully changed (see below).
 
 
-    \item \lua\ product: the dict-like variable \tdoccodein{lua}+palNames+ has been removed. Therefore, the responsibility of adding this specific variable will lie with \LUADRAW.
+        \item No more same size for all the palettes (see below).
+
+
+        \item No sublist or shifted palette.
+
+
+        \item The categories have been fully changed (see below).
+    \end{itemize}
+
+
+    \item Manual.
+    %
+    \begin{itemize}
+        \item Ignored and renamed palettes have been placed in dedicated appendices.
+
+        \item Remove the cluster appendix.
+    \end{itemize}
 \end{tdocbreak}
 
 
@@ -73,16 +88,32 @@
 
 
 \begin{tdocnew}
-    \item New \css\ and \LaTeX\ products have been coded.
+    \item Here are the new API features.
+    %
+    \begin{itemize}
+        \item 95 new palettes added.
 
 
-    \item The \palettable\ palettes have been added.
+        \item Multiple distribution formats are now available to meet various technical requirements.
+        %
+        \begin{itemize}
+            \item High-fidelity (unmodified) or normalized (size $\leq$ \palMaxSemSize).
+
+            \item One file per palette (no more all palettes in a single file).
+        \end{itemize}
 
 
-    \item Three semantic palettes \tdoccodein{text}+TdocBW+, \tdoccodein{text}+TdocCol+ and \tdoccodein{text}+TdocDark+ have been created to be used by the \tutodoc\ class (\LaTeX\ creation process used).
+        \item Categories: the size palette is no longer used since the new API provides named categories. For example, a 3-color smooth palette can be now sequential, qualtitative and/or semantic.
 
 
-    \item Added an \thisdemo\ (the \css\ product showcase is used).
+        \item Contribution workflow simplified significantly.
+        %
+        \begin{itemize}
+            \item Data extraction and code generation are now streamlined by instantiating the \tdoccodein{python}+PaletteTransformer+ class, alongside palette and API builder functions.
+
+            \item Standardized showcases now feature simplified graphics.
+        \end{itemize}
+    \end{itemize}
 \end{tdocnew}
 
 
@@ -90,28 +121,41 @@
 
 
 \begin{tdocupdate}
-    \item Manual.
+    \item Documentations explain the new API. Here are the changes made.
     %
     \begin{itemize}
-        \item Added lists of renamed and removed palettes.
+        \item Contribution \tdoccodein{text}{README.md} files updated.
 
-        \item Added two appendixes, one with all palettes grouped by user-friendly categories, and another showing similar palettes.
 
-        \item Added explanations about the utility of palettes for non-designers.
+        \item Manual.
+        %
+        \begin{itemize}
+            \item Added reference to \carbonplan.
 
-        \item Added explanations about the minimal common optional sets of extra features implemented.
+            \item Added new category sections with a small description of their meaning.
+        \end{itemize}
     \end{itemize}
 
 
-    \item Better palette references.
+    \item The projects listed below serve as a foundation.
 
-    \item Better showcases.
-    %
+    \bgroup
+    \setlength{\multicolsep}{3pt}
+    \begin{multicols}{2}
     \begin{itemize}
-        \item Several category \pdf\ files are proposed (one \pdf\ per category and theme).
-
-        \item 2D chart and Delaunay triangulation added.
+        \item \asymptote
+        \item \carbonplan\      (new)
+        \item \cartocolors
+        \item \cmasher\         (new)
+        \item \colorbrewer
+        \item \colormaps\       (new, just for category automation)
+        \item \matplotlib
+        \item \nclcolortables\  (new, partially supported for now)
+        \item \palettable
+        \item \scicolmap
     \end{itemize}
+    \end{multicols}
+    \egroup
 \end{tdocupdate}
 }
 
@@ -139,6 +183,115 @@
 \section{History}
 
 \small
+
+\begin{tdocbreak}[version = 2.0.0, date = 2026-02-27]
+    \item Here are the breaking changes in the API.
+    %
+    \begin{itemize}
+        \item Palette names use 'semantic' camelcase. For example, we use \tdoccodein{text}+PinkGrey+ and \tdoccodein{text}+BWR+ (Blue White Red) instead of \tdoccodein{text}+Pinkgrey+ and \tdoccodein{text}+Bwr+, but we keep \tdoccodein{text}+RdBu+ (RedBlue).
+
+
+        \item \lua\ product: function \tdoccodein{lua}+getPal+ is now \tdoccodein{lua}+palCreateFromPal+. It expects a palette variable alongside options.
+
+
+        \item Contribution workflow has been fully changed (see below).
+
+
+        \item No more same size for all the palettes (see below).
+
+
+        \item No sublist or shifted palette.
+
+
+        \item The categories have been fully changed (see below).
+    \end{itemize}
+
+
+    \item Manual.
+    %
+    \begin{itemize}
+        \item Ignored and renamed palettes have been placed in dedicated appendices.
+
+        \item Remove the cluster appendix.
+    \end{itemize}
+\end{tdocbreak}
+
+
+% -------------------- %
+
+
+\begin{tdocnew}
+    \item Here are the new API features.
+    %
+    \begin{itemize}
+        \item 95 new palettes added.
+
+
+        \item Multiple distribution formats are now available to meet various technical requirements.
+        %
+        \begin{itemize}
+            \item High-fidelity (unmodified) or normalized (size $\leq$ \palMaxSemSize).
+
+            \item One file per palette (no more all palettes in a single file).
+        \end{itemize}
+
+
+        \item Categories: the size palette is no longer used since the new API provides named categories. For example, a 3-color smooth palette can be now sequential, qualtitative and/or semantic.
+
+
+        \item Contribution workflow simplified significantly.
+        %
+        \begin{itemize}
+            \item Data extraction and code generation are now streamlined by instantiating the \tdoccodein{python}+PaletteTransformer+ class, alongside palette and API builder functions.
+
+            \item Standardized showcases now feature simplified graphics.
+        \end{itemize}
+    \end{itemize}
+\end{tdocnew}
+
+
+% -------------------- %
+
+
+\begin{tdocupdate}
+    \item Documentations explain the new API. Here are the changes made.
+    %
+    \begin{itemize}
+        \item Contribution \tdoccodein{text}{README.md} files updated.
+
+
+        \item Manual.
+        %
+        \begin{itemize}
+            \item Added reference to \carbonplan.
+
+            \item Added new category sections with a small description of their meaning.
+        \end{itemize}
+    \end{itemize}
+
+
+    \item The projects listed below serve as a foundation.
+
+    \bgroup
+    \setlength{\multicolsep}{3pt}
+    \begin{multicols}{2}
+    \begin{itemize}
+        \item \asymptote
+        \item \carbonplan\      (new)
+        \item \cartocolors
+        \item \cmasher\         (new)
+        \item \colorbrewer
+        \item \colormaps\       (new, just for category automation)
+        \item \matplotlib
+        \item \nclcolortables\  (new, partially supported for now)
+        \item \palettable
+        \item \scicolmap
+    \end{itemize}
+    \end{multicols}
+    \egroup
+\end{tdocupdate}
+
+\tdocsep
 
 \begin{tdocfix}[version = 1.3.0, date = 2026-01-01]
     \item \lua\ product: the \tdoccodein{text}+use-std.tex+ and \tdoccodein{text}+use-dark.tex+ codes have been fixed.

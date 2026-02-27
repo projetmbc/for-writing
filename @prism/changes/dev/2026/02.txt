@@ -1,5 +1,19 @@
 // ---------- //
 
+==
+27
+==
+
+--------
+:fordev:
+--------
+
+[[:flow:]]
+Stopped tracking versions in palette files to save time on unnecessary \latex compilations.
+
+
+// ---------- //
+
 
 ==
 26  (2.0.0-beta.23)
