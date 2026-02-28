@@ -1,7 +1,18 @@
 // ---------- //
 
+
 ==
-27
+28  (2.0.0)
+==
+
+New version accepted (still need to automate the visual matching of palettes, even if they differ from a floating-point perspective).
+
+
+// ---------- //
+
+
+==
+28
 ==
 
 --------
