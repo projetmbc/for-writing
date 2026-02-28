@@ -1,1 +1,8 @@
-TODO
+-------
+:break:
+-------
+
+[[:api:]]
+No more visual identical palettes.
+
+    * ''Cubehelix'' (\matplotlib) removed, use ''Classic'' (\cubehelix) instead.

@@ -21,11 +21,10 @@ git cm "..."
 
 // ---------- //
 
-AVANT nelle version !!!!!
+besoin d'indiquer comeent erebuilder les sublist et les shift!!!!!!!
 
-besoin de virere ce qui se ressemble
 
-   --> Cubehelix MPL = Classic CUBEHELIX
+
 
 
 

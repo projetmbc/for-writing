@@ -5,9 +5,9 @@
 28  (2.0.1-beta.1)
 ==
 
------
-:new:
------
+-------
+:break:
+-------
 
 [[:api:]]
-Automate the visual matching of palettes, even if they differ from a floating-point perspective. This leads to the remove of the palette ''Cubehelix'' from \matplotlib wich is visually identical to the palette ''Classic'' from \Cubehelix.
+Automate visual matching for palettes with differing floating-point representations. Consequently, the ''Cubehelix'' \matplotlib palette has been removed as it is visually identical to the ''Classic'' \cubehelix palette.
