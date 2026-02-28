@@ -69,14 +69,16 @@ TAB_2 = TAB_1*2
 
 
 TEX_CMDS = {
-    PAL_STATUS.EQUAL_TO  : "=",
-    PAL_STATUS.REVERSE_OF: r"\rightleftharpoons",
-    PAL_STATUS.SUBSET_OF : r"\prec",
-    PAL_STATUS.SHIFT_OF  : r"\ll",
+    PAL_STATUS.SAME_VISUAL: r"\cong",
+    PAL_STATUS.EQUAL_TO   : "=",
+    PAL_STATUS.REVERSE_OF : r"\rightleftharpoons",
+    PAL_STATUS.SUBSET_OF  : r"\prec",
+    PAL_STATUS.SHIFT_OF   : r"\ll",
 }
 
 
 STATUS = {
+    '~'  : PAL_STATUS.SAME_VISUAL,
     '='  : PAL_STATUS.EQUAL_TO,
     '<'  : PAL_STATUS.SUBSET_OF,
     '<<<': PAL_STATUS.SHIFT_OF,

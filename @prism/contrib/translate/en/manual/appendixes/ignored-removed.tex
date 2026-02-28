@@ -38,22 +38,24 @@ The following palettes are excluded as sublists%
 A palette is defined as a sublist if it is formed by removing colors while preserving the relative order of the remaining ones.
 }
 or shifts of existing ones, or due to direct or reversed duplication. Note that exact duplicates -- sharing both name and colors -- are omitted entirely. We identify relation between palettes using the following notations.
-%
-\begin{multicols}{4}
-\begin{itemize}[label=\textbullet\,]
-    \item Sublist: \boxed{{\prec}\vphantom{pM}}
-    
-    \item Shifted: \boxed{{\ll}\vphantom{pM}}
 
-    \item Equality: \boxed{{=}\vphantom{pM}}
+\medskip
 
-    \item Reversal: \boxed{{\rightleftharpoons}\vphantom{pM}}
-\end{itemize}
-\end{multicols}
+\newcommand{\tabsymb}[1]{$\boxed{{#1}\vphantom{pM}}$}
+\begin{tblr}{
+  colspec = {X[c]X[c]X[c]X[c]X[c]},
+  rows    = {m},
+  cells   = {font = \small},
+  row{2}  = {cmd = \tabsymb},
+}
+    Sublist & Shifted & Equality & Visually identical & Reversal \\
+    \prec   & \ll     & =        & \cong              & \rightleftharpoons \\
+\end{tblr}
+
+\medskip
 
 In these cases, the rightmost palette is the one retained in \thisproj. For example, this table indicates that \tdoccodein{text}{YlOrRd} from \colorbrewer\ uses a sublist of colors from the \thisproj\ palette \tdoccodein{text}{YlOrRd}.
-%
-%
+
 \subimport{../../../common/report/}{rebuildable-palettes.latex}
 
 

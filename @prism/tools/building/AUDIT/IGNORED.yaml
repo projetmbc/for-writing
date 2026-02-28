@@ -24,6 +24,9 @@ LIGHTBARTLEIN:
 
 # -- M -- #
 MATPLOTLIB:
+  Cubehelix:
+    palette: Classic
+    relation: '~'
   Tab10:
     palette: Tab20
     relation: <

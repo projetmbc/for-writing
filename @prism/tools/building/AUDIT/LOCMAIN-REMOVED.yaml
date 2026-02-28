@@ -37,6 +37,10 @@ BlueOrange12:
 BlueOrange8:
   BlueOrange: subset
 
+# -- C -- #
+Cubehelix:
+  Classic: superseded
+
 # -- G -- #
 GrayTab:
   MidGray: renamed

@@ -29,9 +29,6 @@ besoin de virere ce qui se ressemble
 
 
 
-
-
-
 // ---------- //
 
 consolider les categos autos si possible

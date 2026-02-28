@@ -85,7 +85,6 @@ const palsize = {
   "Cubehelix1": 16,
   "Cubehelix2": 16,
   "Cubehelix3": 16,
-  "Cubehelix": 256,
   "CubeYF": 256,
   "Curl": 512,
 // -- D -- //

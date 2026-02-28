@@ -17,6 +17,7 @@
           & BlueOrange8 & \prec & BlueOrange \\
         \hline
         Matplotlib
+          & Cubehelix & \cong & Classic \\
           & Tab10 & \prec & Tab20 \\
           & TwilightShifted & \ll & Twilight \\
           & Gray & \rightleftharpoons & Binary \\

@@ -29,20 +29,22 @@ TOLERANCE = 10**(-5)
 
 
 class PAL_STATUS(Enum):
-    IS_NEW     = 1
-    EQUAL_TO   = 2
-    REVERSE_OF = 3
-    SAME_NAME  = 4
-    SUBSET_OF  = 5
-    SHIFT_OF   = 6
+    IS_NEW      = 1
+    EQUAL_TO    = 2
+    REVERSE_OF  = 3
+    SAME_NAME   = 4
+    SUBSET_OF   = 5
+    SHIFT_OF    = 6
+    SAME_VISUAL = 7
 
 STATUS_MSG = {
-    PAL_STATUS.IS_NEW    : "Is new",
-    PAL_STATUS.EQUAL_TO  : "Equal to",
-    PAL_STATUS.REVERSE_OF: "Reverse of",
-    PAL_STATUS.SAME_NAME : "Same name as",
-    PAL_STATUS.SUBSET_OF : "Subset of",
-    PAL_STATUS.SHIFT_OF  : "Shift of",
+    PAL_STATUS.IS_NEW     : "Is new",
+    PAL_STATUS.EQUAL_TO   : "Equal to",
+    PAL_STATUS.REVERSE_OF : "Reverse of",
+    PAL_STATUS.SAME_NAME  : "Visually identical to",
+    PAL_STATUS.SAME_VISUAL: "Same name as",
+    PAL_STATUS.SUBSET_OF  : "Subset of",
+    PAL_STATUS.SHIFT_OF   : "Shift of",
 }
 
 STATUS_TAG = {
