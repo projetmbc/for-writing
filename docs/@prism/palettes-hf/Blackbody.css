@@ -1,0 +1,12 @@
+/* ------------------------------------------------------------------ */
+/* -- File created by the ''@prism'' project which is developed at -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism .  -- */
+/* ------------------------------------------------------------------ */
+
+:root {
+    --palBlackbody-1: rgb(0% 0% 0%);
+    --palBlackbody-2: rgb(90.196078% 0% 0%);
+    --palBlackbody-3: rgb(90.196078% 82.352941% 0%);
+    --palBlackbody-4: rgb(100% 100% 100%);
+    --palBlackbody-5: rgb(62.745098% 78.431373% 100%);
+}

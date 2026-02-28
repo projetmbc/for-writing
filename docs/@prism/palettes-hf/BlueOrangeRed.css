@@ -1,0 +1,21 @@
+/* ------------------------------------------------------------------ */
+/* -- File created by the ''@prism'' project which is developed at -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism .  -- */
+/* ------------------------------------------------------------------ */
+
+:root {
+    --palBlueOrangeRed-1: rgb(2.745098% 35.294118% 100%);
+    --palBlueOrangeRed-2: rgb(19.607843% 46.27451% 100%);
+    --palBlueOrangeRed-3: rgb(34.901961% 56.470588% 100%);
+    --palBlueOrangeRed-4: rgb(54.901961% 69.803922% 100%);
+    --palBlueOrangeRed-5: rgb(74.901961% 83.137255% 100%);
+    --palBlueOrangeRed-6: rgb(89.803922% 93.333333% 100%);
+    --palBlueOrangeRed-7: rgb(96.862745% 97.647059% 100%);
+    --palBlueOrangeRed-8: rgb(100% 100% 80%);
+    --palBlueOrangeRed-9: rgb(100% 100% 60%);
+    --palBlueOrangeRed-10: rgb(100% 100% 0%);
+    --palBlueOrangeRed-11: rgb(100% 80% 0%);
+    --palBlueOrangeRed-12: rgb(100% 60% 0%);
+    --palBlueOrangeRed-13: rgb(100% 40% 0%);
+    --palBlueOrangeRed-14: rgb(100% 0% 0%);
+}

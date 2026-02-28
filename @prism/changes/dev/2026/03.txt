@@ -5,9 +5,18 @@
 28  (2.0.1-beta.1)
 ==
 
+-----
+:fix:
+-----
+
+Online demo: an auto-update script for the code was missing.
+
+
 -------
 :break:
 -------
 
 [[:api:]]
-Automate visual matching for palettes with differing floating-point representations. Consequently, the ''Cubehelix'' \matplotlib palette has been removed as it is visually identical to the ''Classic'' \cubehelix palette.
+Automate visual matching for palettes with differing floating-point representations.
+
+    * ''Cubehelix'' (\matplotlib) removed, use ''Classic'' (\cubehelix) instead.

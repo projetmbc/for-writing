@@ -1,0 +1,18 @@
+/* ------------------------------------------------------------------ */
+/* -- File created by the ''@prism'' project which is developed at -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism .  -- */
+/* ------------------------------------------------------------------ */
+
+:root {
+    --palPicnic-1: rgb(0% 0% 100%);
+    --palPicnic-2: rgb(20% 60% 100%);
+    --palPicnic-3: rgb(40% 80% 100%);
+    --palPicnic-4: rgb(60% 80% 100%);
+    --palPicnic-5: rgb(80% 80% 100%);
+    --palPicnic-6: rgb(100% 100% 100%);
+    --palPicnic-7: rgb(100% 80% 100%);
+    --palPicnic-8: rgb(100% 60% 100%);
+    --palPicnic-9: rgb(100% 40% 80%);
+    --palPicnic-10: rgb(100% 40% 40%);
+    --palPicnic-11: rgb(100% 0% 0%);
+}

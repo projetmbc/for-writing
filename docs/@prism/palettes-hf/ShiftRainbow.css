@@ -1,0 +1,14 @@
+/* ------------------------------------------------------------------ */
+/* -- File created by the ''@prism'' project which is developed at -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism .  -- */
+/* ------------------------------------------------------------------ */
+
+:root {
+    --palShiftRainbow-1: rgb(0% 100% 100%);
+    --palShiftRainbow-2: rgb(11.76% 56.47% 100%);
+    --palShiftRainbow-3: rgb(100% 0% 100%);
+    --palShiftRainbow-4: rgb(100% 0% 0%);
+    --palShiftRainbow-5: rgb(100% 64.71% 0%);
+    --palShiftRainbow-6: rgb(100% 84.31% 0%);
+    --palShiftRainbow-7: rgb(19.61% 80.39% 19.61%);
+}

@@ -21,11 +21,12 @@ git cm "..."
 
 // ---------- //
 
+maj auto pour les palettes visuellement egal accepté via streamlit
+
+
+// ---------- //
+
 besoin d'indiquer comeent erebuilder les sublist et les shift!!!!!!!
-
-
-
-
 
 
 // ---------- //
