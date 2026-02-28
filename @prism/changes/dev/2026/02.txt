@@ -2,6 +2,30 @@
 
 
 ==
+28  (2.0.1-beta.1)
+==
+
+-----
+:fix:
+-----
+
+Online demo: an auto-update script for the code was missing.
+
+
+-------
+:break:
+-------
+
+[[:api:]]
+Automate visual matching for palettes with differing floating-point representations.
+
+    * ''Cubehelix'' (\matplotlib) removed, use ''Classic'' (\cubehelix) instead.
+
+
+// ---------- //
+
+
+==
 28  (2.0.0)
 ==
 

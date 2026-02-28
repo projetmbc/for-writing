@@ -26,7 +26,7 @@ maj auto pour les palettes visuellement egal accepté via streamlit
 
 // ---------- //
 
-besoin d'indiquer comeent erebuilder les sublist et les shift!!!!!!!
+besoin d'indiquer comeent rebuilder les sublist et les shift!!!!!!!
 
 
 // ---------- //
