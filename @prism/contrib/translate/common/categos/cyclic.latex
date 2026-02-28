@@ -135,16 +135,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries IsleOfDogs2\vphantom{g}}
-
-        \smallskip
-        \includegraphics[scale=.8]{../../../common/showcase/IsleOfDogs2-angular.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries Phase\vphantom{g}}
 
         \smallskip

@@ -260,7 +260,7 @@ WESANDERSON:
   GrandBudapest4: qualitative, stepped
   GrandBudapest5: qualitative, stepped
   IsleOfDogs1: qualitative, stepped
-  IsleOfDogs2: cyclic, qualitative, stepped
+  IsleOfDogs2: qualitative, stepped
   IsleOfDogs3: qualitative, stepped
   Margot1: qualitative, stepped
   Margot2: qualitative, stepped
