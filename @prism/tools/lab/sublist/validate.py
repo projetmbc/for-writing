@@ -6,97 +6,101 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-# --- SIMULATION DE DONNÉES (À remplacer par tes vraies listes de triplets) ---
-# On crée un dictionnaire : { "Nom": [(r,g,b), (r,g,b), ...] }
-@st.cache_data
-def load_mock_palettes():
-    palettes = {}
-    # On génère 300 palettes aléatoires pour le test
-    for i in range(300):
-        size = np.random.randint(50, 256)
-        palettes[f"Palette_{i}"] = np.random.rand(size, 3).tolist()
+# --- LOGIQUE DE RECHERCHE MULTI-INDEX ---
+def scanner_associations_exhaustif(bibliotheque, tolerance=1e-5):
+    associations = []
+    noms = list(bibliotheque.keys())
 
-    # On crée une "vraie" sous-palette pour tester l'algo
-    parent = np.linspace([0, 0, 0], [1, 0.5, 0], 100) # Un dégradé Orange
-    palettes["PARENTE_TEST"] = parent.tolist()
-    palettes["SOUS_PALETTE_CIBLE"] = parent[20:45].tolist() # Indices 20 à 44
+    for nom_cible in noms:
+        cible = np.array(bibliotheque[nom_cible])
+        n_c = len(cible)
 
-    return palettes
+        for nom_parent, donnees_parent in bibliotheque.items():
+            if nom_cible == nom_parent: continue
 
-# --- LOGIQUE D'EXTRACTION ---
-def find_strict_subpalette(parent_rgb, sub_rgb, tol=1e-5):
-    """
-    Recherche sub_rgb dans parent_rgb par balayage de fenêtre.
-    """
-    p, s = np.array(parent_rgb), np.array(sub_rgb)
-    n_p, n_s = len(p), len(s)
+            parent = np.array(donnees_parent)
+            n_p = len(parent)
+            if n_c > n_p: continue
 
-    if n_s > n_p: return None
+            # On cherche TOUTES les positions de début
+            for start_idx in range(n_p - n_c + 1):
+                fenetre = parent[start_idx : start_idx + n_c]
+                if np.allclose(fenetre, cible, atol=tolerance):
+                    associations.append({
+                        "enfant": nom_cible,
+                        "parent": nom_parent,
+                        "debut": start_idx,
+                        "fin": start_idx + n_c - 1,
+                        "data_enfant": bibliotheque[nom_cible],
+                        "data_parent": donnees_parent
+                    })
+    return associations
 
-    for i in range(n_p - n_s + 1):
-        window = p[i : i + n_s]
-        if np.allclose(window, s, atol=tol):
-            return {
-                "start_idx": i,
-                "end_idx": i + n_s - 1,
-                "range_norm": (i / (n_p - 1), (i + n_s - 1) / (n_p - 1))
-            }
-    return None
+# --- AFFICHAGE HYBRIDE (Carrés si petit, Ligne si grand) ---
+def dessiner_palette_adaptative(rgb_list, titre, highlight=None):
+    n = len(rgb_list)
+    # Si n > 50, on utilise imshow pour la fluidité, sinon des carrés
+    fig, ax = plt.subplots(figsize=(10, 0.8))
 
-# --- INTERFACE STREAMLIT ---
-st.set_page_config(page_title="Sub-Palette Finder", layout="wide")
-st.title("🔍 Détecteur de Sous-Palettes Strictes")
+    data_plot = np.array(rgb_list).reshape(1, n, 3)
+    ax.imshow(data_plot, aspect='auto', extent=[-0.5, n-0.5, -0.5, 0.5])
 
-data = load_mock_palettes()
+    if highlight:
+        # On dessine un rectangle de sélection
+        rect_width = highlight[1] - highlight[0] + 1
+        rect = plt.Rectangle((highlight[0]-0.5, -0.5), rect_width, 1,
+                              fill=False, edgecolor='white', lw=3)
+        ax.add_patch(rect)
+        # Ombre portée pour le contraste sur couleurs claires
+        rect_out = plt.Rectangle((highlight[0]-0.5, -0.5), rect_width, 1,
+                                  fill=False, edgecolor='black', lw=1)
+        ax.add_patch(rect_out)
 
-# Sélection de la palette "Enfant" (celle qu'on cherche à caser ailleurs)
-target_name = st.selectbox("Sélectionnez la sous-palette à tester :", list(data.keys()), index=len(data)-1)
-target_rgb = data[target_name]
+    ax.set_title(titre, fontsize=9, loc='left')
+    ax.set_yticks([])
+    # On n'affiche les chiffres que si la palette n'est pas trop dense
+    if n <= 50:
+        ax.set_xticks(range(n))
+        ax.tick_params(labelsize=7)
+    else:
+        ax.set_xticks([0, n//2, n-1])
 
-st.subheader(f"Analyse de '{target_name}' ({len(target_rgb)} couleurs)")
+    return fig
 
-# Lancement du scan
-results = []
-for name, rgb_list in data.items():
-    if name == target_name: continue
-    match = find_strict_subpalette(rgb_list, target_rgb)
-    if match:
-        results.append({"Parent": name, **match})
+# --- INTERFACE ---
+st.set_page_config(layout="wide")
+st.title("Validateur de Structure Modulaire Haute Résolution")
 
-# --- AFFICHAGE DES RÉSULTATS ---
-if results:
-    st.success(f"✅ Trouvée dans {len(results)} palettes parentes !")
+# Simulation de données 256 couleurs
+if 'palettes' not in st.session_state:
+    lib = {}
+    # Une palette parente de 256 couleurs (dégradé complexe)
+    base = [plt.cm.turbo(x/255)[:3] for x in range(256)]
+    lib["source_master_256"] = base
+    # Une sous-palette qui apparaît deux fois (si on duplique des segments)
+    lib["segment_extrait"] = base[50:100]
 
-    for res in results:
-        with st.expander(f"Détails : {res['Parent']}", expanded=True):
-            col1, col2 = st.columns([1, 3])
+    # Ajout de 300 palettes bidon pour tester la charge
+    for i in range(298):
+        lib[f"random_{i}"] = np.random.rand(256, 3).tolist()
 
-            with col1:
-                st.metric("Plage d'indices", f"{res['start_idx']} → {res['end_idx']}")
-                st.write(f"**Plage flottante :** \n `{res['range_norm'][0]:.3f}` à `{res['range_norm'][1]:.3f}`")
+    st.session_state.palettes = lib
 
-            with col2:
-                # Visualisation comparative
-                fig, ax = plt.subplots(2, 1, figsize=(8, 2))
+if st.button("Lancer le Scan Exhaustif"):
+    results = scanner_associations_exhaustif(st.session_state.palettes)
 
-                # Parent
-                ax[0].imshow([data[res['Parent']]], aspect='auto')
-                ax[0].set_title(f"Parente: {res['Parent']}", fontsize=10)
-                ax[0].axis('off')
-                # Rectangle pour surligner la zone trouvée
-                rect = plt.Rectangle((res['start_idx']-0.5, -0.5), len(target_rgb), 1,
-                                     linewidth=2, edgecolor='white', facecolor='none')
-                ax[0].add_patch(rect)
+    if results:
+        st.success("Last Main Comparison complies to the new modular format")
+        st.info(f"{len(results)} occurrences trouvées.")
 
-                # Enfant
-                ax[1].imshow([target_rgb], aspect='auto')
-                ax[1].set_title("Sous-palette extraite (Cible)", fontsize=10)
-                ax[1].axis('off')
-
-                plt.tight_layout()
-                st.pyplot(fig)
-else:
-    st.warning("❌ Cette palette n'est la sous-palette stricte d'aucune autre dans la base.")
-
-st.divider()
-st.caption("Note : La détection utilise une tolérance de 1e-5 pour les comparaisons RGB flottantes.")
+        for res in results:
+            with st.container():
+                c1, c2 = st.columns([1, 2])
+                with c1:
+                    st.pyplot(dessiner_palette_adaptative(res['data_enfant'], f"Enfant : {res['enfant']}"))
+                with c2:
+                    st.pyplot(dessiner_palette_adaptative(res['data_parent'],
+                                                        f"Parent : {res['parent']} (Position {res['debut']} à {res['fin']})",
+                                                        highlight=(res['debut'], res['fin'])))
+    else:
+        st.error("Aucune correspondance.")
