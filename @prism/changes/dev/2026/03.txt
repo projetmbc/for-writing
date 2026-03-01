@@ -1,0 +1,13 @@
+// ---------- //
+
+
+==
+XXXXXXX  (2.0.1-beta.2)
+==
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+\thisproj \resrc: the new modular \struct is fully managed (local cleaned \src and comparison with the last main version).

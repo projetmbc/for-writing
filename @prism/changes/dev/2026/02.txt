@@ -9,7 +9,8 @@
 :fix:
 -----
 
-Online demo: an auto-update script for the code was missing.
+[[:doc:]]
+Online demo: an auto-update script for the \html, \ccs and \js codes was missing.
 
 
 -------

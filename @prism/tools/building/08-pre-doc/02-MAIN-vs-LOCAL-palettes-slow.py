@@ -130,8 +130,11 @@ def get_palette_compatibility(palette_a, palette_b):
 
 logging.info("Get 'Last Main Palettes'")
 
-with (RESRC_DIR / 'palettes.json').open(mode = "r") as f:
-    LAST_LAST_MAIN_PALS =json_load(f)
+LAST_LAST_MAIN_PALS = dict()
+
+for paljson in RESRC_DIR.glob('*.json'):
+    with paljson.open(mode = "r") as f:
+        LAST_LAST_MAIN_PALS[paljson.stem] = json_load(f)
 
 
 # -------------------- #

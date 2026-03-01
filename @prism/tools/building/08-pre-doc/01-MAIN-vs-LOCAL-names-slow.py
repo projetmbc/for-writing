@@ -73,9 +73,11 @@ REPORT_NB_NEW_TXT        = REPORT_DIR / f"AUDIT-LOCMAIN-NAMES-NEW-NB.txt"
 REPORT_NAME_REMOVED_JSON = REPORT_DIR / f"AUDIT-LOCMAIN-NAMES-REMOVED.json"
 REPORT_LAST_MAIN_JSON    = REPORT_DIR / f"AUDIT-LAST-MAIN.json"
 
+
 AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
 SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
+
 
 WHY_REMOVED_YAML = AUDIT_DIR / f"LOCMAIN-REMOVED.yaml"
 WHY_REMOVED_YAML.touch()
@@ -115,8 +117,10 @@ def lower_names_kept(
 
 logging.info("Get 'Last Main Names'")
 
-with (RESRC_DIR / 'palettes.json').open(mode = "r") as f:
-    LAST_MAIN_NAMES = set(json_load(f))
+LAST_MAIN_NAMES = set(
+    p.stem
+    for p  in RESRC_DIR.glob('*.json')
+)
 
 
 # --------------------------- #

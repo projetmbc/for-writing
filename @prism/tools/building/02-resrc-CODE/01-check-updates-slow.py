@@ -18,7 +18,7 @@ from cbutils      import *
 # -------------------------- #
 
 if not YAML_CONFIGS[TAG_WORKFLOW]['ASK_GITHUB']:
-    logging.warning("'Uncheck updates'")
+    logging.warning("Online updates - 'Uncheck'")
     exit(0)
 
 
@@ -82,8 +82,8 @@ def get_github_default_branch(ids):
 
         if response.status_code == 403:
             logging.warning(
-                f"Rate limit exceeded for {ids}, "
-                f"trying 'main'"
+                 "Online updates - Rate limit exceeded "
+                f"for {ids}, trying 'main'"
             )
 
             return 'main'
@@ -96,8 +96,8 @@ def get_github_default_branch(ids):
 
     except requests.exceptions.RequestException as e:
         logging.warning(
-            f"Could not get default branch for {ids}, "
-            f"trying 'main': {e}"
+             "Online updates - Could not get default branch "
+            f"for {ids}, trying 'main': {e}"
         )
 
         return 'main'
@@ -118,7 +118,10 @@ def get_github_last_date(ids):
         )
 
         if response.status_code == 403:
-            logging.error(f"'{ids}' (GitHub) - Rate limit exceeded")
+            logging.error(
+                 "Online updates - "
+                f"'{ids}' (GitHub) - Rate limit exceeded"
+            )
 
             return None
 
@@ -129,7 +132,10 @@ def get_github_last_date(ids):
         return data['commit']['committer']['date']
 
     except requests.exceptions.RequestException as e:
-        logging.error(f"'{ids}' (GitHub) - Date cannot be recovered")
+        logging.error(
+             "Online updates - "
+            f"'{ids}' (GitHub) - Date cannot be recovered"
+        )
 
         return None
 
@@ -144,12 +150,15 @@ GITHUB_HEADERS = {}
 if GITHUB_TOKEN:
     GITHUB_HEADERS['Authorization'] = f'token {GITHUB_TOKEN}'
 
-    logging.info("GitHub token configured (authenticated requests)")
+    logging.info(
+        "Online updates - "
+        "GitHub token configured (authenticated requests)"
+    )
 
 else:
     logging.warning(
         '''
-No GitHub token. Rate limit: 60 requests/hour.
+Online updates - No GitHub token. Rate limit: 60 requests/hour.
 Set GITHUB_TOKEN environment variable for 5000 requests/hour
         '''.strip()
     )
@@ -159,7 +168,7 @@ Set GITHUB_TOKEN environment variable for 5000 requests/hour
 # -- NEEDED UPDATES - GITHUB COMMITS -- #
 # ------------------------------------- #
 
-logging.info("Looking for needed updates")
+logging.info("Online updates - 'Search new code'")
 
 for name, ids in GITHUB_IDS.items():
     logging.info(f"Check '{RESRC_ALIAS[name]}' GitHub project")
@@ -275,14 +284,20 @@ if None in needed_updates.values():
 # -- JSON UPDATE -- #
 # ----------------- #
 
-logging.info(f"Update '{UPDATES_BACKUP_JSON.name}' file")
+logging.info(
+    "Online updates - "
+    f"Update '{UPDATES_BACKUP_JSON.name}' file"
+)
 
 UPDATES_BACKUP_JSON.write_text(
     json_dumps(UPDATES_BACKUP)
 )
 
 
-logging.info(f"Update '{UPDATES_NEEDED_JSON.name}' file")
+logging.info(
+    "Online updates - "
+    f"Update '{UPDATES_NEEDED_JSON.name}' file"
+)
 
 UPDATES_NEEDED_JSON.write_text(
     json_dumps(needed_updates)

@@ -51,7 +51,7 @@ with UPDATES_NEEDED_JSON.open(mode = "r") as f:
 # ---------------------- #
 
 if not UPDATES_NEEDED[THIS_RESRC]:
-    logging.info(f"'{THIS_RESRC}' - No update")
+    logging.info(f"No update - '{RESRC_ALIAS[THIS_RESRC]}'")
 
     exit(0)
 
@@ -93,6 +93,6 @@ logging.info(f"Clean '{THIS_RESRC}' folder")
 clean_src_files(
     local_src_dir = RESRC_DIR / "temp",
     globs_kept    = [
-        "**/products/json/palettes.json",
+        "**/products/json/palettes-hf/*.json",
     ],
 )
