@@ -143,7 +143,7 @@ MATPLOTLIB:
   GistGray: sequential
   GistHeat: sequential
   GistNcar: stepped
-  GistRainbow: cyclic, dark, stepped
+  GistRainbow: dark, stepped
   GistStern: stepped
   Gnuplot: sequential
   Gnuplot2: sequential
@@ -202,7 +202,7 @@ SCICOLMAPS:
   BatlowW: colorblind, divergent, sequential
   Berlin: colorblind, divergent, sequential
   Bilbao: colorblind, sequential
-  Broc: colorblind, cyclic, divergent, sequential
+  Broc: colorblind, divergent, sequential
   BrocO: colorblind, cyclic, divergent, sequential
   Buda: colorblind, sequential
   Bukavu: colorblind, stepped
@@ -226,7 +226,7 @@ SCICOLMAPS:
   Oslo: colorblind, sequential
   Roma: colorblind, divergent, sequential
   RomaO: colorblind, cyclic, stepped
-  Tofino: colorblind, cyclic, divergent, sequential
+  Tofino: colorblind, divergent, sequential
   Tokyo: colorblind, sequential
   Turku: colorblind, sequential
   Vanimo: colorblind, divergent, sequential

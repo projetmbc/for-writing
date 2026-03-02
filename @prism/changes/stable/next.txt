@@ -11,6 +11,14 @@ Online demo: an auto-update script for the \html, \ccs and \js codes was missing
 -------
 
 [[:api:]]
-No more visual identical palettes.
+No more visual identical palettes (semi-automated process).
 
     * ''Cubehelix'' (\matplotlib) removed, use ''Classic'' (\cubehelix) instead.
+
+
+-------
+:update:
+-------
+
+[[:doc:]]
+\Categos: the ''Broc'', ''GistRainbow'', and ''Tofino'' palettes have been removed from the cyclic \catego.

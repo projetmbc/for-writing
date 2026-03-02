@@ -25,16 +25,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries Broc\vphantom{g}}
-
-        \smallskip
-        \includegraphics[scale=.8]{../../../common/showcase/Broc-angular.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries BrocO\vphantom{g}}
 
         \smallskip
@@ -105,16 +95,6 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries GistRainbow\vphantom{g}}
-
-        \smallskip
-        \includegraphics[scale=.8]{../../../common/showcase/GistRainbow-angular.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
         {\bfseries HSV\vphantom{g}}
 
         \smallskip
@@ -169,16 +149,6 @@
 
         \smallskip
         \includegraphics[scale=.8]{../../../common/showcase/Seasons-angular.pdf}
-    \end{center}
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-    \begin{center}
-        \smallskip
-        {\bfseries Tofino\vphantom{g}}
-
-        \smallskip
-        \includegraphics[scale=.8]{../../../common/showcase/Tofino-angular.pdf}
     \end{center}
 \end{minipage}
 

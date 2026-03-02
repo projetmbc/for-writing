@@ -28,12 +28,8 @@ maj auto pour les palettes visuellement egal accepté via streamlit
 
 besoin d'indiquer comeent rebuilder les sublist et les shift!!!!!!!
 
-en fait twilight_shifted : shift & reverse !!!!
+en fait twilight_shifted : shift & reverse, d'où besoin d'indiquer cecei aussi dans la doc !!!!
      https://matplotlib.org/stable/users/explain/colors/colormaps.html#cyclic
-
-infinity et hsv shifted???
-
-phase non cyclique!!!
 
 
 // ---------- //
