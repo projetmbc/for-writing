@@ -23,10 +23,14 @@ git cm "..."
 
 maj auto pour les palettes visuellement egal accepté via streamlit
 
+git cm "Need to automate the visual matching of palettes #..."
+
 
 // ---------- //
 
 besoin d'indiquer comeent rebuilder les sublist et les shift!!!!!!!
+
+git cm "Working on data extraction for sublist palettes #..."
 
 en fait twilight_shifted : shift & reverse, d'où besoin d'indiquer cecei aussi dans la doc !!!!
      https://matplotlib.org/stable/users/explain/colors/colormaps.html#cyclic
