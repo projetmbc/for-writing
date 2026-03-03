@@ -57,24 +57,20 @@ TAB_2 = TAB_1*2
 
 TEX_TABLE_HEADER = r"""
 %
-\begin{center}
-    \begin{longtblr}[caption = {Renamed palettes}]{
-      colspec     = {@{}l | r Q[c,$] l},
-      baseline    = T,
-      column{2,4} = {cmd=\tdoccodein{text}},
-    }
+\begin{longtblr}[caption = {Renamed palettes}]{
+    colspec     = {@{}l | r Q[c,$] l},
+    baseline    = T,
+    column{2,4} = {cmd=\tdoccodein{text}},
+}
 """.strip()
 
 
-TEX_TABLE_FOOTER = TAB_1 + r"""
-    \end{longtblr}
-\end{center}
-""".strip()
+TEX_TABLE_FOOTER = r"\end{longtblr}"
 
 
-TEX_TMPL_SRC   = TAB_2 + r"{src}"
-TEX_TMPL_ROW   = TAB_2 + r"  & {row} \\"
-TEX_TMPL_HRULE = TAB_2 + r"\hline"
+TEX_TMPL_SRC   = TAB_1 + r"{src}"
+TEX_TMPL_ROW   = TAB_1 + r"  & {row} \\"
+TEX_TMPL_HRULE = TAB_1 + r"\hline"
 
 
 TEX_EQUIV_CMD = r"\Rightarrow"
