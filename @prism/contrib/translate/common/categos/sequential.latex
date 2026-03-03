@@ -2115,6 +2115,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries TwilightShifted\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/TwilightShifted-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Vanimo\vphantom{g}}
 
         \smallskip
@@ -2319,5 +2329,15 @@
 
         \smallskip
         \includegraphics{../../../common/showcase/YlOrRd-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries YlOrRdCBW\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/YlOrRdCBW-spectrum.pdf}
     \end{center}
 \end{minipage}

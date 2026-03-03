@@ -31,12 +31,15 @@ const palsize = {
   "Binary": 2,
   "Blackbody": 5,
   "BlindFish": 7,
+  "BlueDarkOrange12": 12,
   "BlueDarkOrange": 18,
   "BlueDarkRed12": 12,
   "BlueDarkRed18": 18,
   "BlueGray": 8,
   "BlueGreen": 14,
   "BlueGrey": 255,
+  "BlueOrange8": 8,
+  "BlueOrange10": 10,
   "BlueOrange": 12,
   "BlueOrangeRed": 14,
   "BlueRed": 12,
@@ -310,6 +313,7 @@ const palsize = {
   "Swamp": 256,
 // -- T -- //
   "T10": 10,
+  "Tab10": 10,
   "Tab20": 20,
   "Tab20b": 20,
   "Tab20c": 20,
@@ -339,6 +343,7 @@ const palsize = {
   "Turbo": 256,
   "Turku": 256,
   "Twilight": 510,
+  "TwilightShifted": 510,
 // -- V -- //
   "Vanimo": 256,
   "Vik": 256,
@@ -364,6 +369,7 @@ const palsize = {
   "YlGnBu": 9,
   "YlOrBr": 9,
   "YlOrRd": 9,
+  "YlOrRdCBW": 8,
 // -- Z -- //
   "Zissou": 5
 };

@@ -1,1 +1,26 @@
-{}
+{
+  "BlueDarkOrange12": [
+    "BlueDarkOrange12",
+    "LIGHTBARTLEIN"
+  ],
+  "BlueOrange10": [
+    "BlueOrange10",
+    "LIGHTBARTLEIN"
+  ],
+  "BlueOrange8": [
+    "BlueOrange8",
+    "LIGHTBARTLEIN"
+  ],
+  "Tab10": [
+    "Tab10",
+    "MATPLOTLIB"
+  ],
+  "TwilightShifted": [
+    "TwilightShifted",
+    "MATPLOTLIB"
+  ],
+  "YlOrRdCBW": [
+    "YlOrRd",
+    "COLORBREWER"
+  ]
+}

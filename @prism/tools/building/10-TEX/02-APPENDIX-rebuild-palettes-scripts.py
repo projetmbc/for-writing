@@ -1,4 +1,4 @@
-exit(1)
+exit(0)
 
 
 #!/usr/bin/env python3

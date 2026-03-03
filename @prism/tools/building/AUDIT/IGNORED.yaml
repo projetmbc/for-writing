@@ -5,41 +5,17 @@ CMASHER:
   Savanna:
     why: Looks completely black.
 
-COLORBREWER:
-  YlOrRd:
-    data: 1
-    palette: YlOrRd
-    relation: <
-
-# -- L -- #
-LIGHTBARTLEIN:
-  BlueDarkOrange12:
-    palette: BlueDarkOrange
-    relation: <
-  BlueOrange10:
-    palette: BlueOrange
-    relation: <
-  BlueOrange8:
-    palette: BlueOrange
-    relation: <
-
 # -- M -- #
 MATPLOTLIB:
   Cubehelix:
     palette: Classic
     relation: '~'
-  Tab10:
-    palette: Tab20
-    relation: <
-  TwilightShifted:
-    palette: Twilight
-    relation: <<-->>
 
 # -- P -- #
 PLOTLY:
   D3:
-    palette: Tab20
-    relation: <
+    palette: Tab10
+    relation: '='
 
 # -- T -- #
 TABLEAU:
