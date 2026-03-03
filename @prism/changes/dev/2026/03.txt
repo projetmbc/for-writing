@@ -5,9 +5,9 @@
 02  (2.0.1-beta.3)
 ==
 
--------
+--------
 :update:
--------
+--------
 
 [[:doc:]]
 \Categos: the ''Broc'', ''GistRainbow'', and ''Tofino'' palettes have been removed from the cyclic \catego.

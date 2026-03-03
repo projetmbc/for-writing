@@ -28,6 +28,10 @@ git cm "Need to automate the visual matching of palettes #..."
 
 // ---------- //
 
+prise ne compte d'une palette égale à une autre elle meme igniré car sublist ou shifted
+
++
+
 besoin d'indiquer comeent rebuilder les sublist et les shift!!!!!!!
 
 git cm "Working on data extraction for sublist palettes #..."

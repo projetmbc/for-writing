@@ -16,9 +16,9 @@ No more visual identical palettes (semi-automated process).
     * ''Cubehelix'' (\matplotlib) removed, use ''Classic'' (\cubehelix) instead.
 
 
--------
+--------
 :update:
--------
+--------
 
 [[:doc:]]
 \Categos: the ''Broc'', ''GistRainbow'', and ''Tofino'' palettes have been removed from the cyclic \catego.
