@@ -36,6 +36,7 @@ class PAL_STATUS(Enum):
     SUBSET_OF   = 5
     SHIFT_OF    = 6
     SAME_VISUAL = 7
+    REVSHIFT_OF = 8
 
 STATUS_MSG = {
     PAL_STATUS.IS_NEW     : "Is new",
@@ -45,6 +46,7 @@ STATUS_MSG = {
     PAL_STATUS.SAME_VISUAL: "Same name as",
     PAL_STATUS.SUBSET_OF  : "Subset of",
     PAL_STATUS.SHIFT_OF   : "Shift of",
+    PAL_STATUS.REVSHIFT_OF: "Reverse and shift of",
 }
 
 STATUS_TAG = {

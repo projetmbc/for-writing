@@ -74,14 +74,16 @@ TEX_CMDS = {
     PAL_STATUS.REVERSE_OF : r"\rightleftharpoons",
     PAL_STATUS.SUBSET_OF  : r"\prec",
     PAL_STATUS.SHIFT_OF   : r"\ll",
+    PAL_STATUS.REVSHIFT_OF: r"\revshiftarrows",
 }
 
 
 STATUS = {
-    '~'  : PAL_STATUS.SAME_VISUAL,
-    '='  : PAL_STATUS.EQUAL_TO,
-    '<'  : PAL_STATUS.SUBSET_OF,
-    '<<<': PAL_STATUS.SHIFT_OF,
+    '~'     : PAL_STATUS.SAME_VISUAL,
+    '='     : PAL_STATUS.EQUAL_TO,
+    '<'     : PAL_STATUS.SUBSET_OF,
+    '<<'    : PAL_STATUS.SHIFT_OF,
+    '<<-->>': PAL_STATUS.REVSHIFT_OF,
 }
 
 
@@ -94,31 +96,26 @@ TEX_TRANSLATE_LAST_COL = f"""
 
 TEX_REBUILDABLE_TABLE_HEADER = r"""
 %
-\begin{center}
-    \begin{longtblr}[caption = {Rebuildable palettes}]{
-      colspec     = {@{}l | r Q[c,$] l},
-      baseline    = T,
-      column{2,4} = {cmd = \tdoccodein{text}},
-    }
+\begin{longtblr}[caption = {Rebuildable palettes}]{
+    colspec     = {@{}l | r Q[c,$] l},
+    baseline    = T,
+    column{2,4} = {cmd = \tdoccodein{text}},
+}
 """.strip()
 
 
 TEX_EXCLUDED_TABLE_HEADER = r"""
 %
-\begin{center}
-    \begin{longtblr}[caption = {Excluded palettes}]{
-      colspec   = {@{}l | r l},
-      baseline  = T,
-      column{2} = {cmd = \tdoccodein{text}},
-    }
+\begin{longtblr}[caption = {Excluded palettes}]{
+    colspec   = {@{}l | r l},
+    baseline  = T,
+    column{2} = {cmd = \tdoccodein{text}},
+}
 % Translate the text in the far-right column.
 """.strip()
 
 
-TEX_TABLE_FOOTER = TAB_1 + r"""
-    \end{longtblr}
-\end{center}
-""".strip()
+TEX_TABLE_FOOTER = TAB_1 + r"\end{longtblr}"
 
 
 TEX_TMPL_SRC   = TAB_2 + r"{src}"

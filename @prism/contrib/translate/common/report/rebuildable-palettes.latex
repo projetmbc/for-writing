@@ -2,12 +2,11 @@
 % -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
 % ------------------------------------------- %
 %
-\begin{center}
-    \begin{longtblr}[caption = {Rebuildable palettes}]{
-      colspec     = {@{}l | r Q[c,$] l},
-      baseline    = T,
-      column{2,4} = {cmd = \tdoccodein{text}},
-    }
+\begin{longtblr}[caption = {Rebuildable palettes}]{
+    colspec     = {@{}l | r Q[c,$] l},
+    baseline    = T,
+    column{2,4} = {cmd = \tdoccodein{text}},
+}
         Colorbrewer
           & YlOrRd & \prec & YlOrRd \\
         \hline
@@ -19,7 +18,7 @@
         Matplotlib
           & Cubehelix & \cong & Classic \\
           & Tab10 & \prec & Tab20 \\
-          & TwilightShifted & \ll & Twilight \\
+          & TwilightShifted & \revshiftarrows & Twilight \\
           & Gray & \rightleftharpoons & Binary \\
           & GistYarg & \rightleftharpoons & GistGray \\
         \hline
@@ -29,4 +28,3 @@
         Tableau
           & Tableau & = & Tab20 \\
     \end{longtblr}
-\end{center}

@@ -26,6 +26,25 @@
 
 
 \bgroup
+  \def\title{Excluded by design} % To be translated.
+
+  \phantomsection
+  \subsection*{\hfill\title\hfill\null}%
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
+\egroup
+
+The following palettes have been intentionally excluded. Please refer to the explanation below.
+
+\subimport{../../used-by-tools/report/}{excluded-palettes.latex}
+
+
+% -------------------- %
+
+
+%\newpage
+
+
+\bgroup
   \def\title{Rebuildable palettes} % To be translated.
 
   \phantomsection
@@ -43,14 +62,24 @@ or shifts of existing ones, or due to direct or reversed duplication. Note that 
 
 \newcommand{\tabsymb}[1]{$\boxed{{#1}\vphantom{pM}}$}
 \begin{tblr}{
-  colspec = {X[c]X[c]X[c]X[c]X[c]},
+  colspec = {*{6}{X[c]}},
   rows    = {m},
   cells   = {font = \small},
   row{2}  = {cmd = \tabsymb},
 }
-    Equality & Visually identical & Reversal           & Shifted & Sublist 
+      Equality
+    & Visually identical 
+    & Reversal
+    & Shifted 
+    & Reversal and Shifted
+    & Sublist 
     \\
-    =        & \cong              & \rightleftharpoons & \ll     & \prec    
+      =
+    & \cong
+    & \rightleftharpoons
+    & \ll
+    & \revshiftarrows
+    & \prec    
     \\
 \end{tblr}
 
@@ -68,15 +97,15 @@ In these cases, the rightmost palette is the one retained in \thisproj. For exam
 
 
 \bgroup
-  \def\title{Excluded by design} % To be translated.
+  \def\title{How to recover rebuildable palettes} % To be translated.
 
   \phantomsection
   \subsection*{\hfill\title\hfill\null}%
   \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
 \egroup
 
-The following palettes have been intentionally excluded. Please refer to the explanation below.
+For rebuildable palettes in the previous section, we provide recovering methods, excluding for those visually similar. Below are pseudo-codes defining the parameter values for use with the \thisproj\ palette API.
 
-\subimport{../../used-by-tools/report/}{excluded-palettes.latex}
+%\subimport{../../../common/report/}{rebuildable-palettes.latex}
 
 \end{document}

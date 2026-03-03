@@ -33,7 +33,7 @@ MATPLOTLIB:
     relation: <
   TwilightShifted:
     palette: Twilight
-    relation: <<<
+    relation: <<-->>
 
 # -- P -- #
 PLOTLY:
