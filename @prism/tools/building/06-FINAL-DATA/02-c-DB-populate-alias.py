@@ -26,7 +26,7 @@ from cbutils      import *
 # -- SQL QUERIES -- #
 # ----------------- #
 
-SQL_TABLE_INSERT = '''
+SQL_INSERT_ALIAS = '''
 INSERT INTO alias (
     pal_id,
     alias
@@ -40,6 +40,14 @@ FROM hash
 WHERE name = ?
   AND source = ?
 """
+
+
+SQL_INSERT_SUFFIX = '''
+INSERT INTO suffix (
+    source,
+    suffix
+) VALUES (?, ?)
+'''
 
 
 # --------------- #
@@ -62,6 +70,15 @@ with RENAMED_YAML.open(mode = 'r') as f:
     RENAMED = yaml.safe_load(f)
 
 
+if '_SUFFIXES_' in RENAMED:
+    SUFFIXES = RENAMED['_SUFFIXES_']
+
+    del RENAMED['_SUFFIXES_']
+
+else:
+    SUFFIXES = dict()
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
@@ -78,7 +95,7 @@ def dbadd_aliaspals(
         cursor = conn.cursor()
 
         cursor.execute(
-            SQL_TABLE_INSERT.format(
+            SQL_INSERT_ALIAS.format(
                 placeholders = placeholders
             ),
             (
@@ -111,10 +128,18 @@ if not RENAMED:
 
 logging.info("DB - Alias - 'Populate'")
 
+suffixes_used = set()
+
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
 
-    for nsn, alias in get_pal_alias(RENAMED).items():
+    for nsn, (alias, suffix) in get_pal_alias(
+        SUFFIXES,
+        RENAMED
+    ).items():
+        if suffix:
+            suffixes_used.add(suffix)
+
         cursor.execute(
             SQL_GET_PAL_ID,
             (*nsn,)
@@ -127,3 +152,21 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
             pal_id = pal_id,
             alias  = alias,
         )
+
+
+# -------------- #
+# -- SUFFIXES -- #
+# -------------- #
+
+if suffixes_used:
+    logging.info("DB - Suffixes used - 'Populate'")
+
+    with sqlite3.connect(SQLITE_DB_FILE) as conn:
+        cursor = conn.cursor()
+
+        for src, suffix in SUFFIXES.items():
+            if suffix in suffixes_used:
+                cursor.execute(
+                    SQL_INSERT_SUFFIX,
+                    (src, suffix)
+                )

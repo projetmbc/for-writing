@@ -1,13 +1,35 @@
 #!/usr/bin/env python3
 
-# ---------------------------- #
-# -- IMPORT CBUTILS - START -- #
+# --------------------------- #
+# -- UPDATE NEEDED - START -- #
 
+from json    import load as json_load
 from pathlib import Path
-import              sys
 
 THIS_DIR        = Path(__file__).parent
 BUILD_TOOLS_DIR = THIS_DIR.parent
+
+THIS_RESRC = Path(__file__).stem
+THIS_RESRC = THIS_RESRC.split('-')[1]
+THIS_RESRC = THIS_RESRC.upper()
+
+UPDATES_NEEDED_JSON = BUILD_TOOLS_DIR /  "UPDATES" / "NEEDED.json"
+
+with UPDATES_NEEDED_JSON.open(mode = "r") as f:
+    UPDATES_NEEDED = json_load(f)
+
+
+if not UPDATES_NEEDED[THIS_RESRC]:
+    exit(0)
+
+# -- UPDATE NEEDED - END -- #
+# ------------------------- #
+
+
+# ---------------------------- #
+# -- IMPORT CBUTILS - START -- #
+
+import sys
 
 sys.path.append(str(BUILD_TOOLS_DIR))
 
@@ -17,15 +39,12 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
+from shutil import rmtree
+
 
 # --------------- #
 # -- CONSTANTS -- #
 # --------------- #
-
-THIS_RESRC = Path(__file__).stem
-THIS_RESRC = THIS_RESRC.split('-')[1]
-THIS_RESRC = THIS_RESRC.upper()
-
 
 PROJ_DIR = THIS_DIR
 

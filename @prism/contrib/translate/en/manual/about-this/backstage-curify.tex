@@ -1,0 +1,56 @@
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+
+\begin{document}
+
+%\section{Where do the color palettes come from?}
+%\label{projects-used}
+
+\subsection{Palette integration}
+
+We retain only palettes that comply with the following rules.
+%
+\begin{itemize}
+    \item \textbf{No repetition.}
+    Unlike \matplotlib,%
+    \footnote{
+        Some \matplotlib\ palettes are duplicated, likely for historical reasons.
+    }
+    \thisproj\ use a one-to-one map from names to palettes.%
+    \footnote{
+        This does not rule out the existence of visually similar palettes with different names. These palettes are kept to respect design decisions. However, if you find palettes that are identical, please report this as a bug.
+    }
+
+
+    \item \textbf{No reversed versions.}
+    Unlike \matplotlib,%
+    \footnote{
+    	Most \matplotlib\ color maps have a reversed version named with the \tdoccodein{py}{_r} suffix, possibly for performance reasons.
+    }
+    \thisproj\ never includes reversed palettes as fixed data.
+
+
+    \item \textbf{No shifted versions.}
+    Unlike \colormaps,%
+    \footnote{
+    	These palettes use an integer suffix directly following the original palette name.
+    }
+    \thisproj\ never includes shifted palettes as fixed data (most implementations offer an API that enables this and a few other simple transformations through parameters.).
+
+
+    \item \textbf{Reasonable palette sizes.} Palettes with more than \palMaxSize\ colors are ignored (e.g., \cmasher\ proposes 'neutral' palette, which consists of 2560 colors). 
+    This avoids potential issues with certain technologies, such as \LaTeX, and offers a level of precision that is far beyond the needs of us mere mortals — or at least, those of us who aren't astronomers.
+\end{itemize}
+
+
+% -------------------- %
+
+
+\begin{tdocnote}
+    Adding new palettes to \thisproj\ is straightforward (no coding skills required).
+    See section \ref{contrib-how-to-src-code} to get started.
+\end{tdocnote}
+
+\end{document}

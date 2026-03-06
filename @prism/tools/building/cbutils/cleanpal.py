@@ -299,24 +299,29 @@ def norm_palette(
 
 
 def get_pal_alias(
-    yaml_cfg: dict
+    suffixes    : dict,
+    alias_by_src: dict
 ) -> dict:
     new_palnames = dict()
 
-    suffixes = yaml_cfg.get(TAG_SUFFIXES, [])
-
-    for techno, namerules in yaml_cfg.items():
+    for techno, namerules in alias_by_src.items():
         if techno == TAG_SUFFIXES:
             continue
 
         this_suffix = suffixes[techno]
 
+        suffix_used = ''
+
         for name, rule in namerules.items():
             if rule == '.':
                 newname = f"{name}{this_suffix}"
 
+                suffix_used = this_suffix
+
             elif '*' in rule:
                 newname = rule.replace('*', this_suffix)
+
+                suffix_used = this_suffix
 
             else:
                 newname = rule
@@ -325,6 +330,6 @@ def get_pal_alias(
 
             assert not uid in new_palnames
 
-            new_palnames[uid] = newname
+            new_palnames[uid] = (newname, suffix_used)
 
     return new_palnames

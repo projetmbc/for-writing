@@ -2,6 +2,33 @@
 
 
 ==
+06  (2.0.1-beta.4)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual.
+
+    1) Add external resource version used.
+
+    1) Appendix on renaming: add the list of suffixes used to avoid name conflicts.
+
+
+--------
+:fordev:
+--------
+
+[[:flow:]]
+Optimized workflow: implemented resource code change detection to prevent unnecessary \cpu allocation.
+
+
+// ---------- //
+
+
+==
 02  (2.0.1-beta.3)
 ==
 

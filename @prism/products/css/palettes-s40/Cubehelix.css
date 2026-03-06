@@ -1,0 +1,47 @@
+/* ------------------------------------------------------------------ */
+/* -- File created by the ''@prism'' project which is developed at -- */
+/* -- https://github.com/projetmbc/for-writing/tree/main/@prism .  -- */
+/* ------------------------------------------------------------------ */
+
+:root {
+    --palCubehelix-1: rgb(0% 0% 0%);
+    --palCubehelix-2: rgb(4.0388% 1.4955% 4.2732%);
+    --palCubehelix-3: rgb(7.1396% 3.3491% 9.1847%);
+    --palCubehelix-4: rgb(9.1933% 5.6904% 14.3358%);
+    --palCubehelix-5: rgb(10.2335% 8.5808% 19.3059%);
+    --palCubehelix-6: rgb(10.401% 12.0221% 23.7011%);
+    --palCubehelix-7: rgb(9.9457% 15.9479% 27.1962%);
+    --palCubehelix-8: rgb(9.1876% 20.2385% 29.5603%);
+    --palCubehelix-9: rgb(8.4895% 24.7303% 30.6822%);
+    --palCubehelix-10: rgb(8.217% 29.2335% 30.5822%);
+    --palCubehelix-11: rgb(8.7084% 33.5497% 29.4009%);
+    --palCubehelix-12: rgb(10.2309% 37.4945% 27.4003%);
+    --palCubehelix-13: rgb(12.975% 40.9071% 24.9227%);
+    --palCubehelix-14: rgb(17.0042% 43.6798% 22.3726%);
+    --palCubehelix-15: rgb(22.2919% 45.7467% 20.1749%);
+    --palCubehelix-16: rgb(28.6725% 47.1179% 18.7286%);
+    --palCubehelix-17: rgb(35.9028% 47.8505% 18.3904%);
+    --palCubehelix-18: rgb(43.6473% 48.0676% 19.4143%);
+    --palCubehelix-19: rgb(51.5294% 47.9313% 21.9593%);
+    --palCubehelix-20: rgb(59.1535% 47.6384% 26.0475%);
+    --palCubehelix-21: rgb(66.1426% 47.3987% 31.5819%);
+    --palCubehelix-22: rgb(72.1706% 47.4189% 38.3434%);
+    --palCubehelix-23: rgb(76.9936% 47.8827% 46.0125%);
+    --palCubehelix-24: rgb(80.4609% 48.939% 54.2005%);
+    --palCubehelix-25: rgb(82.5473% 50.6807% 62.4783%);
+    --palCubehelix-26: rgb(83.3255% 53.151% 70.4159%);
+    --palCubehelix-27: rgb(82.9958% 56.3202% 77.6274%);
+    --palCubehelix-28: rgb(81.8271% 60.1126% 83.7836%);
+    --palCubehelix-29: rgb(80.1703% 64.3886% 88.6771%);
+    --palCubehelix-30: rgb(78.3978% 68.9798% 92.1957%);
+    --palCubehelix-31: rgb(76.8824% 73.6898% 94.3758%);
+    --palCubehelix-32: rgb(75.962% 78.32% 95.3609%);
+    --palCubehelix-33: rgb(75.9011% 82.6868% 95.4154%);
+    --palCubehelix-34: rgb(76.8734% 86.638% 94.881%);
+    --palCubehelix-35: rgb(78.9395% 90.0691% 94.1531%);
+    --palCubehelix-36: rgb(82.0391% 92.9352% 93.637%);
+    --palCubehelix-37: rgb(86.0023% 95.2521% 93.7112%);
+    --palCubehelix-38: rgb(90.5532% 97.1035% 94.6794%);
+    --palCubehelix-39: rgb(95.348% 98.6247% 96.7536%);
+    --palCubehelix-40: rgb(100% 100% 100%);
+}

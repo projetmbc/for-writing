@@ -5,12 +5,6 @@ CMASHER:
   Savanna:
     why: Looks completely black.
 
-# -- M -- #
-MATPLOTLIB:
-  Cubehelix:
-    palette: Classic
-    relation: '~'
-
 # -- P -- #
 PLOTLY:
   D3:

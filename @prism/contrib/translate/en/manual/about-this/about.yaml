@@ -1,5 +1,6 @@
 toc:
   - motivations.tex
-  - backstage.tex
+  - backstage-src.tex
+  - backstage-curify.tex
   - reuse-from.tex
   - searching.tex

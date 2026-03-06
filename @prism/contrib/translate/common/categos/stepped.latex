@@ -135,6 +135,16 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Cubehelix\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Cubehelix-spectrum.pdf}
+    \end{center}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries Cubehelix1\vphantom{g}}
 
         \smallskip

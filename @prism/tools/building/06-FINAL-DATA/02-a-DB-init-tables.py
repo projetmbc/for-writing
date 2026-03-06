@@ -83,6 +83,15 @@ CREATE TABLE mirror (
     FOREIGN KEY (cand_pal_id_1) REFERENCES hash (pal_id),
     FOREIGN KEY (cand_pal_id_2) REFERENCES hash (pal_id)
 );
+
+DROP TABLE IF EXISTS suffix;
+CREATE TABLE suffix (
+--
+    source VARCHAR(30) NOT NULL PRIMARY KEY,
+    suffix VARCHAR(30),
+--
+    FOREIGN KEY (source) REFERENCES hash (source)
+);
 '''
 
 # --------------- #
