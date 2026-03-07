@@ -8,6 +8,7 @@
     column{2,4} = {cmd = \tdoccodein{text}},
 }
     Matplotlib
+      & Cubehelix & \cong & Classic \\
       & Gray & \rightleftharpoons & Binary \\
       & GistYarg & \rightleftharpoons & GistGray \\
     \hline

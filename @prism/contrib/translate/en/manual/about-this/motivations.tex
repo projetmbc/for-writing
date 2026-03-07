@@ -52,25 +52,25 @@ Using this palette, \LUADRAW\ can produce the following spectrum, allowing us to
     \begin{center}
         \includegraphics{../../../common/graphics/palette-reversed.pdf}
 
-        \tdoccodein{lua}+getPal('GeoRainbow', {reverse = true})+
+        \tdoccodein{lua}+palCreateFromPal('GeoRainbow', {reverse = true})+
 
         \smallskip
         \includegraphics{../../../common/graphics/palette-shift.pdf}
 
-        \tdoccodein{lua}+getPal('GeoRainbow', {shift = 3})+
+        \tdoccodein{lua}+palCreateFromPal('GeoRainbow', {shift = 3})+
 
         \smallskip
         \includegraphics{../../../common/graphics/palette-extract.pdf}
 
-        \tdoccodein{lua}+getPal('GeoRainbow', {extract = {7, 1, 4}})+
+        \tdoccodein{lua}+palCreateFromPal('GeoRainbow', {extract = {7, 1, 4}})+
     \end{center}
 
     \smallskip
 
     This features provide remarkable creative flexibility: with the same surface as before, using the setting
-    \tdoccodein{lua}+getPal('GeoRainbow', {extract = {6, 5, 4, 3, 1, 2}})+
+    \tdoccodein{lua}+palCreateFromPal('GeoRainbow', {extract = {6, 5, 4, 3, 1, 2}})+
     instead of
-    \tdoccodein{lua}+getPal('GeoRainbow')+,
+    \tdoccodein{lua}+palCreateFromPal('GeoRainbow')+,
     we change the visual tone, shifting from a seaside feel to a snow-covered world.
     %
     \begin{center}

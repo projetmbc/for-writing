@@ -3,16 +3,15 @@
 % ------------------------------------------- %
 %
 \begin{tblr}{
-    colspec  = {r@{\,}lQ[5pt]|Q[5pt]r@{\,}l},
+    colspec  = {r@{\,}l|r@{\,}l},
     baseline = T
 }
-    \asymptote: & 2026-02-25 && & \carbonplan: & 2024-01-10
+    \asymptote: & 2026-02-25 & \colorbrewer: & 2021-05-03
     \\
-    \cartocolors: & 2024-09-25 && & \cmasher: & 2026-01-05
+    \carbonplan: & 2024-01-10 & \matplotlib: & 2026-03-07
     \\
-    \colorbrewer: & 2021-05-03 && & \colormaps: & 2026-03-05
+    \cartocolors: & 2024-09-25 & \palettable: & 2025-08-23
     \\
-    \matplotlib: & 2026-03-06 && & \palettable: & 2025-08-23
+    \cmasher: & 2026-01-05 & \scicolmaps: & 2023-10-05
     \\
-    \scicolmaps: & 2023-10-05
 \end{tblr}

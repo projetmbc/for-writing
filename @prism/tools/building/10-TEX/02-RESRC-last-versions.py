@@ -22,6 +22,13 @@ from cbutils      import *
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
+SRC_IGNORED = [
+    'APRISM',
+    'COLORMAPS',
+    'NCLCOLTABLES',
+]
+
+
 PROJ_DIR = THIS_DIR
 
 while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
@@ -45,6 +52,7 @@ with BACKUP_JSON_FILE.open('r') as f:
     LAST_CHGES = {
         s: d[0].split('T')[0]
         for s, d in json_load(f).items()
+        if not s in SRC_IGNORED
     }
 
 
@@ -52,20 +60,14 @@ with BACKUP_JSON_FILE.open('r') as f:
 # -- CONSTANTS #2 -- #
 # ------------------ #
 
-SRC_IGNORED = [
-    'APRISM',
-    'NCLCOLTABLES',
-]
-
 TAB_1 = " "*4
 TAB_2 = TAB_1*2
 
 
-VERSION_TABE_NB_COLS       = 2
 TEX_VERSIONS_TABLE_HEADER = r"""
 %
 \begin{tblr}{
-    colspec  = {r@{\,}lQ[5pt]|Q[5pt]r@{\,}l},
+    colspec  = {r@{\,}l|r@{\,}l},
     baseline = T
 }
 """.strip()
@@ -73,7 +75,7 @@ TEX_VERSIONS_TABLE_HEADER = r"""
 TEX_TABLE_FOOTER = r"\end{tblr}"
 
 
-TEX_VERSIONS_TMPL_SRC = r"\{src}: & {version} &&"
+TEX_VERSIONS_TMPL_SRC = r"\{src}: & {version}"
 
 
 # ------------------- #
@@ -81,6 +83,22 @@ TEX_VERSIONS_TMPL_SRC = r"\{src}: & {version} &&"
 # ------------------- #
 
 logging.info("TeX - Build 'versions used'")
+
+nb_last_changes = len(LAST_CHGES)
+tex_last_chges  = [None]*nb_last_changes
+
+# Trick needed to ease the incoming calculus.
+if nb_last_changes % 2 == 0:
+    nb_last_changes -=1
+
+for i, (s, v) in enumerate(LAST_CHGES.items()):
+    j = 2*i
+
+    if j > nb_last_changes:
+        j -= nb_last_changes
+
+    tex_last_chges[j] = (s, v)
+
 
 _texcode = [
     TEX_NO_EDIT,
@@ -90,14 +108,10 @@ _texcode = [
 _row = []
 
 
-i = 0
-
-for src, version in LAST_CHGES.items():
-    if src in SRC_IGNORED:
-        continue
-
-    i += 1
-
+for i, (src, version) in enumerate(
+    tex_last_chges,
+    start = 1
+):
     _row.append(
         TEX_VERSIONS_TMPL_SRC.format(
             src     = src.lower(),
@@ -105,9 +119,9 @@ for src, version in LAST_CHGES.items():
         )
     )
 
-    if i % VERSION_TABE_NB_COLS == 0:
+    if i % 2 == 0:
         _texcode += [
-            TAB_1 + ' & '.join(_row)[:-3].strip(),
+            TAB_1 + ' & '.join(_row).strip(),
             TAB_1 + r'\\'
         ]
 
@@ -115,7 +129,7 @@ for src, version in LAST_CHGES.items():
 
 if _row:
     _texcode.append(
-        TAB_1 + ' & '.join(_row)[:-3].strip()
+        TAB_1 + ' & '.join(_row).strip()
     )
 
 _texcode.append(TEX_TABLE_FOOTER)
