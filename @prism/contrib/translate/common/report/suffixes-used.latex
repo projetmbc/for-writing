@@ -2,10 +2,10 @@
 % -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
 % ------------------------------------------- %
 %
-\begin{longtblr}[caption = {Suffixes used}]{
+\begin{longtblr}[caption = \suffixesused]{
     colspec       = {*{2}{r@{\,}lQ[5pt]|Q[5pt]}r@{\,}l},
     baseline      = T,
-    column{2,6,10} = {cmd=\tdoccodein{text}},
+    column{2,6,10} = {cmd = \tdoccodein{text}},
 }
     \carbonplan: & CP && & \cartocolors: & CC && & \cmasher: & CM
     \\

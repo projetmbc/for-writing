@@ -1,14 +1,15 @@
-% ------------------------------------------ %
-% -- JUST TRANSLATE THE LAST COLMUN TEXTS -- %
-% ------------------------------------------ %
+% --------------------------------- %
+% -- TRANSLATE LAST COLUMN TEXTS -- %
+% --------------------------------- %
 %
-\begin{longtblr}[caption = {Excluded palettes}]{
+\begin{longtblr}[caption = \palsexcluded]{
     colspec   = {@{}l | r l},
     baseline  = T,
     column{2} = {cmd = \tdoccodein{text}},
 }
-% Translate the text in the far-right column.
+% -- TRANSLATE BELOW THE LAST COLUMN TEXTS. -- %
     CMasher
-      & Neutral & Too big (size > 512). \\
-      & Savanna & Looks completely black. \\
+      & Neutral & Too big (size > 512).
+    \\
+      & Savanna & Looks completely black.
 \end{longtblr}

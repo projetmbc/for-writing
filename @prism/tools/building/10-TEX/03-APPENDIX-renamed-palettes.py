@@ -69,10 +69,10 @@ TAB_2 = TAB_1*2
 
 TEX_RENAME_TABLE_HEADER = r"""
 %
-\begin{longtblr}[caption = {Renamed palettes}]{
+\begin{longtblr}[caption = \palsrenamed]{
     colspec     = {@{}l | r Q[c,$] l},
     baseline    = T,
-    column{2,4} = {cmd=\tdoccodein{text}},
+    column{2,4} = {cmd = \tdoccodein{text}},
 }
 """.strip()
 
@@ -91,10 +91,10 @@ TEX_EQUIV_CMD = r"\Rightarrow"
 SUFFIX_TABE_NB_COLS     = 3
 TEX_SUFFIX_TABLE_HEADER = r"""
 %
-\begin{longtblr}[caption = {Suffixes used}]{
+\begin{longtblr}[caption = \suffixesused]{
     colspec       = {*{2}{r@{\,}lQ[5pt]|Q[5pt]}r@{\,}l},
     baseline      = T,
-    column{2,6,10} = {cmd=\tdoccodein{text}},
+    column{2,6,10} = {cmd = \tdoccodein{text}},
 }
 """.strip()
 

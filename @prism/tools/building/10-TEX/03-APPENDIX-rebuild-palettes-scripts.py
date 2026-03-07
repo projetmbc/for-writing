@@ -91,15 +91,15 @@ STATUS = {
 
 
 TEX_TRANSLATE_LAST_COL = f"""
-% ------------------------------------------ %
-% -- JUST TRANSLATE THE LAST COLMUN TEXTS -- %
-% ------------------------------------------ %
+% --------------------------------- %
+% -- TRANSLATE LAST COLUMN TEXTS -- %
+% --------------------------------- %
 """.strip()
 
 
 TEX_REBUILDABLE_TABLE_HEADER = r"""
 %
-\begin{longtblr}[caption = {Rebuildable palettes}]{
+\begin{longtblr}[caption = \palsrebuild]{
     colspec     = {@{}l | r Q[c,$] l},
     baseline    = T,
     column{2,4} = {cmd = \tdoccodein{text}},
@@ -109,12 +109,12 @@ TEX_REBUILDABLE_TABLE_HEADER = r"""
 
 TEX_EXCLUDED_TABLE_HEADER = r"""
 %
-\begin{longtblr}[caption = {Excluded palettes}]{
+\begin{longtblr}[caption = \palsexcluded]{
     colspec   = {@{}l | r l},
     baseline  = T,
     column{2} = {cmd = \tdoccodein{text}},
 }
-% Translate the text in the far-right column.
+% -- TRANSLATE BELOW THE LAST COLUMN TEXTS. -- %
 """.strip()
 
 

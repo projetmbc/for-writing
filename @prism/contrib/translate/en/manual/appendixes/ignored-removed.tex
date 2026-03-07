@@ -10,8 +10,9 @@
 \begin{document}
 
 \phantomsection\refstepcounter{appendixcnt}
-\section*{\hfill Appendix \theappendixcnt\ -- Ignored palettes \hfill\null} \label{ignored-palettes}
-\addcontentsline{toc}{section}{Appendix \theappendixcnt\ -- Ignored palettes}
+\def\title{Appendix \theappendixcnt\ -- \palsignored} % To be translated.
+\section*{\hfill\title\hfill\null} \label{ignored-palettes}
+\addcontentsline{toc}{section}{\title}
 
 
 \begin{tdocimp}
@@ -45,33 +46,41 @@ The following palettes have been intentionally excluded. Please refer to the exp
 
 
 \bgroup
-  \def\title{Rebuildable palettes} % To be translated.
-
   \phantomsection
-  \subsection*{\hfill\title\hfill\null}%
-  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
+  \subsection*{\hfill\palsunkept\hfill\null}%
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\palsunkept}{\palsunkept}}
 \egroup
 
-The following palettes are excluded as sublists%
-\footnote{
-A palette is defined as a sublist if it is formed by removing colors while preserving the relative order of the remaining ones.
-}
-or shifts of existing ones, or due to direct or reversed duplication. Note that exact duplicates -- sharing both name and colors -- are omitted entirely. We identify relation between palettes using the following notations.
+The following types of palettes are unkept.
+%
+\begin{itemize}
+    \item \textbf{Sublists:} formed by removing colors while preserving order.
 
-\medskip
+    \item \textbf{Transformations:} reversals, shifts, or a combination of both.
 
-\newcommand{\tabsymb}[1]{$\boxed{{#1}\vphantom{pM}}$}
+    \item \textbf{Visual identical:} those indistinguishable to the naked eye.%
+    \footnote{
+        In these cases, the original palette is retained.
+    }
+
+    \item \textbf{Exact duplicates:} identical color arrays.
+\end{itemize}
+%
+We identify relations between palettes using the following notations.
+
+\smallskip
+
 \begin{tblr}{
   colspec = {*{6}{X[c]}},
   rows    = {m},
   cells   = {font = \small},
   row{2}  = {cmd = \tabsymb},
 }
-      Equality
+      Duplicates
     & Visually identical 
     & Reversal
     & Shifted 
-    & Reversal and Shifted
+    & Shifted and Reversal
     & Sublist 
     \\
       =
@@ -85,27 +94,25 @@ or shifts of existing ones, or due to direct or reversed duplication. Note that 
 
 \medskip
 
-In these cases, the rightmost palette is the one retained in \thisproj. For example, this table indicates that \tdoccodein{text}{YlOrRd} from \colorbrewer\ uses a sublist of colors from the \thisproj\ palette \tdoccodein{text}{YlOrRd}.
+We list the unkept palettes below, omitting duplicates that share both name and colors. The rightmost palettes are those retained in \thisproj. For instance, the table shows that \matplotlib's \tdoccodein{text}{Gray} is the reversal of \thisproj's \tdoccodein{text}{Binary}.
 
 \subimport{../../../common/report/}{rebuildable-palettes.latex}
 
 
-% -------------------- %
-
-
-%\newpage
-
-
-\bgroup
-  \def\title{How to recover shifted/reversed palettes} % To be translated.
-
-  \phantomsection
-  \subsection*{\hfill\title\hfill\null}%
-  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
-\egroup
-
-For the shifted and/or reversed palettes discussed in the previous section, we provide recovery methods. Below, we present pseudo-codes defining parameter values for use with the \thisproj\ palette API.
-
-\subimport{../../../common/report/}{rebuild-palette-pseudo-codes.latex}
+%% -------------------- %
+%
+%
+%%\newpage
+%
+%
+%\bgroup
+%  \phantomsection
+%  \subsection*{\hfill\palsrebuild\hfill\null}%
+%  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\palsrebuild}{\palsrebuild}}
+%\egroup
+%
+%For the shifted and/or reversed palettes discussed in the previous section, we provide recovery methods. Below, we present pseudo-codes defining parameter values for use with the \thisproj\ palette API.
+%
+%\subimport{../../../common/report/}{rebuild-palette-pseudo-codes.latex}
 
 \end{document}

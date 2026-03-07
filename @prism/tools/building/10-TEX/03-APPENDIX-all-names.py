@@ -75,7 +75,12 @@ TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate"
 MANUAL_DIR    = TRANSLATE_DIR / "en" / "manual"
 
 
-APPENDIX_TEX_FILE = MANUAL_DIR / "appendixes" / "all-names.tex"
+ALL_NAMES_TEX_FILE = TRANSLATE_DIR / "common" / "report" / "all-names.latex"
+
+if ALL_NAMES_TEX_FILE.is_file():
+    ALL_NAMES_TEX_FILE.unlink()
+
+ALL_NAMES_TEX_FILE.touch()
 
 
 # ---------------------- #
@@ -151,20 +156,4 @@ _namescode.append(TEX_FOOTER_TMPL)
 
 namescode = '\n'.join(_namescode)
 
-
-content = APPENDIX_TEX_FILE.read_text()
-
-before, _ , after = content.partition(f"\n{TAG_LIST_OF_NAMES_START}")
-
-_ , _ , after = after.partition(f"{TAG_LIST_OF_NAMES_END}\n")
-
-content = f"""
-{before}
-{TAG_LIST_OF_NAMES_START}
-{namescode}
-{TAG_LIST_OF_NAMES_END}
-{after}
-""".strip() + '\n'
-
-APPENDIX_TEX_FILE.touch()
-APPENDIX_TEX_FILE.write_text(content)
+ALL_NAMES_TEX_FILE.write_text(namescode)

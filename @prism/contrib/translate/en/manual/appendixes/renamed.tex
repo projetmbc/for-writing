@@ -10,8 +10,9 @@
 \begin{document}
 
 \phantomsection\refstepcounter{appendixcnt}
-\section*{\hfill Appendix \theappendixcnt\ -- Renamed palettes \hfill\null} \label{renamed-palettes}
-\addcontentsline{toc}{section}{Appendix \theappendixcnt\ -- Renamed palettes}
+\def\title{Appendix \theappendixcnt\ -- \palsrenamed} % To be translated.
+\section*{\hfill\title\hfill\null} \label{renamed-palettes}
+\addcontentsline{toc}{section}{\title}
 
 
 \begin{tdocimp}
@@ -30,7 +31,7 @@ To prevent name conflicts, specific suffixes can be applied. Here is the full li
 \smallskip
 
 
-Below is the list of all renamed palettes. We use \boxed{{\Rightarrow}\vphantom{pM}} to denote these changes, with the new \thisproj\ names appearing on the right."
+Below is the list of all renamed palettes. We use \boxed{{\Rightarrow}\vphantom{pM}} to denote these changes, with the new \thisproj\ names appearing on the right.
 
 \subimport{../../../common/report/}{renamed-palettes.latex}
 
