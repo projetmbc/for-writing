@@ -32,10 +32,16 @@ AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
 IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
 
+with IGNORED_YAML.open('r') as f:
+    IGNORED = safe_load(f)
+
 
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
 SUBLIST_JSON = REPORT_DIR / 'AUDIT-SUBLIST.json'
+
+with SUBLIST_JSON.open('r') as f:
+    SUBLIST = json_load(f)
 
 
 TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
@@ -48,6 +54,10 @@ REBUILD_PALS_TEX_FILE.touch()
 
 
 
+
+
+print(IGNORED)
+print(SUBLIST)
 exit(1)
 
 

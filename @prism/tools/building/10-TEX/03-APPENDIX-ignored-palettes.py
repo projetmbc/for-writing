@@ -152,7 +152,7 @@ LEFT JOIN alias a ON h.pal_id = a.pal_id
 # -- YAML - IGNORED PALETTES -- #
 # ----------------------------- #
 
-logging.info("Extract 'ignored palettes' by human or design")
+logging.info("Extract 'ignored palettes' by human or automatically")
 
 with IGNORED_YAML.open('r') as f:
     for src, pals in safe_load(f).items():
