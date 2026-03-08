@@ -3,11 +3,13 @@
 % ------------------------------------------- %
 %
 \begin{longtblr}[caption = \suffixesused]{
-    colspec       = {*{2}{r@{\,}lQ[5pt]|Q[5pt]}r@{\,}l},
-    baseline      = T,
-    column{2,6,10} = {cmd = \tdoccodein{text}},
+    colspec     = {r @{\,}l | r @{\,}l},
+    baseline    = T,
+    column{2,4} = {cmd = \tdoccodein{text}},
 }
-    \carbonplan: & CP && & \cartocolors: & CC && & \cmasher: & CM
+    \carbonplan: & CP & \colorbrewer: & CBW
     \\
-    \colorbrewer: & CBW && & \plotly: & PLY
+    \cartocolors: & CC & \plotly: & PLY
+    \\
+    \cmasher: & CM
 \end{longtblr}

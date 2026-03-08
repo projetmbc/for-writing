@@ -31,69 +31,8 @@ from natsort import (
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-NEWPAGE_ON = [
-    'Alphabet',
-    'Apple',
-    'Autumn',
-    'BatlowK',
-    'BlindFish',
-    'BlueGreen',
-    'BlueRedPLY',
-    'BluYl',
-    'Broc',
-    'Bubblegum',
-    'BurgYl',
-    'Cividis',
-    'CoolCP',
-    'CorkO',
-    'Cubehelix2',
-    'Darjeeling2',
-    'DarkMint',
-    'Dusk',
-    'Emerald',
-    'FantasticFox2',
-    'Fusion',
-    'GhostLight',
-    'GistStern',
-    'GrandBudapest1',
-    'GrayC',
-    'GreensCP',
-    'Heart',
-    'Ice',
-    'IsleOfDogs2',
-    'Jungle',
-    'Light24',
-    'Magenta',
-    'Matter',
-    'Moonrise3',
-    'NaviaW',
-    'Ocean',
-    'Oranges',
-    'Paired',
-    'Peach',
-    'Petroff10',
-    'PinkGrey',
-    'Plotly',
-    'Prism',
-    'PuRd',
-    'Purples',
-    'Rainforest',
-    'RdYlGn',
-    'RedsCP',
-    'RomaO',
-    'Sapphire',
-    'Set2',
-    'Spectral',
-    'Sunset',
-    'Tab20b',
-    'TdocCol',
-    'Teals',
-    'Tokyo',
-    'Tropical',
-    'Vik',
-    'Voltage',
-    'Wind',
-    'YlGn',
+NEWPAGE_ON_FOR_PRINTING = [
+    # 'XXXX',
 ]
 
 
@@ -301,7 +240,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
         tablecode = '\n'.join(_tablecode)
 
-        if name in NEWPAGE_ON:
+        if name in NEWPAGE_ON_FOR_PRINTING:
             _texcode.append(TEX_NEWPAGE_TMPL)
 
         if nbpals != 1:

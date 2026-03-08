@@ -7,6 +7,30 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries Tab20b\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tab20b-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries Tab20c\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/Tab20c-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries TdocBW\vphantom{g}}
 
         \smallskip

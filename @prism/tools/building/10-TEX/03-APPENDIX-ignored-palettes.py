@@ -36,8 +36,8 @@ USED_BY_TOOLS_DIR = TRANSLATE_DIR.parent / "en" / TAG_USED_BY_TOOLS
 
 
 for p in [
-    REBUILDABLE_PALS_TEX_FILE:= TRANSLATE_DIR / "report" /  "rebuildable-palettes.latex",
-    EXCLUDED_PALS_TEX_FILE   := USED_BY_TOOLS_DIR / "report" /  "excluded-palettes.latex",
+    UNKEPT_PALS_TEX_FILE  := TRANSLATE_DIR / "report" /  "unkept-palettes.latex",
+    EXCLUDED_PALS_TEX_FILE:= USED_BY_TOOLS_DIR / "report" /  "excluded-palettes.latex",
 ]:
     p.parent.mkdir(
         parents = True,
@@ -238,7 +238,7 @@ for ctxt, data, texfile, comment, tbl_header in [
     (
         "rebuildable palettes",
         PALS_REBUILDABLE_BY_TECHNO,
-        REBUILDABLE_PALS_TEX_FILE,
+        UNKEPT_PALS_TEX_FILE,
         TEX_NO_EDIT,
         TEX_REBUILDABLE_TABLE_HEADER
     ),

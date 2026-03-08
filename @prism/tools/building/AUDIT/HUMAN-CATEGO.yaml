@@ -163,8 +163,8 @@ MATPLOTLIB:
   Spring: dark, qualitative, sequential
   Summer: dark, qualitative, sequential
   Tab20: dark, qualitative, stepped
-  Tab20b: dark, qualitative, stepped
-  Tab20c: dark, qualitative, stepped
+  Tab20b: dark, qualitative, semantic, stepped
+  Tab20c: dark, qualitative, semantic, stepped
   Terrain: dark, stepped
   Turbo: stepped
   Twilight: cyclic, divergent, sequential

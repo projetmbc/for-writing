@@ -1087,6 +1087,30 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
+        {\bfseries TdocCol\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/TdocCol-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
+        {\bfseries TdocDark\vphantom{g}}
+
+        \smallskip
+        \includegraphics{../../../common/showcase/TdocDark-palette.pdf}
+    \end{center}
+\end{minipage}
+
+\setlength{\columnseprule}{0.5pt}
+\renewcommand{\columnseprulecolor}{\color{LightGrey}}
+\begin{minipage}{\linewidth}
+    \begin{center}
+        \smallskip
         {\bfseries TrafficLight\vphantom{g}}
 
         \smallskip

@@ -1,0 +1,118 @@
+\documentclass{tutodoc}
+
+\usepackage{../preamble.cfg}
+
+% DEBUG - START
+%\geometry{showframe=true}
+% DEBUG - END
+
+
+\begin{document}
+
+\phantomsection\refstepcounter{appendixcnt}
+\def\title{Appendix \theappendixcnt\ -- \palsignored} % To be translated.
+\section*{\hfill\title\hfill\null} \label{ignored-palettes}
+\addcontentsline{toc}{section}{\title}
+
+
+\begin{tdocimp}
+    The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
+\end{tdocimp}
+
+
+% -------------------- %
+
+
+\smallskip
+
+
+\bgroup
+  \def\title{Excluded by design} % To be translated.
+
+  \phantomsection
+  \subsection*{\hfill\title\hfill\null}%
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
+\egroup
+
+The following palettes have been intentionally excluded. Please refer to the explanation below.
+
+\subimport{../../used-by-tools/report/}{excluded-palettes.latex}
+
+
+% -------------------- %
+
+
+%\newpage
+
+
+\bgroup
+  \phantomsection
+  \subsection*{\hfill\palsunkept\hfill\null}%
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\palsunkept}{\palsunkept}}
+\egroup
+
+The following types of palettes are unkept.
+%
+\begin{itemize}
+    \item \textbf{Sublists:} formed by removing colors while preserving order.
+
+    \item \textbf{Transformations:} reversals, shifts, or a combination of both.
+
+    \item \textbf{Visual identical:} those indistinguishable to the naked eye.%
+    \footnote{
+        In these cases, the original palette is retained.
+    }
+
+    \item \textbf{Exact duplicates:} identical color arrays.
+\end{itemize}
+%
+We identify relations between palettes using the following notations.
+
+\smallskip
+
+\begin{tblr}{
+  colspec = {*{6}{X[c]}},
+  rows    = {m},
+  cells   = {font = \small},
+  row{2}  = {cmd = \tabsymb},
+}
+      Duplicates
+    & Visually identical 
+    & Reversal
+    & Shifted 
+    & Shifted and Reversal
+    & Sublist 
+    \\
+      =
+    & \cong
+    & \rightleftharpoons
+    & \ll
+    & \revshiftarrows
+    & \prec    
+    \\
+\end{tblr}
+
+\medskip
+
+We list the unkept palettes below, omitting duplicates that share both name and colors. The rightmost palettes are those retained in \thisproj. For instance, the table shows that \matplotlib's \tdoccodein{text}{Gray} is the reversal of \thisproj's \tdoccodein{text}{Binary}.
+
+\subimport{../../../common/report/}{unkept-palettes.latex}
+
+
+%% -------------------- %
+%
+%
+%%\newpage
+%
+%
+%\bgroup
+%  \phantomsection
+%  \subsection*{\hfill\palsrebuild\hfill\null}%
+%  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\palsrebuild}{\palsrebuild}}
+%\egroup
+%
+%For the shifted and/or reversed palettes discussed in the previous section, we provide recovery methods. Below, we present pseudo-codes defining parameter values for use with the \thisproj\ palette API.
+%
+%\subimport{../../../common/report/}{rebuild-palette-pseudo-codes.latex}
+
+\end{document}

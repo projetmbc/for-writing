@@ -88,18 +88,17 @@ TEX_RENAME_TMPL_HRULE = TAB_1 + r"\hline"
 TEX_EQUIV_CMD = r"\Rightarrow"
 
 
-SUFFIX_TABE_NB_COLS     = 3
 TEX_SUFFIX_TABLE_HEADER = r"""
 %
 \begin{longtblr}[caption = \suffixesused]{
-    colspec       = {*{2}{r@{\,}lQ[5pt]|Q[5pt]}r@{\,}l},
-    baseline      = T,
-    column{2,6,10} = {cmd = \tdoccodein{text}},
+    colspec     = {r @{\,}l | r @{\,}l},
+    baseline    = T,
+    column{2,4} = {cmd = \tdoccodein{text}},
 }
 """.strip()
 
 
-TEX_SUFFIX_TMPL_SRC = r"\{src}: & {suffix} &&"
+TEX_SUFFIX_TMPL_SRC = r"\{src}: & {suffix}"
 
 
 # ------------------ #
@@ -172,6 +171,21 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
 
 logging.info("TeX - Build 'suffixes used'")
 
+nb_suffixes  = len(SUFFIXES_USED)
+tex_suffixes = [None]*nb_suffixes
+
+# Trick needed to ease the incoming calculus.
+if nb_suffixes % 2 == 0:
+    nb_suffixes -=1
+
+for i, (s, sf) in enumerate(SUFFIXES_USED.items()):
+    j = 2*i
+
+    if j > nb_suffixes:
+        j -= nb_suffixes
+
+    tex_suffixes[j] = (s, sf)
+
 _texcode = [
     TEX_NO_EDIT,
     TEX_SUFFIX_TABLE_HEADER
@@ -181,7 +195,7 @@ _row = []
 
 
 for i, (src, suffix) in enumerate(
-    SUFFIXES_USED.items(),
+    tex_suffixes,
     start = 1
 ):
     _row.append(
@@ -191,9 +205,9 @@ for i, (src, suffix) in enumerate(
         )
     )
 
-    if i % SUFFIX_TABE_NB_COLS == 0:
+    if i % 2 == 0:
         _texcode += [
-            TAB_1 + ' & '.join(_row)[:-3].strip(),
+            TAB_1 + ' & '.join(_row).strip(),
             TAB_1 + r'\\'
         ]
 
@@ -201,7 +215,7 @@ for i, (src, suffix) in enumerate(
 
 if _row:
     _texcode.append(
-        TAB_1 + ' & '.join(_row)[:-3].strip()
+        TAB_1 + ' & '.join(_row).strip()
     )
 
 _texcode.append(TEX_LONGTABLE_FOOTER)
