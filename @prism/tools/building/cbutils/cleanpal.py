@@ -2,6 +2,7 @@
 
 from typing import Callable, TypeAlias
 
+from copy import deepcopy
 from enum import Enum
 
 import numpy as np
@@ -63,8 +64,6 @@ TAG_CTXT  = 'context'
 TAG_METH  = 'method'
 TAG_AUTO  = 'auto'
 TAG_HUMAN = 'human'
-
-
 
 
 def norm_float_pal(
@@ -333,3 +332,45 @@ def get_pal_alias(
             new_palnames[uid] = (newname, suffix_used)
 
     return new_palnames
+
+
+
+def isublistof(pal_1, pal_2):
+    cols_1 = deepcopy(pal_1)
+    cols_2 = deepcopy(pal_2)
+
+    positions = []
+    pos       = -1
+
+    while cols_1:
+        c = cols_1.pop(0)
+
+        if not c in cols_2:
+            return False, []
+
+        cursor = cols_2.index(c)
+        pos   += cursor + 1
+
+        positions.append(pos)
+
+        cols_2 = cols_2[cursor + 1:]
+
+    return True, positions
+
+
+def isshiftof(pal_1, pal_2):
+    if len(pal_1) != len(pal_2):
+        return False, -1
+
+    i = pal_2.index(pal_1[0])
+
+    pal_shifted = pal_2[i:] + pal_2[:i]
+
+    if pal_1 != pal_shifted:
+        return False, -1
+
+    return True, i + 1
+
+
+def isreversedshiftof(pal_1, pal_2):
+    return isshiftof(pal_1[::-1], pal_2)

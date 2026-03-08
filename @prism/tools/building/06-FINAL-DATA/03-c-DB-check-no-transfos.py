@@ -40,152 +40,114 @@ WHERE h.is_kept = 1;
 """
 
 
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
 
-exit(1)
-
-
-
-
-
-# -- DEBUG - ON -- #
-from rich import print
-# -- DEBUG - OFF -- #
-
-from collections import defaultdict
-from pathlib     import Path
-
-from copy import deepcopy
-from json import load as json_load
+REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
+AUDIT_DIR  = BUILD_TOOLS_DIR / TAG_AUDIT
 
 
-THIS_DIR = Path(__file__).parent
+SQLITE_DB_FILE = AUDIT_DIR / "palettes.db"
 
-PROJ_DIR = THIS_DIR.parent
-
-while(PROJ_DIR.name != '@prism'):
-    PROJ_DIR = PROJ_DIR.parent
-
-
-SEM_SIZE = 40
-
-
-# ------------------ #
-# -- TERM - TOOLS -- #
-# ------------------ #
-
-ITEM_TAGS = '+->'
-
-def printlev(text, level = 0):
-    tab  = ' '*4*level
-    item = ITEM_TAGS[level]
-
-    print(f'{tab}{item} {text}')
-
-
-# ------------------- #
-# -- AUDIT - TOOLS -- #
-# ------------------- #
-
-def isublistof(pal_1, pal_2):
-    cols_1 = deepcopy(pal_1)
-    cols_2 = deepcopy(pal_2)
-
-    positions = []
-    pos       = -1
-
-    while cols_1:
-        c = cols_1.pop(0)
-
-        if not c in cols_2:
-            return False, []
-
-        cursor = cols_2.index(c)
-        pos   += cursor + 1
-
-        positions.append(pos)
-
-        cols_2 = cols_2[cursor + 1:]
-
-    return True, positions
-
-
-def isshiftof(pal_1, pal_2):
-    if len(pal_1) != len(pal_2):
-        return False, -1
-
-    i = pal_2.index(pal_1[0])
-
-    pal_shifted = pal_2[i:] + pal_2[:i]
-
-    if pal_1 != pal_shifted:
-        return False, -1
-
-    return True, i + 1
-
-
-def isreversedshiftof(pal_1, pal_2):
-    return isshiftof(pal_1[::-1], pal_2)
-
-
-
-# ---------------------- #
-# -- GET PALETTE DATA -- #
-# ---------------------- #
 
 PAL_COLOR_LISTS = dict()
 PAL_COLOR_SETS  = dict()
-
-for paljson in (
-    PROJ_DIR / 'products' / 'json' / 'palettes-hf'
-).glob('*.json'):
-    with paljson.open('r') as f:
-        colors = json_load(f)
-
-        PAL_COLOR_LISTS[paljson.stem] = colors
-
-        PAL_COLOR_SETS[paljson.stem] = set(
-            tuple(rgb)
-            for rgb in colors
-        )
-
-PAL_NAMES = list(PAL_COLOR_SETS)
+UID2_ALIAS_KEPT = dict()
+CANDIDATES      = dict()
 
 
-CANDIDATES            = dict()
 SUBLIST_PALS          = dict()
 SHIFTED_PALS          = dict()
 REVERSED_SHIFTED_PALS = dict()
+
+
+# ------------------ #
+# -- GET PAL DEFS -- #
+# ------------------ #
+
+for p in sorted(REPORT_DIR.glob('*.json')):
+    tokeep = True
+
+    for prefix in [
+        'AUDIT',
+        'CATEGO',
+    ]:
+        if p.name.startswith(f'{prefix}-'):
+            tokeep = False
+
+            break
+
+    if not tokeep:
+        continue
+
+    src = p.stem
+
+    logging.info(f"Get '{src}' palettes")
+
+    with p.open('r') as f:
+        paldata = json_load(f)
+
+    for name, data in paldata.items():
+        uid = get_uid(name, src)
+        uid = uid.lower()
+
+        PAL_COLOR_LISTS[uid] = data[TAG_RGB_COLS]
+
+        PAL_COLOR_SETS[uid] = set(
+            tuple(rgb)
+            for rgb in data[TAG_RGB_COLS]
+        )
+
+
+# ------------------- #
+# -- GET PALS KEPT -- #
+# ------------------- #
+
+logging.info("Get 'kept palettes'")
+
+with sqlite3.connect(SQLITE_DB_FILE) as conn:
+    cursor = conn.cursor()
+    cursor.execute(SQL_GET_PAL_IDS)
+
+    for alias, name, src in cursor.fetchall():
+        uid = get_uid(name, src)
+
+        UID2_ALIAS_KEPT[uid] = alias
+
+PAL_UIDS = list(UID2_ALIAS_KEPT)
 
 
 # ---------------- #
 # -- CANDIDATES -- #
 # ---------------- #
 
-printlev("Looking for candidate palettes")
+logging.info("Looking for 'candidate palettes'")
 
-for name in PAL_NAMES:
-    matches   = list()
-    small_matches = list()
+for uid in PAL_UIDS:
+    matches = list()
 
-    for subname in PAL_NAMES:
-        if subname == name:
+    for subuid in PAL_UIDS:
+        if subuid == uid:
             continue
 
-        if PAL_COLOR_SETS[name] <=  PAL_COLOR_SETS[subname]:
-            matches.append(subname)
+        if PAL_COLOR_SETS[uid] <=  PAL_COLOR_SETS[subuid]:
+            matches.append(subuid)
 
     if matches:
-        CANDIDATES[name] = matches
+        CANDIDATES[uid] = matches
 
 
 nb_candidates = len(CANDIDATES)
 
 if nb_candidates == 0:
-    printlev('No candidate')
+    logging.info('No candidate')
     exit(0)
 
 else:
-    printlev(f'Nb of candidates = {nb_candidates}')
+    plurial = '' if nb_candidates == 1 else 's'
+
+    logging.info(f"'{nb_candidates} candidate{plurial}' found")
 
 
 # ---------------------- #
@@ -197,28 +159,32 @@ for ctxt, validator, memodict in [
     ('shifted', isshiftof, SHIFTED_PALS),
     ('reversed and shifted', isreversedshiftof, REVERSED_SHIFTED_PALS),
 ]:
-    printlev(f"Looking for '{ctxt} palettes'")
+    logging.info(f"Looking for '{ctxt} palettes'")
 
-    for name_1, candidates in CANDIDATES.items():
-        for name_2 in candidates:
+    for uid_1, candidates in CANDIDATES.items():
+        for uid_2 in candidates:
             test, data = validator(
-                pal_1 = PAL_COLOR_LISTS[name_1],
-                pal_2 = PAL_COLOR_LISTS[name_2],
+                pal_1 = PAL_COLOR_LISTS[uid_1],
+                pal_2 = PAL_COLOR_LISTS[uid_2],
             )
 
             if not test:
                 continue
 
-            if name_2 in memodict:
+            if uid_2 in memodict:
                 continue
 
-            memodict[name_1] = (name_2, data)
+            memodict[uid_1] = (uid_2, data)
 
     if memodict:
-        printlev(f"'{len(memodict)} {ctxt}' palettes found")
+        logging.info(f"'{len(memodict)} {ctxt}' palettes found")
 
     else:
-        printlev(f"'No {ctxt} palettes' found")
+        logging.info(f"'No {ctxt} palettes' found")
 
 
-print(REVERSED_SHIFTED_PALS)
+
+
+
+
+exit(1)
