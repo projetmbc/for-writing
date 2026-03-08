@@ -10,6 +10,8 @@
     Matplotlib
       & Cubehelix & \cong & Classic
     \\
+      & TwilightShifted & \revshiftarrows & Twilight
+    \\
       & Gray & \rightleftharpoons & Binary
     \\
       & GistYarg & \rightleftharpoons & GistGray

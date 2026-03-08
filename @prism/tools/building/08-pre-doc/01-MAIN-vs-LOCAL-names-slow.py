@@ -236,9 +236,13 @@ yaml_code = f'''
 #    (the palette no longer exists but has a direct equivalent,
 #    requiring a mapping from the old name to the new one).
 #
-#    4) ''<upset>: subset''
+#    4) ''<upset>: shift''
 #
-#    (the palette is a subset of another).
+#    (the palette is shift of another).
+#
+#    5) ''<upset>: reverse_shift''
+#
+#    (the palette is reversal and shift of another).
 ###
 
 {yaml_code}

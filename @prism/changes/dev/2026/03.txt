@@ -13,6 +13,14 @@
 Palette purification: sublist exclusions removed, as manual reconstruction was too burdensome for users.
 
 
+--------
+:fordev:
+--------
+
+[[:flow:]]
+Palette purification: automated processing for finding sublists, shift, and reversed shift palettes.
+
+
 // ---------- //
 
 

@@ -168,7 +168,6 @@ MATPLOTLIB:
   Terrain: dark, stepped
   Turbo: stepped
   Twilight: cyclic, divergent, sequential
-  TwilightShifted: sequential
   Viridis: dark, sequential
   Winter: dark, qualitative, sequential
   Wistia: colorblind, sequential

@@ -319,13 +319,12 @@ if UPDATE_IGNORED_YAML:
 if not IGNORED:
     exit(0)
 
-logging.info("DB - Hash - 'Remove palettes' (human choice)")
+logging.info("DB - Hash - 'Remove palettes' (automate and human choice)")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
 
     for name, source in IGNORED:
-
         cursor.execute(
             SQL_UPDATE_UNKEPT,
             (name, source)

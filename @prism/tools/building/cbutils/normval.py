@@ -67,3 +67,56 @@ def get_sorted_dict(
         key = lambda x: x.lower()
     )
 }
+
+
+# ----------------- #
+# -- HUMAN RANGE -- #
+# ----------------- #
+
+TAG_INDICES = 'indices'
+TAG_RANGE   = 'range'
+
+def human_range(nbs: list[int]) -> dict[str, str]:
+    if len(nbs) <= 3:
+        return [(TAG_INDICES, nbs)]
+
+    all_batches = []
+    last_batch  = [nbs[0]]
+
+    for i in range(1, len(nbs)):
+        if len(last_batch) == 1:
+            last_batch.append(nbs[i])
+
+            last_delta = nbs[i] - nbs[i-1]
+
+        else:
+            if nbs[i] - nbs[i-1] == last_delta:
+                last_batch.append(nbs[i])
+
+            else:
+                all_batches.append(last_batch)
+
+                last_batch = [nbs[i]]
+
+    all_batches.append(last_batch)
+
+    data = []
+
+    for batch in all_batches:
+        if len(batch) <= 3:
+            data.append((
+                TAG_INDICES,
+                batch
+            ))
+
+        else:
+            data.append((
+                TAG_RANGE,
+                [
+                    batch[0],          # Start
+                    batch[-1],         # End
+                    batch[1] - batch[0]  # Step
+                ]
+            ))
+
+    return data

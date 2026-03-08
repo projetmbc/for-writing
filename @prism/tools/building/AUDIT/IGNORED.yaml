@@ -10,6 +10,10 @@ MATPLOTLIB:
   Cubehelix:
     palette: Classic
     relation: '~'
+  TwilightShifted:
+    data: 256
+    palette: Twilight
+    relation: <<-->>
 
 # -- P -- #
 PLOTLY:
