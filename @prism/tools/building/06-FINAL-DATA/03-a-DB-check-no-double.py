@@ -91,8 +91,8 @@ WHERE h1.is_kept = 1
 
 SQL_TABLE_INSERT_MIRROR = '''
 INSERT INTO mirror (
-    cand_pal_id_1,
-    cand_pal_id_2
+    pal_id_1,
+    pal_id_2
 ) VALUES (?, ?)
 '''
 

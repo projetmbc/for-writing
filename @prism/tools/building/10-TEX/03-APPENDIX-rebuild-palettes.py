@@ -1,6 +1,3 @@
-exit(0)
-
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -19,6 +16,41 @@ from cbutils      import *
 
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
+
+
+# ------------------ #
+# -- CONSTANTS #1 -- #
+# ------------------ #
+
+PROJ_DIR = THIS_DIR
+
+while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
+    PROJ_DIR = PROJ_DIR.parent
+
+
+AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
+
+IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
+
+
+REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
+
+SUBLIST_JSON = REPORT_DIR / 'AUDIT-SUBLIST.json'
+
+
+TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
+
+REBUILD_PALS_TEX_FILE = TRANSLATE_DIR / "report" /  "rebuild-palettes.latex"
+
+REBUILD_PALS_TEX_FILE.touch()
+
+
+
+
+
+exit(1)
+
+
 
 from collections import defaultdict
 from yaml        import safe_load
@@ -210,8 +242,8 @@ SELECT
     h1.name, a1.alias,
     h2.name, a2.alias, h2.source
 FROM mirror m
-JOIN hash h1 ON m.cand_pal_id_1 = h1.pal_id
-JOIN hash h2 ON m.cand_pal_id_2 = h2.pal_id
+JOIN hash h1 ON m.pal_id_1 = h1.pal_id
+JOIN hash h2 ON m.pal_id_2 = h2.pal_id
 LEFT JOIN alias a1 ON h1.pal_id = a1.pal_id
 LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
     """

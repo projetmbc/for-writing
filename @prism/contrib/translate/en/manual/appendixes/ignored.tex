@@ -42,9 +42,6 @@ The following palettes have been intentionally excluded. Please refer to the exp
 % -------------------- %
 
 
-%\newpage
-
-
 \bgroup
   \phantomsection
   \subsection*{\hfill\palsunkept\hfill\null}%
@@ -70,7 +67,7 @@ We identify relations between palettes using the following notations.
 \smallskip
 
 \begin{tblr}{
-  colspec = {*{5}{X[c]}},
+  colspec = {*{4}{X[c]}},
   rows    = {m},
   cells   = {font = \small},
   row{2}  = {cmd = \tabsymb},
@@ -78,14 +75,14 @@ We identify relations between palettes using the following notations.
       Duplicates
     & Visually identical 
     & Reversal
-    & Shifted 
-    & Shifted and Reversal
+%    & Shifted 
+    & Reversal and shifted
 %    & Sublist 
     \\
       =
     & \cong
     & \rightleftharpoons
-    & \ll
+%    & \ll
     & \revshiftarrows
 %    & \prec    
     \\
@@ -98,20 +95,11 @@ We list the unkept palettes below, omitting duplicates that share both name and 
 \subimport{../../../common/report/}{unkept-palettes.latex}
 
 
-%% -------------------- %
-%
-%
-%%\newpage
-%
-%
-%\bgroup
-%  \phantomsection
-%  \subsection*{\hfill\palsrebuild\hfill\null}%
-%  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\palsrebuild}{\palsrebuild}}
-%\egroup
-%
-%For the shifted and/or reversed palettes discussed in the previous section, we provide recovery methods. Below, we present pseudo-codes defining parameter values for use with the \thisproj\ palette API.
-%
-%\subimport{../../../common/report/}{rebuild-palette-pseudo-codes.latex}
+% -------------------- %
+
+
+\begin{tdocnote}
+    Appendix \ref{rebuild-palettes} (page \pageref{rebuild-palettes}) provides the parameters required to reconstruct shifted palettes.
+\end{tdocnote}
 
 \end{document}

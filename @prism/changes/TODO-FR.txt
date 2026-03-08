@@ -21,7 +21,7 @@ git cm "..."
 
 // ---------- //
 
-annexe qui indique les palettes sous palettes d'autres à tutre informatif car finalement on les garde
+annexe qui indique les sous palettes à titre informatif car finalement on les garde
 
 
 // ---------- //
@@ -33,7 +33,7 @@ git cm "Need to automate the visual matching of palettes #..."
 
 // ---------- //
 
-prise ne compte d'une palette égale à une autre elle meme igniré car sublist ou shifted
+prise ne compte d'une palette égale à une autre elle meme igniré car shifted
 
 +
 

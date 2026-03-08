@@ -61,13 +61,13 @@ SELECT
               EXISTS (
                   SELECT 1 FROM mirror m
                   WHERE (
-                      m.cand_pal_id_1 = p1.pal_id
+                      m.pal_id_1 = p1.pal_id
                       AND
-                      m.cand_pal_id_2 = p2.pal_id
+                      m.pal_id_2 = p2.pal_id
                   ) OR (
-                      m.cand_pal_id_1 = p2.pal_id
+                      m.pal_id_1 = p2.pal_id
                       AND
-                      m.cand_pal_id_2 = p1.pal_id
+                      m.pal_id_2 = p1.pal_id
                   )
               )
           )

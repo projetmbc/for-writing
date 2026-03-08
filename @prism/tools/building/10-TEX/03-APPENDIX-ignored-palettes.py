@@ -124,9 +124,9 @@ TEX_TMPL_NEXT_ROW = TAB_1 + r"\\"
 TEX_TMPL_HRULE    = TAB_1 + r"\hline"
 
 
-# ----------------------------- #
-# -- YAML - IGNORED PALETTES -- #
-# ----------------------------- #
+# ----------------- #
+# -- FINAL NAMES -- #
+# ----------------- #
 
 logging.info("Get 'all final names'")
 
@@ -208,8 +208,8 @@ SELECT
     h1.name, a1.alias,
     h2.name, a2.alias, h2.source
 FROM mirror m
-JOIN hash h1 ON m.cand_pal_id_1 = h1.pal_id
-JOIN hash h2 ON m.cand_pal_id_2 = h2.pal_id
+JOIN hash h1 ON m.pal_id_1 = h1.pal_id
+JOIN hash h2 ON m.pal_id_2 = h2.pal_id
 LEFT JOIN alias a1 ON h1.pal_id = a1.pal_id
 LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
     """
