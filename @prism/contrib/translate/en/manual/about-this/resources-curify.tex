@@ -37,8 +37,8 @@ We retain only palettes that comply with the following rules.
     }
     \thisproj\ excludes shifted palettes from its core collection.
 
-    \item \textbf{No derived versions.}
-    Palettes that can be reconstructed through a combination of shifting and reversal are omitted. Most implementations provide an API to perform these transformations dynamically via parameters.
+    \item \textbf{No basic derived versions.}
+    \thisproj\ omit palettes that can be reconstructed by shifting and reversing existing ones. Most implementations offer an API to handle these transformations dynamically.
 
     \item \textbf{Reasonable palette sizes.} 
     Palettes exceeding \palMaxSize\ colors are ignored (e.g., \cmasher\ offers the 'neutral' palette, which contains 2560 colors). 
