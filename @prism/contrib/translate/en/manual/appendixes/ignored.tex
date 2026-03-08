@@ -54,16 +54,15 @@ The following palettes have been intentionally excluded. Please refer to the exp
 The following types of palettes are unkept.
 %
 \begin{itemize}
-    \item \textbf{Sublists:} formed by removing colors while preserving order.
-
-    \item \textbf{Transformations:} reversals, shifts, or a combination of both.
+    \item \textbf{Exact duplicates:} identical color arrays.
 
     \item \textbf{Visual identical:} those indistinguishable to the naked eye.%
     \footnote{
         In these cases, the original palette is retained.
+        For instance, \matplotlib's  \tdoccodein{text}{Cubehelix} is a specific implementation of the original \cubehelix's \tdoccodein{text}{Classic}.
     }
 
-    \item \textbf{Exact duplicates:} identical color arrays.
+    \item \textbf{Transformations:} reversals, shifts, or a combination of both.
 \end{itemize}
 %
 We identify relations between palettes using the following notations.
@@ -71,7 +70,7 @@ We identify relations between palettes using the following notations.
 \smallskip
 
 \begin{tblr}{
-  colspec = {*{6}{X[c]}},
+  colspec = {*{5}{X[c]}},
   rows    = {m},
   cells   = {font = \small},
   row{2}  = {cmd = \tabsymb},
@@ -81,14 +80,14 @@ We identify relations between palettes using the following notations.
     & Reversal
     & Shifted 
     & Shifted and Reversal
-    & Sublist 
+%    & Sublist 
     \\
       =
     & \cong
     & \rightleftharpoons
     & \ll
     & \revshiftarrows
-    & \prec    
+%    & \prec    
     \\
 \end{tblr}
 

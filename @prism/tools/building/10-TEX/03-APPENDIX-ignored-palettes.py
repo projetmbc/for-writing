@@ -96,7 +96,7 @@ TEX_TRANSLATE_LAST_COL = f"""
 
 TEX_REBUILDABLE_TABLE_HEADER = r"""
 %
-\begin{longtblr}[caption = \palsrebuild]{
+\begin{longtblr}[caption = \palsunkept]{
     colspec     = {@{}l | r Q[c,$] l},
     baseline    = T,
     column{2,4} = {cmd = \tdoccodein{text}},

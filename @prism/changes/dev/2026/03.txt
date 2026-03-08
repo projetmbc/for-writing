@@ -2,6 +2,21 @@
 
 
 ==
+08  (2.0.1-beta.5)
+==
+
+-------
+:break:
+-------
+
+[[:api:]]
+Palette purification: sublist exclusions removed, as manual reconstruction was too burdensome for users.
+
+
+// ---------- //
+
+
+==
 06  (2.0.1-beta.4)
 ==
 

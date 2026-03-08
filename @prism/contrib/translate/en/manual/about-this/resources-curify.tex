@@ -37,11 +37,8 @@ We retain only palettes that comply with the following rules.
     }
     \thisproj\ excludes shifted palettes from its core collection.
 
-    \item \textbf{No sub-sequences.}
-    Palettes derived by removing colors from an existing palette while preserving their original order are ignored.
-
     \item \textbf{No derived versions.}
-    Palettes that can be reconstructed through any combination of slicing, shifting, or reversal are omitted. Most implementations provide an API to perform these transformations dynamically via parameters.
+    Palettes that can be reconstructed through a combination of shifting and reversal are omitted. Most implementations provide an API to perform these transformations dynamically via parameters.
 
     \item \textbf{Reasonable palette sizes.} 
     Palettes exceeding \palMaxSize\ colors are ignored (e.g., \cmasher\ offers the 'neutral' palette, which contains 2560 colors). 

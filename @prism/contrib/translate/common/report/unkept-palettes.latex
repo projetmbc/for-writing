@@ -2,7 +2,7 @@
 % -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
 % ------------------------------------------- %
 %
-\begin{longtblr}[caption = \palsrebuild]{
+\begin{longtblr}[caption = \palsunkept]{
     colspec     = {@{}l | r Q[c,$] l},
     baseline    = T,
     column{2,4} = {cmd = \tdoccodein{text}},

@@ -11,9 +11,13 @@ Online demo: an auto-update script for the \html, \ccs and \js codes was missing
 -------
 
 [[:api:]]
-No more visual identical palettes (semi-automated process).
+Palette purification.
 
-    * ''Cubehelix'' (\matplotlib) removed, use ''Classic'' (\cubehelix) instead.
+    1) Sublist exclusions removed, as manual reconstruction was too burdensome for users.
+
+    1) No more visual identical palettes (semi-automated process).
+
+        * ''Cubehelix'' (\matplotlib) removed, use ''Classic'' (\cubehelix) instead.
 
 
 --------
