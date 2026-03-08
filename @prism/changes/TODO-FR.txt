@@ -21,7 +21,7 @@ git cm "..."
 
 // ---------- //
 
-date des dernières vesrions intégrés dans la doc via @prism/tools/building/UPDATES/BACKUP.json
+annexe qui indique les palettes sous palettes d'autres à tutre informatif car finalement on les garde
 
 
 // ---------- //
