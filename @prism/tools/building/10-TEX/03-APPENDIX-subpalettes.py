@@ -1,8 +1,3 @@
-exit(0)
-
-
-
-
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -51,7 +46,7 @@ with SUBLIST_JSON.open('r') as f:
 
 TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
 
-REBUILD_PALS_TEX_FILE = TRANSLATE_DIR / "report" /  "rebuild-palettes.latex"
+REBUILD_PALS_TEX_FILE = TRANSLATE_DIR / "report" /  "subpalettes.latex"
 
 REBUILD_PALS_TEX_FILE.touch()
 
