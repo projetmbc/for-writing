@@ -20,7 +20,7 @@ Online demo: an auto-update script for the \html, \ccs and \js codes was missing
 [[:api:]]
 Automate visual matching for palettes with differing floating-point representations.
 
-    * ''Cubehelix'' (\matplotlib) removed, use ''Classic'' (\cubehelix) instead.
+    * ''Cubehelix'' (\matplotlib) was removed, as it is visually identical to ''Classic'' (\cubehelix).
 
 
 // ---------- //

@@ -121,10 +121,11 @@ TAG_RESOURCES = "RESOURCES"
 TAG_SEMANTIC  = "SEMANTIC"
 
 
-TAG_WHY = 'why'
-TAG_SRC = 'src'
-TAG_REL = 'relation'
-TAG_PAL = 'palette'
+TAG_WHY  = 'why'
+TAG_SRC  = 'src'
+TAG_REL  = 'relation'
+TAG_PAL  = 'palette'
+TAG_DATA = 'data'
 
 
 # --------------- #

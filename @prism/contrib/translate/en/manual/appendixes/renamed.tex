@@ -9,11 +9,8 @@
 
 \begin{document}
 
-\phantomsection\refstepcounter{appendixcnt}
-\def\title{Appendix \theappendixcnt\ -- \palsrenamed} % To be translated.
-\section*{\hfill\title\hfill\null} \label{renamed-palettes}
-\addcontentsline{toc}{section}{\title}
-
+\appendixsection{\palsrenamed}
+                {all-palette-names}  % DO NOT EDIT THIS 2ND ARG!
 
 \begin{tdocimp}
     The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.

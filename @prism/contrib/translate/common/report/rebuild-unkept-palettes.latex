@@ -1,0 +1,15 @@
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+%
+\begin{longtblr}[caption = \palsunkept]{
+    colspec     = {@{}l | r | r@{\ }c@{\ }l},
+    baseline    = T,
+    column{2-5} = {cmd = \tdoccodein{text}},
+}
+    Matplotlib
+        & TwilightShifted
+        & used_palette &=& Twilight
+    \\ && reverse &=& True
+    \\ && shift &=& 256
+\end{longtblr}

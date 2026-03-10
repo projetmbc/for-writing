@@ -9,11 +9,8 @@
 
 \begin{document}
 
-\phantomsection\refstepcounter{appendixcnt}
-\def\title{Appendix \theappendixcnt\ -- \palsignored} % To be translated.
-\section*{\hfill\title\hfill\null} \label{ignored-palettes}
-\addcontentsline{toc}{section}{\title}
-
+\appendixsection{\palsignored}
+                {ignored-palettes} % DO NOT EDIT THIS 2ND ARG!
 
 \begin{tdocimp}
     The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
@@ -25,14 +22,7 @@
 
 \smallskip
 
-
-\bgroup
-  \def\title{Excluded by design} % To be translated.
-
-  \phantomsection
-  \subsection*{\hfill\title\hfill\null}%
-  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
-\egroup
+\appendixsubsection{Excluded by design}
 
 The following palettes have been intentionally excluded. Please refer to the explanation below.
 
@@ -42,11 +32,7 @@ The following palettes have been intentionally excluded. Please refer to the exp
 % -------------------- %
 
 
-\bgroup
-  \phantomsection
-  \subsection*{\hfill\palsunkept\hfill\null}%
-  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\palsunkept}{\palsunkept}}
-\egroup
+\appendixsubsection{\palsunkept}
 
 The following types of palettes are unkept.
 %
@@ -56,7 +42,7 @@ The following types of palettes are unkept.
     \item \textbf{Visual identical:} those indistinguishable to the naked eye.%
     \footnote{
         In these cases, the original palette is retained.
-        For instance, \matplotlib's  \tdoccodein{text}{Cubehelix} is a specific implementation of the original \cubehelix's \tdoccodein{text}{Classic}.
+        For instance, as \matplotlib's \tdoccodein{text}{Cubehelix} is a specific implementation of the original \cubehelix's \tdoccodein{text}{Classic}, we keep the latter.
     }
 
     \item \textbf{Transformations:} reversals, shifts, or a combination of both.
@@ -77,14 +63,12 @@ We identify relations between palettes using the following notations.
     & Reversal
 %    & Shifted 
     & Reversal and shifted
-%    & Sublist 
     \\
       =
     & \cong
     & \rightleftharpoons
 %    & \ll
     & \revshiftarrows
-%    & \prec    
     \\
 \end{tblr}
 
@@ -98,8 +82,10 @@ We list the unkept palettes below, omitting duplicates that share both name and 
 % -------------------- %
 
 
-\begin{tdocnote}
-    Appendix \ref{rebuild-palettes} (page \pageref{rebuild-palettes}) provides the parameters required to reconstruct shifted palettes.
-\end{tdocnote}
+\appendixsubsection{\palsrebuild}
+
+Let's detail how to retrieve only those excluded palettes from \thisproj\ that required a shift.
+
+\subimport{../../../common/report/}{rebuild-unkept-palettes.latex}
 
 \end{document}

@@ -4,7 +4,7 @@
 
 \newcommand\palsexcluded{Excluded palettes}
 \newcommand\palsignored{Ignored palettes}
-\newcommand\palsrebuild{Rebuild ignored palettes}
+\newcommand\palsrebuild{Reconstructing unkept shifted palettes}
 \newcommand\palsrenamed{Renamed palettes}
 \newcommand\palsunkept{Unkept palettes}
 
@@ -111,6 +111,19 @@
       \raisebox{-0.3ex}{$\leftharpoondown\mkern-14mu\leftharpoondown$}% Ligne du bas
     }%
   }%
+}
+
+
+\NewDocumentCommand\appendixsection{ m m }{
+  \phantomsection\refstepcounter{appendixcnt}
+  \section*{\hfill{Appendix \theappendixcnt\ -- #1}\hfill\null} \label{#2}
+  \addcontentsline{toc}{section}{#1}
+}
+
+\NewDocumentCommand\appendixsubsection{ m }{
+  \phantomsection
+  \subsection*{\hfill{#1}\hfill\null}
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,#1}{#1}}
 }
 
 

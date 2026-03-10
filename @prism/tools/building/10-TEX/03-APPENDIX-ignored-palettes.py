@@ -36,8 +36,9 @@ USED_BY_TOOLS_DIR = TRANSLATE_DIR.parent / "en" / TAG_USED_BY_TOOLS
 
 
 for p in [
-    UNKEPT_PALS_TEX_FILE  := TRANSLATE_DIR / "report" /  "unkept-palettes.latex",
-    EXCLUDED_PALS_TEX_FILE:= USED_BY_TOOLS_DIR / "report" /  "excluded-palettes.latex",
+    EXCLUDED_PALS_TEX_FILE      := USED_BY_TOOLS_DIR / "report" /  "excluded-palettes.latex",
+    UNKEPT_PALS_TEX_FILE        := TRANSLATE_DIR / "report" /  "unkept-palettes.latex",
+    REBUILD_UNKEPT_PALS_TEX_FILE:= TRANSLATE_DIR / "report" /  "rebuild-unkept-palettes.latex",
 ]:
     p.parent.mkdir(
         parents = True,
@@ -56,8 +57,9 @@ SQLITE_DB_FILE = AUDIT_DIR / 'palettes.db'
 IGNORED_YAML = AUDIT_DIR / 'IGNORED.yaml'
 
 
-EXCLUDED_PALS_BY_TECHNO    = defaultdict(list)
-PALS_REBUILDABLE_BY_TECHNO = defaultdict(list)
+EXCLUDED_PALS_BY_TECHNO       = defaultdict(list)
+PALS_UNKEPT_BY_TECHNO         = defaultdict(list)
+PALS_REBUILD_UNKEPT_BY_TECHNO = defaultdict(list)
 
 
 # ------------------ #
@@ -72,7 +74,6 @@ TEX_CMDS = {
     PAL_STATUS.SAME_VISUAL: r"\cong",
     PAL_STATUS.EQUAL_TO   : "=",
     PAL_STATUS.REVERSE_OF : r"\rightleftharpoons",
-    PAL_STATUS.SUBSET_OF  : r"\prec",
     PAL_STATUS.SHIFT_OF   : r"\ll",
     PAL_STATUS.REVSHIFT_OF: r"\revshiftarrows",
 }
@@ -81,7 +82,6 @@ TEX_CMDS = {
 STATUS = {
     '~'     : PAL_STATUS.SAME_VISUAL,
     '='     : PAL_STATUS.EQUAL_TO,
-    '<'     : PAL_STATUS.SUBSET_OF,
     '<<'    : PAL_STATUS.SHIFT_OF,
     '<<-->>': PAL_STATUS.REVSHIFT_OF,
 }
@@ -94,7 +94,18 @@ TEX_TRANSLATE_LAST_COL = f"""
 """.strip()
 
 
-TEX_REBUILDABLE_TABLE_HEADER = r"""
+TEX_EXCLUDED_TABLE_HEADER = r"""
+%
+\begin{longtblr}[caption = \palsexcluded]{
+    colspec   = {@{}l | r l},
+    baseline  = T,
+    column{2} = {cmd = \tdoccodein{text}},
+}
+% -- TRANSLATE BELOW THE LAST COLUMN TEXTS. -- %
+""".strip()
+
+
+TEX_UNKEPT_TABLE_HEADER = r"""
 %
 \begin{longtblr}[caption = \palsunkept]{
     colspec     = {@{}l | r Q[c,$] l},
@@ -104,14 +115,13 @@ TEX_REBUILDABLE_TABLE_HEADER = r"""
 """.strip()
 
 
-TEX_EXCLUDED_TABLE_HEADER = r"""
+TEX_REBUILD_UNKEPT_TABLE_HEADER = r"""
 %
-\begin{longtblr}[caption = \palsexcluded]{
-    colspec   = {@{}l | r l},
-    baseline  = T,
-    column{2} = {cmd = \tdoccodein{text}},
+\begin{longtblr}[caption = \palsunkept]{
+    colspec     = {@{}l | r | r@{\ }c@{\ }l},
+    baseline    = T,
+    column{2-5} = {cmd = \tdoccodein{text}},
 }
-% -- TRANSLATE BELOW THE LAST COLUMN TEXTS. -- %
 """.strip()
 
 
@@ -128,7 +138,7 @@ TEX_TMPL_HRULE    = TAB_1 + r"\hline"
 # -- FINAL NAMES -- #
 # ----------------- #
 
-logging.info("Get 'all final names'")
+logging.info("(data) Get 'all names'")
 
 ALL_NAMES = set()
 
@@ -152,7 +162,7 @@ LEFT JOIN alias a ON h.pal_id = a.pal_id
 # -- YAML - IGNORED PALETTES -- #
 # ----------------------------- #
 
-logging.info("Extract 'ignored palettes' by human or automatically")
+logging.info("(data) Extract 'ignored' - Human or auto")
 
 with IGNORED_YAML.open('r') as f:
     for src, pals in safe_load(f).items():
@@ -187,18 +197,19 @@ with IGNORED_YAML.open('r') as f:
                 )
 
 # Nothing left to do here.
-            PALS_REBUILDABLE_BY_TECHNO[src].append((
+            PALS_UNKEPT_BY_TECHNO[src].append([
                 name,
-                TEX_CMDS[status],
-                data[TAG_PAL]
-            ))
+                status,
+                data[TAG_PAL],
+                data.get(TAG_DATA, None)
+            ])
 
 
 # -------------------------- #
 # -- DB - MIRROR PALETTES -- #
 # -------------------------- #
 
-logging.info("Extract 'mirror palettes'")
+logging.info("(data) Extract 'mirror' - DB")
 
 with sqlite3.connect(SQLITE_DB_FILE) as conn:
     cursor = conn.cursor()
@@ -223,27 +234,28 @@ LEFT JOIN alias a2 ON h2.pal_id = a2.pal_id
         name_2 = alias_2 if alias_2 else name_2
 
 
-        PALS_REBUILDABLE_BY_TECHNO[src].append((
+        PALS_UNKEPT_BY_TECHNO[src].append([
             name_2,
-            TEX_CMDS[PAL_STATUS.REVERSE_OF],
-            name_1
-        ))
+            PAL_STATUS.REVERSE_OF,
+            name_1,
+            None
+        ])
 
 
-# ------------------------------------------------- #
-# -- REBUILDABLE PALETTES /  EXCLUDED BY DESIGN  -- #
-# ------------------------------------------------- #
+# ------------------------------------------- #
+# -- UNKEPT PALETTES /  EXCLUDED BY DESIGN -- #
+# ------------------------------------------- #
 
 for ctxt, data, texfile, comment, tbl_header in [
     (
-        "rebuildable palettes",
-        PALS_REBUILDABLE_BY_TECHNO,
+        "unkept",
+        PALS_UNKEPT_BY_TECHNO,
         UNKEPT_PALS_TEX_FILE,
         TEX_NO_EDIT,
-        TEX_REBUILDABLE_TABLE_HEADER
+        TEX_UNKEPT_TABLE_HEADER
     ),
     (
-        "excluded by design palettes",
+        "excluded by design",
         EXCLUDED_PALS_BY_TECHNO,
         EXCLUDED_PALS_TEX_FILE,
         TEX_TRANSLATE_LAST_COL,
@@ -255,7 +267,7 @@ for ctxt, data, texfile, comment, tbl_header in [
 
         continue
 
-    logging.info(f"Build '{ctxt}' TeX file")
+    logging.info(f"(TeX) Build '{ctxt}'")
 
     _texcode = [comment, tbl_header]
 
@@ -266,7 +278,15 @@ for ctxt, data, texfile, comment, tbl_header in [
             TEX_TMPL_SRC.format(src = src_name),
         )
 
-        for row in data[src]:
+        for datarow in data[src]:
+            row = datarow[:]
+
+            if len(row) > 3:
+                row = row[:3]
+
+            if row[1] in TEX_CMDS:
+                row[1] = TEX_CMDS[row[1]]
+
             row = ' & '.join(row)
 
             _texcode += [
@@ -283,3 +303,48 @@ for ctxt, data, texfile, comment, tbl_header in [
     texcode = '\n'.join(_texcode)
 
     texfile.write_text(texcode)
+
+
+# ----------------------------- #
+# -- REBUILD UNKEPT PALETTES -- #
+# ----------------------------- #
+
+logging.info("(TeX) Build 'rebuild unkept'")
+
+_texcode = [
+    TEX_NO_EDIT,
+    TEX_REBUILD_UNKEPT_TABLE_HEADER
+]
+
+for src in sorted(PALS_UNKEPT_BY_TECHNO):
+    src_name = YAML_CONFIGS[TAG_RESRC][src]['name']
+
+    for unkept_name, status, name, data in PALS_UNKEPT_BY_TECHNO[src]:
+        if not status in [
+            PAL_STATUS.SHIFT_OF,
+            PAL_STATUS.REVSHIFT_OF,
+        ]:
+            continue
+
+        _texcode += [
+            f'{TAB_1}{src_name}',
+            f'{TAB_2}& {unkept_name}',
+            f'{TAB_2}& used_palette &=& {name}',
+        ]
+
+        if status == PAL_STATUS.REVSHIFT_OF:
+            _texcode.append(
+                rf'{TAB_1}\\ && reverse &=& True'
+            )
+
+        _texcode += [
+            rf'{TAB_1}\\ && shift &=& {data}',
+            rf'{TAB_1}\\\hline',
+        ]
+
+_texcode.pop(-1)
+_texcode.append(TEX_TABLE_FOOTER)
+
+texcode = '\n'.join(_texcode)
+
+REBUILD_UNKEPT_PALS_TEX_FILE.write_text(texcode)

@@ -9,11 +9,8 @@
 
 \begin{document}
 
-\phantomsection\refstepcounter{appendixcnt}
-\def\title{Appendix \theappendixcnt\ -- Palettes by category} % To be translated.
-\section*{\hfill\title\hfill\null} \label{palette-categos}
-\addcontentsline{toc}{section}{\title}
-
+\appendixsection{Palettes by category}
+                {palette-categos}       % DO NOT EDIT THIS 2ND ARG!
 
 \begin{tdocimp}
     The palette names in this appendix are standard, but some \thisproj\ implementations add a specific prefix.
@@ -83,10 +80,8 @@
   \ifthenelse{\nb = 1}{}{\newpage}
   \ifthenelse{\nb = 2}{\def\nbcols{3}}{\def\nbcols{2}}
 
-  \phantomsection
-  \subsection*{\hfill\title\hfill\null}%
-  \addcontentsline{toc}{subsection}{\texorpdfstring{\textbullet\,\title}{\title}}
-  %
+  \appendixsubsection{\title}
+
   \subimport{../../used-by-tools/categos/}{desc-\kind.latex}
 
   \begin{multicols*}{\nbcols}

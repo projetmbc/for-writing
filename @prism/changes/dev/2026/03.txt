@@ -2,6 +2,21 @@
 
 
 ==
+10  (2.0.1-beta.6)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual: added \params allowing for the reconstruction of palettes omitted due to being shifted variants of existing ones.
+
+
+// ---------- //
+
+
+==
 08  (2.0.1-beta.5)
 ==
 
@@ -10,7 +25,7 @@
 -------
 
 [[:api:]]
-Palette purification: sublist exclusions removed, as manual reconstruction was too burdensome for users.
+Palette purification: deprecated sublist exclusion due to the high overhead of manual reconstruction.
 
 
 --------

@@ -13,11 +13,11 @@ Online demo: an auto-update script for the \html, \ccs and \js codes was missing
 [[:api:]]
 Palette purification.
 
-    1) Sublist exclusions removed, as manual reconstruction was too burdensome for users.
+    1) Deprecated sublist exclusion due to the high overhead of manual reconstruction.
 
     1) No more visual identical palettes (semi-automated process).
 
-        * ''Cubehelix'' (\matplotlib) removed, use ''Classic'' (\cubehelix) instead.
+        * ''Cubehelix'' (\matplotlib) was removed, as it is visually identical to ''Classic'' (\cubehelix).
 
 
 --------
@@ -25,4 +25,8 @@ Palette purification.
 --------
 
 [[:doc:]]
-\Categos: the ''Broc'', ''GistRainbow'', and ''Tofino'' palettes have been removed from the cyclic \catego.
+Manual.
+
+    1) Added \params allowing for the reconstruction of palettes omitted due to being shifted variants of existing ones.
+
+    1) \Categos: the ''Broc'', ''GistRainbow'', and ''Tofino'' palettes have been removed from the cyclic \catego.

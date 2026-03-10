@@ -1,3 +1,8 @@
+exit(0)
+
+
+
+
 #!/usr/bin/env python3
 
 # ---------------------------- #
@@ -38,7 +43,7 @@ with IGNORED_YAML.open('r') as f:
 
 REPORT_DIR = BUILD_TOOLS_DIR / TAG_REPORT
 
-SUBLIST_JSON = REPORT_DIR / 'AUDIT-SUBLIST.json'
+SUBLIST_JSON = REPORT_DIR / 'AUDIT-SUBPALETTES.json'
 
 with SUBLIST_JSON.open('r') as f:
     SUBLIST = json_load(f)
@@ -49,10 +54,6 @@ TRANSLATE_DIR = PROJ_DIR / "contrib" / "translate" / "common"
 REBUILD_PALS_TEX_FILE = TRANSLATE_DIR / "report" /  "rebuild-palettes.latex"
 
 REBUILD_PALS_TEX_FILE.touch()
-
-
-
-
 
 
 
@@ -117,7 +118,6 @@ TEX_CMDS = {
     PAL_STATUS.SAME_VISUAL: r"\cong",
     PAL_STATUS.EQUAL_TO   : "=",
     PAL_STATUS.REVERSE_OF : r"\rightleftharpoons",
-    PAL_STATUS.SUBSET_OF  : r"\prec",
     PAL_STATUS.SHIFT_OF   : r"\ll",
     PAL_STATUS.REVSHIFT_OF: r"\revshiftarrows",
 }
@@ -126,7 +126,6 @@ TEX_CMDS = {
 STATUS = {
     '~'     : PAL_STATUS.SAME_VISUAL,
     '='     : PAL_STATUS.EQUAL_TO,
-    '<'     : PAL_STATUS.SUBSET_OF,
     '<<'    : PAL_STATUS.SHIFT_OF,
     '<<-->>': PAL_STATUS.REVSHIFT_OF,
 }
