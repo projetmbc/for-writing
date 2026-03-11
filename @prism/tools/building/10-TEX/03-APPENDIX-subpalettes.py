@@ -61,7 +61,7 @@ TEX_SUBPALSS_TABLE_HEADER = r"""
 \begin{longtblr}[caption = \palsunkept]{
     colspec     = {@{} r | r@{\ }c@{\ }l},
     baseline    = T,
-    column{2-4} = {cmd = \tdoccodein{text}},
+    column{1-4} = {cmd = \tdoccodein{text}},
 }
 """.strip()
 

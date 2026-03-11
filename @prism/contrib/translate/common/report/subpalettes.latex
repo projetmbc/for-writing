@@ -5,7 +5,7 @@
 \begin{longtblr}[caption = \palsunkept]{
     colspec     = {@{} r | r@{\ }c@{\ }l},
     baseline    = T,
-    column{2-4} = {cmd = \tdoccodein{text}},
+    column{1-4} = {cmd = \tdoccodein{text}},
 }
     Binary
         & pal_to_use &=& Flag
