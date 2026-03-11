@@ -54,11 +54,6 @@ COLORBREWER:
   PRGn: PrGn
   YlOrRd: .
 
-# -- L -- #
-LIGHTBARTLEIN:
-  BlueDarkOrange18: BlueDarkOrange
-  BlueOrange12: BlueOrange
-
 # -- M -- #
 MATPLOTLIB:
   Afmhot: AfmHot

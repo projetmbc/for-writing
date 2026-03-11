@@ -2,6 +2,25 @@
 
 
 ==
+11  (2.0.1-beta.7)
+==
+
+-----
+:new:
+-----
+
+[[:doc:]]
+Here are the latest additions.
+
+    1) Manual: added informative appendix describing subpalettes.
+
+    1) \Categos: the ''BlueDarkOrange12'', ''BlueOrange8'', and ''BlueOrange10'' palettes have been added to the sequential \catego.
+
+
+// ---------- //
+
+
+==
 10  (2.0.1-beta.6)
 ==
 

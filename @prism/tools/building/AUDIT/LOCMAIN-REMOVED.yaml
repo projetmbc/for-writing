@@ -26,20 +26,11 @@
 ###
 
 # -- B -- #
-BlueDarkOrange12:
-  BlueDarkOrange: subset
+BlueDarkOrange:
+  BlueDarkOrange18: renamed
 
-BlueDarkOrange18:
-  BlueDarkOrange: renamed
-
-BlueOrange10:
-  BlueOrange: subset
-
-BlueOrange12:
-  BlueOrange: renamed
-
-BlueOrange8:
-  BlueOrange: subset
+BlueOrange:
+  BlueOrange12: renamed
 
 # -- C -- #
 Cubehelix:
@@ -53,9 +44,6 @@ Grays:
   Greys: superseded
 
 # -- T -- #
-Tab10:
-  Tab20: subset
-
 Tableau:
   Tableau: ignored
 

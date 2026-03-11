@@ -9,7 +9,7 @@
 }
     Matplotlib
         & TwilightShifted
-        & used_palette &=& Twilight
+        & pal_to_use &=& Twilight
     \\ && reverse &=& True
     \\ && shift &=& 256
 \end{longtblr}

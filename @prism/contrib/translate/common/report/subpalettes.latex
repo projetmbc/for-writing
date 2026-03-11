@@ -1,0 +1,37 @@
+% ------------------------------------------- %
+% -- AUTOMATICALLY GENERATED - DO NOT EDIT -- %
+% ------------------------------------------- %
+%
+\begin{longtblr}[caption = \palsunkept]{
+    colspec     = {@{} r | r@{\ }c@{\ }l},
+    baseline    = T,
+    column{2-4} = {cmd = \tdoccodein{text}},
+}
+    Binary
+        & pal_to_use &=& Flag
+    \\  & indices &=& 85, 93
+    \\\hline
+    BlueRedPLY
+        & pal_to_use &=& BRG
+    \\  & indices &=& 0, 1
+    \\\hline
+    BWR
+        & pal_to_use &=& Flag
+    \\  & indices &=& 73, 85, 97
+    \\\hline
+    Cool
+        & pal_to_use &=& ShiftRainbow
+    \\  & indices &=& 0, 2
+    \\\hline
+    Speed
+        & pal_to_use &=& Delta
+    \\  & range &=& from 256 to 511
+    \\\hline
+    Tab10
+        & pal_to_use &=& Tab20
+    \\  & range &=& from 0 to 18 with step 2
+    \\\hline
+    TableauLight
+        & pal_to_use &=& Tab20
+    \\  & range &=& from 1 to 19 with step 2
+\end{longtblr}

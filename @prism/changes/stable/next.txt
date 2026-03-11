@@ -27,6 +27,12 @@ Palette purification.
 [[:doc:]]
 Manual.
 
+    1) \Categos.
+
+        + The ''Broc'', ''GistRainbow'', and ''Tofino'' palettes have been removed from the cyclic \catego.
+
+        + The ''BlueDarkOrange12'', ''BlueOrange8'', and ''BlueOrange10'' palettes have been added to the sequential \catego.
+
     1) Added \params allowing for the reconstruction of palettes omitted due to being shifted variants of existing ones.
 
-    1) \Categos: the ''Broc'', ''GistRainbow'', and ''Tofino'' palettes have been removed from the cyclic \catego.
+    1) Added informative appendix describing subpalettes.

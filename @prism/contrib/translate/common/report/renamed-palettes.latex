@@ -47,10 +47,6 @@
       & PRGn & \Rightarrow & PrGn \\
       & YlOrRd & \Rightarrow & YlOrRdCBW \\
     \hline
-    Light and Bartlein
-      & BlueDarkOrange18 & \Rightarrow & BlueDarkOrange \\
-      & BlueOrange12 & \Rightarrow & BlueOrange \\
-    \hline
     Matplotlib
       & Afmhot & \Rightarrow & AfmHot \\
       & Brg & \Rightarrow & BRG \\

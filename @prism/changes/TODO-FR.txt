@@ -21,7 +21,8 @@ git cm "..."
 
 // ---------- //
 
-annexe qui indique les sous palettes à titre informatif car finalement on les garde
+
+loca vs main : nettoyer ce qui n'est plsu d'actualité !!!!
 
 
 // ---------- //

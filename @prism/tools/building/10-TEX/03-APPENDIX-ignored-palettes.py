@@ -134,6 +134,10 @@ TEX_TMPL_NEXT_ROW = TAB_1 + r"\\"
 TEX_TMPL_HRULE    = TAB_1 + r"\hline"
 
 
+TEX_TMPL_START_CODE = f'{TAB_2}& pal_to_use &=& {{name}}'
+TEX_TMPL_CODE_LINE  = rf'{TAB_1}\\ && {{var}} &=& {{val}}'
+
+
 # ----------------- #
 # -- FINAL NAMES -- #
 # ----------------- #
@@ -329,16 +333,22 @@ for src in sorted(PALS_UNKEPT_BY_TECHNO):
         _texcode += [
             f'{TAB_1}{src_name}',
             f'{TAB_2}& {unkept_name}',
-            f'{TAB_2}& used_palette &=& {name}',
+            TEX_TMPL_START_CODE.format(name = name),
         ]
 
         if status == PAL_STATUS.REVSHIFT_OF:
             _texcode.append(
-                rf'{TAB_1}\\ && reverse &=& True'
+                TEX_TMPL_CODE_LINE.format(
+                    var = 'reverse',
+                    val = 'True'
+                )
             )
 
         _texcode += [
-            rf'{TAB_1}\\ && shift &=& {data}',
+            TEX_TMPL_CODE_LINE.format(
+                var = 'shift',
+                val = data
+            ),
             rf'{TAB_1}\\\hline',
         ]
 

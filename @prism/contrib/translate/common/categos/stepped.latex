@@ -55,10 +55,10 @@
 \begin{minipage}{\linewidth}
     \begin{center}
         \smallskip
-        {\bfseries BlueOrange\vphantom{g}}
+        {\bfseries BlueOrange12\vphantom{g}}
 
         \smallskip
-        \includegraphics{../../../common/showcase/BlueOrange-spectrum.pdf}
+        \includegraphics{../../../common/showcase/BlueOrange12-spectrum.pdf}
     \end{center}
 \end{minipage}
 
