@@ -69,8 +69,9 @@ TEX_SUBPALSS_TABLE_HEADER = r"""
 TEX_TABLE_FOOTER = r"\end{longtblr}"
 
 
-TEX_TMPL_START_CODE = f'{TAB_2}& pal_to_use &=& {{name}}'
-TEX_TMPL_CODE_LINE  = rf'{TAB_1}\\  & {{var}} &=& {{val}}'
+TEX_TMPL_START_CODE     = f'{TAB_2}& pal_to_use &=& {{name}}'
+TEX_TMPL_CODE_LINE      = rf'{TAB_1}\\  & {{var}} &=& {{val}}'
+TEX_TMPL_EXTRA_VAL_LINE = rf'{TAB_1}\\  &&& {{val}}'
 
 
 # ----------- #
@@ -78,14 +79,14 @@ TEX_TMPL_CODE_LINE  = rf'{TAB_1}\\  & {{var}} &=& {{val}}'
 # ----------- #
 
 def indices_2_str(vals):
-    return ', '.join(map(str, vals))
+    return [', '.join(map(str, vals))]
 
 
 def range_2_str(vals):
-    params = f'from {vals[0]} to {vals[1]}'
+    params = [f'from {vals[0]} to {vals[1]}']
 
     if vals[2] != 1:
-        params += f' with step {vals[2]}'
+        params.append(f'with step {vals[2]}')
 
     return params
 
@@ -121,13 +122,21 @@ for subname in natsorted(
     for method, _params in data['extract']:
         params = TRANSFORMER[method](_params)
 
-        _texcode += [
-            TEX_TMPL_CODE_LINE.format(
-                var = method,
-                val = params
-            ),
-            rf'{TAB_1}\\\hline',
-        ]
+        for i, codeline in enumerate(params):
+            tmpl = (
+                TEX_TMPL_CODE_LINE
+                if i == 0 else
+                TEX_TMPL_EXTRA_VAL_LINE
+            )
+
+            _texcode.append(
+                tmpl.format(
+                    var = method,
+                    val = codeline
+                )
+            )
+
+        _texcode.append(rf'{TAB_1}\\\hline')
 
 _texcode.pop(-1)
 _texcode.append(TEX_TABLE_FOOTER)

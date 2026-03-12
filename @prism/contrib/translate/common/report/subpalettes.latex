@@ -29,9 +29,11 @@
     \\\hline
     Tab10
         & pal_to_use &=& Tab20
-    \\  & range &=& from 0 to 18 with step 2
+    \\  & range &=& from 0 to 18
+    \\  &&& with step 2
     \\\hline
     TableauLight
         & pal_to_use &=& Tab20
-    \\  & range &=& from 1 to 19 with step 2
+    \\  & range &=& from 1 to 19
+    \\  &&& with step 2
 \end{longtblr}
