@@ -32,7 +32,16 @@ TEX_MANUAL_TMPL = r"""
 \usepackage{{../../contrib/translate/{lang}/manual/preamble.cfg}}
 
 \makeatletter
-  \renewcommand{{\minted@cachedir}}{{_minted-xtra-cache}}
+
+\newcommand*\import@path@backup{{}}
+\AddToHook{{cmd/RobustInputMintedProcess/before}}{{%
+  \let\import@path@backup\import@path%
+  \def\import@path{{}}%
+}}
+\AddToHook{{cmd/RobustInputMintedProcess/after}}{{%
+  \let\import@path\import@path@backup%
+}}
+
 \makeatother
 
 \usepackage[subpreambles = true]{{standalone}}

@@ -21,8 +21,7 @@ git cm "..."
 
 // ---------- //
 
-
-loca vs main : nettoyer ce qui n'est plsu d'actualité !!!!
+local vs main : nettoyer ce qui n'est plsu d'actualité !!!!
 
 
 // ---------- //

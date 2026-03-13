@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-exit 1
-
 set -euo pipefail  # Exit on error, undefined variables, and pipe failures.
 
 
