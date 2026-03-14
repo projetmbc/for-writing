@@ -1,0 +1,90 @@
+{
+  "BWR": {
+    "extract": [
+      [
+        "indices",
+        [
+          73,
+          85,
+          97
+        ]
+      ]
+    ],
+    "palette": "Flag"
+  },
+  "Binary": {
+    "extract": [
+      [
+        "indices",
+        [
+          85,
+          93
+        ]
+      ]
+    ],
+    "palette": "Flag"
+  },
+  "BlueRedPLY": {
+    "extract": [
+      [
+        "indices",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "palette": "BRG"
+  },
+  "Cool": {
+    "extract": [
+      [
+        "indices",
+        [
+          0,
+          2
+        ]
+      ]
+    ],
+    "palette": "ShiftRainbow"
+  },
+  "Speed": {
+    "extract": [
+      [
+        "range",
+        [
+          256,
+          511,
+          1
+        ]
+      ]
+    ],
+    "palette": "Delta"
+  },
+  "Tab10": {
+    "extract": [
+      [
+        "range",
+        [
+          0,
+          18,
+          2
+        ]
+      ]
+    ],
+    "palette": "Tab20"
+  },
+  "TableauLight": {
+    "extract": [
+      [
+        "range",
+        [
+          1,
+          19,
+          2
+        ]
+      ]
+    ],
+    "palette": "Tab20"
+  }
+}
