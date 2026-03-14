@@ -1,0 +1,55 @@
+% !TEX TS-program = lualatex
+
+\documentclass{tutodoc}
+
+\usepackage{../../preamble.cfg}
+
+
+\begin{document}
+
+\small
+
+\begin{tdocfix}
+    \item Online demo: an auto-update script for the \tdoccodein{text}+HTML+, \tdoccodein{text}+CSS+ and \tdoccodein{text}+JavaScript+ codes was missing.
+\end{tdocfix}
+
+
+% -------------------- %
+
+
+\begin{tdocbreak}
+    \item Palette purification.
+    %
+    \begin{itemize}
+        \item Deprecated sublist exclusion due to the high overhead of manual reconstruction:
+        return of the palettes \tdoccodein{text}+BlueDarkOrange12+, \tdoccodein{text}+BlueOrange8+, and \tdoccodein{text}+BlueOrange10+.
+
+
+        \item No more visual identical palettes (semi-automated process):
+        \tdoccodein{text}+Cubehelix+ (\matplotlib) was removed, as it is visually identical to \tdoccodein{text}+Classic+ (\cubehelix).
+    \end{itemize}
+\end{tdocbreak}
+
+
+% -------------------- %
+
+
+\begin{tdocupdate}
+    \item Manual.
+    %
+    \begin{itemize}
+        \item The \tdoccodein{text}+Broc+, \tdoccodein{text}+GistRainbow+, and \tdoccodein{text}+Tofino+ palettes have been removed from the cyclic category.
+
+
+        \item The \tdoccodein{text}+BlueDarkOrange12+, \tdoccodein{text}+BlueOrange8+, and \tdoccodein{text}+BlueOrange10+ palettes have been added to the sequential category.
+
+
+        \item Added parameters allowing for the reconstruction of palettes omitted due to being shifted variants of existing ones.
+
+
+        \item Added informative appendix describing subpalettes.
+    \end{itemize}
+\end{tdocupdate}
+
+
+\end{document}

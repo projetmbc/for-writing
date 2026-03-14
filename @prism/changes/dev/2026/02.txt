@@ -10,7 +10,7 @@
 -----
 
 [[:doc:]]
-Online demo: an auto-update script for the \html, \ccs and \js codes was missing.
+Online demo: an auto-update script for the \html, \css and \js codes was missing.
 
 
 -------
