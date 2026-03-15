@@ -371,7 +371,7 @@ for lang in LANGS:
         "Christophe BAL"
     )
 
-    lastdate = lastdate.strftime("%-d %b %Y")
+    lastdate = lastdate.strftime("%-d %b. %Y")
 
     tex_code = tex_code.replace(
         "<<DATE-N-VERSION>>",

@@ -21,6 +21,29 @@ git cm "..."
 
 // ---------- //
 
+HTML viewer
+
+    --> vu que c'est un démo en ligne , rendre aussi possible  le teléchargement d'une palette dans les formats disponibles, au passage virer le copiage de plattes-hf à ce moment là pouer aller directement utiliser @prims/products/...
+
+    --> ajout d'un gradient angulaire pour tous
+
+    --> categos : les afficher et le srendres sélectionnables pour trier ce que l'on voit
+
+    --> mettre un mode colorblind si une biblio JS existe
+
+    https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
+
+    --> garder des PDFs autonomes anciens car c'est joli ! dans cecas, les PDFS doivent petre darkmode et colorblinder (cf le scirpt AI)
+
+    --> gestion des cartes géograhpiques
+
+    --> mettre aussi les transfos quand l'API le propose via le bein de cursuers...
+
+    --> ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
+
+
+// ---------- //
+
 local vs main : nettoyer ce qui n'est plsu d'actualité !!!!
 
 
@@ -29,34 +52,6 @@ local vs main : nettoyer ce qui n'est plsu d'actualité !!!!
 maj auto pour les palettes visuellement egal accepté via streamlit
 
 git cm "Need to automate the visual matching of palettes #..."
-
-
-// ---------- //
-
-prise ne compte d'une palette égale à une autre elle meme igniré car shifted
-
-
-// ---------- //
-
-HTML viewer
-
-    --> vu que c'est un démo en ligne , rendre aussi possible  le teléchargement d'une palette dans les formats disponibles, au passage virere le copiage de plattes-hf à ce moment là pouer aller directement utiliser @prims/products/...
-
-    --> ajout d'un gradient angulaire pour tous
-
-    --> categos : les afficher
-
-    --> mettre un mode colorblind si une biblio JS existe
-
-    https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
-
-    --> garder des PDFs autonomes anciens car c'est joli ! dans cecas, les PDFS doivent petre colorblinder (cf le scirpt AI)
-
-    --> gestion des cartes géograhpiques
-
-    --> mettre aussi les transfos quand l'API le propose
-
-    --> ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
 
 
 // ---------- //

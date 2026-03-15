@@ -10,7 +10,7 @@
 -----
 
 [[:doc:]]
-Change log updated.
+Manual: change log updated.
 
 
 // ---------- //
