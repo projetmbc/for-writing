@@ -30,18 +30,27 @@ while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 
-MANUAL_DIR = PROJ_DIR / "contrib" / "translate" / "en" / 'manual'
-PREAMBLE_TEX = MANUAL_DIR / "preamble.cfg.sty"
+MANUAL_DIR    = PROJ_DIR / "contrib" / "translate" / "en" / 'manual'
+PREAMBLE_TEX  = MANUAL_DIR / "preamble.cfg.sty"
 PREAMBLE_CODE = PREAMBLE_TEX.read_text()
 
+REPORT_DIR  = BUILD_TOOLS_DIR / TAG_REPORT
+APRISM_JSON = REPORT_DIR / "APRISM.json"
 
 # ------------------ #
 # -- EXTRACT DATA -- #
 # ------------------ #
 
-DATA = dict()
+logging.info(f"Dyna Var Update - 'Data extraction'")
 
+# Config. values.
+DATA = {
+    k: v
+    for k, v in YAML_CONFIGS['SEMANTIC'].items()
+    if type(v) == int
+}
 
+# General nb of pals.
 JSON_PALS_HF_DIR = PROJ_DIR / "products" / 'json' / 'palettes-hf'
 
 DATA['NB_OF_PALS'] = len(
@@ -49,14 +58,24 @@ DATA['NB_OF_PALS'] = len(
 )
 
 
-REPORT_DIR      = PROJ_DIR / "tools" / "building" / TAG_REPORT
+REPORT_DIR = PROJ_DIR / "tools" / "building" / TAG_REPORT
 
-DATA['NB_NEW_PALS'] = (
-    REPORT_DIR / "AUDIT-LOCMAIN-NAMES-NEW-NB.txt"
-).read_text().strip()
+DATA['NB_NEW_PALS'] = int(
+    (
+        REPORT_DIR / "AUDIT-LOCMAIN-NAMES-NEW-NB.txt"
+    ).read_text().strip()
+)
 
+# @prism vs resource nbs of pals.
 
-DATA.update(YAML_CONFIGS['SEMANTIC'])
+with APRISM_JSON.open('r') as f:
+    DATA['NB_APRISM_PALS'] = len(json_load(f))
+
+DATA['NB_RESRC_PALS'] = DATA['NB_OF_PALS'] - DATA['NB_APRISM_PALS']
+
+DATA['PERCENT_APRISM_PALS'] = round(
+    100 * DATA['NB_APRISM_PALS'] / DATA['NB_OF_PALS']
+)
 
 
 # -------------------- #
@@ -72,6 +91,21 @@ for ctxt, uppername, prefix in [
     (
         'nb of new palettes',
         'NB_NEW_PALS',
+        '',
+    ),
+    (
+        'nb of resource palettes',
+        'NB_RESRC_PALS',
+        '',
+    ),
+    (
+        'nb of @prism palettes',
+        'NB_APRISM_PALS',
+        '',
+    ),
+    (
+        '% of @prism palettes',
+        'PERCENT_APRISM_PALS',
         '',
     ),
     (

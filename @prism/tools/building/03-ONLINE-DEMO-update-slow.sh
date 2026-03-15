@@ -33,7 +33,7 @@ readonly INDEX_HTML="$PROJECT_ROOT/../docs/index.html"
 # -- VERSION NB IN INDEX FILE -- #
 # ------------------------------ #
 
-echo "+ Update version in 'index.html'"
+echo "    - Update version in 'index.html'"
 
 LAST_VERSION=$(cat "$VERSION_TXT" | tr -d '[:space:]')
 
@@ -44,7 +44,7 @@ sed -i "" "s|<span class=\"badge\">.*</span>|<span class=\"badge\">$LAST_VERSION
 # -- CSS SHOWCASE - MIRROR VERSION -- #
 # ----------------------------------- #
 
-echo '+ Build/update online demo for @prism'
+echo '    - Build/update online demo for @prism'
 
 mkdir -p "$ONLINE_DEMO_DIR"
 

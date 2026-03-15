@@ -2,7 +2,22 @@
 
 
 ==
-14  (2.0.1)
+15  (2.2.0-beta.1)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual: added palette counts for \thisproj and external resources.
+
+
+// ---------- //
+
+
+==
+14  (2.1.0)
 ==
 
 -----
@@ -17,7 +32,7 @@ Manual: change log updated.
 
 
 ==
-11  (2.0.1-beta.7)
+11  (2.1.0-beta.7)
 ==
 
 
@@ -37,7 +52,7 @@ Here are the latest additions.
 
 
 ==
-10  (2.0.1-beta.6)
+10  (2.1.0-beta.6)
 ==
 
 --------
@@ -52,7 +67,7 @@ Manual: added \params allowing for the reconstruction of palettes omitted due to
 
 
 ==
-08  (2.0.1-beta.5)
+08  (2.1.0-beta.5)
 ==
 
 -------
@@ -75,7 +90,7 @@ Palette purification: automated processing for finding sublists, shift, and reve
 
 
 ==
-06  (2.0.1-beta.4)
+06  (2.1.0-beta.4)
 ==
 
 --------
@@ -102,7 +117,7 @@ Optimized workflow: implemented resource code change detection to prevent unnece
 
 
 ==
-02  (2.0.1-beta.3)
+02  (2.1.0-beta.3)
 ==
 
 --------
@@ -117,7 +132,7 @@ Optimized workflow: implemented resource code change detection to prevent unnece
 
 
 ==
-01  (2.0.1-beta.2)
+01  (2.1.0-beta.2)
 ==
 
 --------

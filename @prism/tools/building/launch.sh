@@ -190,6 +190,7 @@ done < <(find . -type f -name "*.sh" ! -name "$THIS_NAME" -print0 | sort -z)
 
 # -- Nothing left to do -- #
 
+echo ''
 print_colored "$COLOR_EXEC" "[OK] All tools executed successfully."
 
 # -- Execution time -- #
