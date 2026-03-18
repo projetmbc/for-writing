@@ -23,28 +23,33 @@ git cm "..."
 
 HTML viewer
 
-    --> vu que c'est un démo en ligne , rendre aussi possible  le teléchargement d'une palette dans les formats disponibles, au passage virer le copiage de plattes-hf à ce moment là pouer aller directement utiliser @prims/products/...
+    --> ajout du teléchargement d'une palette dans les formats disponibles
 
-    --> ajout d'un gradient angulaire pour tous
+    --> virer le copiage de plattes-hf pour aller directement utiliser @prims/products/...
 
     --> categos : les afficher et le srendres sélectionnables pour trier ce que l'on voit
 
-    --> mettre un mode colorblind si une biblio JS existe
+    --> demos visuselles
 
-    https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
+            + ajout d'un gradient angulaire pour tous
 
-    --> garder des PDFs autonomes anciens car c'est joli ! dans cecas, les PDFS doivent petre darkmode et colorblinder (cf le scirpt AI)
+            + mettre un mode colorblind si une biblio JS existe
+              https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
 
-    --> gestion des cartes géograhpiques
+            + garder des PDFs autonomes anciens car c'est joli ! dans cecas, les PDFS doivent petre darkmode et colorblinder (cf le scirpt AI)
 
-    --> mettre aussi les transfos quand l'API le propose via le bein de cursuers...
+            + cartes géograhpiques
 
-    --> ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
+            + mettre les transfos en js qui devien un nouveau produit
+
+            + ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
 
 
 // ---------- //
 
-local vs main : nettoyer ce qui n'est plsu d'actualité !!!!
+nettoyage audit humain !!
+
+    --> local vs main : nettoyer ce qui n'est plsu d'actualité !!!!
 
 
 // ---------- //

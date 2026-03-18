@@ -17,25 +17,41 @@ from cbutils      import *
 # -- IMPORT CBUTILS - END -- #
 # -------------------------- #
 
-from matplotlib import colors
-
 
 # ------------------ #
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-PATTERN_CARTO_BLOCK = re.compile(
-    r"const\s+(\w+)\s*=\s*(\{.*?\});",
-    re.DOTALL
+PATTERN_ASY_COLORMAP = re.compile(
+    r"list_data\s+([A-Za-z0-9_]+)\s*=.*\{([^}]+)\}",
+    re.MULTILINE
+)
+
+PATTERN_ASY_RGB = re.compile(
+    r"rgb\s*\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)"
+)
+
+PATTERN_ASY_SEGPAL = re.compile(
+    r"seg_data\s+(\w+)\s*=\s*seg_data\s*\((.*?)\);",
+    re.S
+)
+
+PATTERN_ASY_TRIPLE = re.compile(
+    r"new triple\[\]\s*{(.*?)}",
+    re.S
+)
+
+PATTERN_ASY_CHANNEL = re.compile(
+    r"\(([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\)"
 )
 
 
-# ------------------ #
-# -- CONSTANTS #2 -- #
-# ------------------ #
+# --------------- #
+# -- CONSTANTS -- #
+# --------------- #
 
 THIS_RESRC = Path(__file__).stem
-THIS_RESRC = THIS_RESRC.split('-')[1]
+THIS_RESRC = THIS_RESRC.split('-')[0]
 THIS_RESRC = THIS_RESRC.upper()
 THIS_RESRC = globals()[f"TAG_{THIS_RESRC}"]
 
@@ -52,70 +68,29 @@ RESRC_PALS_JSON = THIS_RESRC.replace(' ', '-').upper()
 RESRC_PALS_JSON = REPORT_DIR / f"{RESRC_PALS_JSON}.json"
 
 
-_CARTO_CODE = RESRC_DIR / "carto.ts"
-CARTO_CODE  = _CARTO_CODE.read_text()
+_ASY_CODE = RESRC_DIR / "colormap.asy"
+ASY_CODE  = _ASY_CODE.read_text()
 
 
-# ----------- #
-# -- TOOLS -- #
-# ----------- #
-
-def extract_palette(pal_data: dict) -> [str, PaletteCols]:
-    catego = ', '.join(
-        sorted(pal_data['tags'])
-    )
-
-    del pal_data['tags']
-
-    _bigger_size = sorted(
-        pal_data,
-        key = lambda k: int(k)
-    )
-
-    bigger_size = _bigger_size[-1]
-
-    paldef = [
-        colors.to_rgb(c)
-        for c in pal_data[bigger_size]
-    ]
-
-    return catego, paldef
-
-
-# ---------------------- #
-# -- FROM CARTOCOLORS -- #
-# ---------------------- #
+# ------------------------------- #
+# -- FROM ASYMPTOTE COLOR MAPS -- #
+# ------------------------------- #
 
 logging.info(f"Source - Analyze '{THIS_RESRC}'")
 
 pals = dict()
 
-for match in PATTERN_CARTO_BLOCK.finditer(CARTO_CODE):
-    palname = match.group(1)
-
+for palname, body in PATTERN_ASY_COLORMAP.findall(ASY_CODE):
     stdname = get_stdname(palname)
 
-    tsdict = match.group(2)
-
-    pycode = re.sub(
-        r"(\s+)(\w+):",
-        r'\1"\2":',
-        tsdict
-    )
-
-    pycode = re.sub(
-        r",\s*([\]\}])",
-        r"\1",
-        pycode
-    )
-
-    pal_data = ast.literal_eval(pycode)
-
-    palcatego, paldef = extract_palette(pal_data)
+    paldef = [
+        list(map(float, rgb))
+        for rgb in PATTERN_ASY_RGB.findall(body)
+    ]
 
     pals[stdname] = resrc_std_palette(
         palname   = palname,
-        palcatego = palcatego,
+        palcatego = '',
         paldef    = paldef,
         precision = PAL_PRECISION + 2,
     )

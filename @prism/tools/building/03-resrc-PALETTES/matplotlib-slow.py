@@ -61,7 +61,7 @@ PATTERN_MPL_COLORMAP_DATA_NAME = re.compile(
 # ------------------ #
 
 THIS_RESRC = Path(__file__).stem
-THIS_RESRC = THIS_RESRC.split('-')[1]
+THIS_RESRC = THIS_RESRC.split('-')[0]
 THIS_RESRC = THIS_RESRC.upper()
 THIS_RESRC = globals()[f"TAG_{THIS_RESRC}"]
 
