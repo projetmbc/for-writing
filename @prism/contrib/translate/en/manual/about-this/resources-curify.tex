@@ -20,11 +20,12 @@ We retain only palettes that comply with the following rules.
     }
     between names and palettes.%
     \footnote{
-        This does not exclude visually similar palettes with distinct names, which are preserved to honor specific design intents. However, if you find palettes with strictly identical color sets, please report this as a bug.
+        This does not exclude visually similar palettes with distinct names, which are preserved to honor specific design intents.
+        However, if you find palettes with indistinguishable color sets, at least to the naked eye, please report this as a bug.
     }
 
     \item \textbf{No basic derived versions.}
-    \thisproj\ omit palettes that can be reconstructed by shifting%
+    \thisproj\ omits palettes that can be reconstructed by shifting%
     \footnote{
         \colorcet\ offers shifted palettes whose names use an integer suffix.
     }
@@ -33,6 +34,7 @@ We retain only palettes that comply with the following rules.
         Most \matplotlib\ colormaps include a reversed version suffixed with \tdoccodein{py}{_r}, possibly for performance reasons.
     }
     existing ones, because most \thisproj\ implementations offer an API to handle these transformations dynamically.
+
 
     \item \textbf{Reasonable palette sizes.} 
     Palettes exceeding \palMaxSize\ colors are ignored%

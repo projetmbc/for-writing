@@ -178,19 +178,16 @@ The following example demonstrates the `\palCreateFromRGB` and `\palCreateFromNa
 
 ~~~latex
 \usepackage{palapi}
-
 \usepackage[svgnames]{xcolor}
 
 \palCreateFromRGB{MyRGBPal}{
   {0.0, 0.0, 0.0},
-  {0.4, 0.0, 0.2},
   {0.8, 0.2, 0.0},
 }
 
 \palCreateFromNames{MyNameUsePal}{
   YellowGreen,
   green!60!black,
-  LimeGreen!80,
 }
 ~~~
 > ***NOTE.*** *All built-in palettes are created using the `\palCreateFromRGB` macro.*
@@ -205,7 +202,6 @@ The following example demonstrates the flexibility offered by these low-level co
 
 ~~~latex
 \usepackage{palapi}
-
 \usepackage[svgnames]{xcolor}
 
 \palNew{LowLevelPal}
