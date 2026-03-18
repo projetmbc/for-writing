@@ -14,34 +14,31 @@ We retain only palettes that comply with the following rules.
 %
 \begin{itemize}
     \item \textbf{No duplicates.}
-    Unlike \matplotlib,%
+    \thisproj\ maintains a one-to-one mapping%
     \footnote{
         Some \matplotlib\ palettes are duplicated, likely for historical reasons.
     }
-    \thisproj\ maintains a one-to-one mapping between names and palettes.%
+    between names and palettes.%
     \footnote{
         This does not exclude visually similar palettes with distinct names, which are preserved to honor specific design intents. However, if you find palettes with strictly identical color sets, please report this as a bug.
     }
 
-    \item \textbf{No reversed versions.}
-    Unlike \matplotlib,%
+    \item \textbf{No basic derived versions.}
+    \thisproj\ omit palettes that can be reconstructed by shifting%
+    \footnote{
+        \colorcet\ offers shifted palettes whose names use an integer suffix.
+    }
+    and/or reversing%
     \footnote{
         Most \matplotlib\ colormaps include a reversed version suffixed with \tdoccodein{py}{_r}, possibly for performance reasons.
     }
-    \thisproj\ never includes reversed palettes as static data.
-
-    \item \textbf{No shifted versions.}
-    Unlike \colorcet,%
-    \footnote{
-        These palettes often use an integer suffix directly following the original name.
-    }
-    \thisproj\ excludes shifted palettes from its core collection.
-
-    \item \textbf{No basic derived versions.}
-    \thisproj\ omit palettes that can be reconstructed by shifting and reversing existing ones. Most implementations offer an API to handle these transformations dynamically.
+    existing ones, because most \thisproj\ implementations offer an API to handle these transformations dynamically.
 
     \item \textbf{Reasonable palette sizes.} 
-    Palettes exceeding \palMaxSize\ colors are ignored (e.g., \cmasher\ offers the 'neutral' palette, which contains 2560 colors). 
+    Palettes exceeding \palMaxSize\ colors are ignored%
+    \footnote{
+        \cmasher\ offers the \tdoccodein{text}+neutral+ palette, which contains 2560 colors
+    }. 
     This prevents compatibility issues with certain technologies, such as \LaTeX, and provides a level of precision far beyond the needs of us mere mortals — or at least, those of us who aren't astronomers.
 \end{itemize}
 

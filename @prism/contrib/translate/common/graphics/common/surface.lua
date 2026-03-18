@@ -4,7 +4,7 @@ function drawsurf(PAL)
   local g = graph3d:new{
     window3d = {0, 5, 0, 10, 0, 11},
     adjust2d = true,
-    size     = {14, 12, 0},
+    size     = {12, 8.5, 0},
     bbox     = false,
     viewdir  = {220, 60},
     margin   = {0, 0, 0, 0}

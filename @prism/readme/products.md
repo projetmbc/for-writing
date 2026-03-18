@@ -5,7 +5,7 @@ All implementations are located in the `products` folder. Each implementation pr
 
   * Modular palette formats (one file per palette).
 
-  * Palette definitions in both high-fidelity (original size) and small (currently 40 colors) size.
+  * Palette definitions in both high-fidelity (original size) and small (currently 40 colors at most) sizes.
 
 
 Most implementations also feature the API explained below.

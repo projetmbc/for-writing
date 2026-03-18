@@ -2,6 +2,21 @@
 
 
 ==
+18  (2.2.0-beta.3)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual: minor important updates.
+
+
+// ---------- //
+
+
+==
 15  (2.2.0-beta.1)
 ==
 
