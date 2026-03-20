@@ -20,14 +20,16 @@ Each palette color is defined as an individual variable named according to the p
 Each palette color variable is defined as an `RGB` value using percentage notation.
 For example, the file `palettes-hf/Accent.css` looks like the following partial code.
 
+<!-- CSS PALETTE FIRST LINES. AUTO - START -->
 ~~~css
 :root {
   --palAccent-1: rgb(49.803922% 78.823529% 49.803922%);
   --palAccent-2: rgb(74.509804% 68.235294% 83.137255%);
   --palAccent-3: rgb(99.215686% 75.294118% 52.54902%);
-  /* Other RBG colors.*/
+  ...
 }
 ~~~
+<!-- CSS PALETTE FIRST LINES. AUTO - END -->
 
 
 The following example illustrates how to generate gradient variables via selective color extraction and custom reordering, while using a standalone color for warning text.

@@ -32,15 +32,7 @@ from natsort import (
 # -- CONSTANTS #1 -- #
 # ------------------ #
 
-MAX_LINES_SHOWN = 4
-
-TMPL_TAG_JSON_BEGIN = "<!-- JSON PALETTE FIRST LINES. AUTO - {} -->"
-
-TAG_JSON_BEGIN_START = TMPL_TAG_JSON_BEGIN.format("START")
-TAG_JSON_BEGIN_END   = TMPL_TAG_JSON_BEGIN.format("END")
-
-
-PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
+MAX_LINES_SHOWN = 3
 
 
 # ------------------ #
@@ -53,15 +45,15 @@ while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 
-JSON_PALS_HF_DIR = PROJ_DIR / "products" / 'json' / 'palettes-hf'
-
-
-MD_PROD_FILE = PROJ_DIR / "readme" / "products.md"
+PRODUCTS_DIR     = PROJ_DIR / "products"
+JSON_PALS_HF_DIR = PRODUCTS_DIR / 'json' / 'palettes-hf'
 
 
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
+
+PATTERN_JSON_LIST = re.compile(r'\[\s*\n\s*([-\d.,\s]+)\s*\n\s*\]')
 
 def compact_nblists(json_code: str) -> str:
     def myreplace(match: re.Match) -> str:
@@ -73,45 +65,78 @@ def compact_nblists(json_code: str) -> str:
     return PATTERN_JSON_LIST.sub(myreplace, json_code)
 
 
+def update_mdfile(mdfile, techno, sample):
+    tmpl_tag = f"<!-- {techno.upper()} PALETTE SAMPLE - AUTO - {{}} -->"
+
+    tag_start = tmpl_tag.format("START")
+    tag_end   = tmpl_tag.format("END")
+
+    content = mdfile.read_text()
+
+    for tag in [tag_start, tag_end]:
+        if content.count(tag) != 1:
+            raise ValueError(
+                f"use the following special comment only once:\n{tag}"
+                f"\nSee file:\n{mdfile}"
+            )
+
+    before, _ , after = content.partition(f"\n{tag_start}")
+
+    _ , _ , after = after.partition(f"{tag_end}\n")
+
+    content = f"""{before.strip()}
+
+{tag_start}
+~~~{techno}
+{sample}
+~~~
+{tag_end}
+{after.rstrip()}
+""".rstrip() + '\n'
+
+    mdfile.write_text(content)
+
+
 # --------------------- #
 # -- GET 1ST PALETTE -- #
 # --------------------- #
 
-logging.info("Get '1st palette'")
+logging.info("Pal sample - Get '1st palette'")
 
 for jsonfile in natsorted(
     JSON_PALS_HF_DIR.glob('*.json'),
     alg = ns.IGNORECASE
 ):
     with jsonfile.open() as f:
-        first_jsonfile = jsonfile.stem
-        first_pal      = json_load(f)
+        palname_1st  = jsonfile.stem
+        json_pal_1st = json_load(f)
 
     break
 
 
-# --------------- #
-# -- MD UPDATE -- #
-# --------------- #
+# ----------------- #
+# -- JSON SAMPLE -- #
+# ----------------- #
+
+mdfile = PROJ_DIR / "readme" / "products.md"
 
 logging.info(
     msg_creation_update(
-        context = f"'{MD_PROD_FILE.relative_to(PROJ_DIR)}' (auto JSON begin)",
+        context = f"Pal sample - 'JSON'",
         upper   = False,
     )
 )
 
-# -- JSON CODE BEGIN -- #
 
-if len(first_pal) > MAX_LINES_SHOWN:
-    first_pal = first_pal[:MAX_LINES_SHOWN-1]
-    first_pal.append('...')
+if len(json_pal_1st) > MAX_LINES_SHOWN:
+    json_pal_1st = json_pal_1st[:MAX_LINES_SHOWN-1]
+    json_pal_1st.append('...')
 
 
 indent = 2
 
 json_code = json_dumps(
-    obj       = first_pal,
+    obj       = json_pal_1st,
     indent    = indent,
     sort_keys = True,
 )
@@ -127,32 +152,23 @@ json_code = json_code.replace(
 
 json_code = json_code.replace('"..."', '...')
 
-# -- FINAL CONTENT -- #
-
-content = MD_PROD_FILE.read_text()
-
-for tag in [
-    TAG_JSON_BEGIN_START,
-    TAG_JSON_BEGIN_END,
-]:
-    if content.count(tag) != 1:
-        raise ValueError(
-            f"use the following special comment only once:\n{tag}"
-        )
-
-before, _ , after = content.partition(f"\n{TAG_JSON_BEGIN_START}")
-
-_ , _ , after = after.partition(f"{TAG_JSON_BEGIN_END}\n")
+update_mdfile(
+    mdfile = mdfile,
+    techno = 'json',
+    sample = json_code,
+)
 
 
-content = f"""{before.strip()}
+# ----------------- #
+# -- JSON SAMPLE -- #
+# ----------------- #
 
-{TAG_JSON_BEGIN_START}
-~~~json
-{json_code}
-~~~
-{TAG_JSON_BEGIN_END}
-{after.rstrip()}
-""".rstrip() + '\n'
 
-MD_PROD_FILE.write_text(content)
+
+
+
+
+
+
+
+exit(1)

@@ -2,7 +2,22 @@
 
 
 ==
-18  (2.2.0-beta.3)
+19  (2.2.0-beta.3)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]] ??????
+\Readmes: the first palette's code samples are auto-generated.
+
+
+// ---------- //
+
+
+==
+18  (2.2.0-beta.2)
 ==
 
 --------

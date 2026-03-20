@@ -27,13 +27,12 @@ Most implementations also feature the API explained below.
 
 The `JSON` product enables seamless `@prism` palette integration for unsupported programming languages. As shown below, palettes are defined using nested arrays of three-component floats.
 
-<!-- JSON PALETTE FIRST LINES. AUTO - START -->
+<!-- JSON PALETTE SAMPLE - AUTO - START -->
 ~~~json
 [
   [0.4980392157, 0.7882352941, 0.4980392157],
   [0.7450980392, 0.6823529412, 0.831372549],
-  [0.9921568627, 0.7529411765, 0.5254901961],
   ...
 ]
 ~~~
-<!-- JSON PALETTE FIRST LINES. AUTO - END -->
+<!-- JSON PALETTE SAMPLE - AUTO - END -->
