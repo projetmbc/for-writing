@@ -23,16 +23,15 @@ The `Lua` palette variables are named using the prefix `pal`.
 They are arrays of arrays of three floats (making it straightforward to use a color from a palette).
 For example, the file `palettes-hf/Accent.lua` looks like the following partial code.
 
-<!-- LUA PALETTE SAMPLE -  AUTO - START -->
+<!-- LUA PALETTE SAMPLE - AUTO - START -->
 ~~~lua
 palAccent = {
     {0.4980392157, 0.7882352941, 0.4980392157},
     {0.7450980392, 0.6823529412, 0.831372549},
-    {0.9921568627, 0.7529411765, 0.5254901961},
     ...
 }
 ~~~
-<!-- LUA PALETTE FIRST LINES. AUTO - END -->
+<!-- LUA PALETTE SAMPLE - AUTO - END -->
 
 
 <!-------------------->

@@ -34,6 +34,8 @@ from natsort import (
 
 MAX_LINES_SHOWN = 3
 
+PAL_KEPT = 'Accent'
+
 
 # ------------------ #
 # -- CONSTANTS #2 -- #
@@ -47,6 +49,9 @@ while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
 
 PRODUCTS_DIR     = PROJ_DIR / "products"
 JSON_PALS_HF_DIR = PRODUCTS_DIR / 'json' / 'palettes-hf'
+
+
+CONTRIB_PROD_DIR = PROJ_DIR / "contrib" / "products"
 
 
 # ----------- #
@@ -75,10 +80,12 @@ def update_mdfile(mdfile, techno, sample):
 
     for tag in [tag_start, tag_end]:
         if content.count(tag) != 1:
-            raise ValueError(
-                f"use the following special comment only once:\n{tag}"
-                f"\nSee file:\n{mdfile}"
+            logging.warning(
+                f"No special comment '{tag}'. "
+                f"If it is a bug, see:\n{mdfile}"
             )
+
+            return
 
     before, _ , after = content.partition(f"\n{tag_start}")
 
@@ -97,46 +104,35 @@ def update_mdfile(mdfile, techno, sample):
     mdfile.write_text(content)
 
 
-# --------------------- #
-# -- GET 1ST PALETTE -- #
-# --------------------- #
-
-logging.info("Pal sample - Get '1st palette'")
-
-for jsonfile in natsorted(
-    JSON_PALS_HF_DIR.glob('*.json'),
-    alg = ns.IGNORECASE
-):
-    with jsonfile.open() as f:
-        palname_1st  = jsonfile.stem
-        json_pal_1st = json_load(f)
-
-    break
-
-
 # ----------------- #
 # -- JSON SAMPLE -- #
 # ----------------- #
 
 mdfile = PROJ_DIR / "readme" / "products.md"
 
-logging.info(
-    msg_creation_update(
-        context = f"Pal sample - 'JSON'",
-        upper   = False,
-    )
-)
+logging.info(f"Pal samples - 'json'")
+
+for jsonfile in natsorted(
+    JSON_PALS_HF_DIR.glob('*.json'),
+    alg = ns.IGNORECASE
+):
+    with jsonfile.open() as f:
+        if jsonfile.stem != PAL_KEPT:
+            continue
+
+        json_pal = json_load(f)
+
+    break
 
 
-if len(json_pal_1st) > MAX_LINES_SHOWN:
-    json_pal_1st = json_pal_1st[:MAX_LINES_SHOWN-1]
-    json_pal_1st.append('...')
+json_pal = json_pal[:MAX_LINES_SHOWN-1]
+json_pal.append('...')
 
 
 indent = 2
 
 json_code = json_dumps(
-    obj       = json_pal_1st,
+    obj       = json_pal,
     indent    = indent,
     sort_keys = True,
 )
@@ -159,16 +155,70 @@ update_mdfile(
 )
 
 
-# ----------------- #
-# -- JSON SAMPLE -- #
-# ----------------- #
+# -------------------- #
+# -- TECHNO SAMPLES -- #
+# -------------------- #
 
+sample_def = json_pal[:-1]
+sample_def.append([-123456789, -123456789, -123456789])
 
+for techfolder in PRODUCTS_DIR.glob('*'):
+    techno = techfolder.name
 
+    if (
+        not techfolder.is_dir()
+        or
+        techno == 'json'
+    ):
+        continue
 
+    logging.info(f"Pal samples - '{techno}'")
 
+    logging.info(f"({techno}) Import 'extend.py'")
 
+    contribfolder = CONTRIB_PROD_DIR / techno
 
+    extend = import_from_path(
+        module_name = "extend",
+        file_path   = contribfolder / "extend.py"
+    )
 
+    logging.info(f"({techno}) Build sample")
 
-exit(1)
+    paltransfo = extend.paltransfo
+
+    _pal_code = []
+
+    if paltransfo.header:
+        _pal_code.append(paltransfo.header)
+
+    _pal_code.append(
+        paltransfo.get_palcode(
+            name    = PAL_KEPT,
+            palette = sample_def
+        )
+    )
+
+    if paltransfo.footer:
+        _pal_code.append(paltransfo.footer)
+
+    pal_code  = '\n'.join(_pal_code)
+    _pal_code = pal_code.split('\n')
+
+    for i, line in enumerate(_pal_code):
+        if '-123456789' in line:
+            nb_left_spaces = len(line) - len(line.lstrip())
+
+            _pal_code[i] = ' '*nb_left_spaces + '...'
+
+    pal_code = '\n'.join(_pal_code)
+
+    logging.info(f"({techno}) Update MD file sample")
+
+    mdfile = CONTRIB_PROD_DIR / techno / "readme" / "how-to-use.md"
+
+    update_mdfile(
+        mdfile = mdfile,
+        techno = techno,
+        sample = pal_code,
+    )

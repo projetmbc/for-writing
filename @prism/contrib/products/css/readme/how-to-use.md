@@ -16,10 +16,9 @@ For example, the file `palettes-hf/Accent.css` looks like the following partial 
 <!-- CSS PALETTE SAMPLE - AUTO - START -->
 ~~~css
 :root {
-  --palAccent-1: rgb(49.803922% 78.823529% 49.803922%);
-  --palAccent-2: rgb(74.509804% 68.235294% 83.137255%);
-  --palAccent-3: rgb(99.215686% 75.294118% 52.54902%);
-  ...
+    --palAccent-1: rgb(49.803922% 78.823529% 49.803922%);
+    --palAccent-2: rgb(74.509804% 68.235294% 83.137255%);
+    ...
 }
 ~~~
 <!-- CSS PALETTE SAMPLE - AUTO - END -->
@@ -33,7 +32,6 @@ The following example illustrates how to generate gradient variables via selecti
     90deg,
     var(--palAccent-6),
     var(--palAccent-3),
-    var(--palAccent-8),
     var(--palAccent-1)
   );
 }
@@ -43,6 +41,6 @@ The following example illustrates how to generate gradient variables via selecti
 }
 
 .warning-text {
-  color: var(--palAccent-3);
+  color: var(--palAccent-5);
 }
 ~~~
