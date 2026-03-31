@@ -1,1 +1,6 @@
-TODO
+--------
+:update:
+--------
+
+[[:doc:]]
+\Readmes: add a palette sample for the \latex prod.

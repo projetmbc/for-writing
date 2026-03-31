@@ -17,8 +17,6 @@ git a
 git cm "..."
 
 
-
-
 // ---------- //
 
 HTML viewer

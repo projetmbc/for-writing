@@ -45,6 +45,17 @@ Representation of the first ten palette colors.
 ~~~
 #### Creating palettes from scratch
 
+Internally, palettes are defined using an array-of-three-floats syntax.
+For example, the file `palettes-hf/Accent.sty` looks like the following partial code.
+
+~~~latex
+\palCreateFromRGB{Accent}{
+  {0.4980392157, 0.7882352941, 0.4980392157},
+  {0.7450980392, 0.6823529412, 0.831372549},
+  ...
+}
+~~~
+
 For creating new palettes manually, the following high-level commands are available.
 
 1. `\palCreateFromNames` works with a comma separated list of named colors, while `\palCreateFromRGB` creates a palette by entering it as an array-like variable of arrays of three floats.
