@@ -55,7 +55,7 @@ inlinecode:
 -->
 
 Internally, palettes are defined using an array-of-three-floats syntax.
-For example, the file `palettes-hf/Accent.sty` looks like the following partial code.
+For instance, the following snippet is an excerpt from `palettes-hf/Accent.sty`.
 
 <!-- LATEX PALETTE SAMPLE - AUTO - START -->
 ~~~latex

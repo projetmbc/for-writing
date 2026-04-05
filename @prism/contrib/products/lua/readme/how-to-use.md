@@ -11,7 +11,7 @@ inlinecode:
 
 The `Lua` palette variables are named using the prefix `pal`.
 They are arrays of arrays of three floats (making it straightforward to use a color from a palette).
-For example, the file `palettes-hf/Accent.lua` looks like the following partial code.
+For instance, the following snippet is an excerpt from `palettes-hf/Accent.lua`.
 
 <!-- LUA PALETTE SAMPLE - AUTO - START -->
 ~~~lua

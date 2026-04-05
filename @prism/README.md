@@ -98,7 +98,7 @@ The `JSON` product enables seamless `@prism` palette integration for unsupported
 
 Each palette color is defined as an individual variable named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging.
 Each palette color variable is defined as an `RGB` value using percentage notation.
-For example, the file `palettes-hf/Accent.css` looks like the following partial code.
+For instance, the following snippet is an excerpt from `palettes-hf/Accent.css`.
 
 ~~~css
 :root {
@@ -167,7 +167,7 @@ Representation of the first ten palette colors.
 #### Creating palettes from scratch <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
 Internally, palettes are defined using an array-of-three-floats syntax.
-For example, the file `palettes-hf/Accent.sty` looks like the following partial code.
+For instance, the following snippet is an excerpt from `palettes-hf/Accent.sty`.
 
 ~~~latex
 \palCreateFromRGB{Accent}{
@@ -253,7 +253,7 @@ The internally stored definition of a palette named `MyPal`, for example, is `\g
 
 The `Lua` palette variables are named using the prefix `pal`.
 They are arrays of arrays of three floats (making it straightforward to use a color from a palette).
-For example, the file `palettes-hf/Accent.lua` looks like the following partial code.
+For instance, the following snippet is an excerpt from `palettes-hf/Accent.lua`.
 
 ~~~lua
 palAccent = {

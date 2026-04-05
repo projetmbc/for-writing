@@ -16,7 +16,7 @@ Use a CSS palette
 
 Each palette color is defined as an individual variable named according to the pattern `--pal<name>-<nb>`, where `<name>` is the standard palette name and `<nb>` is the desired index ranging.
 Each palette color variable is defined as an `RGB` value using percentage notation.
-For example, the file `palettes-hf/Accent.css` looks like the following partial code.
+For instance, the following snippet is an excerpt from `palettes-hf/Accent.css`.
 
 ~~~css
 :root {

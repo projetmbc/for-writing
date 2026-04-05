@@ -6,12 +6,12 @@
     colspec  = {r@{\,}l|r@{\,}l},
     baseline = T
 }
-    \asymptote: & 2026-03-30 & \colorbrewer: & 2021-05-03
+    \asymptote: & 2026-04-05 & \colorbrewer: & 2021-05-03
     \\
-    \carbonplan: & 2024-01-10 & \matplotlib: & 2026-03-31
+    \carbonplan: & 2024-01-10 & \matplotlib: & 2026-04-04
     \\
     \cartocolors: & 2024-09-25 & \palettable: & 2025-08-23
     \\
-    \cmasher: & 2026-01-05 & \scicolmaps: & 2023-10-05
+    \cmasher: & 2026-04-02 & \scicolmaps: & 2023-10-05
     \\
 \end{tblr}
