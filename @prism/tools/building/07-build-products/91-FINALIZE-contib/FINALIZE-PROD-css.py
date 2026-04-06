@@ -53,8 +53,9 @@ JS_PAL_CATEGOS_FILE = JS_CORE_DIR / "palcategos.js"
 
 def normalize_jscode(js_precode):
     for old, new in [
-        ("'", '"'),
         (', ', ',\n  '),
+        ("',\n  ", "', "),
+        ("'", '"'),
         ('{"', '{\n  "'),
         ("};", '\n};\n'),
     ]:
@@ -130,7 +131,7 @@ for prodname in natsorted(
 
 for name, data, jsfile in [
     (
-        'palcategories',
+        'palcategos',
         CATEGOS,
         JS_PAL_CATEGOS_FILE,
     ),

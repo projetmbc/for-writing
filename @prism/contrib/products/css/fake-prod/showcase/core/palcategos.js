@@ -2,11 +2,11 @@
 Just a fake list just for tests...
 
 warning::
-    A script must build the real list of all palette names
-    and sizes for the final product.
+    A script must build the real list of all palette categories
+    for the final product.
 ***/
 
-const palcategories = {
+const palcategos = {
   "Acton"   : ["dark", "sequential"],
   "Aquatic1": ["light", "sequential"],
   "Flag"    : ["qualitative"]

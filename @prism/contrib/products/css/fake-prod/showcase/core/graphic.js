@@ -6,15 +6,15 @@ function getActiveCategories() {
 }
 
 function isVisible(paletteName) {
-  // Si palcategories n'est pas chargé, tout est visible
-  if (typeof palcategories === 'undefined') return true;
+  // Si palcategos n'est pas chargé, tout est visible
+  if (typeof palcategos === 'undefined') return true;
 
   const active = getActiveCategories();
 
   // Aucun filtre coché → rien de visible
   if (active.length === 0) return false;
 
-  const cats = palcategories[paletteName] ?? [];
+  const cats = palcategos[paletteName] ?? [];
 
   // La palette est visible si elle appartient à au moins une catégorie cochée
   return cats.some(c => active.includes(c));
@@ -26,14 +26,14 @@ function buildCategoryBar() {
   const bar = document.getElementById('categoryBar');
   if (!bar) return;
 
-  if (typeof palcategories === 'undefined') {
+  if (typeof palcategos === 'undefined') {
     bar.style.display = 'none';
     return;
   }
 
   // Collecter toutes les catégories présentes dans le dictionnaire
   const allCats = [
-    ...new Set(Object.values(palcategories).flat())
+    ...new Set(Object.values(palcategos).flat())
   ].sort();
 
   // Bouton "Tout"
