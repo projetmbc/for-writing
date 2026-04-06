@@ -38,6 +38,7 @@ INSERT INTO hash (
 --
     is_kept,
     catego,
+    size,
 --
     hash_normal,
     hash_reverse
@@ -197,6 +198,7 @@ def dbadd_hashpals(
     source      : str,
     is_kept     : bool,
     catego      : str,
+    size        : int,
     hash_normal : str,
     hash_reverse: str
 ) -> None:
@@ -212,7 +214,7 @@ def dbadd_hashpals(
             ),
             (
                 name, source,
-                is_kept, catego,
+                is_kept, catego, size,
                 hash_normal, hash_reverse
             )
         )
@@ -258,8 +260,9 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
         for name, infos in data.items():
             is_kept = 1
             paldef  = infos[TAG_RGB_COLS]
+            size    = len(paldef)
 
-            if len(paldef) > MAX_SIZE:
+            if size > MAX_SIZE:
                 is_kept = 0
 
                 logging.warning(
@@ -289,6 +292,7 @@ with sqlite3.connect(SQLITE_DB_FILE) as conn:
                 source       = src,
                 is_kept      = is_kept,
                 catego       = std_catego,
+                size         = size,
                 hash_normal  = hash_normal,
                 hash_reverse = hash_reverse
             )

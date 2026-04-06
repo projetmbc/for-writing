@@ -4,7 +4,6 @@
   --bg-container: #ffffff;
   --text-main: #1e293b;
   --border-color: #e2e8f0;
-  /* Fond standard : gris très clair */
   --svg-bg: #f8fafc;
   --bar-bg: #f8fafc;
   --outline-color: rgba(0, 0, 0, 0.15);
@@ -15,7 +14,6 @@ body.dark-mode {
   --bg-container: #1e293b;
   --text-main: #f1f5f9;
   --border-color: #334155;
-  /* Fond sombre : gris profond presque noir */
   --svg-bg: #0b0f1a;
   --bar-bg: #0b0f1a;
   --outline-color: rgba(255, 255, 255, 0.15);
@@ -87,6 +85,80 @@ body {
   cursor: default;
 }
 
+/* --- BARRE DE CATEGORIES --- */
+.category-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--bg-container);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cat-all-btn {
+  padding: 2px 9px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-container);
+  color: var(--text-main);
+  transition: 0.15s;
+}
+
+.cat-all-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cat-sep {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background: var(--border-color);
+  margin: 0 2px;
+}
+
+.cat-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: normal;
+  letter-spacing: normal;
+  text-transform: none;
+  opacity: 1;
+  cursor: pointer;
+  color: var(--text-main);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  transition: 0.15s;
+  user-select: none;
+}
+
+.cat-label:hover {
+  border-color: var(--accent);
+}
+
+.cat-label input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+}
+
+/* Message quand aucune palette ne correspond */
+.scroll-empty {
+  font-size: 0.75rem;
+  color: var(--text-main);
+  opacity: 0.45;
+  padding: 8px;
+  font-style: italic;
+}
+
 .palette-scroll-zone {
   height: 130px;
   overflow-y: auto;
@@ -133,20 +205,6 @@ body {
 }
 
 /* --- RENDU --- */
-#result-area {
-  margin-top: 5px;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .spectrum-bar {
   height: 34px;
   width: 100%;
@@ -217,6 +275,29 @@ h1 {
   background: var(--bg-container);
   color: var(--text-main);
   transition: 0.2s;
+}
+
+.download-bar {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-download {
+  padding: 3px 9px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-container);
+  color: var(--text-main);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn-download:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .btn-tool:hover {

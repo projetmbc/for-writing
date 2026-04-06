@@ -19,13 +19,37 @@ git cm "..."
 
 // ---------- //
 
+JSON products
+
+File created by the `@prism` project which is developed at
+
+==>
+
+All files created by the `@prism` project which is developed at
+
+
+// ---------- //
+
 HTML viewer
 
-    --> ajout du teléchargement d'une palette dans les formats disponibles
+    --> [OK] ajout du teléchargement d'une palette dans les formats disponibles : ok bien que rudimentaire
+        mais
+        besoin d'ajouter ref
 
-    --> virer le copiage de plattes-hf pour aller directement utiliser @prims/products/...
+    --> [OK] virer le copiage de plattes-hf pour aller directement utiliser @prims/products/...
 
-    --> categos : les afficher et le srendres sélectionnables pour trier ce que l'on voit
+    dans graphics.js
+
+function selectPalette(nom, taille, btnElement = null) {
+  const cssPath = `../palettes-hf/${nom}.css`;
+
+===>
+
+function selectPalette(nom, taille, btnElement = null) {
+  const cssPath = `../../../@prism/products/css/palettes-hf/${nom}.css`;
+
+    --> [OK] categos : les afficher et le srendres sélectionnables pour trier ce que l'on voit
+
 
     --> demos visuselles
 
@@ -34,11 +58,11 @@ HTML viewer
             + mettre un mode colorblind si une biblio JS existe
               https://colorspacious.readthedocs.io/en/latest/tutorial.html#simulating-colorblindness
 
-            + garder des PDFs autonomes anciens car c'est joli ! dans cecas, les PDFS doivent petre darkmode et colorblinder (cf le scirpt AI)
-
             + cartes géograhpiques
 
             + mettre les transfos en js qui devien un nouveau produit
+
+            + garder des PDFs autonomes anciens car c'est joli ! dans cecas, les PDFS doivent petre darkmode et colorblinder (cf le scirpt AI)
 
             + ajouter des graphiques fixes faits vace matplotlib carte ocean, ou luadraw 2_3D ou surface ...
 

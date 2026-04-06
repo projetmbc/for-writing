@@ -51,4 +51,6 @@ mkdir -p "$ONLINE_DEMO_DIR"
 # --delete: remove files in destination that are no longer present in source
 # -a: archive mode (preserves permissions, ownership, and timestamps)
 # -q: quiet mode (suppresses non-error output)
-rsync -aq --delete --include='/palettes-hf/***' --include='/showcase/***' --exclude='*' "$CSS_PROD_DIR/" "$ONLINE_DEMO_DIR/"
+rsync -aq --delete --include='/showcase/***' --exclude='*' "$CSS_PROD_DIR/" "$ONLINE_DEMO_DIR/"
+
+sed -i '' "s|const cssPath = \`../palettes-hf/\${nom}.css\`;|const cssPath = \`../../../@prism/products/css/palettes-hf/\${nom}.css\`;|g" "$ONLINE_DEMO_DIR/showcase/core/graphic.js"

@@ -34,6 +34,12 @@
   </div>
 
   <div class = "selector-engine">
+
+    <!-- Barre de filtres par catégories -->
+    <div id    = "categoryBar"
+         class = "category-bar">
+    </div>
+
     <div id    = "alphabetBar"
          class = "alphabet-bar">
     </div>
@@ -45,14 +51,20 @@
 
   <div id    = "resultArea"
        style = "display:none">
-    <div style = "display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+    <div style = "display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
       <h2 id    = "currentTitle"
           style = "font-size: 1rem;">
       </h2>
 
-      <label id    = "colorCount"
-             style = "margin-bottom:0;">
-      </label>
+      <div style = "display: flex; align-items: center; gap: 8px;">
+        <label id    = "colorCount"
+               style = "margin-bottom:0;">
+        </label>
+
+        <div id = "downloadBar"
+             class = "download-bar">
+        </div>
+      </div>
     </div>
 
     <div class = "viz-box">
@@ -77,6 +89,8 @@
 </div>
 
 <script src="./core/palsizes.js"></script>
+<script src="./core/palcategos.js"></script>
+<script src="./core/formats.js"></script>
 <script src="./core/graphic.js"></script>
 
 </body>
