@@ -19,37 +19,12 @@ git cm "..."
 
 // ---------- //
 
-JSON products
-
-File created by the `@prism` project which is developed at
-
-==>
-
-All files created by the `@prism` project which is developed at
+Ajouter une catégo fond jaune clair entre std et dark à la Lettre guttenberge, du coup les black/white palette passet de dark à cette catégo.
 
 
 // ---------- //
 
 HTML viewer
-
-    --> [OK] ajout du teléchargement d'une palette dans les formats disponibles : ok bien que rudimentaire
-        mais
-        besoin d'ajouter ref
-
-    --> [OK] virer le copiage de plattes-hf pour aller directement utiliser @prims/products/...
-
-    dans graphics.js
-
-function selectPalette(nom, taille, btnElement = null) {
-  const cssPath = `../palettes-hf/${nom}.css`;
-
-===>
-
-function selectPalette(nom, taille, btnElement = null) {
-  const cssPath = `../../../@prism/products/css/palettes-hf/${nom}.css`;
-
-    --> [OK] categos : les afficher et le srendres sélectionnables pour trier ce que l'on voit
-
 
     --> demos visuselles
 

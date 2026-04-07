@@ -1,2 +1,2 @@
-File created by the `@prism` project which is developed at
+All files created by the `@prism` project which is developed at
 [https://github.com/projetmbc/for-writing/tree/main/@prism](https://github.com/projetmbc/for-writing/tree/main/@prism) .

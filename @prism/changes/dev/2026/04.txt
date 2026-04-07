@@ -2,7 +2,7 @@
 
 
 ==
-06  (2.2.0-beta.5)
+????????  (2.2.0-beta.5)
 ==
 
 -----
@@ -10,7 +10,24 @@
 -----
 
 [[:doc:]]
-\github onlie \htm viewer: ???
+\html viewer: two new features.
+
+    1) Implement category selection for palette filtering (compatible with random mode).
+
+    1) Enable palette downloads for all formats except \json (lack of project references).
 
 
-ajout de la taille dans la table hash
+-----
+:new:
+-----
+
+[[:api:]]
+\Json \prod: the credits refer to all the files collectively, rather than a single one.
+
+
+--------
+:fordev:
+--------
+
+[[:tech:]]
+Database: add ''size'' attribute to ''hash'' table.

@@ -186,8 +186,9 @@ logging.info(
 )
 
 # warning::
-#     Credits in the JSON files via an extra key just complicates
-#     their future use (this is a bad practice).
+#     A dedicated file is used for credits to avoid polluting
+#     JSON schemas with non-essential keys, which complicates
+#     future integration.
 
 md_credtits = CREDITS + '\n'
 md_credtits = md_credtits.replace("''", "`")
@@ -195,6 +196,10 @@ md_credtits = re.sub(
     r'(https?://[^\s]+)',
     r'[\1](\1)',
     md_credtits
+)
+md_credtits = md_credtits.replace(
+    'File',
+    'All files'
 )
 
 PAL_JSON_CREDITS_MD.touch()

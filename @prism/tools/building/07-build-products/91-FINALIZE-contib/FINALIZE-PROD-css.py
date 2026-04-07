@@ -39,12 +39,14 @@ while (PROJ_DIR.name != RESRC_ALIAS[TAG_APRISM]):
     PROJ_DIR = PROJ_DIR.parent
 
 
-AUDIT_DIR   = BUILD_TOOLS_DIR / TAG_AUDIT
+AUDIT_DIR = BUILD_TOOLS_DIR / TAG_AUDIT
 
 
-JS_CORE_DIR         = PROJ_DIR / "products" / "css" / "showcase" / "core"
-JS_PAL_SIZES_FILE   = JS_CORE_DIR / "palsizes.js"
-JS_PAL_CATEGOS_FILE = JS_CORE_DIR / "palcategos.js"
+CSS_JS_CORE_DIR = PROJ_DIR / "products" / "css" / "showcase" / "core"
+
+JS_PAL_SIZES_FILE    = CSS_JS_CORE_DIR / "palsizes.js"
+JS_PAL_CATEGOS_FILE  = CSS_JS_CORE_DIR / "palcategos.js"
+JS_PROD_FORMATS_FILE = CSS_JS_CORE_DIR / "formats.js"
 
 
 # ----------- #
@@ -131,6 +133,11 @@ for prodname in natsorted(
 
 for name, data, jsfile in [
     (
+        'formats',
+        ['css'],
+        JS_PROD_FORMATS_FILE,
+    ),
+    (
         'palcategos',
         CATEGOS,
         JS_PAL_CATEGOS_FILE,
@@ -141,6 +148,10 @@ for name, data, jsfile in [
         JS_PAL_SIZES_FILE,
     )
 ]:
+    logging.info(
+        f"Update '{jsfile.relative_to(PROJ_DIR)}'"
+    )
+
     js_precode = f"const {name} = {repr(data)};"
 
     jsfile.write_text(

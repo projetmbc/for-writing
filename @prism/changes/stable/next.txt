@@ -1,3 +1,22 @@
+// ---------- //
+
+
+==
+????????  (2.2.0)
+==
+
+-----
+:new:
+-----
+
+[[:doc:]]
+\html viewer: two new features.
+
+    1) Implement category selection for palette filtering (compatible with random mode).
+
+    1) Enable palette downloads for all formats except \json (lack of project references).
+
+
 --------
 :update:
 --------
