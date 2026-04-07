@@ -53,7 +53,10 @@ JS_PROD_FORMATS_FILE = CSS_JS_CORE_DIR / "formats.js"
 # -- TOOLS -- #
 # ----------- #
 
-def normalize_jscode(js_precode):
+def normalize_jscode(
+    js_code     : str,
+    add_alphabet: bool,
+) -> str:
     for old, new in [
         (', ', ',\n  '),
         ("',\n  ", "', "),
@@ -61,24 +64,25 @@ def normalize_jscode(js_precode):
         ('{"', '{\n  "'),
         ("};", '\n};\n'),
     ]:
-        js_precode = js_precode.replace(old, new)
+        js_code = js_code.replace(old, new)
 
 # Alphabet comments
-    _js_code    = []
-    last_letter = ''
+    if add_alphabet:
+        _js_code    = []
+        last_letter = ''
 
-    for line in js_precode.splitlines():
-        if line.startswith('  "'):
-            letter = line[3]
+        for line in js_code.splitlines():
+            if line.startswith('  "'):
+                letter = line[3]
 
-            if letter != last_letter:
-                _js_code.append(f'// -- {letter} -- //')
+                if letter != last_letter:
+                    _js_code.append(f'// -- {letter} -- //')
 
-                last_letter = letter
+                    last_letter = letter
 
-        _js_code.append(line)
+            _js_code.append(line)
 
-    js_code = '\n'.join(_js_code)
+        js_code = '\n'.join(_js_code)
 
     return js_code
 
@@ -131,21 +135,24 @@ for prodname in natsorted(
     CATEGOS[prodname] = _CATEGOS[prodname]
 
 
-for name, data, jsfile in [
+for name, data, jsfile, add_alphabet in [
     (
         'formats',
-        ['css'],
+        {'css': "css"},
         JS_PROD_FORMATS_FILE,
+        False,
     ),
     (
         'palcategos',
         CATEGOS,
         JS_PAL_CATEGOS_FILE,
+        True,
     ),
     (
         'palsize',
         SIZES,
         JS_PAL_SIZES_FILE,
+        True,
     )
 ]:
     logging.info(
@@ -155,5 +162,8 @@ for name, data, jsfile in [
     js_precode = f"const {name} = {repr(data)};"
 
     jsfile.write_text(
-        normalize_jscode(js_precode)
+        normalize_jscode(
+            js_precode,
+            add_alphabet
+        )
     )

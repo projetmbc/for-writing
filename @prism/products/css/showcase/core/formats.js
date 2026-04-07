@@ -1,1 +1,3 @@
-const formats = ["css"];
+const formats = {
+  "css": "css"
+};

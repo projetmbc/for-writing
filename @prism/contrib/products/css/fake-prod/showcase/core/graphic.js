@@ -186,12 +186,13 @@ function selectPalette(nom, taille, btnElement = null) {
 
   // Boutons de téléchargement
   const dlBar = document.getElementById('downloadBar');
+
   if (dlBar) {
-    dlBar.innerHTML = formats.map(ext =>
+    dlBar.innerHTML = Object.entries(formats).map(([folder, ext]) =>
       `<a class="btn-tool btn-download"
           href="../palettes-hf/${nom}.${ext}"
           download="${nom}.${ext}">
-        ⬇ ${ext.toUpperCase()}
+        ⬇ ${ext.toUpperCase()} (${folder})
        </a>`
     ).join('');
   }
