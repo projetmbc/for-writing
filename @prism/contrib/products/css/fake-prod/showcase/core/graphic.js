@@ -1,39 +1,47 @@
-// ─── Utilitaire : palettes visibles selon les catégories cochées ──────────────
-
 function getActiveCategories() {
-  return [...document.querySelectorAll('.cat-checkbox:checked')]
-    .map(cb => cb.value);
+  return [
+    ...document.querySelectorAll('.cat-checkbox:checked')
+  ].map(
+    cb => cb.value
+  );
 }
 
+
+
+
+
+
+
+
 function isVisible(paletteName) {
-  // Si palcategos n'est pas chargé, tout est visible
-  if (typeof palcategos === 'undefined') return true;
+  if (typeof PAL_CATEGO === 'undefined') {
+    return true;
+  };
 
   const active = getActiveCategories();
 
-  // Aucun filtre coché → rien de visible
-  if (active.length === 0) return false;
+  if (active.length === 0) {
+    return false;
+  };
 
-  const cats = palcategos[paletteName] ?? [];
+  const cats = PAL_CATEGO[paletteName] ?? [];
 
-  // La palette est visible si elle appartient à au moins une catégorie cochée
   return cats.some(c => active.includes(c));
 }
 
-// ─── Construction de la barre de catégories ───────────────────────────────────
 
 function buildCategoryBar() {
   const bar = document.getElementById('categoryBar');
   if (!bar) return;
 
-  if (typeof palcategos === 'undefined') {
+  if (typeof PAL_CATEGO === 'undefined') {
     bar.style.display = 'none';
     return;
   }
 
   // Collecter toutes les catégories présentes dans le dictionnaire
   const allCats = [
-    ...new Set(Object.values(palcategos).flat())
+    ...new Set(Object.values(PAL_CATEGO).flat())
   ].sort();
 
   // Bouton "Tout"
@@ -92,13 +100,13 @@ function refreshScrollZone() {
 function initInterface() {
   const alphaBar = document.getElementById('alphabetBar');
 
-  if (typeof palsize === 'undefined') return;
+  if (typeof PAL_SIZE === 'undefined') return;
 
   buildCategoryBar();
 
   const availableLetters = [
     ...new Set(
-      Object.keys(palsize)
+      Object.keys(PAL_SIZE)
         .map(name => name[0].toUpperCase())
     )
   ];
@@ -129,7 +137,7 @@ function filterByLetter(letter, btn, targetPalette = null) {
   scrollZone.innerHTML = '';
 
   const matches = Object
-    .keys(palsize)
+    .keys(PAL_SIZE)
     .filter(name => name[0].toUpperCase() === letter)
     .filter(name => isVisible(name))           // ← filtre catégories
     .sort();
@@ -146,8 +154,8 @@ function filterByLetter(letter, btn, targetPalette = null) {
     const pBtn = document.createElement('button');
 
     pBtn.className = `palette-choice ${targetPalette === name ? 'selected' : ''}`;
-    pBtn.innerHTML = `<strong>${name}</strong><small>${palsize[name]} tons</small>`;
-    pBtn.onclick = () => selectPalette(name, palsize[name], pBtn);
+    pBtn.innerHTML = `<strong>${name}</strong><small>${PAL_SIZE[name]} tons</small>`;
+    pBtn.onclick = () => selectPalette(name, PAL_SIZE[name], pBtn);
 
     scrollZone.appendChild(pBtn);
 
@@ -157,7 +165,7 @@ function filterByLetter(letter, btn, targetPalette = null) {
 
 function pickRandom() {
   // Pool = toutes les palettes visibles selon les catégories actives
-  const pool = Object.keys(palsize).filter(name => isVisible(name));
+  const pool = Object.keys(PAL_SIZE).filter(name => isVisible(name));
 
   if (pool.length === 0) return; // rien à piocher
 
@@ -166,7 +174,7 @@ function pickRandom() {
   const letterBtn = document.getElementById(`btn-letter-${key[0].toUpperCase()}`);
 
   filterByLetter(key[0].toUpperCase(), letterBtn, key);
-  selectPalette(key, palsize[key]);
+  selectPalette(key, PAL_SIZE[key]);
 }
 
 function selectPalette(nom, taille, btnElement = null) {
@@ -188,7 +196,7 @@ function selectPalette(nom, taille, btnElement = null) {
   const dlBar = document.getElementById('downloadBar');
 
   if (dlBar) {
-    dlBar.innerHTML = Object.entries(formats).map(([folder, ext]) =>
+    dlBar.innerHTML = Object.entries(PAL_FORMAT).map(([folder, ext]) =>
       `<a class="btn-tool btn-download"
           href="../palettes-hf/${nom}.${ext}"
           download="${nom}.${ext}">

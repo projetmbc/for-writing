@@ -6,7 +6,7 @@ warning::
     for the final product.
 ***/
 
-const palcategos = {
+const PAL_CATEGO = {
   "Acton"   : ["dark", "sequential"],
   "Aquatic1": ["light", "sequential"],
   "Flag"    : ["qualitative"]

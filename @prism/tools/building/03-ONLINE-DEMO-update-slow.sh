@@ -89,7 +89,7 @@ while IFS= read -r -d '' dir; do
   fi
 done < <(find "$PROD_DIR" -maxdepth 1 -mindepth 1 -type d ! -name "json" -print0)
 
-formats_js="const formats = {$formats};"
+formats_js="const PAL_FORMAT = {$formats};"
 
 # Écriture dans le fichier
 echo "$formats_js" > "$FORMATS_JS"

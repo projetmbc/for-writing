@@ -1,4 +1,4 @@
-const palsize = {
+const PAL_SIZE = {
 // -- A -- //
   "Accent": 8,
   "Acton": 256,

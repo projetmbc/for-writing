@@ -6,4 +6,4 @@ warning::
     final products.
 ***/
 
-const formats = ['css'];
+const PAL_FORMAT = {"css": "css"};

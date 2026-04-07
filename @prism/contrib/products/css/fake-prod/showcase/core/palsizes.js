@@ -6,7 +6,7 @@ warning::
     for the final product.
 ***/
 
-const palsize = {
+const PAL_SIZE = {
   "Acton": 256,
   "Aquatic1": 5,
   "Flag": 40,

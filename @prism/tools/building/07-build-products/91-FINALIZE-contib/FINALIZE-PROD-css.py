@@ -137,19 +137,19 @@ for prodname in natsorted(
 
 for name, data, jsfile, add_alphabet in [
     (
-        'formats',
+        'PAL_FORMAT',
         {'css': "css"},
         JS_PROD_FORMATS_FILE,
         False,
     ),
     (
-        'palcategos',
+        'PAL_CATEGO',
         CATEGOS,
         JS_PAL_CATEGOS_FILE,
         True,
     ),
     (
-        'palsize',
+        'PAL_SIZE',
         SIZES,
         JS_PAL_SIZES_FILE,
         True,

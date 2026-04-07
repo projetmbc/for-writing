@@ -1,4 +1,4 @@
-const palcategos = {
+const PAL_CATEGO = {
 // -- A -- //
   "Accent": ["qualitative", "stepped"],
   "Acton": ["colorblind", "sequential"],
