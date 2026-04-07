@@ -1,4 +1,8 @@
-function getActiveCategories() {
+/* ------------- *
+ * -- CATEGOS -- *
+ * ------------- */
+
+function getActiveCategos() {
   return [
     ...document.querySelectorAll('.cat-checkbox:checked')
   ].map(
@@ -7,313 +11,375 @@ function getActiveCategories() {
 }
 
 
-
-
-
-
-
-
-function isVisible(paletteName) {
+function isVisible(pal_name) {
   if (typeof PAL_CATEGO === 'undefined') {
     return true;
-  };
+  }
 
-  const active = getActiveCategories();
+  const active_categos = getActiveCategos();
 
-  if (active.length === 0) {
+  if (active_categos.length === 0) {
     return false;
-  };
+  }
 
-  const cats = PAL_CATEGO[paletteName] ?? [];
+  const all_categos = PAL_CATEGO[pal_name] ?? [];
 
-  return cats.some(c => active.includes(c));
+  return all_categos.some(
+    c => active_categos.includes(c)
+  );
 }
 
 
-function buildCategoryBar() {
-  const bar = document.getElementById('categoryBar');
-  if (!bar) return;
+function buildCategoBar() {
+  const bar = document.getElementById('category-bar');
 
-  if (typeof PAL_CATEGO === 'undefined') {
-    bar.style.display = 'none';
+  if (!bar) {
     return;
   }
 
-  // Collecter toutes les catégories présentes dans le dictionnaire
-  const allCats = [
-    ...new Set(Object.values(PAL_CATEGO).flat())
+  if (typeof PAL_CATEGO === 'undefined') {
+    bar.style.display = 'none';
+
+    return;
+  }
+
+  const all_categos = [
+    ...new Set(
+      Object.values(PAL_CATEGO).flat()
+    )
   ].sort();
 
-  // Bouton "Tout"
-  const allBtn = document.createElement('button');
-  allBtn.className = 'cat-all-btn';
-  allBtn.textContent = 'Tout';
-  allBtn.onclick = () => {
-    bar.querySelectorAll('.cat-checkbox').forEach(cb => cb.checked = true);
+  const all_btn = document.createElement('button');
+
+  all_btn.className   = 'cat-all-btn';
+  all_btn.textContent = 'All';
+  all_btn.onclick     = () => {
+    bar.querySelectorAll('.cat-checkbox').forEach(
+      cb => cb.checked = true
+    );
+
     refreshScrollZone();
   };
-  bar.appendChild(allBtn);
 
-  // Bouton "Aucun"
-  const noneBtn = document.createElement('button');
-  noneBtn.className = 'cat-all-btn';
-  noneBtn.textContent = 'Aucun';
-  noneBtn.onclick = () => {
-    bar.querySelectorAll('.cat-checkbox').forEach(cb => cb.checked = false);
+  bar.appendChild(all_btn);
+
+  const none_btn = document.createElement('button');
+
+  none_btn.className   = 'cat-all-btn';
+  none_btn.textContent = 'None';
+  none_btn.onclick     = () => {
+    bar.querySelectorAll('.cat-checkbox').forEach(
+      cb => cb.checked = false
+    );
+
     refreshScrollZone();
   };
-  bar.appendChild(noneBtn);
 
-  // Séparateur visuel
+  bar.appendChild(none_btn);
+
   const sep = document.createElement('span');
+
   sep.className = 'cat-sep';
+
   bar.appendChild(sep);
 
-  // Un checkbox par catégorie
-  allCats.forEach(cat => {
-    const label = document.createElement('label');
-    label.className = 'cat-label';
+  all_categos.forEach(
+    cat => {
+      const label = document.createElement('label');
 
-    const cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.className = 'cat-checkbox';
-    cb.value = cat;
-    cb.checked = true; // tout coché par défaut
-    cb.onchange = refreshScrollZone;
+      label.className = 'cat-label';
 
-    label.appendChild(cb);
-    label.append(' ' + cat);
-    bar.appendChild(label);
-  });
+      const cb = document.createElement('input');
+
+      cb.type      = 'checkbox';
+      cb.className = 'cat-checkbox';
+      cb.value     = cat;
+      cb.checked   = true;
+      cb.onchange  = refreshScrollZone;
+
+      label.appendChild(cb);
+      label.append(' ' + cat);
+
+      bar.appendChild(label);
+    }
+  );
 }
 
-// ─── Rafraîchit la scroll zone selon la lettre active et les catégories ───────
 
-function refreshScrollZone() {
-  const activeBtn = document.querySelector('.letter-btn.active');
-  if (!activeBtn) return;
-  filterByLetter(activeBtn.textContent, activeBtn, null);
-}
+/* ------------------------- *
+ * -- PALETTE SCROLL ZONE -- *
+ * ------------------------- */
 
-// ─── Interface principale ─────────────────────────────────────────────────────
+function filterByLetter(
+  letter,
+  btn,
+  targetPalette = null
+) {
+  document.querySelectorAll('.letter-btn').forEach(
+    b => b.classList.remove('active')
+  );
 
-function initInterface() {
-  const alphaBar = document.getElementById('alphabetBar');
-
-  if (typeof PAL_SIZE === 'undefined') return;
-
-  buildCategoryBar();
-
-  const availableLetters = [
-    ...new Set(
-      Object.keys(PAL_SIZE)
-        .map(name => name[0].toUpperCase())
-    )
-  ];
-
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    .split('')
-    .forEach(L => {
-      const btn = document.createElement('button');
-
-      btn.className = `letter-btn ${availableLetters.includes(L) ? '' : 'disabled'}`;
-      btn.id = `btn-letter-${L}`;
-      btn.textContent = L;
-
-      if (!btn.classList.contains('disabled')) btn.onclick = () => filterByLetter(L, btn);
-
-      alphaBar.appendChild(btn);
-    });
-
-  const first = document.querySelector('.letter-btn:not(.disabled)');
-  if (first) first.click();
-}
-
-function filterByLetter(letter, btn, targetPalette = null) {
-  document.querySelectorAll('.letter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 
-  const scrollZone = document.getElementById('scrollZone');
-  scrollZone.innerHTML = '';
+  const scroll_zone = document.getElementById('scroll-zone');
+
+  scroll_zone.innerHTML = '';
 
   const matches = Object
     .keys(PAL_SIZE)
     .filter(name => name[0].toUpperCase() === letter)
-    .filter(name => isVisible(name))           // ← filtre catégories
+    .filter(name => isVisible(name))
     .sort();
 
   if (matches.length === 0) {
-    const empty = document.createElement('p');
-    empty.className = 'scroll-empty';
-    empty.textContent = 'Aucune palette pour cette lettre et ces catégories.';
-    scrollZone.appendChild(empty);
+    const message = document.createElement('p');
+
+    message.className   = 'scroll-empty';
+    message.textContent = 'No palette for this letter and these categories.';
+
+    scroll_zone.appendChild(message);
+
     return;
   }
 
-  matches.forEach(name => {
-    const pBtn = document.createElement('button');
+  matches.forEach(
+    name => {
+      const btn = document.createElement('button');
 
-    pBtn.className = `palette-choice ${targetPalette === name ? 'selected' : ''}`;
-    pBtn.innerHTML = `<strong>${name}</strong><small>${PAL_SIZE[name]} tons</small>`;
-    pBtn.onclick = () => selectPalette(name, PAL_SIZE[name], pBtn);
+      btn.className = `palette-choice ${targetPalette === name ? 'selected' : ''}`;
+      btn.innerHTML = `<strong>${name}</strong><small>${PAL_SIZE[name]} tons</small>`;
+      btn.onclick   = () => selectPal(
+        name,
+        PAL_SIZE[name],
+        btn
+      );
 
-    scrollZone.appendChild(pBtn);
+      scroll_zone.appendChild(btn);
 
-    if (targetPalette === name) setTimeout(() => pBtn.scrollIntoView({ block: 'nearest' }), 50);
-  });
+      if (targetPalette === name) {
+        setTimeout(
+          () => btn.scrollIntoView({block: 'nearest'}),
+          50
+        );
+      }
+    }
+  );
 }
 
-function pickRandom() {
-  // Pool = toutes les palettes visibles selon les catégories actives
-  const pool = Object.keys(PAL_SIZE).filter(name => isVisible(name));
 
-  if (pool.length === 0) return; // rien à piocher
+function refreshScrollZone() {
+  const active_btn = document.querySelector('.letter-btn.active');
 
-  const key = pool[Math.floor(Math.random() * pool.length)];
-
-  const letterBtn = document.getElementById(`btn-letter-${key[0].toUpperCase()}`);
-
-  filterByLetter(key[0].toUpperCase(), letterBtn, key);
-  selectPalette(key, PAL_SIZE[key]);
-}
-
-function selectPalette(nom, taille, btnElement = null) {
-  const cssPath = `../../../@prism/products//css/palettes-hf/${nom}.css`;
-  const linkTag = document.getElementById('dynamic-palette-css');
-
-  if (linkTag.getAttribute('href') !== cssPath) {
-    linkTag.href = cssPath;
+  if (!active_btn) {
+    return;
   }
 
-  document.querySelectorAll('.palette-choice').forEach(b => b.classList.remove('selected'));
-  if (btnElement) btnElement.classList.add('selected');
+  filterByLetter(
+    active_btn.textContent,
+    active_btn,
+    null
+  );
+}
 
-  document.getElementById('currentTitle').textContent = nom;
-  document.getElementById('colorCount').textContent = `${taille} colors`;
-  document.getElementById('resultArea').style.display = 'block';
 
-  // Boutons de téléchargement
-  const dlBar = document.getElementById('downloadBar');
+function selectPal(
+  name,
+  size,
+  btn = null
+) {
+  const css_path = `../../../@prism/products//css/palettes-hf/${name}.css`;
 
-  if (dlBar) {
-    dlBar.innerHTML = Object.entries(PAL_FORMAT).map(([folder, ext]) =>
+  const link_tag = document.getElementById('dynamic-palette-css');
+
+  if (link_tag.getAttribute('href') !== css_path) {
+    link_tag.href = css_path;
+  }
+
+  document.querySelectorAll('.palette-choice').forEach(
+    b => b.classList.remove('selected')
+  );
+
+  if (btn) {
+    btn.classList.add('selected');
+  }
+
+  document.getElementById('current-title').textContent = name;
+
+  document.getElementById('color-count').textContent = `${size} colors`;
+
+  document.getElementById('result-area').style.display = 'block';
+
+  const dl_bar = document.getElementById('download-bar');
+
+  if (dl_bar) {
+    dl_bar.innerHTML = Object.entries(PAL_FORMAT).map(
+      ([folder, ext]) =>
       `<a class="btn-tool btn-download"
-          href="../palettes-hf/${nom}.${ext}"
-          download="${nom}.${ext}">
+          href="../../../@prism/products//${folder}/palettes-hf/${name}.${ext}"
+          download="${name}.${ext}">
         ⬇ ${ext.toUpperCase()} (${folder})
        </a>`
     ).join('');
   }
 
-  draw(nom, taille);
+  draw(name, size);
 }
 
-// ─── Rendu SVG ────────────────────────────────────────────────────────────────
 
-const seed = 20260201;
+/* --------------------- *
+ * -- RANDOM SHOWCASE -- *
+ * --------------------- */
 
-let currentSeed = seed;
-const getNextRandom = () => {
-  currentSeed = (currentSeed * 1664525 + 1013904223) % 4294967296;
-  return currentSeed / 4294967296;
-};
+function pickRandom() {
+  const pool = Object.keys(PAL_SIZE).filter(
+    name => isVisible(name)
+  );
+
+  if (pool.length === 0) {
+    return;
+  }
+
+  const key = pool[Math.floor(Math.random() * pool.length)];
+
+  const letter_btn = document.getElementById(`btn-letter-${key[0].toUpperCase()}`);
+
+  filterByLetter(
+    key[0].toUpperCase(),
+    letter_btn,
+    key
+  );
+
+  selectPal(
+    key,
+    PAL_SIZE[key]
+  );
+}
+
+
+/* -------------- *
+ * -- SVG DRAW -- *
+ * -------------- */
 
 function draw(name, size) {
   const colors = [];
-  for (let i = 1; i <= size; i++) colors.push(`var(--pal${name}-${i})`);
 
-  // Palette swatches
+  for (let i = 1; i <= size; i++) {
+    colors.push(`var(--pal${name}-${i})`);
+  }
+
   if (size > 40) {
     document.getElementById('palette-label').style.display = "none";
+
     document.getElementById('palette-preview').style.display = "none";
+
   } else {
     document.getElementById('palette-label').style.display = "flex";
+
     document.getElementById('palette-preview').style.display = "flex";
+
     document.getElementById('palette-preview').innerHTML = colors.map(
       c => `<div class="swatch" style="background:${c}"></div>`
     ).join('');
   }
 
-  // Spectrum
   document.getElementById('spectrum-preview').style.background =
     `linear-gradient(90deg, ${colors.join(', ')})`;
 
   const svg = document.getElementById('canvas');
+
   svg.innerHTML = '';
 
-  const centerY = 125;
-  const circleX = 130;
-  const waveStartX = 280;
-  const maxR = 100;
+  const x_center     = 130;
+  const y_center     = 125;
+  const x_wave_start = 280;
+  const R_max        = 100;
 
-  // Cercles concentriques
-  colors.forEach((c, i) => {
-    const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circ.setAttribute("cx", circleX);
-    circ.setAttribute("cy", centerY);
-    circ.setAttribute("r", maxR - (i * (maxR / size)));
-    circ.setAttribute("fill", c);
-    svg.appendChild(circ);
-  });
+  colors.forEach(
+    (c, i) => {
+      const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 
-  // Vagues (petite palette ≤ 40 couleurs)
+      circ.setAttribute("cx", x_center);
+      circ.setAttribute("cy", y_center);
+      circ.setAttribute("r", R_max - (i * (R_max / size)));
+      circ.setAttribute("fill", c);
+
+      svg.appendChild(circ);
+    }
+  );
+
   if (size <= 40) {
-    colors.forEach((c, i) => {
-      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      const yBase = centerY + (i * 7) - (size * 3.5);
+    colors.forEach(
+      (c, i) => {
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-      let d = `M ${waveStartX} ${yBase + Math.sin(i) * 40}`;
-      for (let x = 1; x <= 440; x += 2) {
-        d += ` L ${waveStartX + x} ${yBase + Math.sin(x * 0.04 + i) * 40}`;
-      }
+        const y_base = y_center + (i * 7) - (size * 3.5);
 
-      path.setAttribute("d", d);
-      path.setAttribute("stroke", c);
-      path.setAttribute("fill", "none");
-      path.setAttribute("stroke-width", "4");
-      path.setAttribute("stroke-linecap", "round");
-      svg.appendChild(path);
+        let d = `M ${x_wave_start} ${y_base + Math.sin(i) * 40}`;
+
+        for (let x = 1; x <= 440; x += 2) {
+          d += ` L ${x_wave_start + x} ${y_base + Math.sin(x * 0.04 + i) * 40}`;
+        }
+
+        path.setAttribute("d", d);
+        path.setAttribute("stroke", c);
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke-width", "4");
+        path.setAttribute("stroke-linecap", "round");
+
+        svg.appendChild(path);
     });
 
-  // Triangles (grande palette > 40 couleurs)
   } else {
-    const svgW = 800;
-    const svgH = 400;
-    const splitX = 400;
-    const count = colors.length;
+    const svg_width  = 800;
+    const svg_height = 400;
+    const x_split    = 400;
+    const nb_colors  = colors.length;
 
-    // Générateur local isolé (n'interfère pas avec le générateur global)
-    let localSeed = 42;
+    let local_seed = 42;
+
     const localRandom = () => {
-      localSeed = (localSeed * 1664525 + 1013904223) % 4294967296;
-      return localSeed / 4294967296;
+      local_seed = (local_seed * 1664525 + 1013904223) % 4294967296;
+
+      return local_seed / 4294967296;
     };
 
-    const shuffledColors = [...colors];
-    for (let i = shuffledColors.length - 1; i > 0; i--) {
+    const shuffled_colors = [...colors];
+
+    for (let i = shuffled_colors.length - 1; i > 0; i--) {
       const j = Math.floor(localRandom() * (i + 1));
-      [shuffledColors[i], shuffledColors[j]] = [shuffledColors[j], shuffledColors[i]];
+
+      [shuffled_colors[i], shuffled_colors[j]] = [shuffled_colors[j], shuffled_colors[i]];
     }
 
-    const cols = Math.ceil(Math.sqrt(count / 2));
-    const rows = Math.ceil(count / (cols * 2));
-    const cellW = (svgW - splitX) / cols;
-    const cellH = svgH / rows;
-    const jitter = 0.5;
+    const cols        = Math.ceil(Math.sqrt(nb_colors / 2));
+    const rows        = Math.ceil(nb_colors / (cols * 2));
+    const cell_width  = (svg_width - x_split) / cols;
+    const cell_height = svg_height / rows;
+    const jitter      = 0.5;
 
     const points = [];
+
     for (let r = 0; r <= rows; r++) {
       points[r] = [];
+
       for (let c = 0; c <= cols; c++) {
-        let x = splitX + c * cellW;
-        let y = r * cellH;
-        if (c > 0 && c < cols) x += (localRandom() - 0.5) * cellW * jitter;
-        if (r > 0 && r < rows) y += (localRandom() - 0.5) * cellH * jitter;
+        let x = x_split + c * cell_width;
+        let y = r * cell_height;
+
+        if (c > 0 && c < cols) {
+          x += (localRandom() - 0.5) * cell_width * jitter;
+        }
+
+        if (r > 0 && r < rows) {
+          y += (localRandom() - 0.5) * cell_height * jitter;
+        }
+
         points[r][c] = { x, y };
       }
     }
 
-    let colorIndex = 0;
+    let color_index = 0;
+
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
         const triangles = [
@@ -321,22 +387,80 @@ function draw(name, size) {
           [points[r][c + 1], points[r + 1][c + 1], points[r + 1][c]]
         ];
 
-        triangles.forEach(tPoints => {
-          if (colorIndex < count) {
-            const poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-            const pts = tPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+        triangles.forEach(
+          vertices => {
+            if (color_index < nb_colors) {
+              const polygon = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "polygon"
+              );
 
-            poly.setAttribute("points", pts);
-            poly.setAttribute("fill", shuffledColors[colorIndex]);
-            poly.setAttribute("stroke", shuffledColors[colorIndex]);
-            poly.setAttribute("stroke-width", "1");
-            svg.appendChild(poly);
-            colorIndex++;
+              const pts  = vertices.map(
+                p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`
+              ).join(" ");
+
+              polygon.setAttribute("points", pts);
+              polygon.setAttribute("fill", shuffled_colors[color_index]);
+              polygon.setAttribute("stroke", shuffled_colors[color_index]);
+              polygon.setAttribute("stroke-width", "1");
+
+              svg.appendChild(polygon);
+
+              color_index++;
+            }
           }
-        });
+        );
       }
     }
   }
 }
+
+
+/* -------------------- *
+ * -- INIT INTERFACE -- *
+ * -------------------- */
+
+function initInterface() {
+  const alpha_bar = document.getElementById('alphabet-bar');
+
+  if (typeof PAL_SIZE === 'undefined') {
+    return;
+  }
+
+  buildCategoBar();
+
+  const available_letters = [
+    ...new Set(
+      Object.keys(PAL_SIZE).map(
+        name => name[0].toUpperCase()
+      )
+    )
+  ];
+
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    .split('')
+    .forEach(
+      L => {
+        const btn = document.createElement('button');
+
+        btn.className = `letter-btn ${available_letters.includes(L) ? '' : 'disabled'}`;
+        btn.id = `btn-letter-${L}`;
+        btn.textContent = L;
+
+        if (!btn.classList.contains('disabled')) {
+          btn.onclick = () => filterByLetter(L, btn);
+        }
+
+        alpha_bar.appendChild(btn);
+      }
+    );
+
+  const first = document.querySelector('.letter-btn:not(.disabled)');
+
+  if (first) {
+    first.click();
+  }
+}
+
 
 window.onload = initInterface;

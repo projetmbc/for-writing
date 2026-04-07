@@ -64,7 +64,7 @@ rsync -aq --delete --include='/showcase/***' --exclude='*' "$CSS_PROD_DIR/" "$ON
 
 # -- GOOD PALETTE CSS PATHS -- #
 
-sed -i '' "s|const cssPath = \`../palettes-hf/\${nom}.css\`;|const cssPath = \`$HF_PROD_PATH/css/palettes-hf/\${nom}.css\`;|g" "$GRAPHICS_JS"
+sed -i '' "s|const css_path = \`../palettes-hf/\${name}.css\`;|const css_path = \`$HF_PROD_PATH/css/palettes-hf/\${name}.css\`;|g" "$GRAPHICS_JS"
 
 
 # -- FULL LIST OF FORMATS -- #
@@ -95,4 +95,4 @@ formats_js="const PAL_FORMAT = {$formats};"
 echo "$formats_js" > "$FORMATS_JS"
 
 
-sed -i '' "s|href=\`../palettes-hf/\${nom}.\${ext}\`|href=\`$HF_PROD_PATH/\${folder}/palettes-hf/\${nom}.\${ext}\`|g" "$GRAPHICS_JS"
+sed -i '' "s|href=\"../palettes-hf/\${name}.\${ext}\"|href=\"$HF_PROD_PATH/\${folder}/palettes-hf/\${name}.\${ext}\"|g" "$GRAPHICS_JS"
