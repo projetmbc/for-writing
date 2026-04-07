@@ -1,8 +1,183 @@
-function getActiveCategories() {
+/* ------------- *
+ * -- CATEGOS -- *
+ * ------------- */
+
+function getActiveCategos() {
   return [
     ...document.querySelectorAll('.cat-checkbox:checked')
   ].map(
     cb => cb.value
+  );
+}
+
+
+function isVisible(pal_name) {
+  if (typeof PAL_CATEGO === 'undefined') {
+    return true;
+  };
+
+  const active_categos = getActiveCategos();
+
+  if (active_categos.length === 0) {
+    return false;
+  };
+
+  const all_categos = PAL_CATEGO[pal_name] ?? [];
+
+  return all_categos.some(
+    c => active_categos.includes(c)
+  );
+}
+
+
+function buildCategoBar() {
+  const bar = document.getElementById('categoryBar');
+
+  if (!bar) {
+    return;
+  };
+
+  if (typeof PAL_CATEGO === 'undefined') {
+    bar.style.display = 'none';
+
+    return;
+  }
+
+  const all_categos = [
+    ...new Set(
+      Object.values(PAL_CATEGO).flat()
+    )
+  ].sort();
+
+  const all_btn = document.createElement('button');
+
+  all_btn.className   = 'cat-all-btn';
+  all_btn.textContent = 'All';
+  all_btn.onclick     = () => {
+    bar.querySelectorAll('.cat-checkbox').forEach(
+      cb => cb.checked = true
+    );
+
+    refreshScrollZone();
+  };
+
+  bar.appendChild(all_btn);
+
+  const none_btn = document.createElement('button');
+
+  none_btn.className   = 'cat-all-btn';
+  none_btn.textContent = 'None';
+  none_btn.onclick     = () => {
+    bar.querySelectorAll('.cat-checkbox').forEach(
+      cb => cb.checked = false
+    );
+
+    refreshScrollZone();
+  };
+
+  bar.appendChild(none_btn);
+
+  const sep = document.createElement('span');
+
+  sep.className = 'cat-sep';
+
+  bar.appendChild(sep);
+
+  all_categos.forEach(
+    cat => {
+      const label = document.createElement('label');
+
+      label.className = 'cat-label';
+
+      const cb = document.createElement('input');
+
+      cb.type      = 'checkbox';
+      cb.className = 'cat-checkbox';
+      cb.value     = cat;
+      cb.checked   = true;
+      cb.onchange  = refreshScrollZone;
+
+      label.appendChild(cb);
+      label.append(' ' + cat);
+
+      bar.appendChild(label);
+    }
+  );
+}
+
+
+/* ------------------------- *
+ * -- PALETTE SCROLL ZONE -- *
+ * ------------------------- */
+
+function filterByLetter(
+  letter,
+  btn,
+  targetPalette = null
+) {
+  document.querySelectorAll('.letter-btn').forEach(
+    b => b.classList.remove('active')
+  );
+
+  btn.classList.add('active');
+
+  const scrollZone = document.getElementById('scrollZone');
+
+  scrollZone.innerHTML = '';
+
+  const matches = Object
+    .keys(PAL_SIZE)
+    .filter(name => name[0].toUpperCase() === letter)
+    .filter(name => isVisible(name))
+    .sort();
+
+  if (matches.length === 0) {
+    const message = document.createElement('p');
+
+    message.className   = 'scroll-empty';
+    message.textContent = 'No palette for this letter and these categories.';
+
+    scrollZone.appendChild(message);
+
+    return;
+  }
+
+  matches.forEach(
+    name => {
+      const btn = document.createElement('button');
+
+      btn.className = `palette-choice ${targetPalette === name ? 'selected' : ''}`;
+      btn.innerHTML = `<strong>${name}</strong><small>${PAL_SIZE[name]} tons</small>`;
+      btn.onclick   = () => selectPal(
+        name,
+        PAL_SIZE[name],
+        btn
+      );
+
+      scrollZone.appendChild(btn);
+
+      if (targetPalette === name) {
+        setTimeout(
+          () => btn.scrollIntoView({block: 'nearest'}),
+          50
+        );
+      };
+    }
+  );
+}
+
+
+function refreshScrollZone() {
+  const activeBtn = document.querySelector('.letter-btn.active');
+
+  if (!activeBtn) {
+    return;
+  };
+
+  filterByLetter(
+    activeBtn.textContent,
+    activeBtn,
+    null
   );
 }
 
@@ -13,96 +188,29 @@ function getActiveCategories() {
 
 
 
-function isVisible(paletteName) {
-  if (typeof PAL_CATEGO === 'undefined') {
-    return true;
-  };
-
-  const active = getActiveCategories();
-
-  if (active.length === 0) {
-    return false;
-  };
-
-  const cats = PAL_CATEGO[paletteName] ?? [];
-
-  return cats.some(c => active.includes(c));
-}
 
 
-function buildCategoryBar() {
-  const bar = document.getElementById('categoryBar');
-  if (!bar) return;
 
-  if (typeof PAL_CATEGO === 'undefined') {
-    bar.style.display = 'none';
-    return;
-  }
+/* ------------- *
+ * -- XXXX -- *
+ * ------------- */
 
-  // Collecter toutes les catégories présentes dans le dictionnaire
-  const allCats = [
-    ...new Set(Object.values(PAL_CATEGO).flat())
-  ].sort();
 
-  // Bouton "Tout"
-  const allBtn = document.createElement('button');
-  allBtn.className = 'cat-all-btn';
-  allBtn.textContent = 'Tout';
-  allBtn.onclick = () => {
-    bar.querySelectorAll('.cat-checkbox').forEach(cb => cb.checked = true);
-    refreshScrollZone();
-  };
-  bar.appendChild(allBtn);
+/* ------------- *
+ * -- XXXX -- *
+ * ------------- */
 
-  // Bouton "Aucun"
-  const noneBtn = document.createElement('button');
-  noneBtn.className = 'cat-all-btn';
-  noneBtn.textContent = 'Aucun';
-  noneBtn.onclick = () => {
-    bar.querySelectorAll('.cat-checkbox').forEach(cb => cb.checked = false);
-    refreshScrollZone();
-  };
-  bar.appendChild(noneBtn);
 
-  // Séparateur visuel
-  const sep = document.createElement('span');
-  sep.className = 'cat-sep';
-  bar.appendChild(sep);
-
-  // Un checkbox par catégorie
-  allCats.forEach(cat => {
-    const label = document.createElement('label');
-    label.className = 'cat-label';
-
-    const cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.className = 'cat-checkbox';
-    cb.value = cat;
-    cb.checked = true; // tout coché par défaut
-    cb.onchange = refreshScrollZone;
-
-    label.appendChild(cb);
-    label.append(' ' + cat);
-    bar.appendChild(label);
-  });
-}
-
-// ─── Rafraîchit la scroll zone selon la lettre active et les catégories ───────
-
-function refreshScrollZone() {
-  const activeBtn = document.querySelector('.letter-btn.active');
-  if (!activeBtn) return;
-  filterByLetter(activeBtn.textContent, activeBtn, null);
-}
-
-// ─── Interface principale ─────────────────────────────────────────────────────
+/* ------------- *
+ * -- XXXX -- *
+ * ------------- */
 
 function initInterface() {
   const alphaBar = document.getElementById('alphabetBar');
 
   if (typeof PAL_SIZE === 'undefined') return;
 
-  buildCategoryBar();
+  buildCategoBar();
 
   const availableLetters = [
     ...new Set(
@@ -129,39 +237,6 @@ function initInterface() {
   if (first) first.click();
 }
 
-function filterByLetter(letter, btn, targetPalette = null) {
-  document.querySelectorAll('.letter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  const scrollZone = document.getElementById('scrollZone');
-  scrollZone.innerHTML = '';
-
-  const matches = Object
-    .keys(PAL_SIZE)
-    .filter(name => name[0].toUpperCase() === letter)
-    .filter(name => isVisible(name))           // ← filtre catégories
-    .sort();
-
-  if (matches.length === 0) {
-    const empty = document.createElement('p');
-    empty.className = 'scroll-empty';
-    empty.textContent = 'Aucune palette pour cette lettre et ces catégories.';
-    scrollZone.appendChild(empty);
-    return;
-  }
-
-  matches.forEach(name => {
-    const pBtn = document.createElement('button');
-
-    pBtn.className = `palette-choice ${targetPalette === name ? 'selected' : ''}`;
-    pBtn.innerHTML = `<strong>${name}</strong><small>${PAL_SIZE[name]} tons</small>`;
-    pBtn.onclick = () => selectPalette(name, PAL_SIZE[name], pBtn);
-
-    scrollZone.appendChild(pBtn);
-
-    if (targetPalette === name) setTimeout(() => pBtn.scrollIntoView({ block: 'nearest' }), 50);
-  });
-}
 
 function pickRandom() {
   // Pool = toutes les palettes visibles selon les catégories actives
@@ -174,10 +249,10 @@ function pickRandom() {
   const letterBtn = document.getElementById(`btn-letter-${key[0].toUpperCase()}`);
 
   filterByLetter(key[0].toUpperCase(), letterBtn, key);
-  selectPalette(key, PAL_SIZE[key]);
+  selectPal(key, PAL_SIZE[key]);
 }
 
-function selectPalette(nom, taille, btnElement = null) {
+function selectPal(nom, taille, btnElement = null) {
   const cssPath = `../palettes-hf/${nom}.css`;
   const linkTag = document.getElementById('dynamic-palette-css');
 

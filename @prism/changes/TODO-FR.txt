@@ -26,6 +26,14 @@ Ajouter une catégo fond jaune clair entre std et dark à la Lettre guttenberge,
 
 HTML viewer
 
+    ---> Random
+
+            + historique de ce qu a été vu avaec retour en arrière si ebsoin
+
+            + historique évite des doublons
+
+            + possibilité de vider l'historique
+
     --> demos visuselles
 
             + ajout d'un gradient angulaire pour tous

@@ -2,7 +2,7 @@
 Just a fake list just for tests...
 
 warning::
-    A script must build the real list of all palette sizes
+    A script is required to compile the actual palette sizes
     for the final product.
 ***/
 
