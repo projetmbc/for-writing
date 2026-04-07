@@ -10,7 +10,7 @@
 -----
 
 [[:doc:]]
-\html viewer: two new features.
+Online \html viewer: two new features.
 
     1) Implement category selection for palette filtering (compatible with random mode).
 
@@ -22,4 +22,8 @@
 --------
 
 [[:doc:]]
-\Readmes: add a palette sample for the \latex prod.
+\Docs.
+
+    1) Add a palette sample for the \latex prod.
+
+    1) Document new online \html viewer features.

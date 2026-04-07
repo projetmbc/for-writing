@@ -2,6 +2,21 @@
 
 
 ==
+08  (2.2.0-beta.6)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual: document new online \html viewer features.
+
+
+// ---------- //
+
+
+==
 07  (2.2.0-beta.5)
 ==
 
@@ -16,10 +31,6 @@
 
     1) Enable palette downloads for all formats except \json (lack of project references).
 
-
------
-:new:
------
 
 [[:api:]]
 \Json \prod: the credits refer to all the files collectively, rather than a single one.
