@@ -106,6 +106,15 @@ function buildCategoBar() {
 }
 
 
+
+
+
+
+
+
+
+
+
 /* ------------------------- *
  * -- PALETTE SCROLL ZONE -- *
  * ------------------------- */
@@ -121,9 +130,9 @@ function filterByLetter(
 
   btn.classList.add('active');
 
-  const scrollZone = document.getElementById('scrollZone');
+  const scroll_zone = document.getElementById('scroll_zone');
 
-  scrollZone.innerHTML = '';
+  scroll_zone.innerHTML = '';
 
   const matches = Object
     .keys(PAL_SIZE)
@@ -137,7 +146,7 @@ function filterByLetter(
     message.className   = 'scroll-empty';
     message.textContent = 'No palette for this letter and these categories.';
 
-    scrollZone.appendChild(message);
+    scroll_zone.appendChild(message);
 
     return;
   }
@@ -154,7 +163,7 @@ function filterByLetter(
         btn
       );
 
-      scrollZone.appendChild(btn);
+      scroll_zone.appendChild(btn);
 
       if (targetPalette === name) {
         setTimeout(
@@ -168,15 +177,15 @@ function filterByLetter(
 
 
 function refreshScrollZone() {
-  const activeBtn = document.querySelector('.letter-btn.active');
+  const active_btn = document.querySelector('.letter-btn.active');
 
-  if (!activeBtn) {
+  if (!active_btn) {
     return;
   };
 
   filterByLetter(
-    activeBtn.textContent,
-    activeBtn,
+    active_btn.textContent,
+    active_btn,
     null
   );
 }
@@ -285,7 +294,7 @@ function selectPal(nom, taille, btnElement = null) {
 
 // ─── Rendu SVG ────────────────────────────────────────────────────────────────
 
-const seed = 20260201;
+const seed = 20270407;
 
 let currentSeed = seed;
 const getNextRandom = () => {
