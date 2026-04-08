@@ -27,3 +27,8 @@ Online \html viewer: two new features.
     1) Add a palette sample for the \latex prod.
 
     1) Document new online \html viewer features.
+
+
+
+smartnote
+sneaker

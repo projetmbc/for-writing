@@ -137,10 +137,10 @@ Building new palettes by transforming existing ones can be achieved using the \t
 
 \subsubsection{Retrieving the internal definition of a palette}
 
-The internally stored definition of a palette named \tdoccodein{text}+MyPal+, for example, is \tdoccodein{latex}+\g_palette_MyPal_seq+ which is a {\LaTeX3} variable (keep in mind the pattern \tdoccodein{latex}+\g_palette_PaletteName_seq+).
+The internally stored definition of a palette named \tdoccodein{text}+MyPal+, for example, is \tdoccodein{latex}+\g_palette_MyPal_seq+ which is a {\LaTeX3} variable (keep in mind the pattern \tdoccodein{text}+\g_palette_<palette-name>_seq+).
 
 \begin{tdocnote}
-Variables of type \tdoccodein{latex}+\g_palette_PaletteName_seq+ are not used internally to retrieve the colors themselves; they are only there for technical reasons related to the development process of new palettes via {\LaTeX}.
+Variables of type \tdoccodein{text}+\g_palette_<palette-name>_seq+ are not used internally to retrieve the colors themselves; they are only there for technical reasons related to the development process of new palettes via {\LaTeX}.
 \end{tdocnote}
 
 \end{document}
