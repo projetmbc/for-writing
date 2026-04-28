@@ -24,6 +24,9 @@ palAccent = {
 <!-- LUA PALETTE SAMPLE - AUTO - END -->
 
 
+> ***NOTE.*** *For the size-40 `Accent` palette, use `palettes-s40/Accent.lua`.*
+
+
 <!-------------------->
 
 

@@ -36,3 +36,6 @@ The `JSON` product enables seamless `@prism` palette integration for unsupported
 ]
 ~~~
 <!-- JSON PALETTE SAMPLE - AUTO - END -->
+
+
+> ***NOTE.*** *The original and size-40 palettes are located in the `palettes-hf` and `palettes-s40` folders, respectively.*

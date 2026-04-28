@@ -91,6 +91,8 @@ The `JSON` product enables seamless `@prism` palette integration for unsupported
   ...
 ]
 ~~~
+> ***NOTE.*** *The original and size-40 palettes are located in the `palettes-hf` and `palettes-s40` folders, respectively.*
+
 <a id="MULTIMD-TOC-ANCHOR-4"></a>
 ### CSS <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
@@ -128,6 +130,8 @@ The following example illustrates how to generate gradient variables via selecti
   color: var(--palAccent-5);
 }
 ~~~
+> ***NOTE.*** *For the size-40 `Accent` palette, use `palettes-s40/Accent.css`.*
+
 <a id="MULTIMD-TOC-ANCHOR-5"></a>
 ### LaTeX <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
@@ -163,6 +167,8 @@ Representation of the first ten palette colors.
 
 \end{document}
 ~~~
+> ***NOTE.*** *For the size-40 `Accent` palette, use `\usepackage{palettes-s40/Accent}`.*
+
 <a id="MULTIMD-TOC-ANCHOR-7"></a>
 #### Creating palettes from scratch <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 
@@ -262,6 +268,8 @@ palAccent = {
     ...
 }
 ~~~
+> ***NOTE.*** *For the size-40 `Accent` palette, use `palettes-s40/Accent.lua`.*
+
 <a id="MULTIMD-TOC-ANCHOR-12"></a>
 #### Creating palettes from existing ones <a href="#MULTIMD-GO-BACK-TO-TOC" style="text-decoration: none;"><span style="margin-left: 0.25em; font-weight: bold; position: relative; top: -.5pt;">&#x2191;</span></a>
 

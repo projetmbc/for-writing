@@ -41,6 +41,9 @@ Representation of the first ten palette colors.
 ~~~
 
 
+> ***NOTE.*** *For the size-40 `Accent` palette, use `\usepackage{palettes-s40/Accent}`.*
+
+
 <!-------------------->
 
 
@@ -170,5 +173,6 @@ inlinecode:
 -->
 
 The internally stored definition of a palette named `MyPal`, for example, is `\g_palette_MyPal_seq` which is a `L3` variable (keep in mind the pattern `\g_palette_<palette-name>_seq`).
+
 
 > ***NOTE.*** *Variables of type `\g_palette_<palette-name>_seq` are not used internally to retrieve the colors themselves; they are only there for technical reasons related to the development process of new palettes via `LaTeX`.*

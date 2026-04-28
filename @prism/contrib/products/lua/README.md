@@ -27,6 +27,8 @@ palAccent = {
     ...
 }
 ~~~
+> ***NOTE.*** *For the size-40 `Accent` palette, use `palettes-s40/Accent.lua`.*
+
 #### Creating palettes from existing ones
 
 The `palCreateFromPal` function provides options to build new palettes by transforming existing ones.

@@ -2,6 +2,22 @@
 
 
 ==
+28  (2.2.0-beta.7)
+==
+
+--------
+:update:
+--------
+
+[[:doc:]]
+Manual: clearly specifies the selection criteria between `hf` and `s40` formats for each technology.
+
+
+
+// ---------- //
+
+
+==
 08  (2.2.0-beta.6)
 ==
 

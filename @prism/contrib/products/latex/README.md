@@ -43,6 +43,8 @@ Representation of the first ten palette colors.
 
 \end{document}
 ~~~
+> ***NOTE.*** *For the size-40 `Accent` palette, use `\usepackage{palettes-s40/Accent}`.*
+
 #### Creating palettes from scratch
 
 Internally, palettes are defined using an array-of-three-floats syntax.

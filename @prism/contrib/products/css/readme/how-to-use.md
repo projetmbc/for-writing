@@ -44,3 +44,6 @@ The following example illustrates how to generate gradient variables via selecti
   color: var(--palAccent-5);
 }
 ~~~
+
+
+> ***NOTE.*** *For the size-40 `Accent` palette, use `palettes-s40/Accent.css`.*
