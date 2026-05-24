@@ -1,3 +1,7 @@
+local ld = luadraw
+
+local Z = ld.cpx.Z
+
 function drawpal(PAL)
   local WIDTH = 10
 
@@ -5,7 +9,7 @@ function drawpal(PAL)
   local PALDIM   = .6
   local PALDELTA = .1
 
-  local g = graph:new{
+  local g = ld.graph:new{
     window = {-WIDTH - 5, WIDTH + 5, -5, 4.4},
     bbox   = false
   }
@@ -16,7 +20,7 @@ function drawpal(PAL)
   local v = Z(0, -PALDIM)
 
   for k = 1, PALSIZE do
-    local color = rgb(PAL[k])
+    local color = ld.rgb(PAL[k])
 
     g:Drectangle(
       A, A + PALDIM, A + PALDIM + v,

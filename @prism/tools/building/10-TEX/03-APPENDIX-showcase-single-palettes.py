@@ -71,7 +71,11 @@ TEX_FOOTER = r"\end{document}"
 
 
 TEX_TMPL_PALETTE = r"""
-\begin{luadraw}{name = <PAL-NAME>-palette}
+\begin{luadraw*}{name = <PAL-NAME>-palette}
+local ld = luadraw
+
+local Z = ld.cpx.Z
+
 local PAL = pal<PAL-NAME>
 
 local WIDTH = 10
@@ -80,7 +84,7 @@ local PALSIZE  = #PAL
 local PALDIM   = .6
 local PALDELTA = .1
 
-local g = graph:new{
+local g = ld.graph:new{
   window = {-WIDTH - 5, WIDTH + 5, -5, 4.4},
   bbox   = false
 }
@@ -91,7 +95,7 @@ local A = Z(-WIDTH, 4)
 local v = Z(0, -PALDIM)
 
 for k = 1, PALSIZE do
-  local color = rgb(PAL[k])
+  local color = ld.rgb(PAL[k])
 
   g:Drectangle(
     A, A + PALDIM, A + PALDIM + v,
@@ -115,12 +119,16 @@ for k = 1, PALSIZE do
 end
 
 g:Show()
-\end{luadraw}
+\end{luadraw*}
 """.strip()
 
 
 TEX_TMPL_SPECTRUM = r"""
-\begin{luadraw}{name = <PAL-NAME>-spectrum}
+\begin{luadraw*}{name = <PAL-NAME>-spectrum}
+local ld = luadraw
+
+local Z = ld.cpx.Z
+
 local PAL      = pal<PAL-NAME>
 local NB_CELLS = <NB-CELLS>
 
@@ -129,10 +137,9 @@ local WIDTH = 8
 local A = Z(-WIDTH / 2, 4)
 local HEIGHT = Z(0, -.7)
 
-local g = graph:new{
+local g = ld.graph:new{
   window = {
-    -WIDTH / 2,
-    WIDTH / 2,
+    -WIDTH / 2, WIDTH / 2,
     -5, 5
   },
   bbox = false
@@ -141,7 +148,7 @@ local g = graph:new{
 local dl = WIDTH / NB_CELLS
 
 for k = 1, NB_CELLS do
-  local color = palette(
+  local color = ld.palette(
     PAL,
     (k - 1) / (NB_CELLS - 1)
   )
@@ -164,24 +171,28 @@ g:Drectangle(
 )
 
 g:Show()
-\end{luadraw}
+\end{luadraw*}
 """.strip()
 
 
 TEX_TMPL_ANGULAR_SPECTRUM = r"""
-\begin{luadraw}{name = <PAL-NAME>-angular}
+\begin{luadraw*}{name = <PAL-NAME>-angular}
 require 'luadraw_shadedforms'
 
-local g = graph:new{
+local ld = luadraw
+
+local Z = ld.cpx.Z
+
+local g = ld.graph:new{
   size   = {10,10},
   margin = {0,0,0,0},
   bbox   = false
 }
 
-L = circle(0, 1)
+L = ld.circle(0, 1)
 
 local f = function(x,y)
-  return cpx.arg(Z(x,y))
+  return ld.cpx.arg(Z(x,y))
 end
 
 g:Dshadedpolyline(
@@ -194,7 +205,7 @@ g:Dshadedpolyline(
 )
 
 g:Show()
-\end{luadraw}
+\end{luadraw*}
 """
 
 # ---------------------- #

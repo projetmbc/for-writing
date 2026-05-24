@@ -15,19 +15,23 @@
 
 \begin{document}
 
-\begin{luadraw}{name = BluGrn-angular}
+\begin{luadraw*}{name = BluGrn-angular}
 require 'luadraw_shadedforms'
 
-local g = graph:new{
+local ld = luadraw
+
+local Z = ld.cpx.Z
+
+local g = ld.graph:new{
   size   = {10,10},
   margin = {0,0,0,0},
   bbox   = false
 }
 
-L = circle(0, 1)
+L = ld.circle(0, 1)
 
 local f = function(x,y)
-  return cpx.arg(Z(x,y))
+  return ld.cpx.arg(Z(x,y))
 end
 
 g:Dshadedpolyline(
@@ -40,6 +44,6 @@ g:Dshadedpolyline(
 )
 
 g:Show()
-\end{luadraw}
+\end{luadraw*}
 
 \end{document}

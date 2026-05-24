@@ -14,7 +14,11 @@
 }
 
 \begin{document}
-\begin{luadraw}{name = Set2-spectrum}
+\begin{luadraw*}{name = Set2-spectrum}
+local ld = luadraw
+
+local Z = ld.cpx.Z
+
 local PAL      = palSet2
 local NB_CELLS = 200
 
@@ -23,10 +27,9 @@ local WIDTH = 8
 local A = Z(-WIDTH / 2, 4)
 local HEIGHT = Z(0, -.7)
 
-local g = graph:new{
+local g = ld.graph:new{
   window = {
-    -WIDTH / 2,
-    WIDTH / 2,
+    -WIDTH / 2, WIDTH / 2,
     -5, 5
   },
   bbox = false
@@ -35,7 +38,7 @@ local g = graph:new{
 local dl = WIDTH / NB_CELLS
 
 for k = 1, NB_CELLS do
-  local color = palette(
+  local color = ld.palette(
     PAL,
     (k - 1) / (NB_CELLS - 1)
   )
@@ -58,5 +61,5 @@ g:Drectangle(
 )
 
 g:Show()
-\end{luadraw}
+\end{luadraw*}
 \end{document}
